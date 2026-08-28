@@ -1,8 +1,8 @@
 # Verification log (2026-08-27)
 
-The project is now the **ConPath** Git repository. The local `main` branch is clean at commit
-`9aab160` (`Record conditioned posterior smoke verification`), with the previous bootstrap at
-`30f3b78`. The configured origin is `https://github.com/s-team-git/CRANE.git`; replacing the
+The project is now the **ConPath** Git repository. The local `main` branch is clean; the latest
+verification commit and complete history are available in `git log` (scientific bootstrap:
+`30f3b78`). The configured origin is `https://github.com/s-team-git/CRANE.git`; replacing the
 remote contents is pending GitHub authentication (the HTTPS remote requested credentials and the
 available SSH key was rejected).
 
