@@ -124,6 +124,7 @@ transfer can be performed from a clean tree with:
 scripts/publish_conpath_remote.sh --confirm-replace
 ```
 
-The script uses `git push --force-with-lease` and therefore refuses to run without the confirmation
-flag or if the working tree/remote does not match the expected target. Renaming the GitHub repository
+The script accepts the CRANE HTTPS or SSH remote and uses `git push --force-with-lease`; it therefore
+refuses to run without the confirmation flag or if the working tree/remote does not match the expected
+target. Renaming the GitHub repository
 itself is a separate setting on GitHub; the code and distribution are already named ConPath.
