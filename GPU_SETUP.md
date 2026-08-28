@@ -4,7 +4,7 @@
 
 ## 1. 先做只读检查
 
-进入 `research/pathrel` 后运行：
+进入 `research/conpath`（当前 transfer 目录仍可保留旧路径）后运行：
 
 ```powershell
 python scripts/check_environment.py

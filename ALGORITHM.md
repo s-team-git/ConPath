@@ -1,4 +1,4 @@
-# PathRel Algorithm Contract
+# ConPath Algorithm Contract
 
 ## Research question
 
