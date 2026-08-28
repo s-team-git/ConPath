@@ -89,7 +89,7 @@
     }
   ],
   "claim_boundary": "This is a real RGB-D geometric reference-map pilot. TUM provides RGB/depth and camera motion, not traversability or collision labels; metrics must not be presented as a public navigation benchmark or as a validated neural P0 result.",
-  "generated_at_utc": "2026-08-28T09:41:12.785295+00:00",
+  "generated_at_utc": "2026-08-28T09:46:18.065263+00:00",
   "assets": {
     "teaser": "assets/tum_freiburg1_desk_teaser.jpg",
     "rgb": "assets/tum_freiburg1_desk_rgb.jpg",
