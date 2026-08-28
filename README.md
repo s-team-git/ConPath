@@ -39,6 +39,9 @@ observation_bev [B, Cin, H, W]
 - a reproducible P0 death-test evaluator (`scripts/evaluate_p0.py`) with constant, independent-cell,
   direct-query, edge-connectivity, random-completion, deterministic, correlated-ablation, and
   correlated-event baselines;
+- a reproducible TUM RGB-D Freiburg1/desk real-data pilot (`scripts/run_tum_rgbd_pilot.py`) that
+  lifts registered depth with MoCap poses into a world-frame reference raster and audits future
+  start/goal events;
 - an exact NumPy merge-tree forward reference (`merge_tree_bottleneck_scores`) for many terminal
   queries on one map;
 - smoke forward, smoke training, and unit tests.
@@ -49,11 +52,12 @@ observation_bev [B, Cin, H, W]
 - an ORFD, UnScenes3D, or WildOcc loader;
 - SE(2) rectangular swept-footprint connectivity;
 - the final top-K path/cut probability bounds;
-- a real-data calibration or navigation result.
+- a paper-grade traversability, collision, or real-robot navigation result.
 
-Those are separate milestones. The current code implements a synthetic contract harness designed
-to test the hypothesis without coupling it to a large perception stack; the oracle proxy now passes
-the synthetic death-test comparison, but a trained neural checkpoint has not yet been validated.
+Those are separate milestones. The code now has both a synthetic contract harness and a real RGB-D
+geometry path. The real pilot is explicitly a reference-map audit because TUM does not provide
+traversability labels; the oracle proxy passes the synthetic death-test comparison, but a trained
+neural checkpoint has not yet been validated on a paper-grade public benchmark.
 
 ## Environment
 
@@ -92,8 +96,9 @@ PYTHONPATH=src .venv/bin/python scripts/train_p0_neural.py --device cuda --warmu
 ```
 
 The evaluator writes `report.json`, `metrics.csv`, and `reliability.svg`. Its correlated row is an
-audited synthetic posterior proxy, not a trained PathRel checkpoint; the death-test report must be
-positive for both independent cells and direct query prediction before public-data work continues.
+audited synthetic posterior proxy, not a trained PathRel checkpoint. For the real-data pilot, run
+`/usr/bin/python3 scripts/run_tum_rgbd_pilot.py --publish-site`; its report records the geometric
+label construction and claim boundary.
 
 If PyTorch is unavailable, the pure NumPy label-oracle tests can still run with the system
 Python; PyTorch tests skip with an explicit reason.
@@ -129,13 +134,19 @@ refuses to run without the confirmation flag or if the working tree/remote does 
 target. Renaming the GitHub repository
 itself is a separate setting on GitHub; the code and distribution are already named ConPath.
 
-## Interactive demo website
+## Academic project page
 
-The repository also contains a static, GitHub Pages-ready walkthrough under [`site/`](site/).
-It combines the tracked P0 figures, an interactive hidden-topology canvas, and the reproducible
-video artifact [`conpath_p0_demo.mp4`](site/assets/conpath_p0_demo.mp4). The page deliberately labels
-the correlated row as an **oracle proxy** and the current neural run as an active diagnostic; neither
-is silently promoted to a real-data paper result.
+The repository contains a static, GitHub Pages-ready project page under [`site/`](site/). Its primary
+video, teaser, depth visualization, and comparison figures are derived from the real TUM RGB-D
+`freiburg1/desk` sequence. The page is styled as an academic project page (white background,
+centered media, abstract/method/results sections) and labels the experiment as a **real-data
+geometric pilot**.
+
+The TUM sequence has RGB/depth and a motion-capture camera trajectory, but no traversability or
+collision labels. Therefore the pilot is a reproducibility milestone, not a public navigation
+benchmark or a validated neural P0 result. See [`REAL_DATA_PILOT.md`](REAL_DATA_PILOT.md) for the
+protocol and exact command. The synthetic P0 media remain available only through the explicitly
+opt-in development builder flag `--include-legacy`.
 
 **Online demo:** [https://s-team-git.github.io/ConPath/](https://s-team-git.github.io/ConPath/)
 
@@ -150,13 +161,13 @@ to allow Pages publication, or make this repository public if that is acceptable
 Enterprise Pages site, use the **Visit site** URL shown in repository settings—the private-site URL
 can differ from the public project URL above.
 
-After refreshing `results/p0_death_test`, update the site snapshot and commit it with the same change:
+After refreshing the real-data pilot, update the site snapshot and commit it with the same change:
 
 ```bash
-PYTHONPATH=src .venv/bin/python scripts/build_demo_site.py
-/usr/bin/python3 scripts/build_demo_video.py
+/usr/bin/python3 scripts/run_tum_rgbd_pilot.py --publish-site
+/usr/bin/python3 scripts/build_demo_site.py
 git add site
-git commit -m "Refresh ConPath demo snapshot"
+git commit -m "Refresh ConPath real-data project page"
 git push origin main
 ```
 

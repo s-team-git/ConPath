@@ -3,222 +3,177 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#08111f" />
-    <meta
-      name="description"
-      content="ConPath: an auditable demo of connectivity-calibrated path reliability under partial observation."
-    />
-    <title>ConPath · Path reliability under uncertainty</title>
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="description" content="ConPath: connectivity-calibrated path reliability under partial observation, with a reproducible TUM RGB-D real-data pilot." />
+    <title>ConPath · Connectivity-Calibrated Path Reliability</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <a class="skip-link" href="#demo">Skip to demo</a>
-    <header class="topbar">
-      <a class="brand" href="#top" aria-label="ConPath home">
-        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
-        <span>CONPATH</span>
-      </a>
-      <nav aria-label="Primary navigation">
-        <a href="#demo">Live demo</a>
-        <a href="#video">Video</a>
-        <a href="#results">P0 audit</a>
-        <a href="https://github.com/s-team-git/ConPath" rel="noreferrer">GitHub ↗</a>
-      </nav>
-      <span class="version-pill">research preview</span>
-    </header>
+    <a class="skip-link" href="#abstract">Skip to content</a>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <div class="container nav-inner">
+        <a class="wordmark" href="#top">ConPath</a>
+        <div class="nav-links">
+          <a href="#abstract">Abstract</a>
+          <a href="#method">Method</a>
+          <a href="#results">Results</a>
+          <a href="https://github.com/s-team-git/ConPath" rel="noreferrer">Code <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </nav>
 
     <main id="top">
-      <section class="hero section-shell" aria-labelledby="hero-title">
-        <div class="hero-copy">
-          <p class="eyebrow"><span class="pulse-dot"></span> SYNTHETIC P0 · TEMPLATE HELD OUT</p>
-          <h1 id="hero-title">A path is more than a pixel-by-pixel guess<span class="accent">.</span></h1>
-          <p class="hero-lede">
-            ConPath estimates the probability that a footprint-valid path exists through an uncertain
-            world. The demo makes the hidden topology, correlated samples, and calibration trade-off
-            visible in one place.
-          </p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#demo">Explore the live demo <span>↓</span></a>
-            <a class="button button-ghost" href="#results">Read the audit <span>↘</span></a>
-          </div>
-          <p class="microcopy">Connectivity-Calibrated Path Reliability · code and snapshots ship together.</p>
-        </div>
-        <div class="hero-visual" aria-hidden="true">
-          <div class="orbit orbit-a"></div>
-          <div class="orbit orbit-b"></div>
-          <div class="orbit orbit-c"></div>
-          <div class="hero-node node-start">s</div>
-          <div class="hero-node node-goal">g</div>
-          <div class="hero-route route-one"></div>
-          <div class="hero-route route-two"></div>
-          <div class="hero-caption">q(s, g, r | X)</div>
-        </div>
-      </section>
-
-      <section class="status-strip section-shell" aria-label="Research status">
-        <div class="status-item status-pass">
-          <span class="status-icon">✓</span>
-          <span><strong>Oracle proxy</strong><small>synthetic P0 gate passed</small></span>
-        </div>
-        <div class="status-item status-pass">
-          <span class="status-icon">✓</span>
-          <span><strong>CUDA smoke</strong><small>RTX PRO 6000 recorded</small></span>
-        </div>
-        <div class="status-item status-warn">
-          <span class="status-icon">↻</span>
-          <span><strong>Neural P0</strong><small>active iteration · not a paper result</small></span>
-        </div>
-        <div class="status-item status-hold">
-          <span class="status-icon">—</span>
-          <span><strong>Public data</strong><small>NO-GO until loader audit</small></span>
-        </div>
-      </section>
-
-      <section id="demo" class="section-shell section-block" aria-labelledby="demo-title">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">01 · INTERACTIVE CONTRACT</p>
-            <h2 id="demo-title">Same observation. Different worlds.</h2>
-          </div>
-          <p>
-            Toggle the hidden doorway and footprint radius. The visible BEV stays fixed while the
-            event probability changes for a reason a marginal occupancy map cannot express.
-          </p>
-        </div>
-        <div class="demo-card">
-          <div class="canvas-wrap">
-            <canvas id="topology-canvas" aria-label="Animated uncertain corridor demo"></canvas>
-            <div class="canvas-corner canvas-corner-tl">LIVE SYNTHETIC VIEW</div>
-            <div class="canvas-corner canvas-corner-br">NO ROBOT CONTROL · VISUAL AUDIT ONLY</div>
-          </div>
-          <aside class="demo-controls" aria-label="Demo controls">
-            <div class="control-intro">
-              <span class="control-kicker">HIDDEN-TOPOLOGY PROBE</span>
-              <p id="demo-explanation">The doorway prior is conditioned on the context token.</p>
-            </div>
-            <label class="control-label" for="context-select">Context family</label>
-            <select id="context-select" class="control-select">
-              <option value="0">Family 0 · open prior 0.20</option>
-              <option value="1">Family 1 · open prior 0.80</option>
-            </select>
-            <label class="control-label" for="radius-range">Footprint radius <output id="radius-value" for="radius-range">r = 0</output></label>
-            <input id="radius-range" type="range" min="0" max="2" step="1" value="0" />
-            <div class="range-ticks" aria-hidden="true"><span>0</span><span>1</span><span>2 cells</span></div>
-            <div class="control-buttons">
-              <button id="world-button" class="button button-small" type="button">Switch hidden world</button>
-              <button id="play-button" class="button button-small button-quiet" type="button" aria-pressed="true">Pause animation</button>
-            </div>
-            <div class="readout" aria-live="polite">
-              <div><span>Current sample</span><strong id="world-readout">doorway OPEN</strong></div>
-              <div><span>Estimated event</span><strong id="probability-readout">q ≈ 0.20</strong></div>
-              <div><span>Footprint effect</span><strong id="radius-readout">support-valid at r = 0</strong></div>
-            </div>
-            <div class="legend-list">
-              <span><i class="legend-swatch swatch-visible"></i> observed free</span>
-              <span><i class="legend-swatch swatch-unknown"></i> hidden / uncertain</span>
-              <span><i class="legend-swatch swatch-path"></i> valid path sample</span>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section id="video" class="section-shell section-block video-section" aria-labelledby="video-title">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">02 · REPRODUCIBLE WALKTHROUGH</p>
-            <h2 id="video-title">What the audit actually measures.</h2>
-          </div>
-          <p>Eight seconds of the same protocol, rendered from the tracked P0 snapshot.</p>
-        </div>
-        <div class="video-card">
-          <div class="video-frame">
-            <video controls preload="metadata" playsinline poster="assets/conpath_p0_demo_poster.png">
-              <source src="assets/conpath_p0_demo.mp4" type="video/mp4" />
-              Your browser does not support embedded video. <a href="assets/conpath_p0_demo.mp4">Download the demo video.</a>
+      <section class="hero section">
+        <div class="container narrow">
+          <div class="hero-media media-frame">
+            <video autoplay muted loop playsinline controls preload="metadata" poster="assets/tum_freiburg1_desk_demo_poster.jpg">
+              <source src="assets/tum_freiburg1_desk_demo.mp4" type="video/mp4" />
+              Your browser does not support embedded video. <a href="assets/tum_freiburg1_desk_demo.mp4">Download the real-data pilot video.</a>
             </video>
           </div>
-          <div class="video-notes">
-            <p class="video-tag">SYNTHETIC P0 AUDIT</p>
-            <h3>Correlated topology beats independent completion.</h3>
-            <p>
-              The video is deliberately labeled as an oracle proxy. It demonstrates the scientific
-              contract and the failure mode; it does not turn the current neural checkpoint into a
-              claimed benchmark result.
-            </p>
-            <a class="text-link" href="#protocol">See the protocol →</a>
+          <p class="media-caption">Real TUM RGB-D Freiburg1/desk: RGB observation, registered depth, and the world-frame BEV reference map. The black trajectory is the official motion-capture pose.</p>
+
+          <p class="eyebrow">REAL-DATA PILOT · TUM RGB-D</p>
+          <h1>ConPath: Connectivity-Calibrated Path Reliability</h1>
+          <p class="subtitle">Event-level calibration of footprint-conditioned connectivity under partial observation</p>
+          <p class="authors">A reproducible research prototype for uncertainty-aware geometric planning</p>
+          <div class="button-row" aria-label="Project links">
+            <a class="button dark" href="https://github.com/s-team-git/ConPath/blob/main/PAPER_DRAFT.md" rel="noreferrer"><span aria-hidden="true">▣</span> Paper draft</a>
+            <a class="button dark" href="https://github.com/s-team-git/ConPath" rel="noreferrer"><span aria-hidden="true">⌘</span> Code</a>
+            <a class="button light" href="https://cvg.cit.tum.de/data/datasets/rgbd-dataset" rel="noreferrer"><span aria-hidden="true">↗</span> TUM RGB-D</a>
+            <a class="button light" href="#results"><span aria-hidden="true">↓</span> Results</a>
+          </div>
+          <div class="scope-note"><strong>Scope.</strong> This page reports a real RGB-D geometric reference-map pilot. TUM supplies RGB/depth and camera motion, not traversability or collision labels; the numbers below are not a public navigation benchmark or a validated neural P0 result.</div>
+        </div>
+      </section>
+
+      <section id="abstract" class="section section-tint">
+        <div class="container text-block">
+          <h2>Abstract</h2>
+          <p>Occupancy marginals do not answer the question a robot asks at planning time: is there a support-valid path from a start to a goal for my footprint? ConPath treats that question as a calibrated event. A stochastic posterior produces spatially coherent support-map hypotheses, and a footprint-aware connectivity operator evaluates the event on each hypothesis rather than multiplying independent cell probabilities. This project page makes the data path inspectable with a real RGB-D sequence: sampled depth pixels are lifted with the official Freiburg-1 intrinsics and motion-capture poses, fused into a horizontal world-frame reference raster, and evaluated on future-frame queries.</p>
+          <p class="small-note">The current real-data result is intentionally a pilot. It validates the RGB-D → world geometry → event-audit path, while a paper-grade navigation claim still requires auditable traversability labels, a trained neural checkpoint, and sequence/site-held-out public benchmarks.</p>
+        </div>
+      </section>
+
+      <section id="method" class="section">
+        <div class="container">
+          <h2 class="center-title">Method</h2>
+          <p class="section-lede">From partial RGB-D evidence to a task-level connectivity probability.</p>
+          <figure class="figure figure-wide">
+            <img src="assets/conpath_pipeline.svg" alt="ConPath pipeline: RGB-D evidence is lifted into a world-frame support map, sampled into correlated worlds, and evaluated with footprint-conditioned connectivity." loading="lazy" />
+            <figcaption>Figure 1. The real-data adapter supplies geometry; the ConPath research object is the event posterior <code>q(s, g, r | X)</code>.</figcaption>
+          </figure>
+          <div class="method-grid">
+            <article>
+              <span class="step">01</span>
+              <h3>Lift and fuse</h3>
+              <p>Registered depth is back-projected with the TUM Freiburg-1 camera model and transformed by the official MoCap pose. Repeated support-height returns form a geometric reference raster.</p>
+            </article>
+            <article>
+              <span class="step">02</span>
+              <h3>Sample joint worlds</h3>
+              <p>Unknown cells retain uncertainty. The pilot compares independent-cell completion with a spatially correlated temporal random field clamped by observed evidence.</p>
+            </article>
+            <article>
+              <span class="step">03</span>
+              <h3>Score the event</h3>
+              <p>Each sampled world is eroded by a disk footprint and queried with four-neighbour connectivity. Brier, NLL, ECE, and false-safe rate attach calibration to the planning event.</p>
+            </article>
           </div>
         </div>
       </section>
 
-      <section id="results" class="section-shell section-block" aria-labelledby="results-title">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">03 · P0 DEATH TEST</p>
-            <h2 id="results-title">Numbers with the caveats attached.</h2>
+      <section id="real-data" class="section section-tint">
+        <div class="container">
+          <h2 class="center-title">Real-data pilot</h2>
+          <p class="section-lede">One sequence, one transparent protocol, and no synthetic media in the primary presentation.</p>
+          <figure class="figure figure-wide">
+            <img src="assets/tum_freiburg1_desk_teaser.jpg" alt="Real TUM RGB-D frame, colorized depth, and world-frame BEV reference map with camera trajectory." loading="lazy" />
+            <figcaption>Figure 2. Every panel is derived from TUM RGB-D Freiburg1/desk. Green marks the fused support surface, blue marks elevated returns, and the black line is the supplied camera trajectory.</figcaption>
+          </figure>
+          <div class="raw-media-grid">
+            <figure class="figure"><img src="assets/tum_freiburg1_desk_rgb.jpg" alt="Representative raw RGB frame from TUM RGB-D Freiburg1/desk." loading="lazy" /><figcaption>Measured RGB frame</figcaption></figure>
+            <figure class="figure"><img src="assets/tum_freiburg1_desk_depth.jpg" alt="Colorized registered depth frame from TUM RGB-D Freiburg1/desk." loading="lazy" /><figcaption>Registered depth (colorized for display)</figcaption></figure>
           </div>
-          <p>
-            Held-out scene templates, identical visible observations, and exact NumPy reachability
-            labels. Lower is better for all three headline metrics.
-          </p>
+          <div id="pilot-meta" class="meta-grid" aria-live="polite">
+            <div class="meta-card"><span>Dataset</span><strong>TUM RGB-D Freiburg1/desk</strong><small>official RGB + depth + MoCap</small></div>
+            <div class="meta-card"><span>Sequence</span><strong>48 sampled frames</strong><small>36 prefix / 12 future queries</small></div>
+            <div class="meta-card"><span>Raster</span><strong>0.04 m cells</strong><small>support plane estimated from depth</small></div>
+            <div class="meta-card"><span>Attribution</span><strong>CC BY 4.0</strong><small><a href="https://cvg.cit.tum.de/data/datasets/rgbd-dataset" rel="noreferrer">TUM RGB-D source ↗</a></small></div>
+          </div>
         </div>
-        <div id="metric-cards" class="metric-grid" aria-live="polite">
-          <div class="metric-card skeleton"></div><div class="metric-card skeleton"></div><div class="metric-card skeleton"></div>
-        </div>
-        <div class="results-grid">
-          <div class="table-card">
-            <div class="table-header"><h3>Event-level comparison</h3><span id="row-count">loading…</span></div>
-            <div class="table-scroll">
+      </section>
+
+      <section id="results" class="section">
+        <div class="container">
+          <h2 class="center-title">Results</h2>
+          <p class="section-lede">Future-frame event audit on the measured reference raster. Lower is better.</p>
+          <div class="results-layout">
+            <div class="table-wrap">
               <table>
-                <thead><tr><th>Method</th><th>Brier ↓</th><th>NLL ↓</th><th>ECE ↓</th><th>False-safe @ 0.8</th></tr></thead>
-                <tbody id="metrics-body"><tr><td colspan="5">Loading tracked snapshot…</td></tr></tbody>
+                <caption>Table 1. Real-data pilot calibration metrics</caption>
+                <thead><tr><th>Method</th><th>Brier ↓</th><th>NLL ↓</th><th>ECE ↓</th><th>False-safe @ 0.8 ↓</th></tr></thead>
+                <tbody id="metrics-body"><tr><td colspan="5">Loading tracked real-data snapshot…</td></tr></tbody>
               </table>
             </div>
-          </div>
-          <div class="snapshot-card">
-            <div class="table-header"><h3>Latest neural run</h3><span class="badge badge-warn">diagnostic</span></div>
-            <div id="neural-summary" class="neural-summary">
-              <p>Loading latest snapshot…</p>
+            <div class="result-callout">
+              <p class="eyebrow">MEASURED PILOT</p>
+              <div class="headline-metric"><span id="best-brier">—</span><small>correlated temporal Brier</small></div>
+              <p id="result-summary">The snapshot is loaded from <code>site/data/tum_rgbd_pilot.json</code>.</p>
+              <a class="text-link" href="assets/tum_freiburg1_desk_comparison.svg">Open comparison figure ↗</a>
             </div>
           </div>
-        </div>
-        <div class="plot-grid">
-          <figure class="plot-card"><img src="assets/comparison.svg" alt="P0 event-metric comparison bar charts" loading="lazy" /><figcaption>Figure A · event metrics</figcaption></figure>
-          <figure class="plot-card"><img src="assets/reliability.svg" alt="P0 reachability reliability diagram" loading="lazy" /><figcaption>Figure B · reliability by method</figcaption></figure>
+          <div class="figure-grid">
+            <figure class="figure"><img src="assets/tum_freiburg1_desk_comparison.svg" alt="Bar chart comparing real-data pilot Brier and ECE metrics." loading="lazy" /><figcaption>Figure 3. Event metrics from the real-data pilot.</figcaption></figure>
+            <figure class="figure"><img src="assets/tum_freiburg1_desk_reliability.svg" alt="Reliability diagram for future-frame event probabilities." loading="lazy" /><figcaption>Figure 4. Reliability bins against geometric reference-map labels.</figcaption></figure>
+          </div>
+          <p class="source-note">Data source: <a href="https://cvg.cit.tum.de/data/datasets/rgbd-dataset" rel="noreferrer">TUM RGB-D, TU Munich ↗</a>. Derived assets and exact commands are versioned with the <a href="https://github.com/s-team-git/ConPath" rel="noreferrer">ConPath repository ↗</a>.</p>
         </div>
       </section>
 
-      <section id="protocol" class="section-shell section-block protocol-section" aria-labelledby="protocol-title">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">04 · MAKE IT REPEATABLE</p>
-            <h2 id="protocol-title">The demo is a view, not a black box.</h2>
+      <section id="repro" class="section section-tint">
+        <div class="container">
+          <h2 class="center-title">Reproducibility and limits</h2>
+          <div class="repro-grid">
+            <div>
+              <h3>Run the pilot</h3>
+              <pre><code>/usr/bin/python3 scripts/run_tum_rgbd_pilot.py \
+  --publish-site</code></pre>
+              <p>Raw data stays in the ignored <code>data/raw/</code> directory. The command writes the report, CSV, figures, and the compact real-data video used on this page.</p>
+            </div>
+            <div class="limit-box">
+              <h3>Claim boundary</h3>
+              <p>This pilot has no human or robot collision labels. Its connectivity labels are defined on a fused geometric reference map. It is evidence that the real-data path runs end to end, not evidence that ConPath is already ready for ICRA/IROS.</p>
+              <a class="text-link" href="https://github.com/s-team-git/ConPath/blob/main/REAL_DATA_PILOT.md" rel="noreferrer">Read the full protocol ↗</a>
+            </div>
           </div>
-          <p id="generated-line">Snapshot metadata will appear here.</p>
-        </div>
-        <div class="protocol-grid">
-          <article class="protocol-card"><span class="protocol-index">A</span><h3>Partial observation</h3><p>Known free/blocked cells are held exact; only the occluded doorway is sampled.</p></article>
-          <article class="protocol-card"><span class="protocol-index">B</span><h3>Joint topology</h3><p>One shared latent doorway controls a whole wall column, preserving spatial correlation.</p></article>
-          <article class="protocol-card"><span class="protocol-index">C</span><h3>Task metric</h3><p>Reachability is evaluated after disk-footprint erosion at radii 0, 1, and 2 cells.</p></article>
-        </div>
-        <div class="command-card">
-          <div><span class="command-kicker">REBUILD THE SNAPSHOT</span><p>Run from the repository root after a new P0 evaluation.</p></div>
-          <code>PYTHONPATH=src .venv/bin/python scripts/evaluate_p0.py<br />PYTHONPATH=src .venv/bin/python scripts/build_demo_site.py</code>
-        </div>
-        <div class="claim-box">
-          <span class="claim-icon">!</span>
-          <p><strong>Claim boundary.</strong> The oracle proxy passes the synthetic gate. The latest neural P0 run remains an active diagnostic, and public-data readiness is explicitly <b>NO-GO</b>. This page will change when the tracked report changes.</p>
+          <h3 class="bib-title">BibTeX</h3>
+          <pre class="bibtex"><code>@misc{conpath2026,
+  title  = {ConPath: Connectivity-Calibrated Path Reliability},
+  author = {ConPath contributors},
+  year   = {2026},
+  note   = {Research prototype and real-data pilot}
+}
+
+@inproceedings{sturm2012rgbd,
+  title  = {A Benchmark for the Evaluation of RGB-D SLAM Systems},
+  author = {Sturm, J. and Engelhard, N. and Endres, F. and Burgard, W. and Cremers, D.},
+  booktitle = {IEEE/RSJ IROS},
+  year   = {2012}
+}</code></pre>
         </div>
       </section>
     </main>
 
-    <footer class="footer section-shell">
-      <div><span class="brand-mark small" aria-hidden="true"><i></i><i></i><i></i></span><span>ConPath</span></div>
-      <p>Connectivity-Calibrated Path Reliability · research preview · <a href="https://github.com/s-team-git/ConPath" rel="noreferrer">source on GitHub ↗</a></p>
-      <p class="footer-lang">中 / EN · built from the repository</p>
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span>ConPath · Connectivity-Calibrated Path Reliability</span>
+        <span><a href="https://github.com/s-team-git/ConPath" rel="noreferrer">GitHub ↗</a> · <a href="https://cvg.cit.tum.de/data/datasets/rgbd-dataset" rel="noreferrer">TUM RGB-D ↗</a></span>
+      </div>
     </footer>
-    <noscript><div class="noscript">JavaScript is needed for the live canvas and tracked metric cards. The figures and video remain available without it.</div></noscript>
-    <script src="data/p0_metrics.js" defer></script>
+    <noscript><div class="noscript">JavaScript is only used to populate the compact metric table. The real video, figures, and protocol remain available without it.</div></noscript>
+    <script src="data/tum_rgbd_pilot.js" defer></script>
     <script src="app.js" defer></script>
   </body>
 </html>

@@ -506,7 +506,7 @@ def render_panel(item: FrameEvidence, grid: dict[str, object], prefix_support: n
     canvas = np.full((height, width, 3), 248, dtype=np.uint8)
     put_text(canvas, "ConPath  |  real-data pilot", (42, 48), 0.95, (20, 28, 38), 2)
     put_text(canvas, "TUM RGB-D Freiburg1/desk - RGB + registered depth + MoCap pose", (42, 78), 0.56, (92, 101, 112), 1)
-    put_text(canvas, f"frame {frame_number + 1:02d}/{total:02d}   t={item.record.timestamp:.3f}s", (width - 280, 52), 0.55, (92, 101, 112), 1)
+    put_text(canvas, f"frame {frame_number + 1:02d}/{total:02d}   t={item.record.timestamp:.3f}s", (width - 380, 52), 0.48, (92, 101, 112), 1)
 
     margin = 42
     top = 112
@@ -539,17 +539,20 @@ def render_panel(item: FrameEvidence, grid: dict[str, object], prefix_support: n
     yy, xx = np.where(support)
     px = ((xx / max(1, map_w - 1)) * (image_size[0] - 1)).astype(int)
     py = ((yy / max(1, map_h - 1)) * (image_size[1] - 1)).astype(int)
-    bev[py, px] = (126, 180, 112)
+    for point_x, point_y in zip(px, py):
+        cv2.circle(bev, (int(point_x), int(point_y)), 2, (126, 180, 112), -1, cv2.LINE_AA)
     yy, xx = np.where(obstacle)
     px = ((xx / max(1, map_w - 1)) * (image_size[0] - 1)).astype(int)
     py = ((yy / max(1, map_h - 1)) * (image_size[1] - 1)).astype(int)
-    bev[py, px] = (77, 110, 194)
+    for point_x, point_y in zip(px, py):
+        cv2.circle(bev, (int(point_x), int(point_y)), 2, (77, 110, 194), -1, cv2.LINE_AA)
     # Unknown prefix evidence is shown as faint amber cells, making partial observation explicit.
     unknown_prefix = ~(support_prefix | obstacle_prefix)
     yy, xx = np.where(unknown_prefix & support)
     px = ((xx / max(1, map_w - 1)) * (image_size[0] - 1)).astype(int)
     py = ((yy / max(1, map_h - 1)) * (image_size[1] - 1)).astype(int)
-    bev[py, px] = (194, 170, 94)
+    for point_x, point_y in zip(px, py):
+        cv2.circle(bev, (int(point_x), int(point_y)), 2, (194, 170, 94), -1, cv2.LINE_AA)
     poses = np.asarray([entry.record.pose[:3] for entry in grid["evidence"]], dtype=np.float64) if "evidence" in grid else np.empty((0, 3))
     if len(poses):
         tx = ((poses[:, 0] - xmin) / max(1e-6, xmax - xmin) * (image_size[0] - 1)).astype(int)
@@ -676,7 +679,7 @@ def json_safe(value: object) -> object:
 def publish_assets(output_dir: Path, site_dir: Path, report: dict[str, object]) -> None:
     assets = site_dir / "assets"
     assets.mkdir(parents=True, exist_ok=True)
-    for name in ("tum_freiburg1_desk_teaser.jpg", "tum_freiburg1_desk_comparison.svg", "tum_freiburg1_desk_reliability.svg", "tum_freiburg1_desk_demo.mp4", "tum_freiburg1_desk_demo_poster.jpg"):
+    for name in ("tum_freiburg1_desk_teaser.jpg", "tum_freiburg1_desk_rgb.jpg", "tum_freiburg1_desk_depth.jpg", "tum_freiburg1_desk_comparison.svg", "tum_freiburg1_desk_reliability.svg", "tum_freiburg1_desk_demo.mp4", "tum_freiburg1_desk_demo_poster.jpg"):
         source = output_dir / name
         if source.exists():
             shutil.copyfile(source, assets / name)
@@ -691,6 +694,8 @@ def publish_assets(output_dir: Path, site_dir: Path, report: dict[str, object]) 
         "claim_boundary": report["claim_boundary"],
         "assets": {
             "teaser": "assets/tum_freiburg1_desk_teaser.jpg",
+            "rgb": "assets/tum_freiburg1_desk_rgb.jpg",
+            "depth": "assets/tum_freiburg1_desk_depth.jpg",
             "video": "assets/tum_freiburg1_desk_demo.mp4",
             "poster": "assets/tum_freiburg1_desk_demo_poster.jpg",
             "comparison": "assets/tum_freiburg1_desk_comparison.svg",
@@ -808,6 +813,8 @@ def main() -> None:
         cv2.imwrite(str(frames_dir / f"frame_{frame_index:03d}.jpg"), panel, [cv2.IMWRITE_JPEG_QUALITY, 90])
         if frame_index == len(raw_evidence) // 2:
             cv2.imwrite(str(output_dir / "tum_freiburg1_desk_teaser.jpg"), panel, [cv2.IMWRITE_JPEG_QUALITY, 93])
+            cv2.imwrite(str(output_dir / "tum_freiburg1_desk_rgb.jpg"), raw_evidence[frame_index].rgb, [cv2.IMWRITE_JPEG_QUALITY, 93])
+            cv2.imwrite(str(output_dir / "tum_freiburg1_desk_depth.jpg"), colorize_depth(raw_evidence[frame_index].depth, (640, 480)), [cv2.IMWRITE_JPEG_QUALITY, 93])
         for cells, counts in ((grid["frame_cells"][frame_index][0], prefix_support), (grid["frame_cells"][frame_index][1], prefix_obstacle)):  # type: ignore[index]
             if len(cells):
                 np.add.at(counts, (cells // width, cells % width), 1)
