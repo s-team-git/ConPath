@@ -22,7 +22,7 @@ environment was copied or modified.
 
 Command: `PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -v`
 
-Result: `Ran 27 tests ... OK` with `skipped=0`.
+Result: `Ran 27 tests in 0.694s ... OK` with `skipped=0`.
 
 Command: `PYTHONPATH=src .venv/bin/python scripts/smoke_forward.py`
 
@@ -53,9 +53,10 @@ completed both warmup and joint stages and reported event Brier `0.13932291`.
 Command: `PYTHONPATH=src .venv/bin/python scripts/evaluate_p0.py --output-dir results/p0_death_test`
 
 Result: oracle correlated-posterior proxy death test passed against independent-cell and direct-
-query baselines; see `P0_DEATH_TEST.md` and `results/p0_death_test/report.json`. This is not a
-trained neural result and does not authorize public-data claims.
+query baselines (event Brier `0.10237` vs `0.18317` and `0.16989`; ECE `0.03248`); see
+`P0_DEATH_TEST.md` and `results/p0_death_test/report.json`. This is not a trained neural result and
+does not authorize public-data claims.
 
 Command: `PYTHONPATH=src .venv/bin/python scripts/benchmark_merge_tree.py --output results/merge_tree_benchmark.json`
 
-Result: exact error `0.0`; 64x64 speedups `2.9x/21.8x/179.5x` for `8/64/512` queries in the recorded run.
+Result: exact error `0.0`; 64x64 speedups `3.0x/22.7x/172.7x` for `8/64/512` queries in the latest run.

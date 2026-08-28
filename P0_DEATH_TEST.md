@@ -18,14 +18,14 @@ full JSON/CSV/SVG artifacts.
 
 | Method | Reachability Brier | NLL | ECE | False-safe @0.8 |
 |---|---:|---:|---:|---:|
-| constant query/radius | 0.2177 | 0.6277 | 0.0871 | — |
-| independent Bernoulli | 0.1938 | 0.9765 | 0.1954 | 0.2510 |
-| direct query MLP | 0.1692 | 0.5156 | 0.0667 | — |
-| edge-connectivity calibrated | 0.1377 | 0.4468 | 0.1717 | — |
-| random completion | 0.3254 | 2.5671 | 0.3250 | 0.4531 |
-| deterministic threshold | 0.1181 | 1.6310 | 0.1181 | 0.1198 |
-| correlated decoder, no reachability loss | 0.1656 | 0.4599 | 0.0231 | — |
-| correlated event posterior (oracle proxy) | 0.0987 | 0.3172 | 0.0373 | 0.1407 |
+| constant query/radius | 0.2096 | 0.6083 | 0.0616 | — |
+| independent Bernoulli | 0.1832 | 1.0316 | 0.1762 | 0.2500 |
+| direct query MLP | 0.1699 | 0.5224 | 0.0891 | — |
+| edge-connectivity calibrated | 0.1382 | 0.4494 | 0.1413 | — |
+| random completion | 0.3115 | 2.2621 | 0.3119 | 0.4531 |
+| deterministic threshold | 0.1458 | 2.0148 | 0.1458 | 0.1797 |
+| correlated decoder, no reachability loss | 0.1663 | 0.4613 | 0.0219 | — |
+| correlated event posterior (oracle proxy) | 0.1024 | 0.3250 | 0.0325 | 0.1474 |
 
 The oracle-proxy death test is **PASS**: the correlated posterior beats independent cells and the
 direct-query MLP on event Brier, improves ECE over both, and lowers false-safe rate versus independent
@@ -46,5 +46,5 @@ an implementation of SCOPE. No real-data, SCOPE, diffusion-completion, or naviga
 
 `src/pathrel/labels.py::merge_tree_bottleneck_scores` is an exact Kruskal merge-tree/LCA reference
 for many queries on one map. On a 64x64 seeded random map it matched exhaustive bottleneck search
-to zero error and measured 2.9x/21.8x/179.5x speedups for 8/64/512 queries in the recorded run. It
-is a NumPy correctness contract, not yet a differentiable CUDA kernel.
+to zero error and measured 3.0x/22.7x/172.7x speedups for 8/64/512 queries in the latest recorded
+run. It is a NumPy correctness contract, not yet a differentiable CUDA kernel.

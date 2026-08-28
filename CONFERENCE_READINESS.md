@@ -60,9 +60,9 @@ ROS、实车闭环或更多传感器。
 
 已实现 `scripts/evaluate_p0.py`，并按 scene-template 留出测试集、两个可见 context family
 （隐藏门洞先验约 0.2/0.8）、多隐藏世界重复、常数/独立 cell/direct-query/edge-connectivity/
-random completion/deterministic/correlated ablation 等基线。默认测试集结果为：direct-query
-Brier 0.1692、deterministic threshold 0.1181、相关事件代理 0.0987；相关代理的 ECE 为
-0.0373，独立 cell 为 0.1954，且地图边际 Brier 与独立采样相差 0.0173。因而 **oracle
+random completion/deterministic/correlated ablation 等基线。最新默认测试集结果为：direct-query
+Brier 0.1699、deterministic threshold 0.1458、相关事件代理 0.1024；相关代理的 ECE 为
+0.0325，独立 cell 为 0.1762，且地图边际 Brier 与独立采样相差 0.0173。因而 **oracle
 proxy death test PASS**，支持继续验证联合后验假设；但 CUDA 上的神经 PathRel 尚未运行，当前
 项目仍保持 **NO-GO**，不能接入公开数据或宣称 ICRA/IROS 贡献。
 
