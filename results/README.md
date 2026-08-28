@@ -15,3 +15,13 @@ PYTHONPATH=src .venv/bin/python scripts/benchmark_merge_tree.py --output results
 generated `comparison.svg` is the method-level Brier/NLL/ECE bar chart and `reliability.svg` is the
 calibration diagram. The correlated row is an oracle synthetic diagnostic; it is not a trained
 neural result.
+
+The real-data pilot is generated with:
+
+```bash
+/usr/bin/python3 scripts/run_tum_rgbd_pilot.py --publish-site
+```
+
+Its ignored outputs are under `results/tum_rgbd_freiburg1_desk_pilot/`. The pilot uses geometric
+reference-map labels from TUM RGB-D and is explicitly not a traversability benchmark; the compact
+JSON/figures copied into `site/` are the reviewable snapshot.
