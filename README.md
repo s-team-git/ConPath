@@ -141,7 +141,14 @@ is silently promoted to a real-data paper result.
 
 The URL is served by GitHub Pages through the tracked workflow below. If it shows a 404 initially,
 open **Repository settings → Pages**, select **GitHub Actions**, and wait for the first deployment
-to finish; subsequent pushes to `main` update the page automatically.
+to finish; subsequent pushes to `main` update the page automatically. GitHub documents that Pages is
+available for private repositories only on the applicable Pro/Team/Enterprise plans; on GitHub Free
+for organizations the repository must be public. See the [Pages availability and setup guide](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site).
+
+If the Pages menu is missing or the workflow cannot create a deployment, ask an organization owner
+to allow Pages publication, or make this repository public if that is acceptable. For a private
+Enterprise Pages site, use the **Visit site** URL shown in repository settings—the private-site URL
+can differ from the public project URL above.
 
 After refreshing `results/p0_death_test`, update the site snapshot and commit it with the same change:
 
