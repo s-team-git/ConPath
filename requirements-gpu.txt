@@ -1,0 +1,10 @@
+# Install a CUDA-enabled PyTorch build separately using the official selector:
+# https://pytorch.org/get-started/locally/
+# Do not copy the CPU-only virtual environment from the development machine.
+numpy>=1.26,<3
+
+# Optional utilities used by the planned evaluation scripts.
+tqdm>=4.66
+matplotlib>=3.8
+pandas>=2.1
+scikit-learn>=1.4

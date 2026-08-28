@@ -1,0 +1,18 @@
+{
+  "seed": 7,
+  "height": 24,
+  "width": 24,
+  "batch_size": 8,
+  "steps": 120,
+  "learning_rate": 0.001,
+  "feature_channels": 32,
+  "latent_dim": 8,
+  "num_samples": 8,
+  "footprint_radii_cells": [0, 1, 2],
+  "max_reachability_steps": 576,
+  "loss_weights": {
+    "map": 1.0,
+    "variogram": 0.2,
+    "reachability": 1.0
+  }
+}
