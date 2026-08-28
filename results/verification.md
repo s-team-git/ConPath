@@ -1,28 +1,24 @@
-# Verification log (2026-08-27)
+# Verification log (2026-08-28)
 
 The project is now the **ConPath** Git repository. The local `main` branch is clean; the latest
 verification commit and complete history are available in `git log` (scientific bootstrap:
-`30f3b78`). The configured origin is `https://github.com/s-team-git/ConPath.git`; replacing the
-remote contents is pending GitHub authentication (the HTTPS remote requested credentials and the
-available SSH key was rejected).
+`30f3b78`). The configured origin is `git@github.com:s-team-git/ConPath.git`; SSH authentication as
+`hairo410` was verified and the current `main` branch was pushed successfully.
 
 ## Environment
 
 Command: `nvidia-smi`
 
-Result: `nvidia-smi` cannot communicate with a compute device in this session. The read-only kernel
-report does show `NVIDIA RTX PRO 6000 Blackwell Workstation Edition`, driver `580.173.02`, and a
-loaded NVIDIA module, but no compute device nodes (`/dev/nvidia0`, `/dev/nvidiactl`, or
-`/dev/nvidia-uvm`) are visible. This is consistent with a container/session launched without GPU
-passthrough; it is not evidence that the host driver package is absent.
+Result: `nvidia-smi` reports `NVIDIA RTX PRO 6000 Blackwell Workstation Edition`, driver
+`580.173.02`, CUDA `13.0`, and `97887 MiB` total memory. The GPU is visible in the hardware-enabled
+execution channel.
 
 Command: `PYTHONPATH=src .venv/bin/python scripts/check_environment.py --json`
 
-Result: Python 3.11.15; Torch 2.13.0+cu130; built CUDA 13.0; `cuda_available=false`; device count
-0; NVML unavailable. The environment was created in a fresh project-local `.venv`; no old
-environment was copied or modified. `scripts/check_environment.py --json` now records the kernel
-driver/GPU report separately from `nvidia-smi` so a missing passthrough is not misdiagnosed as a
-missing driver installation.
+Result: Python 3.11.15; Torch `2.13.0+cu130`; built CUDA `13.0`; `cuda_available=true`; device
+count `1`; compute capability `12.0`; BF16 supported. The environment was created in a fresh
+project-local `.venv`; no old environment was copied or modified. `scripts/check_environment.py
+--json` records the kernel driver/GPU report separately from `nvidia-smi`.
 
 ## Tests and smoke
 
@@ -39,12 +35,10 @@ Command: `PYTHONPATH=src .venv/bin/python scripts/train_synthetic.py --config co
 
 Result: CPU forward/backward/optimizer/checkpoint smoke passed; validation Brier `0.3151041567`.
 
-Command: `PYTHONPATH=src .venv/bin/python scripts/train_synthetic.py --config configs/synthetic.json --device cuda --steps 1 --validation-size 2 --validation-samples 2`
+Command: `PATH="$PWD/.venv/bin:$PATH" PYTHONPATH=src bash scripts/run_gpu_smoke.sh`
 
-Result: expected explicit failure: `CUDA was requested but torch.cuda.is_available() is false`.
-
-The bundled `scripts/run_gpu_smoke.sh` reached the same result after completing all 27 tests and
-the forward smoke; its exit code is 1 solely because the requested CUDA training step cannot start.
+Result: complete GPU smoke passed: environment check, all 27 tests (`skipped=0`), forward smoke,
+and one CUDA optimizer/checkpoint step. The CUDA smoke reported validation Brier `0.33463544`.
 
 Command: `PYTHONPATH=src .venv/bin/python scripts/train_p0_neural.py --device cpu --steps 1 --batch-size 2 --train-templates 2 --test-templates 1 --worlds-per-template 4 --train-samples 2 --validation-samples 2 --output-dir results/p0_neural_cpu_smoke`
 
