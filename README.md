@@ -116,7 +116,7 @@ criteria.
 ## Versioning and publication
 
 The local repository is branded **ConPath** while retaining the `pathrel` Python import namespace
-for source compatibility. `origin` points to `https://github.com/s-team-git/CRANE.git`. After
+for source compatibility. `origin` points to `https://github.com/s-team-git/ConPath.git`. After
 configuring GitHub authentication, the explicitly destructive replacement requested for this
 transfer can be performed from a clean tree with:
 
@@ -124,7 +124,7 @@ transfer can be performed from a clean tree with:
 scripts/publish_conpath_remote.sh --confirm-replace
 ```
 
-The script accepts the CRANE HTTPS or SSH remote and uses `git push --force-with-lease`; it therefore
+The script accepts the ConPath HTTPS or SSH remote and uses `git push --force-with-lease`; it therefore
 refuses to run without the confirmation flag or if the working tree/remote does not match the expected
 target. Renaming the GitHub repository
 itself is a separate setting on GitHub; the code and distribution are already named ConPath.

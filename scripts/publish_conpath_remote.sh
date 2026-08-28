@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# The user explicitly requested replacing the CRANE repository contents.  Keep this operation
+# The user explicitly requested publishing the ConPath repository.  Keep this operation
 # opt-in and fail closed: credentials must already be configured (PAT credential helper or SSH),
 # the working tree must be clean, and the expected remote must be selected.
 PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -13,12 +13,12 @@ if [[ "${1:-}" != "--confirm-replace" ]]; then
   exit 2
 fi
 
-expected_remote="https://github.com/s-team-git/CRANE.git"
+expected_remote="https://github.com/s-team-git/ConPath.git"
 actual_remote="$(git remote get-url origin 2>/dev/null || true)"
 case "$actual_remote" in
-  "$expected_remote"|"git@github.com:s-team-git/CRANE.git"|"ssh://git@github.com/s-team-git/CRANE.git") ;;
+  "$expected_remote"|"git@github.com:s-team-git/ConPath.git"|"ssh://git@github.com/s-team-git/ConPath.git") ;;
   *)
-  echo "origin is '$actual_remote', expected the CRANE HTTPS or SSH URL" >&2
+  echo "origin is '$actual_remote', expected the ConPath HTTPS or SSH URL" >&2
   exit 2
   ;;
 esac
