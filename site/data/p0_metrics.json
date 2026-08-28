@@ -1,0 +1,252 @@
+{
+  "schema_version": 1,
+  "project": "ConPath",
+  "title": "Connectivity-Calibrated Path Reliability",
+  "generated_from": "results/p0_death_test/report.json",
+  "report_mtime_utc": "2026-08-28T03:51:08.839682+00:00",
+  "protocol": {
+    "seed": 20260827,
+    "radii_cells": [
+      0,
+      1,
+      2
+    ],
+    "train_templates": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "test_templates": [
+      12,
+      13,
+      14,
+      15
+    ],
+    "worlds_per_template": 24,
+    "posterior_samples": 64,
+    "split_rule": "scene template held out; no adjacent-frame/random leakage",
+    "context_open_probabilities": {
+      "0": 0.2,
+      "1": 0.8
+    },
+    "command": "PYTHONPATH=src .venv/bin/python scripts/evaluate_p0.py",
+    "python": "3.11.15",
+    "numpy": "2.4.6"
+  },
+  "event_metrics": [
+    {
+      "id": "constant_query_radius",
+      "name": "Constant query-radius prior",
+      "brier": 0.20955755247220942,
+      "nll": 0.6083063039796343,
+      "ece": 0.06163193533817927,
+      "false_safe_rate_at_08": null,
+      "count": 1152
+    },
+    {
+      "id": "independent_bernoulli",
+      "name": "Independent cell completion",
+      "brier": 0.18317159016927084,
+      "nll": 1.0316285873653355,
+      "ece": 0.1762424045138889,
+      "false_safe_rate_at_08": 0.25,
+      "count": 1152
+    },
+    {
+      "id": "direct_query_mlp",
+      "name": "Direct query predictor",
+      "brier": 0.16988758349570215,
+      "nll": 0.5223821828019999,
+      "ece": 0.08912776173751391,
+      "false_safe_rate_at_08": null,
+      "count": 1152
+    },
+    {
+      "id": "edge_connectivity_calibrated",
+      "name": "Edge-connectivity calibrated",
+      "brier": 0.13820770691383616,
+      "nll": 0.4493698605108771,
+      "ece": 0.1412985402350096,
+      "false_safe_rate_at_08": null,
+      "count": 1152
+    },
+    {
+      "id": "random_completion",
+      "name": "Uniform unknown completion",
+      "brier": 0.3115168677435981,
+      "nll": 2.2620892365701746,
+      "ece": 0.31191677517361116,
+      "false_safe_rate_at_08": 0.453125,
+      "count": 1152
+    },
+    {
+      "id": "deterministic_threshold",
+      "name": "Deterministic threshold",
+      "brier": 0.14583333333333334,
+      "nll": 2.0147628105351614,
+      "ece": 0.14583333333333331,
+      "false_safe_rate_at_08": 0.1796875,
+      "count": 1152
+    },
+    {
+      "id": "correlated_decoder_no_reachability",
+      "name": "Correlated decoder (no reachability)",
+      "brier": 0.166290283203125,
+      "nll": 0.46132705215772973,
+      "ece": 0.021891276041666675,
+      "false_safe_rate_at_08": null,
+      "count": 1152
+    },
+    {
+      "id": "PathRel_correlated_event",
+      "name": "ConPath correlated event (oracle proxy)",
+      "brier": 0.10237269931369358,
+      "nll": 0.3249685586516723,
+      "ece": 0.032484266493055546,
+      "false_safe_rate_at_08": 0.14741035856573706,
+      "count": 1152
+    }
+  ],
+  "headline": {
+    "oracle_proxy": {
+      "id": "PathRel_correlated_event",
+      "name": "ConPath correlated event (oracle proxy)",
+      "brier": 0.10237269931369358,
+      "nll": 0.3249685586516723,
+      "ece": 0.032484266493055546,
+      "false_safe_rate_at_08": 0.14741035856573706,
+      "count": 1152
+    },
+    "independent_cells": {
+      "id": "independent_bernoulli",
+      "name": "Independent cell completion",
+      "brier": 0.18317159016927084,
+      "nll": 1.0316285873653355,
+      "ece": 0.1762424045138889,
+      "false_safe_rate_at_08": 0.25,
+      "count": 1152
+    },
+    "direct_query": {
+      "id": "direct_query_mlp",
+      "name": "Direct query predictor",
+      "brier": 0.16988758349570215,
+      "nll": 0.5223821828019999,
+      "ece": 0.08912776173751391,
+      "false_safe_rate_at_08": null,
+      "count": 1152
+    },
+    "death_test": {
+      "criterion": "PathRel must beat both independent cells and direct q on Brier; ECE may be at most 0.02 worse than the best comparator, with map marginal Brier within 0.02 of independent cells.",
+      "independent_brier": 0.18317159016927084,
+      "direct_query_brier": 0.16988758349570215,
+      "pathrel_brier": 0.10237269931369358,
+      "independent_ece": 0.1762424045138889,
+      "direct_query_ece": 0.08912776173751391,
+      "pathrel_ece": 0.032484266493055546,
+      "independent_map_brier": 0.002829818813889115,
+      "pathrel_map_brier": 0.020144003408926504,
+      "passed_oracle_proxy": true,
+      "interpretation": "This is an oracle correlated-posterior diagnostic, not a trained neural result; train_synthetic.py must be run on CUDA before claiming the learned model passes."
+    }
+  },
+  "neural_latest": {
+    "source": "results/p0_neural_cuda_noise0/report.json",
+    "paper_result": false,
+    "protocol": {
+      "seed": 20260827,
+      "radii_cells": [
+        0,
+        1,
+        2
+      ],
+      "map_shape": [
+        24,
+        24
+      ],
+      "train_templates": 12,
+      "test_templates": 4,
+      "worlds_per_template": 24,
+      "train_samples": 8,
+      "validation_samples": 64,
+      "warmup_steps": 24,
+      "reachability_weight": 2.0,
+      "categorical_noise_scale": 0.0
+    },
+    "event": {
+      "brier": 0.2618785411177671,
+      "nll": 0.8790530476905392,
+      "ece": 0.2531195709274875,
+      "false_safe_rate@0.8": 0.45737483085250336,
+      "count": 1152
+    },
+    "event_mean_by_radius": [
+      0.952392578125,
+      0.5718180537223816,
+      0.3132731020450592
+    ],
+    "target_event_mean_by_radius": [
+      0.546875,
+      0.3515625,
+      0.1796875
+    ],
+    "map_marginal": {
+      "brier": 0.007347953859054585,
+      "nll": 0.022041684721670892,
+      "ece": 0.011614944420949359,
+      "false_safe_rate@0.8": 0.0,
+      "count": 110592
+    },
+    "last_training": {
+      "step": 120,
+      "stage": "joint",
+      "total": 0.6566797494888306,
+      "map": 0.02259577065706253,
+      "variogram": 0.015658171847462654,
+      "reach_u": 0.3154761791229248
+    },
+    "interpretation": "A neural P0 checkpoint can be compared to results/p0_death_test only when this run completes on the same device/split; CPU smoke is not a paper result."
+  },
+  "data_gates": {
+    "oracle_proxy": {
+      "label": "PASS",
+      "kind": "pass",
+      "detail": "Correlated posterior proxy beats independent cells and direct q on the synthetic P0 audit."
+    },
+    "cuda_smoke": {
+      "label": "PASS",
+      "kind": "pass",
+      "detail": "RTX PRO 6000 environment, forward/backward, and one-step CUDA smoke are recorded.",
+      "recorded": true
+    },
+    "neural_p0": {
+      "label": "ACTIVE",
+      "kind": "warn",
+      "detail": "The latest neural run is diagnostic and is not a paper result until it passes the same gate.",
+      "paper_result": false
+    },
+    "public_data": {
+      "label": "NO-GO",
+      "kind": "hold",
+      "detail": "FlatLands/real-data loaders are not present in this transfer package."
+    }
+  },
+  "plots": {
+    "comparison": "assets/comparison.svg",
+    "reliability": "assets/reliability.svg",
+    "metrics_csv": "data/p0_metrics.csv"
+  },
+  "video": {
+    "src": "assets/conpath_p0_demo.mp4",
+    "poster": "assets/conpath_p0_demo_poster.png",
+    "caption": "Synthetic P0 audit walkthrough; oracle proxy, not a trained neural result."
+  }
+}
