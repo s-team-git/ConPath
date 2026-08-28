@@ -74,7 +74,8 @@ def _kernel_driver_report() -> dict[str, Any]:
 
     version_path = "/proc/driver/nvidia/version"
     try:
-        version_text = open(version_path, encoding="utf-8").read().strip()
+        with open(version_path, encoding="utf-8") as stream:
+            version_text = stream.read().strip()
     except OSError:
         return {"available": False, "reason": "NVIDIA kernel report is not available"}
 
@@ -83,7 +84,8 @@ def _kernel_driver_report() -> dict[str, Any]:
     devices: list[dict[str, str]] = []
     for information_path in sorted(glob.glob("/proc/driver/nvidia/gpus/*/information")):
         try:
-            information = open(information_path, encoding="utf-8").read()
+            with open(information_path, encoding="utf-8") as stream:
+                information = stream.read()
         except OSError:
             continue
         model_match = re.search(r"^Model:\s*(.+)$", information, re.MULTILINE)
