@@ -19,11 +19,12 @@ environment was copied or modified.
 
 Command: `PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -v`
 
-Result: `Ran 26 tests ... OK` with `skipped=0`.
+Result: `Ran 27 tests ... OK` with `skipped=0`.
 
 Command: `PYTHONPATH=src .venv/bin/python scripts/smoke_forward.py`
 
-Result: forward smoke passed with `[2,4,2,24,24]` map samples and `[2,2,3]` reachability output.
+Result: forward smoke passed with `[2,4,2,24,24]` map samples and `[2,2,3]` reachability output;
+observed cells are now deterministic in posterior samples.
 
 Command: `PYTHONPATH=src .venv/bin/python scripts/train_synthetic.py --config configs/synthetic.json --device cpu --steps 1 --validation-size 2 --validation-samples 2 --checkpoint checkpoints/cpu_smoke.pt`
 
@@ -33,7 +34,7 @@ Command: `PYTHONPATH=src .venv/bin/python scripts/train_synthetic.py --config co
 
 Result: expected explicit failure: `CUDA was requested but torch.cuda.is_available() is false`.
 
-The bundled `scripts/run_gpu_smoke.sh` reached the same result after completing all 26 tests and
+The bundled `scripts/run_gpu_smoke.sh` reached the same result after completing all 27 tests and
 the forward smoke; its exit code is 1 solely because the requested CUDA training step cannot start.
 
 Command: `PYTHONPATH=src .venv/bin/python scripts/train_p0_neural.py --device cpu --steps 1 --batch-size 2 --train-templates 2 --test-templates 1 --worlds-per-template 4 --train-samples 2 --validation-samples 2 --output-dir results/p0_neural_cpu_smoke`
