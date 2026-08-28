@@ -65,7 +65,7 @@ Use Python 3.10-3.12. The repository's current default Python 3.14 PyTorch insta
 usable, so create an isolated environment rather than modifying it:
 
 ```powershell
-cd C:\Users\hairo\Desktop\G1-LioNAV\research\pathrel
+cd /path/to/ConPath
 $env:UV_CACHE_DIR = "$PWD\.uv-cache"
 uv venv --python 3.12 .venv
 uv pip install --python .venv\Scripts\python.exe torch numpy

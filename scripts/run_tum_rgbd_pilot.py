@@ -591,7 +591,7 @@ def find_ffmpeg() -> Path | None:
     found = shutil.which("ffmpeg")
     if found:
         return Path(found)
-    candidates = list(Path("/home/hairo/.local/share/pnpm/store").glob("**/node_modules/@ffmpeg-installer/linux-x64/ffmpeg"))
+    candidates = list((Path.home() / ".local/share/pnpm/store").glob("**/node_modules/@ffmpeg-installer/linux-x64/ffmpeg"))
     return next((path for path in candidates if path.is_file() and path.stat().st_mode & 0o111), None)
 
 
@@ -800,6 +800,27 @@ def main() -> None:
     write_metrics_csv(rows, output_dir / "metrics.csv")
     write_svg_comparison(rows, output_dir / "tum_freiburg1_desk_comparison.svg")
     write_svg_reliability(event_records, output_dir / "tum_freiburg1_desk_reliability.svg")
+
+    # A compact hand-off lets the torch-only integration smoke consume the exact real-data BEV
+    # without requiring OpenCV/Pillow in the research virtualenv.  The NPZ is ignored alongside
+    # the other reproducible results and is regenerated on every pilot run.
+    model_support = np.zeros((height, width), dtype=np.float32)
+    model_obstacle = np.zeros((height, width), dtype=np.float32)
+    for frame_index in range(split):
+        support_cells, obstacle_cells = grid["frame_cells"][frame_index]  # type: ignore[index]
+        if len(support_cells):
+            model_support[support_cells // width, support_cells % width] = 1.0
+        if len(obstacle_cells):
+            model_obstacle[obstacle_cells // width, obstacle_cells % width] = 1.0
+    model_observation = np.stack((model_support, model_obstacle, 1.0 - np.maximum(model_support, model_obstacle)), axis=0)
+    np.savez_compressed(
+        output_dir / "model_input.npz",
+        observation=model_observation,
+        reference_free=free_ref.astype(np.uint8),
+        queries=np.asarray(queries, dtype=np.int64),
+        support_height_m=np.asarray([support_height], dtype=np.float32),
+        split=np.asarray([split], dtype=np.int32),
+    )
 
     frames_dir = output_dir / "frames"
     frames_dir.mkdir(parents=True, exist_ok=True)

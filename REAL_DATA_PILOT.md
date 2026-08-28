@@ -18,6 +18,7 @@ mkdir -p data/raw/tum_rgbd_freiburg1_desk/extracted
 tar -xzf data/raw/tum_rgbd_freiburg1_desk/rgbd_dataset_freiburg1_desk.tgz \
   -C data/raw/tum_rgbd_freiburg1_desk/extracted
 /usr/bin/python3 scripts/run_tum_rgbd_pilot.py --publish-site
+PYTHONPATH=src .venv/bin/python scripts/run_tum_rgbd_model_smoke.py --device cpu
 ```
 
 The script associates RGB/depth timestamps with the official ground-truth poses, lifts sampled
@@ -26,6 +27,11 @@ builds a world-frame raster. It then evaluates future-frame start/goal queries u
 independent-cell completion and a spatially correlated temporal completion. The generated report,
 CSV, figures, and temporary frames live under `results/tum_rgbd_freiburg1_desk_pilot/`; only the
 small derived website assets are tracked.
+
+The optional second command consumes the ignored `model_input.npz` hand-off and runs a bounded
+randomly initialised `PathRelNet` forward pass. It checks that the real BEV reaches the stochastic
+decoder and footprint-conditioned operator; it is an integration smoke, not training or a paper
+result.
 
 ## Interpretation
 

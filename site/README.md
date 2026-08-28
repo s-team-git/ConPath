@@ -11,6 +11,8 @@ From the repository root, after downloading and extracting the TUM sequence:
 ```bash
 /usr/bin/python3 scripts/run_tum_rgbd_pilot.py --publish-site
 /usr/bin/python3 scripts/build_demo_site.py
+# Optional torch-only integration smoke on the same real BEV hand-off:
+PYTHONPATH=src .venv/bin/python scripts/run_tum_rgbd_model_smoke.py --device cpu
 ```
 
 The first command writes the reproducible pilot report under

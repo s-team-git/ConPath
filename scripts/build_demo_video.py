@@ -79,7 +79,7 @@ def find_ffmpeg(explicit: Path | None) -> Path:
     # The workstation's Node tool cache includes a static FFmpeg binary.  Keep this discovery
     # optional so the script remains portable to a normal system installation.
     candidates.extend(
-        Path("/home/hairo/.local/share/pnpm/store").glob(
+        (Path.home() / ".local/share/pnpm/store").glob(
             "**/node_modules/@ffmpeg-installer/linux-x64/ffmpeg"
         )
     )

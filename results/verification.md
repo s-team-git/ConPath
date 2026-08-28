@@ -2,8 +2,8 @@
 
 The project is now the **ConPath** Git repository. The local `main` branch is clean; the latest
 verification commit and complete history are available in `git log` (scientific bootstrap:
-`30f3b78`). The configured origin is `git@github.com:s-team-git/ConPath.git`; SSH authentication as
-`hairo410` was verified and the current `main` branch was pushed successfully.
+`30f3b78`). The configured origin is `git@github.com:s-team-git/ConPath.git`; SSH authentication was
+verified and the current `main` branch was pushed successfully.
 
 ## Environment
 
@@ -68,3 +68,24 @@ does not authorize public-data claims.
 Command: `PYTHONPATH=src .venv/bin/python scripts/benchmark_merge_tree.py --output results/merge_tree_benchmark.json`
 
 Result: exact error `0.0`; 64x64 speedups `3.0x/22.7x/172.7x` for `8/64/512` queries in the latest run.
+
+## Real-data pilot (2026-08-28)
+
+Command: `/usr/bin/python3 scripts/run_tum_rgbd_pilot.py --frames 48 --queries 18 --samples 48 --publish-site`
+
+Result: 48 synchronised TUM RGB-D Freiburg1/desk frames were lifted with the official intrinsics
+and MoCap poses into a 79x105 world-frame raster. The temporal split uses 36 observed-prefix
+frames and 12 future query frames, with 18 query pairs and footprint radii 0/1/2. The geometric
+reference-map audit reports Brier `0.2407` for the observed-prefix baseline, `0.1908` for
+independent-cell completion, and `0.1831` for the correlated-temporal completion. These are pilot
+metrics on inferred geometric labels, not traversability or collision benchmark results.
+
+Command: `PYTHONPATH=src .venv/bin/python scripts/run_tum_rgbd_model_smoke.py --device cpu --samples 4 --max-steps 96`
+
+Result: the randomly initialised `PathRelNet` consumed the real-data BEV hand-off with input shape
+`[1,3,40,56]`, produced `[1,4,40,56]` map samples and `[1,18,3]` reachability values in `0.50 s`.
+This is an end-to-end integration smoke only; no trained real-data checkpoint is claimed.
+
+The current execution session has no `/dev/nvidia*` device nodes (`torch.cuda.is_available() = false`),
+so the CUDA trainer is not run here. The earlier host verification above records the separate GPU
+smoke; rerun it in a GPU-passthrough session before any neural paper experiment.
