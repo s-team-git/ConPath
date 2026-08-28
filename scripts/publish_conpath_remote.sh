@@ -15,10 +15,13 @@ fi
 
 expected_remote="https://github.com/s-team-git/CRANE.git"
 actual_remote="$(git remote get-url origin 2>/dev/null || true)"
-if [[ "$actual_remote" != "$expected_remote" ]]; then
-  echo "origin is '$actual_remote', expected '$expected_remote'" >&2
+case "$actual_remote" in
+  "$expected_remote"|"git@github.com:s-team-git/CRANE.git"|"ssh://git@github.com/s-team-git/CRANE.git") ;;
+  *)
+  echo "origin is '$actual_remote', expected the CRANE HTTPS or SSH URL" >&2
   exit 2
-fi
+  ;;
+esac
 if [[ -n "$(git status --short)" ]]; then
   echo "Working tree is not clean; commit or review changes before publishing." >&2
   git status --short >&2
@@ -29,4 +32,4 @@ fi
 # caller last inspected it.  This still replaces the selected main branch, as explicitly requested.
 git fetch origin --prune
 git push --force-with-lease --set-upstream origin main
-echo "Published local ConPath main to $expected_remote (remote repository rename, if desired, is a GitHub setting)."
+echo "Published local ConPath main to $actual_remote (remote repository rename, if desired, is a GitHub setting)."
