@@ -12,4 +12,6 @@ PYTHONPATH=src .venv/bin/python scripts/benchmark_merge_tree.py --output results
 ```
 
 `P0_DEATH_TEST.md` records the default metrics and the conservative neural/public-data gate. The
-correlated row is an oracle synthetic diagnostic; it is not a trained neural result.
+generated `comparison.svg` is the method-level Brier/NLL/ECE bar chart and `reliability.svg` is the
+calibration diagram. The correlated row is an oracle synthetic diagnostic; it is not a trained
+neural result.

@@ -14,7 +14,8 @@ PYTHONPATH=src .venv/bin/python scripts/evaluate_p0.py --output-dir results/p0_d
 
 The default run uses seed `20260827`, 12 training templates, 4 test templates, 24 worlds per
 template, and 64 posterior samples. The generated `results/p0_death_test/` directory contains the
-full JSON/CSV/SVG artifacts.
+full JSON/CSV/SVG artifacts: `comparison.svg` is the grouped Brier/NLL/ECE comparison and
+`reliability.svg` is the reliability diagram.
 
 | Method | Reachability Brier | NLL | ECE | False-safe @0.8 |
 |---|---:|---:|---:|---:|

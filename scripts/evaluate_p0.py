@@ -429,6 +429,48 @@ def write_reliability_svg(path: Path, results: dict[str, dict[str, Any]]) -> Non
     path.write_text("\n".join(lines), encoding="utf-8")
 
 
+def write_comparison_svg(path: Path, results: dict[str, dict[str, Any]]) -> None:
+    """Write a dependency-free grouped-bar comparison for the headline event metrics."""
+
+    width, height = 1320, 760
+    methods = list(results)
+    metrics = (("brier", "Reachability Brier"), ("nll", "Reachability NLL"), ("ece", "Reachability ECE"))
+    colors = ["#1f77b4", "#d62728", "#2ca02c", "#9467bd", "#ff7f0e", "#17becf", "#8c564b", "#7f7f7f"]
+    panel_left, panel_top, panel_width, panel_height, gap = 70, 70, 370, 545, 50
+    lines = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
+        '<rect width="100%" height="100%" fill="white"/>',
+        '<style>text{font-family:Arial,sans-serif;font-size:13px}.axis{stroke:#222;stroke-width:1}.grid{stroke:#ddd;stroke-width:1}.label{font-size:11px}</style>',
+        '<text x="70" y="30" font-size="20">P0 event-metric comparison (template-held-out test)</text>',
+    ]
+    for panel_index, (metric, title) in enumerate(metrics):
+        left = panel_left + panel_index * (panel_width + gap)
+        bottom = panel_top + panel_height
+        values = [float(results[name][metric]) for name in methods]
+        maximum = max(0.1, max(values) * 1.15)
+        lines.append(f'<text x="{left}" y="{panel_top-22}" font-size="16">{title}</text>')
+        for tick in range(6):
+            value = maximum * tick / 5.0
+            y = bottom - (value / maximum) * panel_height
+            lines.append(f'<line class="grid" x1="{left}" y1="{y:.1f}" x2="{left+panel_width}" y2="{y:.1f}"/>')
+            lines.append(f'<text x="{left-42}" y="{y+4:.1f}">{value:.2f}</text>')
+        lines.append(f'<line class="axis" x1="{left}" y1="{bottom}" x2="{left+panel_width}" y2="{bottom}"/>')
+        lines.append(f'<line class="axis" x1="{left}" y1="{panel_top}" x2="{left}" y2="{bottom}"/>')
+        slot = panel_width / max(1, len(methods))
+        bar_width = slot * 0.68
+        for method_index, (name, value) in enumerate(zip(methods, values)):
+            x = left + method_index * slot + (slot - bar_width) / 2
+            bar_height = (value / maximum) * panel_height
+            y = bottom - bar_height
+            color = colors[method_index % len(colors)]
+            lines.append(f'<rect x="{x:.1f}" y="{y:.1f}" width="{bar_width:.1f}" height="{bar_height:.1f}" fill="{color}"/>')
+            lines.append(f'<text class="label" transform="translate({x+bar_width/2:.1f} {bottom+12}) rotate(55)" text-anchor="start">{name}</text>')
+            lines.append(f'<text class="label" x="{x+bar_width/2:.1f}" y="{max(panel_top+12, y-5):.1f}" text-anchor="middle">{value:.3f}</text>')
+    lines.append('<text x="70" y="738">Lower is better. Exact values are recorded in metrics.csv and report.json.</text>')
+    lines.append('</svg>')
+    path.write_text("\n".join(lines), encoding="utf-8")
+
+
 def main() -> None:
     args = parse_args()
     if args.worlds_per_template < 4 or args.posterior_samples < 2:
@@ -607,6 +649,7 @@ def main() -> None:
         writer.writeheader()
         writer.writerows({key: row.get(key, "") for key in fields} for row in csv_rows)
     write_reliability_svg(args.output_dir / "reliability.svg", reports)
+    write_comparison_svg(args.output_dir / "comparison.svg", reports)
     print(json.dumps({"output_dir": str(args.output_dir), "death_test": report["death_test"], "event_metrics": {name: {key: value for key, value in item.items() if isinstance(value, (float, int))} for name, item in reports.items()}}, indent=2))
 
 
