@@ -39,6 +39,17 @@ The overall project gate remains **NO-GO for public-data expansion** until the s
 reproduced by a trained neural PathRel checkpoint. CUDA is unavailable in this environment, so the
 proxy pass must not be presented as a learned-model or ICRA/IROS result.
 
+## First CUDA neural checkpoint
+
+The first full 120-step CUDA run is recorded at
+`results/p0_neural_cuda/report.json`. It completed without numerical or memory errors, but failed
+the death-test comparison: event Brier `0.2436`, ECE `0.2146`, versus independent Brier `0.1832`
+and direct-query Brier `0.1699`. The map marginal Brier was good (`0.0068`), while the radius-zero
+event mean was `0.9999` for a target mean of `0.5469`. Inspection of the checkpoint shows that
+unknown doorway columns are sampled as mixed per-cell noise rather than coherent open/closed doors.
+This is retained as a failure baseline and motivates a posterior-sampler correction before any
+public-data experiment.
+
 The FlatLands baseline is recorded as `not_run` because this transfer package contains no FlatLands
 data. The `random_completion` row is a transparent uniform-unknown completion surrogate; it is not
 an implementation of SCOPE. No real-data, SCOPE, diffusion-completion, or navigation claim is made.

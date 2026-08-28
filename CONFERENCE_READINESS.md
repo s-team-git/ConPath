@@ -63,8 +63,11 @@ ROS、实车闭环或更多传感器。
 random completion/deterministic/correlated ablation 等基线。最新默认测试集结果为：direct-query
 Brier 0.1699、deterministic threshold 0.1458、相关事件代理 0.1024；相关代理的 ECE 为
 0.0325，独立 cell 为 0.1762，且地图边际 Brier 与独立采样相差 0.0173。因而 **oracle
-proxy death test PASS**，支持继续验证联合后验假设；但 CUDA 上的神经 PathRel 尚未运行，当前
-项目仍保持 **NO-GO**，不能接入公开数据或宣称 ICRA/IROS 贡献。
+proxy death test PASS**，支持继续验证联合后验假设。随后完成了 RTX PRO 6000 上的 120-step
+CUDA 神经训练，但 event Brier 为 0.2436，高于 independent 的 0.1832 和 direct-query 的
+0.1699；地图边际 Brier 为 0.0068，说明当前失败主要来自联合采样/事件层而不是像素分类。
+项目仍保持 **NO-GO**，不能接入公开数据或宣称 ICRA/IROS 贡献，直到修正后的神经 checkpoint
+在同一 protocol 下通过 death test。
 
 同时加入 `labels.py::merge_tree_bottleneck_scores` exact-forward NumPy 参考，用于后续可扩展
 CUDA 算子的契约验证；这不是已经完成的可反传大图实现。

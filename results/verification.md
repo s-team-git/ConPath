@@ -48,6 +48,14 @@ Result: neural P0 forward/backward/evaluation/checkpoint path passed on CPU; one
 The staged trainer was also exercised on a 12x12, four-step CPU smoke (`--warmup-steps 2`); it
 completed both warmup and joint stages and reported event Brier `0.13932291`.
 
+Command: `PATH="$PWD/.venv/bin:$PATH" PYTHONPATH=src .venv/bin/python scripts/train_p0_neural.py --device cuda --output-dir results/p0_neural_cuda`
+
+Result: the full 120-step CUDA run completed and saved a checkpoint, but it did **not** pass the
+P0 margin: event Brier `0.243578` (ECE `0.214613`) versus independent `0.183172` and direct-query
+`0.169888`. Map marginal Brier was `0.006844`; radius-wise event means were `[0.999919, 0.465739,
+0.107300]` versus targets `[0.546875, 0.351563, 0.179688]`. This is a reproducible neural
+failure baseline, not a paper result.
+
 ## P0 and exact-forward artifacts
 
 Command: `PYTHONPATH=src .venv/bin/python scripts/evaluate_p0.py --output-dir results/p0_death_test`
