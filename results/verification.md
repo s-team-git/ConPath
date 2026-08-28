@@ -10,13 +10,19 @@ available SSH key was rejected).
 
 Command: `nvidia-smi`
 
-Result: `NVIDIA-SMI has failed because it couldn't communicate with the NVIDIA driver.`
+Result: `nvidia-smi` cannot communicate with a compute device in this session. The read-only kernel
+report does show `NVIDIA RTX PRO 6000 Blackwell Workstation Edition`, driver `580.173.02`, and a
+loaded NVIDIA module, but no compute device nodes (`/dev/nvidia0`, `/dev/nvidiactl`, or
+`/dev/nvidia-uvm`) are visible. This is consistent with a container/session launched without GPU
+passthrough; it is not evidence that the host driver package is absent.
 
 Command: `PYTHONPATH=src .venv/bin/python scripts/check_environment.py --json`
 
 Result: Python 3.11.15; Torch 2.13.0+cu130; built CUDA 13.0; `cuda_available=false`; device count
 0; NVML unavailable. The environment was created in a fresh project-local `.venv`; no old
-environment was copied or modified.
+environment was copied or modified. `scripts/check_environment.py --json` now records the kernel
+driver/GPU report separately from `nvidia-smi` so a missing passthrough is not misdiagnosed as a
+missing driver installation.
 
 ## Tests and smoke
 

@@ -9,8 +9,10 @@ first training configuration on a remote workstation.
 from __future__ import annotations
 
 import argparse
+import glob
 import json
 import platform
+import re
 import shutil
 import subprocess
 import sys
@@ -62,6 +64,51 @@ def _nvidia_smi() -> dict[str, Any]:
     return {"available": True, "devices": devices, "raw": stdout}
 
 
+def _kernel_driver_report() -> dict[str, Any]:
+    """Inspect read-only kernel driver files when this process cannot call nvidia-smi.
+
+    A common remote/container failure mode is that the host has a loaded NVIDIA module but the
+    process was started without `/dev/nvidia*` device nodes.  Reporting this separately avoids
+    incorrectly telling the user to reinstall an already-loaded driver.
+    """
+
+    version_path = "/proc/driver/nvidia/version"
+    try:
+        version_text = open(version_path, encoding="utf-8").read().strip()
+    except OSError:
+        return {"available": False, "reason": "NVIDIA kernel report is not available"}
+
+    version_match = re.search(r"NVRM version:.*?\s([0-9]+\.[0-9]+\.[0-9]+)", version_text)
+    driver_version = version_match.group(1) if version_match else "unknown"
+    devices: list[dict[str, str]] = []
+    for information_path in sorted(glob.glob("/proc/driver/nvidia/gpus/*/information")):
+        try:
+            information = open(information_path, encoding="utf-8").read()
+        except OSError:
+            continue
+        model_match = re.search(r"^Model:\s*(.+)$", information, re.MULTILINE)
+        bus_match = re.search(r"^Bus Location:\s*(.+)$", information, re.MULTILINE)
+        devices.append(
+            {
+                "name": model_match.group(1).strip() if model_match else "unknown",
+                "bus_id": bus_match.group(1).strip() if bus_match else "unknown",
+            }
+        )
+    device_nodes = sorted(glob.glob("/dev/nvidia*"))
+    compute_nodes = [
+        path for path in device_nodes
+        if re.fullmatch(r"/dev/nvidia(?:[0-9]+|ctl|uvm|uvm-tools)", path)
+    ]
+    return {
+        "available": True,
+        "driver_version": driver_version,
+        "devices": devices,
+        "device_nodes": device_nodes,
+        "compute_nodes": compute_nodes,
+        "device_nodes_visible": bool(compute_nodes),
+    }
+
+
 def _torch_report() -> dict[str, Any]:
     try:
         import torch  # type: ignore
@@ -101,9 +148,13 @@ def _torch_report() -> dict[str, Any]:
     return report
 
 
-def _recommendation(smi: dict[str, Any], torch_report: dict[str, Any]) -> list[str]:
+def _recommendation(
+    smi: dict[str, Any], torch_report: dict[str, Any], kernel_report: dict[str, Any]
+) -> list[str]:
     recommendations: list[str] = []
     names = [str(item.get("name", "")) for item in smi.get("devices", [])]
+    if not names:
+        names = [str(item.get("name", "")) for item in kernel_report.get("devices", [])]
     names_lower = " ".join(names).lower()
 
     if "blackwell" in names_lower or "pro 6000" in names_lower:
@@ -122,6 +173,16 @@ def _recommendation(smi: dict[str, Any], torch_report: dict[str, Any]) -> list[s
         recommendations.append(
             "GPU model is not recognized by this helper. Select the PyTorch wheel from the official installer using the reported driver and CUDA support."
         )
+
+    if kernel_report.get("available") and not smi.get("available"):
+        if not kernel_report.get("device_nodes_visible"):
+            recommendations.append(
+                "The NVIDIA kernel module/GPU is present, but this session has no /dev/nvidia* nodes; run the venv on the host or launch the container with NVIDIA GPU passthrough (--gpus all)."
+            )
+        else:
+            recommendations.append(
+                "The NVIDIA kernel report is present but nvidia-smi failed; inspect host dmesg and device permissions before changing the PyTorch environment."
+            )
 
     if not torch_report.get("imported", False):
         recommendations.append("Install PyTorch inside a fresh Python 3.10-3.12 environment; do not copy this machine's .venv.")
@@ -150,13 +211,15 @@ def main() -> None:
     args = parser.parse_args()
 
     smi = _nvidia_smi()
+    kernel_report = _kernel_driver_report()
     torch_report = _torch_report()
     report: dict[str, Any] = {
         "python": sys.version,
         "platform": platform.platform(),
         "nvidia_smi": smi,
+        "nvidia_kernel": kernel_report,
         "torch": torch_report,
-        "recommendations": _recommendation(smi, torch_report),
+        "recommendations": _recommendation(smi, torch_report, kernel_report),
     }
 
     if args.json:
