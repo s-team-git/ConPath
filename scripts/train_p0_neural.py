@@ -45,6 +45,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--height", type=int, default=24)
     parser.add_argument("--width", type=int, default=24)
     parser.add_argument("--train-samples", type=int, default=8)
+    parser.add_argument(
+        "--categorical-noise-scale",
+        type=float,
+        default=0.25,
+        help="Scale of per-cell Concrete/Gumbel noise; lower values preserve learned spatial correlation.",
+    )
     parser.add_argument("--reachability-weight", type=float, default=2.0)
     parser.add_argument("--validation-samples", type=int, default=64)
     parser.add_argument("--seed", type=int, default=20260827)
@@ -54,7 +60,7 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
-    if args.steps < 1 or args.warmup_steps < 0 or args.warmup_steps > args.steps or args.batch_size < 2 or args.train_samples < 2 or args.validation_samples < 2:
+    if args.steps < 1 or args.warmup_steps < 0 or args.warmup_steps > args.steps or args.batch_size < 2 or args.train_samples < 2 or args.validation_samples < 2 or args.categorical_noise_scale < 0:
         raise ValueError("steps, batch size, and sample counts must be >=2 where applicable")
     device = torch.device(args.device)
     if device.type == "cuda" and not torch.cuda.is_available():
@@ -103,7 +109,8 @@ def main() -> None:
             # Stage A stabilizes the deterministic mean map before the high-variance event
             # estimator is enabled.  The stochastic heads receive no gradient in this stage.
             output = model(
-                observation, num_samples=args.train_samples, hard_samples=True, generator=generator
+                observation, num_samples=args.train_samples, hard_samples=True,
+                categorical_noise_scale=args.categorical_noise_scale, generator=generator
             )
             map_loss = map_cross_entropy(output.posterior.mean_logits, target_classes)
             variogram_loss = output.posterior.mean_logits.sum() * 0.0
@@ -113,6 +120,7 @@ def main() -> None:
             output = model(
                 observation, starts=starts, goals=goals, footprint_radii_cells=radii,
                 num_samples=args.train_samples, hard_samples=True,
+                categorical_noise_scale=args.categorical_noise_scale,
                 max_reachability_steps=args.height * args.width, generator=generator,
             )
             map_loss = posterior_marginal_nll(output.posterior.sample_logits, target_classes)
@@ -138,6 +146,7 @@ def main() -> None:
         output = model(
             test_observation, starts=test_starts, goals=test_goals, footprint_radii_cells=radii,
             num_samples=args.validation_samples, hard_samples=True,
+            categorical_noise_scale=args.categorical_noise_scale,
             max_reachability_steps=args.height * args.width,
             generator=torch.Generator(device=device).manual_seed(args.seed + 999999),
         )
@@ -147,7 +156,7 @@ def main() -> None:
         test_arrays["target_free"].astype(np.float64),
     )
     report = {
-        "protocol": {"seed": args.seed, "radii_cells": list(radii), "map_shape": [args.height, args.width], "train_templates": args.train_templates, "test_templates": args.test_templates, "worlds_per_template": args.worlds_per_template, "train_samples": args.train_samples, "validation_samples": args.validation_samples, "warmup_steps": args.warmup_steps, "reachability_weight": args.reachability_weight},
+        "protocol": {"seed": args.seed, "radii_cells": list(radii), "map_shape": [args.height, args.width], "train_templates": args.train_templates, "test_templates": args.test_templates, "worlds_per_template": args.worlds_per_template, "train_samples": args.train_samples, "validation_samples": args.validation_samples, "warmup_steps": args.warmup_steps, "reachability_weight": args.reachability_weight, "categorical_noise_scale": args.categorical_noise_scale},
         "event_metrics": event_report,
         "event_mean_by_radius": output.reachability.detach().cpu().numpy().mean(axis=(0, 1)).tolist(),
         "target_event_mean_by_radius": test_arrays["events"].mean(axis=(0, 1)).tolist(),

@@ -80,6 +80,7 @@ class CorrelatedCategoricalDecoder(nn.Module):
         *,
         num_samples: int,
         concrete_backward_temperature: float = 0.7,
+        categorical_noise_scale: float = 1.0,
         hard: bool = True,
         known_classes: Tensor | None = None,
         generator: torch.Generator | None = None,
@@ -90,6 +91,8 @@ class CorrelatedCategoricalDecoder(nn.Module):
             raise ValueError("num_samples must be at least two for joint scoring")
         if concrete_backward_temperature <= 0:
             raise ValueError("concrete_backward_temperature must be positive")
+        if categorical_noise_scale < 0:
+            raise ValueError("categorical_noise_scale must be non-negative")
 
         batch, _, height, width = features.shape
         mean_logits = self.mean_head(features)
@@ -155,7 +158,9 @@ class CorrelatedCategoricalDecoder(nn.Module):
         ).clamp_(1e-6, 1.0 - 1e-6)
         gumbel = -torch.log(-torch.log(uniform))
         relaxed = torch.softmax(
-            (sample_logits + gumbel) / concrete_backward_temperature, dim=2
+            (sample_logits + float(categorical_noise_scale) * gumbel)
+            / concrete_backward_temperature,
+            dim=2,
         )
         sample_probs = self._straight_through_categorical(relaxed, hard=hard)
 
