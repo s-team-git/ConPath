@@ -137,6 +137,12 @@ video artifact [`conpath_p0_demo.mp4`](site/assets/conpath_p0_demo.mp4). The pag
 the correlated row as an **oracle proxy** and the current neural run as an active diagnostic; neither
 is silently promoted to a real-data paper result.
 
+**Online demo:** [https://s-team-git.github.io/ConPath/](https://s-team-git.github.io/ConPath/)
+
+The URL is served by GitHub Pages through the tracked workflow below. If it shows a 404 initially,
+open **Repository settings → Pages**, select **GitHub Actions**, and wait for the first deployment
+to finish; subsequent pushes to `main` update the page automatically.
+
 After refreshing `results/p0_death_test`, update the site snapshot and commit it with the same change:
 
 ```bash
