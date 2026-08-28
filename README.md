@@ -112,3 +112,18 @@ src/pathrel/
 
 See `ALGORITHM.md` for the mathematical contract, training stages, baselines, and go/no-go
 criteria.
+
+## Versioning and publication
+
+The local repository is branded **ConPath** while retaining the `pathrel` Python import namespace
+for source compatibility. `origin` points to `https://github.com/s-team-git/CRANE.git`. After
+configuring GitHub authentication, the explicitly destructive replacement requested for this
+transfer can be performed from a clean tree with:
+
+```bash
+scripts/publish_conpath_remote.sh --confirm-replace
+```
+
+The script uses `git push --force-with-lease` and therefore refuses to run without the confirmation
+flag or if the working tree/remote does not match the expected target. Renaming the GitHub repository
+itself is a separate setting on GitHub; the code and distribution are already named ConPath.
