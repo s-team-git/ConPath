@@ -128,3 +128,25 @@ The script accepts the ConPath HTTPS or SSH remote and uses `git push --force-wi
 refuses to run without the confirmation flag or if the working tree/remote does not match the expected
 target. Renaming the GitHub repository
 itself is a separate setting on GitHub; the code and distribution are already named ConPath.
+
+## Interactive demo website
+
+The repository also contains a static, GitHub Pages-ready walkthrough under [`site/`](site/).
+It combines the tracked P0 figures, an interactive hidden-topology canvas, and the reproducible
+video artifact [`conpath_p0_demo.mp4`](site/assets/conpath_p0_demo.mp4). The page deliberately labels
+the correlated row as an **oracle proxy** and the current neural run as an active diagnostic; neither
+is silently promoted to a real-data paper result.
+
+After refreshing `results/p0_death_test`, update the site snapshot and commit it with the same change:
+
+```bash
+PYTHONPATH=src .venv/bin/python scripts/build_demo_site.py
+/usr/bin/python3 scripts/build_demo_video.py
+git add site
+git commit -m "Refresh ConPath demo snapshot"
+git push origin main
+```
+
+Every push to `main` uploads the tracked `site/` directory through
+[`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml). Enable GitHub Pages with
+**GitHub Actions** once in the repository settings to publish it.
