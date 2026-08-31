@@ -26,6 +26,11 @@ session/container passthrough failure, not evidence that the physical GPU is abs
 entry points now call `pathrel.gpu_diagnostics.cuda_unavailable_message` and report this distinction;
 run `PYTHONPATH=src .venv/bin/python scripts/check_environment.py` before changing the environment.
 
+After CUDA is visible, the reproducible six-run matrix (three seeds × ConPath / no-global / no-event-loss)
+is launched with `scripts/run_flatlands_conpath_matrix.sh`. It writes an environment snapshot,
+matrix manifest, per-run checkpoints, progress records, and external stdout logs; a partial run with
+`latest.pt` is resumed, while ambiguous non-empty directories are refused.
+
 The local `main` tree is clean and versioned, but GitHub push has failed repeatedly for both SSH and
 HTTPS because this session cannot establish a stable connection. The static site has been refreshed
 locally: its FlatLands section names the exact validation provenance split/query/radii, highlights the

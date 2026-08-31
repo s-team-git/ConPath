@@ -228,6 +228,18 @@ git commit -m "Refresh ConPath project page data"
 git push origin main
 ```
 
+Once a GPU-enabled host or container exposes `/dev/nvidia0` and `nvidia-smi` succeeds, launch the
+auditable public-data ConPath matrix (three seeds × full model / no-global-factor / no-event-loss)
+with:
+
+```bash
+scripts/run_flatlands_conpath_matrix.sh
+```
+
+The matrix performs a CUDA preflight first and refuses to start under a host-visible-but-not-
+passed-through GPU session. It keeps the FlatLands test split locked and writes one output directory
+per seed/variant for later source/radius aggregation and qualitative-map rendering.
+
 Every push to `main` uploads the tracked `site/` directory through
 [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml). Enable GitHub Pages with
 **GitHub Actions** once in the repository settings to publish it.

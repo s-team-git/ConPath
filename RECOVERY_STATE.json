@@ -53,6 +53,7 @@
     "scripts/train_flatlands_direct_query.py",
     "scripts/train_flatlands_completion.py",
     "scripts/train_flatlands_conpath.py",
+    "scripts/run_flatlands_conpath_matrix.sh",
     "scripts/build_demo_site.py",
     "site/index.html",
     "site/app.js",
