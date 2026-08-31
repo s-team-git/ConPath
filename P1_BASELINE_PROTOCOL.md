@@ -100,6 +100,12 @@ events; checkpoint selection uses primary validation scene-weighted Brier. It do
 - ConPath and ablations later reuse the same data, three-channel input, query rows, evaluation code,
   seeds, and encoder capacity unless a capacity-matched comparison is explicitly reported.
 
+The historical CUDA pilot was launched with `feature_channels=8` for a propagation/debug diagnosis;
+its 30,428-parameter checkpoint is not a final baseline comparison. Capacity-matched paper runs use
+`feature_channels=16` (120,108 ConPath parameters versus 119,921 independent completion and 127,905
+direct-query parameters). The recent-method bridge and its same-contract/reference-only split are
+recorded in `RECENT_BASELINES.md`.
+
 ## Go/no-go before ConPath training
 
 The baseline stage is complete only when all three baseline prediction files pass exact-coverage

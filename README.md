@@ -173,6 +173,9 @@ sample = dataset[0]
 See `P1_DATA_AUDIT.md` for the manifest hashes, target-blind query contract, source/radius
 saturation caveat, and exact claim boundary. `P1_BASELINE_PROTOCOL.md` freezes the label-free
 prediction schema, scene-weighted metrics, test-lock policy, and first three learned baselines.
+`RECENT_BASELINES.md` freezes the bridge to recent 2024--2026 occupancy/completion work, including
+the rule that cross-task 3-D mIoU/FID numbers are not copied into the FlatLands event table and the
+final parameter-matching budget (ConPath F=16, approximately 120k parameters).
 
 ## Versioning and publication
 

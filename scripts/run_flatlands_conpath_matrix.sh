@@ -14,6 +14,9 @@ max_epochs="${PATHREL_CONPATH_MAX_EPOCHS:-40}"
 patience="${PATHREL_CONPATH_PATIENCE:-8}"
 validation_samples="${PATHREL_CONPATH_VALIDATION_SAMPLES:-32}"
 train_samples="${PATHREL_CONPATH_TRAIN_SAMPLES:-8}"
+# Final paper runs are capacity matched to the existing FlatLands learned baselines (F=16).  The
+# currently running historical pilot may still be F=8; its run metadata remains the source of truth.
+feature_channels="${PATHREL_CONPATH_FEATURE_CHANNELS:-16}"
 
 if [[ ! -x "$python_bin" ]]; then
   echo "Python interpreter not found or not executable: $python_bin" >&2
@@ -70,6 +73,7 @@ payload = {
         "patience": int(patience),
         "train_samples": int(train_samples),
         "validation_samples": int(validation_samples),
+        "feature_channels": int(feature_channels),
         "test_evaluated": False,
     },
     "runs": [],
@@ -113,6 +117,7 @@ for seed in "${seeds[@]}"; do
       --patience "$patience" \
       --train-samples "$train_samples" \
       --validation-samples "$validation_samples" \
+      --feature-channels "$feature_channels" \
       "${resume_flags[@]}" \
       "${flags[@]}" \
       2>&1 | tee "$log_root/seed${seed}_${variant}.log"

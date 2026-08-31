@@ -221,6 +221,25 @@
             </table>
           </div>
           <div class="qualitative-note"><span class="qualitative-mark" aria-hidden="true">MAP</span><p><strong>Qualitative map comparison is the next publishable artifact.</strong> Once the public ConPath checkpoint is trained, this page will add a same-scene panel with observed input, ConPath posterior/footprint path, each baseline, and the reference label. No “ours is better” map is fabricated before that checkpoint exists.</p></div>
+          <div class="recent-baseline-panel">
+            <p class="eyebrow">RECENT METHODS · CONTRACT CHECKED</p>
+            <h3>Recent-paper bridge</h3>
+            <p>We are adding recent uncertainty/completion methods without mixing incompatible 3-D occupancy scores into this 2-D event task. The final same-dataset table will keep the frozen <strong>4,653 query events</strong>, radii <strong>0/10/20</strong>, three seeds, and a capacity-matched ConPath encoder (F=16, 120,108 parameters). Cross-task numbers remain references only.</p>
+            <div class="table-wrap">
+              <table>
+                <caption>Recent methods: status on the FlatLands contract</caption>
+                <thead><tr><th>Method</th><th>Year</th><th>Relation</th><th>Status</th></tr></thead>
+                <tbody>
+                  <tr><td><a href="https://github.com/astra-vision/PaSCo" rel="noreferrer">PaSCo</a></td><td>2024</td><td>uncertainty-aware completion</td><td>3-subnet control planned</td></tr>
+                  <tr><td><a href="https://github.com/Jieqianyu/SGN" rel="noreferrer">SGN-L</a></td><td>2024</td><td>12.5M compact SSC reference</td><td>reference-only (3-D/camera)</td></tr>
+                  <tr><td><a href="https://ahayler.github.io/publications/s4c/" rel="noreferrer">S4C</a></td><td>2024</td><td>implicit field completion</td><td>port under review</td></tr>
+                  <tr><td><a href="https://arxiv.org/abs/2409.10681" rel="noreferrer">SceneSense</a></td><td>2024</td><td>diffusion occupancy</td><td>2-D port candidate</td></tr>
+                  <tr><td><a href="https://arxiv.org/abs/2603.16016" rel="noreferrer">FlatLands</a></td><td>2026</td><td>same-task stochastic completion</td><td>official weights/code check</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="source-note">Full parameter table, fairness rules, and incompatibility notes: <a href="https://github.com/s-team-git/ConPath/blob/main/RECENT_BASELINES.md" rel="noreferrer">RECENT_BASELINES.md ↗</a></p>
+          </div>
           <p class="source-note">Protocol: <a href="https://github.com/s-team-git/ConPath/blob/main/P1_BASELINE_PROTOCOL.md" rel="noreferrer">P1_BASELINE_PROTOCOL.md ↗</a>. Checkpoints, manifests, and exact reports remain in the reproducibility workspace; no test result is published here.</p>
         </div>
       </section>
