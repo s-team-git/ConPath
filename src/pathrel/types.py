@@ -17,6 +17,9 @@ class OccupancyPosterior:
         factor_maps: ``[B, C, D, H, W]`` low-rank spatial factors.
         local_scale: ``[B, C, H, W]`` bounded local stochastic scale.
         sample_logits: ``[B, K, C, H, W]`` correlated logits before Concrete noise.
+        conditional_class_probs: ``[B, K, C, H, W]`` exact categorical probabilities
+            conditional on each stochastic logit sample.
+        relaxed_probs: ``[B, K, C, H, W]`` Concrete samples used only as a backward surrogate.
         sample_probs: ``[B, K, C, H, W]`` straight-through categorical samples.
     """
 
@@ -24,17 +27,21 @@ class OccupancyPosterior:
     factor_maps: Tensor
     local_scale: Tensor
     sample_logits: Tensor
+    conditional_class_probs: Tensor
+    relaxed_probs: Tensor
     sample_probs: Tensor
 
     @property
     def posterior_marginal_probs(self) -> Tensor:
         """Monte-Carlo posterior class marginals ``[B,C,H,W]``.
 
-        ``softmax(E[logits])`` is not the posterior marginal. The correct estimate averages the
-        conditional categorical probabilities over stochastic logit samples.
+        ``softmax(E[logits])`` is not the posterior marginal. The correct Rao-Blackwellized
+        estimate averages the conditional categorical probabilities over stochastic logit samples.
+        The decoder accounts for its configured categorical-noise scale when constructing those
+        probabilities.
         """
 
-        return self.sample_logits.softmax(dim=2).mean(dim=1)
+        return self.conditional_class_probs.mean(dim=1)
 
     @property
     def empirical_class_frequencies(self) -> Tensor:

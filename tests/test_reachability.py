@@ -59,6 +59,31 @@ class ReachabilityLayerTest(unittest.TestCase):
         self.assertIsNotNone(safe.grad)
         self.assertGreater(float(safe.grad[:, :, 3, 4].abs().sum()), 0.0)
 
+    def test_high_level_surrogate_focuses_open_event_gradient_on_door(self) -> None:
+        hard = torch.ones((1, 1, 7, 9), dtype=torch.float32)
+        hard[:, :, :, 4] = 0.0
+        hard[:, :, 3, 4] = 1.0
+        relaxed = torch.full_like(hard, 0.9)
+        relaxed[:, :, :, 4] = 0.1
+        relaxed[:, :, 3, 4] = 0.55
+        relaxed.requires_grad_()
+
+        probability, events = self.compute(
+            hard,
+            torch.tensor([[[3, 1]]]),
+            torch.tensor([[[3, 7]]]),
+            [0],
+            surrogate_safe_samples=relaxed,
+            max_steps=63,
+        )
+        self.assertEqual(float(events[0, 0, 0, 0].detach()), 1.0)
+        probability.square().sum().backward()
+        self.assertIsNotNone(relaxed.grad)
+        door_gradient = float(relaxed.grad[0, 0, 3, 4].abs())
+        other_wall_gradient = float(relaxed.grad[0, 0, :, 4].abs().sum()) - door_gradient
+        self.assertGreater(door_gradient, 0.1)
+        self.assertLess(other_wall_gradient, door_gradient * 0.01)
+
     def test_same_marginals_can_have_different_connectivity(self) -> None:
         distribution_a = torch.zeros((1, 2, 3, 6), dtype=torch.float32)
         distribution_b = torch.zeros_like(distribution_a)

@@ -27,6 +27,18 @@ class PathRelLossTest(unittest.TestCase):
         expected = -torch.log(probabilities[:, 0, 0, 0])
         torch.testing.assert_close(posterior_marginal_nll(logits, target), expected.mean())
 
+    def test_posterior_marginal_accounts_for_scaled_gumbel_noise(self) -> None:
+        from pathrel.losses import posterior_marginal_nll
+
+        logits = torch.tensor([[[[[0.5]], [[-0.5]]]]])
+        target = torch.tensor([[[0]]])
+        expected_probability = (logits / 0.25).softmax(dim=2)[:, :, 0].mean(dim=1)
+        expected = -torch.log(expected_probability).mean()
+        torch.testing.assert_close(
+            posterior_marginal_nll(logits, target, categorical_noise_scale=0.25),
+            expected,
+        )
+
     def test_u_statistic_matches_brier_for_identical_members(self) -> None:
         from pathrel.losses import reachability_brier, reachability_brier_u_statistic
 

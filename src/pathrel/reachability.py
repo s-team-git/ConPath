@@ -189,10 +189,16 @@ def multi_radius_reachability(
     goals: Tensor,
     footprint_radii_cells: Sequence[int] | Tensor,
     *,
+    surrogate_safe_samples: Tensor | None = None,
     max_steps: int | None = None,
     backward_temperature: float = 0.1,
 ) -> tuple[Tensor, Tensor]:
     """Compute a discrete footprint-conditioned reliability curve.
+
+    ``surrogate_safe_samples`` enables a high-level straight-through estimator: the forward event
+    is still computed exactly from the hard binary maps, while the backward pass follows the
+    continuous maximum-bottleneck score of the relaxed maps. This avoids repeatedly applying soft
+    backward extrema to an already-hard state, whose gradients can miss the critical cut.
 
     Returns:
         reachability: Monte-Carlo mean ``[B, Q, R]``.
@@ -201,6 +207,11 @@ def multi_radius_reachability(
 
     if safe_samples.ndim != 4:
         raise ValueError("safe_samples must have shape [B, K, H, W]")
+    if surrogate_safe_samples is not None:
+        if surrogate_safe_samples.shape != safe_samples.shape:
+            raise ValueError("surrogate_safe_samples must have the same shape as safe_samples")
+        if not surrogate_safe_samples.is_floating_point():
+            raise ValueError("surrogate_safe_samples must be floating point")
     if isinstance(footprint_radii_cells, Tensor):
         radii = [int(value) for value in footprint_radii_cells.detach().cpu().tolist()]
     else:
@@ -210,18 +221,42 @@ def multi_radius_reachability(
 
     events = []
     for radius in radii:
-        center_safe = disk_footprint_min(
-            safe_samples, radius, backward_temperature=backward_temperature
-        )
-        events.append(
-            maxmin_path_scores(
+        if surrogate_safe_samples is None:
+            center_safe = disk_footprint_min(
+                safe_samples, radius, backward_temperature=backward_temperature
+            )
+            event = maxmin_path_scores(
                 center_safe,
                 starts,
                 goals,
                 max_steps=max_steps,
                 backward_temperature=backward_temperature,
             )
-        )
+        else:
+            # Keep the probability semantics in the hard forward pass. The relaxed branch is a
+            # bottleneck-score surrogate only; it is never returned or reported as an event.
+            hard_center_safe = disk_footprint_min(
+                safe_samples.detach(), radius, backward_temperature=0.0
+            )
+            hard_event = maxmin_path_scores(
+                hard_center_safe,
+                starts,
+                goals,
+                max_steps=max_steps,
+                backward_temperature=0.0,
+            )
+            surrogate_center_safe = disk_footprint_min(
+                surrogate_safe_samples, radius, backward_temperature=0.0
+            )
+            surrogate_score = maxmin_path_scores(
+                surrogate_center_safe,
+                starts,
+                goals,
+                max_steps=max_steps,
+                backward_temperature=0.0,
+            )
+            event = surrogate_score + (hard_event - surrogate_score).detach()
+        events.append(event)
     sample_events = torch.stack(events, dim=-1)
     reachability = sample_events.mean(dim=1)
     return reachability, sample_events

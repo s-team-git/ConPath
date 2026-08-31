@@ -28,24 +28,53 @@ def posterior_marginal_nll(
     sample_logits: Tensor,
     target_classes: Tensor,
     *,
+    categorical_noise_scale: float = 1.0,
     ignore_index: int = -1,
     epsilon: float = 1e-6,
 ) -> Tensor:
     """Per-cell log score under the Monte-Carlo posterior marginal.
 
     Averaging conditional softmax probabilities is essential: softmax of the mean logits is not
-    the marginal of a logistic-normal posterior. Ignored cells represent unavailable truth, not
-    a latent UNKNOWN terrain class.
+    the marginal of a logistic-normal posterior. A scaled Gumbel categorical draw has conditional
+    probabilities ``softmax(logits / scale)``, so the scale must match the sampler. Ignored cells
+    represent unavailable truth, not a latent UNKNOWN terrain class.
     """
 
     if sample_logits.ndim != 5:
         raise ValueError("sample_logits must have shape [B,K,C,H,W]")
+    if categorical_noise_scale <= 0:
+        raise ValueError("categorical_noise_scale must be positive for log-score evaluation")
+    conditional_class_probs = torch.softmax(
+        sample_logits / float(categorical_noise_scale), dim=2
+    )
+    return posterior_marginal_nll_from_probs(
+        conditional_class_probs,
+        target_classes,
+        ignore_index=ignore_index,
+        epsilon=epsilon,
+    )
+
+
+def posterior_marginal_nll_from_probs(
+    conditional_class_probs: Tensor,
+    target_classes: Tensor,
+    *,
+    ignore_index: int = -1,
+    epsilon: float = 1e-6,
+) -> Tensor:
+    """Per-cell log score from conditional class probabilities ``[B,K,C,H,W]``."""
+
+    if conditional_class_probs.ndim != 5:
+        raise ValueError("conditional_class_probs must have shape [B,K,C,H,W]")
     target = target_classes.long()
-    expected_shape = (sample_logits.shape[0], *sample_logits.shape[-2:])
+    expected_shape = (
+        conditional_class_probs.shape[0],
+        *conditional_class_probs.shape[-2:],
+    )
     if target.shape != expected_shape:
         raise ValueError(f"target_classes must have shape {expected_shape}")
 
-    marginal = sample_logits.softmax(dim=2).mean(dim=1)
+    marginal = conditional_class_probs.mean(dim=1)
     valid = target != ignore_index
     safe_target = target.masked_fill(~valid, 0)
     selected = marginal.gather(1, safe_target[:, None]).squeeze(1)

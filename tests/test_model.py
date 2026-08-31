@@ -71,6 +71,23 @@ class PathRelModelTest(unittest.TestCase):
             ).posterior.sample_probs
         torch.testing.assert_close(first, second)
 
+    def test_conditional_probabilities_respect_categorical_noise_scale(self) -> None:
+        from pathrel.model import PathRelNet
+
+        model = PathRelNet(input_channels=3, feature_channels=8, latent_dim=3).eval()
+        posterior = model(
+            torch.randn(1, 3, 12, 12),
+            num_samples=3,
+            categorical_noise_scale=0.25,
+            generator=torch.Generator().manual_seed(43),
+        ).posterior
+        expected = (posterior.sample_logits / 0.25).softmax(dim=2)
+        torch.testing.assert_close(posterior.conditional_class_probs, expected)
+        torch.testing.assert_close(
+            posterior.posterior_marginal_probs,
+            posterior.conditional_class_probs.mean(dim=1),
+        )
+
     def test_observed_cells_remain_deterministic_in_posterior_samples(self) -> None:
         from pathrel.model import PathRelNet
 

@@ -157,6 +157,18 @@ class CorrelatedCategoricalDecoder(nn.Module):
             generator=generator,
         ).clamp_(1e-6, 1.0 - 1e-6)
         gumbel = -torch.log(-torch.log(uniform))
+        if categorical_noise_scale > 0:
+            # If G_i are i.i.d. standard Gumbels, argmax(logit_i + scale * G_i)
+            # is categorical with probabilities softmax(logits / scale).  Reporting
+            # softmax(logits) for a non-unit scale silently miscalibrates the hard-map
+            # posterior, which is the distribution consumed by reachability.
+            conditional_class_probs = torch.softmax(
+                sample_logits / float(categorical_noise_scale), dim=2
+            )
+        else:
+            conditional_class_probs = F.one_hot(
+                sample_logits.argmax(dim=2), num_classes=self.num_classes
+            ).movedim(-1, 2).to(sample_logits.dtype)
         relaxed = torch.softmax(
             (sample_logits + float(categorical_noise_scale) * gumbel)
             / concrete_backward_temperature,
@@ -169,5 +181,7 @@ class CorrelatedCategoricalDecoder(nn.Module):
             factor_maps=factor_maps,
             local_scale=local_scale,
             sample_logits=sample_logits,
+            conditional_class_probs=conditional_class_probs,
+            relaxed_probs=relaxed,
             sample_probs=sample_probs,
         )

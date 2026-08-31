@@ -176,8 +176,13 @@ class PathRelNet(nn.Module):
             starts,
             goals,
             footprint_radii_cells,
+            surrogate_safe_samples=(
+                posterior.relaxed_probs[:, :, self.traversable_index]
+                if torch.is_grad_enabled()
+                else None
+            ),
             max_steps=max_reachability_steps,
-            backward_temperature=reachability_backward_temperature,
+            backward_temperature=(reachability_backward_temperature if torch.is_grad_enabled() else 0.0),
         )
         return PathRelOutput(
             posterior=posterior,
