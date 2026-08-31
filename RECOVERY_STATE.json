@@ -5,7 +5,7 @@
   "timezone": "America/New_York",
   "branch": "main",
   "remote_sync": "Local main is clean and ahead of origin/main; the latest push attempt failed because this session could not establish a stable GitHub connection. GitHub Pages deploys the tracked site only after main is pushed.",
-  "latest_local_commit": "36437cd Expose radius-stratified FlatLands baseline results",
+  "latest_local_commit": "7908777 Expose source-stratified FlatLands baseline results",
   "gpu_visibility_note": "Host evidence confirms NVIDIA RTX PRO 6000 Blackwell and driver 580.173.02, but this session exposes no /dev/nvidia* compute nodes; torch 2.13.0+cu130 therefore reports cuda_available=false. Training entry points now emit this layered diagnosis.",
   "scientific_status": "Synthetic P0 passes in two seeds. The official FlatLands split fails scene isolation. The non-official upstream-provenance split passes full integrity, a 512-scene bounded mask/query gate, direct-ZIP replay, and first validation-only baselines. The public site exposes the audit and baseline snapshot with test locked. This is GO for the next multi-seed/ablation work, not a trained public-data or paper claim.",
   "active_task": "Run multi-seed ConPath and causal ablations on the frozen FlatLands validation protocol, then implement scalable connectivity and calibration/second-domain checks.",
@@ -268,7 +268,7 @@
   "last_verification": {
     "command": "PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -q && python3 -m compileall -q src scripts && PYTHONPATH=src .venv/bin/python scripts/verify_recovery_state.py",
     "result": "Ran 69 tests; OK; all source/scripts compile; GPU layered diagnostics, global-factor ablation, and ConPath matrix preflight compile; full recovery SHA verification passed",
-    "implementation_commit": "36437cd"
+    "implementation_commit": "7908777"
   },
   "recovery_commands": [
     "git status --short --branch",
