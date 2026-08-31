@@ -296,10 +296,14 @@ def main() -> None:
         validate_resume_config(resume["config"], config)
         model.load_state_dict(resume["model"])
         optimizer.load_state_dict(resume["optimizer"])
-        generator.set_state(resume["generator_state"])
+        # ``map_location=cuda`` also moves ByteTensor RNG states, but Generator.set_state
+        # requires its serialized state on CPU even when the generator itself targets CUDA.
+        generator.set_state(resume["generator_state"].cpu())
         torch.set_rng_state(resume["torch_rng_state"].cpu())
         if device.type == "cuda" and "cuda_rng_state_all" in resume:
-            torch.cuda.set_rng_state_all(resume["cuda_rng_state_all"])
+            torch.cuda.set_rng_state_all(
+                [state.cpu() for state in resume["cuda_rng_state_all"]]
+            )
         start_step = int(resume["next_step"])
         losses = list(resume.get("losses", []))
         if start_step > args.steps:
