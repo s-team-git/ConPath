@@ -29,6 +29,7 @@ from pathrel.flatlands_eval import (
     write_prediction_manifest,
 )
 from pathrel.flatlands_query import sha256_path
+from pathrel.gpu_diagnostics import cuda_unavailable_message
 
 
 PROTOCOL_VERSION = "P1_BASELINE_PROTOCOL.md v1"
@@ -311,7 +312,7 @@ def main() -> None:
     if args.learning_rate != 3e-4 or args.weight_decay != 1e-4:
         raise SystemExit("protocol v1 fixes AdamW learning-rate=3e-4 and weight-decay=1e-4")
     if args.device == "cuda" and not torch.cuda.is_available():
-        raise SystemExit("CUDA requested but unavailable")
+        raise SystemExit(cuda_unavailable_message(torch))
     if args.output_dir.exists() and any(args.output_dir.iterdir()) and not args.resume:
         raise SystemExit(f"output directory is non-empty; pass --resume: {args.output_dir}")
     args.output_dir.mkdir(parents=True, exist_ok=True)

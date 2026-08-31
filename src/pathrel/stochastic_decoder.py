@@ -83,6 +83,7 @@ class CorrelatedCategoricalDecoder(nn.Module):
         categorical_noise_scale: float = 1.0,
         hard: bool = True,
         known_classes: Tensor | None = None,
+        disable_global_factors: bool = False,
         generator: torch.Generator | None = None,
     ) -> OccupancyPosterior:
         if features.ndim != 4:
@@ -111,8 +112,15 @@ class CorrelatedCategoricalDecoder(nn.Module):
             device=features.device,
             generator=generator,
         )
-        global_delta = torch.einsum("bcdhw,bkd->bkchw", factor_maps, latent)
-        global_delta = global_delta / math.sqrt(float(self.latent_dim))
+        if disable_global_factors:
+            global_delta = torch.zeros(
+                (batch, num_samples, self.num_classes, height, width),
+                dtype=features.dtype,
+                device=features.device,
+            )
+        else:
+            global_delta = torch.einsum("bcdhw,bkd->bkchw", factor_maps, latent)
+            global_delta = global_delta / math.sqrt(float(self.latent_dim))
 
         local_noise = torch.randn(
             (batch * num_samples * self.num_classes, 1, height, width),

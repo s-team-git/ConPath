@@ -28,6 +28,7 @@ from evaluate_p0 import exact_events, make_split, stack  # noqa: E402
 from train_p0_neural import add_visible_context_plane  # noqa: E402
 from pathrel.metrics import summarize  # noqa: E402
 from pathrel.model import PathRelNet  # noqa: E402
+from pathrel.gpu_diagnostics import cuda_unavailable_message  # noqa: E402
 
 
 def parse_args() -> argparse.Namespace:
@@ -105,7 +106,7 @@ def main() -> None:
         raise ValueError("samples must be at least two and batch size must be positive")
     device = torch.device(args.device)
     if device.type == "cuda" and not torch.cuda.is_available():
-        raise RuntimeError("CUDA requested but unavailable")
+        raise RuntimeError(cuda_unavailable_message(torch))
 
     checkpoint = torch.load(args.checkpoint, map_location="cpu", weights_only=False)
     if "model" not in checkpoint:

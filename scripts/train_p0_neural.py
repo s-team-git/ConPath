@@ -34,6 +34,7 @@ from pathrel.losses import (  # noqa: E402
 )
 from pathrel.metrics import summarize  # noqa: E402
 from pathrel.model import PathRelNet  # noqa: E402
+from pathrel.gpu_diagnostics import cuda_unavailable_message  # noqa: E402
 
 
 P0_COMPARATORS = {
@@ -312,10 +313,7 @@ def main() -> None:
     )
     device = torch.device(args.device)
     if device.type == "cuda" and not torch.cuda.is_available():
-        raise RuntimeError(
-            "CUDA was requested but torch.cuda.is_available() is false; "
-            "run scripts/check_environment.py first."
-        )
+        raise RuntimeError(cuda_unavailable_message(torch))
 
     output_dir: Path = args.output_dir
     progress_path = output_dir / "progress.jsonl"

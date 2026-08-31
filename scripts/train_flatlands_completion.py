@@ -31,6 +31,7 @@ from pathrel.flatlands_eval import (
     write_prediction_manifest,
 )
 from pathrel.flatlands_query import sha256_path
+from pathrel.gpu_diagnostics import cuda_unavailable_message
 from pathrel.flatlands_sampling import (
     CompletionEventResult,
     CompletionEventTask,
@@ -339,7 +340,7 @@ def main() -> None:
     if args.event_workers < 1:
         raise SystemExit("--event-workers must be positive")
     if args.device == "cuda" and not torch.cuda.is_available():
-        raise SystemExit("CUDA requested but unavailable")
+        raise SystemExit(cuda_unavailable_message(torch))
     if args.output_dir.exists() and any(args.output_dir.iterdir()) and not args.resume:
         raise SystemExit(f"output directory is non-empty; pass --resume: {args.output_dir}")
     args.output_dir.mkdir(parents=True, exist_ok=True)

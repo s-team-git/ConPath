@@ -29,6 +29,7 @@ from pathrel.losses import (  # noqa: E402
     spatial_variogram_score,
 )
 from pathrel.model import PathRelNet  # noqa: E402
+from pathrel.gpu_diagnostics import cuda_unavailable_message  # noqa: E402
 from pathrel.synthetic import ambiguous_corridor_scene, stack_scenes  # noqa: E402
 
 
@@ -89,10 +90,7 @@ def main() -> None:
     torch.manual_seed(seed)
     device = torch.device(args.device)
     if device.type == "cuda" and not torch.cuda.is_available():
-        raise RuntimeError(
-            "CUDA was requested but torch.cuda.is_available() is false; run scripts/check_environment.py "
-            "and fix the NVIDIA driver/device before starting a GPU experiment."
-        )
+        raise RuntimeError(cuda_unavailable_message(torch))
 
     radii = tuple(int(value) for value in config["footprint_radii_cells"])
     steps = int(args.steps if args.steps is not None else config["steps"])

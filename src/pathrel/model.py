@@ -138,6 +138,7 @@ class PathRelNet(nn.Module):
         hard_samples: bool = True,
         max_reachability_steps: int | None = None,
         shared_start: bool = False,
+        disable_global_factors: bool = False,
         generator: torch.Generator | None = None,
     ) -> PathRelOutput:
         if observation_bev.ndim != 4:
@@ -165,6 +166,7 @@ class PathRelNet(nn.Module):
             hard_samples=hard_samples,
             max_reachability_steps=max_reachability_steps,
             shared_start=shared_start,
+            disable_global_factors=disable_global_factors,
             generator=generator,
             known_classes=known_classes,
         )
@@ -183,6 +185,7 @@ class PathRelNet(nn.Module):
         hard_samples: bool = True,
         max_reachability_steps: int | None = None,
         shared_start: bool = False,
+        disable_global_factors: bool = False,
         generator: torch.Generator | None = None,
         known_classes: Tensor | None = None,
     ) -> PathRelOutput:
@@ -199,6 +202,7 @@ class PathRelNet(nn.Module):
             categorical_noise_scale=categorical_noise_scale,
             hard=hard_samples,
             known_classes=known_classes,
+            disable_global_factors=disable_global_factors,
             generator=generator,
         )
 

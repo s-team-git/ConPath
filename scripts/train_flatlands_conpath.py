@@ -37,6 +37,7 @@ from pathrel.flatlands_eval import (  # noqa: E402
     write_prediction_manifest,
 )
 from pathrel.flatlands_query import sha256_path  # noqa: E402
+from pathrel.gpu_diagnostics import cuda_unavailable_message  # noqa: E402
 from pathrel.labels import batched_merge_tree_bottleneck_scores, clearance_radius_map  # noqa: E402
 from pathrel.losses import (  # noqa: E402
     posterior_marginal_nll,
@@ -74,6 +75,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--map-weight", type=float, default=1.0)
     parser.add_argument("--variogram-weight", type=float, default=0.1)
     parser.add_argument("--reachability-weight", type=float, default=2.0)
+    parser.add_argument("--disable-global-factors", action="store_true", help="ablation: remove the low-rank spatially global correlation term")
     parser.add_argument("--bootstrap-samples", type=int, default=2_000)
     parser.add_argument("--train-scenes-limit", type=int, default=None, help="debug-only subset; disables paper-style full validation")
     parser.add_argument("--validation-scenes-limit", type=int, default=None, help="debug-only subset; disables exact prediction-manifest evaluation")
@@ -206,7 +208,7 @@ def _scene_event_brier(events: Tensor, targets: Tensor, query_mask: Tensor) -> T
     return per_scene.mean()
 
 
-def _forward(model: PathRelNet, batch: dict[str, object], radii: tuple[int, ...], samples: int, max_steps: int, generator: torch.Generator) -> Any:
+def _forward(model: PathRelNet, batch: dict[str, object], radii: tuple[int, ...], samples: int, max_steps: int, generator: torch.Generator, *, disable_global_factors: bool = False) -> Any:
     return model(
         batch["observation"],
         starts=batch["starts"],
@@ -216,6 +218,7 @@ def _forward(model: PathRelNet, batch: dict[str, object], radii: tuple[int, ...]
         hard_samples=True,
         max_reachability_steps=max_steps,
         shared_start=True,
+        disable_global_factors=disable_global_factors,
         generator=generator,
     )
 
@@ -240,14 +243,14 @@ def _exact_event_probabilities(
 
 
 @torch.inference_mode()
-def _validation_selection_score(model: PathRelNet, loader: DataLoader, device: torch.device, radii: tuple[int, ...], samples: int, max_steps: int, query_limit: int | None, generator: torch.Generator) -> float:
+def _validation_selection_score(model: PathRelNet, loader: DataLoader, device: torch.device, radii: tuple[int, ...], samples: int, max_steps: int, query_limit: int | None, generator: torch.Generator, *, disable_global_factors: bool = False) -> float:
     model.eval()
     values: list[float] = []
     for numpy_batch in loader:
         batch = _limit_queries(_to_tensor_batch(numpy_batch, device), query_limit)
         if batch["starts"].shape[1] == 0:
             continue
-        output = _forward(model, batch, radii, samples, max_steps, generator)
+        output = _forward(model, batch, radii, samples, max_steps, generator, disable_global_factors=disable_global_factors)
         values.append(float(_scene_event_brier(output.reachability, batch["reachability_targets"], batch["query_mask"]).cpu()))
     if not values:
         raise RuntimeError("validation produced no retained queries")
@@ -255,14 +258,14 @@ def _validation_selection_score(model: PathRelNet, loader: DataLoader, device: t
 
 
 @torch.inference_mode()
-def _validation_prediction_rows(model: PathRelNet, loader: DataLoader, device: torch.device, radii: tuple[int, ...], samples: int, max_steps: int, generator: torch.Generator, *, exact_forward: bool = True) -> list[dict[str, object]]:
+def _validation_prediction_rows(model: PathRelNet, loader: DataLoader, device: torch.device, radii: tuple[int, ...], samples: int, max_steps: int, generator: torch.Generator, *, exact_forward: bool = True, disable_global_factors: bool = False) -> list[dict[str, object]]:
     model.eval()
     rows: list[dict[str, object]] = []
     for numpy_batch in loader:
         batch = _to_tensor_batch(numpy_batch, device)
         if batch["starts"].shape[1] == 0:
             continue
-        output = _forward(model, batch, radii, samples, max_steps, generator)
+        output = _forward(model, batch, radii, samples, max_steps, generator, disable_global_factors=disable_global_factors)
         if exact_forward:
             probabilities = _exact_event_probabilities(
                 output.posterior.safe_samples(),
@@ -315,7 +318,7 @@ def main() -> None:
     if args.batch_size < 1 or args.feature_channels < 1 or args.latent_dim < 1:
         raise SystemExit("batch-size, feature-channels, and latent-dim must be positive")
     if args.device == "cuda" and not torch.cuda.is_available():
-        raise SystemExit("CUDA requested but unavailable")
+        raise SystemExit(cuda_unavailable_message(torch))
     if args.output_dir.exists() and any(args.output_dir.iterdir()) and not args.resume:
         raise SystemExit(f"output directory is non-empty; pass --resume: {args.output_dir}")
     args.output_dir.mkdir(parents=True, exist_ok=True)
@@ -358,7 +361,7 @@ def main() -> None:
                 batch = _limit_queries(_to_tensor_batch(numpy_batch, device), args.selection_query_limit)
                 if batch["starts"].shape[1] == 0:
                     continue
-                output = _forward(model, batch, train_radii, args.train_samples, args.max_reachability_steps, sample_generator)
+                output = _forward(model, batch, train_radii, args.train_samples, args.max_reachability_steps, sample_generator, disable_global_factors=args.disable_global_factors)
                 target_classes = _hidden_target_classes(batch)
                 map_loss = posterior_marginal_nll(output.posterior.sample_logits, target_classes)
                 target_safe = batch["target_free"].to(torch.float32)
@@ -371,7 +374,7 @@ def main() -> None:
                 torch.nn.utils.clip_grad_norm_(model.parameters(), args.gradient_clip)
                 optimizer.step()
                 losses.append(float(total.detach().cpu()))
-            validation_score = _validation_selection_score(model, validation_loader, device, validation_radii, args.validation_samples, args.max_reachability_steps, args.selection_query_limit, sample_generator)
+            validation_score = _validation_selection_score(model, validation_loader, device, validation_radii, args.validation_samples, args.max_reachability_steps, args.selection_query_limit, sample_generator, disable_global_factors=args.disable_global_factors)
             improved = validation_score < best_score - args.min_delta
             if improved:
                 best_score, best_epoch, patience_used = validation_score, epoch, 0
@@ -405,7 +408,7 @@ def main() -> None:
 
     selected = torch.load(best_path, map_location=device, weights_only=False)
     model.load_state_dict(selected["model"])
-    rows = _validation_prediction_rows(model, validation_loader, device, validation_radii, args.validation_samples, args.max_reachability_steps, sample_generator, exact_forward=True)
+    rows = _validation_prediction_rows(model, validation_loader, device, validation_radii, args.validation_samples, args.max_reachability_steps, sample_generator, exact_forward=True, disable_global_factors=args.disable_global_factors)
     prediction_path = args.output_dir / "predictions_validation.csv"
     prediction_count = write_prediction_manifest(prediction_path, rows)
     full_validation = args.train_scenes_limit is None and args.validation_scenes_limit is None
