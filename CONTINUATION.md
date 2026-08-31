@@ -9,8 +9,8 @@ diagnostic, code change, or experiment; do not rely on chat history or ignored `
 - Repository: `/home/hairo/pathrel_transfer/pathrel_pro6000`
 - Last durable implementation commit: `2de9103` (local `main`; not yet pushed in this continuation)
 - Scientific gate: **P0 GO across two seeds; public-data/paper claims not yet established**
-- Active task: audit local P1 dataset/query artifacts and freeze a read-only public-data audit plan
-  before downloading data or starting any public-data training.
+- Active task: acquire the frozen FlatLands archive with resume plus size/SHA verification, then
+  audit it in place before extraction or public-data training.
 
 ## Last completed work
 
@@ -148,15 +148,30 @@ reported `Ran 35 tests in 15.928s ... OK`, `skipped=0`; `smoke_forward.py` compl
 merge-tree reference matched exhaustive search at zero error for 8/64/512 queries (timing speedups
 `3.09x/25.50x/161.19x`).
 
+## P1 pre-download audit
+
+The workspace contains only the ignored 830 MB TUM RGB-D pilot data. It has no FlatLands, ORFD,
+UnScenes3D, or WildOcc assets and no corresponding loader/split/query audit. Official-source review
+selects FlatLands as the first P1 audit target because it provides aligned observed/full floor maps,
+unobserved and valid masks, metric provenance, and official splits. ORFD is a secondary off-road
+semantics audit; UnScenes3D/WildOcc remain P2.
+
+`P1_DATA_AUDIT.md` freezes the FlatLands release as `2,054,773,316` bytes with SHA-256
+`e4f2e5c7c54f7ba62ea696fb103fb5d3794f30f5a2e63715773e59d6a9f1d26f`, defines scene-disjointness,
+mask/polarity, natural-query, 10%-15% event-balance, provenance/license, and strong-baseline gates,
+and keeps the decision NO-GO for extraction/training. `scripts/download_flatlands.sh` supports a
+resumable `.part`, verifies size and hash, atomically finalizes the archive, and never extracts it.
+`bash -n` passes; `--check` correctly returns exit 2 while the archive is absent.
+
 ## Exact next actions
 
-1. Inventory `data/`, configs, scripts, manifests, and ignored local files for any existing
-   FlatLands/ORFD assets without mutating or downloading anything.
-2. Compare that inventory against the documented P1 requirements: version/license, partial/full/
-   valid masks, official site/sequence split, natural-query construction, and at least 10%-15%
-   disconnected or narrow-bottleneck coverage.
-3. Write the audit and one exact next acquisition/validation command to a tracked document before
-   any network download or expensive training; remain NO-GO if the labels cannot support the event.
+1. Commit `P1_DATA_AUDIT.md`, `scripts/download_flatlands.sh`, and this recovery update.
+2. Run `./scripts/download_flatlands.sh --download`; after interruption, rerun the identical command
+   to resume. Do not delete a mismatching file automatically.
+3. Run `./scripts/download_flatlands.sh --check`, then inspect the ZIP structure/metadata without
+   extracting it and implement a bounded deterministic query-balance audit.
+4. Record archive integrity and audit results here before any extraction, loader training, or public
+   claim. Remain NO-GO if scene leakage, semantics, licensing, or event balance fails.
 
 ## Recovery commands
 
@@ -170,6 +185,7 @@ sed -n '1,240p' results/p0_neural_cuda_contextplane_noreach_v4/report.json
 PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -v
 PYTHONPATH=src .venv/bin/python scripts/diagnose_p0_checkpoint.py \
   results/p0_neural_cuda_tuned01/checkpoint.pt --samples 128 --skip-events
+./scripts/download_flatlands.sh --check
 ```
 
 `results/` and checkpoints are intentionally ignored. Any result used to make a research decision
