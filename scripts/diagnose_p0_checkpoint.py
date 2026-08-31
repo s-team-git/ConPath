@@ -130,11 +130,16 @@ def main() -> None:
     if factor_weight.shape[0] % num_classes:
         raise ValueError("cannot infer latent dimension from factor head")
     latent_dim = int(factor_weight.shape[0] // num_classes)
+    encoder_first_weight = state["encoder.enc0.block.0.weight"]
+    use_coordinate_channels = int(encoder_first_weight.shape[1]) == 5
+    use_global_context = any(key.startswith("encoder.context_projection.") for key in state)
     model = PathRelNet(
         input_channels=3,
         feature_channels=feature_channels,
         num_classes=num_classes,
         latent_dim=latent_dim,
+        use_coordinate_channels=use_coordinate_channels,
+        use_global_context=use_global_context,
     ).to(device)
     model.load_state_dict(state)
     model.eval()
@@ -156,6 +161,7 @@ def main() -> None:
     factor_standard_deviations: list[np.ndarray] = []
     local_standard_deviations: list[np.ndarray] = []
     adjacent_factor_cosines: list[np.ndarray] = []
+    mean_logit_differences: list[np.ndarray] = []
 
     for begin in range(0, len(arrays["observation"]), args.batch_size):
         end = min(begin + args.batch_size, len(arrays["observation"]))
@@ -181,6 +187,9 @@ def main() -> None:
         factor_standard_deviations.append(factor_std.cpu().numpy())
         local_std = posterior.local_scale.square().sum(dim=1).sqrt()
         local_standard_deviations.append(local_std.cpu().numpy())
+        mean_logit_differences.append(
+            (posterior.mean_logits[:, 0] - posterior.mean_logits[:, 1]).cpu().numpy()
+        )
         wall_factors = factor_difference[..., width // 2]
         numerator = (wall_factors[:, :, 1:] * wall_factors[:, :, :-1]).sum(dim=1)
         denominator = (
@@ -210,6 +219,7 @@ def main() -> None:
     factor_std = np.concatenate(factor_standard_deviations, axis=0)
     local_std = np.concatenate(local_standard_deviations, axis=0)
     factor_cosine = np.concatenate(adjacent_factor_cosines, axis=0)
+    mean_logit_difference = np.concatenate(mean_logit_differences, axis=0)
     target_free = arrays["target_free"].astype(np.float64)
     unknown = arrays["observation"][:, 2] > 0.5
     wall_col = width // 2
@@ -236,6 +246,9 @@ def main() -> None:
             "batch_size": args.batch_size,
             "categorical_noise_scale": noise_scale,
             "device": str(device),
+            "encoder_context_mode": (
+                "coord_global" if use_coordinate_channels and use_global_context else "local"
+            ),
         },
         "map_marginal_metrics": {
             "conditional_softmax_full": finite_metrics(soft, target_free),
@@ -252,6 +265,26 @@ def main() -> None:
             "local_logit_difference_std_wall_mean": float(local_std[:, :, wall_col].mean()),
             "wall_adjacent_factor_cosine_mean": float(factor_cosine.mean()),
             "categorical_noise_scale": noise_scale,
+        },
+        "posterior_by_context": {
+            str(family): {
+                "conditional_wall_free_mean": float(
+                    soft[arrays["context"] == family, :, wall_col].mean()
+                ),
+                "empirical_wall_free_mean": float(
+                    empirical[arrays["context"] == family, :, wall_col].mean()
+                ),
+                "mean_logit_difference_wall_mean": float(
+                    mean_logit_difference[arrays["context"] == family, :, wall_col].mean()
+                ),
+                "global_logit_difference_std_wall_mean": float(
+                    factor_std[arrays["context"] == family, :, wall_col].mean()
+                ),
+                "local_logit_difference_std_wall_mean": float(
+                    local_std[arrays["context"] == family, :, wall_col].mean()
+                ),
+            }
+            for family in (0, 1)
         },
         "doorway_joint": doorway,
         "known_evidence_violation_rate": float(

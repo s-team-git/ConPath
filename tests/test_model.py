@@ -14,6 +14,29 @@ else:
 
 @unittest.skipIf(torch is None, f"PyTorch unavailable: {TORCH_ERROR}")
 class PathRelModelTest(unittest.TestCase):
+    def test_coordinate_channels_cover_normalized_map_extent(self) -> None:
+        from pathrel.model import TinyBEVUNet
+
+        coordinates = TinyBEVUNet._coordinates(torch.zeros(2, 3, 4, 5))
+        self.assertEqual(tuple(coordinates.shape), (2, 2, 4, 5))
+        torch.testing.assert_close(coordinates[:, 0, 0], torch.full((2, 5), -1.0))
+        torch.testing.assert_close(coordinates[:, 0, -1], torch.full((2, 5), 1.0))
+        torch.testing.assert_close(coordinates[:, 1, :, 0], torch.full((2, 4), -1.0))
+        torch.testing.assert_close(coordinates[:, 1, :, -1], torch.full((2, 4), 1.0))
+
+    def test_legacy_local_encoder_mode_remains_available(self) -> None:
+        from pathrel.model import PathRelNet
+
+        model = PathRelNet(
+            input_channels=3,
+            feature_channels=8,
+            latent_dim=3,
+            use_coordinate_channels=False,
+            use_global_context=False,
+        )
+        posterior = model(torch.randn(1, 3, 12, 12), num_samples=2).posterior
+        self.assertEqual(tuple(posterior.mean_logits.shape), (1, 2, 12, 12))
+
     def test_shapes_probabilities_and_backward(self) -> None:
         from pathrel.model import PathRelNet
 
@@ -125,8 +148,10 @@ class PathRelModelTest(unittest.TestCase):
 
         torch.manual_seed(13)
         model = PathRelNet(input_channels=3, feature_channels=8, latent_dim=3)
+        observation = torch.zeros(2, 3, 10, 10)
+        observation[:, 2] = 1.0  # fully unknown; random values would accidentally clamp evidence
         output = model(
-            torch.randn(2, 3, 10, 10),
+            observation,
             starts=torch.tensor([[[5, 2]], [[5, 2]]]),
             goals=torch.tensor([[[5, 7]], [[5, 7]]]),
             footprint_radii_cells=[0],

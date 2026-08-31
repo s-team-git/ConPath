@@ -39,25 +39,59 @@ class ConvNormAct(nn.Module):
 class TinyBEVUNet(nn.Module):
     """Small dataset-independent encoder for rasterized BEV observations."""
 
-    def __init__(self, input_channels: int, feature_channels: int = 32) -> None:
+    def __init__(
+        self,
+        input_channels: int,
+        feature_channels: int = 32,
+        *,
+        use_coordinate_channels: bool = True,
+        use_global_context: bool = True,
+    ) -> None:
         super().__init__()
-        self.enc0 = ConvNormAct(input_channels, feature_channels)
+        self.use_coordinate_channels = bool(use_coordinate_channels)
+        self.use_global_context = bool(use_global_context)
+        encoder_input_channels = input_channels + (2 if self.use_coordinate_channels else 0)
+        self.enc0 = ConvNormAct(encoder_input_channels, feature_channels)
         self.enc1 = ConvNormAct(feature_channels, feature_channels * 2, stride=2)
         self.enc2 = ConvNormAct(feature_channels * 2, feature_channels * 4, stride=2)
         self.dec1 = ConvNormAct(feature_channels * 6, feature_channels * 2)
         self.dec0 = ConvNormAct(feature_channels * 3, feature_channels)
+        if self.use_global_context:
+            self.context_projection = nn.Sequential(
+                nn.AdaptiveAvgPool2d(1),
+                nn.Conv2d(feature_channels * 4, feature_channels, kernel_size=1),
+                nn.SiLU(inplace=True),
+            )
+        else:
+            self.context_projection = None
+
+    @staticmethod
+    def _coordinates(value: Tensor) -> Tensor:
+        batch, _, height, width = value.shape
+        rows = torch.linspace(-1.0, 1.0, height, dtype=value.dtype, device=value.device)
+        cols = torch.linspace(-1.0, 1.0, width, dtype=value.dtype, device=value.device)
+        row_grid, col_grid = torch.meshgrid(rows, cols, indexing="ij")
+        return torch.stack((row_grid, col_grid), dim=0)[None].expand(batch, 2, height, width)
 
     def forward(self, observation_bev: Tensor) -> Tensor:
         if observation_bev.ndim != 4:
             raise ValueError("observation_bev must have shape [B, C, H, W]")
-        level0 = self.enc0(observation_bev)
+        encoder_input = observation_bev
+        if self.use_coordinate_channels:
+            encoder_input = torch.cat(
+                (observation_bev, self._coordinates(observation_bev)), dim=1
+            )
+        level0 = self.enc0(encoder_input)
         level1 = self.enc1(level0)
         level2 = self.enc2(level1)
 
         up1 = F.interpolate(level2, size=level1.shape[-2:], mode="bilinear", align_corners=False)
         up1 = self.dec1(torch.cat((up1, level1), dim=1))
         up0 = F.interpolate(up1, size=level0.shape[-2:], mode="bilinear", align_corners=False)
-        return self.dec0(torch.cat((up0, level0), dim=1))
+        decoded = self.dec0(torch.cat((up0, level0), dim=1))
+        if self.context_projection is not None:
+            decoded = decoded + self.context_projection(level2)
+        return decoded
 
 
 class PathRelNet(nn.Module):
@@ -72,10 +106,17 @@ class PathRelNet(nn.Module):
         latent_dim: int = 8,
         local_kernel_size: int = 5,
         traversable_index: int = 0,
+        use_coordinate_channels: bool = True,
+        use_global_context: bool = True,
     ) -> None:
         super().__init__()
         self.traversable_index = traversable_index
-        self.encoder = TinyBEVUNet(input_channels, feature_channels)
+        self.encoder = TinyBEVUNet(
+            input_channels,
+            feature_channels,
+            use_coordinate_channels=use_coordinate_channels,
+            use_global_context=use_global_context,
+        )
         self.decoder = CorrelatedCategoricalDecoder(
             feature_channels,
             num_classes=num_classes,

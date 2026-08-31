@@ -7,7 +7,7 @@ diagnostic, code change, or experiment; do not rely on chat history or ignored `
 
 - Updated: 2026-08-30 (America/New_York)
 - Repository: `/home/hairo/pathrel_transfer/pathrel_pro6000`
-- Last durable hand-off commit: `74bb94b` (local `main`; not yet pushed in this continuation)
+- Last durable implementation commit: `f94a694` (local `main`; not yet pushed in this continuation)
 - Scientific gate: **NO-GO** for P1/public-data claims
 - Active task: fix the trained neural P0 joint-event posterior under the existing held-out-template
   protocol; do not expand to a new public benchmark until it passes.
@@ -70,11 +70,30 @@ Brier `0.020068`). It did not separate the two context priors and does not pass 
 direct-query baseline. This reduced setup has no positive radius-2 test events and is only a code
 regression, not a scientific result.
 
+## First official CUDA result after the gradient fix
+
+`results/p0_neural_cuda_surrogate_v1/` completed 120 steps on the RTX PRO 6000. At 128 validation
+samples it reports event Brier `0.163319`, ECE `0.017063`, and empirical full-map Brier `0.003747`.
+Those aggregate scores beat independent (`0.183172`) and direct-query (`0.169888`). However, the
+radius-zero predictions for context 0/1 are only `0.6027/0.6203`, versus targets `0.21875/0.875`;
+the predicted gap recovers only about 2.7% of the target gap. Wall marginals, means, and factor
+scales are likewise nearly context-invariant.
+
+Therefore this result is **NO-GO despite its aggregate Brier**. The gate now additionally requires
+recovering at least 50% of the held-out radius-zero context gap. The current working tree adds
+coordinate channels and a globally pooled bottleneck context broadcast to the tiny P0 encoder;
+the external `forward_features(...)` public-backbone path is unchanged. This architecture change
+has passed all 32 tests but has not yet completed the official CUDA protocol.
+
+The first CUDA evaluation-only resume also exposed and fixed a cross-device RNG restore bug:
+serialized ByteTensor RNG states are explicitly moved back to CPU before `set_state`. The same
+checkpoint then resumed successfully and completed the 128-sample evaluation.
+
 ## Exact next actions
 
-1. Commit the audited implementation and run the unchanged 12/4-template CUDA protocol on the RTX
-   PRO 6000 in a GPU-visible host execution context.
-2. Monitor `results/p0_neural_cuda_surrogate_v1/progress.jsonl`; if interrupted, resume its
+1. Commit the context-aware encoder/gate update and run the unchanged 12/4-template CUDA protocol
+   into `results/p0_neural_cuda_context_v2/`.
+2. Monitor its `progress.jsonl`; if interrupted, resume its
    `latest.pt` with the same immutable protocol and a larger/equal `--steps` value.
 3. Compare neural event Brier/ECE and empirical hard-map Brier against the fixed death-test gates.
 4. Update this file and `CONFERENCE_READINESS.md` with the exact command and result; remain NO-GO if

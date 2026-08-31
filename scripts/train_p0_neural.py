@@ -73,6 +73,12 @@ def parse_args() -> argparse.Namespace:
         help="Weight for the U-statistic Brier score of empirical hard-map marginals.",
     )
     parser.add_argument("--learning-rate", type=float, default=1e-3)
+    parser.add_argument(
+        "--encoder-context-mode",
+        choices=("local", "coord_global"),
+        default="coord_global",
+        help="Use the legacy local U-Net or coordinate-aware globally conditioned P0 encoder.",
+    )
     parser.add_argument("--validation-samples", type=int, default=64)
     parser.add_argument("--seed", type=int, default=20260827)
     parser.add_argument("--checkpoint-every", type=int, default=10)
@@ -141,10 +147,14 @@ def training_config(args: argparse.Namespace) -> dict[str, Any]:
         "variogram_weight": args.variogram_weight,
         "empirical_map_weight": args.empirical_map_weight,
         "learning_rate": args.learning_rate,
+        "encoder_context_mode": args.encoder_context_mode,
     }
 
 
 def validate_resume_config(saved: dict[str, Any], current: dict[str, Any]) -> None:
+    saved = {**saved}
+    # Format-v2 checkpoints written before the global-context encoder are legacy local models.
+    saved.setdefault("encoder_context_mode", "local")
     mutable = {"steps", "validation_samples"}
     mismatches = {
         key: {"checkpoint": saved.get(key), "requested": value}
@@ -281,7 +291,14 @@ def main() -> None:
             radii=radii,
         )
     )
-    model = PathRelNet(input_channels=3, feature_channels=32, latent_dim=8).to(device)
+    use_global_context = args.encoder_context_mode == "coord_global"
+    model = PathRelNet(
+        input_channels=3,
+        feature_channels=32,
+        latent_dim=8,
+        use_coordinate_channels=use_global_context,
+        use_global_context=use_global_context,
+    ).to(device)
     optimizer = torch.optim.AdamW(
         model.parameters(), lr=args.learning_rate, weight_decay=1e-4
     )
@@ -533,6 +550,26 @@ def main() -> None:
         and args.worlds_per_template == 24
         and args.validation_samples >= 64
     )
+    context_event_means = {
+        str(family): event_probabilities[test_arrays["context"] == family]
+        .mean(axis=(0, 1))
+        .tolist()
+        for family in (0, 1)
+    }
+    target_context_event_means = {
+        str(family): test_arrays["events"][test_arrays["context"] == family]
+        .mean(axis=(0, 1))
+        .tolist()
+        for family in (0, 1)
+    }
+    predicted_context_gap = float(context_event_means["1"][0] - context_event_means["0"][0])
+    target_context_gap = float(
+        target_context_event_means["1"][0] - target_context_event_means["0"][0]
+    )
+    context_gap_ratio = predicted_context_gap / max(target_context_gap, 1e-12)
+    context_conditioning_pass = bool(
+        target_context_gap > 0 and context_gap_ratio >= 0.5
+    )
     p0_pass = bool(
         official_protocol
         and event_report["brier"] < P0_COMPARATORS["independent_brier"]
@@ -542,6 +579,7 @@ def main() -> None:
         + 0.02
         and empirical_full["brier"]
         <= P0_COMPARATORS["independent_map_brier"] + 0.02
+        and context_conditioning_pass
     )
     doorway: dict[str, Any] = {}
     for family in (0, 1):
@@ -566,17 +604,14 @@ def main() -> None:
         ),
         "event_mean_by_radius": event_probabilities.mean(axis=(0, 1)).tolist(),
         "target_event_mean_by_radius": test_arrays["events"].mean(axis=(0, 1)).tolist(),
-        "event_mean_by_context_and_radius": {
-            str(family): event_probabilities[test_arrays["context"] == family]
-            .mean(axis=(0, 1))
-            .tolist()
-            for family in (0, 1)
-        },
-        "target_event_mean_by_context_and_radius": {
-            str(family): test_arrays["events"][test_arrays["context"] == family]
-            .mean(axis=(0, 1))
-            .tolist()
-            for family in (0, 1)
+        "event_mean_by_context_and_radius": context_event_means,
+        "target_event_mean_by_context_and_radius": target_context_event_means,
+        "context_conditioning": {
+            "radius_zero_predicted_gap": predicted_context_gap,
+            "radius_zero_target_gap": target_context_gap,
+            "gap_ratio": context_gap_ratio,
+            "minimum_gap_ratio": 0.5,
+            "passed": context_conditioning_pass,
         },
         "map_marginal_metrics": map_reports,
         "doorway_joint": doorway,
@@ -593,7 +628,8 @@ def main() -> None:
             "comparators": P0_COMPARATORS,
             "criterion": (
                 "beat independent and direct-query event Brier; ECE no more than 0.02 above "
-                "the better comparator; empirical hard-map Brier within 0.02 of independent"
+                "the better comparator; empirical hard-map Brier within 0.02 of independent; "
+                "recover at least half of the held-out radius-zero context gap"
             ),
         },
         "paper_result": False,
