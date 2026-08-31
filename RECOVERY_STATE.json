@@ -254,8 +254,8 @@
     }
   ],
   "last_verification": {
-    "command": "PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -v && node --check site/app.js && PYTHONPATH=src .venv/bin/python scripts/build_demo_site.py --skip-real",
-    "result": "Ran 64 tests in 1.351s; OK; skipped=0; app.js syntax check passed; site builder generated audit and validation baseline JSON/JS/SVG assets",
+    "command": "PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -v && node --check site/app.js && PYTHONPATH=src .venv/bin/python scripts/build_demo_site.py --skip-real && PYTHONPATH=src .venv/bin/python scripts/verify_recovery_state.py",
+    "result": "Ran 66 tests in 1.307s; OK; skipped=0; app.js syntax check passed; site builder generated audit and validation baseline JSON/JS/SVG assets; full recovery SHA verification passed",
     "implementation_commit": "HEAD (validation baseline/site snapshot)"
   },
   "recovery_commands": [
