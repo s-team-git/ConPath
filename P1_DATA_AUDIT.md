@@ -1,6 +1,7 @@
 # ConPath P1 data and event-identifiability audit
 
-Status: **archive verified; official split fails scene-isolation gate; NO-GO for training/claims**
+Status: **archive verified; official split fails; provenance split passes pre-query integrity;
+NO-GO pending query audit**
 
 Updated: 2026-08-30 (America/New_York)
 
@@ -110,6 +111,31 @@ small number of floor/observed pixels outside it, so the exact boundary semantic
 quantified audit. Metadata confirms 0.01 m resolution, camera pixel `[128, 192]`, and a 256-cell crop
 in the inspected packets.
 
+## Scene-disjoint provenance manifest
+
+Every packet also records `provenance.original_split`, which preserves the upstream source
+dataset's split rather than FlatLands' observation-level redistribution. The complete audit found
+no missing/unknown provenance split, missing global ID, duplicate global ID, scene assigned to
+multiple provenance splits, or cross-split `(source_dataset, scene_id)` overlap.
+
+| Provenance split | Observations | Scenes | Included sources |
+|---|---:|---:|---|
+| train | 203,373 | 13,339 | 3RScan, ARKitScenes, Matterport3D, ScanNet, ZInD |
+| validation | 25,555 | 1,667 | 3RScan, ARKitScenes, Matterport3D, ScanNet, ZInD |
+| test | 41,647 | 2,602 | the five sources above plus ScanNet++ |
+
+ScanNet++ supplies 16,214 test observations and remains OOD-only. The auditor writes all 270,575
+records in deterministic archive-member order to
+`results/p1_flatlands_provenance_manifest/provenance_manifest.csv`; its SHA-256 is
+`a5eb28123f0fa2e38cc8244e6675c1eb76bc9a534ee54f56ef9ed68c4bdbc77b`. The generating report is
+bound to implementation commit `cce7703` and records
+`provenance_prequery_gate_passed=true`, while the official `p1_prequery_gate_passed` remains false.
+
+This is a non-official FlatLands split candidate: it reuses official upstream-source provenance but
+does not repair or relabel the published FlatLands benchmark split. All ConPath baselines would need
+to use this identical manifest. It only authorizes the bounded query audit, not extraction,
+training, or a paper claim.
+
 ## Acceptance gates
 
 All gates are per split and per source dataset, not only pooled across observations.
@@ -132,8 +158,9 @@ All gates are per split and per source dataset, not only pooled across observati
    invalid endpoints. At least 10%-15% of retained queries must be disconnected or
    footprint/bottleneck failures in validation and test; otherwise FlatLands is only a completion/OOD
    baseline, not the main event benchmark.
-7. **No pseudoreplication:** official splits are retained, and confidence intervals/metrics are also
-   scene-weighted so many observations from one room cannot dominate.
+7. **No pseudoreplication:** a frozen scene-disjoint manifest is shared by every method, and
+   confidence intervals/metrics are also scene-weighted so many observations from one room cannot
+   dominate. The leaking official FlatLands split is never presented as cross-scene evidence.
 8. **Baseline readiness:** deterministic completion, independent cells, direct query, and available
    official stochastic/flow completion outputs must use identical queries and masks. Missing
    official weights/tooling remains a blocker for a paper claim, even if the data audit passes.
@@ -152,20 +179,22 @@ All gates are per split and per source dataset, not only pooled across observati
 
 ## Current decision and next command
 
-**NO-GO on the official in-distribution split and NO-GO to training.** A salvage audit is allowed
-without extraction:
+**NO-GO on the official in-distribution split and NO-GO to training.** The upstream-provenance
+manifest passes pre-query integrity, so a bounded salvage audit is allowed without extraction:
 
-1. derive a deterministic, source-stratified scene-hash split for the five in-distribution sources;
-2. retain ScanNet++ only as the official OOD test;
+1. deterministically sample scenes by provenance split and source, then choose one observation per
+   sampled scene without target inspection;
+2. retain ScanNet++ only as OOD test;
 3. quantify pixel/mask semantics and natural-query balance directly from a bounded ZIP sample;
-4. clearly label the reconstructed split as non-official and require baselines to retrain on it.
+4. label the provenance split as non-official FlatLands and require all baselines to retrain on it.
 
 The exact next command for reproducing the current full metadata result is:
 
 ```bash
 PYTHONPATH=src .venv/bin/python scripts/audit_flatlands_archive.py \
-  --metadata-limit 0 --output-dir results/p1_flatlands_archive_audit_full
+  --metadata-limit 0 --write-provenance-manifest \
+  --output-dir results/p1_flatlands_provenance_manifest --overwrite
 ```
 
-The next implementation milestone is the scene-hash manifest and bounded query audit. Do not extract
-or train merely to follow the official observation split.
+The next implementation milestone is the bounded query audit. Do not extract or train merely to
+follow the official observation split.

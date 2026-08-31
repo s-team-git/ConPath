@@ -12,6 +12,12 @@ train/val/test split for a cross-scene claim: the full metadata audit found thou
 `(source, scene_id)` values across all three in-distribution partitions. See
 [`P1_DATA_AUDIT.md`](../P1_DATA_AUDIT.md).
 
+The packet-level `provenance.original_split` values do recover a complete scene-disjoint candidate:
+203,373 train, 25,555 validation, and 41,647 test observations, with ScanNet++ only in test. Its
+deterministic manifest is ignored under `results/p1_flatlands_provenance_manifest/`, but its exact
+size/SHA and gate result are tracked in `RECOVERY_STATE.json`. This split is non-official FlatLands
+and currently authorizes only a bounded direct-from-ZIP query audit, not extraction or training.
+
 The deterministic synthetic corridor generator in `src/pathrel/synthetic.py` remains the contract
 harness for the P0 death test, not a substitute for the real-data pilot.
 

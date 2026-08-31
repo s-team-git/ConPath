@@ -44,6 +44,8 @@ observation_bev [B, Cin, H, W]
 - a reproducible TUM RGB-D Freiburg1/desk real-data pilot (`scripts/run_tum_rgbd_pilot.py`) that
   lifts registered depth with MoCap poses into a world-frame reference raster and audits future
   start/goal events;
+- a read-only FlatLands ZIP integrity/split auditor and deterministic upstream-provenance manifest;
+- tracked machine-readable recovery state with byte/SHA verification for required ignored results;
 - an exact NumPy merge-tree forward reference (`merge_tree_bottleneck_scores`) for many terminal
   queries on one map;
 - smoke forward, smoke training, and unit tests.
@@ -61,6 +63,15 @@ geometry path. The real pilot is explicitly a reference-map audit because TUM do
 traversability labels. The corrected neural model passes the synthetic P0 gate in two optimization
 seeds and its matched no-reach ablation fails, but no trained checkpoint has yet been validated on a
 paper-grade public benchmark.
+
+After an interrupted session, start with:
+
+```bash
+PYTHONPATH=src .venv/bin/python scripts/verify_recovery_state.py --quick
+```
+
+Then read `CONTINUATION.md`. The full verifier (without `--quick`) rehashes the registered ignored
+artifacts, including the FlatLands archive.
 
 ## Environment
 

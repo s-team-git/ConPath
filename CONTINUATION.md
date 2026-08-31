@@ -7,10 +7,18 @@ diagnostic, code change, or experiment; do not rely on chat history or ignored `
 
 - Updated: 2026-08-30 (America/New_York)
 - Repository: `/home/hairo/pathrel_transfer/pathrel_pro6000`
-- Last durable implementation commit: `2de9103` (local `main`; not yet pushed in this continuation)
+- Durable checkpoint: `p1-flatlands-provenance-v1` in tracked `RECOVERY_STATE.json`
+- Recovery-state commit: resolve with `git log -1 --format='%h %s' -- RECOVERY_STATE.json`
+- Last durable implementation commit: `cce7703` (local `main`; not yet pushed)
 - Scientific gate: **P0 GO across two seeds; public-data/paper claims not yet established**
-- Active task: acquire the frozen FlatLands archive with resume plus size/SHA verification, then
-  audit it in place before extraction or public-data training.
+- Active task: bounded direct-from-ZIP FlatLands mask/natural-query audit on the scene-disjoint
+  upstream-provenance split; extraction and public-data training remain prohibited.
+
+`RECOVERY_STATE.json` is the machine-readable source of truth for required ignored artifacts,
+byte counts, SHA-256 values, last verification, and the next action. Run the quick verifier first
+after any interrupted session; run the full verifier when artifact integrity is in doubt. The
+verifier is read-only and also prints the current Git status and the commit that last changed the
+state file.
 
 ## Last completed work
 
@@ -150,32 +158,31 @@ merge-tree reference matched exhaustive search at zero error for 8/64/512 querie
 
 ## P1 FlatLands archive audit
 
-The workspace contains only the ignored 830 MB TUM RGB-D pilot data. It has no FlatLands, ORFD,
-UnScenes3D, or WildOcc assets and no corresponding loader/split/query audit. Official-source review
-selects FlatLands as the first P1 audit target because it provides aligned observed/full floor maps,
-unobserved and valid masks, metric provenance, and official splits. ORFD is a secondary off-road
-semantics audit; UnScenes3D/WildOcc remain P2.
+The workspace contains the ignored 830 MB TUM RGB-D pilot and the verified 2.055 GB FlatLands ZIP;
+it has no ORFD, UnScenes3D, or WildOcc assets. Official-source review selected FlatLands as the first
+P1 audit target because it provides aligned observed/full floor maps, unobserved and valid masks,
+metric provenance, and split metadata. ORFD is a secondary off-road semantics audit;
+UnScenes3D/WildOcc remain P2.
 
 `P1_DATA_AUDIT.md` freezes the FlatLands release as `2,054,773,316` bytes with SHA-256
 `e4f2e5c7c54f7ba62ea696fb103fb5d3794f30f5a2e63715773e59d6a9f1d26f`, defines scene-disjointness,
 mask/polarity, natural-query, 10%-15% event-balance, provenance/license, and strong-baseline gates,
 and keeps the decision NO-GO for extraction/training. `scripts/download_flatlands.sh` supports a
 resumable `.part`, verifies size and hash, atomically finalizes the archive, and never extracts it.
-`bash -n` passes; `--check` correctly returns exit 2 while the archive is absent.
+`bash -n` passes and `--check` now validates the present archive.
 
-The working tree also adds `src/pathrel/flatlands.py`, `scripts/audit_flatlands_archive.py`, and
-`tests/test_flatlands.py`. The read-only auditor checks the frozen archive hash, unsafe/duplicate/
-symlink/encrypted members, five-file packet completeness, official split counts, malformed metadata,
-source/scene identity, duplicate global IDs, and cross-split scene leakage without extraction. It
-writes atomic reports plus fsynced progress/failure logs. The expanded suite reports `Ran 38 tests
-... OK`, `skipped=0`; this auditor commit is the next durability point while the archive downloads.
+The committed `src/pathrel/flatlands.py`, `scripts/audit_flatlands_archive.py`, and tests implement a
+read-only auditor for the frozen archive hash, unsafe/duplicate/symlink/encrypted members, five-file
+packet completeness, official split counts, malformed metadata, source/scene identity, duplicate
+global IDs, and cross-split scene leakage without extraction. Reports and manifests are written by
+fsync plus atomic rename; progress/failure logs are fsynced incrementally.
 
 The official archive is now present at
 `data/raw/flatlands/FlatLands_final_dataset.zip`. Its exact size is `2,054,773,316` bytes and both
 independent checks reproduce SHA-256
 `e4f2e5c7c54f7ba62ea696fb103fb5d3794f30f5a2e63715773e59d6a9f1d26f`. It has not been extracted.
 
-The first bounded audit exposed the physical `val/` directory token; the working tree normalizes it
+The first bounded audit exposed the physical `val/` directory token; committed code normalizes it
 to `validation`. The subsequent full scan in `results/p1_flatlands_archive_audit_full/` found all
 270,575 complete packets and parseable metadata with zero unsafe/duplicate/symlink/encrypted/
 unexpected members or missing identities. Official counts match exactly.
@@ -185,6 +192,17 @@ share 12,873 `(source, scene_id)` pairs, train/test 8,406, and validation/test 6
 in-distribution source leaks; ScanNet++ alone is test-only OOD. A concrete ZInD scene has 16/2/1
 observations in train/validation/test. Therefore P1 remains **NO-GO on the official split**.
 
+The full rerun from commit `cce7703` recovered a better split already encoded in every packet:
+`provenance.original_split` preserves each upstream source's train/validation/test membership. It
+contains 203,373/25,555/41,647 observations and 13,339/1,667/2,602 `(source, scene_id)` pairs, with
+zero overlap, zero missing or unknown split values, and zero scenes assigned to multiple splits.
+ScanNet++ contributes 16,214 observations only to provenance test. The deterministic 270,575-row
+manifest is
+`results/p1_flatlands_provenance_manifest/provenance_manifest.csv` (SHA-256
+`a5eb28123f0fa2e38cc8244e6675c1eb76bc9a534ee54f56ef9ed68c4bdbc77b`). This is an explicitly
+non-official FlatLands evaluation split, not a claim that the published archive directories pass.
+Its pre-query integrity gate passes; query balance still does not.
+
 Source-stratified pixel samples are binary 256x256 PNGs. Observed floor is a subset of full floor,
 and the unobserved mask is disjoint from observed floor. `epistemic_mask` has small boundary
 disagreements with floor/observed pixels, so outside-mask cells must remain invalid pending a full
@@ -192,19 +210,22 @@ semantics audit.
 
 ## Exact next actions
 
-1. Commit the `val` normalization plus the full archive/split-leakage result.
-2. Implement a deterministic source-stratified scene-hash manifest for the five in-distribution
-   sources; preserve ScanNet++ as test-only OOD and label the new split non-official.
-3. Implement a bounded, direct-from-ZIP pixel/mask and natural-query balance audit with replayable
+1. Implement a bounded, direct-from-ZIP pixel/mask and natural-query balance audit with replayable
    selected IDs/queries. Do not extract the full archive.
-4. Remain NO-GO for training unless mask semantics and the 10%-15% disconnected/bottleneck gate
-   pass on the reconstructed validation/test split; all baselines must use that same split.
+2. Select one deterministic observation per sampled scene, stratified by provenance split/source;
+   query selection must not inspect `floor_map`.
+3. Remain NO-GO for training unless mask semantics and the 10%-15% disconnected/bottleneck gate
+   pass on provenance validation/test; all baselines must use that identical non-official split.
+4. Update `RECOVERY_STATE.json` and commit immediately after the bounded report is atomically saved.
 
 ## Recovery commands
 
 ```bash
 cd /home/hairo/pathrel_transfer/pathrel_pro6000
 git status --short --branch
+PYTHONPATH=src .venv/bin/python scripts/verify_recovery_state.py --quick
+# Full SHA verification (rehashes the 2.055 GB archive):
+PYTHONPATH=src .venv/bin/python scripts/verify_recovery_state.py
 sed -n '1,240p' CONTINUATION.md
 sed -n '1,240p' results/p0_neural_cuda_contextplane_v4/report.json
 sed -n '1,240p' results/p0_neural_cuda_contextplane_seed20260828_v4/report.json

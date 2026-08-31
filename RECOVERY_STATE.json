@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "p1-flatlands-provenance-v1",
+  "updated_local_date": "2026-08-30",
+  "timezone": "America/New_York",
+  "branch": "main",
+  "remote_sync": "local main is ahead of origin/main; no push was authorized",
+  "scientific_status": "Synthetic P0 passes in two seeds. The official FlatLands split fails scene isolation. The upstream provenance split passes the pre-query integrity gate, but mask semantics and natural-query balance remain unaudited, so P1 training is NO-GO.",
+  "active_task": "Implement and run the bounded direct-from-ZIP FlatLands mask and natural-query audit using provenance.original_split.",
+  "completed_milestones": [
+    "Interruption-safe P0 training with atomic checkpoints and exact resume",
+    "Two-seed synthetic P0 pass and matched no-reach failure",
+    "FlatLands archive byte, SHA-256, packet, metadata, and official-split leakage audit",
+    "Complete 270575-row upstream-provenance manifest with zero cross-split scene overlap"
+  ],
+  "tracked_files": [
+    "CONTINUATION.md",
+    "P1_DATA_AUDIT.md",
+    "results/verification.md",
+    "scripts/audit_flatlands_archive.py",
+    "scripts/verify_recovery_state.py",
+    "src/pathrel/flatlands.py",
+    "src/pathrel/recovery.py"
+  ],
+  "ignored_artifacts": [
+    {
+      "path": "data/raw/flatlands/FlatLands_final_dataset.zip",
+      "role": "frozen public input archive",
+      "required_for_resume": true,
+      "bytes": 2054773316,
+      "sha256": "e4f2e5c7c54f7ba62ea696fb103fb5d3794f30f5a2e63715773e59d6a9f1d26f"
+    },
+    {
+      "path": "results/p1_flatlands_provenance_manifest/report.json",
+      "role": "full archive and provenance-split audit report generated from cce7703",
+      "required_for_resume": true,
+      "bytes": 35835,
+      "sha256": "30191b0fa4819fdb3dc66658bb67bec34ac4e48c30b9b1f02f1fe4549e975edb"
+    },
+    {
+      "path": "results/p1_flatlands_provenance_manifest/provenance_manifest.csv",
+      "role": "deterministic query-audit input manifest",
+      "required_for_resume": true,
+      "bytes": 36926708,
+      "sha256": "a5eb28123f0fa2e38cc8244e6675c1eb76bc9a534ee54f56ef9ed68c4bdbc77b"
+    },
+    {
+      "path": "results/p0_neural_cuda_contextplane_v4/report.json",
+      "role": "P0 seed 20260827 report",
+      "required_for_resume": false,
+      "bytes": 7899,
+      "sha256": "1c69e30fb6f23b89d0276d09f15b631727be4506a837fe7d24b29a85657d1a11"
+    },
+    {
+      "path": "results/p0_neural_cuda_contextplane_v4/checkpoint.pt",
+      "role": "P0 seed 20260827 final model",
+      "required_for_resume": false,
+      "bytes": 5808211,
+      "sha256": "1ef83ea366f09b1f3dbffff7dcc5065472e4081d0bfb52fcc14fcefa69c031f4"
+    },
+    {
+      "path": "results/p0_neural_cuda_contextplane_seed20260828_v4/report.json",
+      "role": "P0 seed 20260828 report",
+      "required_for_resume": false,
+      "bytes": 7946,
+      "sha256": "46ac08329182a19576218ce1bfd06a46477bc36d5033a471bf95b8a89d48473f"
+    },
+    {
+      "path": "results/p0_neural_cuda_contextplane_seed20260828_v4/checkpoint.pt",
+      "role": "P0 seed 20260828 final model",
+      "required_for_resume": false,
+      "bytes": 5808275,
+      "sha256": "0463e1f5da6e860e0093adfeb8387b480ac959fd83e30c59023f1bcdcbcf4b70"
+    },
+    {
+      "path": "results/p0_neural_cuda_contextplane_noreach_v4/report.json",
+      "role": "P0 no-reach ablation report",
+      "required_for_resume": false,
+      "bytes": 7923,
+      "sha256": "317ee4db452514c392cba1753c365b9f62f804f6b4e5ca6e2072b70c7ee3dd80"
+    },
+    {
+      "path": "results/p0_neural_cuda_contextplane_noreach_v4/checkpoint.pt",
+      "role": "P0 no-reach ablation final model",
+      "required_for_resume": false,
+      "bytes": 5808211,
+      "sha256": "a78ceafd9ad3cdded9358dcd8090b41dea9bf807f11f52384f86769dbc8b810e"
+    }
+  ],
+  "last_verification": {
+    "command": "PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -v",
+    "result": "Ran 41 tests in 0.849s; OK; skipped=0",
+    "implementation_commit": "cce7703af29c5216febef52a7293cc25a465327b"
+  },
+  "recovery_commands": [
+    "git status --short --branch",
+    "PYTHONPATH=src .venv/bin/python scripts/verify_recovery_state.py --quick",
+    "PYTHONPATH=src .venv/bin/python scripts/verify_recovery_state.py",
+    "sed -n '1,320p' CONTINUATION.md"
+  ],
+  "next_command": "PYTHONPATH=src .venv/bin/python scripts/verify_recovery_state.py --quick",
+  "next_actions": [
+    "Implement deterministic source/split/scene sampling from provenance_manifest.csv.",
+    "Read selected PNG packets directly from the ZIP and quantify mask polarity/consistency.",
+    "Generate goals from camera/resolution/bounds/validity only, then score exact radius connectivity.",
+    "Update this state after the bounded report is fsynced and committed; do not extract or train before the query gate decision."
+  ]
+}

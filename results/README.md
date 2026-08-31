@@ -21,6 +21,11 @@ Neural training directories contain `progress.jsonl`, atomic `latest.pt` recover
 checkpoint, and `report.json`. They are ignored by Git, so every decision-relevant run must also be
 summarized in tracked `CONTINUATION.md` before a session ends.
 
+`RECOVERY_STATE.json` additionally pins the exact byte count and SHA-256 of ignored artifacts needed
+to resume the active milestone. Verify it with `PYTHONPATH=src .venv/bin/python
+scripts/verify_recovery_state.py --quick` after an interrupted session; omit `--quick` to rehash all
+registered artifacts.
+
 The real-data pilot is generated with:
 
 ```bash

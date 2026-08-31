@@ -24,7 +24,7 @@ project-local `.venv`; no old environment was copied or modified. `scripts/check
 
 Command: `PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -v`
 
-Latest result: `Ran 35 tests in 15.928s ... OK` with `skipped=0`.
+Latest result: `Ran 41 tests in 0.849s ... OK` with `skipped=0`.
 
 Command: `PYTHONPATH=src .venv/bin/python scripts/smoke_forward.py`
 
@@ -109,6 +109,33 @@ malformed metadata, and missing identities are zero. The ConPath scene-split gat
 `(source, scene_id)` counts are 12,873 for train/validation, 8,406 for train/test, and 6,800 for
 validation/test. Thus the official observation split cannot support a cross-scene claim; no
 extraction or public-data training was authorized.
+
+Command: `PYTHONPATH=src .venv/bin/python scripts/audit_flatlands_archive.py --metadata-limit 0
+--write-provenance-manifest --output-dir results/p1_flatlands_provenance_manifest --overwrite`.
+
+Result: the upstream `provenance.original_split` supplies 203,373/25,555/41,647 observations and
+13,339/1,667/2,602 scenes for train/validation/test, with zero missing or unknown split values,
+zero missing/duplicate global IDs, zero multi-split scenes, and zero cross-split scene overlap.
+The 270,575-row manifest SHA-256 is
+`a5eb28123f0fa2e38cc8244e6675c1eb76bc9a534ee54f56ef9ed68c4bdbc77b`; its report records
+implementation commit `cce7703`. The provenance pre-query integrity gate passes, but natural-query
+balance remains untested, so no extraction or training is authorized.
+
+## Interruption recovery (2026-08-30)
+
+Tracked `RECOVERY_STATE.json` records the active checkpoint, required ignored artifacts with exact
+byte counts and SHA-256 values, last verification, and next actions. The read-only quick verifier
+checks paths and sizes; the full mode also rehashes the 2.055 GB archive and all registered P0/P1
+evidence:
+
+```bash
+PYTHONPATH=src .venv/bin/python scripts/verify_recovery_state.py --quick
+PYTHONPATH=src .venv/bin/python scripts/verify_recovery_state.py
+```
+
+The FlatLands auditor separately fsyncs progress every 1,000 metadata records and uses fsync plus
+atomic rename for final JSON/CSV outputs. This protects against process/session interruption; local
+`main` still has not been pushed, so it does not protect against loss of the entire workstation.
 
 ## Real-data pilot (2026-08-28)
 
