@@ -79,6 +79,12 @@ def parse_args() -> argparse.Namespace:
         help="Score individual worlds or empirical distributions of repeated identical observations.",
     )
     parser.add_argument(
+        "--context-input",
+        choices=("marker", "plane"),
+        default="plane",
+        help="Infer context from the landmark alone or expose the same visible bit used by baselines.",
+    )
+    parser.add_argument(
         "--encoder-context-mode",
         choices=("local", "coord_global"),
         default="coord_global",
@@ -153,6 +159,7 @@ def training_config(args: argparse.Namespace) -> dict[str, Any]:
         "empirical_map_weight": args.empirical_map_weight,
         "learning_rate": args.learning_rate,
         "training_unit": args.training_unit,
+        "context_input": args.context_input,
         "encoder_context_mode": args.encoder_context_mode,
     }
 
@@ -162,6 +169,7 @@ def validate_resume_config(saved: dict[str, Any], current: dict[str, Any]) -> No
     # Format-v2 checkpoints written before the global-context encoder are legacy local models.
     saved.setdefault("encoder_context_mode", "local")
     saved.setdefault("training_unit", "world")
+    saved.setdefault("context_input", "marker")
     mutable = {"steps", "validation_samples"}
     mismatches = {
         key: {"checkpoint": saved.get(key), "requested": value}
@@ -251,6 +259,29 @@ def repeated_observation_groups(
     return groups
 
 
+def add_visible_context_plane(
+    observation: np.ndarray,
+    context: np.ndarray,
+    *,
+    mode: str,
+) -> np.ndarray:
+    """Optionally append a visible context bit without exposing the hidden doorway draw."""
+
+    observation = np.asarray(observation, dtype=np.float32)
+    context = np.asarray(context, dtype=np.float32)
+    if mode == "marker":
+        return observation
+    if mode != "plane":
+        raise ValueError(f"unknown context input mode: {mode}")
+    if observation.ndim != 4 or context.shape != (observation.shape[0],):
+        raise ValueError("observation must be [B,C,H,W] and context must be [B]")
+    plane = np.broadcast_to(
+        context[:, None, None, None],
+        (len(context), 1, observation.shape[-2], observation.shape[-1]),
+    )
+    return np.concatenate((observation, plane), axis=1).astype(np.float32, copy=False)
+
+
 def validate_args(args: argparse.Namespace) -> None:
     if args.steps < 1 or not 0 <= args.warmup_steps <= args.steps:
         raise ValueError("steps must be positive and warmup steps must lie in [0, steps]")
@@ -322,7 +353,7 @@ def main() -> None:
     )
     use_global_context = args.encoder_context_mode == "coord_global"
     model = PathRelNet(
-        input_channels=3,
+        input_channels=4 if args.context_input == "plane" else 3,
         feature_channels=32,
         latent_dim=8,
         use_coordinate_channels=use_global_context,
@@ -421,7 +452,12 @@ def main() -> None:
                     dtype=np.int64,
                 )
                 variogram_target_numpy = train_arrays["target_free"][realized].astype(np.float32)
-            observation = torch.from_numpy(train_arrays["observation"][indices]).to(
+            observation_numpy = add_visible_context_plane(
+                train_arrays["observation"][indices],
+                train_arrays["context"][indices],
+                mode=args.context_input,
+            )
+            observation = torch.from_numpy(observation_numpy).to(
                 device=device, dtype=torch.float32
             )
             unknown = observation[:, 2] > 0.5
@@ -563,7 +599,10 @@ def main() -> None:
         raise
 
     model.eval()
-    test_observation = torch.from_numpy(test_arrays["observation"]).to(
+    test_observation_numpy = add_visible_context_plane(
+        test_arrays["observation"], test_arrays["context"], mode=args.context_input
+    )
+    test_observation = torch.from_numpy(test_observation_numpy).to(
         device=device, dtype=torch.float32
     )
     test_starts = torch.from_numpy(test_arrays["starts"]).to(

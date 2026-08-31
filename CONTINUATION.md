@@ -7,7 +7,7 @@ diagnostic, code change, or experiment; do not rely on chat history or ignored `
 
 - Updated: 2026-08-30 (America/New_York)
 - Repository: `/home/hairo/pathrel_transfer/pathrel_pro6000`
-- Last durable implementation commit: `e347e8b` (local `main`; not yet pushed in this continuation)
+- Last durable implementation commit: `514ffc2` (local `main`; not yet pushed in this continuation)
 - Scientific gate: **NO-GO** for P1/public-data claims
 - Active task: fix the trained neural P0 joint-event posterior under the existing held-out-template
   protocol; do not expand to a new public benchmark until it passes.
@@ -99,13 +99,25 @@ Replaying all training batch indices ruled out context sampling bias: joint-stag
 dataset's intended repeated-world structure: for each `(template, context)` it aggregates 24 worlds
 into empirical map/event probability targets and applies proper scores to one shared observation.
 The derived event still comes only from stochastic map samples. Legacy `--training-unit world`
-remains available for old checkpoints. This grouped-training change passes all 34 tests but has not
-yet run the official CUDA protocol.
+remains available for old checkpoints.
+
+`results/p0_neural_cuda_grouped_v3/` completed that grouped protocol. It reduced event Brier to
+`0.169978` (direct-query is `0.169888`) and empirical hard-map Brier to `0.003525`, but the context
+gap ratio remained only `0.0186`; the gate correctly failed. Grouping fixes target variance but not
+the asymmetric conditional-input path.
+
+The baseline evaluator and direct-query model receive the explicit visible `context` variable,
+whereas the neural model so far had to infer it from the absolute position of an otherwise identical
+2x2 landmark. The current working tree adds `--context-input plane`: a fourth, spatially broadcast
+visible context-bit channel. It contains no doorway realization or event label. This gives the map
+posterior the exact same conditioning variable as the baselines while retaining the original
+three-channel `marker` mode for ablation/legacy checkpoints. All 35 tests pass; the official CUDA
+run is pending.
 
 ## Exact next actions
 
-1. Commit grouped empirical-distribution training and run the unchanged 12/4-template CUDA protocol
-   into `results/p0_neural_cuda_grouped_v3/` with `--training-unit observation_group`.
+1. Commit the explicit visible-context input and run the unchanged 12/4-template CUDA protocol into
+   `results/p0_neural_cuda_contextplane_v4/` with grouped targets and `--context-input plane`.
 2. Monitor its `progress.jsonl`; if interrupted, resume its
    `latest.pt` with the same immutable protocol and a larger/equal `--steps` value.
 3. Compare neural event Brier/ECE and empirical hard-map Brier against the fixed death-test gates.

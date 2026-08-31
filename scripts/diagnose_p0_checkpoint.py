@@ -25,6 +25,7 @@ sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
 import torch  # noqa: E402
 
 from evaluate_p0 import exact_events, make_split, stack  # noqa: E402
+from train_p0_neural import add_visible_context_plane  # noqa: E402
 from pathrel.metrics import summarize  # noqa: E402
 from pathrel.model import PathRelNet  # noqa: E402
 
@@ -132,10 +133,17 @@ def main() -> None:
         raise ValueError("cannot infer latent dimension from factor head")
     latent_dim = int(factor_weight.shape[0] // num_classes)
     encoder_first_weight = state["encoder.enc0.block.0.weight"]
-    use_coordinate_channels = int(encoder_first_weight.shape[1]) == 5
+    use_coordinate_channels = bool(
+        protocol_value(protocol, "encoder_context_mode", "local") == "coord_global"
+        or any(key.startswith("encoder.context_projection.") for key in state)
+    )
+    input_channels = int(encoder_first_weight.shape[1]) - (2 if use_coordinate_channels else 0)
+    context_input = str(
+        protocol_value(protocol, "context_input", "plane" if input_channels == 4 else "marker")
+    )
     use_global_context = any(key.startswith("encoder.context_projection.") for key in state)
     model = PathRelNet(
-        input_channels=3,
+        input_channels=input_channels,
         feature_channels=feature_channels,
         num_classes=num_classes,
         latent_dim=latent_dim,
@@ -171,7 +179,12 @@ def main() -> None:
 
     for begin in range(0, len(arrays["observation"]), args.batch_size):
         end = min(begin + args.batch_size, len(arrays["observation"]))
-        observation = torch.from_numpy(arrays["observation"][begin:end]).to(
+        observation_numpy = add_visible_context_plane(
+            arrays["observation"][begin:end],
+            arrays["context"][begin:end],
+            mode=context_input,
+        )
+        observation = torch.from_numpy(observation_numpy).to(
             device=device, dtype=torch.float32
         )
         with torch.no_grad():
@@ -256,6 +269,7 @@ def main() -> None:
             "encoder_context_mode": (
                 "coord_global" if use_coordinate_channels and use_global_context else "local"
             ),
+            "context_input": context_input,
         },
         "map_marginal_metrics": {
             "conditional_softmax_full": finite_metrics(soft, target_free),
