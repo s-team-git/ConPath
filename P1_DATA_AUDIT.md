@@ -190,9 +190,11 @@ count, and filters exclusively on `provenance.original_split`; the physical arch
 retained only as a member locator. For every accessed packet it validates metadata identity and
 mask relations, then reconstructs all 36 query coordinates and selection statuses from
 `observed_floor`, `unobserved`, `epistemic_mask`, camera position, and metric resolution before the
-complete target is used by the caller. Its model input is three channels—observed floor,
-unobserved-region mask, and epistemic-valid mask—and its loss mask is
-`unobserved & epistemic_mask`.
+complete target is used by the caller. Its canonical model input is three mutually exclusive
+channels—epistemic-valid observed floor, epistemic-valid observed blocked, and epistemic-valid
+unknown—matching `PathRelNet.forward`; invalid cells are all-zero. Its loss mask is
+`unobserved & epistemic_mask`. The observed-blocked channel is reconstructed without the target as
+`epistemic_mask & ~unobserved & ~observed_floor`.
 
 An all-packet replay decoded 512/512 selected observations directly from the ZIP: 160 train, 160
 validation, and 192 test by provenance split, all 256×256. It reproduced 4,653 retained queries and

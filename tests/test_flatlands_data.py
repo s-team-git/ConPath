@@ -52,6 +52,9 @@ def _write_fixture(root: Path) -> tuple[Path, Path, Path]:
     floor = np.ones(shape, dtype=bool)
     floor[:, 20] = False
     floor[16, 20] = True
+    # One valid non-floor cell is observed rather than hidden, exercising the canonical blocked
+    # input channel. The remaining wall is left unobserved for the completion/query task.
+    unobserved[0, 20] = False
     metadata = {
         "scene": {
             "dataset": "ScanNet",
@@ -156,6 +159,19 @@ class FlatLandsReplayDatasetTest(unittest.TestCase):
             self.assertEqual(dataset.observations[0].provenance_split, "test")
             sample = dataset[0]
             self.assertEqual(sample.input_bev.shape, (3, 32, 32))
+            self.assertTrue(sample.observed_free[16, 16])
+            self.assertTrue(sample.observed_blocked[0, 20])
+            self.assertFalse(sample.unknown[0, 20])
+            self.assertTrue(sample.unknown[1, 20])
+            self.assertTrue(np.array_equal(sample.input_bev[0] > 0.5, sample.observed_free))
+            self.assertTrue(np.array_equal(sample.input_bev[1] > 0.5, sample.observed_blocked))
+            self.assertTrue(np.array_equal(sample.input_bev[2] > 0.5, sample.unknown))
+            self.assertTrue(
+                np.array_equal(
+                    sample.observed_free | sample.observed_blocked | sample.unknown,
+                    sample.epistemic_mask,
+                )
+            )
             self.assertEqual(sample.target_free.shape, (32, 32))
             self.assertTrue(np.all(~sample.loss_mask | sample.epistemic_mask))
             self.assertEqual(sample.radii_cells, (0, 1, 2))

@@ -133,6 +133,7 @@ src/pathrel/
   flatlands.py            read-only ZIP integrity/provenance audit
   flatlands_query.py      target-blind bounded query selection/scoring
   flatlands_data.py       frozen direct-ZIP benchmark replay and collation
+  flatlands_eval.py       exact-coverage scene-weighted event evaluator
   stochastic_decoder.py  joint stochastic occupancy posterior
   reachability.py         footprint and max-min connectivity layer
   losses.py               proper task-level and map losses
@@ -170,7 +171,8 @@ sample = dataset[0]
 ```
 
 See `P1_DATA_AUDIT.md` for the manifest hashes, target-blind query contract, source/radius
-saturation caveat, and exact claim boundary.
+saturation caveat, and exact claim boundary. `P1_BASELINE_PROTOCOL.md` freezes the label-free
+prediction schema, scene-weighted metrics, test-lock policy, and first three learned baselines.
 
 ## Versioning and publication
 

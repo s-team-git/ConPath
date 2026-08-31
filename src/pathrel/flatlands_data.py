@@ -75,11 +75,33 @@ class FlatLandsReplaySample:
     queries: tuple[ReplayQuery, ...]
 
     @property
+    def observed_free(self) -> np.ndarray:
+        """Observed traversable cells restricted to valid epistemic support."""
+
+        return self.observed_floor & self.epistemic_mask
+
+    @property
+    def unknown(self) -> np.ndarray:
+        """Unobserved cells on which the completion target is defined."""
+
+        return self.unobserved & self.epistemic_mask
+
+    @property
+    def observed_blocked(self) -> np.ndarray:
+        """Observed non-floor cells restricted to valid epistemic support."""
+
+        return self.epistemic_mask & ~self.unknown & ~self.observed_free
+
+    @property
     def input_bev(self) -> np.ndarray:
-        """Model input ``[3,H,W]``: observed free, hidden-region mask, valid-support mask."""
+        """Canonical model input ``[3,H,W]``: observed free, blocked, and unknown.
+
+        Invalid/out-of-support cells are all-zero. This matches ``PathRelNet.forward`` and avoids
+        accidentally clamping the FlatLands ``unobserved`` mask as known blocked evidence.
+        """
 
         return np.stack(
-            (self.observed_floor, self.unobserved, self.epistemic_mask), axis=0
+            (self.observed_free, self.observed_blocked, self.unknown), axis=0
         ).astype(np.float32, copy=False)
 
     @property
@@ -415,6 +437,11 @@ class FlatLandsReplayDataset:
             raise ValueError(f"observed floor disagrees with target for {row.global_id}")
         if np.any(observed_floor & unobserved):
             raise ValueError(f"observed/unobserved masks overlap for {row.global_id}")
+        valid_observed_blocked = (
+            epistemic_mask & ~(unobserved & epistemic_mask) & ~(observed_floor & epistemic_mask)
+        )
+        if np.any(valid_observed_blocked & floor_map):
+            raise ValueError(f"observed blocked cells disagree with target for {row.global_id}")
 
         try:
             metadata = json.loads(archive.read(row.metadata_member))
