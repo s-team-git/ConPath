@@ -87,9 +87,12 @@
   const baselines = window.CONPATH_FLATLANDS_BASELINES;
   const baselineBody = document.querySelector("#flatlands-baseline-body");
   const baselineRadiusBody = document.querySelector("#flatlands-baseline-radius-body");
+  const baselineSourceHead = document.querySelector("#flatlands-baseline-source-head");
+  const baselineSourceBody = document.querySelector("#flatlands-baseline-source-body");
   if (!baselines || !baselineBody) {
     if (baselineBody) baselineBody.innerHTML = '<tr><td colspan="6">Validation baseline snapshot not found. Rebuild the project site.</td></tr>';
     if (baselineRadiusBody) baselineRadiusBody.innerHTML = '<tr><td colspan="5">Validation baseline snapshot not found.</td></tr>';
+    if (baselineSourceBody) baselineSourceBody.innerHTML = '<tr><td>Validation baseline snapshot not found.</td></tr>';
   } else {
     const methods = Array.isArray(baselines.methods) ? baselines.methods : [];
     const overall = (method) => ((method.overall || {}).scene_weighted || {});
@@ -127,6 +130,15 @@
         const twenty = radiusFor(method, radius20);
         return `<tr><td>${escapeHtml(method.name)}</td><td>${number(zero.brier)}</td><td>${number(ten.brier)}</td><td>${number(twenty.brier)}</td><td>${percent(twenty["false_safe_rate@0.8"])}</td></tr>`;
       }).join("") || '<tr><td colspan="5">No radius-stratified baseline rows in snapshot.</td></tr>';
+    }
+
+    if (baselineSourceHead && baselineSourceBody) {
+      const sources = [...new Set(methods.flatMap((method) => (method.by_source || []).map((row) => row.source_dataset)))].sort();
+      baselineSourceHead.innerHTML = `<tr><th>Method</th>${sources.map((source) => `<th>${escapeHtml(source)}</th>`).join("")}</tr>`;
+      baselineSourceBody.innerHTML = methods.map((method) => {
+        const bySource = new Map((method.by_source || []).map((row) => [row.source_dataset, row.scene_weighted || {}]));
+        return `<tr><td>${escapeHtml(method.name)}</td>${sources.map((source) => `<td>${number((bySource.get(source) || {}).brier)}</td>`).join("")}</tr>`;
+      }).join("") || `<tr><td colspan="${sources.length + 1}">No source-stratified baseline rows in snapshot.</td></tr>`;
     }
   }
 })();
