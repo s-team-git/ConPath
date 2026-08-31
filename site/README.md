@@ -30,6 +30,11 @@ and are never committed.
 The legacy synthetic P0 snapshot can still be regenerated for development with
 `scripts/build_demo_site.py --include-legacy`, but it is intentionally excluded from the public page.
 
+After the public-data ConPath matrix produces a real checkpoint, create the same-scene qualitative
+panel with `scripts/render_flatlands_qualitative.py`. The renderer records the FlatLands provenance
+split, source, scene/query identity, footprint radius, and event probabilities in SVG/JSON; do not
+publish a map panel from a synthetic or temporary checkpoint.
+
 ## Preview locally
 
 ```bash

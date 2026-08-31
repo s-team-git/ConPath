@@ -9,7 +9,7 @@ diagnostic, code change, or experiment; do not rely on chat history or ignored `
 - Repository: `/home/hairo/pathrel_transfer/pathrel_pro6000`
 - Durable checkpoint: `p1-flatlands-validation-baselines-v1` in tracked `RECOVERY_STATE.json`
 - Recovery-state commit: resolve with `git log -1 --format='%h %s' -- RECOVERY_STATE.json`
-- Last durable implementation commit: `HEAD` (`0c6f58b`; GPU diagnostics + site claim-boundary refresh; push pending)
+- Last durable implementation commit: `HEAD` (qualitative renderer + stratified site tables; push pending)
 - Scientific gate: **P0 GO; FlatLands bounded data gate and first validation baselines GO on a
   non-official provenance split; public-data model and paper claims not yet established**
 - Active task: run multi-seed ConPath and ablations, then scalable connectivity and calibration /
@@ -30,6 +30,11 @@ After CUDA is visible, the reproducible six-run matrix (three seeds × ConPath /
 is launched with `scripts/run_flatlands_conpath_matrix.sh`. It writes an environment snapshot,
 matrix manifest, per-run checkpoints, progress records, and external stdout logs; a partial run with
 `latest.pt` is resumed, while ambiguous non-empty directories are refused.
+
+`scripts/render_flatlands_qualitative.py` now renders a same-scene SVG from a real ConPath checkpoint
+and the frozen FlatLands ZIP replay. It writes Observed BEV, ConPath posterior, optional deterministic
+completion, and reference panels plus dataset/split/source/scene/query/radius/event metadata. It
+refuses CUDA execution when the session cannot see a device and never fabricates a qualitative win.
 
 The local `main` tree is clean and versioned, but GitHub push has failed repeatedly for both SSH and
 HTTPS because this session cannot establish a stable connection. The static site has been refreshed

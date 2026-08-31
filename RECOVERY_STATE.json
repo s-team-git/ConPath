@@ -54,6 +54,7 @@
     "scripts/train_flatlands_completion.py",
     "scripts/train_flatlands_conpath.py",
     "scripts/run_flatlands_conpath_matrix.sh",
+    "scripts/render_flatlands_qualitative.py",
     "scripts/build_demo_site.py",
     "site/index.html",
     "site/app.js",

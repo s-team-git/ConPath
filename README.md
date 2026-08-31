@@ -240,6 +240,19 @@ The matrix performs a CUDA preflight first and refuses to start under a host-vis
 passed-through GPU session. It keeps the FlatLands test split locked and writes one output directory
 per seed/variant for later source/radius aggregation and qualitative-map rendering.
 
+After a real ConPath checkpoint exists, render a same-scene, metadata-labelled map panel with:
+
+```bash
+PYTHONPATH=src .venv/bin/python scripts/render_flatlands_qualitative.py \
+  --checkpoint results/p1_flatlands_conpath_matrix/seed20260831_conpath/best.pt \
+  --global-id <validation-global-id> --radius 10 --device cuda \
+  --output site/assets/flatlands_conpath_qualitative.svg
+```
+
+The renderer can add the deterministic-completion checkpoint and direct-query manifest as optional
+comparators. It refuses to invent a panel without a real checkpoint and writes a companion JSON
+with the exact dataset, split, scene, query, radius, and event probabilities.
+
 Every push to `main` uploads the tracked `site/` directory through
 [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml). Enable GitHub Pages with
 **GitHub Actions** once in the repository settings to publish it.
