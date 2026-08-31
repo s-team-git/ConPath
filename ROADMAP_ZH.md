@@ -226,7 +226,8 @@ connectivity、calibration/false-safe 与第二数据域，仍必须按 source/r
 `batched_merge_tree_bottleneck_scores([B,K,H,W], [B,Q,2], [B,Q,2])`，避免每个 query 重复构建
 图。64×64、4 个 sample 的 CPU contract benchmark 在 32/128/512/2048 query 下分别约为
 0.036/0.037/0.044/0.060 秒，输出与单图 oracle 逐项一致；这些是合成效率诊断，不是论文结果。
-它还不是可反传 CUDA 算子。最终应研究：
+ConPath validation 入口已经在最终预测阶段使用该 exact-forward helper，而训练阶段仍使用共享
+起点的有界可微传播。它还不是可反传 CUDA 算子。最终应研究：
 
 - merge-tree / maximum-spanning-tree 的批量查询；或
 - top-K path 与 cut 的上下界；或

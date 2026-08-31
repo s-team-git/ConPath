@@ -279,10 +279,12 @@ efficiency diagnostic only; a CUDA implementation and soft backward path are sti
 
 `scripts/train_flatlands_conpath.py` is now the reproducible public-data neural entry point. It uses
 the canonical replay channels, hidden-cell posterior NLL, variogram score, reachability U-statistic,
-shared-start propagation, atomic checkpoints, and label-free validation predictions. A one-scene CPU
-smoke completed end to end (including checkpoint/prediction writing) with `paper_result=false` and
-validation subset evaluation disabled. Full validation runs must still use the frozen 160-scene
-provenance split, multiple seeds, and the exact-forward parity gate before becoming paper results.
+shared-start propagation, atomic checkpoints, and label-free validation predictions. Its final
+validation path converts hard posterior worlds to exact disk-clearance maps and evaluates all queries
+with the batched Kruskal merge-tree, while the bounded differentiable propagation is used only for
+training/epoch selection. A one-scene CPU smoke completed end to end (including checkpoint/prediction
+writing) with `paper_result=false` and validation subset evaluation disabled. Full validation runs
+must still use the frozen 160-scene provenance split and multiple seeds before becoming paper results.
 
 ## Exact next actions
 
