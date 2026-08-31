@@ -121,18 +121,30 @@ were `0.4712/0.8476` versus targets `0.21875/0.875`, recovering `57.35%` of the 
 required `50%`). This is a synthetic neural P0 result, not a public-data or paper result.
 
 Residual weaknesses remain: context 0 is over-open and sampled doorway fragmentation is about
-`13.7%/16.1%` for context 0/1 versus zero in the target. Before authorizing P1, run the identical
-neural configuration with reachability weight zero and at least one additional optimization seed.
+`13.7%/16.1%` for context 0/1 versus zero in the target.
+
+`results/p0_neural_cuda_contextplane_noreach_v4/` is the matched ablation with only
+`--reachability-weight 0` changed. It failed the gate: event Brier `0.191368`, NLL `0.795186`, ECE
+`0.193570`, false-safe@0.8 `0.4258`, and context-gap ratio `0.2383`. Its empirical hard-map Brier
+remained strong at `0.003098`, isolating the failure to joint/event structure rather than pixelwise
+occupancy. Doorway fragmentation rose to `44.5%/71.6%`. Thus the reachability proper-score term is
+material under this fixed seed: it improves event Brier by `0.074991` while the no-reach ablation
+actually has slightly better marginal-map Brier.
+
+This supports the event-level objective but is still one optimization seed. Before authorizing P1,
+rerun the full configuration with at least one additional seed and update the tracked readiness
+documents.
 
 ## Exact next actions
 
-1. Run `results/p0_neural_cuda_contextplane_noreach_v4/` with the same grouped/context-plane
-   protocol and `--reachability-weight 0`.
-2. Monitor its `progress.jsonl`; if interrupted, resume its
-   `latest.pt` with the same immutable protocol and a larger/equal `--steps` value.
-3. If the full model beats that ablation, rerun the full configuration with an additional seed.
+1. Run the full configuration into `results/p0_neural_cuda_contextplane_seed20260828_v4/` with
+   `--seed 20260828`; this changes initialization/batch/sample RNG, not the fixed dataset split.
+2. Monitor its `progress.jsonl`; if interrupted, resume its `latest.pt` with the same immutable
+   protocol and a larger/equal `--steps` value.
+3. Compare per-seed event Brier/ECE/context gap, empirical hard-map Brier, and fragmentation; do not
+   average away a failed gate.
 4. Update this file, `P0_DEATH_TEST.md`, and `CONFERENCE_READINESS.md`; remain NO-GO for P1 until the
-   ablation and seed check support the learned event-level claim.
+   extra-seed result supports the learned event-level claim.
 
 ## Recovery commands
 
@@ -140,7 +152,8 @@ neural configuration with reachability weight zero and at least one additional o
 cd /home/hairo/pathrel_transfer/pathrel_pro6000
 git status --short --branch
 sed -n '1,240p' CONTINUATION.md
-sed -n '1,240p' results/p0_neural_cuda_tuned01/report.json
+sed -n '1,240p' results/p0_neural_cuda_contextplane_v4/report.json
+sed -n '1,240p' results/p0_neural_cuda_contextplane_noreach_v4/report.json
 PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -v
 PYTHONPATH=src .venv/bin/python scripts/diagnose_p0_checkpoint.py \
   results/p0_neural_cuda_tuned01/checkpoint.pt --samples 128 --skip-events
