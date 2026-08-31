@@ -46,36 +46,146 @@ def _validate_point(point: Sequence[int], height: int, width: int, name: str) ->
     return row, col
 
 
+def _squared_distance_transform_1d(cost: np.ndarray) -> np.ndarray:
+    """Exact lower envelope of parabolas for one finite one-dimensional cost array."""
+
+    cost = np.asarray(cost, dtype=np.float64)
+    length = int(cost.size)
+    if length == 0 or not np.any(np.isfinite(cost)):
+        raise ValueError("distance-transform input must contain a finite value")
+    sites = np.empty(length, dtype=np.int64)
+    boundaries = np.empty(length + 1, dtype=np.float64)
+    envelope_size = 0
+    sites[0] = int(np.flatnonzero(np.isfinite(cost))[0])
+    boundaries[0] = -np.inf
+    boundaries[1] = np.inf
+
+    for query in range(int(sites[0]) + 1, length):
+        if not np.isfinite(cost[query]):
+            continue
+        while True:
+            site = int(sites[envelope_size])
+            intersection = (
+                (cost[query] + query * query) - (cost[site] + site * site)
+            ) / (2.0 * (query - site))
+            if intersection > boundaries[envelope_size] or envelope_size == 0:
+                break
+            envelope_size -= 1
+        if envelope_size == 0 and intersection <= boundaries[envelope_size]:
+            # This is only reachable for unusual non-binary finite costs.  Replacing the first
+            # site keeps the helper mathematically complete without affecting the binary EDT.
+            sites[0] = query
+            boundaries[0] = -np.inf
+            boundaries[1] = np.inf
+            continue
+        envelope_size += 1
+        sites[envelope_size] = query
+        boundaries[envelope_size] = intersection
+        boundaries[envelope_size + 1] = np.inf
+
+    output = np.empty(length, dtype=np.float64)
+    envelope_index = 0
+    for query in range(length):
+        while boundaries[envelope_index + 1] < query:
+            envelope_index += 1
+        site = int(sites[envelope_index])
+        output[query] = (query - site) ** 2 + cost[site]
+    return output
+
+
+def _squared_distance_to_obstacle(free: np.ndarray) -> np.ndarray:
+    """Squared Euclidean distance to occupied support, including one occupied outer border."""
+
+    padded = np.pad(free, 1, mode="constant", constant_values=False)
+    initial = np.where(padded, np.inf, 0.0)
+    vertical = np.empty_like(initial)
+    for column in range(initial.shape[1]):
+        vertical[:, column] = _squared_distance_transform_1d(initial[:, column])
+    squared = np.empty_like(vertical)
+    for row in range(vertical.shape[0]):
+        squared[row] = _squared_distance_transform_1d(vertical[row])
+    return squared[1:-1, 1:-1]
+
+
 def clearance_radius_map(free: np.ndarray, chunk_size: int = 4096) -> np.ndarray:
     """Largest collision-free integer disk radius at every cell.
 
     The definition exactly matches a discrete disk containing all offsets ``(dy, dx)`` with
     ``dy**2 + dx**2 <= r**2``. A one-cell occupied border makes leaving the map unsafe.
 
-    This NumPy implementation is intentionally simple and deterministic for label audits and
-    tests. Dataset preprocessing should replace the pairwise distance calculation with an
-    equivalent verified EDT implementation while retaining these tests.
+    The implementation is the exact linear-time squared Euclidean distance transform of
+    Felzenszwalb and Huttenlocher, applied separably. ``chunk_size`` is retained as a backwards-
+    compatible ignored argument from the original pairwise reference implementation.
+    """
+
+    free = _validate_free_map(free)
+    # An obstacle exactly at distance d is included by a radius-d disk, so the largest safe
+    # integer radius is ceil(d)-1. Occupied centers are explicitly marked -1.
+    del chunk_size
+    squared_distance = _squared_distance_to_obstacle(free).astype(np.int64)
+    floor_root = np.sqrt(squared_distance).astype(np.int64)
+    ceil_root = floor_root + (floor_root * floor_root < squared_distance)
+    radius = ceil_root - 1
+    radius[~free] = -1
+    return radius
+
+
+def maximum_clearance_map(
+    free: np.ndarray,
+    start: Sequence[int],
+    *,
+    clearance: np.ndarray | None = None,
+    stop_points: Iterable[Sequence[int]] | None = None,
+) -> np.ndarray:
+    """Maximum four-neighbor bottleneck clearance from one start to every reached cell.
+
+    ``stop_points`` permits a bounded query audit to stop once all requested terminals have been
+    finalized. Unreached or unprocessed cells retain ``-1``.
     """
 
     free = _validate_free_map(free)
     height, width = free.shape
-    padded = np.pad(free, 1, mode="constant", constant_values=False)
-    obstacle_points = np.argwhere(~padded).astype(np.float64)
-    query_points = np.indices((height, width), dtype=np.float64).reshape(2, -1).T + 1.0
+    start_rc = _validate_point(start, height, width, "start")
+    if clearance is None:
+        clearance = clearance_radius_map(free)
+    clearance = np.asarray(clearance)
+    if clearance.shape != free.shape:
+        raise ValueError("clearance must have the same shape as free")
 
-    min_distance = np.empty(query_points.shape[0], dtype=np.float64)
-    for begin in range(0, query_points.shape[0], chunk_size):
-        end = min(begin + chunk_size, query_points.shape[0])
-        delta = query_points[begin:end, None, :] - obstacle_points[None, :, :]
-        squared = np.einsum("qod,qod->qo", delta, delta)
-        min_distance[begin:end] = np.sqrt(squared.min(axis=1))
+    best = np.full((height, width), -1, dtype=np.int64)
+    if not free[start_rc]:
+        return best
 
-    # An obstacle exactly at distance d is included by a radius-d disk, so the largest safe
-    # integer radius is ceil(d)-1. Occupied centers are explicitly marked -1.
-    radius = np.ceil(min_distance).astype(np.int64) - 1
-    radius = radius.reshape(height, width)
-    radius[~free] = -1
-    return radius
+    remaining: set[GridPoint] | None = None
+    if stop_points is not None:
+        remaining = {
+            _validate_point(point, height, width, "stop_point") for point in stop_points
+        }
+        if not remaining:
+            return best
+
+    best[start_rc] = int(clearance[start_rc])
+    queue: list[tuple[int, int, int]] = [(-int(best[start_rc]), start_rc[0], start_rc[1])]
+    while queue:
+        negative_capacity, row, col = heapq.heappop(queue)
+        capacity = -negative_capacity
+        if capacity != int(best[row, col]):
+            continue
+        if remaining is not None:
+            remaining.discard((row, col))
+            if not remaining:
+                break
+        for d_row, d_col in ((-1, 0), (1, 0), (0, -1), (0, 1)):
+            n_row, n_col = row + d_row, col + d_col
+            if not (0 <= n_row < height and 0 <= n_col < width):
+                continue
+            if not free[n_row, n_col]:
+                continue
+            candidate = min(capacity, int(clearance[n_row, n_col]))
+            if candidate > int(best[n_row, n_col]):
+                best[n_row, n_col] = candidate
+                heapq.heappush(queue, (-candidate, n_row, n_col))
+    return best
 
 
 def maximum_clearance_path(
@@ -101,30 +211,11 @@ def maximum_clearance_path(
     if clearance.shape != free.shape:
         raise ValueError("clearance must have the same shape as free")
 
-    best = np.full((height, width), -1, dtype=np.int64)
-    best[start_rc] = int(clearance[start_rc])
-    queue: list[tuple[int, int, int]] = [(-int(best[start_rc]), start_rc[0], start_rc[1])]
-
-    while queue:
-        negative_capacity, row, col = heapq.heappop(queue)
-        capacity = -negative_capacity
-        if capacity != int(best[row, col]):
-            continue
-        if (row, col) == goal_rc:
-            return ClearanceResult(True, capacity)
-
-        for d_row, d_col in ((-1, 0), (1, 0), (0, -1), (0, 1)):
-            n_row, n_col = row + d_row, col + d_col
-            if not (0 <= n_row < height and 0 <= n_col < width):
-                continue
-            if not free[n_row, n_col]:
-                continue
-            candidate = min(capacity, int(clearance[n_row, n_col]))
-            if candidate > int(best[n_row, n_col]):
-                best[n_row, n_col] = candidate
-                heapq.heappush(queue, (-candidate, n_row, n_col))
-
-    return ClearanceResult(False, -1)
+    best = maximum_clearance_map(
+        free, start_rc, clearance=clearance, stop_points=[goal_rc]
+    )
+    capacity = int(best[goal_rc])
+    return ClearanceResult(capacity >= 0, capacity)
 
 
 def reachability_targets(
