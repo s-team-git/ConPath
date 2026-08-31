@@ -5,14 +5,20 @@ import tempfile
 import unittest
 
 import torch
+import numpy as np
 
 from pathrel.flatlands_baselines import (
     DirectQueryBaseline,
+    MarginalCompletionBaseline,
     fit_scene_weighted_radius_prior,
     radius_prior_prediction_rows,
 )
 from pathrel.flatlands_data import load_bounded_query_manifest
 from pathrel.flatlands_query import load_provenance_manifest
+from pathrel.flatlands_sampling import (
+    CompletionEventTask,
+    completion_event_probabilities,
+)
 from tests.test_flatlands_data import _write_fixture
 
 
@@ -90,6 +96,53 @@ class FlatLandsDirectQueryBaselineTest(unittest.TestCase):
             torch.tensor([0, 10, 20]),
         )
         self.assertEqual(output.shape, (1, 0, 3))
+
+
+class FlatLandsMarginalCompletionBaselineTest(unittest.TestCase):
+    def test_observed_evidence_is_clamped_and_hidden_logits_backpropagate(self) -> None:
+        torch.manual_seed(11)
+        model = MarginalCompletionBaseline(feature_channels=8)
+        observation = torch.zeros(2, 3, 20, 20)
+        observation[:, 0, 4:7, 4:7] = 1.0
+        observation[:, 1, 10:12, 10:12] = 1.0
+        observation[:, 2, 7:10, 7:10] = 1.0
+        logits = model(observation)
+        probability = model.free_probability(observation)
+
+        self.assertEqual(logits.shape, (2, 20, 20))
+        self.assertTrue(torch.all(probability[:, 4:7, 4:7] == 1.0))
+        self.assertTrue(torch.all(probability[:, 10:12, 10:12] == 0.0))
+        self.assertTrue(torch.all(probability[:, 0:2, 0:2] == 0.0))
+        self.assertTrue(
+            torch.all((probability[:, 7:10, 7:10] > 0.0) & (probability[:, 7:10, 7:10] < 1.0))
+        )
+        logits[:, 7:10, 7:10].square().mean().backward()
+        self.assertTrue(
+            all(parameter.grad is not None for parameter in model.parameters())
+        )
+
+    def test_independent_event_sampling_is_reproducible_and_exact_for_binary_probability(self) -> None:
+        free = np.ones((16, 16), dtype=bool)
+        free[:, 8] = False
+        free[8, 8] = True
+        task = CompletionEventTask(
+            global_id="fixture",
+            free_probability=free.astype(np.float64),
+            observed_free=np.zeros_like(free),
+            unknown=np.ones_like(free),
+            starts=np.asarray([[8, 3]]),
+            goals=np.asarray([[8, 12]]),
+            candidate_indices=np.asarray([7]),
+            radii_cells=(0, 1, 2),
+            posterior_samples=4,
+            seed=31,
+        )
+        first = completion_event_probabilities(task)
+        second = completion_event_probabilities(task)
+        self.assertTrue(np.array_equal(first.deterministic, second.deterministic))
+        self.assertTrue(np.array_equal(first.independent, second.independent))
+        self.assertTrue(np.array_equal(first.deterministic, first.independent))
+        self.assertEqual(first.deterministic.tolist(), [[1.0, 0.0, 0.0]])
 
 
 if __name__ == "__main__":

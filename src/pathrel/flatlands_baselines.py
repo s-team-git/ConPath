@@ -124,6 +124,34 @@ class DirectQueryBaseline(nn.Module):
         return self.event_head(torch.cat((shared, radius_feature), dim=-1)).squeeze(-1)
 
 
+class MarginalCompletionBaseline(nn.Module):
+    """Capacity-matched independent-cell free-probability predictor."""
+
+    def __init__(self, *, input_channels: int = 3, feature_channels: int = 16) -> None:
+        super().__init__()
+        self.encoder = TinyBEVUNet(
+            input_channels,
+            feature_channels,
+            use_coordinate_channels=True,
+            use_global_context=True,
+        )
+        self.free_head = nn.Conv2d(feature_channels, 1, kernel_size=1)
+
+    def forward(self, observation: Tensor) -> Tensor:
+        """Return unconstrained hidden-cell free logits with shape ``[B,H,W]``."""
+
+        if observation.ndim != 4 or observation.shape[1] != 3:
+            raise ValueError("observation must have shape [B,3,H,W]")
+        return self.free_head(self.encoder(observation)).squeeze(1)
+
+    def free_probability(self, observation: Tensor) -> Tensor:
+        """Clamp observed evidence and keep invalid support at zero probability."""
+
+        logits = self.forward(observation)
+        probability = torch.sigmoid(logits) * observation[:, 2]
+        return probability + observation[:, 0]
+
+
 def fit_scene_weighted_radius_prior(
     observations: Sequence[ManifestObservation],
     queries: Mapping[str, Sequence[ReplayQuery]],
