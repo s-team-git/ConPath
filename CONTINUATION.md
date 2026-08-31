@@ -9,12 +9,28 @@ diagnostic, code change, or experiment; do not rely on chat history or ignored `
 - Repository: `/home/hairo/pathrel_transfer/pathrel_pro6000`
 - Durable checkpoint: `p1-flatlands-validation-baselines-v1` in tracked `RECOVERY_STATE.json`
 - Recovery-state commit: resolve with `git log -1 --format='%h %s' -- RECOVERY_STATE.json`
-- Last durable implementation commit: `HEAD` (validation baseline/site snapshot; push pending)
+- Last durable implementation commit: `HEAD` (`0c6f58b`; GPU diagnostics + site claim-boundary refresh; push pending)
 - Scientific gate: **P0 GO; FlatLands bounded data gate and first validation baselines GO on a
   non-official provenance split; public-data model and paper claims not yet established**
 - Active task: run multi-seed ConPath and ablations, then scalable connectivity and calibration /
   second-domain checks on the frozen bounded manifests. Do not use the leaking official split or
   extract the archive.
+
+### GPU visibility and publication status (2026-08-31)
+
+The host exposes an NVIDIA RTX PRO 6000 Blackwell and `/proc/driver/nvidia/version` reports driver
+580.173.02, but this session has only `/dev/nvidia-caps` and no compute device nodes such as
+`/dev/nvidia0` or `/dev/nvidiactl`. Consequently `nvidia-smi` cannot communicate with the driver and
+the local `torch 2.13.0+cu130` venv reports `cuda_available=False, device_count=0`. This is a
+session/container passthrough failure, not evidence that the physical GPU is absent. All training
+entry points now call `pathrel.gpu_diagnostics.cuda_unavailable_message` and report this distinction;
+run `PYTHONPATH=src .venv/bin/python scripts/check_environment.py` before changing the environment.
+
+The local `main` tree is clean and versioned, but GitHub push has failed repeatedly for both SSH and
+HTTPS because this session cannot establish a stable connection. The static site has been refreshed
+locally: its FlatLands section names the exact validation provenance split/query/radii, highlights the
+best fixed baseline, and explicitly reserves same-scene ConPath-versus-baseline map panels until a
+real public ConPath checkpoint exists. No fabricated “ours is better” map is published.
 
 `RECOVERY_STATE.json` is the machine-readable source of truth for required ignored artifacts,
 byte counts, SHA-256 values, last verification, and the next action. Run the quick verifier first
