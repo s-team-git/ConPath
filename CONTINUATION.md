@@ -9,7 +9,7 @@ diagnostic, code change, or experiment; do not rely on chat history or ignored `
 - Repository: `/home/hairo/pathrel_transfer/pathrel_pro6000`
 - Durable checkpoint: `p1-flatlands-validation-baselines-v1` in tracked `RECOVERY_STATE.json`
 - Recovery-state commit: resolve with `git log -1 --format='%h %s' -- RECOVERY_STATE.json`
-- Last durable implementation commit: `HEAD` (qualitative renderer + stratified site tables; push pending)
+- Last durable implementation commit: `9c60535` (recent baseline bridge, capacity lock, and site status table; pushed to GitHub)
 - Scientific gate: **P0 GO; FlatLands bounded data gate and first validation baselines GO on a
   non-official provenance split; public-data model and paper claims not yet established**
 - Active task: run multi-seed ConPath and ablations, then scalable connectivity and calibration /
@@ -18,13 +18,12 @@ diagnostic, code change, or experiment; do not rely on chat history or ignored `
 
 ### GPU visibility and publication status (2026-08-31)
 
-The host exposes an NVIDIA RTX PRO 6000 Blackwell and `/proc/driver/nvidia/version` reports driver
-580.173.02, but this session has only `/dev/nvidia-caps` and no compute device nodes such as
-`/dev/nvidia0` or `/dev/nvidiactl`. Consequently `nvidia-smi` cannot communicate with the driver and
-the local `torch 2.13.0+cu130` venv reports `cuda_available=False, device_count=0`. This is a
-session/container passthrough failure, not evidence that the physical GPU is absent. All training
-entry points now call `pathrel.gpu_diagnostics.cuda_unavailable_message` and report this distinction;
-run `PYTHONPATH=src .venv/bin/python scripts/check_environment.py` before changing the environment.
+The full-access session exposes `/dev/nvidia0`, `/dev/nvidiactl`, `/dev/nvidia-uvm`, and
+`/dev/nvidia-modeset`; `nvidia-smi` sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02), and
+the local `torch 2.13.0+cu130` venv reports `cuda_available=True, device_count=1, CC=12.0`.
+Earlier no-GPU messages were a session/container passthrough failure, not physical GPU absence.
+Training entry points still call `pathrel.gpu_diagnostics.cuda_unavailable_message` so future failures
+remain layered and actionable.
 
 After CUDA is visible, the reproducible six-run matrix (three seeds × ConPath / no-global / no-event-loss)
 is launched with `scripts/run_flatlands_conpath_matrix.sh`. It writes an environment snapshot,
@@ -36,11 +35,11 @@ and the frozen FlatLands ZIP replay. It writes Observed BEV, ConPath posterior, 
 completion, and reference panels plus dataset/split/source/scene/query/radius/event metadata. It
 refuses CUDA execution when the session cannot see a device and never fabricates a qualitative win.
 
-The local `main` tree is clean and versioned, but GitHub push has failed repeatedly for both SSH and
-HTTPS because this session cannot establish a stable connection. The static site has been refreshed
-locally: its FlatLands section names the exact validation provenance split/query/radii, highlights the
-best fixed baseline, and explicitly reserves same-scene ConPath-versus-baseline map panels until a
-real public ConPath checkpoint exists. No fabricated “ours is better” map is published.
+The local `main` tree is clean and versioned; GitHub is synchronized through SSH over port 443. The
+static site has been refreshed: its FlatLands section names the exact validation provenance
+split/query/radii, highlights the best fixed baseline, and now lists the recent-paper bridge with
+parameter matching and incompatibility status. Same-scene ConPath-versus-baseline map panels remain
+reserved for a real checkpoint; no fabricated “ours is better” map is published.
 
 `RECOVERY_STATE.json` is the machine-readable source of truth for required ignored artifacts,
 byte counts, SHA-256 values, last verification, and the next action. Run the quick verifier first
