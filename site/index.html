@@ -179,14 +179,14 @@
         <div class="container">
           <p class="eyebrow baseline-eyebrow">VALIDATION BASELINES · PROVENANCE SPLIT · TEST LOCKED · NOT FINAL PAPER RESULT</p>
           <h2 class="center-title">FlatLands validation baseline slate</h2>
-          <p class="section-lede">The first frozen evaluator pass compares a radius-only control, a deterministic completion, an independent-cell event sampler, and a direct-query predictor on the validation provenance split.</p>
+          <p class="section-lede">Same FlatLands validation provenance split, same 4,653 frozen query events, and the same radii (0/10/20 cells) for every row. The first pass compares a radius-only control, a deterministic completion, an independent-cell event sampler, and a direct-query predictor.</p>
           <div id="flatlands-baseline-meta" class="meta-grid" aria-live="polite">
             <div class="meta-card"><span>Methods</span><strong id="flatlands-baseline-methods">—</strong><small>all use the same label-free CSV contract</small></div>
             <div class="meta-card"><span>Best validation Brier</span><strong id="flatlands-baseline-best">—</strong><small>scene-weighted overall metric</small></div>
             <div class="meta-card"><span>Independent sampler</span><strong id="flatlands-baseline-independent">—</strong><small>K=32 event worlds; calibration stress test</small></div>
             <div class="meta-card"><span>Test status</span><strong id="flatlands-baseline-test">—</strong><small>no test labels were read</small></div>
           </div>
-          <div class="scope-note baseline-scope"><strong>Interpretation.</strong> These are validation diagnostics, not the final paper table. The locked test split remains untouched until the multi-seed, scalability, calibration, and second-domain checks are complete.</div>
+          <div class="scope-note baseline-scope"><strong>Read the comparison.</strong> The green row is the best validation Brier among these fixed baselines; all methods consume the same label-free three-channel FlatLands input and query manifest. These are validation diagnostics, not the final paper table. The locked test split remains untouched until the multi-seed, scalability, calibration, and second-domain checks are complete.</div>
           <div class="results-layout baseline-results-layout">
             <div class="table-wrap">
               <table>
@@ -203,9 +203,10 @@
             </div>
           </div>
           <div class="figure-grid baseline-figure-grid">
-            <figure class="figure"><img src="assets/flatlands_baseline_comparison.svg" alt="Bar chart comparing FlatLands validation baseline Brier, NLL, and ECE metrics." loading="lazy" /><figcaption>Figure 7. Validation event metrics; lower is better. Full source/radius rows and scene-bootstrap intervals are in the JSON snapshot.</figcaption></figure>
-            <figure class="figure"><img src="assets/flatlands_baseline_reliability.svg" alt="Reliability curves for FlatLands validation baselines." loading="lazy" /><figcaption>Figure 8. Overall scene-weighted reliability bins; the independent-cell sampler is intentionally shown as a calibration stress test.</figcaption></figure>
+            <figure class="figure"><img src="assets/flatlands_baseline_comparison.svg" alt="FlatLands validation provenance split: bar chart comparing radius prior, deterministic completion, independent-cell completion, and direct-query baseline Brier, NLL, and ECE." loading="lazy" /><figcaption>Figure 7. FlatLands validation event metrics, lower is better. Each method sees the same frozen scenes and queries; source/radius rows and scene-bootstrap intervals are in the JSON snapshot.</figcaption></figure>
+            <figure class="figure"><img src="assets/flatlands_baseline_reliability.svg" alt="Reliability curves for four baselines evaluated on the same FlatLands validation provenance split." loading="lazy" /><figcaption>Figure 8. Same-dataset scene-weighted reliability bins; the independent-cell sampler is intentionally shown as a calibration stress test.</figcaption></figure>
           </div>
+          <div class="qualitative-note"><span class="qualitative-mark" aria-hidden="true">MAP</span><p><strong>Qualitative map comparison is the next publishable artifact.</strong> Once the public ConPath checkpoint is trained, this page will add a same-scene panel with observed input, ConPath posterior/footprint path, each baseline, and the reference label. No “ours is better” map is fabricated before that checkpoint exists.</p></div>
           <p class="source-note">Protocol: <a href="https://github.com/s-team-git/ConPath/blob/main/P1_BASELINE_PROTOCOL.md" rel="noreferrer">P1_BASELINE_PROTOCOL.md ↗</a>. Checkpoints, manifests, and exact reports remain in the reproducibility workspace; no test result is published here.</p>
         </div>
       </section>
