@@ -3,6 +3,10 @@
 请在这台 GPU 机器上继续 `PathRel` 研究。你收到的是一个独立的研究包，不要把它重新接回
 `vi/`、ROS 或 G1 控制链；当前目标是先验证科学问题，而不是做工程拼接。
 
+> 续接状态（2026-08-30）：下面的 GPU bootstrap 与 P0 清单已经完成，不再是当前待办。学习版
+> P0 已在两个种子上通过，匹配的 no-reach 对照失败。任何新会话必须先读
+> `CONTINUATION.md`；当前任务从 P1 数据、标签和 natural-query audit 开始。
+
 ## 研究问题
 
 给定不完整的 BEV 观测 `X`，学习空间相关的随机占据后验，并校准
@@ -24,7 +28,7 @@
    reachability 的标签、hard event 语义和 fp32 几何逻辑正确；不要为了速度把 event 概率改成
    fuzzy max-min 分数。
 
-## P0：在接入真实数据前完成 death test
+## P0：已完成；仅在有意复现时重跑 death test
 
 实现一个可复现的评估脚本（固定 seed、保存 JSON/CSV 和图），至少比较：
 
@@ -48,7 +52,7 @@
 不要只报告训练 loss。若 independent-cell 或 direct-query 在相同校准和跨模板测试下追平，立即
 把方向标记为失败，不继续堆网络或传感器。
 
-## P1/P2：只有 P0 通过才做真实数据
+## P1/P2：P0 已通过，当前从只读数据审计开始
 
 - 先审计 ORFD：unknown/free 语义、累计 LiDAR 真值、断连和窄瓶颈 query 比例；不满足条件就
   不把它当主数据。

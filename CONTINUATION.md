@@ -9,8 +9,8 @@ diagnostic, code change, or experiment; do not rely on chat history or ignored `
 - Repository: `/home/hairo/pathrel_transfer/pathrel_pro6000`
 - Last durable implementation commit: `2de9103` (local `main`; not yet pushed in this continuation)
 - Scientific gate: **P0 GO across two seeds; public-data/paper claims not yet established**
-- Active task: finish the tracked P0 evidence/readiness update, then audit the documented P1 entry
-  criteria before expanding to a public benchmark.
+- Active task: audit local P1 dataset/query artifacts and freeze a read-only public-data audit plan
+  before downloading data or starting any public-data training.
 
 ## Last completed work
 
@@ -142,14 +142,21 @@ Both full-model seeds independently pass every tightened gate; their event Brier
 The fixed-seed no-reach ablation fails. This closes the synthetic neural P0 gate, but it is not a
 public-data or paper-level result.
 
+All authoritative P0/readiness/roadmap/paper/transfer documents now record the same two-seed result,
+matched ablation, synthetic-only boundary, and fragmentation limitation. The final regression run
+reported `Ran 35 tests in 15.928s ... OK`, `skipped=0`; `smoke_forward.py` completed; and the 64x64
+merge-tree reference matched exhaustive search at zero error for 8/64/512 queries (timing speedups
+`3.09x/25.50x/161.19x`).
+
 ## Exact next actions
 
-1. Update `P0_DEATH_TEST.md` and `CONFERENCE_READINESS.md` with the full two-seed table and matched
-   no-reach ablation; explicitly retain the synthetic-only scope and fragmentation limitation.
-2. Run the full CPU unit suite and repository verification checks, then commit the tracked evidence
-   update as a recoverable milestone.
-3. Audit the existing P1/public-data entry criteria and available artifacts before starting any new
-   expensive run; record the exact next command here first.
+1. Inventory `data/`, configs, scripts, manifests, and ignored local files for any existing
+   FlatLands/ORFD assets without mutating or downloading anything.
+2. Compare that inventory against the documented P1 requirements: version/license, partial/full/
+   valid masks, official site/sequence split, natural-query construction, and at least 10%-15%
+   disconnected or narrow-bottleneck coverage.
+3. Write the audit and one exact next acquisition/validation command to a tracked document before
+   any network download or expensive training; remain NO-GO if the labels cannot support the event.
 
 ## Recovery commands
 

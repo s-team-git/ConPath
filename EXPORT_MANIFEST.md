@@ -20,6 +20,7 @@ Intentionally excluded:
 - raw/processed datasets;
 - the repository's `vi/` and ROS runtime.
 
-The package is currently a synthetic contract prototype. A successful smoke run is not a paper
-result; the remote agent must complete the P0 baseline/death-test protocol before claiming a
-research contribution.
+The package remains a synthetic contract prototype. The P0 baseline/death-test protocol is now
+complete, including two passing trained-model seeds and a failing matched no-reach ablation; see
+`CONTINUATION.md` and `P0_DEATH_TEST.md`. This authorizes only a P1 public-data audit, not a paper
+claim. A new agent must read the continuation state instead of restarting from this export-era task.

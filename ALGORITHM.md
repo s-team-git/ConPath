@@ -55,16 +55,20 @@ geometry.
 ## Training losses
 
 ```text
-L = L_posterior_marginal
+L = L_map_log_score
+  + lambda_map * L_empirical_map_U
   + lambda_vario * L_variogram
-  + lambda_reach * L_discrete_CRPS.
+  + lambda_reach * L_event_U.
 ```
 
 - `L_posterior_marginal`: log score on the mean conditional class probability across latent
   samples. `softmax(mean logits)` is never reported as the posterior marginal.
 - `L_variogram`: encourages correct local and longer-range pair dependence; it does not by itself
   guarantee recovery of the complete high-order topology.
-- `L_discrete_CRPS`: the mean Brier score across start-goal queries and footprint radii.
+- `L_empirical_map_U`: a proper repeated-world hard-map score on hidden cells.
+- `L_event_U`: an independent-sample U-statistic estimator of event Brier across start-goal queries
+  and footprint radii. Exact hard events are used in the forward pass; the relaxed continuous
+  bottleneck score supplies only the backward surrogate.
 
 The event label is generated from the complete target map. Observation channels may hide the
 critical bottleneck; this is what creates a conditional uncertainty problem.
@@ -84,10 +88,16 @@ held out. It reports event Brier/NLL/ECE, false-safe rate, reliability bins, rad
 marginal scores, and the joint open-door frequency. The correlated row is an oracle posterior
 diagnostic; it is not evidence that the neural decoder has learned the posterior.
 
-`scripts/train_p0_neural.py` follows the same split and now exposes a staged warm-up: map
-cross-entropy on the mean head first, then the posterior-marginal/variogram/U-statistic event losses.
-This reduces the chance that a noisy reachability gradient is mistaken for a learned occupancy
-posterior.
+`scripts/train_p0_neural.py` follows the same split and exposes a staged warm-up: map cross-entropy
+on the mean head first, then grouped repeated-world map/variogram/U-statistic event losses. Its P0
+mode can expose the same visible context metadata used by the baselines as a broadcast fourth input
+plane; this contains no hidden doorway realization or event label. Runs are interruption-safe via
+per-step JSON logging and atomic model/optimizer/RNG checkpoints.
+
+The tightened neural P0 gate is complete: full runs with seeds `20260827` and `20260828` obtain event
+Brier `0.1164/0.1116` and both pass the comparator, calibration, map-quality, and context-gap
+criteria. A matched seed-`20260827` run with `lambda_reach=0` obtains `0.1914` and fails despite
+similar map Brier. This authorizes P1 audit only; it is not public-data evidence.
 
 ### P1: public-data audit
 

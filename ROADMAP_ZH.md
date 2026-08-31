@@ -45,14 +45,17 @@ flowchart LR
 P0 原型不是伪造一个尚未完成的相机投影系统，而是输入已经栅格化的 BEV 观测：
 
 ```text
-observation_bev: [B, 3, H, W]
+observation_bev: [B, 3, H, W]              # 通用接口
 
 channel 0 = 当前明确观测到的 traversable
 channel 1 = 当前明确观测到的 obstacle
 channel 2 = unknown / occluded
 ```
 
-合成数据故意遮住决定全局连通性的门洞。开门与关门样本拥有相同可见输入，但完整 GT 拓扑不同；当前版本首先用于检查“相同边际、不同联合拓扑”的代码契约。正式 P0 还要加入能改变开门先验的可见 context family，才能检验条件联合结构是否真的可学习。
+合成数据故意遮住决定全局连通性的门洞。开门与关门样本拥有相同可见输入，但完整 GT 拓扑不同。
+正式 P0 已加入两个会改变门洞先验的可见 context family。为了与收到 context metadata 的基线
+保持相同条件信息，P0 默认再广播一个 context-bit plane，输入因此为 `[B,4,H,W]`；该 plane 不含
+门洞实现或事件标签。通用/真实数据 `forward_features(...)` 接口不依赖这一合成专用通道。
 
 真实数据阶段则是：
 
@@ -106,9 +109,9 @@ RGB + LiDAR -> 官方/标准感知 backbone -> BEV feature
 
 ## 如何训练
 
-下面是正式实验计划。当前 `scripts/train_synthetic.py` 为缩短代码路径，暂时从第一个 step
-就联合计算全部损失，并没有实现 A/B/C 的冻结与解冻调度；该调度是进入公开数据训练前的
-明确待办项。
+下面是正式实验计划。通用 `scripts/train_synthetic.py` 仍是缩短的代码路径；P0 专用
+`scripts/train_p0_neural.py` 已实现 mean-map warm-up、重复世界分组监督和随后联合训练。公开数据
+阶段仍需按数据规模明确 encoder 冻结/解冻调度。
 
 ### 阶段 A：平均地图 warm-up
 
@@ -176,15 +179,15 @@ L_reachability_U-statistic_Brier
 4. 报告 map IoU、voxel ECE、reachability Brier/ECE。
 5. 检查随机样本是否生成“门洞整体开/整体关”，而非独立椒盐噪声。
 
-当前已经提供 `scripts/evaluate_p0.py`：它使用两个可见 context family（隐藏门洞先验约为
-0.2/0.8）、按 scene template 留出测试集，并保存 JSON/CSV/SVG。脚本中的
-`PathRel_correlated_event` 是经过审计的相关后验代理，不能替代 CUDA 上训练出的神经模型；
-只有它同时击败 independent-cell 与 direct-query，且地图边际没有明显退化，才允许进入 P1。
-`scripts/train_p0_neural.py` 现在提供 A/B 两阶段训练：先用地图交叉熵 warm-up mean head，再
-开启 posterior/variogram/reachability 联合损失；它必须在同一 split、同一 query protocol 下
-重跑并与 proxy/baseline 报告对照。
+`scripts/evaluate_p0.py` 使用两个可见 context family（隐藏门洞先验约为 0.2/0.8）、按 scene
+template 留出测试集，并保存 JSON/CSV/SVG。脚本中的 `PathRel_correlated_event` 仍只是相关后验
+oracle 代理；学习模型由 `scripts/train_p0_neural.py` 在同一 split/query protocol 下单独验证。
 
-若相关模型不能优于 independent baseline，研究问题直接停止。
+P0 已于 2026-08-30 通过：完整模型两个优化种子的 event Brier 为 `0.1164/0.1116`，均优于
+independent `0.1832` 与 direct-query `0.1699`；匹配的 no-reach 对照为 `0.1914` 并失败。
+两个完整种子也通过地图质量、ECE 和 context-gap 门槛。详见 `P0_DEATH_TEST.md` 与
+`CONTINUATION.md`。该结论只允许进入 P1 数据审计；合成样本仍有约 13.7%-16.1% 门洞碎裂，且
+不能视为公开数据或论文结果。
 
 ### P1：公开数据与事件可辨识性审计
 

@@ -4,6 +4,10 @@ This directory is a self-contained research prototype. It intentionally does **n
 the repository's imported `vi/` code, ROS, G1 drivers, or a local virtual environment. Transfer
 the clean source tree to the GPU machine and create a new environment there.
 
+> Current-machine continuation note (2026-08-30): transfer and P0 setup are complete. The trained
+> synthetic model passes P0 in two optimization seeds and the no-reach ablation fails. Read
+> `CONTINUATION.md` first; the active task is now the P1 data/query audit, not repeating bootstrap.
+
 ## 1. Verify the target machine
 
 Run these commands before installing anything:
@@ -48,17 +52,17 @@ This only checks forward/backward/optimizer/checkpoint execution. It is not a pa
 `CONFERENCE_READINESS.md` records the current, deliberately conservative ICRA/IROS assessment and
 the evidence gates that must pass before a submission claim is made.
 
-## 3. Recommended first GPU experiment
+## 3. Historical first GPU experiment
 
 Do not immediately scale the map or query count. The current reachability prototype performs an
 iterative max-min propagation, so runtime grows with `H*W`, samples, queries, and radii. First use
 the default 24x24 configuration and record wall-clock time and peak memory. Only then increase
 `num_samples`, batch size, or map resolution.
 
-The next scientific task is the P0 death test in `ROADMAP_ZH.md`: implement constant,
-independent-cell, and direct-query baselines, add visible context families with different hidden
-door priors, and compare task-level Brier/ECE. Do not report calibration or novelty before that
-comparison is complete.
+The original transfer task was the P0 death test in `ROADMAP_ZH.md`. That audit, corrected neural
+training, matched no-reach ablation, and extra-seed replication are now complete; see
+`P0_DEATH_TEST.md`. Do not rerun this bootstrap unless reproducing it intentionally. The next task is
+to freeze and audit a P1 public dataset before training on it.
 
 The runnable audit is now:
 

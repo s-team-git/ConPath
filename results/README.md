@@ -11,10 +11,15 @@ PYTHONPATH=src .venv/bin/python scripts/evaluate_p0.py --output-dir results/p0_d
 PYTHONPATH=src .venv/bin/python scripts/benchmark_merge_tree.py --output results/merge_tree_benchmark.json
 ```
 
-`P0_DEATH_TEST.md` records the default metrics and the conservative neural/public-data gate. The
-generated `comparison.svg` is the method-level Brier/NLL/ECE bar chart and `reliability.svg` is the
-calibration diagram. The correlated row is an oracle synthetic diagnostic; it is not a trained
-neural result.
+`P0_DEATH_TEST.md` records the default baselines, the two-seed trained-neural P0 pass, the matched
+no-reach failure, and the conservative public-data claim boundary. The generated `comparison.svg`
+is the baseline method-level Brier/NLL/ECE bar chart and `reliability.svg` is the calibration
+diagram. The evaluator's correlated row remains an oracle diagnostic; trained runs live in separate
+`p0_neural_*` output directories.
+
+Neural training directories contain `progress.jsonl`, atomic `latest.pt` recovery state, the final
+checkpoint, and `report.json`. They are ignored by Git, so every decision-relevant run must also be
+summarized in tracked `CONTINUATION.md` before a session ends.
 
 The real-data pilot is generated with:
 

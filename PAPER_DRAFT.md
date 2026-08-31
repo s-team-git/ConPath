@@ -14,11 +14,12 @@ posterior is trained with a proper event score together with marginal and spatia
 operator uses exact binary geometry in the forward pass and a straight-through surrogate only for
 learning. We introduce a held-out-template synthetic death test in which visible observations have
 different context-conditioned doorway priors and repeated hidden worlds, making independent-cell
-completion statistically misspecified. In the current audit, an oracle correlated posterior proxy
-reduces event Brier score from 0.1832 (independent cells) and 0.1699 (direct query) to 0.1024,
-without degrading map-marginal Brier by more than 0.02. These numbers are a hypothesis audit, not a
-trained-model or real-robot result. The final paper will replace the proxy with a CUDA-trained model,
-then evaluate event calibration on versioned occupancy data with site/sequence-held-out splits.
+completion statistically misspecified. Two CUDA-trained optimization seeds obtain event Brier
+scores of 0.1164 and 0.1116, compared with 0.1832 for independent cells and 0.1699 for direct query;
+a matched model without the event loss obtains 0.1914 despite comparable map-marginal Brier. These
+numbers close a synthetic hypothesis audit on one fixed split, not a public-data or real-robot
+result. The final paper must evaluate event calibration on versioned occupancy data with
+site/sequence-held-out splits and public completion baselines.
 
 ## Claim boundary
 
@@ -58,9 +59,9 @@ themselves.
 
 | Question | Required comparison | Metric / split | Status |
 |---|---|---|---|
-| Does joint structure matter? | constant, independent Bernoulli, direct query, edge-connectivity, deterministic, ConPath | event Brier/NLL/ECE and false-safe; held-out templates | oracle proxy passes; neural CUDA pending |
-| Is the map still useful? | independent vs ConPath posterior samples | map NLL/Brier/ECE, variogram, joint doorway frequency | synthetic proxy recorded |
-| Does the loss matter? | ConPath vs no reachability loss | same checkpoint budget and query draws | CPU diagnostic only |
+| Does joint structure matter? | constant, independent Bernoulli, direct query, edge-connectivity, deterministic, ConPath | event Brier/NLL/ECE and false-safe; held-out templates | neural P0 passes in two optimization seeds |
+| Is the map still useful? | independent vs ConPath posterior samples | map NLL/Brier/ECE, variogram, joint doorway frequency | neural synthetic map scores recorded; fragmentation remains |
+| Does the loss matter? | ConPath vs no reachability loss | same checkpoint budget and query draws | matched CUDA ablation fails P0 |
 | Does geometry matter? | radii 0/1/2 (then dataset-specific radii) | per-radius event curves and bottleneck strata | synthetic recorded |
 | Does it transfer? | FlatLands completion samples, then UnScenes3D/WildOcc if needed | site/sequence-held-out event calibration | data audit not started |
 | Is inference scalable? | iterative propagation vs merge-tree forward | exact error, latency, peak memory vs map/query count | NumPy reference recorded |
@@ -82,8 +83,9 @@ allowed.
 
 ## Current go/no-go decision
 
-The oracle proxy passes the P0 death test, so the hypothesis is worth testing with a learned model.
-The project remains **NO-GO for public-data claims** until a trained neural checkpoint reproduces
-the margin on CUDA and the data audit confirms enough unreachable/narrow-bottleneck queries. The
-current machine reports no NVIDIA driver/device; CPU checkpoints are code-path diagnostics only.
-
+The learned model passes the tightened P0 gate in both tested optimization seeds, while the matched
+no-reach ablation fails. The project is therefore **GO for P1 data audit**, but remains **NO-GO for
+public-data or paper claims** until the audit confirms enough natural unreachable/narrow-bottleneck
+queries and the gain survives public completion, direct-query, and equal-backbone baselines. The
+synthetic full model also retains nonzero doorway fragmentation, which must not be hidden by
+aggregate event metrics.

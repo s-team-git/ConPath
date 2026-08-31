@@ -39,6 +39,8 @@ observation_bev [B, Cin, H, W]
 - a reproducible P0 death-test evaluator (`scripts/evaluate_p0.py`) with constant, independent-cell,
   direct-query, edge-connectivity, random-completion, deterministic, correlated-ablation, and
   correlated-event baselines;
+- an interruption-safe neural P0 trainer with grouped repeated-world targets, visible context
+  conditioning, atomic checkpoints, exact-hard/relaxed-backward event training, and held-out gates;
 - a reproducible TUM RGB-D Freiburg1/desk real-data pilot (`scripts/run_tum_rgbd_pilot.py`) that
   lifts registered depth with MoCap poses into a world-frame reference raster and audits future
   start/goal events;
@@ -56,8 +58,9 @@ observation_bev [B, Cin, H, W]
 
 Those are separate milestones. The code now has both a synthetic contract harness and a real RGB-D
 geometry path. The real pilot is explicitly a reference-map audit because TUM does not provide
-traversability labels; the oracle proxy passes the synthetic death-test comparison, but a trained
-neural checkpoint has not yet been validated on a paper-grade public benchmark.
+traversability labels. The corrected neural model passes the synthetic P0 gate in two optimization
+seeds and its matched no-reach ablation fails, but no trained checkpoint has yet been validated on a
+paper-grade public benchmark.
 
 ## Environment
 
@@ -91,14 +94,18 @@ Run the P0 audit before interpreting any neural result:
 ```bash
 PYTHONPATH=src .venv/bin/python scripts/evaluate_p0.py --output-dir results/p0_death_test
 PYTHONPATH=src .venv/bin/python scripts/benchmark_merge_tree.py
-# On a CUDA-enabled machine, compare a trained neural checkpoint under the same split:
-PYTHONPATH=src .venv/bin/python scripts/train_p0_neural.py --device cuda --warmup-steps 24
+# On a CUDA-enabled machine, reproduce a trained run under the same split:
+PYTHONPATH=src .venv/bin/python scripts/train_p0_neural.py \
+  --device cuda --warmup-steps 24 --training-unit observation_group \
+  --context-input plane --encoder-context-mode coord_global \
+  --output-dir results/p0_neural_cuda_reproduction
 ```
 
-The evaluator writes `report.json`, `metrics.csv`, and `reliability.svg`. Its correlated row is an
-audited synthetic posterior proxy, not a trained PathRel checkpoint. For the real-data pilot, run
-`/usr/bin/python3 scripts/run_tum_rgbd_pilot.py --publish-site`; its report records the geometric
-label construction and claim boundary.
+The evaluator writes `report.json`, `metrics.csv`, and `reliability.svg`. Its correlated row remains
+an audited oracle proxy; trained neural results are produced separately by `train_p0_neural.py`.
+See `P0_DEATH_TEST.md` for the two-seed neural table, matched no-reach ablation, and exact claim
+boundary. For the real-data pilot, run `scripts/run_tum_rgbd_pilot.py --publish-site` with system
+Python 3; its report records the geometric label construction and claim boundary.
 
 If PyTorch is unavailable, the pure NumPy label-oracle tests can still run with the system
 Python; PyTorch tests skip with an explicit reason.

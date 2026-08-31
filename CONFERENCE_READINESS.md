@@ -2,8 +2,9 @@
 
 ## 当前判断
 
-当前仓库是 synthetic contract prototype，不是可直接投稿的 ICRA/IROS 论文。它已经有一个
-有潜力的科学问题，但尚未有公开数据结果、独立基线、任务级校准结果或可扩展的大图算法。
+当前仓库仍是 synthetic contract prototype，不是可直接投稿的 ICRA/IROS 论文。神经 P0 已在
+两个优化种子上通过，并有匹配的 no-reach 对照；但尚未有公开数据上的任务级校准结果、完整
+独立强基线或可扩展的大图算法。
 
 ## 时间选择（截至 2026-08-28）
 
@@ -51,23 +52,37 @@ FlatLands 也必须先做 query-balance audit：若自然 reachable/unreachable�
 
 ## Go / No-Go
 
-若 P0 中 calibrated independent-cell、direct-query 或 FlatLands completion + post-hoc
-connectivity 追平 PathRel，停止该方向；若 P0 通过，再投入 UnScenes3D/WildOcc 和大规模算子。
-不要在 death test 之前加入 3DGS、
-ROS、实车闭环或更多传感器。
+若 P0 中 calibrated independent-cell 或 direct-query 追平 PathRel，停止该方向；当前学习版
+P0 已通过，所以只允许进入 **P1 数据与事件可辨识性审计**。P1 若发现 FlatLands completion +
+post-hoc connectivity 追平，或自然断连/窄瓶颈 query 不足，仍应停止或更换主数据，而不是直接
+投入 UnScenes3D/WildOcc 和大规模算子。此阶段不要加入 3DGS、ROS、实车闭环或更多传感器。
 
-## 本轮 P0 审计状态（2026-08-27）
+## 本轮 P0 审计状态（更新于 2026-08-30）
 
 已实现 `scripts/evaluate_p0.py`，并按 scene-template 留出测试集、两个可见 context family
 （隐藏门洞先验约 0.2/0.8）、多隐藏世界重复、常数/独立 cell/direct-query/edge-connectivity/
 random completion/deterministic/correlated ablation 等基线。最新默认测试集结果为：direct-query
 Brier 0.1699、deterministic threshold 0.1458、相关事件代理 0.1024；相关代理的 ECE 为
 0.0325，独立 cell 为 0.1762，且地图边际 Brier 与独立采样相差 0.0173。因而 **oracle
-proxy death test PASS**，支持继续验证联合后验假设。随后完成了 RTX PRO 6000 上的 120-step
-CUDA 神经训练，但 event Brier 为 0.2436，高于 independent 的 0.1832 和 direct-query 的
-0.1699；地图边际 Brier 为 0.0068，说明当前失败主要来自联合采样/事件层而不是像素分类。
-项目仍保持 **NO-GO**，不能接入公开数据或宣称 ICRA/IROS 贡献，直到修正后的神经 checkpoint
-在同一 protocol 下通过 death test。
+proxy death test PASS**，支持继续验证联合后验假设。早期 120-step CUDA 神经 checkpoint 的
+event Brier 为 0.2436，确实失败；随后修正了 scaled-Gumbel 边际、事件梯度、重复世界监督、全局
+上下文编码和可见 context 输入，并加入可恢复检查点与严格 context-gap gate。
+
+在完全相同的 12/4 template、24 worlds/template、128 validation-sample protocol 下，完整模型的
+两个优化种子均通过：
+
+| 配置 | Event Brier | ECE | Hard-map Brier | radius-0 context-gap ratio | 结论 |
+|---|---:|---:|---:|---:|---|
+| full, seed 20260827 | 0.1164 | 0.0786 | 0.00338 | 0.5735 | PASS |
+| full, seed 20260828 | 0.1116 | 0.0719 | 0.00289 | 0.6957 | PASS |
+| no-reach, seed 20260827 | 0.1914 | 0.1936 | 0.00310 | 0.2383 | FAIL |
+
+两个完整种子都优于 independent (`0.1832`) 与 direct-query (`0.1699`) 的 event Brier；而
+no-reach 对照在地图 Brier 仍好的情况下事件指标和上下文条件性同时失败。因此当前决策升级为
+**P0 GO / P1 audit allowed**。这仍不是公开数据或论文级 GO：它只有一个固定 synthetic split、
+两个优化种子，完整模型仍有约 13.7%-16.1% 的门洞碎裂。下一步必须先冻结并审计 P1 数据版本、
+mask/标签语义、natural-query 分布和官方 completion baseline；在该审计通过前不得宣称
+ICRA/IROS 贡献。
 
 同时加入 `labels.py::merge_tree_bottleneck_scores` exact-forward NumPy 参考，用于后续可扩展
 CUDA 算子的契约验证；这不是已经完成的可反传大图实现。
