@@ -182,6 +182,30 @@ Replayable artifacts are:
 - `queries.csv`: 18,432 rows, SHA-256
   `33e7f8a0343269b0dde47b428b3be622c80effdb0f80ae34b352ca282018d60d`.
 
+## Streaming replay adapter
+
+`src/pathrel/flatlands_data.py` now implements the fixed first-stage benchmark hand-off. It opens
+the release ZIP lazily per process, verifies the frozen selection/query hashes and archive byte
+count, and filters exclusively on `provenance.original_split`; the physical archive directory is
+retained only as a member locator. For every accessed packet it validates metadata identity and
+mask relations, then reconstructs all 36 query coordinates and selection statuses from
+`observed_floor`, `unobserved`, `epistemic_mask`, camera position, and metric resolution before the
+complete target is used by the caller. Its model input is three channels—observed floor,
+unobserved-region mask, and epistemic-valid mask—and its loss mask is
+`unobserved & epistemic_mask`.
+
+An all-packet replay decoded 512/512 selected observations directly from the ZIP: 160 train, 160
+validation, and 192 test by provenance split, all 256×256. It reproduced 4,653 retained queries and
+10,452,053 valid hidden-region cells. A two-worker PyTorch DataLoader smoke also completed. Unit
+tests prove that requesting the physical archive split cannot silently substitute for provenance,
+that tampered query geometry is rejected, and that padded query collation preserves its explicit
+mask. The adapter does not authorize training on the leaking official split.
+
+The project-site builder consumes the two frozen reports and generates
+`site/data/flatlands_audit.json`, a browser-local mirror, and two SVG figures. The public section
+shows source/radius target prevalence, selected-query outcome counts, all 11 gated strata, and the
+official/provenance scene-overlap contrast. Each asset carries the same non-model claim boundary.
+
 ## Acceptance gates
 
 All gates are per split and per source dataset, not only pooled across observations.
@@ -225,7 +249,7 @@ All gates are per split and per source dataset, not only pooled across observati
 
 ## Current decision and next command
 
-**NO-GO on the official split. GO only for implementing a bounded streaming loader and fixed
+**NO-GO on the official split. The bounded streaming loader is complete; GO only for fixed
 baselines on the explicitly non-official provenance split.** The next experiment must use the
 already frozen selected-observation/query CSVs, keep ScanNet++ as OOD-only, and compare deterministic
 completion, independent cells, direct query, and correlated completion under identical masks and
@@ -239,7 +263,8 @@ PYTHONPATH=src .venv/bin/python scripts/audit_flatlands_queries.py \
   --output-dir results/p1_flatlands_query_audit_bounded --overwrite
 ```
 
-The next implementation milestone is a read-only/streaming FlatLands dataset adapter plus fixed
-non-neural baselines on this bounded manifest. Full extraction remains unnecessary, the published
+The next implementation milestone is a unified evaluator plus deterministic completion,
+independent-cell, and direct-query baselines on this bounded manifest. Full extraction remains
+unnecessary, the published
 archive directories must never be described as scene-disjoint, and missing official model
 weights/tooling remains a blocker for a paper claim.

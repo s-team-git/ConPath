@@ -100,6 +100,20 @@ tr.highlight td { color: var(--green); background: #f2faf7; }
 .figure-grid .figure { padding: 12px; border: 1px solid var(--line); border-radius: 9px; background: #fff; }
 .source-note { margin: 24px 0 0; color: var(--light-muted); font-size: 11px; text-align: center; }
 
+.audit-eyebrow { margin: 0 0 12px; text-align: center; }
+.audit-scope { margin-bottom: 30px; }
+.audit-figures { margin-top: 18px; }
+.audit-table-wrap { margin-top: 18px; }
+.audit-overlap-layout { margin-top: 18px; }
+.audit-callout { border-color: #d6e0e8; background: #f7f9fb; }
+.audit-callout .eyebrow { color: var(--blue); }
+.audit-callout .headline-metric span { color: var(--blue); }
+.gate-pass, .gate-hold { display: inline-block; min-width: 44px; padding: 2px 7px; border-radius: 999px; font-family: inherit; font-size: 9px; font-weight: 760; letter-spacing: .06em; text-align: center; }
+.gate-pass { color: #226b58; background: #e9f6f1; }
+.gate-hold { color: #925a27; background: #fff2e5; }
+td.overlap-bad { color: #a45f27; background: #fff8f0; font-weight: 700; }
+td.overlap-good { color: #24705c; background: #f2faf7; font-weight: 700; }
+
 .repro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 .repro-grid > div { padding: 24px; border: 1px solid var(--line); border-radius: 9px; background: #fff; }
 .repro-grid h3 { margin-top: 0; }

@@ -46,6 +46,9 @@ observation_bev [B, Cin, H, W]
   start/goal events;
 - read-only FlatLands ZIP integrity/split and bounded target-blind natural-query auditors, with a
   deterministic upstream-provenance manifest and replayable selected observations/queries;
+- a process-safe FlatLands dataset adapter that streams the frozen 512-scene benchmark directly
+  from the ZIP, filters only by the scene-disjoint provenance split, and replays query geometry
+  from input-side masks before exposing targets;
 - tracked machine-readable recovery state with byte/SHA verification for required ignored results;
 - an exact NumPy merge-tree forward reference (`merge_tree_bottleneck_scores`) for many terminal
   queries on one map;
@@ -129,6 +132,7 @@ src/pathrel/
   labels.py               exact offline target generation
   flatlands.py            read-only ZIP integrity/provenance audit
   flatlands_query.py      target-blind bounded query selection/scoring
+  flatlands_data.py       frozen direct-ZIP benchmark replay and collation
   stochastic_decoder.py  joint stochastic occupancy posterior
   reachability.py         footprint and max-min connectivity layer
   losses.py               proper task-level and map losses
@@ -141,13 +145,28 @@ criteria.
 
 The official FlatLands observation split fails scene isolation. The upstream
 `provenance.original_split` replacement is explicitly non-official but scene-disjoint, and its
-512-scene direct-from-ZIP bounded mask/query audit passes the frozen data gate. This authorizes the
-next streaming-loader and fixed-baseline implementation milestone, not a trained public-data or
-paper result. Reproduce it without extraction using:
+512-scene direct-from-ZIP bounded mask/query audit passes the frozen data gate. The streaming
+adapter is now implemented and verified across all 512 packets; this authorizes the fixed-baseline
+milestone, not a trained public-data or paper result. Reproduce the audit without extraction using:
 
 ```bash
 PYTHONPATH=src .venv/bin/python scripts/audit_flatlands_queries.py \
   --output-dir results/p1_flatlands_query_audit_bounded --overwrite
+```
+
+Load the frozen benchmark without extraction using `FlatLandsReplayDataset`:
+
+```python
+from pathlib import Path
+from pathrel.flatlands_data import FlatLandsReplayDataset
+
+dataset = FlatLandsReplayDataset(
+    Path("data/raw/flatlands/FlatLands_final_dataset.zip"),
+    Path("results/p1_flatlands_query_audit_bounded/selected_observations.csv"),
+    Path("results/p1_flatlands_query_audit_bounded/queries.csv"),
+    split="validation",  # provenance.original_split, never the archive directory
+)
+sample = dataset[0]
 ```
 
 See `P1_DATA_AUDIT.md` for the manifest hashes, target-blind query contract, source/radius
@@ -173,9 +192,9 @@ itself is a separate setting on GitHub; the code and distribution are already na
 
 The repository contains a static, GitHub Pages-ready project page under [`site/`](site/). Its primary
 video, teaser, depth visualization, and comparison figures are derived from the real TUM RGB-D
-`freiburg1/desk` sequence. The page is styled as an academic project page (white background,
-centered media, abstract/method/results sections) and labels the experiment as a **real-data
-geometric pilot**.
+`freiburg1/desk` sequence. It also publishes generated FlatLands audit JSON plus source/radius and
+query-outcome figures, all explicitly labelled as a bounded **data audit**, not model performance.
+The page is styled as an academic project page with centered media and inspectable data tables.
 
 The TUM sequence has RGB/depth and a motion-capture camera trajectory, but no traversability or
 collision labels. Therefore the pilot is a reproducibility milestone, not a public navigation
@@ -196,13 +215,14 @@ to allow Pages publication, or make this repository public if that is acceptable
 Enterprise Pages site, use the **Visit site** URL shown in repository settings—the private-site URL
 can differ from the public project URL above.
 
-After refreshing the real-data pilot, update the site snapshot and commit it with the same change:
+After refreshing either tracked experiment report, rebuild the site snapshots and commit them with
+the same change:
 
 ```bash
 /usr/bin/python3 scripts/run_tum_rgbd_pilot.py --publish-site
 /usr/bin/python3 scripts/build_demo_site.py
 git add site
-git commit -m "Refresh ConPath real-data project page"
+git commit -m "Refresh ConPath project page data"
 git push origin main
 ```
 

@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 from datetime import datetime, timezone
+from html import escape
 import json
 import math
 from pathlib import Path
@@ -19,6 +20,12 @@ from typing import Any
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_REAL_REPORT = PROJECT_ROOT / "results" / "tum_rgbd_freiburg1_desk_pilot" / "report.json"
+DEFAULT_FLATLANDS_REPORT = (
+    PROJECT_ROOT / "results" / "p1_flatlands_query_audit_bounded" / "report.json"
+)
+DEFAULT_FLATLANDS_PROVENANCE_REPORT = (
+    PROJECT_ROOT / "results" / "p1_flatlands_provenance_manifest" / "report.json"
+)
 
 FRIENDLY_NAMES = {
     "constant_query_radius": "Constant query-radius prior",
@@ -56,6 +63,23 @@ def parse_args() -> argparse.Namespace:
         "--skip-real",
         action="store_true",
         help="only rebuild the legacy synthetic P0 snapshot (development use)",
+    )
+    parser.add_argument(
+        "--flatlands-report",
+        type=Path,
+        default=DEFAULT_FLATLANDS_REPORT,
+        help="bounded FlatLands natural-query audit report",
+    )
+    parser.add_argument(
+        "--flatlands-provenance-report",
+        type=Path,
+        default=DEFAULT_FLATLANDS_PROVENANCE_REPORT,
+        help="FlatLands archive/provenance audit report",
+    )
+    parser.add_argument(
+        "--skip-flatlands",
+        action="store_true",
+        help="do not rebuild the public FlatLands data-audit snapshot",
     )
     parser.add_argument(
         "--include-legacy",
@@ -253,11 +277,287 @@ def build_real_snapshot(report_path: Path, output_dir: Path) -> list[str]:
     return copied
 
 
+def build_flatlands_snapshot(
+    report_path: Path, provenance_report_path: Path
+) -> dict[str, Any]:
+    """Build a compact, explicitly non-model FlatLands audit snapshot."""
+
+    report = json.loads(report_path.read_text(encoding="utf-8"))
+    provenance = json.loads(provenance_report_path.read_text(encoding="utf-8"))
+    gates = report.get("gates", {})
+    by_split = report.get("query_summary_by_split", {})
+    balance = gates.get("query_balance_by_gated_stratum", {})
+
+    totals = {
+        "candidate_queries": 0,
+        "selected_queries": 0,
+        "target_invalid_endpoints": 0,
+        "retained_valid_endpoint_queries": 0,
+        "disconnected_radius_zero": 0,
+        "footprint_failure": 0,
+        "high_clearance_positive": 0,
+    }
+    split_rows: list[dict[str, Any]] = []
+    for split_name in ("train", "validation", "test"):
+        row = by_split.get(split_name, {})
+        statuses = row.get("target_status_counts", {})
+        compact_row = {
+            "split": split_name,
+            "candidate_queries": int(row.get("candidate_queries", 0)),
+            "selected_queries": int(row.get("selected_queries", 0)),
+            "target_invalid_endpoints": int(row.get("target_invalid_endpoints", 0)),
+            "retained_valid_endpoint_queries": int(
+                row.get("retained_valid_endpoint_queries", 0)
+            ),
+            "disconnected_radius_zero": int(
+                statuses.get("disconnected_radius_zero", 0)
+            ),
+            "footprint_failure": int(statuses.get("footprint_failure", 0)),
+            "high_clearance_positive": int(
+                statuses.get("high_clearance_positive", 0)
+            ),
+            "reachable_by_radius_cells": json_safe(
+                row.get("reachable_by_radius_cells", {})
+            ),
+            "scene_weighted_failure_rate": json_safe(
+                row.get("scene_weighted_failure_rate")
+            ),
+        }
+        split_rows.append(compact_row)
+        for key in totals:
+            totals[key] += compact_row[key]
+
+    strata: list[dict[str, Any]] = []
+    for key, row in report.get("query_summary_by_split_source", {}).items():
+        split_name, source = key.split("/", 1)
+        if split_name not in {"validation", "test"}:
+            continue
+        gate = balance.get(key, {})
+        strata.append(
+            {
+                "split": split_name,
+                "source": source,
+                "retained_queries": int(
+                    row.get("retained_valid_endpoint_queries", 0)
+                ),
+                "retained_scenes": int(row.get("scene_count_with_retained_queries", 0)),
+                "scene_weighted_failure_rate": json_safe(
+                    row.get("scene_weighted_failure_rate")
+                ),
+                "reachable_by_radius_cells": json_safe(
+                    row.get("reachable_by_radius_cells", {})
+                ),
+                "gate_passed": bool(gate.get("passed", False)),
+            }
+        )
+    strata.sort(key=lambda item: (item["split"], item["source"]))
+
+    official_overlap = provenance.get("metadata", {}).get("scene_overlap", {})
+    provenance_overlap = provenance.get("metadata", {}).get(
+        "provenance_scene_overlap", {}
+    )
+    overlap_rows = []
+    for pair in ("train__validation", "train__test", "validation__test"):
+        overlap_rows.append(
+            {
+                "pair": pair.replace("__", " / "),
+                "official_scene_overlap": int(official_overlap.get(pair, {}).get("count", 0)),
+                "provenance_scene_overlap": int(
+                    provenance_overlap.get(pair, {}).get("count", 0)
+                ),
+            }
+        )
+
+    outputs = report.get("outputs", {})
+    output_hashes = {
+        name: {
+            "rows": int(value.get("rows", 0)),
+            "sha256": value.get("sha256", ""),
+        }
+        for name, value in outputs.items()
+    }
+    passed_strata = sum(bool(row.get("passed", False)) for row in balance.values())
+    protocol = report.get("protocol", {})
+    return json_safe(
+        {
+            "schema_version": 1,
+            "project": "ConPath",
+            "dataset": "FlatLands",
+            "kind": "bounded_data_audit",
+            "paper_result": False,
+            "model_result": False,
+            "generated_from": relative_path(report_path),
+            "provenance_generated_from": relative_path(provenance_report_path),
+            "report_mtime_utc": datetime.fromtimestamp(
+                report_path.stat().st_mtime, timezone.utc
+            ).isoformat(),
+            "data_gate_passed": bool(gates.get("p1_bounded_query_gate_passed", False)),
+            "mask_semantics_passed": bool(gates.get("mask_semantics_passed", False)),
+            "selected_observations": int(
+                report.get("sample", {}).get("selected_observations", 0)
+            ),
+            "split_source_strata": int(
+                report.get("sample", {}).get("split_source_strata", 0)
+            ),
+            "gated_strata": {
+                "passed": passed_strata,
+                "total": len(balance),
+            },
+            "radii_cells": json_safe(protocol.get("footprint_radii_cells", [])),
+            "radii_m": json_safe(protocol.get("footprint_radii_m", [])),
+            "totals": totals,
+            "splits": split_rows,
+            "strata": strata,
+            "official_split_overlap": overlap_rows,
+            "frozen_outputs": output_hashes,
+            "adapter": {
+                "implementation": "src/pathrel/flatlands_data.py",
+                "direct_zip_streaming": True,
+                "split_key": "provenance.original_split",
+                "physical_archive_split_used_for_evaluation": False,
+                "query_geometry_replayed_from_input_only": True,
+            },
+            "claim_boundary": (
+                "This is a bounded target-blind data audit on a non-official, scene-disjoint "
+                "provenance split. It is not a trained-model result and is not evidence that "
+                "the leaking official FlatLands split is valid."
+            ),
+        }
+    )
+
+
+def _heat_color(rate: float) -> str:
+    rate = max(0.0, min(1.0, rate))
+    start = (242, 247, 249)
+    end = (45, 138, 112)
+    values = tuple(round(a + (b - a) * rate) for a, b in zip(start, end))
+    return "#" + "".join(f"{value:02x}" for value in values)
+
+
+def build_flatlands_reachability_svg(snapshot: dict[str, Any]) -> str:
+    rows = snapshot.get("strata", [])
+    radii = [str(value) for value in snapshot.get("radii_cells", [])]
+    width = 980
+    top = 116
+    row_height = 35
+    label_width = 238
+    cell_width = 230
+    height = top + row_height * len(rows) + 62
+    parts = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
+        '<rect width="100%" height="100%" fill="#ffffff"/>',
+        '<style>text{font-family:Inter,Arial,sans-serif;fill:#263744}.title{font-size:21px;font-weight:700}.sub{font-size:12px;fill:#66737e}.label{font-size:12px}.value{font-size:12px;font-weight:700}</style>',
+        '<text class="title" x="24" y="34">FlatLands bounded audit: reachable-event prevalence</text>',
+        '<text class="sub" x="24" y="57">Validation/test provenance strata · exact target labels · data audit, not model predictions</text>',
+    ]
+    for column, radius in enumerate(radii):
+        x = label_width + column * cell_width
+        parts.append(
+            f'<text class="label" x="{x + cell_width / 2:.0f}" y="94" text-anchor="middle">radius {escape(radius)} cells</text>'
+        )
+    for index, row in enumerate(rows):
+        y = top + index * row_height
+        label = f'{row["split"]} · {row["source"]}'
+        parts.append(
+            f'<text class="label" x="24" y="{y + 23}" fill="#53616c">{escape(label)}</text>'
+        )
+        reachability = row.get("reachable_by_radius_cells", {})
+        for column, radius in enumerate(radii):
+            item = reachability.get(radius, {})
+            rate = float(item.get("rate", 0.0))
+            x = label_width + column * cell_width
+            text_fill = "#ffffff" if rate >= 0.58 else "#263744"
+            parts.extend(
+                [
+                    f'<rect x="{x + 2}" y="{y + 2}" width="{cell_width - 6}" height="{row_height - 5}" rx="5" fill="{_heat_color(rate)}"/>',
+                    f'<text class="value" x="{x + cell_width / 2:.0f}" y="{y + 23}" text-anchor="middle" style="fill:{text_fill}">{rate * 100:.1f}%</text>',
+                ]
+            )
+    parts.append(
+        f'<text class="sub" x="24" y="{height - 21}">Each cell is reachable / retained valid-endpoint queries in that source stratum.</text>'
+    )
+    parts.append("</svg>\n")
+    return "".join(parts)
+
+
+def build_flatlands_outcomes_svg(snapshot: dict[str, Any]) -> str:
+    rows = snapshot.get("splits", [])
+    categories = (
+        ("target_invalid_endpoints", "Target-invalid endpoint", "#d7dde2"),
+        ("disconnected_radius_zero", "Disconnected at r=0", "#315b86"),
+        ("footprint_failure", "Footprint failure", "#c47b38"),
+        ("high_clearance_positive", "Reachable at r=20", "#2d8a70"),
+    )
+    width, height = 980, 360
+    chart_x, chart_width = 185, 750
+    bar_height = 48
+    parts = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
+        '<rect width="100%" height="100%" fill="#ffffff"/>',
+        '<style>text{font-family:Inter,Arial,sans-serif;fill:#263744}.title{font-size:21px;font-weight:700}.sub{font-size:12px;fill:#66737e}.label{font-size:12px}.total{font-size:11px;fill:#66737e}</style>',
+        '<text class="title" x="24" y="34">Selected-query target outcomes</text>',
+        '<text class="sub" x="24" y="57">Four mutually exclusive outcomes among target-blind selected queries</text>',
+    ]
+    legend_x = 24
+    for _, label, color in categories:
+        parts.append(f'<rect x="{legend_x}" y="76" width="12" height="12" rx="2" fill="{color}"/>')
+        parts.append(f'<text class="label" x="{legend_x + 18}" y="87">{escape(label)}</text>')
+        legend_x += 226
+    for index, row in enumerate(rows):
+        y = 126 + index * 72
+        total = max(1, int(row.get("selected_queries", 0)))
+        parts.append(
+            f'<text class="label" x="24" y="{y + 29}" font-weight="700">{escape(str(row.get("split", "")))}</text>'
+        )
+        x = chart_x
+        for key, _, color in categories:
+            count = int(row.get(key, 0))
+            segment = chart_width * count / total
+            parts.append(
+                f'<rect x="{x:.2f}" y="{y}" width="{segment:.2f}" height="{bar_height}" fill="{color}"/>'
+            )
+            if segment >= 56:
+                text_color = "#263744" if key == "target_invalid_endpoints" else "#ffffff"
+                parts.append(
+                    f'<text x="{x + segment / 2:.2f}" y="{y + 29}" text-anchor="middle" font-size="11" font-weight="700" style="fill:{text_color}">{count}</text>'
+                )
+            x += segment
+        parts.append(
+            f'<text class="total" x="{chart_x + chart_width}" y="{y + 63}" text-anchor="end">n = {total:,} selected</text>'
+        )
+    parts.append("</svg>\n")
+    return "".join(parts)
+
+
+def build_flatlands_site(
+    report_path: Path, provenance_report_path: Path, output_dir: Path
+) -> dict[str, Any]:
+    snapshot = build_flatlands_snapshot(report_path, provenance_report_path)
+    data_dir = output_dir / "data"
+    assets_dir = output_dir / "assets"
+    data_dir.mkdir(parents=True, exist_ok=True)
+    assets_dir.mkdir(parents=True, exist_ok=True)
+    payload = json.dumps(snapshot, ensure_ascii=False, indent=2, allow_nan=False)
+    (data_dir / "flatlands_audit.json").write_text(payload + "\n", encoding="utf-8")
+    (data_dir / "flatlands_audit.js").write_text(
+        "window.CONPATH_FLATLANDS_AUDIT = " + payload + ";\n", encoding="utf-8"
+    )
+    (assets_dir / "flatlands_reachability.svg").write_text(
+        build_flatlands_reachability_svg(snapshot), encoding="utf-8"
+    )
+    (assets_dir / "flatlands_query_outcomes.svg").write_text(
+        build_flatlands_outcomes_svg(snapshot), encoding="utf-8"
+    )
+    return snapshot
+
+
 def main() -> None:
     args = parse_args()
     report_path = args.report.resolve()
     output_dir = args.output_dir.resolve()
     real_report = args.real_report.resolve()
+    flatlands_report = args.flatlands_report.resolve()
+    flatlands_provenance_report = args.flatlands_provenance_report.resolve()
     if not args.skip_real and not real_report.exists():
         raise SystemExit(
             f"Real-data pilot report not found: {real_report}\n"
@@ -301,6 +601,26 @@ def main() -> None:
         print(f"Built primary real-data snapshot from {relative_path(real_report)}")
         if real_copied:
             print("Copied " + ", ".join(real_copied))
+    if not args.skip_flatlands:
+        missing = [
+            path
+            for path in (flatlands_report, flatlands_provenance_report)
+            if not path.exists()
+        ]
+        if missing:
+            raise SystemExit(
+                "FlatLands audit report(s) not found: "
+                + ", ".join(str(path) for path in missing)
+                + "\nRun the bounded provenance/query audits first, or pass --skip-flatlands."
+            )
+        snapshot = build_flatlands_site(
+            flatlands_report, flatlands_provenance_report, output_dir
+        )
+        print(
+            "Built FlatLands bounded data-audit snapshot: "
+            f'{snapshot["selected_observations"]} observations, '
+            f'{snapshot["totals"]["retained_valid_endpoint_queries"]} retained queries'
+        )
 
 
 if __name__ == "__main__":

@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#ffffff" />
-    <meta name="description" content="ConPath: connectivity-calibrated path reliability under partial observation, with a reproducible TUM RGB-D real-data pilot." />
+    <meta name="description" content="ConPath: connectivity-calibrated path reliability under partial observation, with a reproducible TUM RGB-D pilot and a bounded FlatLands data audit." />
     <title>ConPath · Connectivity-Calibrated Path Reliability</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
@@ -18,6 +18,7 @@
           <a href="#abstract">Abstract</a>
           <a href="#method">Method</a>
           <a href="#results">Results</a>
+          <a href="#flatlands-audit">Data audit</a>
           <a href="https://github.com/s-team-git/ConPath" rel="noreferrer">Code <span aria-hidden="true">↗</span></a>
         </div>
       </div>
@@ -132,6 +133,47 @@
         </div>
       </section>
 
+      <section id="flatlands-audit" class="section">
+        <div class="container">
+          <p class="eyebrow audit-eyebrow">DATA AUDIT · NON-OFFICIAL PROVENANCE SPLIT · NOT A MODEL RESULT</p>
+          <h2 class="center-title">FlatLands bounded benchmark gate</h2>
+          <p class="section-lede">A target-blind, scene-disjoint query audit that freezes the next model-evaluation protocol without treating data statistics as algorithm performance.</p>
+          <div class="scope-note audit-scope"><strong>Why the split changes.</strong> The physical train/validation/test directories share many underlying scenes. All future experiments therefore key only on <code>provenance.original_split</code>, which is scene-disjoint; the archive directory is used solely to locate bytes inside the ZIP.</div>
+          <div id="flatlands-meta" class="meta-grid" aria-live="polite">
+            <div class="meta-card"><span>Bounded sample</span><strong id="flatlands-observations">—</strong><small>one observation per provenance scene</small></div>
+            <div class="meta-card"><span>Retained queries</span><strong id="flatlands-queries">—</strong><small>valid target endpoints</small></div>
+            <div class="meta-card"><span>Evaluation strata</span><strong id="flatlands-strata">—</strong><small>validation/test source gates passed</small></div>
+            <div class="meta-card"><span>Data path</span><strong>Direct ZIP streaming</strong><small>frozen CSV hashes + input-only replay</small></div>
+          </div>
+          <div class="figure-grid audit-figures">
+            <figure class="figure"><img src="assets/flatlands_reachability.svg" alt="Heatmap of exact target reachability rates by FlatLands provenance split, source dataset, and footprint radius." loading="lazy" /><figcaption>Figure 5. Event prevalence by validation/test source and footprint radius. These are target labels, not predictions.</figcaption></figure>
+            <figure class="figure"><img src="assets/flatlands_query_outcomes.svg" alt="Stacked bars of selected-query target outcomes for train, validation, and test provenance splits." loading="lazy" /><figcaption>Figure 6. Target-blind selected-query outcomes used to define the frozen benchmark.</figcaption></figure>
+          </div>
+          <div class="table-wrap audit-table-wrap">
+            <table>
+              <caption>Table 2. Per-source bounded data gate</caption>
+              <thead><tr><th>Provenance stratum</th><th>Retained</th><th>Reachable r=0</th><th>Reachable r=10</th><th>Reachable r=20</th><th>Scene failure rate</th><th>Gate</th></tr></thead>
+              <tbody id="flatlands-strata-body"><tr><td colspan="7">Loading tracked FlatLands audit snapshot…</td></tr></tbody>
+            </table>
+          </div>
+          <div class="results-layout audit-overlap-layout">
+            <div class="table-wrap">
+              <table>
+                <caption>Table 3. Scene overlap audit</caption>
+                <thead><tr><th>Split pair</th><th>Official archive split</th><th>Provenance split used</th></tr></thead>
+                <tbody id="flatlands-overlap-body"><tr><td colspan="3">Loading overlap audit…</td></tr></tbody>
+              </table>
+            </div>
+            <div class="result-callout audit-callout">
+              <p class="eyebrow">P1 DATA GATE</p>
+              <div class="headline-metric"><span id="flatlands-gate">—</span><small>bounded source strata passed</small></div>
+              <p id="flatlands-claim">This section reports dataset suitability only. Model baselines and ConPath results will appear after the fixed evaluator is complete.</p>
+              <a class="text-link" href="data/flatlands_audit.json">Download compact audit JSON ↗</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="repro" class="section section-tint">
         <div class="container">
           <h2 class="center-title">Reproducibility and limits</h2>
@@ -174,6 +216,7 @@
     </footer>
     <noscript><div class="noscript">JavaScript is only used to populate the compact metric table. The real video, figures, and protocol remain available without it.</div></noscript>
     <script src="data/tum_rgbd_pilot.js" defer></script>
+    <script src="data/flatlands_audit.js" defer></script>
     <script src="app.js" defer></script>
   </body>
 </html>

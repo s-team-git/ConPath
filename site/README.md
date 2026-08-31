@@ -2,7 +2,9 @@
 
 This directory is a static, GitHub Pages-ready academic project page. The primary media are derived
 from the real TUM RGB-D Freiburg1/desk sequence: the RGB/depth/pose composite, the pilot video, and
-the event-metric figures. No synthetic video or synthetic figure is referenced by `index.html`.
+the event-metric figures. It also publishes the bounded FlatLands data-gate snapshot and figures,
+explicitly labelled as target statistics rather than model results. No synthetic video or synthetic
+figure is referenced by `index.html`.
 
 ## Refresh the real-data page
 
@@ -17,8 +19,10 @@ PYTHONPATH=src .venv/bin/python scripts/run_tum_rgbd_model_smoke.py --device cpu
 
 The first command writes the reproducible pilot report under
 `results/tum_rgbd_freiburg1_desk_pilot/` and copies compact derived assets into `site/`. The second
-command rebuilds `data/tum_rgbd_pilot.json` and its browser-local JS mirror. Raw frames remain under
-the ignored `data/raw/` directory and are never committed.
+command rebuilds `data/tum_rgbd_pilot.json`, `data/flatlands_audit.json`, their browser-local JS
+mirrors, and the two FlatLands audit SVGs. It expects the bounded query and provenance audit reports
+under `results/`; use `--skip-flatlands` only when intentionally rebuilding the TUM-only page. Raw
+datasets remain under the ignored `data/raw/` directory and are never committed.
 
 The legacy synthetic P0 snapshot can still be regenerated for development with
 `scripts/build_demo_site.py --include-legacy`, but it is intentionally excluded from the public page.
@@ -42,4 +46,7 @@ files; it does not download datasets or run GPU experiments on the hosted runner
 
 The TUM RGB-D sequence is credited in the page and linked to the official source. Its RGB/depth and
 motion-capture trajectory support a geometric reference-map pilot, not traversability or collision
-ground truth. See [`REAL_DATA_PILOT.md`](../REAL_DATA_PILOT.md) for the exact protocol and limitations.
+ground truth. The FlatLands section uses only the scene-disjoint upstream provenance split because
+the physical archive split leaks scenes, and remains a data audit until trained baselines exist. See
+[`REAL_DATA_PILOT.md`](../REAL_DATA_PILOT.md) and [`P1_DATA_AUDIT.md`](../P1_DATA_AUDIT.md) for exact
+protocols and limitations.

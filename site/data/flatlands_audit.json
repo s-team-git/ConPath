@@ -1,0 +1,436 @@
+{
+  "schema_version": 1,
+  "project": "ConPath",
+  "dataset": "FlatLands",
+  "kind": "bounded_data_audit",
+  "paper_result": false,
+  "model_result": false,
+  "generated_from": "results/p1_flatlands_query_audit_bounded/report.json",
+  "provenance_generated_from": "results/p1_flatlands_provenance_manifest/report.json",
+  "report_mtime_utc": "2026-08-31T03:56:01.386071+00:00",
+  "data_gate_passed": true,
+  "mask_semantics_passed": true,
+  "selected_observations": 512,
+  "split_source_strata": 16,
+  "gated_strata": {
+    "passed": 11,
+    "total": 11
+  },
+  "radii_cells": [
+    0,
+    10,
+    20
+  ],
+  "radii_m": [
+    0.0,
+    0.1,
+    0.2
+  ],
+  "totals": {
+    "candidate_queries": 18432,
+    "selected_queries": 6735,
+    "target_invalid_endpoints": 2082,
+    "retained_valid_endpoint_queries": 4653,
+    "disconnected_radius_zero": 121,
+    "footprint_failure": 3095,
+    "high_clearance_positive": 1437
+  },
+  "splits": [
+    {
+      "split": "train",
+      "candidate_queries": 5760,
+      "selected_queries": 2021,
+      "target_invalid_endpoints": 610,
+      "retained_valid_endpoint_queries": 1411,
+      "disconnected_radius_zero": 32,
+      "footprint_failure": 962,
+      "high_clearance_positive": 417,
+      "reachable_by_radius_cells": {
+        "0": {
+          "rate": 0.9773210489014883,
+          "reachable": 1379,
+          "total": 1411
+        },
+        "10": {
+          "rate": 0.44153082919914954,
+          "reachable": 623,
+          "total": 1411
+        },
+        "20": {
+          "rate": 0.29553508150248053,
+          "reachable": 417,
+          "total": 1411
+        }
+      },
+      "scene_weighted_failure_rate": 0.820411495369798
+    },
+    {
+      "split": "validation",
+      "candidate_queries": 5760,
+      "selected_queries": 2056,
+      "target_invalid_endpoints": 648,
+      "retained_valid_endpoint_queries": 1408,
+      "disconnected_radius_zero": 57,
+      "footprint_failure": 875,
+      "high_clearance_positive": 476,
+      "reachable_by_radius_cells": {
+        "0": {
+          "rate": 0.9595170454545454,
+          "reachable": 1351,
+          "total": 1408
+        },
+        "10": {
+          "rate": 0.4538352272727273,
+          "reachable": 639,
+          "total": 1408
+        },
+        "20": {
+          "rate": 0.3380681818181818,
+          "reachable": 476,
+          "total": 1408
+        }
+      },
+      "scene_weighted_failure_rate": 0.7932710786635808
+    },
+    {
+      "split": "test",
+      "candidate_queries": 6912,
+      "selected_queries": 2658,
+      "target_invalid_endpoints": 824,
+      "retained_valid_endpoint_queries": 1834,
+      "disconnected_radius_zero": 32,
+      "footprint_failure": 1258,
+      "high_clearance_positive": 544,
+      "reachable_by_radius_cells": {
+        "0": {
+          "rate": 0.9825517993456925,
+          "reachable": 1802,
+          "total": 1834
+        },
+        "10": {
+          "rate": 0.4580152671755725,
+          "reachable": 840,
+          "total": 1834
+        },
+        "20": {
+          "rate": 0.2966194111232279,
+          "reachable": 544,
+          "total": 1834
+        }
+      },
+      "scene_weighted_failure_rate": 0.8122580747180482
+    }
+  ],
+  "strata": [
+    {
+      "split": "test",
+      "source": "3RScan",
+      "retained_queries": 146,
+      "retained_scenes": 24,
+      "scene_weighted_failure_rate": 0.8978625541125541,
+      "reachable_by_radius_cells": {
+        "0": {
+          "rate": 0.958904109589041,
+          "reachable": 140,
+          "total": 146
+        },
+        "10": {
+          "rate": 0.3493150684931507,
+          "reachable": 51,
+          "total": 146
+        },
+        "20": {
+          "rate": 0.2534246575342466,
+          "reachable": 37,
+          "total": 146
+        }
+      },
+      "gate_passed": true
+    },
+    {
+      "split": "test",
+      "source": "ARKitScenes",
+      "retained_queries": 115,
+      "retained_scenes": 23,
+      "scene_weighted_failure_rate": 1.0,
+      "reachable_by_radius_cells": {
+        "0": {
+          "rate": 0.9565217391304348,
+          "reachable": 110,
+          "total": 115
+        },
+        "10": {
+          "rate": 0.02608695652173913,
+          "reachable": 3,
+          "total": 115
+        },
+        "20": {
+          "rate": 0.0,
+          "reachable": 0,
+          "total": 115
+        }
+      },
+      "gate_passed": true
+    },
+    {
+      "split": "test",
+      "source": "Matterport3D",
+      "retained_queries": 404,
+      "retained_scenes": 32,
+      "scene_weighted_failure_rate": 0.7568659045632731,
+      "reachable_by_radius_cells": {
+        "0": {
+          "rate": 0.9975247524752475,
+          "reachable": 403,
+          "total": 404
+        },
+        "10": {
+          "rate": 0.5321782178217822,
+          "reachable": 215,
+          "total": 404
+        },
+        "20": {
+          "rate": 0.3465346534653465,
+          "reachable": 140,
+          "total": 404
+        }
+      },
+      "gate_passed": true
+    },
+    {
+      "split": "test",
+      "source": "ScanNet",
+      "retained_queries": 348,
+      "retained_scenes": 32,
+      "scene_weighted_failure_rate": 0.8436443764568764,
+      "reachable_by_radius_cells": {
+        "0": {
+          "rate": 0.9712643678160919,
+          "reachable": 338,
+          "total": 348
+        },
+        "10": {
+          "rate": 0.4339080459770115,
+          "reachable": 151,
+          "total": 348
+        },
+        "20": {
+          "rate": 0.21839080459770116,
+          "reachable": 76,
+          "total": 348
+        }
+      },
+      "gate_passed": true
+    },
+    {
+      "split": "test",
+      "source": "ScanNet++",
+      "retained_queries": 425,
+      "retained_scenes": 32,
+      "scene_weighted_failure_rate": 0.8318128435086156,
+      "reachable_by_radius_cells": {
+        "0": {
+          "rate": 0.9764705882352941,
+          "reachable": 415,
+          "total": 425
+        },
+        "10": {
+          "rate": 0.4,
+          "reachable": 170,
+          "total": 425
+        },
+        "20": {
+          "rate": 0.2164705882352941,
+          "reachable": 92,
+          "total": 425
+        }
+      },
+      "gate_passed": true
+    },
+    {
+      "split": "test",
+      "source": "ZInD",
+      "retained_queries": 396,
+      "retained_scenes": 32,
+      "scene_weighted_failure_rate": 0.6175663060011454,
+      "reachable_by_radius_cells": {
+        "0": {
+          "rate": 1.0,
+          "reachable": 396,
+          "total": 396
+        },
+        "10": {
+          "rate": 0.6313131313131313,
+          "reachable": 250,
+          "total": 396
+        },
+        "20": {
+          "rate": 0.5025252525252525,
+          "reachable": 199,
+          "total": 396
+        }
+      },
+      "gate_passed": true
+    },
+    {
+      "split": "validation",
+      "source": "3RScan",
+      "retained_queries": 139,
+      "retained_scenes": 21,
+      "scene_weighted_failure_rate": 0.8788592360020931,
+      "reachable_by_radius_cells": {
+        "0": {
+          "rate": 0.935251798561151,
+          "reachable": 130,
+          "total": 139
+        },
+        "10": {
+          "rate": 0.39568345323741005,
+          "reachable": 55,
+          "total": 139
+        },
+        "20": {
+          "rate": 0.30935251798561153,
+          "reachable": 43,
+          "total": 139
+        }
+      },
+      "gate_passed": true
+    },
+    {
+      "split": "validation",
+      "source": "ARKitScenes",
+      "retained_queries": 127,
+      "retained_scenes": 26,
+      "scene_weighted_failure_rate": 0.9759615384615384,
+      "reachable_by_radius_cells": {
+        "0": {
+          "rate": 0.8818897637795275,
+          "reachable": 112,
+          "total": 127
+        },
+        "10": {
+          "rate": 0.14173228346456693,
+          "reachable": 18,
+          "total": 127
+        },
+        "20": {
+          "rate": 0.07874015748031496,
+          "reachable": 10,
+          "total": 127
+        }
+      },
+      "gate_passed": true
+    },
+    {
+      "split": "validation",
+      "source": "Matterport3D",
+      "retained_queries": 368,
+      "retained_scenes": 31,
+      "scene_weighted_failure_rate": 0.6870041201959709,
+      "reachable_by_radius_cells": {
+        "0": {
+          "rate": 0.9483695652173914,
+          "reachable": 349,
+          "total": 368
+        },
+        "10": {
+          "rate": 0.5271739130434783,
+          "reachable": 194,
+          "total": 368
+        },
+        "20": {
+          "rate": 0.41032608695652173,
+          "reachable": 151,
+          "total": 368
+        }
+      },
+      "gate_passed": true
+    },
+    {
+      "split": "validation",
+      "source": "ScanNet",
+      "retained_queries": 336,
+      "retained_scenes": 32,
+      "scene_weighted_failure_rate": 0.902547268907563,
+      "reachable_by_radius_cells": {
+        "0": {
+          "rate": 0.9583333333333334,
+          "reachable": 322,
+          "total": 336
+        },
+        "10": {
+          "rate": 0.27380952380952384,
+          "reachable": 92,
+          "total": 336
+        },
+        "20": {
+          "rate": 0.14583333333333334,
+          "reachable": 49,
+          "total": 336
+        }
+      },
+      "gate_passed": true
+    },
+    {
+      "split": "validation",
+      "source": "ZInD",
+      "retained_queries": 438,
+      "retained_scenes": 32,
+      "scene_weighted_failure_rate": 0.5823377775958563,
+      "reachable_by_radius_cells": {
+        "0": {
+          "rate": 1.0,
+          "reachable": 438,
+          "total": 438
+        },
+        "10": {
+          "rate": 0.639269406392694,
+          "reachable": 280,
+          "total": 438
+        },
+        "20": {
+          "rate": 0.5091324200913242,
+          "reachable": 223,
+          "total": 438
+        }
+      },
+      "gate_passed": true
+    }
+  ],
+  "official_split_overlap": [
+    {
+      "pair": "train / validation",
+      "official_scene_overlap": 12873,
+      "provenance_scene_overlap": 0
+    },
+    {
+      "pair": "train / test",
+      "official_scene_overlap": 8406,
+      "provenance_scene_overlap": 0
+    },
+    {
+      "pair": "validation / test",
+      "official_scene_overlap": 6800,
+      "provenance_scene_overlap": 0
+    }
+  ],
+  "frozen_outputs": {
+    "queries": {
+      "rows": 18432,
+      "sha256": "33e7f8a0343269b0dde47b428b3be622c80effdb0f80ae34b352ca282018d60d"
+    },
+    "selected_observations": {
+      "rows": 512,
+      "sha256": "4e7ae4c992cf943ab81618e3826c4748fcaaa97c3c4d7cb187518ee3fe6a9409"
+    }
+  },
+  "adapter": {
+    "implementation": "src/pathrel/flatlands_data.py",
+    "direct_zip_streaming": true,
+    "split_key": "provenance.original_split",
+    "physical_archive_split_used_for_evaluation": false,
+    "query_geometry_replayed_from_input_only": true
+  },
+  "claim_boundary": "This is a bounded target-blind data audit on a non-official, scene-disjoint provenance split. It is not a trained-model result and is not evidence that the leaking official FlatLands split is valid."
+}
