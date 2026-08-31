@@ -35,6 +35,8 @@
     "src/pathrel/flatlands_baselines.py",
     "src/pathrel/flatlands_sampling.py",
     "src/pathrel/labels.py",
+    "src/pathrel/reachability.py",
+    "src/pathrel/model.py",
     "src/pathrel/recovery.py",
     "tests/test_flatlands_query.py",
     "tests/test_flatlands_data.py",
@@ -45,6 +47,7 @@
     "scripts/run_flatlands_radius_prior.py",
     "scripts/train_flatlands_direct_query.py",
     "scripts/train_flatlands_completion.py",
+    "scripts/train_flatlands_conpath.py",
     "scripts/build_demo_site.py",
     "site/index.html",
     "site/app.js",
@@ -55,6 +58,7 @@
     "site/assets/flatlands_baseline_reliability.svg",
     "src/pathrel/labels.py",
     "tests/test_labels.py",
+    "tests/test_reachability.py",
     "scripts/benchmark_connectivity.py"
   ],
   "ignored_artifacts": [
@@ -256,8 +260,8 @@
     }
   ],
   "last_verification": {
-    "command": "PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -v && node --check site/app.js && PYTHONPATH=src .venv/bin/python scripts/build_demo_site.py --skip-real && PYTHONPATH=src .venv/bin/python scripts/verify_recovery_state.py",
-    "result": "Ran 66 tests in 1.307s; OK; skipped=0; app.js syntax check passed; site builder generated audit and validation baseline JSON/JS/SVG assets; full recovery SHA verification passed",
+    "command": "PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -v && PYTHONPATH=src .venv/bin/python -m py_compile scripts/train_flatlands_conpath.py src/pathrel/reachability.py src/pathrel/model.py && PYTHONPATH=src .venv/bin/python scripts/verify_recovery_state.py",
+    "result": "Ran 67 tests in 1.327s; OK; ConPath public-data entry point and shared-start propagation compile; full recovery SHA verification passed",
     "implementation_commit": "HEAD (validation baseline/site snapshot)"
   },
   "recovery_commands": [

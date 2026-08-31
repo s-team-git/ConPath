@@ -33,6 +33,17 @@ class ReachabilityLayerTest(unittest.TestCase):
         blocked_q, _ = self.compute(safe, starts, goals, [0], max_steps=121)
         self.assertAlmostEqual(float(blocked_q[0, 0, 0]), 0.0)
 
+    def test_shared_start_propagation_matches_generic_scores(self) -> None:
+        from pathrel.reachability import maxmin_path_scores, maxmin_path_scores_shared_start
+
+        torch.manual_seed(19)
+        scores = torch.rand(2, 3, 7, 8)
+        starts = torch.tensor([[[2, 1], [2, 1], [2, 1]], [[4, 6], [4, 6], [4, 6]]])
+        goals = torch.tensor([[[5, 7], [1, 6], [3, 0]], [[0, 0], [6, 2], [2, 4]]])
+        generic = maxmin_path_scores(scores, starts, goals, max_steps=15, backward_temperature=0.0)
+        shared = maxmin_path_scores_shared_start(scores, starts, goals, max_steps=15, backward_temperature=0.0)
+        torch.testing.assert_close(shared, generic, rtol=0.0, atol=0.0)
+
     def test_start_goal_symmetry(self) -> None:
         safe = torch.ones((1, 2, 9, 13), dtype=torch.float32)
         start = torch.tensor([[[4, 2]]])

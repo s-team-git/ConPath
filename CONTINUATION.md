@@ -277,6 +277,13 @@ entry to the existing single-map oracle. The synthetic CPU contract benchmark
 queries take about 0.036/0.037/0.044/0.060 s, respectively. This is an exact-forward reference and
 efficiency diagnostic only; a CUDA implementation and soft backward path are still pending.
 
+`scripts/train_flatlands_conpath.py` is now the reproducible public-data neural entry point. It uses
+the canonical replay channels, hidden-cell posterior NLL, variogram score, reachability U-statistic,
+shared-start propagation, atomic checkpoints, and label-free validation predictions. A one-scene CPU
+smoke completed end to end (including checkpoint/prediction writing) with `paper_result=false` and
+validation subset evaluation disabled. Full validation runs must still use the frozen 160-scene
+provenance split, multiple seeds, and the exact-forward parity gate before becoming paper results.
+
 ## Exact next actions
 
 1. Run ConPath on at least three fixed seeds with K=32 pilot and K=128 final event sampling; keep

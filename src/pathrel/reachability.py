@@ -183,6 +183,66 @@ def maxmin_path_scores(
     return reach_flat.gather(3, gather_index).squeeze(-1)
 
 
+def maxmin_path_scores_shared_start(
+    node_scores: Tensor,
+    starts: Tensor,
+    goals: Tensor,
+    *,
+    max_steps: int | None = None,
+    backward_temperature: float = 0.1,
+) -> Tensor:
+    """Maximum-bottleneck scores when all queries in each batch item share one start.
+
+    FlatLands natural queries use the camera cell as the common start and vary only the goal. This
+    implementation propagates one ``[B,K,H,W]`` field per stochastic map, then gathers all goals;
+    the generic :func:`maxmin_path_scores` expands that field by ``Q`` and is consequently much
+    more expensive on dense public maps. The forward semantics are identical for shared starts.
+    """
+
+    if node_scores.ndim != 4:
+        raise ValueError("node_scores must have shape [B,K,H,W]")
+    batch, samples, height, width = node_scores.shape
+    if starts.shape[0] != batch:
+        raise ValueError("query batch does not match node_scores")
+    _validate_queries(starts, goals, height, width)
+    if starts.shape[1] == 0:
+        return node_scores.new_empty((batch, samples, 0))
+    if not torch.all(starts == starts[:, :1]):
+        raise ValueError("maxmin_path_scores_shared_start requires one start per batch item")
+    if max_steps is None:
+        max_steps = height * width
+    if max_steps < 0:
+        raise ValueError("max_steps must be non-negative")
+
+    start_index = starts[:, 0, 0] * width + starts[:, 0, 1]
+    goal_index = goals[..., 0] * width + goals[..., 1]
+    node_flat = node_scores.flatten(start_dim=2)
+    start_values = node_flat.gather(2, start_index[:, None, None].expand(batch, samples, 1))
+    reach_flat = torch.zeros(
+        (batch, samples, height * width), dtype=node_scores.dtype, device=node_scores.device
+    )
+    reach_flat = reach_flat.scatter(2, start_index[:, None, None].expand(batch, samples, 1), start_values)
+    reach = reach_flat.view(batch, samples, height, width)
+    capacity = node_scores
+    for _ in range(int(max_steps)):
+        neighbor_best = _four_neighbor_max(reach, backward_temperature=backward_temperature)
+        candidate = _straight_through_extreme(
+            torch.stack((capacity, neighbor_best), dim=0),
+            dim=0,
+            take_maximum=False,
+            backward_temperature=backward_temperature,
+        )
+        reach = _straight_through_extreme(
+            torch.stack((reach, candidate), dim=0),
+            dim=0,
+            take_maximum=True,
+            backward_temperature=backward_temperature,
+        )
+    return reach.flatten(start_dim=2).gather(
+        2, goal_index[:, None].expand(batch, samples, goal_index.shape[1])
+    )
+
+
 def multi_radius_reachability(
     safe_samples: Tensor,
     starts: Tensor,
@@ -192,6 +252,7 @@ def multi_radius_reachability(
     surrogate_safe_samples: Tensor | None = None,
     max_steps: int | None = None,
     backward_temperature: float = 0.1,
+    shared_start: bool = False,
 ) -> tuple[Tensor, Tensor]:
     """Compute a discrete footprint-conditioned reliability curve.
 
@@ -225,12 +286,9 @@ def multi_radius_reachability(
             center_safe = disk_footprint_min(
                 safe_samples, radius, backward_temperature=backward_temperature
             )
-            event = maxmin_path_scores(
-                center_safe,
-                starts,
-                goals,
-                max_steps=max_steps,
-                backward_temperature=backward_temperature,
+            path_fn = maxmin_path_scores_shared_start if shared_start else maxmin_path_scores
+            event = path_fn(
+                center_safe, starts, goals, max_steps=max_steps, backward_temperature=backward_temperature
             )
         else:
             # Keep the probability semantics in the hard forward pass. The relaxed branch is a
@@ -238,7 +296,8 @@ def multi_radius_reachability(
             hard_center_safe = disk_footprint_min(
                 safe_samples.detach(), radius, backward_temperature=0.0
             )
-            hard_event = maxmin_path_scores(
+            path_fn = maxmin_path_scores_shared_start if shared_start else maxmin_path_scores
+            hard_event = path_fn(
                 hard_center_safe,
                 starts,
                 goals,
@@ -248,7 +307,7 @@ def multi_radius_reachability(
             surrogate_center_safe = disk_footprint_min(
                 surrogate_safe_samples, radius, backward_temperature=0.0
             )
-            surrogate_score = maxmin_path_scores(
+            surrogate_score = path_fn(
                 surrogate_center_safe,
                 starts,
                 goals,

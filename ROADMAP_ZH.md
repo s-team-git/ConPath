@@ -166,7 +166,7 @@ L_reachability_U-statistic_Brier
 | FlatLands completion/query audit | 512 场景 data gate、direct-ZIP adapter、统一 evaluator 与首轮 validation baseline 已通过；最终结果待多 seed/扩展性/第二域 | P1 |
 | UnScenes3D encoder/loader | 未开始 | P2 |
 | WildOcc cross-domain | 未开始 | P2 |
-| scalable path-cut bounds | NumPy merge-tree 已有单图 exact reference，新增 batch×sample×query 封装与 CPU contract benchmark；CUDA/soft-backward 未完成 | P3 |
+| scalable path-cut bounds | NumPy merge-tree 已有单图 exact reference，新增 batch×sample×query 封装与 CPU contract benchmark；共享起点传播和 ConPath public-data 入口已接通，CUDA/soft-backward 未完成 | P3 |
 | SE(2) 矩形 footprint | 未开始 | 2.5-D 版本成立后再做 |
 
 ## 接下来按什么顺序做

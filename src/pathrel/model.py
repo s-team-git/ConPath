@@ -137,6 +137,7 @@ class PathRelNet(nn.Module):
         reachability_backward_temperature: float = 0.1,
         hard_samples: bool = True,
         max_reachability_steps: int | None = None,
+        shared_start: bool = False,
         generator: torch.Generator | None = None,
     ) -> PathRelOutput:
         if observation_bev.ndim != 4:
@@ -163,6 +164,7 @@ class PathRelNet(nn.Module):
             reachability_backward_temperature=reachability_backward_temperature,
             hard_samples=hard_samples,
             max_reachability_steps=max_reachability_steps,
+            shared_start=shared_start,
             generator=generator,
             known_classes=known_classes,
         )
@@ -180,6 +182,7 @@ class PathRelNet(nn.Module):
         reachability_backward_temperature: float = 0.1,
         hard_samples: bool = True,
         max_reachability_steps: int | None = None,
+        shared_start: bool = False,
         generator: torch.Generator | None = None,
         known_classes: Tensor | None = None,
     ) -> PathRelOutput:
@@ -224,6 +227,7 @@ class PathRelNet(nn.Module):
             ),
             max_steps=max_reachability_steps,
             backward_temperature=(reachability_backward_temperature if torch.is_grad_enabled() else 0.0),
+            shared_start=shared_start,
         )
         return PathRelOutput(
             posterior=posterior,
