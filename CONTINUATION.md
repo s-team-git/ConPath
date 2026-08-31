@@ -163,13 +163,20 @@ and keeps the decision NO-GO for extraction/training. `scripts/download_flatland
 resumable `.part`, verifies size and hash, atomically finalizes the archive, and never extracts it.
 `bash -n` passes; `--check` correctly returns exit 2 while the archive is absent.
 
+The working tree also adds `src/pathrel/flatlands.py`, `scripts/audit_flatlands_archive.py`, and
+`tests/test_flatlands.py`. The read-only auditor checks the frozen archive hash, unsafe/duplicate/
+symlink/encrypted members, five-file packet completeness, official split counts, malformed metadata,
+source/scene identity, duplicate global IDs, and cross-split scene leakage without extraction. It
+writes atomic reports plus fsynced progress/failure logs. The expanded suite reports `Ran 38 tests
+... OK`, `skipped=0`; this auditor commit is the next durability point while the archive downloads.
+
 ## Exact next actions
 
 1. Commit `P1_DATA_AUDIT.md`, `scripts/download_flatlands.sh`, and this recovery update.
 2. Run `./scripts/download_flatlands.sh --download`; after interruption, rerun the identical command
    to resume. Do not delete a mismatching file automatically.
-3. Run `./scripts/download_flatlands.sh --check`, then inspect the ZIP structure/metadata without
-   extracting it and implement a bounded deterministic query-balance audit.
+3. Run `./scripts/download_flatlands.sh --check`, then execute a bounded 1,000-metadata ZIP audit
+   with `scripts/audit_flatlands_archive.py` and reconcile its actual schema before a full scan.
 4. Record archive integrity and audit results here before any extraction, loader training, or public
    claim. Remain NO-GO if scene leakage, semantics, licensing, or event balance fails.
 

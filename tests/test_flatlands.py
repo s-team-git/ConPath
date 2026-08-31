@@ -1,0 +1,102 @@
+from __future__ import annotations
+
+import json
+from pathlib import Path
+import stat
+import tempfile
+import unittest
+from zipfile import ZipFile, ZipInfo
+
+from pathrel.flatlands import audit_metadata, build_archive_index, integrity_gate
+
+
+PACKET_FILES = (
+    "observed_floor.png",
+    "floor_map.png",
+    "unobserved.png",
+    "epistemic_mask.png",
+)
+
+
+def add_packet(
+    archive: ZipFile,
+    split: str,
+    observation: str,
+    source: str,
+    scene_id: str,
+) -> None:
+    root = f"FlatLands/{split}/{observation}"
+    for filename in PACKET_FILES:
+        archive.writestr(f"{root}/{filename}", b"png-placeholder")
+    archive.writestr(
+        f"{root}/metadata.json",
+        json.dumps(
+            {
+                "scene": {
+                    "dataset": source,
+                    "scene_id": scene_id,
+                    "metric_resolution": 0.05,
+                },
+                "observation": {"camera_pixel_position": [10, 20]},
+                "provenance": {
+                    "global_id": observation,
+                    "original_split": split,
+                },
+            }
+        ),
+    )
+
+
+class FlatLandsArchiveAuditTest(unittest.TestCase):
+    def test_complete_packets_and_scene_disjointness_are_reported(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "tiny.zip"
+            with ZipFile(path, "w") as archive:
+                add_packet(archive, "train", "obs_000001", "ScanNet", "train-scene")
+                add_packet(archive, "validation", "obs_000002", "ScanNet", "val-scene")
+                add_packet(archive, "test", "obs_000003", "ScanNet++", "test-scene")
+            with ZipFile(path) as archive:
+                index = build_archive_index(archive.infolist())
+                metadata = audit_metadata(archive, index.metadata_members)
+
+        self.assertEqual(index.report["packet_count"], 3)
+        self.assertEqual(index.report["incomplete_packet_count"], 0)
+        self.assertEqual(index.report["unsafe_member_count"], 0)
+        self.assertTrue(metadata["complete_metadata_scan"])
+        self.assertTrue(metadata["scene_disjoint"])
+        # A tiny fixture intentionally cannot masquerade as the official release.
+        self.assertFalse(integrity_gate(index.report, metadata))
+
+    def test_cross_split_scene_leakage_fails_scene_gate(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "leak.zip"
+            with ZipFile(path, "w") as archive:
+                add_packet(archive, "train", "obs_000001", "ZInD", "shared")
+                add_packet(archive, "test", "obs_000002", "ZInD", "shared")
+            with ZipFile(path) as archive:
+                index = build_archive_index(archive.infolist())
+                metadata = audit_metadata(archive, index.metadata_members)
+
+        self.assertFalse(metadata["scene_disjoint"])
+        self.assertEqual(metadata["scene_overlap"]["train__test"]["count"], 1)
+
+    def test_unsafe_and_incomplete_members_are_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "unsafe.zip"
+            with ZipFile(path, "w") as archive:
+                archive.writestr("../escape.txt", b"unsafe")
+                symlink = ZipInfo("FlatLands/link")
+                symlink.create_system = 3
+                symlink.external_attr = (stat.S_IFLNK | 0o777) << 16
+                archive.writestr(symlink, b"../../target")
+                archive.writestr("FlatLands/train/obs_000001/metadata.json", b"{}")
+            with ZipFile(path) as archive:
+                index = build_archive_index(archive.infolist())
+
+        self.assertEqual(index.report["unsafe_member_count"], 1)
+        self.assertEqual(index.report["symlink_member_count"], 1)
+        self.assertEqual(index.report["incomplete_packet_count"], 1)
+
+
+if __name__ == "__main__":
+    unittest.main()
