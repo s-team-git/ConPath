@@ -86,8 +86,10 @@
 
   const baselines = window.CONPATH_FLATLANDS_BASELINES;
   const baselineBody = document.querySelector("#flatlands-baseline-body");
+  const baselineRadiusBody = document.querySelector("#flatlands-baseline-radius-body");
   if (!baselines || !baselineBody) {
     if (baselineBody) baselineBody.innerHTML = '<tr><td colspan="6">Validation baseline snapshot not found. Rebuild the project site.</td></tr>';
+    if (baselineRadiusBody) baselineRadiusBody.innerHTML = '<tr><td colspan="5">Validation baseline snapshot not found.</td></tr>';
   } else {
     const methods = Array.isArray(baselines.methods) ? baselines.methods : [];
     const overall = (method) => ((method.overall || {}).scene_weighted || {});
@@ -111,5 +113,20 @@
     if (testCard) testCard.textContent = baselines.test_evaluated ? "EVALUATED" : "LOCKED";
     if (headlineCard) headlineCard.textContent = best ? number(overall(best).brier, 4) : "—";
     if (claimCard) claimCard.textContent = baselines.claim_boundary || "Validation-only baseline diagnostics; no test result is published.";
+
+    if (baselineRadiusBody) {
+      const radii = Array.isArray(baselines.radii_cells) ? baselines.radii_cells : [0, 10, 20];
+      const radiusFor = (method, radius) => {
+        const row = (method.by_radius || []).find((item) => Number(item.radius_cells) === Number(radius));
+        return row ? row.scene_weighted || {} : {};
+      };
+      const radius20 = radii.includes(20) ? 20 : radii[radii.length - 1];
+      baselineRadiusBody.innerHTML = methods.map((method) => {
+        const zero = radiusFor(method, radii[0]);
+        const ten = radiusFor(method, radii.includes(10) ? 10 : radii[1]);
+        const twenty = radiusFor(method, radius20);
+        return `<tr><td>${escapeHtml(method.name)}</td><td>${number(zero.brier)}</td><td>${number(ten.brier)}</td><td>${number(twenty.brier)}</td><td>${percent(twenty["false_safe_rate@0.8"])}</td></tr>`;
+      }).join("") || '<tr><td colspan="5">No radius-stratified baseline rows in snapshot.</td></tr>';
+    }
   }
 })();

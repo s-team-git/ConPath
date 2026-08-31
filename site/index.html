@@ -206,6 +206,13 @@
             <figure class="figure"><img src="assets/flatlands_baseline_comparison.svg" alt="FlatLands validation provenance split: bar chart comparing radius prior, deterministic completion, independent-cell completion, and direct-query baseline Brier, NLL, and ECE." loading="lazy" /><figcaption>Figure 7. FlatLands validation event metrics, lower is better. Each method sees the same frozen scenes and queries; source/radius rows and scene-bootstrap intervals are in the JSON snapshot.</figcaption></figure>
             <figure class="figure"><img src="assets/flatlands_baseline_reliability.svg" alt="Reliability curves for four baselines evaluated on the same FlatLands validation provenance split." loading="lazy" /><figcaption>Figure 8. Same-dataset scene-weighted reliability bins; the independent-cell sampler is intentionally shown as a calibration stress test.</figcaption></figure>
           </div>
+          <div class="table-wrap stratified-table-wrap">
+            <table>
+              <caption>Table 5. Same FlatLands validation baselines by footprint radius</caption>
+              <thead><tr><th>Method</th><th>r = 0 Brier ↓</th><th>r = 10 Brier ↓</th><th>r = 20 Brier ↓</th><th>r = 20 false-safe ↓</th></tr></thead>
+              <tbody id="flatlands-baseline-radius-body"><tr><td colspan="5">Loading radius-stratified baseline snapshot…</td></tr></tbody>
+            </table>
+          </div>
           <div class="qualitative-note"><span class="qualitative-mark" aria-hidden="true">MAP</span><p><strong>Qualitative map comparison is the next publishable artifact.</strong> Once the public ConPath checkpoint is trained, this page will add a same-scene panel with observed input, ConPath posterior/footprint path, each baseline, and the reference label. No “ours is better” map is fabricated before that checkpoint exists.</p></div>
           <p class="source-note">Protocol: <a href="https://github.com/s-team-git/ConPath/blob/main/P1_BASELINE_PROTOCOL.md" rel="noreferrer">P1_BASELINE_PROTOCOL.md ↗</a>. Checkpoints, manifests, and exact reports remain in the reproducibility workspace; no test result is published here.</p>
         </div>

@@ -121,6 +121,7 @@ td.overlap-good { color: #24705c; background: #f2faf7; font-weight: 700; }
 .baseline-callout .eyebrow { color: var(--green); }
 .baseline-callout .headline-metric span { color: var(--green); }
 .baseline-figure-grid { margin-top: 18px; }
+.stratified-table-wrap { margin-top: 18px; }
 .qualitative-note { display: flex; align-items: flex-start; gap: 14px; max-width: 900px; margin: 22px auto 0; padding: 16px 18px; border: 1px solid #d9e1e8; border-radius: 9px; background: rgba(255,255,255,.72); }
 .qualitative-mark { display: inline-grid; flex: 0 0 auto; place-items: center; min-width: 44px; height: 28px; color: #fff; border-radius: 999px; background: var(--blue-dark); font-size: 9px; font-weight: 760; letter-spacing: .08em; }
 .qualitative-note p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.65; }
