@@ -32,6 +32,7 @@ FLATLANDS_PACKET_FILES = (
 )
 
 ProgressCallback = Callable[[dict[str, object]], None]
+ObservationCallback = Callable[[dict[str, object]], None]
 
 
 @dataclass(frozen=True)
@@ -66,7 +67,7 @@ def _safe_member_parts(name: str) -> tuple[str, ...] | None:
 
 def _packet_location(parts: tuple[str, ...]) -> tuple[str, str, str] | None:
     for index, part in enumerate(parts):
-        canonical_split = FLATLANDS_SPLIT_ALIASES.get(part)
+        canonical_split = canonical_flatlands_split(part)
         if canonical_split is None:
             continue
         if len(parts) != index + 3 or not parts[index + 1].startswith("obs_"):
@@ -74,6 +75,10 @@ def _packet_location(parts: tuple[str, ...]) -> tuple[str, str, str] | None:
         packet_directory = "/".join(parts[: index + 2])
         return canonical_split, packet_directory, parts[index + 2]
     return None
+
+
+def canonical_flatlands_split(value: object) -> str | None:
+    return FLATLANDS_SPLIT_ALIASES.get(str(value))
 
 
 def build_archive_index(
@@ -231,6 +236,7 @@ def audit_metadata(
     limit: int = 0,
     seed: int = 20260830,
     progress: ProgressCallback | None = None,
+    observation_callback: ObservationCallback | None = None,
 ) -> dict[str, object]:
     if limit < 0:
         raise ValueError("metadata limit must be non-negative")
@@ -241,14 +247,21 @@ def audit_metadata(
 
     source_counts: dict[str, Counter[str]] = defaultdict(Counter)
     scenes_by_split: dict[str, set[tuple[str, str]]] = defaultdict(set)
+    provenance_source_counts: dict[str, Counter[str]] = defaultdict(Counter)
+    provenance_scenes_by_split: dict[str, set[tuple[str, str]]] = defaultdict(set)
+    provenance_splits_by_scene: dict[tuple[str, str], set[str]] = defaultdict(set)
+    unknown_provenance_split_count = 0
     missing_identity = 0
     malformed_count = 0
     malformed_examples: list[dict[str, str]] = []
     top_level_key_sets: Counter[tuple[str, ...]] = Counter()
     interesting_paths: set[str] = set()
     global_ids: set[str] = set()
+    missing_global_ids = 0
     duplicate_global_ids = 0
     provenance_split_counts: dict[str, Counter[str]] = defaultdict(Counter)
+    missing_provenance_split_count = 0
+    provenance_manifest_record_count = 0
 
     for index, member in enumerate(selected, start=1):
         try:
@@ -274,6 +287,8 @@ def audit_metadata(
             scenes_by_split[member.split].add((source, scene_id))
 
         provenance = metadata.get("provenance")
+        global_id_string: str | None = None
+        canonical_provenance_split: str | None = None
         if isinstance(provenance, dict):
             global_id = provenance.get("global_id")
             if global_id is not None:
@@ -281,26 +296,95 @@ def audit_metadata(
                 if global_id_string in global_ids:
                     duplicate_global_ids += 1
                 global_ids.add(global_id_string)
+            else:
+                missing_global_ids += 1
             original_split = provenance.get("original_split")
             if original_split is not None:
                 provenance_split_counts[member.split][str(original_split)] += 1
+                canonical_provenance_split = canonical_flatlands_split(original_split)
+                if canonical_provenance_split is None:
+                    unknown_provenance_split_count += 1
+                elif source is not None and scene_id is not None:
+                    identity = (source, scene_id)
+                    provenance_source_counts[canonical_provenance_split][source] += 1
+                    provenance_scenes_by_split[canonical_provenance_split].add(identity)
+                    provenance_splits_by_scene[identity].add(canonical_provenance_split)
+            else:
+                missing_provenance_split_count += 1
+        else:
+            missing_global_ids += 1
+            missing_provenance_split_count += 1
+
+        if (
+            source is not None
+            and scene_id is not None
+            and global_id_string is not None
+            and canonical_provenance_split is not None
+        ):
+            provenance_manifest_record_count += 1
+            observation = metadata.get("observation")
+            scene = metadata.get("scene")
+            camera_px = observation.get("camera_px") if isinstance(observation, dict) else None
+            resolution = scene.get("resolution") if isinstance(scene, dict) else None
+            if observation_callback is not None:
+                observation_callback(
+                    {
+                        "global_id": global_id_string,
+                        "provenance_split": canonical_provenance_split,
+                        "archive_split": member.split,
+                        "source_dataset": source,
+                        "scene_id": scene_id,
+                        "packet_directory": member.packet_directory,
+                        "metadata_member": member.member_name,
+                        "original_observation_id": (
+                            provenance.get("original_obs_id")
+                            if isinstance(provenance, dict)
+                            else None
+                        ),
+                        "quality_category": (
+                            provenance.get("quality_category")
+                            if isinstance(provenance, dict)
+                            else None
+                        ),
+                        "resolution": resolution,
+                        "camera_px": camera_px,
+                    }
+                )
 
         if progress is not None and index % 1_000 == 0:
             progress({"event": "metadata", "processed": index, "selected": len(selected)})
 
-    overlap: dict[str, dict[str, object]] = {}
-    for first_index, first in enumerate(FLATLANDS_SPLITS):
-        for second in FLATLANDS_SPLITS[first_index + 1 :]:
-            shared = scenes_by_split[first] & scenes_by_split[second]
-            overlap[f"{first}__{second}"] = {
-                "count": len(shared),
-                "by_source": dict(sorted(Counter(source for source, _ in shared).items())),
-                "examples": [list(item) for item in sorted(shared)[:100]],
-            }
+    def overlap_report(
+        scenes: dict[str, set[tuple[str, str]]],
+    ) -> dict[str, dict[str, object]]:
+        report: dict[str, dict[str, object]] = {}
+        for first_index, first in enumerate(FLATLANDS_SPLITS):
+            for second in FLATLANDS_SPLITS[first_index + 1 :]:
+                shared = scenes[first] & scenes[second]
+                report[f"{first}__{second}"] = {
+                    "count": len(shared),
+                    "by_source": dict(sorted(Counter(source for source, _ in shared).items())),
+                    "examples": [list(item) for item in sorted(shared)[:100]],
+                }
+        return report
+
+    overlap = overlap_report(scenes_by_split)
+    provenance_overlap = overlap_report(provenance_scenes_by_split)
 
     complete = len(selected) == len(members)
     scene_disjoint = complete and missing_identity == 0 and all(
         int(value["count"]) == 0 for value in overlap.values()
+    )
+    multi_provenance_split_scenes = sum(
+        len(splits) > 1 for splits in provenance_splits_by_scene.values()
+    )
+    provenance_scene_disjoint = bool(
+        complete
+        and missing_identity == 0
+        and missing_provenance_split_count == 0
+        and unknown_provenance_split_count == 0
+        and multi_provenance_split_scenes == 0
+        and all(int(value["count"]) == 0 for value in provenance_overlap.values())
     )
     return {
         "available_metadata_members": len(members),
@@ -310,11 +394,25 @@ def audit_metadata(
         "malformed_count": malformed_count,
         "malformed_examples": malformed_examples,
         "missing_scene_identity_count": missing_identity,
+        "missing_global_id_count": missing_global_ids,
         "duplicate_global_id_count": duplicate_global_ids,
         "provenance_original_split_counts": {
             split: dict(sorted(provenance_split_counts[split].items()))
             for split in FLATLANDS_SPLITS
         },
+        "provenance_unknown_split_count": unknown_provenance_split_count,
+        "provenance_missing_split_count": missing_provenance_split_count,
+        "provenance_manifest_record_count": provenance_manifest_record_count,
+        "provenance_scenes_with_multiple_splits": multi_provenance_split_scenes,
+        "provenance_scene_counts": {
+            split: len(provenance_scenes_by_split[split]) for split in FLATLANDS_SPLITS
+        },
+        "provenance_source_observation_counts": {
+            split: dict(sorted(provenance_source_counts[split].items()))
+            for split in FLATLANDS_SPLITS
+        },
+        "provenance_scene_overlap": provenance_overlap,
+        "provenance_scene_disjoint": provenance_scene_disjoint,
         "scene_counts": {split: len(scenes_by_split[split]) for split in FLATLANDS_SPLITS},
         "source_observation_counts": {
             split: dict(sorted(source_counts[split].items())) for split in FLATLANDS_SPLITS
@@ -346,7 +444,22 @@ def metadata_integrity_gate(metadata_report: dict[str, object]) -> bool:
         metadata_report["complete_metadata_scan"]
         and metadata_report["malformed_count"] == 0
         and metadata_report["missing_scene_identity_count"] == 0
+        and metadata_report["missing_global_id_count"] == 0
         and metadata_report["duplicate_global_id_count"] == 0
+    )
+
+
+def provenance_split_gate(metadata_report: dict[str, object]) -> bool:
+    """Require a complete, replayable, scene-disjoint upstream-provenance split."""
+
+    return bool(
+        metadata_integrity_gate(metadata_report)
+        and metadata_report["provenance_missing_split_count"] == 0
+        and metadata_report["provenance_unknown_split_count"] == 0
+        and metadata_report["provenance_scenes_with_multiple_splits"] == 0
+        and metadata_report["provenance_scene_disjoint"]
+        and metadata_report["provenance_manifest_record_count"]
+        == metadata_report["selected_metadata_members"]
     )
 
 

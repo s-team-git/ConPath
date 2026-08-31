@@ -13,6 +13,7 @@ from pathrel.flatlands import (
     build_archive_index,
     integrity_gate,
     metadata_integrity_gate,
+    provenance_split_gate,
 )
 
 
@@ -64,14 +65,26 @@ class FlatLandsArchiveAuditTest(unittest.TestCase):
                 add_packet(archive, "test", "obs_000003", "ScanNet++", "test-scene")
             with ZipFile(path) as archive:
                 index = build_archive_index(archive.infolist())
-                metadata = audit_metadata(archive, index.metadata_members)
+                observations: list[dict[str, object]] = []
+                metadata = audit_metadata(
+                    archive, index.metadata_members, observation_callback=observations.append
+                )
 
         self.assertEqual(index.report["packet_count"], 3)
         self.assertEqual(index.report["incomplete_packet_count"], 0)
         self.assertEqual(index.report["unsafe_member_count"], 0)
         self.assertTrue(metadata["complete_metadata_scan"])
         self.assertTrue(metadata["scene_disjoint"])
+        self.assertTrue(metadata["provenance_scene_disjoint"])
+        self.assertEqual(len(observations), 3)
+        self.assertEqual(metadata["missing_global_id_count"], 0)
+        self.assertEqual(metadata["provenance_missing_split_count"], 0)
+        self.assertEqual(metadata["provenance_manifest_record_count"], 3)
+        validation = next(row for row in observations if row["global_id"] == "obs_000002")
+        self.assertEqual(validation["archive_split"], "validation")
+        self.assertEqual(validation["provenance_split"], "validation")
         self.assertTrue(metadata_integrity_gate(metadata))
+        self.assertTrue(provenance_split_gate(metadata))
         self.assertFalse(archive_structure_gate(index.report))
         # A tiny fixture intentionally cannot masquerade as the official release.
         self.assertFalse(integrity_gate(index.report, metadata))
@@ -87,7 +100,38 @@ class FlatLandsArchiveAuditTest(unittest.TestCase):
                 metadata = audit_metadata(archive, index.metadata_members)
 
         self.assertFalse(metadata["scene_disjoint"])
+        self.assertFalse(metadata["provenance_scene_disjoint"])
+        self.assertFalse(provenance_split_gate(metadata))
         self.assertEqual(metadata["scene_overlap"]["train__test"]["count"], 1)
+
+    def test_missing_provenance_fields_fail_replayable_split_gate(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "missing-provenance.zip"
+            with ZipFile(path, "w") as archive:
+                add_packet(archive, "train", "obs_000001", "ScanNet", "scene")
+                metadata_name = "FlatLands/train/obs_000002/metadata.json"
+                for filename in PACKET_FILES:
+                    archive.writestr(
+                        f"FlatLands/train/obs_000002/{filename}", b"png-placeholder"
+                    )
+                archive.writestr(
+                    metadata_name,
+                    json.dumps(
+                        {
+                            "scene": {"dataset": "ScanNet", "scene_id": "other-scene"},
+                            "provenance": {},
+                        }
+                    ),
+                )
+            with ZipFile(path) as archive:
+                index = build_archive_index(archive.infolist())
+                metadata = audit_metadata(archive, index.metadata_members)
+
+        self.assertEqual(metadata["missing_global_id_count"], 1)
+        self.assertEqual(metadata["provenance_missing_split_count"], 1)
+        self.assertFalse(metadata["provenance_scene_disjoint"])
+        self.assertFalse(metadata_integrity_gate(metadata))
+        self.assertFalse(provenance_split_gate(metadata))
 
     def test_unsafe_and_incomplete_members_are_rejected(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
