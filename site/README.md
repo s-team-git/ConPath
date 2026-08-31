@@ -21,8 +21,9 @@ The first command writes the reproducible pilot report under
 `results/tum_rgbd_freiburg1_desk_pilot/` and copies compact derived assets into `site/`. The second
 command rebuilds `data/tum_rgbd_pilot.json`, `data/flatlands_audit.json`, the validation-only
 `data/flatlands_baselines_validation.{json,js}`, their browser-local JS mirrors, and the FlatLands
-audit/baseline SVGs. It expects the bounded query, provenance-audit, and first validation baseline
-reports under `results/`; use `--skip-flatlands` or `--skip-flatlands-baselines` only when
+audit/baseline SVGs. The page renders pooled, radius-stratified, and source-stratified baseline
+tables from that snapshot. It expects the bounded query, provenance-audit, and first validation
+baseline reports under `results/`; use `--skip-flatlands` or `--skip-flatlands-baselines` only when
 intentionally rebuilding a partial page. Raw datasets and checkpoints remain under ignored paths
 and are never committed.
 
