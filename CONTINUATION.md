@@ -7,7 +7,7 @@ diagnostic, code change, or experiment; do not rely on chat history or ignored `
 
 - Updated: 2026-08-30 (America/New_York)
 - Repository: `/home/hairo/pathrel_transfer/pathrel_pro6000`
-- Last durable implementation commit: `514ffc2` (local `main`; not yet pushed in this continuation)
+- Last durable implementation commit: `2de9103` (local `main`; not yet pushed in this continuation)
 - Scientific gate: **NO-GO** for P1/public-data claims
 - Active task: fix the trained neural P0 joint-event posterior under the existing held-out-template
   protocol; do not expand to a new public benchmark until it passes.
@@ -112,17 +112,27 @@ whereas the neural model so far had to infer it from the absolute position of an
 visible context-bit channel. It contains no doorway realization or event label. This gives the map
 posterior the exact same conditioning variable as the baselines while retaining the original
 three-channel `marker` mode for ablation/legacy checkpoints. All 35 tests pass; the official CUDA
-run is pending.
+run below is complete.
+
+`results/p0_neural_cuda_contextplane_v4/` completed 120 steps with 128 validation samples and
+**passed the tightened official gate**: event Brier `0.116377`, NLL `0.353872`, ECE `0.078647`,
+empirical hard-map Brier `0.003383`, and false-safe@0.8 `0.125`. Radius-zero context predictions
+were `0.4712/0.8476` versus targets `0.21875/0.875`, recovering `57.35%` of the target gap (minimum
+required `50%`). This is a synthetic neural P0 result, not a public-data or paper result.
+
+Residual weaknesses remain: context 0 is over-open and sampled doorway fragmentation is about
+`13.7%/16.1%` for context 0/1 versus zero in the target. Before authorizing P1, run the identical
+neural configuration with reachability weight zero and at least one additional optimization seed.
 
 ## Exact next actions
 
-1. Commit the explicit visible-context input and run the unchanged 12/4-template CUDA protocol into
-   `results/p0_neural_cuda_contextplane_v4/` with grouped targets and `--context-input plane`.
+1. Run `results/p0_neural_cuda_contextplane_noreach_v4/` with the same grouped/context-plane
+   protocol and `--reachability-weight 0`.
 2. Monitor its `progress.jsonl`; if interrupted, resume its
    `latest.pt` with the same immutable protocol and a larger/equal `--steps` value.
-3. Compare neural event Brier/ECE and empirical hard-map Brier against the fixed death-test gates.
-4. Update this file and `CONFERENCE_READINESS.md` with the exact command and result; remain NO-GO if
-   independent or direct-query still wins.
+3. If the full model beats that ablation, rerun the full configuration with an additional seed.
+4. Update this file, `P0_DEATH_TEST.md`, and `CONFERENCE_READINESS.md`; remain NO-GO for P1 until the
+   ablation and seed check support the learned event-level claim.
 
 ## Recovery commands
 
