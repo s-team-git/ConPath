@@ -1,7 +1,7 @@
 # ConPath P1 data and event-identifiability audit
 
-Status: **official split fails; non-official provenance split passes integrity plus bounded
-mask/query gates; GO for a fixed streaming-baseline pilot, NO-GO for paper claims**
+Status: **official split fails; non-official provenance split passes integrity, bounded mask/query,
+and streaming-replay gates; GO for fixed baselines, NO-GO for paper claims**
 
 Updated: 2026-08-31 (America/New_York)
 

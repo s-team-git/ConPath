@@ -7,13 +7,14 @@ diagnostic, code change, or experiment; do not rely on chat history or ignored `
 
 - Updated: 2026-08-31 (America/New_York)
 - Repository: `/home/hairo/pathrel_transfer/pathrel_pro6000`
-- Durable checkpoint: `p1-flatlands-query-audit-v1` in tracked `RECOVERY_STATE.json`
+- Durable checkpoint: `p1-flatlands-streaming-v1` in tracked `RECOVERY_STATE.json`
 - Recovery-state commit: resolve with `git log -1 --format='%h %s' -- RECOVERY_STATE.json`
-- Last durable implementation commit: `472c952` (local `main`; not yet pushed)
+- Last durable implementation commit: `a6ec796` (local `main`; not yet pushed)
 - Scientific gate: **P0 GO; FlatLands bounded data gate GO on a non-official provenance split;
   public-data model and paper claims not yet established**
-- Active task: implement a streaming FlatLands adapter and fixed non-neural baselines on the frozen
-  bounded observation/query manifests. Do not use the leaking official split or extract the archive.
+- Active task: freeze a unified FlatLands evaluator and implement deterministic-completion,
+  independent-cell, and direct-query baselines on the frozen bounded manifests. Do not use the
+  leaking official split or extract the archive.
 
 `RECOVERY_STATE.json` is the machine-readable source of truth for required ignored artifacts,
 byte counts, SHA-256 values, last verification, and the next action. Run the quick verifier first
@@ -226,12 +227,27 @@ only 3/115 retained queries reachable at 10 cm. Future metrics must remain sourc
 The reproducible result is `results/p1_flatlands_query_audit_bounded/`, generated from clean commit
 `472c952`; report/selection/query SHA-256 values are registered in `RECOVERY_STATE.json`.
 
+Implementation commit `a6ec796` completes the direct-ZIP hand-off in
+`src/pathrel/flatlands_data.py`. It verifies the frozen CSV hashes and archive byte count, filters
+only by `provenance.original_split`, lazily opens one ZIP handle per process, validates metadata and
+masks, and reconstructs every query from input-side evidence before exposing targets. An all-packet
+replay decoded 512/512 observations and reproduced split sizes 160/160/192, 4,653 retained queries,
+and 10,452,053 valid hidden-region cells. All maps are 256x256; two-worker DataLoader and padded
+query collation smokes pass. Tests reject archive-split fallback and tampered query geometry.
+
+The same commit updates the project site with generated, tracked FlatLands audit data and figures:
+`site/data/flatlands_audit.{json,js}`, `flatlands_reachability.svg`, and
+`flatlands_query_outcomes.svg`. A real browser run populated 512 scenes, 4,653 retained queries,
+11/11 gated strata, the three official overlap counts, and zero provenance overlap. The section is
+labelled throughout as a bounded data audit and not a model/paper result. Full regression now reports
+`Ran 52 tests in 1.104s ... OK`, `skipped=0`; `smoke_forward.py` also passes.
+
 ## Exact next actions
 
-1. Implement a direct-from-ZIP streaming adapter keyed by the frozen selected-observation CSV; keep
-   `epistemic_mask` as invalid support and do not extract the full archive.
-2. Freeze deterministic completion, independent-cell, and direct-query baseline inputs/outputs on
-   the exact saved query CSV before attempting a correlated neural model.
+1. Freeze one evaluator/report schema and deterministic seeds on the exact saved query CSV, with
+   per-scene weighting and train-only fitting.
+2. Implement deterministic completion, independent-cell, and direct-query predictor baselines
+   before attempting a correlated neural model.
 3. Report every result by provenance split/source/radius as well as pooled; preserve ScanNet++ as
    OOD-only and explicitly expose the saturated ARKitScenes 20 cm stratum.
 4. Keep paper/public-data claims NO-GO until fixed baselines run and upstream terms plus missing
@@ -256,6 +272,7 @@ PYTHONPATH=src .venv/bin/python scripts/diagnose_p0_checkpoint.py \
 ./scripts/download_flatlands.sh --check
 PYTHONPATH=src .venv/bin/python scripts/audit_flatlands_queries.py \
   --output-dir results/p1_flatlands_query_audit_bounded --overwrite
+PYTHONPATH=src .venv/bin/python scripts/build_demo_site.py
 ```
 
 `results/` and checkpoints are intentionally ignored. Any result used to make a research decision

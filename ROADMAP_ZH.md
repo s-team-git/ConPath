@@ -163,7 +163,7 @@ L_reachability_U-statistic_Brier
 | 合成歧义数据 | 已完成 | `src/pathrel/synthetic.py` |
 | forward/backward smoke | 已完成 | `scripts/` 与 `tests/` |
 | ORFD adapter | 未开始 | P1 |
-| FlatLands completion/query audit | 512 场景 bounded data gate 已通过；固定基线待实现 | P1 |
+| FlatLands completion/query audit | 512 场景 data gate 与 direct-ZIP adapter 已通过；固定基线待实现 | P1 |
 | UnScenes3D encoder/loader | 未开始 | P2 |
 | WildOcc cross-domain | 未开始 | P2 |
 | scalable path-cut bounds | 未开始 | P3，不能提前声称已实现 |
@@ -206,8 +206,9 @@ independent `0.1832` 与 direct-query `0.1699`；匹配的 no-reach 对照为 `0
 NO-GO；非官方 `provenance.original_split` 在 512 个不同场景、16 个 split/source strata 上通过
 mask 与最低 query-balance gate。4,653 个有效端点中有 121 个 radius-0 断连、3,095 个足迹失败和
 1,437 个 20 cm 正例。该分布并不均匀：test/ARKitScenes 的 115 个有效 query 在 20 cm 下没有
-正例。因此下一步只允许实现 direct-from-ZIP loader 与固定 deterministic/independent/direct-
-query baseline，并强制按 source/radius 报告；尚未得到公开数据模型结果。
+正例。direct-from-ZIP loader 已完成 512/512 场景回放、双进程加载与防 split 泄漏测试，审计
+JSON/图表也已同步到项目网站。因此下一步只允许先冻结统一 evaluator，再实现 deterministic /
+independent / direct-query baseline，并强制按 source/radius 报告；尚未得到公开数据模型结果。
 
 ### P2：正式公开数据实验
 
@@ -235,3 +236,28 @@ query baseline，并强制按 source/radius 报告；尚未得到公开数据模
 4. 更换车辆半径和测试地点后，概率是否仍然校准？
 
 如果这四个问题没有正面答案，就不应继续扩展 RGB backbone、3DGS 或实车系统。
+
+## 从现在到论文定稿的完整任务链
+
+以下顺序是当前持续 goal；每一阶段必须留下配置、随机种子、机器可读报告、图表和网站快照，
+不能因为后面的结果更好而修改前面的 split 或 query。
+
+1. **P1 评测合同与强基线。** 冻结统一 evaluator、scene-weighted 指标、bootstrap 单位和
+   train-only 拟合边界；完成 deterministic completion、independent-cell posterior 和
+   direct-query predictor。按 split/source/radius 输出 Brier、NLL、ECE、false-safe 与效率。
+2. **可扩展连通算子。** 将已验证的 merge-tree exact-forward 参考推进为批量实现，或采用
+   exact-forward/soft-backward 算子；证明与离线 oracle 一致，报告显存、时间和 query 数扩展。
+3. **ConPath 正式训练与消融。** 至少三个固定种子；比较完整模型、无 event loss、无全局相关
+   因子、independent decoder、不同 K 和确定性均值图。所有方法共享 encoder、数据与 query。
+4. **校准与安全分析。** 做 source/radius reliability、false-safe 阈值曲线、K 收敛、scene
+   bootstrap 置信区间、失败案例和饱和 stratum 报告；不得用 pooled 均值掩盖 ARKitScenes。
+5. **外部有效性。** 根据 P1 结果选择一个第二数据域；优先补足真实支撑/越野语义，而非再做一套
+   相似室内数据。冻结 scene/site/sequence split，并只复用已经定稿的方法与超参数规则。
+6. **可复现冻结。** 固定环境、配置、checkpoint、数据哈希、运行命令和最终表格；从干净环境
+   重跑关键结果，网站同步所有可公开 JSON/CSV/SVG 与定性图片，并逐项核对 license/attribution。
+7. **论文写作与投稿。** 先冻结研究问题、贡献与 claim boundary，再完成方法、实验、相关工作、
+   局限和附录；制作主表/主图，完成内部反例审稿、统计审计、匿名化与 ICRA/IROS 格式检查。
+
+进入论文定稿的硬门槛是：强基线完整、完整模型多种子优势稳定、false-safe 有实质下降、关键消融
+支持因果解释、第二域不反转主要结论、所有数字可从冻结报告自动生成。未达到这些门槛时，只能写
+working draft，不能宣称已经具备投稿级证据。
