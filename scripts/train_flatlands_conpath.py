@@ -37,6 +37,7 @@ from pathrel.flatlands_eval import (  # noqa: E402
     write_prediction_manifest,
 )
 from pathrel.flatlands_query import sha256_path  # noqa: E402
+from pathrel.labels import batched_merge_tree_bottleneck_scores, clearance_radius_map  # noqa: E402
 from pathrel.losses import (  # noqa: E402
     posterior_marginal_nll,
     reachability_brier,
@@ -219,6 +220,25 @@ def _forward(model: PathRelNet, batch: dict[str, object], radii: tuple[int, ...]
     )
 
 
+def _exact_event_probabilities(
+    safe_samples: Tensor,
+    starts: np.ndarray,
+    goals: np.ndarray,
+    radii: tuple[int, ...],
+) -> np.ndarray:
+    """Evaluate hard posterior worlds with the exact NumPy clearance/merge-tree oracle."""
+
+    safe = safe_samples.detach().cpu().numpy() > 0.5
+    scores = np.stack(
+        [
+            np.stack([clearance_radius_map(world) for world in batch_worlds])
+            for batch_worlds in safe
+        ]
+    ).astype(np.float64, copy=False)
+    bottleneck = batched_merge_tree_bottleneck_scores(scores, starts, goals)
+    return np.stack([(bottleneck >= radius).mean(axis=1) for radius in radii], axis=-1)
+
+
 @torch.inference_mode()
 def _validation_selection_score(model: PathRelNet, loader: DataLoader, device: torch.device, radii: tuple[int, ...], samples: int, max_steps: int, query_limit: int | None, generator: torch.Generator) -> float:
     model.eval()
@@ -235,7 +255,7 @@ def _validation_selection_score(model: PathRelNet, loader: DataLoader, device: t
 
 
 @torch.inference_mode()
-def _validation_prediction_rows(model: PathRelNet, loader: DataLoader, device: torch.device, radii: tuple[int, ...], samples: int, max_steps: int, generator: torch.Generator) -> list[dict[str, object]]:
+def _validation_prediction_rows(model: PathRelNet, loader: DataLoader, device: torch.device, radii: tuple[int, ...], samples: int, max_steps: int, generator: torch.Generator, *, exact_forward: bool = True) -> list[dict[str, object]]:
     model.eval()
     rows: list[dict[str, object]] = []
     for numpy_batch in loader:
@@ -243,7 +263,15 @@ def _validation_prediction_rows(model: PathRelNet, loader: DataLoader, device: t
         if batch["starts"].shape[1] == 0:
             continue
         output = _forward(model, batch, radii, samples, max_steps, generator)
-        probabilities = output.reachability.detach().cpu().numpy()
+        if exact_forward:
+            probabilities = _exact_event_probabilities(
+                output.posterior.safe_samples(),
+                numpy_batch["starts"],
+                numpy_batch["goals"],
+                radii,
+            )
+        else:
+            probabilities = output.reachability.detach().cpu().numpy()
         mask = numpy_batch["query_mask"]
         for batch_index, global_id in enumerate(numpy_batch["global_ids"]):
             for query_index in np.flatnonzero(mask[batch_index]):
@@ -377,7 +405,7 @@ def main() -> None:
 
     selected = torch.load(best_path, map_location=device, weights_only=False)
     model.load_state_dict(selected["model"])
-    rows = _validation_prediction_rows(model, validation_loader, device, validation_radii, args.validation_samples, args.max_reachability_steps, sample_generator)
+    rows = _validation_prediction_rows(model, validation_loader, device, validation_radii, args.validation_samples, args.max_reachability_steps, sample_generator, exact_forward=True)
     prediction_path = args.output_dir / "predictions_validation.csv"
     prediction_count = write_prediction_manifest(prediction_path, rows)
     full_validation = args.train_scenes_limit is None and args.validation_scenes_limit is None
@@ -410,6 +438,12 @@ def main() -> None:
             "epochs_completed": len(history),
         },
         "prediction": {"path": str(prediction_path), "rows": prediction_count, "sha256": sha256_path(prediction_path)},
+        "forward": {
+            "training_event_operator": "shared-start differentiable max-min propagation",
+            "validation_prediction_operator": "exact NumPy disk-clearance + batched Kruskal merge-tree",
+            "validation_exact_forward": True,
+            "training_max_reachability_steps": args.max_reachability_steps,
+        },
         "evaluation": evaluation,
         "runtime": {
             "wall_seconds": total_seconds,

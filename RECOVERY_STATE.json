@@ -42,6 +42,7 @@
     "tests/test_flatlands_data.py",
     "tests/test_flatlands_eval.py",
     "tests/test_flatlands_baselines.py",
+    "tests/test_flatlands_conpath.py",
     "tests/test_demo_site.py",
     "scripts/evaluate_flatlands_predictions.py",
     "scripts/run_flatlands_radius_prior.py",
@@ -261,7 +262,7 @@
   ],
   "last_verification": {
     "command": "PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -v && PYTHONPATH=src .venv/bin/python -m py_compile scripts/train_flatlands_conpath.py src/pathrel/reachability.py src/pathrel/model.py && PYTHONPATH=src .venv/bin/python scripts/verify_recovery_state.py",
-    "result": "Ran 67 tests in 1.327s; OK; ConPath public-data entry point and shared-start propagation compile; full recovery SHA verification passed",
+    "result": "Ran 68 tests in 1.592s; OK; ConPath public-data entry point, exact validation helper, and shared-start propagation compile; full recovery SHA verification passed",
     "implementation_commit": "HEAD (validation baseline/site snapshot)"
   },
   "recovery_commands": [
