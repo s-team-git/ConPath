@@ -8,15 +8,15 @@ diagnostic, code change, or experiment; do not rely on chat history or ignored `
 - Updated: 2026-08-30 (America/New_York)
 - Repository: `/home/hairo/pathrel_transfer/pathrel_pro6000`
 - Last durable implementation commit: `2de9103` (local `main`; not yet pushed in this continuation)
-- Scientific gate: **NO-GO** for P1/public-data claims
-- Active task: fix the trained neural P0 joint-event posterior under the existing held-out-template
-  protocol; do not expand to a new public benchmark until it passes.
+- Scientific gate: **P0 GO across two seeds; public-data/paper claims not yet established**
+- Active task: finish the tracked P0 evidence/readiness update, then audit the documented P1 entry
+  criteria before expanding to a public benchmark.
 
 ## Last completed work
 
 The tracked repository already contains the TUM RGB-D geometric pilot, model hand-off smoke,
-academic project page, exact NumPy merge-tree reference, and synthetic P0 baselines. The oracle
-correlated proxy passes the death test, but the neural model does not.
+academic project page, exact NumPy merge-tree reference, and synthetic P0 baselines. The historical
+neural failures below motivated the corrected two-seed result recorded later in this file.
 
 The newest untracked/ignored run is `results/p0_neural_cuda_tuned01/` (generated 2026-08-28
 06:01 local time). Its report records:
@@ -63,7 +63,7 @@ Ctrl-C, preserves optimizer/model/Torch/CUDA/generator state, and refuses to ove
 run without `--resume`.
 
 The recovery smoke ran steps 1-2, resumed the saved checkpoint, and completed steps 3-4 with the
-loss history exactly `[1, 2, 3, 4]`. All tests currently pass: `Ran 30 tests ... OK`, `skipped=0`.
+loss history exactly `[1, 2, 3, 4]`. All tests currently pass: `Ran 35 tests ... OK`, `skipped=0`.
 
 A 40-step 12x12 CPU regression completed without NaNs (event Brier `0.128662`, empirical full-map
 Brier `0.020068`). It did not separate the two context priors and does not pass its reduced-protocol
@@ -131,20 +131,25 @@ occupancy. Doorway fragmentation rose to `44.5%/71.6%`. Thus the reachability pr
 material under this fixed seed: it improves event Brier by `0.074991` while the no-reach ablation
 actually has slightly better marginal-map Brier.
 
-This supports the event-level objective but is still one optimization seed. Before authorizing P1,
-rerun the full configuration with at least one additional seed and update the tracked readiness
-documents.
+`results/p0_neural_cuda_contextplane_seed20260828_v4/` completed the prescribed extra-seed run with
+the dataset split fixed. It also passed: event Brier `0.111621`, NLL `0.346012`, ECE `0.071852`,
+false-safe@0.8 `0.1125`, empirical hard-map Brier `0.002892`, and context-gap ratio `0.6957`.
+Radius-zero context predictions improved to `0.3764/0.8329`. Fragmentation remained a limitation at
+`16.1%/14.9%`, but it was far below the no-reach ablation's `44.5%/71.6%`.
+
+Both full-model seeds independently pass every tightened gate; their event Brier range is
+`0.111621-0.116377`, versus `0.169888` for direct-query and `0.183172` for independent Bernoulli.
+The fixed-seed no-reach ablation fails. This closes the synthetic neural P0 gate, but it is not a
+public-data or paper-level result.
 
 ## Exact next actions
 
-1. Run the full configuration into `results/p0_neural_cuda_contextplane_seed20260828_v4/` with
-   `--seed 20260828`; this changes initialization/batch/sample RNG, not the fixed dataset split.
-2. Monitor its `progress.jsonl`; if interrupted, resume its `latest.pt` with the same immutable
-   protocol and a larger/equal `--steps` value.
-3. Compare per-seed event Brier/ECE/context gap, empirical hard-map Brier, and fragmentation; do not
-   average away a failed gate.
-4. Update this file, `P0_DEATH_TEST.md`, and `CONFERENCE_READINESS.md`; remain NO-GO for P1 until the
-   extra-seed result supports the learned event-level claim.
+1. Update `P0_DEATH_TEST.md` and `CONFERENCE_READINESS.md` with the full two-seed table and matched
+   no-reach ablation; explicitly retain the synthetic-only scope and fragmentation limitation.
+2. Run the full CPU unit suite and repository verification checks, then commit the tracked evidence
+   update as a recoverable milestone.
+3. Audit the existing P1/public-data entry criteria and available artifacts before starting any new
+   expensive run; record the exact next command here first.
 
 ## Recovery commands
 
@@ -153,6 +158,7 @@ cd /home/hairo/pathrel_transfer/pathrel_pro6000
 git status --short --branch
 sed -n '1,240p' CONTINUATION.md
 sed -n '1,240p' results/p0_neural_cuda_contextplane_v4/report.json
+sed -n '1,240p' results/p0_neural_cuda_contextplane_seed20260828_v4/report.json
 sed -n '1,240p' results/p0_neural_cuda_contextplane_noreach_v4/report.json
 PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -v
 PYTHONPATH=src .venv/bin/python scripts/diagnose_p0_checkpoint.py \
