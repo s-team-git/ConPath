@@ -19,6 +19,7 @@
           <a href="#method">Method</a>
           <a href="#results">Results</a>
           <a href="#flatlands-audit">Data audit</a>
+          <a href="#flatlands-baselines">Baselines</a>
           <a href="https://github.com/s-team-git/ConPath" rel="noreferrer">Code <span aria-hidden="true">↗</span></a>
         </div>
       </div>
@@ -174,6 +175,41 @@
         </div>
       </section>
 
+      <section id="flatlands-baselines" class="section section-tint">
+        <div class="container">
+          <p class="eyebrow baseline-eyebrow">VALIDATION BASELINES · PROVENANCE SPLIT · TEST LOCKED · NOT FINAL PAPER RESULT</p>
+          <h2 class="center-title">FlatLands validation baseline slate</h2>
+          <p class="section-lede">The first frozen evaluator pass compares a radius-only control, a deterministic completion, an independent-cell event sampler, and a direct-query predictor on the validation provenance split.</p>
+          <div id="flatlands-baseline-meta" class="meta-grid" aria-live="polite">
+            <div class="meta-card"><span>Methods</span><strong id="flatlands-baseline-methods">—</strong><small>all use the same label-free CSV contract</small></div>
+            <div class="meta-card"><span>Best validation Brier</span><strong id="flatlands-baseline-best">—</strong><small>scene-weighted overall metric</small></div>
+            <div class="meta-card"><span>Independent sampler</span><strong id="flatlands-baseline-independent">—</strong><small>K=32 event worlds; calibration stress test</small></div>
+            <div class="meta-card"><span>Test status</span><strong id="flatlands-baseline-test">—</strong><small>no test labels were read</small></div>
+          </div>
+          <div class="scope-note baseline-scope"><strong>Interpretation.</strong> These are validation diagnostics, not the final paper table. The locked test split remains untouched until the multi-seed, scalability, calibration, and second-domain checks are complete.</div>
+          <div class="results-layout baseline-results-layout">
+            <div class="table-wrap">
+              <table>
+                <caption>Table 4. Validation-only baseline comparison</caption>
+                <thead><tr><th>Method</th><th>Brier ↓</th><th>NLL ↓</th><th>ECE ↓</th><th>False-safe @ 0.8 ↓</th><th>Coverage @ 0.8</th></tr></thead>
+                <tbody id="flatlands-baseline-body"><tr><td colspan="6">Loading tracked validation baseline snapshot…</td></tr></tbody>
+              </table>
+            </div>
+            <div class="result-callout baseline-callout">
+              <p class="eyebrow">P1 VALIDATION CHECKPOINT</p>
+              <div class="headline-metric"><span id="flatlands-baseline-headline">—</span><small>best scene-weighted Brier</small></div>
+              <p id="flatlands-baseline-claim">The validation baseline snapshot is generated from the frozen evaluator and is explicitly excluded from final paper claims.</p>
+              <a class="text-link" href="data/flatlands_baselines_validation.json">Download baseline JSON ↗</a>
+            </div>
+          </div>
+          <div class="figure-grid baseline-figure-grid">
+            <figure class="figure"><img src="assets/flatlands_baseline_comparison.svg" alt="Bar chart comparing FlatLands validation baseline Brier, NLL, and ECE metrics." loading="lazy" /><figcaption>Figure 7. Validation event metrics; lower is better. Full source/radius rows and scene-bootstrap intervals are in the JSON snapshot.</figcaption></figure>
+            <figure class="figure"><img src="assets/flatlands_baseline_reliability.svg" alt="Reliability curves for FlatLands validation baselines." loading="lazy" /><figcaption>Figure 8. Overall scene-weighted reliability bins; the independent-cell sampler is intentionally shown as a calibration stress test.</figcaption></figure>
+          </div>
+          <p class="source-note">Protocol: <a href="https://github.com/s-team-git/ConPath/blob/main/P1_BASELINE_PROTOCOL.md" rel="noreferrer">P1_BASELINE_PROTOCOL.md ↗</a>. Checkpoints, manifests, and exact reports remain in the reproducibility workspace; no test result is published here.</p>
+        </div>
+      </section>
+
       <section id="repro" class="section section-tint">
         <div class="container">
           <h2 class="center-title">Reproducibility and limits</h2>
@@ -217,6 +253,7 @@
     <noscript><div class="noscript">JavaScript is only used to populate the compact metric table. The real video, figures, and protocol remain available without it.</div></noscript>
     <script src="data/tum_rgbd_pilot.js" defer></script>
     <script src="data/flatlands_audit.js" defer></script>
+    <script src="data/flatlands_baselines_validation.js" defer></script>
     <script src="app.js" defer></script>
   </body>
 </html>

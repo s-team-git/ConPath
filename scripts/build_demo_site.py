@@ -26,6 +26,7 @@ DEFAULT_FLATLANDS_REPORT = (
 DEFAULT_FLATLANDS_PROVENANCE_REPORT = (
     PROJECT_ROOT / "results" / "p1_flatlands_provenance_manifest" / "report.json"
 )
+DEFAULT_FLATLANDS_BASELINE_ROOT = PROJECT_ROOT / "results"
 
 FRIENDLY_NAMES = {
     "constant_query_radius": "Constant query-radius prior",
@@ -80,6 +81,17 @@ def parse_args() -> argparse.Namespace:
         "--skip-flatlands",
         action="store_true",
         help="do not rebuild the public FlatLands data-audit snapshot",
+    )
+    parser.add_argument(
+        "--flatlands-baseline-root",
+        type=Path,
+        default=DEFAULT_FLATLANDS_BASELINE_ROOT,
+        help="results root containing the validation-only P1 baseline reports",
+    )
+    parser.add_argument(
+        "--skip-flatlands-baselines",
+        action="store_true",
+        help="do not rebuild the validation-only FlatLands baseline snapshot",
     )
     parser.add_argument(
         "--include-legacy",
@@ -551,6 +563,223 @@ def build_flatlands_site(
     return snapshot
 
 
+BASELINE_FRIENDLY_NAMES = {
+    "radius_prior_control": "Radius-prior control",
+    "deterministic_completion": "Deterministic completion",
+    "independent_cell_completion_k32": "Independent-cell completion (K=32)",
+    "direct_query": "Direct-query predictor",
+}
+
+
+def _baseline_metric_item(report: dict[str, Any], scope: str, radius: int | None = None) -> dict[str, Any] | None:
+    for item in report.get("metrics", []):
+        if item.get("scope") != scope:
+            continue
+        if radius is None and item.get("radius_cells") is not None:
+            continue
+        if radius is not None and item.get("radius_cells") != radius:
+            continue
+        return item
+    return None
+
+
+def _compact_baseline_metric(item: dict[str, Any], *, include_reliability: bool = False) -> dict[str, Any]:
+    output: dict[str, Any] = {
+        "scope": item.get("scope"),
+        "source_dataset": item.get("source_dataset"),
+        "radius_cells": item.get("radius_cells"),
+    }
+    for weighting in ("scene_weighted", "query_weighted"):
+        metric = item.get(weighting, {})
+        output[weighting] = {
+            key: json_safe(metric.get(key))
+            for key in (
+                "brier",
+                "nll",
+                "ece",
+                "false_safe_rate@0.8",
+                "high_confidence_safe_coverage@0.8",
+                "positive_rate",
+                "mean_probability",
+                "count",
+                "scene_count",
+            )
+            if key in metric
+        }
+        if include_reliability:
+            output[weighting]["reliability"] = json_safe(metric.get("reliability", []))
+    output["scene_bootstrap_95"] = json_safe(item.get("scene_bootstrap_95", {}))
+    return output
+
+
+def build_flatlands_baseline_snapshot(
+    report_paths: dict[str, Path],
+) -> dict[str, Any]:
+    """Compact the validation-only baseline reports without promoting them to paper results."""
+
+    methods: list[dict[str, Any]] = []
+    radii: set[int] = set()
+    for method, path in report_paths.items():
+        report = json.loads(path.read_text(encoding="utf-8"))
+        if report.get("paper_result", True):
+            raise ValueError(f"baseline report must be marked non-paper: {path}")
+        overall_item = _baseline_metric_item(report, "overall")
+        if overall_item is None:
+            raise ValueError(f"baseline report has no overall metric: {path}")
+        compact = {
+            "id": method,
+            "name": BASELINE_FRIENDLY_NAMES.get(method, method),
+            "report": relative_path(path),
+            "overall": _compact_baseline_metric(overall_item, include_reliability=True),
+            "by_radius": [],
+            "by_source": [],
+            "radius_monotonicity": json_safe(report.get("radius_monotonicity", {})),
+        }
+        for item in report.get("metrics", []):
+            scope = item.get("scope")
+            if scope == "radius":
+                radius = int(item["radius_cells"])
+                radii.add(radius)
+                compact["by_radius"].append(_compact_baseline_metric(item))
+            elif scope == "source":
+                compact["by_source"].append(_compact_baseline_metric(item))
+        compact["by_radius"].sort(key=lambda item: item["radius_cells"])
+        compact["by_source"].sort(key=lambda item: str(item["source_dataset"]))
+        methods.append(compact)
+    methods.sort(key=lambda item: list(report_paths).index(item["id"]))
+    return json_safe(
+        {
+            "schema_version": 1,
+            "project": "ConPath",
+            "dataset": "FlatLands",
+            "kind": "validation_baseline_snapshot",
+            "paper_result": False,
+            "test_evaluated": False,
+            "protocol": "P1_BASELINE_PROTOCOL.md v1",
+            "primary_weighting": "equal source-scene, then equal event within scene",
+            "radii_cells": sorted(radii),
+            "methods": methods,
+            "claim_boundary": (
+                "Validation-only baseline diagnostics on the bounded provenance split. The test "
+                "split is still locked, and these numbers are not final paper results."
+            ),
+        }
+    )
+
+
+def build_flatlands_baseline_comparison_svg(snapshot: dict[str, Any]) -> str:
+    methods = snapshot.get("methods", [])
+    colors = {"radius_prior_control": "#8c99a8", "deterministic_completion": "#315b86", "independent_cell_completion_k32": "#c47b38", "direct_query": "#2d8a70"}
+    metrics = (("brier", "Brier ↓"), ("nll", "NLL ↓"), ("ece", "ECE ↓"))
+    width, height = 1120, 590
+    panel_left, panel_top, panel_width, panel_height, gap = 72, 116, 290, 340, 48
+    parts = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
+        '<rect width="100%" height="100%" fill="#ffffff"/>',
+        '<style>text{font-family:Inter,Arial,sans-serif;fill:#263744}.title{font-size:21px;font-weight:700}.sub{font-size:12px;fill:#66737e}.axis{stroke:#aeb8c0}.label{font-size:11px}.value{font-size:11px;font-weight:700}</style>',
+        '<text class="title" x="24" y="34">FlatLands validation baselines</text>',
+        '<text class="sub" x="24" y="57">Scene-weighted event metrics · provenance split · validation only · lower is better</text>',
+    ]
+    for method_index, method in enumerate(methods):
+        x = 24 + method_index * 270
+        color = colors.get(method["id"], "#53616c")
+        parts.append(f'<rect x="{x}" y="78" width="12" height="12" rx="2" fill="{color}"/>')
+        parts.append(f'<text class="label" x="{x + 18}" y="89">{escape(method["name"])}</text>')
+    for panel_index, (key, label) in enumerate(metrics):
+        left = panel_left + panel_index * (panel_width + gap)
+        values = [float(method["overall"]["scene_weighted"].get(key, 0.0) or 0.0) for method in methods]
+        upper = max(0.05, max(values, default=0.05) * 1.18)
+        parts.append(f'<text class="label" x="{left}" y="100">{label}</text>')
+        parts.append(f'<line class="axis" x1="{left}" y1="{panel_top + panel_height}" x2="{left + panel_width}" y2="{panel_top + panel_height}"/>')
+        bar_width = panel_width / max(1, len(methods)) * 0.64
+        for index, (method, value) in enumerate(zip(methods, values)):
+            x = left + (index + 0.5) * panel_width / len(methods) - bar_width / 2
+            bar_height = panel_height * value / upper
+            y = panel_top + panel_height - bar_height
+            color = colors.get(method["id"], "#53616c")
+            parts.append(f'<rect x="{x:.2f}" y="{y:.2f}" width="{bar_width:.2f}" height="{bar_height:.2f}" rx="4" fill="{color}"/>')
+            parts.append(f'<text class="value" x="{x + bar_width / 2:.2f}" y="{max(panel_top + 12, y - 6):.2f}" text-anchor="middle">{value:.3f}</text>')
+            parts.append(f'<text class="label" x="{x + bar_width / 2:.2f}" y="{panel_top + panel_height + 22}" text-anchor="middle">{index + 1}</text>')
+    parts.append(f'<text class="sub" x="24" y="{height - 23}">Bar order is shown in the legend; full source/radius metrics and bootstrap intervals are in flatlands_baselines_validation.json.</text>')
+    parts.append("</svg>\n")
+    return "".join(parts)
+
+
+def build_flatlands_baseline_reliability_svg(snapshot: dict[str, Any]) -> str:
+    colors = {"radius_prior_control": "#8c99a8", "deterministic_completion": "#315b86", "independent_cell_completion_k32": "#c47b38", "direct_query": "#2d8a70"}
+    left, top, plot_width, plot_height = 86, 84, 470, 370
+    width, height = 1120, 520
+    parts = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
+        '<rect width="100%" height="100%" fill="#ffffff"/>',
+        '<style>text{font-family:Inter,Arial,sans-serif;fill:#263744}.title{font-size:21px;font-weight:700}.sub{font-size:12px;fill:#66737e}.grid{stroke:#e4e9ed}.axis{stroke:#aeb8c0}.legend{font-size:12px}</style>',
+        '<text class="title" x="24" y="34">FlatLands validation reliability</text>',
+        '<text class="sub" x="24" y="57">Overall scene-weighted calibration bins · validation only</text>',
+    ]
+    for tick in range(6):
+        value = tick / 5
+        x = left + value * plot_width
+        y = top + plot_height - value * plot_height
+        parts.append(f'<line class="grid" x1="{x:.1f}" y1="{top}" x2="{x:.1f}" y2="{top + plot_height}"/>')
+        parts.append(f'<line class="grid" x1="{left}" y1="{y:.1f}" x2="{left + plot_width}" y2="{y:.1f}"/>')
+        parts.append(f'<text x="{x - 6:.1f}" y="{top + plot_height + 20}">{value:.1f}</text>')
+        parts.append(f'<text x="{left - 28}" y="{y + 4:.1f}">{value:.1f}</text>')
+    parts.extend(
+        [
+            f'<line class="axis" x1="{left}" y1="{top + plot_height}" x2="{left + plot_width}" y2="{top}" stroke-dasharray="5,5"/>',
+            f'<line class="axis" x1="{left}" y1="{top + plot_height}" x2="{left + plot_width}" y2="{top + plot_height}"/>',
+            f'<line class="axis" x1="{left}" y1="{top}" x2="{left}" y2="{top + plot_height}"/>',
+            f'<text class="sub" x="{left + plot_width / 2 - 54}" y="{top + plot_height + 44}">mean predicted probability</text>',
+            f'<text class="sub" transform="translate(20 {top + plot_height / 2 + 70}) rotate(-90)">empirical event frequency</text>',
+        ]
+    )
+    for method_index, method in enumerate(snapshot.get("methods", [])):
+        metric = method["overall"]["scene_weighted"]
+        points = []
+        for item in metric.get("reliability", []):
+            if item.get("weight", 0.0):
+                x = left + float(item["confidence"]) * plot_width
+                y = top + plot_height - float(item["accuracy"]) * plot_height
+                points.append(f"{x:.1f},{y:.1f}")
+        color = colors.get(method["id"], "#53616c")
+        if points:
+            parts.append(f'<polyline points="{" ".join(points)}" fill="none" stroke="{color}" stroke-width="3"/>')
+        legend_y = top + 20 + method_index * 25
+        parts.append(f'<line x1="650" y1="{legend_y - 5}" x2="678" y2="{legend_y - 5}" stroke="{color}" stroke-width="3"/>')
+        parts.append(f'<text class="legend" x="688" y="{legend_y}">{escape(method["name"])} (Brier {float(metric["brier"]):.3f})</text>')
+    parts.extend(
+        [
+            '<text x="650" y="250" font-size="16">Reading the plot</text>',
+            '<text class="sub" x="650" y="276">The dashed diagonal is perfect calibration.</text>',
+            '<text class="sub" x="650" y="298">Points below it are over-confident / false-safe.</text>',
+            '</svg>\n',
+        ]
+    )
+    return "".join(parts)
+
+
+def build_flatlands_baseline_site(
+    report_paths: dict[str, Path], output_dir: Path
+) -> dict[str, Any]:
+    snapshot = build_flatlands_baseline_snapshot(report_paths)
+    data_dir = output_dir / "data"
+    assets_dir = output_dir / "assets"
+    data_dir.mkdir(parents=True, exist_ok=True)
+    assets_dir.mkdir(parents=True, exist_ok=True)
+    payload = json.dumps(snapshot, ensure_ascii=False, indent=2, allow_nan=False)
+    (data_dir / "flatlands_baselines_validation.json").write_text(payload + "\n", encoding="utf-8")
+    (data_dir / "flatlands_baselines_validation.js").write_text(
+        "window.CONPATH_FLATLANDS_BASELINES = " + payload + ";\n", encoding="utf-8"
+    )
+    (assets_dir / "flatlands_baseline_comparison.svg").write_text(
+        build_flatlands_baseline_comparison_svg(snapshot), encoding="utf-8"
+    )
+    (assets_dir / "flatlands_baseline_reliability.svg").write_text(
+        build_flatlands_baseline_reliability_svg(snapshot), encoding="utf-8"
+    )
+    return snapshot
+
+
 def main() -> None:
     args = parse_args()
     report_path = args.report.resolve()
@@ -558,6 +787,7 @@ def main() -> None:
     real_report = args.real_report.resolve()
     flatlands_report = args.flatlands_report.resolve()
     flatlands_provenance_report = args.flatlands_provenance_report.resolve()
+    flatlands_baseline_root = args.flatlands_baseline_root.resolve()
     if not args.skip_real and not real_report.exists():
         raise SystemExit(
             f"Real-data pilot report not found: {real_report}\n"
@@ -621,6 +851,38 @@ def main() -> None:
             f'{snapshot["selected_observations"]} observations, '
             f'{snapshot["totals"]["retained_valid_endpoint_queries"]} retained queries'
         )
+        if not args.skip_flatlands_baselines:
+            baseline_paths = {
+                "radius_prior_control": flatlands_baseline_root
+                / "p1_flatlands_radius_prior_validation"
+                / "evaluation"
+                / "report.json",
+                "deterministic_completion": flatlands_baseline_root
+                / "p1_flatlands_completion_seed20260831"
+                / "evaluation_deterministic_validation"
+                / "report.json",
+                "independent_cell_completion_k32": flatlands_baseline_root
+                / "p1_flatlands_completion_seed20260831"
+                / "evaluation_independent_k32_validation"
+                / "report.json",
+                "direct_query": flatlands_baseline_root
+                / "p1_flatlands_direct_query_seed20260831"
+                / "evaluation_validation"
+                / "report.json",
+            }
+            baseline_missing = [path for path in baseline_paths.values() if not path.exists()]
+            if baseline_missing:
+                print(
+                    "Skipped FlatLands validation baseline snapshot; missing report(s): "
+                    + ", ".join(str(path) for path in baseline_missing)
+                )
+            else:
+                baseline_snapshot = build_flatlands_baseline_site(baseline_paths, output_dir)
+                print(
+                    "Built FlatLands validation baseline snapshot: "
+                    f'{len(baseline_snapshot["methods"])} methods, '
+                    f'{len(baseline_snapshot["radii_cells"])} radii'
+                )
 
 
 if __name__ == "__main__":

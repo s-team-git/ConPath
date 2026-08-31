@@ -208,6 +208,35 @@ The project-site builder consumes the two frozen reports and generates
 shows source/radius target prevalence, selected-query outcome counts, all 11 gated strata, and the
 official/provenance scene-overlap contrast. Each asset carries the same non-model claim boundary.
 
+## First validation baseline pass (non-paper result)
+
+The frozen evaluator and three baseline paths were run on the same 160-train / 160-validation
+provenance scenes and the exact `queries.csv`. No test labels were read. The primary score is
+equal-scene weighting followed by equal event weighting within each scene; intervals in the reports
+are 2,000-scene-cluster bootstrap replicates. Every prediction file contains only
+`global_id,candidate_index,radius_cells,probability`; targets are joined only inside the evaluator.
+
+| Validation method | Brier | NLL | ECE | False-safe @0.8 | Coverage @0.8 |
+|---|---:|---:|---:|---:|---:|
+| Radius-prior control (train-only) | 0.15870 | 0.49283 | 0.01661 | 0.11156 | 0.33333 |
+| Deterministic completion | **0.08556** | 1.18211 | 0.08556 | 0.08073 | 0.45450 |
+| Independent-cell completion (K=32) | 0.22546 | 2.92768 | 0.24025 | **0.01454** | 0.20624 |
+| Direct-query predictor | 0.09119 | **0.29788** | **0.04076** | 0.08335 | 0.37412 |
+
+The direct-query model is the strongest NLL/ECE comparator in this pilot, while deterministic
+completion has the lowest Brier. Independent cells are a deliberately important negative control:
+they have low false-safe coverage because fragmented samples destroy connectivity, but their event
+probabilities are badly miscalibrated. These four numbers are diagnostics for choosing the next
+experiment, not evidence of a ConPath public-data win. The current learned runs use seed `20260831`;
+multi-seed variance, stronger official/public completion baselines, scalable connectivity, and a
+second domain remain open.
+
+The direct-query run finished 62 epochs (best epoch 42, 63.3 s on an NVIDIA RTX PRO 6000) and the
+marginal-completion run finished 27 epochs (best epoch 15, 397.6 s including 353.4 s for K=32 event
+sampling). Validation source/radius rows, reliability bins, monotonicity checks, manifests, and
+checkpoint hashes are preserved in `RECOVERY_STATE.json` and mirrored in the project-site baseline
+snapshot. The test split remains locked.
+
 ## Acceptance gates
 
 All gates are per split and per source dataset, not only pooled across observations.
@@ -251,12 +280,11 @@ All gates are per split and per source dataset, not only pooled across observati
 
 ## Current decision and next command
 
-**NO-GO on the official split. The bounded streaming loader is complete; GO only for fixed
-baselines on the explicitly non-official provenance split.** The next experiment must use the
-already frozen selected-observation/query CSVs, keep ScanNet++ as OOD-only, and compare deterministic
-completion, independent cells, direct query, and correlated completion under identical masks and
-queries. Do not start a large neural run or make a public-data claim before those code paths and
-source/radius-stratified metrics are verified.
+**NO-GO on the official split and on a final paper claim.** The bounded streaming loader, unified
+evaluator, and first validation baselines are complete on the explicitly non-official provenance
+split. The next experiment must use the already frozen selected-observation/query CSVs, keep
+ScanNet++ as OOD-only, and add multi-seed ConPath, ablations, scalable exact-forward connectivity,
+calibration/efficiency analysis, and a second domain before any test evaluation or public-data claim.
 
 The exact command for reproducing the bounded query result is:
 

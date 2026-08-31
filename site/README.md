@@ -19,10 +19,12 @@ PYTHONPATH=src .venv/bin/python scripts/run_tum_rgbd_model_smoke.py --device cpu
 
 The first command writes the reproducible pilot report under
 `results/tum_rgbd_freiburg1_desk_pilot/` and copies compact derived assets into `site/`. The second
-command rebuilds `data/tum_rgbd_pilot.json`, `data/flatlands_audit.json`, their browser-local JS
-mirrors, and the two FlatLands audit SVGs. It expects the bounded query and provenance audit reports
-under `results/`; use `--skip-flatlands` only when intentionally rebuilding the TUM-only page. Raw
-datasets remain under the ignored `data/raw/` directory and are never committed.
+command rebuilds `data/tum_rgbd_pilot.json`, `data/flatlands_audit.json`, the validation-only
+`data/flatlands_baselines_validation.{json,js}`, their browser-local JS mirrors, and the FlatLands
+audit/baseline SVGs. It expects the bounded query, provenance-audit, and first validation baseline
+reports under `results/`; use `--skip-flatlands` or `--skip-flatlands-baselines` only when
+intentionally rebuilding a partial page. Raw datasets and checkpoints remain under ignored paths
+and are never committed.
 
 The legacy synthetic P0 snapshot can still be regenerated for development with
 `scripts/build_demo_site.py --include-legacy`, but it is intentionally excluded from the public page.
@@ -46,7 +48,8 @@ files; it does not download datasets or run GPU experiments on the hosted runner
 
 The TUM RGB-D sequence is credited in the page and linked to the official source. Its RGB/depth and
 motion-capture trajectory support a geometric reference-map pilot, not traversability or collision
-ground truth. The FlatLands section uses only the scene-disjoint upstream provenance split because
-the physical archive split leaks scenes, and remains a data audit until trained baselines exist. See
-[`REAL_DATA_PILOT.md`](../REAL_DATA_PILOT.md) and [`P1_DATA_AUDIT.md`](../P1_DATA_AUDIT.md) for exact
-protocols and limitations.
+ground truth. The FlatLands audit and baseline sections use only the scene-disjoint upstream
+provenance split because the physical archive split leaks scenes. The baseline numbers are
+validation-only diagnostics; they are not a public-data or final-paper claim. See
+[`REAL_DATA_PILOT.md`](../REAL_DATA_PILOT.md), [`P1_DATA_AUDIT.md`](../P1_DATA_AUDIT.md), and
+[`P1_BASELINE_PROTOCOL.md`](../P1_BASELINE_PROTOCOL.md) for exact protocols and limitations.

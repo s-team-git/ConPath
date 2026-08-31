@@ -163,7 +163,7 @@ L_reachability_U-statistic_Brier
 | 合成歧义数据 | 已完成 | `src/pathrel/synthetic.py` |
 | forward/backward smoke | 已完成 | `scripts/` 与 `tests/` |
 | ORFD adapter | 未开始 | P1 |
-| FlatLands completion/query audit | 512 场景 data gate 与 direct-ZIP adapter 已通过；固定基线待实现 | P1 |
+| FlatLands completion/query audit | 512 场景 data gate、direct-ZIP adapter、统一 evaluator 与首轮 validation baseline 已通过；最终结果待多 seed/扩展性/第二域 | P1 |
 | UnScenes3D encoder/loader | 未开始 | P2 |
 | WildOcc cross-domain | 未开始 | P2 |
 | scalable path-cut bounds | 未开始 | P3，不能提前声称已实现 |
@@ -207,8 +207,10 @@ NO-GO；非官方 `provenance.original_split` 在 512 个不同场景、16 个 s
 mask 与最低 query-balance gate。4,653 个有效端点中有 121 个 radius-0 断连、3,095 个足迹失败和
 1,437 个 20 cm 正例。该分布并不均匀：test/ARKitScenes 的 115 个有效 query 在 20 cm 下没有
 正例。direct-from-ZIP loader 已完成 512/512 场景回放、双进程加载与防 split 泄漏测试，审计
-JSON/图表也已同步到项目网站。因此下一步只允许先冻结统一 evaluator，再实现 deterministic /
-independent / direct-query baseline，并强制按 source/radius 报告；尚未得到公开数据模型结果。
+JSON/图表也已同步到项目网站。首轮 validation-only 对照已完成：radius prior 的 Brier 为
+0.15870，deterministic completion 为 0.08556，independent-cell K=32 为 0.22546，direct-query
+为 0.09119；这些数字不是最终论文结果，test 仍锁定。下一步是多 seed ConPath、逐项消融、可扩展
+connectivity、calibration/false-safe 与第二数据域，仍必须按 source/radius 报告。
 
 ### P2：正式公开数据实验
 
@@ -242,9 +244,11 @@ independent / direct-query baseline，并强制按 source/radius 报告；尚未
 以下顺序是当前持续 goal；每一阶段必须留下配置、随机种子、机器可读报告、图表和网站快照，
 不能因为后面的结果更好而修改前面的 split 或 query。
 
-1. **P1 评测合同与强基线。** 冻结统一 evaluator、scene-weighted 指标、bootstrap 单位和
-   train-only 拟合边界；完成 deterministic completion、independent-cell posterior 和
-   direct-query predictor。按 split/source/radius 输出 Brier、NLL、ECE、false-safe 与效率。
+1. **P1 评测合同与强基线（当前已完成首轮）。** 冻结统一 evaluator、scene-weighted 指标、
+   bootstrap 单位和 train-only 拟合边界；已完成 deterministic completion、independent-cell
+   posterior、direct-query predictor 与 train-only radius prior。首轮结果仅用于诊断，下一轮补
+   多 seed、K 收敛和强官方 completion baseline；继续按 split/source/radius 输出 Brier、NLL、ECE、
+   false-safe 与效率。
 2. **可扩展连通算子。** 将已验证的 merge-tree exact-forward 参考推进为批量实现，或采用
    exact-forward/soft-backward 算子；证明与离线 oracle 一致，报告显存、时间和 query 数扩展。
 3. **ConPath 正式训练与消融。** 至少三个固定种子；比较完整模型、无 event loss、无全局相关

@@ -7,14 +7,14 @@ diagnostic, code change, or experiment; do not rely on chat history or ignored `
 
 - Updated: 2026-08-31 (America/New_York)
 - Repository: `/home/hairo/pathrel_transfer/pathrel_pro6000`
-- Durable checkpoint: `p1-flatlands-streaming-v1` in tracked `RECOVERY_STATE.json`
+- Durable checkpoint: `p1-flatlands-validation-baselines-v1` in tracked `RECOVERY_STATE.json`
 - Recovery-state commit: resolve with `git log -1 --format='%h %s' -- RECOVERY_STATE.json`
-- Last durable implementation commit: `a6ec796` (local `main`; not yet pushed)
-- Scientific gate: **P0 GO; FlatLands bounded data gate GO on a non-official provenance split;
-  public-data model and paper claims not yet established**
-- Active task: freeze a unified FlatLands evaluator and implement deterministic-completion,
-  independent-cell, and direct-query baselines on the frozen bounded manifests. Do not use the
-  leaking official split or extract the archive.
+- Last durable implementation commit: `HEAD` (validation baseline/site snapshot; push pending)
+- Scientific gate: **P0 GO; FlatLands bounded data gate and first validation baselines GO on a
+  non-official provenance split; public-data model and paper claims not yet established**
+- Active task: run multi-seed ConPath and ablations, then scalable connectivity and calibration /
+  second-domain checks on the frozen bounded manifests. Do not use the leaking official split or
+  extract the archive.
 
 `RECOVERY_STATE.json` is the machine-readable source of truth for required ignored artifacts,
 byte counts, SHA-256 values, last verification, and the next action. Run the quick verifier first
@@ -242,16 +242,47 @@ The same commit updates the project site with generated, tracked FlatLands audit
 labelled throughout as a bounded data audit and not a model/paper result. Full regression now reports
 `Ran 52 tests in 1.104s ... OK`, `skipped=0`; `smoke_forward.py` also passes.
 
+## P1 first validation baseline pass
+
+The unified label-free evaluator, baseline runners, and canonical three-channel replay input are now
+implemented. The evaluator joins targets only after exact prediction-key coverage is verified, uses
+equal-scene primary weighting with 2,000-scene-cluster bootstrap intervals, and never reads the
+locked test split during validation. The four validation-only methods and scene-weighted metrics are:
+
+| Method | Brier | NLL | ECE | False-safe @0.8 | Coverage @0.8 |
+|---|---:|---:|---:|---:|---:|
+| Radius-prior control (train-only) | 0.15870 | 0.49283 | 0.01661 | 0.11156 | 0.33333 |
+| Deterministic completion | **0.08556** | 1.18211 | 0.08556 | 0.08073 | 0.45450 |
+| Independent-cell completion (K=32) | 0.22546 | 2.92768 | 0.24025 | **0.01454** | 0.20624 |
+| Direct-query predictor | 0.09119 | **0.29788** | **0.04076** | 0.08335 | 0.37412 |
+
+The deterministic completion has the lowest Brier; direct-query has the best NLL/ECE; independent
+cells are a deliberately fragmented negative control with low false-safe coverage but poor event
+calibration. These results establish evaluator plumbing and an initial difficulty baseline only. They
+are not paper results: one seed, validation only, no official/public completion weights, no scalable
+connectivity implementation, and no second domain yet. The direct-query run took 63.3 s (best epoch
+42); marginal completion took 397.6 s including 353.4 s for K=32 event sampling on the RTX PRO 6000.
+
+The project site now publishes `site/data/flatlands_baselines_validation.{json,js}` plus comparison
+and reliability SVGs. Every public label says validation-only / test-locked / not a final paper result.
+
 ## Exact next actions
 
-1. Freeze one evaluator/report schema and deterministic seeds on the exact saved query CSV, with
-   per-scene weighting and train-only fitting.
-2. Implement deterministic completion, independent-cell, and direct-query predictor baselines
-   before attempting a correlated neural model.
-3. Report every result by provenance split/source/radius as well as pooled; preserve ScanNet++ as
-   OOD-only and explicitly expose the saturated ARKitScenes 20 cm stratum.
-4. Keep paper/public-data claims NO-GO until fixed baselines run and upstream terms plus missing
-   official FlatLands model tooling are resolved.
+1. Run ConPath on at least three fixed seeds with K=32 pilot and K=128 final event sampling; keep
+   the direct-query and completion backbones/optimizer budget matched.
+2. Add causal ablations: remove event proper score, remove global correlation factors, independent
+   decoder, deterministic mean map, and K convergence. Report map quality and event quality together.
+3. Implement batched exact-forward connectivity (merge-tree/MST or a validated exact-forward /
+   soft-backward operator); compare against the NumPy oracle in error, latency, memory, and query
+   scaling.
+4. Add source/radius reliability, threshold false-safe curves, bootstrap intervals, failure cases,
+   symmetry/radius-monotonicity checks, and an explicit ARKitScenes saturation analysis.
+5. Audit and freeze one second domain (prefer ORFD semantics or UnScenes3D support surfaces), with
+   scene/site/sequence-held-out split and no adjacent-frame leakage.
+6. Only after the above, unlock the test split once, regenerate final JSON/CSV/SVG and qualitative
+   figures, freeze environment/data/checkpoint hashes, and update the website.
+7. Draft and internally review the ICRA/IROS paper: problem/claims, method, related work, main table/
+   figures, limitations, appendix, anonymization, and venue-format/compliance checks.
 
 ## Recovery commands
 
