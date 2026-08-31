@@ -50,7 +50,10 @@
     "site/data/flatlands_audit.json",
     "site/data/flatlands_baselines_validation.json",
     "site/assets/flatlands_baseline_comparison.svg",
-    "site/assets/flatlands_baseline_reliability.svg"
+    "site/assets/flatlands_baseline_reliability.svg",
+    "src/pathrel/labels.py",
+    "tests/test_labels.py",
+    "scripts/benchmark_connectivity.py"
   ],
   "ignored_artifacts": [
     {
@@ -199,6 +202,13 @@
       "required_for_resume": false,
       "bytes": 151373,
       "sha256": "9e2b4753d6feef26cf9bd5df3564a84cf08e8a757114e6b5c69a21dc65394cb5"
+    },
+    {
+      "path": "results/p1_flatlands_connectivity_benchmark/benchmark.json",
+      "role": "synthetic CPU batch merge-tree exact-forward contract benchmark",
+      "required_for_resume": false,
+      "bytes": 1128,
+      "sha256": "110fdc32d5b7a498d14c452a202cde2426932744a11ef4b9ba8e5f0992eaeb0d"
     },
     {
       "path": "results/p0_neural_cuda_contextplane_v4/report.json",

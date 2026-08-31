@@ -266,6 +266,17 @@ connectivity implementation, and no second domain yet. The direct-query run took
 The project site now publishes `site/data/flatlands_baselines_validation.{json,js}` plus comparison
 and reliability SVGs. Every public label says validation-only / test-locked / not a final paper result.
 
+## Scalable connectivity checkpoint
+
+The exact NumPy Kruskal reconstruction-tree oracle is now exposed as
+`batched_merge_tree_bottleneck_scores` for `[B,K,H,W]` maps and `[B,Q,2]` query sets. It builds one
+tree per map and answers all terminals with LCA lookups, so query cost is logarithmic after the map
+build rather than another `H*W` relaxation per query. A strict test compares every batch/sample/query
+entry to the existing single-map oracle. The synthetic CPU contract benchmark
+`results/p1_flatlands_connectivity_benchmark/benchmark.json` uses 64×64 maps and K=4: 32/128/512/2048
+queries take about 0.036/0.037/0.044/0.060 s, respectively. This is an exact-forward reference and
+efficiency diagnostic only; a CUDA implementation and soft backward path are still pending.
+
 ## Exact next actions
 
 1. Run ConPath on at least three fixed seeds with K=32 pilot and K=128 final event sampling; keep

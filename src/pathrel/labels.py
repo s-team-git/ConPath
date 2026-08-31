@@ -371,3 +371,47 @@ def merge_tree_bottleneck_scores(
         first, second = point_index(start, "start"), point_index(goal, "goal")
         output[query_index] = values[lca(first, second)]
     return output
+
+
+def batched_merge_tree_bottleneck_scores(
+    node_scores: np.ndarray,
+    starts: np.ndarray,
+    goals: np.ndarray,
+) -> np.ndarray:
+    """Exact merge-tree scores for a batch of maps and padded query sets.
+
+    Args:
+        node_scores: floating-point node capacities with shape ``[B, K, H, W]``.
+        starts/goals: integer ``(row, col)`` queries with shape ``[B, Q, 2]``. Every map in a
+            batch item shares that item's query set, matching the neural event evaluator.
+
+    Returns:
+        ``[B, K, Q]`` maximum-bottleneck scores. Each map builds one reconstruction tree, so the
+        cost is paid once per map and then scales logarithmically with the number of queries rather
+        than linearly in ``H*W`` per query. This NumPy implementation is the exact-forward contract
+        for a future CUDA kernel and deliberately keeps the single-map oracle as its reference.
+    """
+
+    scores = np.asarray(node_scores, dtype=np.float64)
+    if scores.ndim != 4 or scores.shape[0] == 0 or scores.shape[1] == 0 or scores.shape[2] == 0 or scores.shape[3] == 0:
+        raise ValueError("node_scores must have non-empty shape [B,K,H,W]")
+    starts = np.asarray(starts)
+    goals = np.asarray(goals)
+    if starts.ndim != 3 or starts.shape[-1] != 2:
+        raise ValueError("starts must have shape [B,Q,2]")
+    if goals.shape != starts.shape:
+        raise ValueError("goals must have the same shape as starts")
+    if starts.shape[0] != scores.shape[0]:
+        raise ValueError("query batch does not match node_scores")
+
+    batch, samples = scores.shape[:2]
+    queries = starts.shape[1]
+    output = np.empty((batch, samples, queries), dtype=np.float64)
+    for batch_index in range(batch):
+        batch_starts = starts[batch_index].tolist()
+        batch_goals = goals[batch_index].tolist()
+        for sample_index in range(samples):
+            output[batch_index, sample_index] = merge_tree_bottleneck_scores(
+                scores[batch_index, sample_index], batch_starts, batch_goals
+            )
+    return output

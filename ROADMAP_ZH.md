@@ -166,7 +166,7 @@ L_reachability_U-statistic_Brier
 | FlatLands completion/query audit | 512 场景 data gate、direct-ZIP adapter、统一 evaluator 与首轮 validation baseline 已通过；最终结果待多 seed/扩展性/第二域 | P1 |
 | UnScenes3D encoder/loader | 未开始 | P2 |
 | WildOcc cross-domain | 未开始 | P2 |
-| scalable path-cut bounds | 未开始 | P3，不能提前声称已实现 |
+| scalable path-cut bounds | NumPy merge-tree 已有单图 exact reference，新增 batch×sample×query 封装与 CPU contract benchmark；CUDA/soft-backward 未完成 | P3 |
 | SE(2) 矩形 footprint | 未开始 | 2.5-D 版本成立后再做 |
 
 ## 接下来按什么顺序做
@@ -222,7 +222,11 @@ connectivity、calibration/false-safe 与第二数据域，仍必须按 source/r
 ### P3：论文完整算法
 
 当前迭代传播在 `H*W` 次时精确，固定较少步数只是有界近似。`labels.py` 已增加 exact-forward
-的 NumPy merge-tree 参考实现，并用随机阈值连通性测试验证；它还不是可反传 CUDA 算子。最终应研究：
+的 NumPy merge-tree 参考实现，并用随机阈值连通性测试验证；现在又提供
+`batched_merge_tree_bottleneck_scores([B,K,H,W], [B,Q,2], [B,Q,2])`，避免每个 query 重复构建
+图。64×64、4 个 sample 的 CPU contract benchmark 在 32/128/512/2048 query 下分别约为
+0.036/0.037/0.044/0.060 秒，输出与单图 oracle 逐项一致；这些是合成效率诊断，不是论文结果。
+它还不是可反传 CUDA 算子。最终应研究：
 
 - merge-tree / maximum-spanning-tree 的批量查询；或
 - top-K path 与 cut 的上下界；或

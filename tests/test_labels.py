@@ -5,6 +5,7 @@ import unittest
 import numpy as np
 
 from pathrel.labels import (
+    batched_merge_tree_bottleneck_scores,
     clearance_radius_map,
     merge_tree_bottleneck_scores,
     maximum_clearance_path,
@@ -161,6 +162,35 @@ class ClearanceOracleTest(unittest.TestCase):
         scores = np.asarray([[0.2, 0.4], [0.7, 0.1]])
         result = merge_tree_bottleneck_scores(scores, [(1, 0)], [(1, 0)])
         np.testing.assert_allclose(result, np.asarray([0.7]))
+
+    def test_batched_merge_tree_matches_single_map_oracle(self) -> None:
+        rng = np.random.default_rng(17)
+        scores = rng.random((2, 3, 8, 9))
+        starts = np.asarray(
+            [[(1, 1), (3, 1), (6, 2)], [(0, 0), (4, 3), (7, 8)]], dtype=np.int64
+        )
+        goals = np.asarray(
+            [[(6, 7), (3, 7), (1, 5)], [(7, 8), (2, 6), (0, 0)]], dtype=np.int64
+        )
+        actual = batched_merge_tree_bottleneck_scores(scores, starts, goals)
+        expected = np.stack(
+            [
+                np.stack(
+                    [
+                        merge_tree_bottleneck_scores(scores[b, k], starts[b], goals[b])
+                        for k in range(scores.shape[1])
+                    ]
+                )
+                for b in range(scores.shape[0])
+            ]
+        )
+        np.testing.assert_allclose(actual, expected, rtol=0.0, atol=1e-12)
+
+    def test_batched_merge_tree_rejects_mismatched_query_batch(self) -> None:
+        with self.assertRaisesRegex(ValueError, "query batch"):
+            batched_merge_tree_bottleneck_scores(
+                np.ones((2, 1, 3, 3)), np.zeros((1, 1, 2), dtype=np.int64), np.zeros((1, 1, 2), dtype=np.int64)
+            )
 
 
 if __name__ == "__main__":
