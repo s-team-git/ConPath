@@ -21,6 +21,8 @@
   ],
   "tracked_files": [
     "CONTINUATION.md",
+    "PAPER_DRAFT.md",
+    "ROADMAP_ZH.md",
     "P1_DATA_AUDIT.md",
     "results/verification.md",
     "scripts/audit_flatlands_archive.py",

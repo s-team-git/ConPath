@@ -35,6 +35,18 @@ footprints, or calibrated performance on a public dataset until those experiment
 `TRAVERSABLE` and `BLOCKED` are the only latent world classes; `UNKNOWN` is an observation/validity
 state.
 
+## Current public-data checkpoint (not a paper result)
+
+The first FlatLands pass uses a bounded 512-scene sample from the explicitly non-official
+`provenance.original_split` (160 train / 160 validation / 192 test scenes). The published archive
+directory split is scene-leaky and is never used for cross-scene evidence. On the frozen validation
+queries, the radius-prior, deterministic completion, independent-cell K=32, and direct-query
+baselines obtain scene-weighted Brier scores 0.15870, 0.08556, 0.22546, and 0.09119, respectively.
+The direct-query comparator has the best NLL/ECE, while deterministic completion has the best Brier.
+These are evaluator and difficulty diagnostics only: one optimization seed, validation only, no
+official completion weights, no final ConPath result, and no test labels read. The site labels this
+section “validation-only / test locked / not final paper result.”
+
 ## Intended contributions
 
 1. **Event-level formulation.** We distinguish voxel marginal calibration, joint occupancy
@@ -63,7 +75,7 @@ themselves.
 | Is the map still useful? | independent vs ConPath posterior samples | map NLL/Brier/ECE, variogram, joint doorway frequency | neural synthetic map scores recorded; fragmentation remains |
 | Does the loss matter? | ConPath vs no reachability loss | same checkpoint budget and query draws | matched CUDA ablation fails P0 |
 | Does geometry matter? | radii 0/1/2 (then dataset-specific radii) | per-radius event curves and bottleneck strata | synthetic recorded |
-| Does it transfer? | FlatLands completion samples, then UnScenes3D/WildOcc if needed | source/scene-held-out event calibration | bounded data gate passes on a non-official provenance split; baselines not run |
+| Does it transfer? | FlatLands completion samples, then UnScenes3D/WildOcc if needed | source/scene-held-out event calibration | bounded data gate and first validation baselines pass on a non-official provenance split; multi-seed ConPath/second domain pending |
 | Is inference scalable? | iterative propagation vs merge-tree forward | exact error, latency, peak memory vs map/query count | NumPy reference recorded |
 
 Every reported checkpoint must include dataset version, split manifest, query-generation seed,
@@ -84,11 +96,11 @@ allowed.
 ## Current go/no-go decision
 
 The learned model passes the tightened P0 gate in both tested optimization seeds, while the matched
-no-reach ablation fails. A 512-scene, target-blind FlatLands audit also passes its bounded mask and
-minimum event-balance gate on an explicitly non-official upstream-provenance split. This is **GO for
-a fixed streaming-loader/baseline pilot**, but remains **NO-GO for public-data or paper claims**
-until the gain survives deterministic completion, independent-cell, direct-query, public
-completion when released, and equal-backbone baselines. The query distribution is source/radius
-dependent—test ARKitScenes has no 20 cm positives in the bounded manifest—so pooled metrics are
-insufficient. The synthetic full model also retains nonzero doorway fragmentation, which must not
-be hidden by aggregate event metrics.
+no-reach ablation fails. A 512-scene, target-blind FlatLands audit and the first validation-only
+baseline slate also pass their respective plumbing gates on an explicitly non-official
+upstream-provenance split. This is **GO for multi-seed ConPath development**, but remains **NO-GO for
+public-data or paper claims** until the gain survives multi-seed ConPath, causal ablations, scalable
+connectivity, calibration/false-safe analysis, official/public completion baselines, and a second
+domain. The query distribution is source/radius dependent—test ARKitScenes has no 20 cm positives in
+the bounded manifest—so pooled metrics are insufficient. The synthetic full model also retains
+nonzero doorway fragmentation, which must not be hidden by aggregate event metrics.
