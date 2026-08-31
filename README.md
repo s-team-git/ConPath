@@ -44,7 +44,8 @@ observation_bev [B, Cin, H, W]
 - a reproducible TUM RGB-D Freiburg1/desk real-data pilot (`scripts/run_tum_rgbd_pilot.py`) that
   lifts registered depth with MoCap poses into a world-frame reference raster and audits future
   start/goal events;
-- a read-only FlatLands ZIP integrity/split auditor and deterministic upstream-provenance manifest;
+- read-only FlatLands ZIP integrity/split and bounded target-blind natural-query auditors, with a
+  deterministic upstream-provenance manifest and replayable selected observations/queries;
 - tracked machine-readable recovery state with byte/SHA verification for required ignored results;
 - an exact NumPy merge-tree forward reference (`merge_tree_bottleneck_scores`) for many terminal
   queries on one map;
@@ -126,6 +127,8 @@ Python; PyTorch tests skip with an explicit reason.
 ```text
 src/pathrel/
   labels.py               exact offline target generation
+  flatlands.py            read-only ZIP integrity/provenance audit
+  flatlands_query.py      target-blind bounded query selection/scoring
   stochastic_decoder.py  joint stochastic occupancy posterior
   reachability.py         footprint and max-min connectivity layer
   losses.py               proper task-level and map losses
@@ -135,6 +138,20 @@ src/pathrel/
 
 See `ALGORITHM.md` for the mathematical contract, training stages, baselines, and go/no-go
 criteria.
+
+The official FlatLands observation split fails scene isolation. The upstream
+`provenance.original_split` replacement is explicitly non-official but scene-disjoint, and its
+512-scene direct-from-ZIP bounded mask/query audit passes the frozen data gate. This authorizes the
+next streaming-loader and fixed-baseline implementation milestone, not a trained public-data or
+paper result. Reproduce it without extraction using:
+
+```bash
+PYTHONPATH=src .venv/bin/python scripts/audit_flatlands_queries.py \
+  --output-dir results/p1_flatlands_query_audit_bounded --overwrite
+```
+
+See `P1_DATA_AUDIT.md` for the manifest hashes, target-blind query contract, source/radius
+saturation caveat, and exact claim boundary.
 
 ## Versioning and publication
 

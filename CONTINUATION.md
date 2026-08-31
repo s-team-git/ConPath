@@ -5,14 +5,15 @@ diagnostic, code change, or experiment; do not rely on chat history or ignored `
 
 ## Recovery snapshot
 
-- Updated: 2026-08-30 (America/New_York)
+- Updated: 2026-08-31 (America/New_York)
 - Repository: `/home/hairo/pathrel_transfer/pathrel_pro6000`
-- Durable checkpoint: `p1-flatlands-provenance-v1` in tracked `RECOVERY_STATE.json`
+- Durable checkpoint: `p1-flatlands-query-audit-v1` in tracked `RECOVERY_STATE.json`
 - Recovery-state commit: resolve with `git log -1 --format='%h %s' -- RECOVERY_STATE.json`
-- Last durable implementation commit: `cce7703` (local `main`; not yet pushed)
-- Scientific gate: **P0 GO across two seeds; public-data/paper claims not yet established**
-- Active task: bounded direct-from-ZIP FlatLands mask/natural-query audit on the scene-disjoint
-  upstream-provenance split; extraction and public-data training remain prohibited.
+- Last durable implementation commit: `472c952` (local `main`; not yet pushed)
+- Scientific gate: **P0 GO; FlatLands bounded data gate GO on a non-official provenance split;
+  public-data model and paper claims not yet established**
+- Active task: implement a streaming FlatLands adapter and fixed non-neural baselines on the frozen
+  bounded observation/query manifests. Do not use the leaking official split or extract the archive.
 
 `RECOVERY_STATE.json` is the machine-readable source of truth for required ignored artifacts,
 byte counts, SHA-256 values, last verification, and the next action. Run the quick verifier first
@@ -166,8 +167,8 @@ UnScenes3D/WildOcc remain P2.
 
 `P1_DATA_AUDIT.md` freezes the FlatLands release as `2,054,773,316` bytes with SHA-256
 `e4f2e5c7c54f7ba62ea696fb103fb5d3794f30f5a2e63715773e59d6a9f1d26f`, defines scene-disjointness,
-mask/polarity, natural-query, 10%-15% event-balance, provenance/license, and strong-baseline gates,
-and keeps the decision NO-GO for extraction/training. `scripts/download_flatlands.sh` supports a
+mask/polarity, natural-query, 10%-15% event-balance, provenance/license, and strong-baseline gates.
+The official split remains NO-GO. `scripts/download_flatlands.sh` supports a
 resumable `.part`, verifies size and hash, atomically finalizes the archive, and never extracts it.
 `bash -n` passes and `--check` now validates the present archive.
 
@@ -201,22 +202,40 @@ manifest is
 `results/p1_flatlands_provenance_manifest/provenance_manifest.csv` (SHA-256
 `a5eb28123f0fa2e38cc8244e6675c1eb76bc9a534ee54f56ef9ed68c4bdbc77b`). This is an explicitly
 non-official FlatLands evaluation split, not a claim that the published archive directories pass.
-Its pre-query integrity gate passes; query balance still does not.
+Its pre-query integrity gate passes.
 
-Source-stratified pixel samples are binary 256x256 PNGs. Observed floor is a subset of full floor,
-and the unobserved mask is disjoint from observed floor. `epistemic_mask` has small boundary
-disagreements with floor/observed pixels, so outside-mask cells must remain invalid pending a full
-semantics audit.
+Implementation commits `8ee1c34` and `472c952` add a dependency-free grayscale PNG reader, stable
+scene/observation sampling, target-blind metric polar queries, an exact linear-time disk-clearance
+EDT, one-start multi-goal bottleneck scoring, atomic reports, and tests. The authoritative command
+sampled 32 scenes per each of 16 provenance split/source strata (512 distinct scenes), one
+observation per scene, and froze 36 queries per observation before reading `floor_map`. It read all
+members directly from the ZIP and did not extract it.
+
+The 512-observation mask audit found zero observed-floor/target disagreements, zero
+observed/unobserved overlap, and zero invalid selected starts. It also quantified 5,415 observed and
+22,539 target floor pixels outside `epistemic_mask`; the oracle explicitly excludes all such cells.
+Of 18,432 query candidates, 6,735 passed target-blind selection, 2,082 then had target-invalid goals,
+and 4,653 retained valid endpoints. Those contain 121 radius-zero disconnections, 3,095 larger-
+footprint failures, and 1,437 20 cm positives.
+
+Every validation/test source stratum passes the frozen minimum of 50 retained queries, eight
+contributing scenes, and 0.10 scene-weighted disconnected/footprint rate; observed rates span
+0.5823-1.0000. Thus the bounded mask/query data gate passes. It is not a calibration result and the
+source/radius distribution is not uniformly balanced: test ARKitScenes has no 20 cm positives and
+only 3/115 retained queries reachable at 10 cm. Future metrics must remain source/radius-stratified.
+The reproducible result is `results/p1_flatlands_query_audit_bounded/`, generated from clean commit
+`472c952`; report/selection/query SHA-256 values are registered in `RECOVERY_STATE.json`.
 
 ## Exact next actions
 
-1. Implement a bounded, direct-from-ZIP pixel/mask and natural-query balance audit with replayable
-   selected IDs/queries. Do not extract the full archive.
-2. Select one deterministic observation per sampled scene, stratified by provenance split/source;
-   query selection must not inspect `floor_map`.
-3. Remain NO-GO for training unless mask semantics and the 10%-15% disconnected/bottleneck gate
-   pass on provenance validation/test; all baselines must use that identical non-official split.
-4. Update `RECOVERY_STATE.json` and commit immediately after the bounded report is atomically saved.
+1. Implement a direct-from-ZIP streaming adapter keyed by the frozen selected-observation CSV; keep
+   `epistemic_mask` as invalid support and do not extract the full archive.
+2. Freeze deterministic completion, independent-cell, and direct-query baseline inputs/outputs on
+   the exact saved query CSV before attempting a correlated neural model.
+3. Report every result by provenance split/source/radius as well as pooled; preserve ScanNet++ as
+   OOD-only and explicitly expose the saturated ARKitScenes 20 cm stratum.
+4. Keep paper/public-data claims NO-GO until fixed baselines run and upstream terms plus missing
+   official FlatLands model tooling are resolved.
 
 ## Recovery commands
 
@@ -230,10 +249,13 @@ sed -n '1,240p' CONTINUATION.md
 sed -n '1,240p' results/p0_neural_cuda_contextplane_v4/report.json
 sed -n '1,240p' results/p0_neural_cuda_contextplane_seed20260828_v4/report.json
 sed -n '1,240p' results/p0_neural_cuda_contextplane_noreach_v4/report.json
+sed -n '1,240p' results/p1_flatlands_query_audit_bounded/report.json
 PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -v
 PYTHONPATH=src .venv/bin/python scripts/diagnose_p0_checkpoint.py \
   results/p0_neural_cuda_tuned01/checkpoint.pt --samples 128 --skip-events
 ./scripts/download_flatlands.sh --check
+PYTHONPATH=src .venv/bin/python scripts/audit_flatlands_queries.py \
+  --output-dir results/p1_flatlands_query_audit_bounded --overwrite
 ```
 
 `results/` and checkpoints are intentionally ignored. Any result used to make a research decision

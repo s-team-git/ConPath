@@ -4,9 +4,10 @@ This directory is a self-contained research prototype. It intentionally does **n
 the repository's imported `vi/` code, ROS, G1 drivers, or a local virtual environment. Transfer
 the clean source tree to the GPU machine and create a new environment there.
 
-> Current-machine continuation note (2026-08-30): transfer and P0 setup are complete. The trained
-> synthetic model passes P0 in two optimization seeds and the no-reach ablation fails. Read
-> `CONTINUATION.md` first; the active task is now the P1 data/query audit, not repeating bootstrap.
+> Current-machine continuation note (2026-08-31): transfer and P0 setup are complete. The trained
+> synthetic model passes P0 in two optimization seeds, the no-reach ablation fails, and the bounded
+> FlatLands data/query gate passes on a non-official provenance split. Read `CONTINUATION.md` first;
+> the active task is the streaming adapter and fixed baseline pilot, not repeating bootstrap.
 
 ## 1. Verify the target machine
 
@@ -62,7 +63,7 @@ the default 24x24 configuration and record wall-clock time and peak memory. Only
 The original transfer task was the P0 death test in `ROADMAP_ZH.md`. That audit, corrected neural
 training, matched no-reach ablation, and extra-seed replication are now complete; see
 `P0_DEATH_TEST.md`. Do not rerun this bootstrap unless reproducing it intentionally. The next task is
-to freeze and audit a P1 public dataset before training on it.
+to implement fixed P1 baselines on the already audited, scene-disjoint provenance manifest.
 
 The runnable audit is now:
 

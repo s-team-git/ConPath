@@ -63,7 +63,7 @@ themselves.
 | Is the map still useful? | independent vs ConPath posterior samples | map NLL/Brier/ECE, variogram, joint doorway frequency | neural synthetic map scores recorded; fragmentation remains |
 | Does the loss matter? | ConPath vs no reachability loss | same checkpoint budget and query draws | matched CUDA ablation fails P0 |
 | Does geometry matter? | radii 0/1/2 (then dataset-specific radii) | per-radius event curves and bottleneck strata | synthetic recorded |
-| Does it transfer? | FlatLands completion samples, then UnScenes3D/WildOcc if needed | site/sequence-held-out event calibration | data audit not started |
+| Does it transfer? | FlatLands completion samples, then UnScenes3D/WildOcc if needed | source/scene-held-out event calibration | bounded data gate passes on a non-official provenance split; baselines not run |
 | Is inference scalable? | iterative propagation vs merge-tree forward | exact error, latency, peak memory vs map/query count | NumPy reference recorded |
 
 Every reported checkpoint must include dataset version, split manifest, query-generation seed,
@@ -84,8 +84,11 @@ allowed.
 ## Current go/no-go decision
 
 The learned model passes the tightened P0 gate in both tested optimization seeds, while the matched
-no-reach ablation fails. The project is therefore **GO for P1 data audit**, but remains **NO-GO for
-public-data or paper claims** until the audit confirms enough natural unreachable/narrow-bottleneck
-queries and the gain survives public completion, direct-query, and equal-backbone baselines. The
-synthetic full model also retains nonzero doorway fragmentation, which must not be hidden by
-aggregate event metrics.
+no-reach ablation fails. A 512-scene, target-blind FlatLands audit also passes its bounded mask and
+minimum event-balance gate on an explicitly non-official upstream-provenance split. This is **GO for
+a fixed streaming-loader/baseline pilot**, but remains **NO-GO for public-data or paper claims**
+until the gain survives deterministic completion, independent-cell, direct-query, public
+completion when released, and equal-backbone baselines. The query distribution is source/radius
+dependent—test ARKitScenes has no 20 cm positives in the bounded manifest—so pooled metrics are
+insufficient. The synthetic full model also retains nonzero doorway fragmentation, which must not
+be hidden by aggregate event metrics.

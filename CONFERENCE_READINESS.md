@@ -2,9 +2,9 @@
 
 ## 当前判断
 
-当前仓库仍是 synthetic contract prototype，不是可直接投稿的 ICRA/IROS 论文。神经 P0 已在
-两个优化种子上通过，并有匹配的 no-reach 对照；但尚未有公开数据上的任务级校准结果、完整
-独立强基线或可扩展的大图算法。
+当前仓库仍不是可直接投稿的 ICRA/IROS 论文。神经 P0 已在两个优化种子上通过，并有匹配的
+no-reach 对照；FlatLands 的 512 场景 bounded mask/query data gate 也已在非官方 provenance
+split 上通过。但尚未有公开数据上的模型校准结果、完整独立强基线或可扩展的大图算法。
 
 ## 时间选择（截至 2026-08-28）
 
@@ -47,15 +47,17 @@ partial-view BEV、多个合法完整布局和 stochastic/flow completion benchm
 提出 correlated occupancy、topology-aware planning、connectivity learning、partial-view
 multi-layout completion 或 stochastic map completion。
 
-FlatLands 也必须先做 query-balance audit：若自然 reachable/unreachable、窄瓶颈或替代路径
-太少，它只能作为 completion/OOD 基线，不能直接支撑导航事件结论。
+FlatLands query-balance audit 已确认存在足量 footprint 失败，但分布强烈依赖 source/radius；
+bounded test/ARKitScenes 在 20 cm 下没有正例。它目前只支持分层固定基线实验，不能直接支撑
+导航事件结论。
 
 ## Go / No-Go
 
 若 P0 中 calibrated independent-cell 或 direct-query 追平 PathRel，停止该方向；当前学习版
-P0 已通过，所以只允许进入 **P1 数据与事件可辨识性审计**。P1 若发现 FlatLands completion +
-post-hoc connectivity 追平，或自然断连/窄瓶颈 query 不足，仍应停止或更换主数据，而不是直接
-投入 UnScenes3D/WildOcc 和大规模算子。此阶段不要加入 3DGS、ROS、实车闭环或更多传感器。
+P0 与 bounded P1 data gate 已通过，所以只允许进入 **P1 固定 baseline pilot**。若 FlatLands
+completion + post-hoc connectivity 追平，或分 source/radius 后任务退化，仍应停止或更换主
+数据，而不是直接投入 UnScenes3D/WildOcc 和大规模算子。此阶段不要加入 3DGS、ROS、实车
+闭环或更多传感器。
 
 ## 本轮 P0 审计状态（更新于 2026-08-30）
 
@@ -78,11 +80,24 @@ event Brier 为 0.2436，确实失败；随后修正了 scaled-Gumbel 边际、�
 | no-reach, seed 20260827 | 0.1914 | 0.1936 | 0.00310 | 0.2383 | FAIL |
 
 两个完整种子都优于 independent (`0.1832`) 与 direct-query (`0.1699`) 的 event Brier；而
-no-reach 对照在地图 Brier 仍好的情况下事件指标和上下文条件性同时失败。因此当前决策升级为
-**P0 GO / P1 audit allowed**。这仍不是公开数据或论文级 GO：它只有一个固定 synthetic split、
-两个优化种子，完整模型仍有约 13.7%-16.1% 的门洞碎裂。下一步必须先冻结并审计 P1 数据版本、
-mask/标签语义、natural-query 分布和官方 completion baseline；在该审计通过前不得宣称
-ICRA/IROS 贡献。
+no-reach 对照在地图 Brier 仍好的情况下事件指标和上下文条件性同时失败。因此该 P0 checkpoint
+当时升级为 **P0 GO / P1 audit allowed**。这仍不是公开数据或论文级 GO：它只有一个固定
+synthetic split、两个优化种子，完整模型仍有约 13.7%-16.1% 的门洞碎裂。后续 P1 数据 gate
+结果单独记录如下；在公开数据固定基线完成前不得宣称 ICRA/IROS 贡献。
 
 同时加入 `labels.py::merge_tree_bottleneck_scores` exact-forward NumPy 参考，用于后续可扩展
 CUDA 算子的契约验证；这不是已经完成的可反传大图实现。
+
+## P1 bounded 数据 gate（更新于 2026-08-31）
+
+官方 FlatLands observation split 存在大量 scene leakage，继续 NO-GO。使用数据包内
+`provenance.original_split` 构造的非官方 scene-disjoint split 上，direct-from-ZIP 审计按 16 个
+split/source strata 各取 32 个不同场景，共 512 个 observation。查询在读取 `floor_map` 前由
+camera、metric polar stencil、`unobserved` 与 `epistemic_mask` 冻结。Mask gate 通过；4,653 个
+有效端点包含 121 个 radius-0 断连、3,095 个足迹失败和 1,437 个 20 cm 正例；全部 11 个
+validation/test source strata 通过最低样本量与 10% 失败率门槛。
+
+这只把决策推进到 **GO for streaming adapter + fixed baselines**。它不是公开数据上的 ConPath
+结果，也没有消除 test/ARKitScenes 在 20 cm 下全负的饱和风险。必须先跑相同 query/mask 上的
+deterministic、independent-cell、direct-query 和可获得的官方 completion baseline，且逐
+source/radius 报告，再讨论 P1 模型 GO/NO-GO。

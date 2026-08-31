@@ -118,8 +118,42 @@ Result: the upstream `provenance.original_split` supplies 203,373/25,555/41,647 
 zero missing/duplicate global IDs, zero multi-split scenes, and zero cross-split scene overlap.
 The 270,575-row manifest SHA-256 is
 `a5eb28123f0fa2e38cc8244e6675c1eb76bc9a534ee54f56ef9ed68c4bdbc77b`; its report records
-implementation commit `cce7703`. The provenance pre-query integrity gate passes, but natural-query
-balance remains untested, so no extraction or training is authorized.
+implementation commit `cce7703`. The provenance pre-query integrity gate passes.
+
+## P1 FlatLands bounded mask/query audit (2026-08-30)
+
+Command: `PYTHONPATH=src .venv/bin/python scripts/audit_flatlands_queries.py --output-dir
+results/p1_flatlands_query_audit_bounded --overwrite`.
+
+Result: clean implementation commit `472c952` selected 32 distinct scenes per provenance
+split/source stratum and one observation per scene, for 512 observations and 18,432 target-blind
+metric-polar candidates. All data were read directly from the verified ZIP. Query coordinates were
+frozen from observed floor, camera metadata, 0.01 m resolution, raster bounds, `unobserved`, and
+`epistemic_mask` before `floor_map` was read.
+
+The binary-mask gate passes: observed floor outside the target and observed/unobserved overlap are
+both zero. The audit records 5,415 observed and 22,539 target-floor boundary pixels outside the
+epistemic mask and excludes them from the free map. Of 6,735 selected endpoints, 2,082 are target-
+invalid and 4,653 are retained. The retained set contains 121 radius-zero disconnections, 3,095
+0-to-10/20 cm footprint failures, and 1,437 20 cm positives. Every validation/test source stratum
+passes the minimum 50 queries/eight scenes/0.10 scene-weighted failure gate; rates range from 0.5823
+to 1.0000. Test ARKitScenes is saturated at 20 cm (zero positives), so future metrics must remain
+source/radius-stratified.
+
+The result is a bounded data-gate pass on an explicitly non-official provenance split, not a model
+or paper result. It permits the next streaming-adapter/fixed-baseline milestone; no archive
+extraction or large neural training was performed. Independent file verification gives:
+
+- report: 34,345 bytes,
+  `e210c8f30f06cf41700ec63d9e07213954a64d949d8ca4b483599b64f53156f4`;
+- 512-row observation selection: 72,293 bytes,
+  `4e7ae4c992cf943ab81618e3826c4748fcaaa97c3c4d7cb187518ee3fe6a9409`;
+- 18,432-row query manifest: 2,538,722 bytes,
+  `33e7f8a0343269b0dde47b428b3be622c80effdb0f80ae34b352ca282018d60d`.
+
+The implementation regression command
+`PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -v` reports
+`Ran 47 tests in 1.070s; OK; skipped=0`; `scripts/smoke_forward.py` also completes.
 
 ## Interruption recovery (2026-08-30)
 

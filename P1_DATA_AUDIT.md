@@ -1,9 +1,9 @@
 # ConPath P1 data and event-identifiability audit
 
-Status: **archive verified; official split fails; provenance split passes pre-query integrity;
-NO-GO pending query audit**
+Status: **official split fails; non-official provenance split passes integrity plus bounded
+mask/query gates; GO for a fixed streaming-baseline pilot, NO-GO for paper claims**
 
-Updated: 2026-08-30 (America/New_York)
+Updated: 2026-08-31 (America/New_York)
 
 This is the durable gate between the passing synthetic P0 and any public-data training. P1 starts
 with read-only data and query auditing. A dataset is not accepted merely because it has occupancy
@@ -21,7 +21,7 @@ serve as P1.
 
 | Candidate | Primary evidence available | P1 fit | Current decision |
 |---|---|---|---|
-| FlatLands | aligned observed floor, complete floor, unobserved mask, valid/epistemic mask, metric metadata, official train/validation/test | closest match to completion-to-path-event calibration | **first audit target** |
+| FlatLands | aligned observed floor, complete floor, unobserved mask, valid/epistemic mask, metric metadata, official train/validation/test | closest match to completion-to-path-event calibration | **bounded provenance-split audit passed; baseline pilot next** |
 | ORFD | RGB/LiDAR and traversable/non-traversable/unreachable annotations; about 30 GB | useful off-road label-semantics check, but not a multi-layout completion benchmark | secondary audit only |
 | UnScenes3D | 3D occupancy, elevation, poses, and a released 14-scene mini split | relevant to final support-surface experiment but adds 3D semantics before event identifiability is established | defer to P2 |
 | WildOcc | dense 3D occupancy labels derived from Rellis-3D; published label archive is about 18.08 GB plus source data | useful cross-dataset 3D occupancy test, not the cheapest first event audit | defer to P2 |
@@ -132,9 +132,55 @@ bound to implementation commit `cce7703` and records
 `provenance_prequery_gate_passed=true`, while the official `p1_prequery_gate_passed` remains false.
 
 This is a non-official FlatLands split candidate: it reuses official upstream-source provenance but
-does not repair or relabel the published FlatLands benchmark split. All ConPath baselines would need
-to use this identical manifest. It only authorizes the bounded query audit, not extraction,
-training, or a paper claim.
+does not repair or relabel the published FlatLands benchmark split. All ConPath baselines must use
+this identical manifest and label it non-official.
+
+## Bounded mask and natural-query audit
+
+The target-blind auditor was frozen in implementation commit `472c952` and run directly against the
+ZIP, without extraction:
+
+```bash
+PYTHONPATH=src .venv/bin/python scripts/audit_flatlands_queries.py \
+  --output-dir results/p1_flatlands_query_audit_bounded --overwrite
+```
+
+With seed `20260830`, stable SHA-256 ranks selected 32 distinct scenes per available provenance
+split/source stratum and then one observation per scene: 512 observations across 16 strata. Each
+observation received a 36-query metric polar stencil (0.4/0.8/1.2 m at 30-degree increments). The
+start is metadata `[x,y]` converted to array `[row=y,col=x]`, using the camera cell when it is
+observed/valid or the deterministic nearest observed-valid cell. Goals are retained using only
+raster bounds, `unobserved`, and `epistemic_mask`. The complete `floor_map` is not read until those
+queries are frozen. Exact four-neighbor disk-footprint labels use radii 0/0.1/0.2 m, which map to
+0/10/20 cells at the released 0.01 m resolution.
+
+The 512 packets contain 33,554,432 audited pixels. All PNGs are aligned binary 256x256 grayscale;
+`observed_floor & ~floor_map` and `observed_floor & unobserved` are both exactly zero. Boundary
+differences are real rather than silently relabeled: 5,415 observed-floor pixels and 22,539 target-
+floor pixels lie outside `epistemic_mask`. The oracle always intersects the target with that mask,
+so none of those cells is coerced to free. Every selected query start remained target-valid.
+
+The 18,432 candidates yielded 6,735 target-blind selected endpoints. Of these, 2,082 were target-
+invalid goals and are reported separately; 4,653 had valid endpoints. Across all splits, 121 were
+disconnected at radius zero, 3,095 were reachable at radius zero but failed a larger footprint, and
+1,437 remained reachable at 20 cm. Validation/test scene-weighted failure rates by source range from
+0.5823 to 1.0000; every one of the 11 gated strata has at least 50 retained queries, at least eight
+contributing scenes, and a failure rate above the frozen 0.10 minimum. The mask and bounded query-
+balance gates therefore pass.
+
+This is not evidence that every source/radius is well balanced. Test ARKitScenes has 115 retained
+queries but zero 20 cm positives (only 3 are reachable at 10 cm), while ZInD is substantially less
+saturated. Every future result must therefore be source- and radius-stratified; a pooled score could
+hide this failure-mode shift. The audit establishes data/event availability, not model calibration.
+
+Replayable artifacts are:
+
+- `report.json`: 34,345 bytes, SHA-256
+  `e210c8f30f06cf41700ec63d9e07213954a64d949d8ca4b483599b64f53156f4`;
+- `selected_observations.csv`: 512 rows, SHA-256
+  `4e7ae4c992cf943ab81618e3826c4748fcaaa97c3c4d7cb187518ee3fe6a9409`;
+- `queries.csv`: 18,432 rows, SHA-256
+  `33e7f8a0343269b0dde47b428b3be622c80effdb0f80ae34b352ca282018d60d`.
 
 ## Acceptance gates
 
@@ -165,7 +211,7 @@ All gates are per split and per source dataset, not only pooled across observati
    official stochastic/flow completion outputs must use identical queries and masks. Missing
    official weights/tooling remains a blocker for a paper claim, even if the data audit passes.
 
-## Query-audit protocol to implement after integrity check
+## Query-audit protocol
 
 - Read and validate the ZIP directly before extraction.
 - Deterministically stratify observations by split, source, and scene.
@@ -174,27 +220,26 @@ All gates are per split and per source dataset, not only pooled across observati
 - Report counts and rates by split/source/radius plus scene-weighted bootstrap intervals.
 - Save the seed, archive SHA, selected observation IDs, queries, polarity decision, and rejected
   reasons in JSON/CSV. Selection must be replayable without model outputs.
-- Start with a bounded audit sample; do not train a loader/model until the full metadata split check
-  and the validation/test event-balance gate pass.
+- The completed bounded sample is the fixed first baseline-evaluation manifest. Do not silently
+  resample it after viewing model results.
 
 ## Current decision and next command
 
-**NO-GO on the official in-distribution split and NO-GO to training.** The upstream-provenance
-manifest passes pre-query integrity, so a bounded salvage audit is allowed without extraction:
+**NO-GO on the official split. GO only for implementing a bounded streaming loader and fixed
+baselines on the explicitly non-official provenance split.** The next experiment must use the
+already frozen selected-observation/query CSVs, keep ScanNet++ as OOD-only, and compare deterministic
+completion, independent cells, direct query, and correlated completion under identical masks and
+queries. Do not start a large neural run or make a public-data claim before those code paths and
+source/radius-stratified metrics are verified.
 
-1. deterministically sample scenes by provenance split and source, then choose one observation per
-   sampled scene without target inspection;
-2. retain ScanNet++ only as OOD test;
-3. quantify pixel/mask semantics and natural-query balance directly from a bounded ZIP sample;
-4. label the provenance split as non-official FlatLands and require all baselines to retrain on it.
-
-The exact next command for reproducing the current full metadata result is:
+The exact command for reproducing the bounded query result is:
 
 ```bash
-PYTHONPATH=src .venv/bin/python scripts/audit_flatlands_archive.py \
-  --metadata-limit 0 --write-provenance-manifest \
-  --output-dir results/p1_flatlands_provenance_manifest --overwrite
+PYTHONPATH=src .venv/bin/python scripts/audit_flatlands_queries.py \
+  --output-dir results/p1_flatlands_query_audit_bounded --overwrite
 ```
 
-The next implementation milestone is the bounded query audit. Do not extract or train merely to
-follow the official observation split.
+The next implementation milestone is a read-only/streaming FlatLands dataset adapter plus fixed
+non-neural baselines on this bounded manifest. Full extraction remains unnecessary, the published
+archive directories must never be described as scene-disjoint, and missing official model
+weights/tooling remains a blocker for a paper claim.

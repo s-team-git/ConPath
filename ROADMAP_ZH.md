@@ -163,7 +163,7 @@ L_reachability_U-statistic_Brier
 | 合成歧义数据 | 已完成 | `src/pathrel/synthetic.py` |
 | forward/backward smoke | 已完成 | `scripts/` 与 `tests/` |
 | ORFD adapter | 未开始 | P1 |
-| FlatLands completion/query audit | 未开始 | P1 |
+| FlatLands completion/query audit | 512 场景 bounded data gate 已通过；固定基线待实现 | P1 |
 | UnScenes3D encoder/loader | 未开始 | P2 |
 | WildOcc cross-domain | 未开始 | P2 |
 | scalable path-cut bounds | 未开始 | P3，不能提前声称已实现 |
@@ -202,9 +202,17 @@ independent `0.1832` 与 direct-query `0.1699`；匹配的 no-reach 对照为 `0
 
 若有效负例或瓶颈 query 少于约 10%-15%，ORFD 只作辅助，不作为主数据。
 
+2026-08-30 的 FlatLands bounded audit 已完成：官方 observation split 因 scene leakage 继续
+NO-GO；非官方 `provenance.original_split` 在 512 个不同场景、16 个 split/source strata 上通过
+mask 与最低 query-balance gate。4,653 个有效端点中有 121 个 radius-0 断连、3,095 个足迹失败和
+1,437 个 20 cm 正例。该分布并不均匀：test/ARKitScenes 的 115 个有效 query 在 20 cm 下没有
+正例。因此下一步只允许实现 direct-from-ZIP loader 与固定 deterministic/independent/direct-
+query baseline，并强制按 source/radius 报告；尚未得到公开数据模型结果。
+
 ### P2：正式公开数据实验
 
-若 FlatLands 事件审计通过，先在其公开 split 上测“completion samples 到路径事件”的校准；
+若 FlatLands 固定基线证明该事件任务可学习，先在明确标注为非官方的 provenance split 上测
+“completion samples 到路径事件”的校准；不得使用存在 scene leakage 的公开目录 split。
 若室内 floor-map 不足以代表小车支撑面，再使用 UnScenes3D 的 occupancy 与 road elevation
 构造 2.5-D 地图，WildOcc 做跨域测试。必须按场景/矿区/序列拆分，禁止相邻帧随机拆分。
 
