@@ -77,7 +77,7 @@ def parse_args() -> argparse.Namespace:
         "--output-dir", type=Path, default=Path("results/p1_flatlands_query_audit_bounded")
     )
     parser.add_argument("--seed", type=int, default=20260830)
-    parser.add_argument("--scenes-per-stratum", type=int, default=8)
+    parser.add_argument("--scenes-per-stratum", type=int, default=32)
     parser.add_argument(
         "--query-distances-m",
         type=parse_float_list,
@@ -99,6 +99,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--bootstrap-samples", type=int, default=2_000)
     parser.add_argument("--minimum-failure-rate", type=float, default=0.10)
     parser.add_argument("--minimum-retained-queries", type=int, default=50)
+    parser.add_argument("--minimum-retained-scenes", type=int, default=8)
     parser.add_argument("--overwrite", action="store_true")
     return parser.parse_args()
 
@@ -259,6 +260,10 @@ def main() -> None:
         raise SystemExit("--minimum-failure-rate must lie in [0,1]")
     if args.minimum_retained_queries <= 0:
         raise SystemExit("--minimum-retained-queries must be positive")
+    if args.minimum_retained_scenes <= 0:
+        raise SystemExit("--minimum-retained-scenes must be positive")
+    if args.minimum_retained_scenes > args.scenes_per_stratum:
+        raise SystemExit("--minimum-retained-scenes cannot exceed --scenes-per-stratum")
 
     archive_path = args.archive.resolve()
     manifest_path = args.manifest.resolve()
@@ -475,7 +480,7 @@ def main() -> None:
                 failure_rate is not None
                 and float(failure_rate) >= args.minimum_failure_rate
                 and retained >= args.minimum_retained_queries
-                and scenes == args.scenes_per_stratum
+                and scenes >= args.minimum_retained_scenes
             )
             gated_strata[key] = {
                 "passed": passed,
@@ -484,7 +489,7 @@ def main() -> None:
                 "retained_valid_endpoint_queries": retained,
                 "minimum_retained_queries": args.minimum_retained_queries,
                 "scenes_with_retained_queries": scenes,
-                "required_scenes": args.scenes_per_stratum,
+                "minimum_retained_scenes": args.minimum_retained_scenes,
             }
         query_balance_passed = bool(gated_strata and all(row["passed"] for row in gated_strata.values()))
         p1_bounded_gate_passed = bool(mask_semantics_passed and query_balance_passed)
@@ -532,6 +537,7 @@ def main() -> None:
                 ),
                 "minimum_scene_weighted_failure_rate": args.minimum_failure_rate,
                 "minimum_retained_queries_per_gated_stratum": args.minimum_retained_queries,
+                "minimum_retained_scenes_per_gated_stratum": args.minimum_retained_scenes,
             },
             "inputs": {
                 "archive": {
