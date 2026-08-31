@@ -266,8 +266,8 @@
   ],
   "last_verification": {
     "command": "PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -q && python3 -m compileall -q src scripts && PYTHONPATH=src .venv/bin/python scripts/verify_recovery_state.py",
-    "result": "Ran 69 tests; OK; all source/scripts compile; layered GPU diagnostics and global-factor ablation compile; full recovery SHA verification is the next post-commit check",
-    "implementation_commit": "a799fd3"
+    "result": "Ran 69 tests; OK; all source/scripts compile; layered GPU diagnostics and global-factor ablation compile; full recovery SHA verification passed",
+    "implementation_commit": "d2ec90b"
   },
   "recovery_commands": [
     "git status --short --branch",
