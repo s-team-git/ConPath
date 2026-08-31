@@ -7,7 +7,13 @@ import tempfile
 import unittest
 from zipfile import ZipFile, ZipInfo
 
-from pathrel.flatlands import audit_metadata, build_archive_index, integrity_gate
+from pathrel.flatlands import (
+    archive_structure_gate,
+    audit_metadata,
+    build_archive_index,
+    integrity_gate,
+    metadata_integrity_gate,
+)
 
 
 PACKET_FILES = (
@@ -53,7 +59,8 @@ class FlatLandsArchiveAuditTest(unittest.TestCase):
             path = Path(temporary) / "tiny.zip"
             with ZipFile(path, "w") as archive:
                 add_packet(archive, "train", "obs_000001", "ScanNet", "train-scene")
-                add_packet(archive, "validation", "obs_000002", "ScanNet", "val-scene")
+                # The published archive uses `val/` even though its dataset card says validation.
+                add_packet(archive, "val", "obs_000002", "ScanNet", "val-scene")
                 add_packet(archive, "test", "obs_000003", "ScanNet++", "test-scene")
             with ZipFile(path) as archive:
                 index = build_archive_index(archive.infolist())
@@ -64,6 +71,8 @@ class FlatLandsArchiveAuditTest(unittest.TestCase):
         self.assertEqual(index.report["unsafe_member_count"], 0)
         self.assertTrue(metadata["complete_metadata_scan"])
         self.assertTrue(metadata["scene_disjoint"])
+        self.assertTrue(metadata_integrity_gate(metadata))
+        self.assertFalse(archive_structure_gate(index.report))
         # A tiny fixture intentionally cannot masquerade as the official release.
         self.assertFalse(integrity_gate(index.report, metadata))
 

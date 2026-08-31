@@ -148,7 +148,7 @@ reported `Ran 35 tests in 15.928s ... OK`, `skipped=0`; `smoke_forward.py` compl
 merge-tree reference matched exhaustive search at zero error for 8/64/512 queries (timing speedups
 `3.09x/25.50x/161.19x`).
 
-## P1 pre-download audit
+## P1 FlatLands archive audit
 
 The workspace contains only the ignored 830 MB TUM RGB-D pilot data. It has no FlatLands, ORFD,
 UnScenes3D, or WildOcc assets and no corresponding loader/split/query audit. Official-source review
@@ -170,15 +170,35 @@ source/scene identity, duplicate global IDs, and cross-split scene leakage witho
 writes atomic reports plus fsynced progress/failure logs. The expanded suite reports `Ran 38 tests
 ... OK`, `skipped=0`; this auditor commit is the next durability point while the archive downloads.
 
+The official archive is now present at
+`data/raw/flatlands/FlatLands_final_dataset.zip`. Its exact size is `2,054,773,316` bytes and both
+independent checks reproduce SHA-256
+`e4f2e5c7c54f7ba62ea696fb103fb5d3794f30f5a2e63715773e59d6a9f1d26f`. It has not been extracted.
+
+The first bounded audit exposed the physical `val/` directory token; the working tree normalizes it
+to `validation`. The subsequent full scan in `results/p1_flatlands_archive_audit_full/` found all
+270,575 complete packets and parseable metadata with zero unsafe/duplicate/symlink/encrypted/
+unexpected members or missing identities. Official counts match exactly.
+
+The decisive failure is scene leakage in the official observation-level split: train/validation
+share 12,873 `(source, scene_id)` pairs, train/test 8,406, and validation/test 6,800. Every
+in-distribution source leaks; ScanNet++ alone is test-only OOD. A concrete ZInD scene has 16/2/1
+observations in train/validation/test. Therefore P1 remains **NO-GO on the official split**.
+
+Source-stratified pixel samples are binary 256x256 PNGs. Observed floor is a subset of full floor,
+and the unobserved mask is disjoint from observed floor. `epistemic_mask` has small boundary
+disagreements with floor/observed pixels, so outside-mask cells must remain invalid pending a full
+semantics audit.
+
 ## Exact next actions
 
-1. Commit `P1_DATA_AUDIT.md`, `scripts/download_flatlands.sh`, and this recovery update.
-2. Run `./scripts/download_flatlands.sh --download`; after interruption, rerun the identical command
-   to resume. Do not delete a mismatching file automatically.
-3. Run `./scripts/download_flatlands.sh --check`, then execute a bounded 1,000-metadata ZIP audit
-   with `scripts/audit_flatlands_archive.py` and reconcile its actual schema before a full scan.
-4. Record archive integrity and audit results here before any extraction, loader training, or public
-   claim. Remain NO-GO if scene leakage, semantics, licensing, or event balance fails.
+1. Commit the `val` normalization plus the full archive/split-leakage result.
+2. Implement a deterministic source-stratified scene-hash manifest for the five in-distribution
+   sources; preserve ScanNet++ as test-only OOD and label the new split non-official.
+3. Implement a bounded, direct-from-ZIP pixel/mask and natural-query balance audit with replayable
+   selected IDs/queries. Do not extract the full archive.
+4. Remain NO-GO for training unless mask semantics and the 10%-15% disconnected/bottleneck gate
+   pass on the reconstructed validation/test split; all baselines must use that same split.
 
 ## Recovery commands
 

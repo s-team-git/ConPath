@@ -15,9 +15,11 @@ from zipfile import ZipFile
 from pathrel.flatlands import (
     FLATLANDS_ARCHIVE_BYTES,
     FLATLANDS_ARCHIVE_SHA256,
+    archive_structure_gate,
     audit_metadata,
     build_archive_index,
     integrity_gate,
+    metadata_integrity_gate,
     sha256_file,
 )
 
@@ -114,6 +116,9 @@ def main() -> None:
                 progress=progress,
             )
 
+        archive_structure_passed = archive_matches and archive_structure_gate(index.report)
+        metadata_integrity_passed = metadata_integrity_gate(metadata)
+        scene_split_passed = bool(metadata["scene_disjoint"])
         passed = archive_matches and integrity_gate(index.report, metadata)
         report: dict[str, object] = {
             "protocol": {
@@ -132,19 +137,30 @@ def main() -> None:
             },
             "zip_index": index.report,
             "metadata": metadata,
-            "integrity_gate_passed": passed,
+            "gates": {
+                "archive_structure_passed": archive_structure_passed,
+                "metadata_integrity_passed": metadata_integrity_passed,
+                "scene_split_passed": scene_split_passed,
+                "p1_prequery_gate_passed": passed,
+            },
             "query_balance_gate_passed": False,
             "paper_result": False,
             "interpretation": (
-                "Archive integrity/split gate passed; pixel semantics and natural-query balance "
+                "Archive structure, metadata, and scene split passed; pixel semantics and "
+                "natural-query balance "
                 "remain required before extraction or training."
                 if passed
-                else "Archive audit is incomplete or failed; do not extract or train."
+                else (
+                    "Archive bytes/packets/metadata are valid, but the official observation split "
+                    "is not scene-disjoint; do not train on it for a cross-scene claim."
+                    if archive_structure_passed and metadata_integrity_passed
+                    else "Archive audit is incomplete or failed; do not extract or train."
+                )
             ),
         }
         atomic_json(report_path, report)
-        progress({"event": "complete", "integrity_gate_passed": passed})
-        print(json.dumps({"report": str(report_path), **report["archive"], "integrity_gate_passed": passed}, indent=2))
+        progress({"event": "complete", **report["gates"]})
+        print(json.dumps({"report": str(report_path), **report["archive"], **report["gates"]}, indent=2))
     except BaseException as error:
         failure = {
             "time_utc": datetime.now(timezone.utc).isoformat(),

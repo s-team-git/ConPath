@@ -90,6 +90,26 @@ Command: `PYTHONPATH=src .venv/bin/python scripts/benchmark_merge_tree.py --outp
 Latest regression result: exact error `0.0`; 64x64 speedups `3.09x/25.50x/161.19x` for
 `8/64/512` queries. Timing is diagnostic; zero error is the correctness contract.
 
+## P1 FlatLands archive audit (2026-08-30)
+
+Command: `./scripts/download_flatlands.sh --download`, followed by
+`./scripts/download_flatlands.sh --check`.
+
+Result: the official `FlatLands_final_dataset.zip` was downloaded without extraction. Its exact size
+is `2,054,773,316` bytes and SHA-256 is
+`e4f2e5c7c54f7ba62ea696fb103fb5d3794f30f5a2e63715773e59d6a9f1d26f`, matching the frozen official
+release contract.
+
+Command: `PYTHONPATH=src .venv/bin/python scripts/audit_flatlands_archive.py --metadata-limit 0
+--output-dir results/p1_flatlands_archive_audit_full`.
+
+Result: archive structure and metadata integrity pass. All 270,575 packets are complete and all
+metadata parse; official counts match; unsafe paths, duplicates, symlinks, encrypted members,
+malformed metadata, and missing identities are zero. The ConPath scene-split gate fails: shared
+`(source, scene_id)` counts are 12,873 for train/validation, 8,406 for train/test, and 6,800 for
+validation/test. Thus the official observation split cannot support a cross-scene claim; no
+extraction or public-data training was authorized.
+
 ## Real-data pilot (2026-08-28)
 
 Command: `/usr/bin/python3 scripts/run_tum_rgbd_pilot.py --frames 48 --queries 18 --samples 48 --publish-site`

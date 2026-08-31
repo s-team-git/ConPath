@@ -1,6 +1,7 @@
 # ConPath P1 data and event-identifiability audit
 
-Status: **pre-download audit; NO-GO for public-data or paper claims**  
+Status: **archive verified; official split fails scene-isolation gate; NO-GO for training/claims**
+
 Updated: 2026-08-30 (America/New_York)
 
 This is the durable gate between the passing synthetic P0 and any public-data training. P1 starts
@@ -10,10 +11,10 @@ auditable.
 
 ## Local inventory
 
-The workspace currently contains about 830 MB of ignored TUM RGB-D `freiburg1/desk` data and no
-FlatLands, ORFD, UnScenes3D, or WildOcc assets. There is no public-data loader, split manifest, or
-natural-query audit script yet. TUM supplies RGB/depth and camera motion but no traversability or
-collision labels, so the existing geometric pilot cannot serve as P1.
+The workspace contains about 830 MB of ignored TUM RGB-D `freiburg1/desk` data and the verified
+2.055 GB FlatLands ZIP. It has no ORFD, UnScenes3D, or WildOcc assets. TUM supplies RGB/depth and
+camera motion but no traversability or collision labels, so the existing geometric pilot cannot
+serve as P1.
 
 ## Candidate decision
 
@@ -67,6 +68,48 @@ success. It deliberately does not unzip 270,575 five-file packets:
 ./scripts/download_flatlands.sh --check
 ```
 
+The download completed and both the downloader and independent archive auditor reproduced the exact
+size and SHA above. No extraction was performed.
+
+## Full archive audit result
+
+Command:
+
+```bash
+PYTHONPATH=src .venv/bin/python scripts/audit_flatlands_archive.py \
+  --metadata-limit 0 --output-dir results/p1_flatlands_archive_audit_full
+```
+
+The archive structure is internally clean:
+
+- 270,575 complete five-file packets and 270,575 parseable metadata objects;
+- counts exactly 215,342 train, 26,890 validation, and 28,343 test;
+- zero unsafe paths, duplicate names/global IDs, symlinks, encrypted files, unexpected packet files,
+  incomplete packets, or missing scene identities;
+- the physical directory token is `val/`, although the release page calls it validation; the audit
+  normalizes both spellings.
+
+However, the official split is observation-level, not scene-level. Full `(source, scene_id)` overlap
+is:
+
+| Split pair | Shared scenes | 3RScan | ARKitScenes | Matterport3D | ScanNet | ZInD |
+|---|---:|---:|---:|---:|---:|---:|
+| train / validation | 12,873 | 980 | 2,751 | 1,797 | 1,251 | 6,094 |
+| train / test | 8,406 | 646 | 1,542 | 1,179 | 836 | 4,203 |
+| validation / test | 6,800 | 495 | 969 | 1,010 | 681 | 3,645 |
+
+For a concrete audit trace, ZInD scene `0371_floor_01_pano_18` contributes 16 train, 2 validation,
+and 1 test observations. ScanNet++ remains test-only and is the clean OOD source. The official
+in-distribution split therefore fails ConPath's scene-isolation gate and cannot be used for a
+cross-scene calibration claim.
+
+A source-stratified pixel sample found all four images to be binary 256x256 PNGs with values 0/255.
+`observed_floor` was always a subset of `floor_map`; `unobserved` never overlapped observed-free
+pixels. Cells outside `epistemic_mask` cannot be assumed blocked or free: sampled maps contained a
+small number of floor/observed pixels outside it, so the exact boundary semantics still require a
+quantified audit. Metadata confirms 0.01 m resolution, camera pixel `[128, 192]`, and a 256-cell crop
+in the inspected packets.
+
 ## Acceptance gates
 
 All gates are per split and per source dataset, not only pooled across observations.
@@ -109,13 +152,20 @@ All gates are per split and per source dataset, not only pooled across observati
 
 ## Current decision and next command
 
-**GO to integrity-controlled FlatLands acquisition; NO-GO to extraction or training.** After the
-tracked downloader and this document are committed, the exact next state-changing command is:
+**NO-GO on the official in-distribution split and NO-GO to training.** A salvage audit is allowed
+without extraction:
+
+1. derive a deterministic, source-stratified scene-hash split for the five in-distribution sources;
+2. retain ScanNet++ only as the official OOD test;
+3. quantify pixel/mask semantics and natural-query balance directly from a bounded ZIP sample;
+4. clearly label the reconstructed split as non-official and require baselines to retrain on it.
+
+The exact next command for reproducing the current full metadata result is:
 
 ```bash
-./scripts/download_flatlands.sh --download
+PYTHONPATH=src .venv/bin/python scripts/audit_flatlands_archive.py \
+  --metadata-limit 0 --output-dir results/p1_flatlands_archive_audit_full
 ```
 
-If interrupted, rerun the same command; it resumes `data/raw/flatlands/FlatLands_final_dataset.zip.part`.
-Do not delete or rename a mismatching completed file automatically. Record the verified archive and
-the next audit command in `CONTINUATION.md` before opening it.
+The next implementation milestone is the scene-hash manifest and bounded query audit. Do not extract
+or train merely to follow the official observation split.

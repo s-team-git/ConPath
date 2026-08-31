@@ -16,6 +16,12 @@ from zipfile import ZipFile, ZipInfo
 FLATLANDS_ARCHIVE_BYTES = 2_054_773_316
 FLATLANDS_ARCHIVE_SHA256 = "e4f2e5c7c54f7ba62ea696fb103fb5d3794f30f5a2e63715773e59d6a9f1d26f"
 FLATLANDS_SPLITS = ("train", "validation", "test")
+FLATLANDS_SPLIT_ALIASES = {
+    "train": "train",
+    "val": "validation",
+    "validation": "validation",
+    "test": "test",
+}
 FLATLANDS_SPLIT_COUNTS = {"train": 215_342, "validation": 26_890, "test": 28_343}
 FLATLANDS_PACKET_FILES = (
     "observed_floor.png",
@@ -60,12 +66,13 @@ def _safe_member_parts(name: str) -> tuple[str, ...] | None:
 
 def _packet_location(parts: tuple[str, ...]) -> tuple[str, str, str] | None:
     for index, part in enumerate(parts):
-        if part not in FLATLANDS_SPLITS:
+        canonical_split = FLATLANDS_SPLIT_ALIASES.get(part)
+        if canonical_split is None:
             continue
         if len(parts) != index + 3 or not parts[index + 1].startswith("obs_"):
             return None
         packet_directory = "/".join(parts[: index + 2])
-        return part, packet_directory, parts[index + 2]
+        return canonical_split, packet_directory, parts[index + 2]
     return None
 
 
@@ -241,7 +248,7 @@ def audit_metadata(
     interesting_paths: set[str] = set()
     global_ids: set[str] = set()
     duplicate_global_ids = 0
-    original_split_mismatches = 0
+    provenance_split_counts: dict[str, Counter[str]] = defaultdict(Counter)
 
     for index, member in enumerate(selected, start=1):
         try:
@@ -275,8 +282,8 @@ def audit_metadata(
                     duplicate_global_ids += 1
                 global_ids.add(global_id_string)
             original_split = provenance.get("original_split")
-            if original_split is not None and str(original_split) != member.split:
-                original_split_mismatches += 1
+            if original_split is not None:
+                provenance_split_counts[member.split][str(original_split)] += 1
 
         if progress is not None and index % 1_000 == 0:
             progress({"event": "metadata", "processed": index, "selected": len(selected)})
@@ -287,6 +294,7 @@ def audit_metadata(
             shared = scenes_by_split[first] & scenes_by_split[second]
             overlap[f"{first}__{second}"] = {
                 "count": len(shared),
+                "by_source": dict(sorted(Counter(source for source, _ in shared).items())),
                 "examples": [list(item) for item in sorted(shared)[:100]],
             }
 
@@ -303,7 +311,10 @@ def audit_metadata(
         "malformed_examples": malformed_examples,
         "missing_scene_identity_count": missing_identity,
         "duplicate_global_id_count": duplicate_global_ids,
-        "original_split_mismatch_count": original_split_mismatches,
+        "provenance_original_split_counts": {
+            split: dict(sorted(provenance_split_counts[split].items()))
+            for split in FLATLANDS_SPLITS
+        },
         "scene_counts": {split: len(scenes_by_split[split]) for split in FLATLANDS_SPLITS},
         "source_observation_counts": {
             split: dict(sorted(source_counts[split].items())) for split in FLATLANDS_SPLITS
@@ -318,7 +329,7 @@ def audit_metadata(
     }
 
 
-def integrity_gate(index_report: dict[str, object], metadata_report: dict[str, object]) -> bool:
+def archive_structure_gate(index_report: dict[str, object]) -> bool:
     return bool(
         index_report["official_counts_match"]
         and index_report["incomplete_packet_count"] == 0
@@ -327,8 +338,23 @@ def integrity_gate(index_report: dict[str, object], metadata_report: dict[str, o
         and index_report["symlink_member_count"] == 0
         and index_report["encrypted_member_count"] == 0
         and index_report["unexpected_packet_member_count"] == 0
-        and metadata_report["complete_metadata_scan"]
+    )
+
+
+def metadata_integrity_gate(metadata_report: dict[str, object]) -> bool:
+    return bool(
+        metadata_report["complete_metadata_scan"]
         and metadata_report["malformed_count"] == 0
-        and metadata_report["scene_disjoint"]
+        and metadata_report["missing_scene_identity_count"] == 0
         and metadata_report["duplicate_global_id_count"] == 0
+    )
+
+
+def integrity_gate(index_report: dict[str, object], metadata_report: dict[str, object]) -> bool:
+    """Combined pre-query gate, including the stricter ConPath scene-isolation rule."""
+
+    return bool(
+        archive_structure_gate(index_report)
+        and metadata_integrity_gate(metadata_report)
+        and metadata_report["scene_disjoint"]
     )
