@@ -14,6 +14,16 @@ else:
 
 @unittest.skipIf(torch is None, f"PyTorch unavailable: {TORCH_ERROR}")
 class PathRelLossTest(unittest.TestCase):
+    def test_binary_probability_nll_supports_soft_empirical_target(self) -> None:
+        from pathrel.losses import binary_probability_nll
+
+        probability = torch.tensor([0.25, 0.75])
+        target = torch.tensor([0.25, 0.75])
+        expected = -(
+            target * probability.log() + (1.0 - target) * torch.log1p(-probability)
+        ).mean()
+        torch.testing.assert_close(binary_probability_nll(probability, target), expected)
+
     def test_posterior_marginal_is_mean_of_probabilities(self) -> None:
         from pathrel.losses import posterior_marginal_nll
 

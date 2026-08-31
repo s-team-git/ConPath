@@ -9,6 +9,31 @@ from torch import Tensor
 import torch.nn.functional as F
 
 
+def binary_probability_nll(
+    probabilities: Tensor,
+    targets: Tensor,
+    *,
+    weights: Tensor | None = None,
+    epsilon: float = 1e-6,
+) -> Tensor:
+    """Binary log score for hard labels or empirical probabilities in ``[0, 1]``."""
+
+    if probabilities.shape != targets.shape:
+        raise ValueError("probabilities and targets must have the same shape")
+    probabilities = probabilities.clamp(epsilon, 1.0 - epsilon)
+    targets = targets.to(probabilities.dtype)
+    score = -(
+        targets * torch.log(probabilities)
+        + (1.0 - targets) * torch.log1p(-probabilities)
+    )
+    if weights is None:
+        return score.mean()
+    if weights.shape != score.shape:
+        raise ValueError("weights must have the same shape as probabilities")
+    weights = weights.to(score.dtype)
+    return (score * weights).sum() / weights.sum().clamp_min(1e-12)
+
+
 def map_cross_entropy(
     mean_logits: Tensor,
     target_classes: Tensor,

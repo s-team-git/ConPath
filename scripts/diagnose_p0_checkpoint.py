@@ -36,6 +36,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--samples", type=int, default=64)
     parser.add_argument("--batch-size", type=int, default=12)
     parser.add_argument("--categorical-noise-scale", type=float)
+    parser.add_argument("--split", choices=("train", "test"), default="test")
     parser.add_argument("--output", type=Path)
     parser.add_argument(
         "--skip-events",
@@ -144,9 +145,14 @@ def main() -> None:
     model.load_state_dict(state)
     model.eval()
 
+    template_ids = (
+        range(train_templates)
+        if args.split == "train"
+        else range(train_templates, train_templates + test_templates)
+    )
     arrays = stack(
         make_split(
-            range(train_templates, train_templates + test_templates),
+            template_ids,
             worlds_per_template=worlds_per_template,
             height=height,
             width=width,
@@ -246,6 +252,7 @@ def main() -> None:
             "batch_size": args.batch_size,
             "categorical_noise_scale": noise_scale,
             "device": str(device),
+            "split": args.split,
             "encoder_context_mode": (
                 "coord_global" if use_coordinate_channels and use_global_context else "local"
             ),

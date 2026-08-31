@@ -7,7 +7,7 @@ diagnostic, code change, or experiment; do not rely on chat history or ignored `
 
 - Updated: 2026-08-30 (America/New_York)
 - Repository: `/home/hairo/pathrel_transfer/pathrel_pro6000`
-- Last durable implementation commit: `f94a694` (local `main`; not yet pushed in this continuation)
+- Last durable implementation commit: `e347e8b` (local `main`; not yet pushed in this continuation)
 - Scientific gate: **NO-GO** for P1/public-data claims
 - Active task: fix the trained neural P0 joint-event posterior under the existing held-out-template
   protocol; do not expand to a new public benchmark until it passes.
@@ -82,17 +82,30 @@ scales are likewise nearly context-invariant.
 Therefore this result is **NO-GO despite its aggregate Brier**. The gate now additionally requires
 recovering at least 50% of the held-out radius-zero context gap. The current working tree adds
 coordinate channels and a globally pooled bottleneck context broadcast to the tiny P0 encoder;
-the external `forward_features(...)` public-backbone path is unchanged. This architecture change
-has passed all 32 tests but has not yet completed the official CUDA protocol.
+the external `forward_features(...)` public-backbone path is unchanged.
 
 The first CUDA evaluation-only resume also exposed and fixed a cross-device RNG restore bug:
 serialized ByteTensor RNG states are explicitly moved back to CPU before `set_state`. The same
 checkpoint then resumed successfully and completed the 128-sample evaluation.
 
+`results/p0_neural_cuda_context_v2/` then tested that coordinate/global encoder for 120 steps. It
+failed: event Brier `0.186264`, ECE `0.109511`, and context-gap ratio `0.0118`. A train-split
+checkpoint diagnostic also showed almost identical context wall marginals (`0.1894/0.1909`), so
+this is optimization/supervision collapse rather than held-out-template overfitting. The encoder
+change alone is not a solution.
+
+Replaying all training batch indices ruled out context sampling bias: joint-stage door rates were
+`0.255/0.833` and full-train rates were `0.222/0.826`. The current working tree instead uses the
+dataset's intended repeated-world structure: for each `(template, context)` it aggregates 24 worlds
+into empirical map/event probability targets and applies proper scores to one shared observation.
+The derived event still comes only from stochastic map samples. Legacy `--training-unit world`
+remains available for old checkpoints. This grouped-training change passes all 34 tests but has not
+yet run the official CUDA protocol.
+
 ## Exact next actions
 
-1. Commit the context-aware encoder/gate update and run the unchanged 12/4-template CUDA protocol
-   into `results/p0_neural_cuda_context_v2/`.
+1. Commit grouped empirical-distribution training and run the unchanged 12/4-template CUDA protocol
+   into `results/p0_neural_cuda_grouped_v3/` with `--training-unit observation_group`.
 2. Monitor its `progress.jsonl`; if interrupted, resume its
    `latest.pt` with the same immutable protocol and a larger/equal `--steps` value.
 3. Compare neural event Brier/ECE and empirical hard-map Brier against the fixed death-test gates.

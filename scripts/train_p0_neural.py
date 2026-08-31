@@ -28,8 +28,7 @@ import torch  # noqa: E402
 
 from evaluate_p0 import make_split, stack  # noqa: E402
 from pathrel.losses import (  # noqa: E402
-    map_cross_entropy,
-    posterior_marginal_nll_from_probs,
+    binary_probability_nll,
     reachability_brier_u_statistic,
     spatial_variogram_score,
 )
@@ -73,6 +72,12 @@ def parse_args() -> argparse.Namespace:
         help="Weight for the U-statistic Brier score of empirical hard-map marginals.",
     )
     parser.add_argument("--learning-rate", type=float, default=1e-3)
+    parser.add_argument(
+        "--training-unit",
+        choices=("world", "observation_group"),
+        default="observation_group",
+        help="Score individual worlds or empirical distributions of repeated identical observations.",
+    )
     parser.add_argument(
         "--encoder-context-mode",
         choices=("local", "coord_global"),
@@ -147,6 +152,7 @@ def training_config(args: argparse.Namespace) -> dict[str, Any]:
         "variogram_weight": args.variogram_weight,
         "empirical_map_weight": args.empirical_map_weight,
         "learning_rate": args.learning_rate,
+        "training_unit": args.training_unit,
         "encoder_context_mode": args.encoder_context_mode,
     }
 
@@ -155,6 +161,7 @@ def validate_resume_config(saved: dict[str, Any], current: dict[str, Any]) -> No
     saved = {**saved}
     # Format-v2 checkpoints written before the global-context encoder are legacy local models.
     saved.setdefault("encoder_context_mode", "local")
+    saved.setdefault("training_unit", "world")
     mutable = {"steps", "validation_samples"}
     mismatches = {
         key: {"checkpoint": saved.get(key), "requested": value}
@@ -220,6 +227,28 @@ def doorway_summary(wall_free: np.ndarray) -> dict[str, float]:
         "mean_transitions": float(transitions.mean()),
         "fragmented_rate": float((transitions > 2).mean()),
     }
+
+
+def repeated_observation_groups(
+    arrays: dict[str, np.ndarray],
+) -> dict[int, list[np.ndarray]]:
+    """Group complete worlds that share one visible observation and query protocol."""
+
+    groups: dict[int, list[np.ndarray]] = {0: [], 1: []}
+    for template in np.unique(arrays["template"]):
+        for family in (0, 1):
+            indices = np.flatnonzero(
+                (arrays["template"] == template) & (arrays["context"] == family)
+            )
+            if len(indices) < 2:
+                raise ValueError("observation-group training requires repeated hidden worlds")
+            representative = int(indices[0])
+            for key in ("observation", "starts", "goals"):
+                expected = np.broadcast_to(arrays[key][representative], arrays[key][indices].shape)
+                if not np.array_equal(arrays[key][indices], expected):
+                    raise ValueError(f"{key} differs within one observation group")
+            groups[family].append(indices)
+    return groups
 
 
 def validate_args(args: argparse.Namespace) -> None:
@@ -345,34 +374,70 @@ def main() -> None:
     started = time.monotonic()
     context_zero = np.flatnonzero(train_arrays["context"] == 0)
     context_one = np.flatnonzero(train_arrays["context"] == 1)
+    observation_groups = (
+        repeated_observation_groups(train_arrays)
+        if args.training_unit == "observation_group"
+        else None
+    )
 
     model.train()
     try:
         for step in range(start_step, args.steps):
             batch_rng = np.random.default_rng(args.seed + step)
             half_batch = args.batch_size // 2
-            indices = np.concatenate(
-                [
-                    batch_rng.choice(context_zero, half_batch, replace=False),
-                    batch_rng.choice(context_one, half_batch, replace=False),
+            if observation_groups is None:
+                indices = np.concatenate(
+                    [
+                        batch_rng.choice(context_zero, half_batch, replace=False),
+                        batch_rng.choice(context_one, half_batch, replace=False),
+                    ]
+                )
+                target_free_numpy = train_arrays["target_free"][indices].astype(np.float32)
+                target_events_numpy = train_arrays["events"][indices].astype(np.float32)
+                variogram_target_numpy = target_free_numpy
+            else:
+                selected_groups = [
+                    observation_groups[0][index]
+                    for index in batch_rng.choice(
+                        len(observation_groups[0]), half_batch, replace=False
+                    )
+                ] + [
+                    observation_groups[1][index]
+                    for index in batch_rng.choice(
+                        len(observation_groups[1]), half_batch, replace=False
+                    )
                 ]
-            )
+                indices = np.asarray([group[0] for group in selected_groups], dtype=np.int64)
+                target_free_numpy = np.stack(
+                    [train_arrays["target_free"][group].mean(axis=0) for group in selected_groups]
+                ).astype(np.float32)
+                target_events_numpy = np.stack(
+                    [train_arrays["events"][group].mean(axis=0) for group in selected_groups]
+                ).astype(np.float32)
+                # One deterministic realization per group gives an unbiased variogram target
+                # without replacing E|Y_i-Y_j| by the generally different |EY_i-EY_j|.
+                realized = np.asarray(
+                    [group[(step + offset) % len(group)] for offset, group in enumerate(selected_groups)],
+                    dtype=np.int64,
+                )
+                variogram_target_numpy = train_arrays["target_free"][realized].astype(np.float32)
             observation = torch.from_numpy(train_arrays["observation"][indices]).to(
                 device=device, dtype=torch.float32
             )
-            target_classes = torch.from_numpy(
-                (~train_arrays["target_free"][indices]).astype(np.int64)
-            ).to(device=device, dtype=torch.long)
             unknown = observation[:, 2] > 0.5
-            hidden_target_classes = target_classes.masked_fill(~unknown, -1)
-            target_safe = (target_classes == 0).to(torch.float32)
+            target_safe = torch.from_numpy(target_free_numpy).to(
+                device=device, dtype=torch.float32
+            )
+            variogram_target_safe = torch.from_numpy(variogram_target_numpy).to(
+                device=device, dtype=torch.float32
+            )
             starts = torch.from_numpy(train_arrays["starts"][indices]).to(
                 device=device, dtype=torch.long
             )
             goals = torch.from_numpy(train_arrays["goals"][indices]).to(
                 device=device, dtype=torch.long
             )
-            targets = torch.from_numpy(train_arrays["events"][indices]).to(
+            targets = torch.from_numpy(target_events_numpy).to(
                 device=device, dtype=torch.float32
             )
 
@@ -384,8 +449,10 @@ def main() -> None:
                     categorical_noise_scale=args.categorical_noise_scale,
                     generator=generator,
                 )
-                map_loss = map_cross_entropy(
-                    output.posterior.mean_logits, hidden_target_classes
+                map_loss = binary_probability_nll(
+                    output.posterior.mean_logits.softmax(dim=1)[:, 0],
+                    target_safe,
+                    weights=unknown.to(torch.float32),
                 )
                 empirical_map_loss = output.posterior.mean_logits.sum() * 0.0
                 variogram_loss = output.posterior.mean_logits.sum() * 0.0
@@ -403,13 +470,14 @@ def main() -> None:
                     max_reachability_steps=args.height * args.width,
                     generator=generator,
                 )
-                map_loss = posterior_marginal_nll_from_probs(
-                    output.posterior.conditional_class_probs,
-                    hidden_target_classes,
+                map_loss = binary_probability_nll(
+                    output.posterior.posterior_marginal_probs[:, 0],
+                    target_safe,
+                    weights=unknown.to(torch.float32),
                 )
                 empirical_map_loss = reachability_brier_u_statistic(
                     output.posterior.safe_samples(),
-                    target_safe,
+                    variogram_target_safe,
                     weights=unknown.to(torch.float32),
                 )
                 variogram_loss = spatial_variogram_score(
