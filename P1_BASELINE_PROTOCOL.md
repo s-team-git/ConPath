@@ -89,6 +89,9 @@ events; checkpoint selection uses primary validation scene-weighted Brier. It do
 ## Training and seed policy
 
 - Optimizer: AdamW; initial learning rate `3e-4`; weight decay `1e-4`.
+- Batch size: four scenes; no geometric augmentation in v1. Direct-query training runs at most 120
+  epochs with patience 20; marginal completion runs at most 80 epochs with patience 12. Both use
+  minimum validation improvement `1e-5` and save/restore the selected epoch.
 - Seeds: `20260831`, `20260901`, `20260902` for every learned method in final tables.
 - Batch construction is scene-based. All retained query-radius events for an observation remain in
   the same batch item and split.

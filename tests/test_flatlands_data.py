@@ -182,6 +182,8 @@ class FlatLandsReplayDatasetTest(unittest.TestCase):
             self.assertEqual(batch["reachability_targets"].shape[0], 2)
             self.assertEqual(batch["reachability_targets"].shape[-1], 3)
             self.assertTrue(np.all(batch["query_mask"].sum(axis=1) > 0))
+            self.assertTrue(np.all(batch["candidate_indices"][batch["query_mask"]] >= 0))
+            self.assertTrue(np.all(batch["candidate_indices"][~batch["query_mask"]] == -1))
 
             # A live ZipFile handle never enters a spawned/forked DataLoader payload.
             restored = pickle.loads(pickle.dumps(dataset))

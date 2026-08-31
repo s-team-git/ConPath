@@ -499,6 +499,7 @@ def collate_flatlands_replay(
     query_mask = np.zeros((batch_size, maximum_queries), dtype=bool)
     distances_m = np.zeros((batch_size, maximum_queries), dtype=np.float32)
     angles_deg = np.zeros((batch_size, maximum_queries), dtype=np.int64)
+    candidate_indices = np.full((batch_size, maximum_queries), -1, dtype=np.int64)
     for batch_index, rows in enumerate(retained):
         for query_index, query in enumerate(rows):
             assert query.start_row is not None and query.start_col is not None
@@ -509,6 +510,7 @@ def collate_flatlands_replay(
             query_mask[batch_index, query_index] = True
             distances_m[batch_index, query_index] = query.distance_m
             angles_deg[batch_index, query_index] = query.angle_deg
+            candidate_indices[batch_index, query_index] = query.candidate_index
     return {
         "observation": np.stack([sample.input_bev for sample in samples]),
         "target_free": np.stack([sample.target_free for sample in samples]),
@@ -519,6 +521,7 @@ def collate_flatlands_replay(
         "query_mask": query_mask,
         "distances_m": distances_m,
         "angles_deg": angles_deg,
+        "candidate_indices": candidate_indices,
         "radii_cells": np.asarray(radii, dtype=np.int64),
         "global_ids": [sample.observation.global_id for sample in samples],
         "provenance_splits": [sample.observation.provenance_split for sample in samples],
