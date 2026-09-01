@@ -76,6 +76,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--gradient-clip", type=float, default=5.0)
     parser.add_argument("--train-samples", type=int, default=4)
     parser.add_argument("--validation-samples", type=int, default=8)
+    parser.add_argument(
+        "--validation-sample-chunk",
+        type=int,
+        default=None,
+        help="split validation posterior samples into sequential chunks to cap GPU memory; total samples stay unchanged",
+    )
     parser.add_argument("--max-reachability-steps", type=int, default=256)
     parser.add_argument("--selection-query-limit", type=int, default=8)
     parser.add_argument("--map-weight", type=float, default=1.0)
@@ -249,38 +255,58 @@ def _exact_event_probabilities(
 
 
 @torch.inference_mode()
-def _validation_selection_score(model: PathRelNet, loader: DataLoader, device: torch.device, radii: tuple[int, ...], samples: int, max_steps: int, query_limit: int | None, generator: torch.Generator, *, disable_global_factors: bool = False) -> float:
+def _validation_selection_score(model: PathRelNet, loader: DataLoader, device: torch.device, radii: tuple[int, ...], samples: int, max_steps: int, query_limit: int | None, generator: torch.Generator, *, disable_global_factors: bool = False, sample_chunk: int | None = None) -> float:
     model.eval()
     values: list[float] = []
     for numpy_batch in loader:
         batch = _limit_queries(_to_tensor_batch(numpy_batch, device), query_limit)
         if batch["starts"].shape[1] == 0:
             continue
-        output = _forward(model, batch, radii, samples, max_steps, generator, disable_global_factors=disable_global_factors)
-        values.append(float(_scene_event_brier(output.reachability, batch["reachability_targets"], batch["query_mask"]).cpu()))
+        chunk = samples if sample_chunk is None else min(sample_chunk, samples)
+        event_sum = None
+        remaining = samples
+        while remaining > 0:
+            current = min(chunk, remaining)
+            output = _forward(model, batch, radii, current, max_steps, generator, disable_global_factors=disable_global_factors)
+            if output.sample_reachability is None:
+                raise RuntimeError("validation forward did not return sample reachability")
+            current_sum = output.sample_reachability.sum(dim=1)
+            event_sum = current_sum if event_sum is None else event_sum + current_sum
+            remaining -= current
+        assert event_sum is not None
+        values.append(float(_scene_event_brier(event_sum / float(samples), batch["reachability_targets"], batch["query_mask"]).cpu()))
     if not values:
         raise RuntimeError("validation produced no retained queries")
     return float(np.mean(values))
 
 
 @torch.inference_mode()
-def _validation_prediction_rows(model: PathRelNet, loader: DataLoader, device: torch.device, radii: tuple[int, ...], samples: int, max_steps: int, generator: torch.Generator, *, exact_forward: bool = True, disable_global_factors: bool = False) -> list[dict[str, object]]:
+def _validation_prediction_rows(model: PathRelNet, loader: DataLoader, device: torch.device, radii: tuple[int, ...], samples: int, max_steps: int, generator: torch.Generator, *, exact_forward: bool = True, disable_global_factors: bool = False, sample_chunk: int | None = None) -> list[dict[str, object]]:
     model.eval()
     rows: list[dict[str, object]] = []
     for numpy_batch in loader:
         batch = _to_tensor_batch(numpy_batch, device)
         if batch["starts"].shape[1] == 0:
             continue
-        output = _forward(model, batch, radii, samples, max_steps, generator, disable_global_factors=disable_global_factors)
-        if exact_forward:
-            probabilities = _exact_event_probabilities(
-                output.posterior.safe_samples(),
-                numpy_batch["starts"],
-                numpy_batch["goals"],
-                radii,
-            )
-        else:
-            probabilities = output.reachability.detach().cpu().numpy()
+        chunk = samples if sample_chunk is None else min(sample_chunk, samples)
+        probability_sum = None
+        remaining = samples
+        while remaining > 0:
+            current = min(chunk, remaining)
+            output = _forward(model, batch, radii, current, max_steps, generator, disable_global_factors=disable_global_factors)
+            if exact_forward:
+                current_probability = _exact_event_probabilities(
+                    output.posterior.safe_samples(),
+                    numpy_batch["starts"],
+                    numpy_batch["goals"],
+                    radii,
+                )
+            else:
+                current_probability = output.reachability.detach().cpu().numpy()
+            probability_sum = current_probability * current if probability_sum is None else probability_sum + current_probability * current
+            remaining -= current
+        assert probability_sum is not None
+        probabilities = probability_sum / float(samples)
         mask = numpy_batch["query_mask"]
         for batch_index, global_id in enumerate(numpy_batch["global_ids"]):
             for query_index in np.flatnonzero(mask[batch_index]):
@@ -321,6 +347,8 @@ def main() -> None:
         raise SystemExit("train/validation samples must be at least two")
     if args.max_epochs < 1 or args.patience < 1 or args.max_reachability_steps < 1:
         raise SystemExit("epochs, patience, and reachability steps must be positive")
+    if args.validation_sample_chunk is not None and args.validation_sample_chunk < 1:
+        raise SystemExit("validation-sample-chunk must be positive when supplied")
     if args.batch_size < 1 or args.feature_channels < 1 or args.latent_dim < 1:
         raise SystemExit("batch-size, feature-channels, and latent-dim must be positive")
     if args.decoder_variant == "independent" and args.disable_global_factors:
@@ -389,7 +417,7 @@ def main() -> None:
                 torch.nn.utils.clip_grad_norm_(model.parameters(), args.gradient_clip)
                 optimizer.step()
                 losses.append(float(total.detach().cpu()))
-            validation_score = _validation_selection_score(model, validation_loader, device, validation_radii, args.validation_samples, args.max_reachability_steps, args.selection_query_limit, sample_generator, disable_global_factors=effective_disable_global_factors)
+            validation_score = _validation_selection_score(model, validation_loader, device, validation_radii, args.validation_samples, args.max_reachability_steps, args.selection_query_limit, sample_generator, disable_global_factors=effective_disable_global_factors, sample_chunk=args.validation_sample_chunk)
             improved = validation_score < best_score - args.min_delta
             if improved:
                 best_score, best_epoch, patience_used = validation_score, epoch, 0
@@ -423,7 +451,7 @@ def main() -> None:
 
     selected = torch.load(best_path, map_location=device, weights_only=False)
     model.load_state_dict(selected["model"])
-    rows = _validation_prediction_rows(model, validation_loader, device, validation_radii, args.validation_samples, args.max_reachability_steps, sample_generator, exact_forward=True, disable_global_factors=effective_disable_global_factors)
+    rows = _validation_prediction_rows(model, validation_loader, device, validation_radii, args.validation_samples, args.max_reachability_steps, sample_generator, exact_forward=True, disable_global_factors=effective_disable_global_factors, sample_chunk=args.validation_sample_chunk)
     prediction_path = args.output_dir / "predictions_validation.csv"
     prediction_count = write_prediction_manifest(prediction_path, rows)
     full_validation = args.train_scenes_limit is None and args.validation_scenes_limit is None
@@ -464,6 +492,7 @@ def main() -> None:
             "decoder_variant": args.decoder_variant,
             "effective_disable_global_factors": effective_disable_global_factors,
             "local_kernel_size": 1 if independent_decoder else 5,
+            "validation_sample_chunk": args.validation_sample_chunk,
         },
         "evaluation": evaluation,
         "runtime": {
