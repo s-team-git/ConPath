@@ -46,6 +46,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--event-workers", type=int, default=8)
     parser.add_argument("--total-samples", type=int, nargs="+", default=[32, 64, 128])
     parser.add_argument("--bootstrap-samples", type=int, default=2_000)
+    parser.add_argument("--reuse-existing", action="store_true", help="reuse existing prediction/evaluation files and only rebuild the integrity report")
     return parser.parse_args()
 
 
@@ -53,6 +54,16 @@ def _git_state() -> dict[str, object]:
     def run(*args: str) -> str:
         return subprocess.run(("git", *args), cwd=PROJECT_ROOT, check=True, capture_output=True, text=True).stdout.strip()
     return {"head": run("rev-parse", "HEAD"), "status": run("status", "--short").splitlines()}
+
+
+def _jsonable(value: object) -> object:
+    if isinstance(value, Path):
+        return str(value)
+    if isinstance(value, dict):
+        return {str(key): _jsonable(item) for key, item in value.items()}
+    if isinstance(value, (list, tuple)):
+        return [_jsonable(item) for item in value]
+    return value
 
 
 def _to_tensor_batch(batch: dict[str, object], device: torch.device) -> dict[str, object]:
@@ -183,21 +194,28 @@ def main() -> None:
         member_counts = [base + (index < remainder) for index in range(len(member_maps))]
         if min(member_counts) < 1:
             raise SystemExit("total-samples must be at least the number of ensemble members")
-        member_results: list[list[CompletionEventResult]] = []
         k_started = time.monotonic()
-        for index, maps in enumerate(member_maps):
-            tasks = _tasks(samples, maps, radii, member_counts[index], args.seed + index * 1_000_003)
-            with ProcessPoolExecutor(max_workers=args.event_workers, mp_context=mp.get_context("spawn")) as executor:
-                member_results.append(list(executor.map(completion_event_probabilities, tasks, chunksize=1)))
         prediction_path = args.output_dir / f"predictions_pasco_ensemble_k{total_samples}_validation.csv"
         evaluation_dir = args.output_dir / f"evaluation_pasco_ensemble_k{total_samples}_validation"
-        count = write_prediction_manifest(prediction_path, _combine(member_results, member_counts, radii))
-        evaluation = evaluate_flatlands_prediction_file(
-            prediction_path, args.selection, args.queries,
-            method=f"pasco_inspired_ensemble_k{total_samples}", split="validation",
-            bootstrap_samples=args.bootstrap_samples, seed=args.seed,
-        )
-        write_evaluation_report(evaluation_dir, evaluation)
+        report_path = evaluation_dir / "report.json"
+        if args.reuse_existing and prediction_path.exists() and report_path.exists():
+            with report_path.open("r", encoding="utf-8") as handle:
+                evaluation = json.load(handle)
+            with prediction_path.open("r", encoding="utf-8") as handle:
+                count = sum(1 for _ in handle) - 1
+        else:
+            member_results: list[list[CompletionEventResult]] = []
+            for index, maps in enumerate(member_maps):
+                tasks = _tasks(samples, maps, radii, member_counts[index], args.seed + index * 1_000_003)
+                with ProcessPoolExecutor(max_workers=args.event_workers, mp_context=mp.get_context("spawn")) as executor:
+                    member_results.append(list(executor.map(completion_event_probabilities, tasks, chunksize=1)))
+            count = write_prediction_manifest(prediction_path, _combine(member_results, member_counts, radii))
+            evaluation = evaluate_flatlands_prediction_file(
+                prediction_path, args.selection, args.queries,
+                method=f"pasco_inspired_ensemble_k{total_samples}", split="validation",
+                bootstrap_samples=args.bootstrap_samples, seed=args.seed,
+            )
+            write_evaluation_report(evaluation_dir, evaluation)
         summaries[str(total_samples)] = {
             "member_samples": member_counts,
             "prediction": {"path": str(prediction_path), "rows": count, "sha256": sha256_path(prediction_path)},
@@ -214,7 +232,7 @@ def main() -> None:
         "validation_result": True,
         "test_evaluated": False,
         "members": member_meta,
-        "config": {key: str(value) if isinstance(value, Path) else value for key, value in vars(args).items()},
+        "config": _jsonable(vars(args)),
         "data": {"selection_sha256": sha256_path(args.selection), "queries_sha256": sha256_path(args.queries), "archive_bytes": args.archive.stat().st_size},
         "radii_cells": list(radii),
         "validation_map_metrics": map_metrics,
