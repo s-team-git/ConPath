@@ -5,11 +5,11 @@ diagnostic, code change, or experiment; do not rely on chat history or ignored `
 
 ## Recovery snapshot
 
-- Updated: 2026-08-31 (America/New_York)
+- Updated: 2026-09-01 (America/New_York)
 - Repository: `/home/hairo/pathrel_transfer/pathrel_pro6000`
 - Durable checkpoint: `p1-flatlands-validation-baselines-v1` in tracked `RECOVERY_STATE.json`
 - Recovery-state commit: resolve with `git log -1 --format='%h %s' -- RECOVERY_STATE.json`
-- Last durable implementation commit: `0c5c324` (F16 three-seed ConPath validation results and recovery hashes; pushed to GitHub)
+- Last durable implementation commit: `1b8233b` (K convergence/recent-method evaluators and validation ensemble report; pushed to GitHub)
 - Scientific gate: **P0 GO; FlatLands bounded data gate and first validation baselines GO on a
   non-official provenance split; public-data model and paper claims not yet established**
 - Active task: run multi-seed ConPath and ablations, then scalable connectivity and calibration /
@@ -363,6 +363,44 @@ with the batched Kruskal merge-tree, while the bounded differentiable propagatio
 training/epoch selection. A one-scene CPU smoke completed end to end (including checkpoint/prediction
 writing) with `paper_result=false` and validation subset evaluation disabled. Full validation runs
 must still use the frozen 160-scene provenance split and multiple seeds before becoming paper results.
+
+## Completion multi-seed controls and K convergence
+
+Two additional completion seeds were trained under the frozen P1 protocol. They complete the
+three-seed control set alongside `seed20260831`; all remain validation-only and test-locked:
+
+| Seed | Best epoch | Map Brier | Map NLL | Deterministic event Brier | Independent K=32 event Brier |
+|---:|---:|---:|---:|---:|---:|
+| 20260831 | 15 | 0.11345 | — | 0.08556 | 0.22546 |
+| 20260901 | 26 | 0.11640 | 0.37618 | 0.08816 | 0.23187 |
+| 20260902 | 13 | 0.11450 | 0.36853 | 0.09199 | 0.23611 |
+
+For seed `20260901`, one fixed completion checkpoint was evaluated with a shared posterior stream
+at K=32/64/128. Event Brier was `0.231873/0.231068/0.230949`, NLL was
+`2.992125/2.957632/2.936882`, and ECE was `0.248903/0.248603/0.248616`. The small change confirms
+that K=32 is adequate for rapid diagnostics; final tables retain K=128. The evaluation script now
+generates the maximum K once and reports all prefixes, so this convergence check is reproducible
+without three independent expensive samplers.
+
+## Recent-paper same-contract control
+
+The first recent-method adaptation is a PaSCo-inspired three-subnet ensemble control. It uses the
+three completion checkpoints above, the frozen three-channel FlatLands input, and a fixed total of
+32 event worlds (11/11/10 per member). It is explicitly not a reproduction of PaSCo's camera/3-D
+architecture. The exact scene-weighted validation result is map Brier `0.110545`, event Brier
+`0.228984`, NLL `2.898173`, ECE `0.248410`, and false-safe@0.8 `0.015380`. The compact report and
+member/prediction hashes are tracked in `site/data/flatlands_pasco_ensemble_validation.json`; the
+full ignored artifacts remain under `results/p1_flatlands_pasco_ensemble_validation/`.
+
+## Validation qualitative panels and website state
+
+Two real-checkpoint FlatLands validation panels were rendered and copied to the tracked site:
+`flatlands_qualitative_validation_positive.svg` (r=10, ConPath event `0.844`) and
+`flatlands_qualitative_validation_uncertain.svg` (disconnected r=0 case, ConPath event `0.563`).
+Each panel shows observed BEV, ConPath posterior, deterministic completion, and the reference map;
+the second case is intentionally included to avoid a one-sided visual claim. The current TUM video
+is still a geometry/BEV pilot. A final paper/site video must show posterior updates, radius-
+conditioned reachability, baseline comparison, and at least one failure/overconfidence case.
 
 ## Exact next actions
 

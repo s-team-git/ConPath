@@ -1,0 +1,14 @@
+{
+  "output": "results/p1_flatlands_qualitative_validation/obs_008266_candidate0_r10.svg",
+  "dataset": "FlatLands",
+  "split": "validation",
+  "source_dataset": "3RScan",
+  "scene_id": "0a4b8ef6-a83a-21f2-8672-dce34dd0d7ca",
+  "global_id": "obs_008266",
+  "candidate_index": 0,
+  "radius_cells": 10,
+  "conpath_event_exact": 0.84375,
+  "completion_event": 1.0,
+  "direct_query_event": 0.9814715385437012,
+  "test_evaluated": false
+}

@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
   "checkpoint_id": "p1-flatlands-validation-baselines-v1",
-  "updated_local_date": "2026-08-31",
+  "updated_local_date": "2026-09-01",
   "timezone": "America/New_York",
   "branch": "main",
   "remote_sync": "Local main is clean and synchronized with origin/main via GitHub SSH over port 443; GitHub Pages can deploy the tracked site after the workflow completes.",
-  "latest_local_commit": "0c5c324 Record F16 ConPath seed results",
+  "latest_local_commit": "1b8233b Allow reuse of completed ensemble evaluations",
   "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence.",
-  "scientific_status": "Synthetic P0 passes in two seeds. The official FlatLands split fails scene isolation. The non-official upstream-provenance split passes full integrity, a 512-scene bounded mask/query gate, direct-ZIP replay, and first validation-only baselines. The public site exposes the audit, baseline snapshot, and recent-paper bridge with test locked. The historical F=8 ConPath pilot is complete for one seed (scene-weighted exact validation Brier 0.08370). The capacity-matched F=16 main model averages 0.09607 +/- 0.01222 across three seeds; no-global averages 0.11505 +/- 0.00663 and no-reachability averages 0.20555 +/- 0.00473. These remain validation-only, not final paper results.",
-  "active_task": "Add independent-decoder, deterministic-mean-map, and K-convergence controls; compare recent strong methods under the same contract; then add uncertainty/calibration and second-domain checks before any test access or site claim.",
+  "scientific_status": "Synthetic P0 passes in two seeds. The official FlatLands split fails scene isolation. The non-official upstream-provenance split passes full integrity, a 512-scene bounded mask/query gate, direct-ZIP replay, and validation-only baselines. Three completion seeds, K=32/64/128 convergence, and a PaSCo-inspired three-subnet same-contract control are now complete on validation; the public site adds two real-checkpoint qualitative diagnostics while test remains locked. The capacity-matched F=16 ConPath main model averages 0.09607 +/- 0.01222 exact Brier across three seeds; these remain validation-only, not final paper results.",
+  "active_task": "Finish independent-decoder and deterministic mean-map controls; extend recent strong-method comparisons beyond the first PaSCo-inspired ensemble; then add uncertainty/calibration, scalable connectivity, and second-domain checks before any test access or final site claim.",
   "completed_milestones": [
     "Interruption-safe P0 training with atomic checkpoints and exact resume",
     "Two-seed synthetic P0 pass and matched no-reach failure",
@@ -25,6 +25,10 @@
     "Single-seed F=8 ConPath FlatLands validation pilot completed with exact-forward report; test remains locked",
     "Capacity-matched F=16 ConPath validation set completed for seeds 20260831, 20260901, and 20260902; mean exact Brier 0.09607 +/- 0.01222",
     "F16 no-global and no-reachability causal ablations completed for all three seeds; mean exact Brier 0.11505 and 0.20555 respectively"
+    ,"Completion baseline seeds 20260901 and 20260902 completed with exact validation reports; three-seed event/map control set is now available"
+    ,"Completion K=32/64/128 convergence evaluated from one fixed checkpoint with shared posterior stream"
+    ,"PaSCo-inspired three-subnet same-contract ensemble evaluated at total K=32; event and hidden-map calibration recorded"
+    ,"Two real-checkpoint FlatLands qualitative validation panels (positive and uncertainty/failure) added to tracked site assets"
   ],
   "tracked_files": [
     "CONTINUATION.md",
@@ -60,6 +64,8 @@
     "scripts/train_flatlands_conpath.py",
     "scripts/run_flatlands_conpath_matrix.sh",
     "scripts/render_flatlands_qualitative.py",
+    "scripts/evaluate_flatlands_completion_k.py",
+    "scripts/evaluate_flatlands_recent_ensemble.py",
     "RECENT_BASELINES.md",
     "scripts/build_demo_site.py",
     "site/index.html",
@@ -69,6 +75,11 @@
     "site/data/flatlands_baselines_validation.json",
     "site/assets/flatlands_baseline_comparison.svg",
     "site/assets/flatlands_baseline_reliability.svg",
+    "site/assets/flatlands_qualitative_validation_positive.svg",
+    "site/assets/flatlands_qualitative_validation_uncertain.svg",
+    "site/data/flatlands_pasco_ensemble_validation.json",
+    "site/data/flatlands_qualitative_validation_positive.json",
+    "site/data/flatlands_qualitative_validation_uncertain.json",
     "src/pathrel/labels.py",
     "tests/test_labels.py",
     "tests/test_reachability.py",
@@ -405,6 +416,97 @@
       "sha256": "51b955c55184a87509adaea475b445b63ab6da612093ce63f3f2b1e471fc9079"
     },
     {
+      "path": "results/p1_flatlands_completion_seed20260901/run.json",
+      "role": "completion baseline validation run manifest, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 32979,
+      "sha256": "cf4f5949db15a1b02cb81aae7395c84ddc94392b6db652367d2989cb8e86aff8"
+    },
+    {
+      "path": "results/p1_flatlands_completion_seed20260901/best.pt",
+      "role": "best completion validation checkpoint, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 1498217,
+      "sha256": "721e081faa315a68bda32311f6092f1c8b55992d8316adc041e9066d69554a12"
+    },
+    {
+      "path": "results/p1_flatlands_completion_seed20260901/evaluation_deterministic_validation/report.json",
+      "role": "deterministic completion validation report, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 149048,
+      "sha256": "b4e7c0d14a10c0b6822772a352dd82a8d01bea8ffec2331a31f5021fa020f277"
+    },
+    {
+      "path": "results/p1_flatlands_completion_seed20260901/evaluation_independent_k32_validation/report.json",
+      "role": "independent-cell K=32 validation report, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 151617,
+      "sha256": "c9794a1314877a9534553c8163b013f1eb08a1a2549a3bafe1b749301cd2206a"
+    },
+    {
+      "path": "results/p1_flatlands_completion_seed20260902/run.json",
+      "role": "completion baseline validation run manifest, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 24866,
+      "sha256": "8ff51924e1d7b16e984503beb83c9b4945bcbd4e6bb283ce25937fb04cdd8ae5"
+    },
+    {
+      "path": "results/p1_flatlands_completion_seed20260902/best.pt",
+      "role": "best completion validation checkpoint, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 1495593,
+      "sha256": "1d19bff24c51452b8a76f4ce6c64ac11bb3ea59d2b1bf874aea6bd1bcae131a8"
+    },
+    {
+      "path": "results/p1_flatlands_completion_seed20260902/evaluation_deterministic_validation/report.json",
+      "role": "deterministic completion validation report, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 149261,
+      "sha256": "9124735e87e89501e0d984fc3da200a8504afd92f0bf170f6ba2322e1957c8a0"
+    },
+    {
+      "path": "results/p1_flatlands_completion_seed20260902/evaluation_independent_k32_validation/report.json",
+      "role": "independent-cell K=32 validation report, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 151597,
+      "sha256": "af928fa2c60e77f3620aa476a25db5a2e9d525fc0b2eff758525b58bc5ac57fa"
+    },
+    {
+      "path": "results/p1_flatlands_completion_k_convergence_seed20260901/report.json",
+      "role": "shared-stream independent completion K convergence report",
+      "required_for_resume": false,
+      "bytes": 12414,
+      "sha256": "980f20203188227db0c2bbfda69404173fdff1284d25e6d966681a6a9fe4f974"
+    },
+    {
+      "path": "results/p1_flatlands_pasco_ensemble_validation/report.json",
+      "role": "PaSCo-inspired same-contract three-subnet ensemble validation report",
+      "required_for_resume": false,
+      "bytes": 6616,
+      "sha256": "9771b1110fbb92e15586debd5e1c1514d502df436194414c414d7bf8460f7191"
+    },
+    {
+      "path": "results/p1_flatlands_pasco_ensemble_validation/evaluation_pasco_ensemble_k32_validation/report.json",
+      "role": "PaSCo-inspired ensemble K=32 exact validation metrics",
+      "required_for_resume": false,
+      "bytes": 151550,
+      "sha256": "2b93be86be3cea912c72a1c9ade470fce72a4ba535f9e8f82ede2135c154c12e"
+    },
+    {
+      "path": "results/p1_flatlands_qualitative_validation/obs_008266_candidate0_r10.json",
+      "role": "positive real-checkpoint FlatLands qualitative validation metadata",
+      "required_for_resume": false,
+      "bytes": 434,
+      "sha256": "1ee305d0ab9419ae5c4a04d513149e1e944979a30822d39957d5f7f5dfdc8e18"
+    },
+    {
+      "path": "results/p1_flatlands_qualitative_validation/obs_015829_candidate24_r0.json",
+      "role": "uncertainty/failure real-checkpoint FlatLands qualitative validation metadata",
+      "required_for_resume": false,
+      "bytes": 433,
+      "sha256": "e90a4fa8c3101c190eb01eaeac24214bad11de20e98045ed30bab6d44153157a"
+    },
+    {
       "path": "results/p0_neural_cuda_contextplane_v4/report.json",
       "role": "P0 seed 20260827 report",
       "required_for_resume": false,
@@ -450,7 +552,7 @@
   "last_verification": {
     "command": "PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -q && python3 -m compileall -q src scripts && PYTHONPATH=src .venv/bin/python scripts/verify_recovery_state.py",
     "result": "Ran 69 tests in 1.247s; OK; all source/scripts compile; recovery quick verification passed with all registered artifacts present",
-    "implementation_commit": "91b65f5"
+    "implementation_commit": "1b8233b"
   },
   "recovery_commands": [
     "git status --short --branch",
@@ -460,8 +562,8 @@
   ],
   "next_command": "PYTHONPATH=src .venv/bin/python scripts/verify_recovery_state.py --quick",
   "next_actions": [
-    "Add independent-decoder, deterministic-mean-map, and K-convergence controls; retain event and map metrics together.",
-    "Port and evaluate recent strong uncertainty/completion methods under the same FlatLands contract; keep cross-task metrics as references only.",
+    "Add independent-decoder and deterministic-mean-map controls; retain event and map metrics together.",
+    "Extend recent strong uncertainty/completion methods beyond the first PaSCo-inspired same-contract ensemble; keep cross-task metrics as references only.",
     "Implement and validate batched exact-forward connectivity against the NumPy merge-tree oracle.",
     "Report source/radius reliability, false-safe curves, bootstrap intervals, efficiency, and failure cases.",
     "Audit and freeze a second scene/site-held-out domain; only then unlock FlatLands test once.",

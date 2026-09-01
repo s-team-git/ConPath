@@ -1,7 +1,7 @@
 # Recent-baseline bridge for ConPath
 
-Status: **protocol v1; no recent-paper result is claimed yet**  
-Frozen: 2026-08-31 (America/New_York)
+Status: **protocol v1; first same-contract recent-method control evaluated (validation-only)**
+Frozen: 2026-09-01 (America/New_York)
 
 This file records how the FlatLands comparison will include strong methods from the last few
 years without mixing incompatible tasks. A number copied from another paper is **not** a FlatLands
@@ -24,7 +24,7 @@ our event Brier/NLL/ECE. We use the papers below in two explicit tiers:
 
 | Method (year) | What is recent and relevant | Published setting / parameter fact | FlatLands status |
 |---|---|---|---|
-| [PaSCo, CVPR 2024](https://github.com/astra-vision/PaSCo) | Panoptic 3-D scene completion with uncertainty-aware multi-inference (MIMO) | Official recipe uses 1 or 3 subnets; 3-subnet training uses batch 2 on 2 A100-80G GPUs and `lr=1e-4`. | **Adaptation planned:** a 3-subnet ensemble control with the same 3-channel input and event evaluator. It will be labelled an ensemble control, not “PaSCo SOTA”. |
+| [PaSCo, CVPR 2024](https://github.com/astra-vision/PaSCo) | Panoptic 3-D scene completion with uncertainty-aware multi-inference (MIMO) | Official recipe uses 1 or 3 subnets; 3-subnet training uses batch 2 on 2 A100-80G GPUs and `lr=1e-4`. | **Same-contract adapter evaluated:** three independently trained 16-channel completion members, fixed total event budget K=32. Labelled an ensemble control, not “PaSCo SOTA”. |
 | [SGN, IEEE TIP 2024](https://github.com/Jieqianyu/SGN) | Sparse-guided, multi-scale semantic scene completion; a published lightweight model | SGN-L reports 12.5M parameters and 7.16G training memory on SemanticKITTI. | **Reference-only:** camera/3-D voxel labels do not match FlatLands. The 12.5M figure is used as an external scale reference; no SGN score is copied into our table. |
 | [S4C, 3DV 2024](https://ahayler.github.io/publications/s4c/) | Self-supervised implicit semantic fields; arbitrary point queries and multi-view consistency | Implicit field rather than a dense voxel decoder; the project reports self-supervised training from video and pseudo-labels. | **Adaptation planned if compute permits:** coordinate-query hidden-cell completion, with observed cells clamped. Report event calibration, not SSC mIoU. |
 | [SceneSense / frontier diffusion, 2024](https://arxiv.org/abs/2409.10681) | Diffusion occupancy completion and probabilistic map reconciliation for frontier navigation | The online variant reports 73% end-to-end runtime reduction and 28% fewer trainable parameters after removing conditioning; 3–5 predictions are merged per pose. | **Reference + port candidate:** a 2-D conditional diffusion control with fixed sample count. The preprint's robot/3-D metrics are not used as FlatLands evidence. |
@@ -56,8 +56,10 @@ lock. Any method requiring a different sensor or label space is kept in the refe
 
 1. Finish the current CUDA diagnostic matrix and retain it as a low-capacity pilot.
 2. Re-run the three-seed ConPath/ablation matrix with the capacity lock above.
-3. Add the 3-subnet ensemble control (PaSCo-inspired uncertainty control) and compare both event and
-   map calibration at equal sample budget.
+3. **Done for the first validation pass:** add the 3-subnet ensemble control (PaSCo-inspired
+   uncertainty control) and compare event and map calibration at equal sample budget. The compact
+   report is tracked at `site/data/flatlands_pasco_ensemble_validation.json`; it remains validation-
+   only until the full recent-control matrix and final test gate are complete.
 4. Attempt the S4C-style coordinate-query and diffusion-style 2-D completion ports only if they pass
    exact input/target leakage checks; otherwise document the incompatibility and keep them as related
    work.
@@ -73,3 +75,17 @@ prediction CSV, exact evaluator report, and a metadata-labelled map. The website
 method as **planned**, **not comparable**, or **evaluated on the same FlatLands contract**; it must not
 render an empty/planned row as a zero or as evidence that ConPath is better.
 
+## First same-contract recent-control result
+
+The PaSCo-inspired adapter uses the three selected completion checkpoints from seeds `20260831`,
+`20260901`, and `20260902`. Each member consumes the canonical three-channel FlatLands input;
+event probabilities are pooled across the three members with a fixed total of 32 posterior worlds
+(11/11/10 per member). The exact scene-weighted validation result is:
+
+| Control | Map Brier | Event Brier | Event NLL | Event ECE | False-safe @0.8 |
+|---|---:|---:|---:|---:|---:|
+| PaSCo-inspired 3-subnet ensemble (K=32) | 0.11054 | 0.22898 | 2.89817 | 0.24841 | 0.01538 |
+
+The corresponding member checkpoint SHA-256 values and prediction/evaluation hashes are in the
+machine-readable report. This row is a fair same-contract uncertainty control, not a reproduction
+of PaSCo's camera/3-D architecture; no incompatible 3-D score is copied into the ConPath table.

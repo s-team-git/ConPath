@@ -30,10 +30,13 @@ and are never committed.
 The legacy synthetic P0 snapshot can still be regenerated for development with
 `scripts/build_demo_site.py --include-legacy`, but it is intentionally excluded from the public page.
 
-After the public-data ConPath matrix produces a real checkpoint, create the same-scene qualitative
-panel with `scripts/render_flatlands_qualitative.py`. The renderer records the FlatLands provenance
-split, source, scene/query identity, footprint radius, and event probabilities in SVG/JSON; do not
-publish a map panel from a synthetic or temporary checkpoint.
+The page now includes two same-scene qualitative validation diagnostics generated with
+`scripts/render_flatlands_qualitative.py`. The renderer records the FlatLands provenance split,
+source, scene/query identity, footprint radius, and event probabilities in SVG/JSON. A positive case
+and an uncertainty/failure case are shown together; they are not final paper claims, and synthetic
+or temporary checkpoints must not be used. The current TUM video remains a geometry/BEV
+reproducibility pilot; a final ConPath video must show posterior updates and footprint reachability,
+not only a static BEV.
 
 ## Preview locally
 
