@@ -122,6 +122,36 @@ def _combine(member_results: list[list[CompletionEventResult]], member_counts: l
     return rows
 
 
+def _ensemble_map_metrics(samples: list[object], member_maps: list[dict[str, np.ndarray]]) -> dict[str, float | int]:
+    """Report hidden-cell calibration for the ensemble's mean map posterior."""
+    brier: list[float] = []
+    nll: list[float] = []
+    positive_rate: list[float] = []
+    mean_probability: list[float] = []
+    for sample in samples:
+        global_id = sample.observation.global_id
+        probability = np.mean([maps[global_id] for maps in member_maps], axis=0)
+        mask = np.asarray(sample.loss_mask, dtype=bool)
+        target = np.asarray(sample.target_free, dtype=np.float64)
+        if not np.any(mask):
+            continue
+        p = np.clip(probability[mask].astype(np.float64), 1e-7, 1.0 - 1e-7)
+        y = target[mask]
+        brier.append(float(np.mean((p - y) ** 2)))
+        nll.append(float(np.mean(-(y * np.log(p) + (1.0 - y) * np.log1p(-p)))))
+        positive_rate.append(float(np.mean(y)))
+        mean_probability.append(float(np.mean(p)))
+    if not brier:
+        raise RuntimeError("ensemble map evaluation produced no hidden valid cells")
+    return {
+        "scene_weighted_brier": float(np.mean(brier)),
+        "scene_weighted_nll": float(np.mean(nll)),
+        "scene_weighted_positive_rate": float(np.mean(positive_rate)),
+        "scene_weighted_mean_probability": float(np.mean(mean_probability)),
+        "scene_count": len(brier),
+    }
+
+
 def main() -> None:
     args = parse_args()
     if len(args.checkpoints) < 2:
@@ -145,6 +175,7 @@ def main() -> None:
         maps, best_epoch, checkpoint_hash = _maps(checkpoint, samples, device)
         member_maps.append(maps)
         member_meta.append({"path": str(checkpoint), "sha256": checkpoint_hash, "best_epoch": best_epoch})
+    map_metrics = _ensemble_map_metrics(samples, member_maps)
 
     summaries: dict[str, object] = {}
     for total_samples in sorted(set(args.total_samples)):
@@ -172,6 +203,7 @@ def main() -> None:
             "prediction": {"path": str(prediction_path), "rows": count, "sha256": sha256_path(prediction_path)},
             "evaluation": str(evaluation_dir / "report.json"),
             "scene_weighted": evaluation["metrics"][0]["scene_weighted"],
+            "map_metrics": map_metrics,
             "seconds": time.monotonic() - k_started,
         }
     report = {
@@ -185,6 +217,7 @@ def main() -> None:
         "config": {key: str(value) if isinstance(value, Path) else value for key, value in vars(args).items()},
         "data": {"selection_sha256": sha256_path(args.selection), "queries_sha256": sha256_path(args.queries), "archive_bytes": args.archive.stat().st_size},
         "radii_cells": list(radii),
+        "validation_map_metrics": map_metrics,
         "git": _git_state(),
         "results": summaries,
         "runtime": {"wall_seconds": time.monotonic() - started, "device": str(device), "gpu": torch.cuda.get_device_name(device) if device.type == "cuda" else None},
