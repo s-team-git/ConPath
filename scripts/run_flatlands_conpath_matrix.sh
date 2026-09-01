@@ -50,12 +50,12 @@ if [[ "${#seeds[@]}" -lt 3 ]]; then
 fi
 
 matrix_json="$output_root/matrix.json"
-PYTHONPATH=src "$python_bin" - "$matrix_json" "$seeds_csv" "$max_epochs" "$patience" "$train_samples" "$validation_samples" <<'PY'
+PYTHONPATH=src "$python_bin" - "$matrix_json" "$seeds_csv" "$max_epochs" "$patience" "$train_samples" "$validation_samples" "$feature_channels" <<'PY'
 import json
 import sys
 from pathlib import Path
 
-path, seeds, max_epochs, patience, train_samples, validation_samples = sys.argv[1:]
+path, seeds, max_epochs, patience, train_samples, validation_samples, feature_channels = sys.argv[1:]
 payload = {
     "schema_version": 1,
     "kind": "flatlands_conpath_experiment_matrix",

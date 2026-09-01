@@ -7,8 +7,8 @@
   "remote_sync": "Local main is clean and synchronized with origin/main via GitHub SSH over port 443; GitHub Pages can deploy the tracked site after the workflow completes.",
   "latest_local_commit": "9c60535 Add recent baseline bridge and capacity lock",
   "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence.",
-  "scientific_status": "Synthetic P0 passes in two seeds. The official FlatLands split fails scene isolation. The non-official upstream-provenance split passes full integrity, a 512-scene bounded mask/query gate, direct-ZIP replay, and first validation-only baselines. The public site exposes the audit, baseline snapshot, and recent-paper bridge with test locked. The current CUDA matrix is a low-capacity F=8 pilot; it is not a final capacity-matched paper result.",
-  "active_task": "Finish the current CUDA pilot, then rerun capacity-matched F=16 multi-seed ConPath/ablations and add recent-method uncertainty/completion controls before calibration, second-domain checks, and test freeze.",
+  "scientific_status": "Synthetic P0 passes in two seeds. The official FlatLands split fails scene isolation. The non-official upstream-provenance split passes full integrity, a 512-scene bounded mask/query gate, direct-ZIP replay, and first validation-only baselines. The public site exposes the audit, baseline snapshot, and recent-paper bridge with test locked. The historical low-capacity F=8 ConPath pilot is now complete for one seed (scene-weighted exact validation Brier 0.08370); it is not a final capacity-matched paper result.",
+  "active_task": "Run the separate capacity-matched F=16 multi-seed ConPath/ablation matrix and add recent-method uncertainty/completion controls before calibration, second-domain checks, and test freeze.",
   "completed_milestones": [
     "Interruption-safe P0 training with atomic checkpoints and exact resume",
     "Two-seed synthetic P0 pass and matched no-reach failure",
@@ -21,7 +21,8 @@
     "Validation-only radius-prior, deterministic-completion, independent-cell K=32, and direct-query baselines",
     "Validation baseline JSON/SVG snapshot integrated into the project website; test split remains locked",
     "Recent 2024--2026 baseline bridge, parameter table, and same-contract fairness rules",
-    "Capacity-matched matrix default changed to feature_channels=16 for final paper runs"
+    "Capacity-matched matrix default changed to feature_channels=16 for final paper runs",
+    "Single-seed F=8 ConPath FlatLands validation pilot completed with exact-forward report; test remains locked"
   ],
   "tracked_files": [
     "CONTINUATION.md",
@@ -225,6 +226,34 @@
       "required_for_resume": false,
       "bytes": 1128,
       "sha256": "110fdc32d5b7a498d14c452a202cde2426932744a11ef4b9ba8e5f0992eaeb0d"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_matrix/seed20260831_conpath/run.json",
+      "role": "single-seed F=8 ConPath validation pilot manifest and exact-forward evaluation",
+      "required_for_resume": false,
+      "bytes": 189761,
+      "sha256": "bb338932c9a6a08bb9267c7773d44d0f232f4e0e75feff87a3f8995198b4be10"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_matrix/seed20260831_conpath/best.pt",
+      "role": "best single-seed F=8 ConPath validation pilot checkpoint",
+      "required_for_resume": false,
+      "bytes": 428357,
+      "sha256": "ce2e0376cc8452b1bddf65ead4206e165846b988bcb65004af583400ca8bc5a5"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_matrix/seed20260831_conpath/predictions_validation.csv",
+      "role": "single-seed F=8 label-free ConPath validation predictions",
+      "required_for_resume": false,
+      "bytes": 87667,
+      "sha256": "a0bd476583228449ff4b9faa4e2c44f4e31e5e9f6883ae47d7837c3b87c524b0"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_matrix/seed20260831_conpath/evaluation_validation/report.json",
+      "role": "single-seed F=8 ConPath exact-forward validation metrics and bootstrap intervals",
+      "required_for_resume": false,
+      "bytes": 161435,
+      "sha256": "b086b45e66002d163727869f6f32d5ce0ab82376ac464e15a6b961cae8d824f9"
     },
     {
       "path": "results/p0_neural_cuda_contextplane_v4/report.json",

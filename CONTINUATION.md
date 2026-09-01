@@ -291,6 +291,23 @@ connectivity implementation, and no second domain yet. The direct-query run took
 The project site now publishes `site/data/flatlands_baselines_validation.{json,js}` plus comparison
 and reliability SVGs. Every public label says validation-only / test-locked / not a final paper result.
 
+## First public-data ConPath pilot
+
+The resumed `seed20260831_conpath` pilot completed on the RTX PRO 6000 after early stopping at
+epoch 33 (best checkpoint at epoch 25). It used the historical low-capacity `F=8` encoder, 8
+posterior worlds for training, 32 for validation selection, and the frozen provenance validation
+split; the official archive split and test labels remained untouched. The exact-forward evaluator
+produced 4,224 validation prediction rows with scene-weighted Brier `0.0836996`, NLL `0.385339`,
+ECE `0.0550607`, false-safe@0.8 `0.0711530`, and zero radius-monotonicity violations. The
+selection-time approximate event Brier was `0.0742096`. This is a single-seed validation pilot,
+not a paper result, and is not directly capacity-matched to the existing `F=16` baselines.
+
+The complete run manifest and predictions are retained under
+`results/p1_flatlands_conpath_matrix/seed20260831_conpath/` (ignored artifacts); the next matrix
+uses a separate output root with `F=16` and three fixed seeds. The matrix launcher now passes the
+capacity argument into its manifest generator; recent strong methods remain required comparison
+targets under the same contract before any final claim or site refresh.
+
 ## Scalable connectivity checkpoint
 
 The exact NumPy Kruskal reconstruction-tree oracle is now exposed as
