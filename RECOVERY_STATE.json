@@ -5,7 +5,7 @@
   "timezone": "America/New_York",
   "branch": "main",
   "remote_sync": "Local main is clean and synchronized with origin/main via GitHub SSH over port 443; GitHub Pages can deploy the tracked site after the workflow completes.",
-  "latest_local_commit": "883ea65 Chunk validation samples to enable safe parallel runs",
+  "latest_local_commit": "58e6962 Publish independent decoder validation control",
   "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence.",
   "scientific_status": "Synthetic P0 passes in two seeds. The official FlatLands split fails scene isolation. The non-official upstream-provenance split passes full integrity, a 512-scene bounded mask/query gate, direct-ZIP replay, and validation-only baselines. Three completion seeds, K=32/64/128 convergence, a PaSCo-inspired three-subnet same-contract control, and a three-seed independent-decoder control are now complete on validation; the public site adds two real-checkpoint qualitative diagnostics while test remains locked. The capacity-matched F=16 ConPath main model averages 0.09607 +/- 0.01222 exact Brier across three seeds, versus 0.11214 +/- 0.00306 for the independent decoder; these remain validation-only, not final paper results.",
   "active_task": "Add deterministic mean-map control and extend recent strong-method comparisons beyond the first PaSCo-inspired ensemble; then add uncertainty/calibration, scalable connectivity, and second-domain checks before any test access or final site claim.",
@@ -639,7 +639,7 @@
   "last_verification": {
     "command": "PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -q && python3 -m compileall -q src scripts && PYTHONPATH=src .venv/bin/python scripts/verify_recovery_state.py",
     "result": "Ran 69 tests in 1.247s; OK; all source/scripts compile; recovery quick verification passed with all registered artifacts present",
-    "implementation_commit": "883ea65"
+    "implementation_commit": "58e6962"
   },
   "recovery_commands": [
     "git status --short --branch",
