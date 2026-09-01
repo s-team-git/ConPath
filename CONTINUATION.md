@@ -327,6 +327,23 @@ required step is the matched causal ablation set (no global factors, no event pr
 independent decoder, deterministic mean map, and K convergence), followed by source/radius
 uncertainty and recent strong-method comparisons under this same contract.
 
+## F16 causal ablations completed
+
+The two implemented causal ablations are now complete for all three fixed seeds, with exact
+forward validation on the same 4,224-row-per-seed manifest:
+
+| Variant | Exact scene-weighted Brier (20260831 / 20260901 / 20260902) | Mean ± sample SD | NLL mean ± SD | ECE mean ± SD |
+|---|---:|---:|---:|---:|
+| ConPath | 0.10809 / 0.08365 / 0.09647 | **0.09607 ± 0.01222** | 0.45814 ± 0.16071 | 0.06870 ± 0.01659 |
+| No global factors | 0.12134 / 0.10812 / 0.11568 | 0.11505 ± 0.00663 | 0.95790 ± 0.06133 | 0.09649 ± 0.01168 |
+| No reachability loss | 0.20048 / 0.20983 / 0.20635 | 0.20555 ± 0.00473 | 2.57912 ± 0.08818 | 0.21286 ± 0.01620 |
+
+Removing global factors worsens mean Brier by `0.01898` and NLL by `0.49976`; removing the
+reachability proper score worsens mean Brier by `0.10948` and NLL by `2.12098`. These are strong
+mechanistic signals, not final paper claims: all rows are validation-only, and false-safe/coverage
+trade-offs plus source/radius bootstrap intervals remain required. The independent decoder,
+deterministic mean-map, K-convergence, and recent strong-method ports are still pending.
+
 ## Scalable connectivity checkpoint
 
 The exact NumPy Kruskal reconstruction-tree oracle is now exposed as
@@ -349,10 +366,10 @@ must still use the frozen 160-scene provenance split and multiple seeds before b
 
 ## Exact next actions
 
-1. Run ConPath on at least three fixed seeds with K=32 pilot and K=128 final event sampling; keep
-   the direct-query and completion backbones/optimizer budget matched.
-2. Add causal ablations: remove event proper score, remove global correlation factors, independent
-   decoder, deterministic mean map, and K convergence. Report map quality and event quality together.
+1. Add the remaining causal controls: independent decoder, deterministic mean map, and K convergence;
+   report map quality and event quality together.
+2. Port and evaluate recent strong uncertainty/completion methods under the same FlatLands contract;
+   keep incompatible cross-task 3-D metrics as references only.
 3. Implement batched exact-forward connectivity (merge-tree/MST or a validated exact-forward /
    soft-backward operator); compare against the NumPy oracle in error, latency, memory, and query
    scaling.

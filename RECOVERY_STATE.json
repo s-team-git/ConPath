@@ -7,8 +7,8 @@
   "remote_sync": "Local main is clean and synchronized with origin/main via GitHub SSH over port 443; GitHub Pages can deploy the tracked site after the workflow completes.",
   "latest_local_commit": "0c5c324 Record F16 ConPath seed results",
   "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence.",
-  "scientific_status": "Synthetic P0 passes in two seeds. The official FlatLands split fails scene isolation. The non-official upstream-provenance split passes full integrity, a 512-scene bounded mask/query gate, direct-ZIP replay, and first validation-only baselines. The public site exposes the audit, baseline snapshot, and recent-paper bridge with test locked. The historical F=8 ConPath pilot is complete for one seed (scene-weighted exact validation Brier 0.08370), and the capacity-matched F=16 ConPath set is complete for three seeds (mean 0.09607 +/- 0.01222); neither is a final paper result.",
-  "active_task": "Run the matched causal ablations and recent strong-method comparisons, then add uncertainty/calibration and second-domain checks before any test access or site claim.",
+  "scientific_status": "Synthetic P0 passes in two seeds. The official FlatLands split fails scene isolation. The non-official upstream-provenance split passes full integrity, a 512-scene bounded mask/query gate, direct-ZIP replay, and first validation-only baselines. The public site exposes the audit, baseline snapshot, and recent-paper bridge with test locked. The historical F=8 ConPath pilot is complete for one seed (scene-weighted exact validation Brier 0.08370). The capacity-matched F=16 main model averages 0.09607 +/- 0.01222 across three seeds; no-global averages 0.11505 +/- 0.00663 and no-reachability averages 0.20555 +/- 0.00473. These remain validation-only, not final paper results.",
+  "active_task": "Add independent-decoder, deterministic-mean-map, and K-convergence controls; compare recent strong methods under the same contract; then add uncertainty/calibration and second-domain checks before any test access or site claim.",
   "completed_milestones": [
     "Interruption-safe P0 training with atomic checkpoints and exact resume",
     "Two-seed synthetic P0 pass and matched no-reach failure",
@@ -23,7 +23,8 @@
     "Recent 2024--2026 baseline bridge, parameter table, and same-contract fairness rules",
     "Capacity-matched matrix default changed to feature_channels=16 for final paper runs",
     "Single-seed F=8 ConPath FlatLands validation pilot completed with exact-forward report; test remains locked",
-    "Capacity-matched F=16 ConPath validation set completed for seeds 20260831, 20260901, and 20260902; mean exact Brier 0.09607 +/- 0.01222"
+    "Capacity-matched F=16 ConPath validation set completed for seeds 20260831, 20260901, and 20260902; mean exact Brier 0.09607 +/- 0.01222",
+    "F16 no-global and no-reachability causal ablations completed for all three seeds; mean exact Brier 0.11505 and 0.20555 respectively"
   ],
   "tracked_files": [
     "CONTINUATION.md",
@@ -320,6 +321,90 @@
       "sha256": "1a92e6f7c1b8a7772457445ed8d858ad506f6e5c157a77fa821c7d98ff6ab8a3"
     },
     {
+      "path": "results/p1_flatlands_conpath_matrix_f16/seed20260831_no_global_factors/run.json",
+      "role": "F16 no-global-factors seed 20260831 validation manifest",
+      "required_for_resume": false,
+      "bytes": 179602,
+      "sha256": "d1767a30144d0443d1a928b23b1c36447ae7683994eea5d5376a281db83b91aa"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_matrix_f16/seed20260831_no_global_factors/evaluation_validation/report.json",
+      "role": "F16 no-global-factors seed 20260831 exact validation report",
+      "required_for_resume": false,
+      "bytes": 159631,
+      "sha256": "71dba286bce695fb47566be43c97738a47cdd890057a7329c76e9074817f603c"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_matrix_f16/seed20260901_no_global_factors/run.json",
+      "role": "F16 no-global-factors seed 20260901 validation manifest",
+      "required_for_resume": false,
+      "bytes": 182398,
+      "sha256": "9a05c9f3be5f3d0c70d91d630ac8233fdd42747447d3ddea601ecb1913515ae2"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_matrix_f16/seed20260901_no_global_factors/evaluation_validation/report.json",
+      "role": "F16 no-global-factors seed 20260901 exact validation report",
+      "required_for_resume": false,
+      "bytes": 160318,
+      "sha256": "ad289729fb58b1e46ca7698455fccb81d22cc4f486a94c57c1d6dfaeb3bd1acf"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_matrix_f16/seed20260902_no_global_factors/run.json",
+      "role": "F16 no-global-factors seed 20260902 validation manifest",
+      "required_for_resume": false,
+      "bytes": 182405,
+      "sha256": "d348bf80e3bdf5797fb5a632a3116f7f281d0c9de1d3d6988b0de9839d9f3924"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_matrix_f16/seed20260902_no_global_factors/evaluation_validation/report.json",
+      "role": "F16 no-global-factors seed 20260902 exact validation report",
+      "required_for_resume": false,
+      "bytes": 160316,
+      "sha256": "e8ba5e00e603fe8544476e7c77edbc21f267317b3e04fd90d613b71f81961ce3"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_matrix_f16/seed20260831_no_reachability_loss/run.json",
+      "role": "F16 no-reachability-loss seed 20260831 validation manifest",
+      "required_for_resume": false,
+      "bytes": 171162,
+      "sha256": "cdcb580d6864cdfc936aa90029dd567bb65e7012c1c0db37d1b8f8e69baf61c1"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_matrix_f16/seed20260831_no_reachability_loss/evaluation_validation/report.json",
+      "role": "F16 no-reachability-loss seed 20260831 exact validation report",
+      "required_for_resume": false,
+      "bytes": 151651,
+      "sha256": "1f75f39e105f5431a0d6b8eab3fb50bbe9f9d1c644a62b49ed44d1ee1b3dc43f"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_matrix_f16/seed20260901_no_reachability_loss/run.json",
+      "role": "F16 no-reachability-loss seed 20260901 validation manifest",
+      "required_for_resume": false,
+      "bytes": 169008,
+      "sha256": "055f80c4a90f60e77b675dc16ab216ccbc7e13ff5d0954bec70f5b58422f7028"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_matrix_f16/seed20260901_no_reachability_loss/evaluation_validation/report.json",
+      "role": "F16 no-reachability-loss seed 20260901 exact validation report",
+      "required_for_resume": false,
+      "bytes": 150758,
+      "sha256": "dcb4c120e9eda946499499bc8f6dbfdbde23c6e18d355137d17e9abb852ccfd4"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_matrix_f16/seed20260902_no_reachability_loss/run.json",
+      "role": "F16 no-reachability-loss seed 20260902 validation manifest",
+      "required_for_resume": false,
+      "bytes": 172976,
+      "sha256": "6eda79ab08ad4ba978a1c1c7c932e7bcb004dae0480bb4d2ba55a15e6f06a32d"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_matrix_f16/seed20260902_no_reachability_loss/evaluation_validation/report.json",
+      "role": "F16 no-reachability-loss seed 20260902 exact validation report",
+      "required_for_resume": false,
+      "bytes": 151380,
+      "sha256": "51b955c55184a87509adaea475b445b63ab6da612093ce63f3f2b1e471fc9079"
+    },
+    {
       "path": "results/p0_neural_cuda_contextplane_v4/report.json",
       "role": "P0 seed 20260827 report",
       "required_for_resume": false,
@@ -375,8 +460,8 @@
   ],
   "next_command": "PYTHONPATH=src .venv/bin/python scripts/verify_recovery_state.py --quick",
   "next_actions": [
-    "Run ConPath on at least three fixed seeds with K=32 pilot and K=128 final event sampling.",
-    "Add event-loss/global-factor/independent-decoder/deterministic-map/K-convergence ablations.",
+    "Add independent-decoder, deterministic-mean-map, and K-convergence controls; retain event and map metrics together.",
+    "Port and evaluate recent strong uncertainty/completion methods under the same FlatLands contract; keep cross-task metrics as references only.",
     "Implement and validate batched exact-forward connectivity against the NumPy merge-tree oracle.",
     "Report source/radius reliability, false-safe curves, bootstrap intervals, efficiency, and failure cases.",
     "Audit and freeze a second scene/site-held-out domain; only then unlock FlatLands test once.",
