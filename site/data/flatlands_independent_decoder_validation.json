@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "project": "ConPath",
+  "dataset": "FlatLands",
+  "kind": "validation_causal_control_snapshot",
+  "paper_result": false,
+  "test_evaluated": false,
+  "protocol": "P1_BASELINE_PROTOCOL.md v1 + independent decoder control; K=32 validation accumulated as K=8 chunks",
+  "primary_weighting": "equal source-scene, then equal event within scene",
+  "radii_cells": [0, 10, 20],
+  "rows": [
+    {"seed": 20260831, "best_epoch": 4, "selection_brier": 0.0852150805, "brier": 0.1149020121, "nll": 0.9581268109, "ece": 0.1028798877, "false_safe_rate@0.8": 0.0711407949, "report": "results/p1_flatlands_conpath_independent_f16/seed20260831_independent_decoder/evaluation_validation/report.json"},
+    {"seed": 20260901, "best_epoch": 10, "selection_brier": 0.0804687434, "brier": 0.1088437992, "nll": 0.9014988883, "ece": 0.0881637289, "false_safe_rate@0.8": 0.0731372078, "report": "results/p1_flatlands_conpath_independent_f16/seed20260901_independent_decoder/evaluation_validation/report.json"},
+    {"seed": 20260902, "best_epoch": 10, "selection_brier": 0.0862730746, "brier": 0.1126735877, "nll": 0.9524244305, "ece": 0.0928195627, "false_safe_rate@0.8": 0.0762930909, "report": "results/p1_flatlands_conpath_independent_f16/seed20260902_independent_decoder/evaluation_validation/report.json"}
+  ],
+  "mean_sample_sd": {
+    "brier": [0.1121397997, 0.0030641774],
+    "nll": [0.9373500432, 0.0311786508],
+    "ece": [0.0946210598, 0.0075216605],
+    "false_safe_rate@0.8": [0.0735236979, 0.0025978009]
+  },
+  "interpretation": "Validation-only causal control: local correlated posterior structure removed (local kernel 1; global factors disabled). It is not a recent-paper reproduction and does not unlock the FlatLands test split."
+}

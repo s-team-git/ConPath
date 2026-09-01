@@ -38,6 +38,10 @@ or temporary checkpoints must not be used. The current TUM video remains a geome
 reproducibility pilot; a final ConPath video must show posterior updates and footprint reachability,
 not only a static BEV.
 
+The FlatLands section also links the completed three-seed independent-decoder causal control
+snapshot. It is explicitly event-only, validation-only, and test-locked; it is shown to document
+the benefit of spatial correlation rather than to imply a final leaderboard result.
+
 ## Preview locally
 
 ```bash

@@ -7,8 +7,8 @@
   "remote_sync": "Local main is clean and synchronized with origin/main via GitHub SSH over port 443; GitHub Pages can deploy the tracked site after the workflow completes.",
   "latest_local_commit": "883ea65 Chunk validation samples to enable safe parallel runs",
   "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence.",
-  "scientific_status": "Synthetic P0 passes in two seeds. The official FlatLands split fails scene isolation. The non-official upstream-provenance split passes full integrity, a 512-scene bounded mask/query gate, direct-ZIP replay, and validation-only baselines. Three completion seeds, K=32/64/128 convergence, and a PaSCo-inspired three-subnet same-contract control are now complete on validation; the public site adds two real-checkpoint qualitative diagnostics while test remains locked. The capacity-matched F=16 ConPath main model averages 0.09607 +/- 0.01222 exact Brier across three seeds; these remain validation-only, not final paper results.",
-  "active_task": "Independent-decoder F16 control is running in three parallel CUDA processes with K=32 validation accumulated as K=8 chunks; finish exact validation reports, then add deterministic mean-map control and extend recent strong-method comparisons before any test access or final site claim.",
+  "scientific_status": "Synthetic P0 passes in two seeds. The official FlatLands split fails scene isolation. The non-official upstream-provenance split passes full integrity, a 512-scene bounded mask/query gate, direct-ZIP replay, and validation-only baselines. Three completion seeds, K=32/64/128 convergence, a PaSCo-inspired three-subnet same-contract control, and a three-seed independent-decoder control are now complete on validation; the public site adds two real-checkpoint qualitative diagnostics while test remains locked. The capacity-matched F=16 ConPath main model averages 0.09607 +/- 0.01222 exact Brier across three seeds, versus 0.11214 +/- 0.00306 for the independent decoder; these remain validation-only, not final paper results.",
+  "active_task": "Add deterministic mean-map control and extend recent strong-method comparisons beyond the first PaSCo-inspired ensemble; then add uncertainty/calibration, scalable connectivity, and second-domain checks before any test access or final site claim.",
   "completed_milestones": [
     "Interruption-safe P0 training with atomic checkpoints and exact resume",
     "Two-seed synthetic P0 pass and matched no-reach failure",
@@ -29,7 +29,8 @@
     ,"Completion K=32/64/128 convergence evaluated from one fixed checkpoint with shared posterior stream"
     ,"PaSCo-inspired three-subnet same-contract ensemble evaluated at total K=32; event and hidden-map calibration recorded"
     ,"Two real-checkpoint FlatLands qualitative validation panels (positive and uncertainty/failure) added to tracked site assets"
-    ,"Independent-decoder control implementation and chunked K=32 validation added; three-seed CUDA run in progress"
+    ,"Independent-decoder control implementation and chunked K=32 validation added for safe CUDA parallelism"
+    ,"Independent-decoder F16 control completed for all three seeds with exact event reports; mean Brier 0.11214 +/- 0.00306"
   ],
   "tracked_files": [
     "CONTINUATION.md",
@@ -79,6 +80,7 @@
     "site/assets/flatlands_qualitative_validation_positive.svg",
     "site/assets/flatlands_qualitative_validation_uncertain.svg",
     "site/data/flatlands_pasco_ensemble_validation.json",
+    "site/data/flatlands_independent_decoder_validation.json",
     "site/data/flatlands_qualitative_validation_positive.json",
     "site/data/flatlands_qualitative_validation_uncertain.json",
     "src/pathrel/labels.py",
@@ -492,6 +494,90 @@
       "required_for_resume": false,
       "bytes": 151550,
       "sha256": "2b93be86be3cea912c72a1c9ade470fce72a4ba535f9e8f82ede2135c154c12e"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_independent_f16/seed20260831_independent_decoder/run.json",
+      "role": "independent-decoder F16 validation run manifest, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 179604,
+      "sha256": "667a5aa13a9df42eceab6c0d4e6f9d5be20a305294b5fe2eb1f6fc7279df43bb"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_independent_f16/seed20260831_independent_decoder/best.pt",
+      "role": "best independent-decoder F16 validation checkpoint, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 1499345,
+      "sha256": "f6c3d60a10707561d985ad884933052422d01baecd7fae6a432d09ba2b57bc74"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_independent_f16/seed20260831_independent_decoder/predictions_validation.csv",
+      "role": "label-free independent-decoder event predictions, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 84585,
+      "sha256": "a5f202386025fe67d5e41fa44fcc6e18c27c7a3f1dc3d1d5eb17daf06298a9f1"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_independent_f16/seed20260831_independent_decoder/evaluation_validation/report.json",
+      "role": "independent-decoder exact event validation report, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 159686,
+      "sha256": "a20f0f66d697eed0d107b83e3d5c62b2bb364bb74531e034ca895d3f7ec3beb6"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_independent_f16/seed20260901_independent_decoder/run.json",
+      "role": "independent-decoder F16 validation run manifest, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 182875,
+      "sha256": "fa378b7ae6b9ac7dd5940ac1570d86dc7ff8ae3a4b07379042f3b50dd27ec4df"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_independent_f16/seed20260901_independent_decoder/best.pt",
+      "role": "best independent-decoder F16 validation checkpoint, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 1499537,
+      "sha256": "7acb1e34064b5564b3a0862aa2050f021e5ce1b0d7208f04f7c43803dba1a01b"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_independent_f16/seed20260901_independent_decoder/predictions_validation.csv",
+      "role": "label-free independent-decoder event predictions, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 84889,
+      "sha256": "2e71794b0312658a2e95688f7b23e2d4fa230f563fd7ed37f27159428ca7f972"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_independent_f16/seed20260901_independent_decoder/evaluation_validation/report.json",
+      "role": "independent-decoder exact event validation report, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 160427,
+      "sha256": "7666056acd658fced3f384118a208e28e2d405a8baa04a1828722a1f75304a04"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_independent_f16/seed20260902_independent_decoder/run.json",
+      "role": "independent-decoder F16 validation run manifest, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 182895,
+      "sha256": "8d124fbdb9c6db26b2cdd3974661e42db323cc476af847d5d67e3d4362e477bc"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_independent_f16/seed20260902_independent_decoder/best.pt",
+      "role": "best independent-decoder F16 validation checkpoint, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 1500177,
+      "sha256": "dc956929164c9b1f275c43239245db8bcb193e26cb601a267bbf33abbe91ccad"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_independent_f16/seed20260902_independent_decoder/predictions_validation.csv",
+      "role": "label-free independent-decoder event predictions, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 84616,
+      "sha256": "b42b4722aae9b6e3428b7e18352dee30a317407408a6541128ce65c649bf24e5"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_independent_f16/seed20260902_independent_decoder/evaluation_validation/report.json",
+      "role": "independent-decoder exact event validation report, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 160429,
+      "sha256": "30e0d921dc21427a10a05e05ce7284a40e3ea2b87b1792bf43d8e1c6dd7caf5f"
     },
     {
       "path": "results/p1_flatlands_qualitative_validation/obs_008266_candidate0_r10.json",

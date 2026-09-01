@@ -402,7 +402,7 @@ the second case is intentionally included to avoid a one-sided visual claim. The
 is still a geometry/BEV pilot. A final paper/site video must show posterior updates, radius-
 conditioned reachability, baseline comparison, and at least one failure/overconfidence case.
 
-## Independent-decoder control (running)
+## Independent-decoder control (completed)
 
 The independent-cell decoder control has been added to
 `scripts/train_flatlands_conpath.py` as `--decoder-variant independent`. It uses the same
@@ -415,15 +415,25 @@ To use all available GPU capacity without the previous validation OOM, validatio
 processed as four sequential K=8 chunks (`--validation-sample-chunk 8`) and accumulated with the
 same total sample count. The three seeds are running concurrently with atomic latest/best
 checkpoints under `results/p1_flatlands_conpath_independent_f16/`; interrupted checkpoints are
-resume-safe. At the latest checkpoint, seeds 20260831/20260901/20260902 had reached epochs
-12/13/14, with selection best Briers 0.08522/0.08047/0.08627 respectively; the first seed had
-entered its exact-forward post-training evaluation while the other two were still training.
-These interim selection values must not be reported as final metrics until all three exact
-validation manifests and reports are written.
+resume-safe. The three exact validation manifests and reports are now complete (4,224 rows per
+seed):
+
+| Seed | Best epoch | Selection Brier | Exact scene-weighted Brier | NLL | ECE | False-safe @0.8 |
+|---:|---:|---:|---:|---:|---:|---:|
+| 20260831 | 4 | 0.08522 | 0.11490 | 0.95813 | 0.10288 | 0.07114 |
+| 20260901 | 10 | 0.08047 | 0.10884 | 0.90150 | 0.08816 | 0.07314 |
+| 20260902 | 10 | 0.08627 | 0.11267 | 0.95242 | 0.09282 | 0.07629 |
+| **mean ± sample SD** | — | — | **0.11214 ± 0.00306** | **0.93735 ± 0.03118** | **0.09462 ± 0.00752** | **0.07352 ± 0.00260** |
+
+The matched F16 ConPath row remains lower at `0.09607 ± 0.01222` Brier, so the independent
+decoder is a causal control rather than evidence that local correlation is unnecessary. The run
+manifests record peak memory and wall time; all three use the same test-locked validation contract.
+This control currently exports event predictions only; a separate deterministic mean-map control is
+still required before any map-quality claim is made.
 
 ## Exact next actions
 
-1. Finish the running independent-decoder control and add the deterministic mean-map control;
+1. Add the deterministic mean-map control;
    report map quality and event quality together.
 2. Port and evaluate recent strong uncertainty/completion methods under the same FlatLands contract;
    keep incompatible cross-task 3-D metrics as references only.
