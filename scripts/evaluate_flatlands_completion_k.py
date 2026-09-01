@@ -27,7 +27,8 @@ from pathrel.flatlands_baselines import MarginalCompletionBaseline  # noqa: E402
 from pathrel.flatlands_data import FlatLandsReplayDataset, collate_flatlands_replay  # noqa: E402
 from pathrel.flatlands_eval import evaluate_flatlands_prediction_file, write_evaluation_report, write_prediction_manifest  # noqa: E402
 from pathrel.flatlands_query import sha256_path  # noqa: E402
-from pathrel.flatlands_sampling import CompletionEventTask, completion_event_probabilities  # noqa: E402
+from pathrel.flatlands_sampling import CompletionEventTask, stable_observation_seed  # noqa: E402
+from pathrel.labels import reachability_targets  # noqa: E402
 
 
 def parse_args() -> argparse.Namespace:
@@ -98,6 +99,37 @@ def _rows(results: list[object], radii: tuple[int, ...]) -> list[dict[str, objec
     return rows
 
 
+def _prefix_event_probabilities(task: CompletionEventTask, checkpoints: tuple[int, ...]) -> dict[int, object]:
+    """Generate one shared max-K sequence and return all requested prefix means."""
+    probability = np.asarray(task.free_probability, dtype=np.float64)
+    observed_free = np.asarray(task.observed_free, dtype=bool)
+    unknown = np.asarray(task.unknown, dtype=bool)
+    starts = np.asarray(task.starts, dtype=np.int64)
+    goals = np.asarray(task.goals, dtype=np.int64)
+    deterministic_map = observed_free | (unknown & (probability >= 0.5))
+    deterministic, _ = reachability_targets(deterministic_map, starts, goals, task.radii_cells)
+    max_k = max(checkpoints)
+    rng = np.random.default_rng(stable_observation_seed(task.seed, task.global_id))
+    event_sum = np.zeros((starts.shape[0], len(task.radii_cells)), dtype=np.float64)
+    output: dict[int, object] = {}
+    checkpoint_set = set(checkpoints)
+    for sample_index in range(1, max_k + 1):
+        sampled = observed_free | (unknown & (rng.random(probability.shape) < probability))
+        events, _ = reachability_targets(sampled, starts, goals, task.radii_cells)
+        event_sum += events
+        if sample_index in checkpoint_set:
+            # Keep the result shape/API aligned with CompletionEventResult without importing
+            # multiprocessing-only code into the prefix loop.
+            from pathrel.flatlands_sampling import CompletionEventResult
+            output[sample_index] = CompletionEventResult(
+                global_id=task.global_id,
+                candidate_indices=np.asarray(task.candidate_indices, dtype=np.int64),
+                deterministic=deterministic.astype(np.float64),
+                independent=(event_sum / sample_index).copy(),
+            )
+    return output
+
+
 def _git_state() -> dict[str, object]:
     import subprocess
     def run(*args: str) -> str:
@@ -128,15 +160,16 @@ def main() -> None:
         dataset.close()
     loader = DataLoader(samples, batch_size=4, shuffle=False, collate_fn=collate_flatlands_replay, num_workers=0)
     maps = _probability_maps(model, loader, device)
+    checkpoints = tuple(sorted(set(args.k)))
+    max_k = max(checkpoints)
     summaries: dict[str, object] = {}
-    for k in sorted(set(args.k)):
-        k_started = time.monotonic()
-        tasks = _tasks(samples, maps, radii, k, args.seed)
-        # Thread/process count affects throughput only: each observation has a stable RNG key.
-        from concurrent.futures import ProcessPoolExecutor
-        import multiprocessing as mp
-        with ProcessPoolExecutor(max_workers=args.event_workers, mp_context=mp.get_context("spawn")) as executor:
-            results = list(executor.map(completion_event_probabilities, tasks, chunksize=1))
+    k_started = time.monotonic()
+    tasks = _tasks(samples, maps, radii, max_k, args.seed)
+    # Thread/process count affects throughput only: each observation has a stable RNG key.
+    with ProcessPoolExecutor(max_workers=args.event_workers, mp_context=mp.get_context("spawn")) as executor:
+        prefix_results = list(executor.map(_prefix_event_probabilities, tasks, [checkpoints] * len(tasks), chunksize=1))
+    for k in checkpoints:
+        results = [prefix[k] for prefix in prefix_results]
         prediction_path = args.output_dir / f"predictions_independent_k{k}_validation.csv"
         evaluation_dir = args.output_dir / f"evaluation_independent_k{k}_validation"
         count = write_prediction_manifest(prediction_path, _rows(results, radii))
