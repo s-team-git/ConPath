@@ -61,6 +61,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--device", choices=("cuda", "cpu"), default="cuda")
     parser.add_argument("--feature-channels", type=int, default=8)
     parser.add_argument("--latent-dim", type=int, default=4)
+    parser.add_argument(
+        "--decoder-variant",
+        choices=("correlated", "independent"),
+        default="correlated",
+        help="correlated ConPath posterior or an independent-cell local-noise control",
+    )
     parser.add_argument("--batch-size", type=int, default=1)
     parser.add_argument("--max-epochs", type=int, default=20)
     parser.add_argument("--patience", type=int, default=4)
@@ -317,6 +323,8 @@ def main() -> None:
         raise SystemExit("epochs, patience, and reachability steps must be positive")
     if args.batch_size < 1 or args.feature_channels < 1 or args.latent_dim < 1:
         raise SystemExit("batch-size, feature-channels, and latent-dim must be positive")
+    if args.decoder_variant == "independent" and args.disable_global_factors:
+        raise SystemExit("independent decoder already disables global factors; do not combine the flags")
     if args.device == "cuda" and not torch.cuda.is_available():
         raise SystemExit(cuda_unavailable_message(torch))
     if args.output_dir.exists() and any(args.output_dir.iterdir()) and not args.resume:
@@ -334,7 +342,14 @@ def main() -> None:
     train_loader = DataLoader(train_samples, batch_size=args.batch_size, shuffle=True, generator=loader_generator, collate_fn=collate_flatlands_replay, num_workers=0)
     validation_loader = DataLoader(validation_samples, batch_size=args.batch_size, shuffle=False, collate_fn=collate_flatlands_replay, num_workers=0)
 
-    model = PathRelNet(input_channels=3, feature_channels=args.feature_channels, latent_dim=args.latent_dim).to(device)
+    independent_decoder = args.decoder_variant == "independent"
+    model = PathRelNet(
+        input_channels=3,
+        feature_channels=args.feature_channels,
+        latent_dim=args.latent_dim,
+        local_kernel_size=(1 if independent_decoder else 5),
+    ).to(device)
+    effective_disable_global_factors = bool(args.disable_global_factors or independent_decoder)
     optimizer = torch.optim.AdamW(model.parameters(), lr=args.learning_rate, weight_decay=args.weight_decay)
     history: list[dict[str, object]] = []
     start_epoch, best_epoch, best_score, patience_used = 1, 0, float("inf"), 0
@@ -361,7 +376,7 @@ def main() -> None:
                 batch = _limit_queries(_to_tensor_batch(numpy_batch, device), args.selection_query_limit)
                 if batch["starts"].shape[1] == 0:
                     continue
-                output = _forward(model, batch, train_radii, args.train_samples, args.max_reachability_steps, sample_generator, disable_global_factors=args.disable_global_factors)
+                output = _forward(model, batch, train_radii, args.train_samples, args.max_reachability_steps, sample_generator, disable_global_factors=effective_disable_global_factors)
                 target_classes = _hidden_target_classes(batch)
                 map_loss = posterior_marginal_nll(output.posterior.sample_logits, target_classes)
                 target_safe = batch["target_free"].to(torch.float32)
@@ -374,7 +389,7 @@ def main() -> None:
                 torch.nn.utils.clip_grad_norm_(model.parameters(), args.gradient_clip)
                 optimizer.step()
                 losses.append(float(total.detach().cpu()))
-            validation_score = _validation_selection_score(model, validation_loader, device, validation_radii, args.validation_samples, args.max_reachability_steps, args.selection_query_limit, sample_generator, disable_global_factors=args.disable_global_factors)
+            validation_score = _validation_selection_score(model, validation_loader, device, validation_radii, args.validation_samples, args.max_reachability_steps, args.selection_query_limit, sample_generator, disable_global_factors=effective_disable_global_factors)
             improved = validation_score < best_score - args.min_delta
             if improved:
                 best_score, best_epoch, patience_used = validation_score, epoch, 0
@@ -408,7 +423,7 @@ def main() -> None:
 
     selected = torch.load(best_path, map_location=device, weights_only=False)
     model.load_state_dict(selected["model"])
-    rows = _validation_prediction_rows(model, validation_loader, device, validation_radii, args.validation_samples, args.max_reachability_steps, sample_generator, exact_forward=True, disable_global_factors=args.disable_global_factors)
+    rows = _validation_prediction_rows(model, validation_loader, device, validation_radii, args.validation_samples, args.max_reachability_steps, sample_generator, exact_forward=True, disable_global_factors=effective_disable_global_factors)
     prediction_path = args.output_dir / "predictions_validation.csv"
     prediction_count = write_prediction_manifest(prediction_path, rows)
     full_validation = args.train_scenes_limit is None and args.validation_scenes_limit is None
@@ -446,6 +461,9 @@ def main() -> None:
             "validation_prediction_operator": "exact NumPy disk-clearance + batched Kruskal merge-tree",
             "validation_exact_forward": True,
             "training_max_reachability_steps": args.max_reachability_steps,
+            "decoder_variant": args.decoder_variant,
+            "effective_disable_global_factors": effective_disable_global_factors,
+            "local_kernel_size": 1 if independent_decoder else 5,
         },
         "evaluation": evaluation,
         "runtime": {
@@ -457,8 +475,8 @@ def main() -> None:
         "environment": {"python": platform.python_version(), "numpy": np.__version__, "torch": torch.__version__, "argv": sys.argv},
         "history": history,
         "claim_boundary": (
-            "Single-seed ConPath validation pilot. The differentiable event uses a bounded shared-start "
-            f"propagation budget of {args.max_reachability_steps} steps; test is locked and this is not a final paper result."
+            f"Single-seed {args.decoder_variant} decoder validation run. The differentiable event uses a bounded "
+            f"shared-start propagation budget of {args.max_reachability_steps} steps; test is locked and this is not a final paper result."
         ),
     }
     _atomic_json(args.output_dir / "run.json", report)
