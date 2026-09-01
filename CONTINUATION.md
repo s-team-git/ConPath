@@ -9,7 +9,7 @@ diagnostic, code change, or experiment; do not rely on chat history or ignored `
 - Repository: `/home/hairo/pathrel_transfer/pathrel_pro6000`
 - Durable checkpoint: `p1-flatlands-validation-baselines-v1` in tracked `RECOVERY_STATE.json`
 - Recovery-state commit: resolve with `git log -1 --format='%h %s' -- RECOVERY_STATE.json`
-- Last durable implementation commit: `1b8233b` (K convergence/recent-method evaluators and validation ensemble report; pushed to GitHub)
+- Last durable implementation commit: `883ea65` (independent-decoder control plus chunked validation to permit safe CUDA parallelism; pushed to GitHub)
 - Scientific gate: **P0 GO; FlatLands bounded data gate and first validation baselines GO on a
   non-official provenance split; public-data model and paper claims not yet established**
 - Active task: run multi-seed ConPath and ablations, then scalable connectivity and calibration /
@@ -402,9 +402,28 @@ the second case is intentionally included to avoid a one-sided visual claim. The
 is still a geometry/BEV pilot. A final paper/site video must show posterior updates, radius-
 conditioned reachability, baseline comparison, and at least one failure/overconfidence case.
 
+## Independent-decoder control (running)
+
+The independent-cell decoder control has been added to
+`scripts/train_flatlands_conpath.py` as `--decoder-variant independent`. It uses the same
+three-channel replay input, optimizer, train/validation scenes, K=32 validation worlds, exact
+forward evaluator, and three fixed seeds as the F16 ConPath matrix, while removing the correlated
+local/global posterior structure (`local_kernel_size=1`, global factors disabled). It is a causal
+control, not a recent-paper reproduction and not a final paper claim.
+
+To use all available GPU capacity without the previous validation OOM, validation K=32 is now
+processed as four sequential K=8 chunks (`--validation-sample-chunk 8`) and accumulated with the
+same total sample count. The three seeds are running concurrently with atomic latest/best
+checkpoints under `results/p1_flatlands_conpath_independent_f16/`; interrupted checkpoints are
+resume-safe. At the latest checkpoint, seeds 20260831/20260901/20260902 had reached epochs
+12/13/14, with selection best Briers 0.08522/0.08047/0.08627 respectively; the first seed had
+entered its exact-forward post-training evaluation while the other two were still training.
+These interim selection values must not be reported as final metrics until all three exact
+validation manifests and reports are written.
+
 ## Exact next actions
 
-1. Add the remaining causal controls: independent decoder, deterministic mean map, and K convergence;
+1. Finish the running independent-decoder control and add the deterministic mean-map control;
    report map quality and event quality together.
 2. Port and evaluate recent strong uncertainty/completion methods under the same FlatLands contract;
    keep incompatible cross-task 3-D metrics as references only.

@@ -5,10 +5,10 @@
   "timezone": "America/New_York",
   "branch": "main",
   "remote_sync": "Local main is clean and synchronized with origin/main via GitHub SSH over port 443; GitHub Pages can deploy the tracked site after the workflow completes.",
-  "latest_local_commit": "1b8233b Allow reuse of completed ensemble evaluations",
+  "latest_local_commit": "883ea65 Chunk validation samples to enable safe parallel runs",
   "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence.",
   "scientific_status": "Synthetic P0 passes in two seeds. The official FlatLands split fails scene isolation. The non-official upstream-provenance split passes full integrity, a 512-scene bounded mask/query gate, direct-ZIP replay, and validation-only baselines. Three completion seeds, K=32/64/128 convergence, and a PaSCo-inspired three-subnet same-contract control are now complete on validation; the public site adds two real-checkpoint qualitative diagnostics while test remains locked. The capacity-matched F=16 ConPath main model averages 0.09607 +/- 0.01222 exact Brier across three seeds; these remain validation-only, not final paper results.",
-  "active_task": "Finish independent-decoder and deterministic mean-map controls; extend recent strong-method comparisons beyond the first PaSCo-inspired ensemble; then add uncertainty/calibration, scalable connectivity, and second-domain checks before any test access or final site claim.",
+  "active_task": "Independent-decoder F16 control is running in three parallel CUDA processes with K=32 validation accumulated as K=8 chunks; finish exact validation reports, then add deterministic mean-map control and extend recent strong-method comparisons before any test access or final site claim.",
   "completed_milestones": [
     "Interruption-safe P0 training with atomic checkpoints and exact resume",
     "Two-seed synthetic P0 pass and matched no-reach failure",
@@ -29,6 +29,7 @@
     ,"Completion K=32/64/128 convergence evaluated from one fixed checkpoint with shared posterior stream"
     ,"PaSCo-inspired three-subnet same-contract ensemble evaluated at total K=32; event and hidden-map calibration recorded"
     ,"Two real-checkpoint FlatLands qualitative validation panels (positive and uncertainty/failure) added to tracked site assets"
+    ,"Independent-decoder control implementation and chunked K=32 validation added; three-seed CUDA run in progress"
   ],
   "tracked_files": [
     "CONTINUATION.md",
@@ -552,7 +553,7 @@
   "last_verification": {
     "command": "PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -q && python3 -m compileall -q src scripts && PYTHONPATH=src .venv/bin/python scripts/verify_recovery_state.py",
     "result": "Ran 69 tests in 1.247s; OK; all source/scripts compile; recovery quick verification passed with all registered artifacts present",
-    "implementation_commit": "6ba1695"
+    "implementation_commit": "883ea65"
   },
   "recovery_commands": [
     "git status --short --branch",
@@ -562,7 +563,7 @@
   ],
   "next_command": "PYTHONPATH=src .venv/bin/python scripts/verify_recovery_state.py --quick",
   "next_actions": [
-    "Add independent-decoder and deterministic-mean-map controls; retain event and map metrics together.",
+    "Finish the running independent-decoder exact validation reports, then add deterministic-mean-map control; retain event and map metrics together.",
     "Extend recent strong uncertainty/completion methods beyond the first PaSCo-inspired same-contract ensemble; keep cross-task metrics as references only.",
     "Implement and validate batched exact-forward connectivity against the NumPy merge-tree oracle.",
     "Report source/radius reliability, false-safe curves, bootstrap intervals, efficiency, and failure cases.",
