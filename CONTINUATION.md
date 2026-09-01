@@ -9,7 +9,7 @@ diagnostic, code change, or experiment; do not rely on chat history or ignored `
 - Repository: `/home/hairo/pathrel_transfer/pathrel_pro6000`
 - Durable checkpoint: `p1-flatlands-validation-baselines-v1` in tracked `RECOVERY_STATE.json`
 - Recovery-state commit: resolve with `git log -1 --format='%h %s' -- RECOVERY_STATE.json`
-- Last durable implementation commit: `9c60535` (recent baseline bridge, capacity lock, and site status table; pushed to GitHub)
+- Last durable implementation commit: `0c5c324` (F16 three-seed ConPath validation results and recovery hashes; pushed to GitHub)
 - Scientific gate: **P0 GO; FlatLands bounded data gate and first validation baselines GO on a
   non-official provenance split; public-data model and paper claims not yet established**
 - Active task: run multi-seed ConPath and ablations, then scalable connectivity and calibration /

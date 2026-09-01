@@ -5,7 +5,7 @@
   "timezone": "America/New_York",
   "branch": "main",
   "remote_sync": "Local main is clean and synchronized with origin/main via GitHub SSH over port 443; GitHub Pages can deploy the tracked site after the workflow completes.",
-  "latest_local_commit": "9c60535 Add recent baseline bridge and capacity lock",
+  "latest_local_commit": "0c5c324 Record F16 ConPath seed results",
   "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence.",
   "scientific_status": "Synthetic P0 passes in two seeds. The official FlatLands split fails scene isolation. The non-official upstream-provenance split passes full integrity, a 512-scene bounded mask/query gate, direct-ZIP replay, and first validation-only baselines. The public site exposes the audit, baseline snapshot, and recent-paper bridge with test locked. The historical F=8 ConPath pilot is complete for one seed (scene-weighted exact validation Brier 0.08370), and the capacity-matched F=16 ConPath set is complete for three seeds (mean 0.09607 +/- 0.01222); neither is a final paper result.",
   "active_task": "Run the matched causal ablations and recent strong-method comparisons, then add uncertainty/calibration and second-domain checks before any test access or site claim.",
