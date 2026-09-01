@@ -308,6 +308,25 @@ uses a separate output root with `F=16` and three fixed seeds. The matrix launch
 capacity argument into its manifest generator; recent strong methods remain required comparison
 targets under the same contract before any final claim or site refresh.
 
+## Capacity-matched F16 ConPath seeds
+
+The first capacity-matched three-seed ConPath set is now complete under
+`results/p1_flatlands_conpath_matrix_f16/`. All runs used the frozen provenance validation split,
+8 training worlds, 32 validation worlds, exact-forward merge-tree evaluation, and no test labels:
+
+| Seed | Best epoch | Selection Brier | Exact scene-weighted Brier | NLL | ECE | False-safe @0.8 |
+|---:|---:|---:|---:|---:|---:|---:|
+| 20260831 | 4 | 0.08693 | 0.10809 | 0.64003 | 0.08514 | 0.04440 |
+| 20260901 | 21 | 0.07559 | 0.08365 | 0.33534 | 0.05195 | 0.06595 |
+| 20260902 | 10 | 0.08307 | 0.09647 | 0.39904 | 0.06902 | 0.06977 |
+| **mean ± sample SD** | — | — | **0.09607 ± 0.01222** | **0.45814 ± 0.16071** | **0.06870 ± 0.01659** | **0.06004 ± 0.01367** |
+
+These are still validation-only diagnostics, not final paper claims. The spread is material, and
+the old F8 pilot (`0.08370` exact Brier) is not a fair capacity-matched comparison. The next
+required step is the matched causal ablation set (no global factors, no event proper score,
+independent decoder, deterministic mean map, and K convergence), followed by source/radius
+uncertainty and recent strong-method comparisons under this same contract.
+
 ## Scalable connectivity checkpoint
 
 The exact NumPy Kruskal reconstruction-tree oracle is now exposed as

@@ -7,8 +7,8 @@
   "remote_sync": "Local main is clean and synchronized with origin/main via GitHub SSH over port 443; GitHub Pages can deploy the tracked site after the workflow completes.",
   "latest_local_commit": "9c60535 Add recent baseline bridge and capacity lock",
   "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence.",
-  "scientific_status": "Synthetic P0 passes in two seeds. The official FlatLands split fails scene isolation. The non-official upstream-provenance split passes full integrity, a 512-scene bounded mask/query gate, direct-ZIP replay, and first validation-only baselines. The public site exposes the audit, baseline snapshot, and recent-paper bridge with test locked. The historical low-capacity F=8 ConPath pilot is now complete for one seed (scene-weighted exact validation Brier 0.08370); it is not a final capacity-matched paper result.",
-  "active_task": "Run the separate capacity-matched F=16 multi-seed ConPath/ablation matrix and add recent-method uncertainty/completion controls before calibration, second-domain checks, and test freeze.",
+  "scientific_status": "Synthetic P0 passes in two seeds. The official FlatLands split fails scene isolation. The non-official upstream-provenance split passes full integrity, a 512-scene bounded mask/query gate, direct-ZIP replay, and first validation-only baselines. The public site exposes the audit, baseline snapshot, and recent-paper bridge with test locked. The historical F=8 ConPath pilot is complete for one seed (scene-weighted exact validation Brier 0.08370), and the capacity-matched F=16 ConPath set is complete for three seeds (mean 0.09607 +/- 0.01222); neither is a final paper result.",
+  "active_task": "Run the matched causal ablations and recent strong-method comparisons, then add uncertainty/calibration and second-domain checks before any test access or site claim.",
   "completed_milestones": [
     "Interruption-safe P0 training with atomic checkpoints and exact resume",
     "Two-seed synthetic P0 pass and matched no-reach failure",
@@ -22,7 +22,8 @@
     "Validation baseline JSON/SVG snapshot integrated into the project website; test split remains locked",
     "Recent 2024--2026 baseline bridge, parameter table, and same-contract fairness rules",
     "Capacity-matched matrix default changed to feature_channels=16 for final paper runs",
-    "Single-seed F=8 ConPath FlatLands validation pilot completed with exact-forward report; test remains locked"
+    "Single-seed F=8 ConPath FlatLands validation pilot completed with exact-forward report; test remains locked",
+    "Capacity-matched F=16 ConPath validation set completed for seeds 20260831, 20260901, and 20260902; mean exact Brier 0.09607 +/- 0.01222"
   ],
   "tracked_files": [
     "CONTINUATION.md",
@@ -254,6 +255,69 @@
       "required_for_resume": false,
       "bytes": 161435,
       "sha256": "b086b45e66002d163727869f6f32d5ce0ab82376ac464e15a6b961cae8d824f9"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_matrix_f16/seed20260831_conpath/run.json",
+      "role": "capacity-matched F=16 ConPath seed 20260831 validation manifest",
+      "required_for_resume": false,
+      "bytes": 179894,
+      "sha256": "28e7835647060a4a2fcf80cbe02de22311d435fcfa008763efc33a2b45e7c81e"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_matrix_f16/seed20260831_conpath/best.pt",
+      "role": "capacity-matched F=16 ConPath seed 20260831 best checkpoint",
+      "required_for_resume": false,
+      "bytes": 1501381,
+      "sha256": "165455c84266f85da5c2c0396c54c647ad5d2bd8206e9bb96da0d927d713b89b"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_matrix_f16/seed20260831_conpath/evaluation_validation/report.json",
+      "role": "capacity-matched F=16 ConPath seed 20260831 exact validation report",
+      "required_for_resume": false,
+      "bytes": 160416,
+      "sha256": "b524a0a69d8ef713009c10167c047765753c6b6024c1d8abaa4cf998fc586b82"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_matrix_f16/seed20260901_conpath/run.json",
+      "role": "capacity-matched F=16 ConPath seed 20260901 validation manifest",
+      "required_for_resume": false,
+      "bytes": 187825,
+      "sha256": "71c74d1c50b7cec6ca372deb367cbada72c73cdd235bd5a45f06295cac80fbdd"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_matrix_f16/seed20260901_conpath/best.pt",
+      "role": "capacity-matched F=16 ConPath seed 20260901 best checkpoint",
+      "required_for_resume": false,
+      "bytes": 1503813,
+      "sha256": "9d9845e01cfac3aff61b14bc64cce786d3384a0dfdcdf51571e59eed0f15f2d1"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_matrix_f16/seed20260901_conpath/evaluation_validation/report.json",
+      "role": "capacity-matched F=16 ConPath seed 20260901 exact validation report",
+      "required_for_resume": false,
+      "bytes": 161180,
+      "sha256": "29273593d3acd3d5ceaffc05a0e41dd9fdfa98060158ef950dc8073c4d74ed8e"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_matrix_f16/seed20260902_conpath/run.json",
+      "role": "capacity-matched F=16 ConPath seed 20260902 validation manifest",
+      "required_for_resume": false,
+      "bytes": 182044,
+      "sha256": "98f9e7feee122efdc61642c40c95ff7093dd33b278dd22331e933554773d921b"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_matrix_f16/seed20260902_conpath/best.pt",
+      "role": "capacity-matched F=16 ConPath seed 20260902 best checkpoint",
+      "required_for_resume": false,
+      "bytes": 1502213,
+      "sha256": "5adc354b4296f055fa96059e099563893345cc377a7b1fb14074aebaa795bac4"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_matrix_f16/seed20260902_conpath/evaluation_validation/report.json",
+      "role": "capacity-matched F=16 ConPath seed 20260902 exact validation report",
+      "required_for_resume": false,
+      "bytes": 160061,
+      "sha256": "1a92e6f7c1b8a7772457445ed8d858ad506f6e5c157a77fa821c7d98ff6ab8a3"
     },
     {
       "path": "results/p0_neural_cuda_contextplane_v4/report.json",
