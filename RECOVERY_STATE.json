@@ -449,8 +449,8 @@
   ],
   "last_verification": {
     "command": "PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -q && python3 -m compileall -q src scripts && PYTHONPATH=src .venv/bin/python scripts/verify_recovery_state.py",
-    "result": "Ran 69 tests; OK; all source/scripts compile; GPU layered diagnostics, global-factor ablation, and ConPath matrix preflight compile; full recovery SHA verification passed",
-    "implementation_commit": "a394566"
+    "result": "Ran 69 tests in 1.247s; OK; all source/scripts compile; recovery quick verification passed with all registered artifacts present",
+    "implementation_commit": "91b65f5"
   },
   "recovery_commands": [
     "git status --short --branch",
