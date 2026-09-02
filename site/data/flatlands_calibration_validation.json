@@ -179,37 +179,55 @@
           "threshold": 0.5,
           "coverage": 0.43625007071586963,
           "false_safe_rate": 0.11313143148680894,
-          "safe_precision": 0.8868685685131911
+          "safe_precision": 0.8868685685131911,
+          "coverage_sd": 0.02894528116874443,
+          "false_safe_rate_sd": 0.01617817812687232,
+          "safe_precision_sd": 0.016178178126872274
         },
         {
           "threshold": 0.6,
           "coverage": 0.3837268892413226,
           "false_safe_rate": 0.08868691703472349,
-          "safe_precision": 0.9113130829652766
+          "safe_precision": 0.9113130829652766,
+          "coverage_sd": 0.030651775330928874,
+          "false_safe_rate_sd": 0.01501970539055397,
+          "safe_precision_sd": 0.015019705390553886
         },
         {
           "threshold": 0.7,
           "coverage": 0.3394972471835871,
           "false_safe_rate": 0.06938704801413993,
-          "safe_precision": 0.93061295198586
+          "safe_precision": 0.93061295198586,
+          "coverage_sd": 0.027315382820433935,
+          "false_safe_rate_sd": 0.012264318811461705,
+          "safe_precision_sd": 0.0122643188114617
         },
         {
           "threshold": 0.8,
           "coverage": 0.29114378300385724,
           "false_safe_rate": 0.06003998076958931,
-          "safe_precision": 0.9399600192304107
+          "safe_precision": 0.9399600192304107,
+          "coverage_sd": 0.015907181365712637,
+          "false_safe_rate_sd": 0.0136747361485142,
+          "safe_precision_sd": 0.013674736148514251
         },
         {
           "threshold": 0.9,
           "coverage": 0.236906136744343,
           "false_safe_rate": 0.03362984446215006,
-          "safe_precision": 0.9663701555378498
+          "safe_precision": 0.9663701555378498,
+          "coverage_sd": 0.0066737535317863105,
+          "false_safe_rate_sd": 0.011656912815216098,
+          "safe_precision_sd": 0.011656912815216082
         },
         {
           "threshold": 0.95,
           "coverage": 0.18513047803035665,
           "false_safe_rate": 0.026922262732816366,
-          "safe_precision": 0.9730777372671836
+          "safe_precision": 0.9730777372671836,
+          "coverage_sd": 0.01338223959877608,
+          "false_safe_rate_sd": 0.006981890013635875,
+          "safe_precision_sd": 0.006981890013635846
         }
       ],
       "radius_brier": {
@@ -423,37 +441,55 @@
           "threshold": 0.5,
           "coverage": 0.4210532935087435,
           "false_safe_rate": 0.10046291160178013,
-          "safe_precision": 0.8995370883982199
+          "safe_precision": 0.8995370883982199,
+          "coverage_sd": 0.012165229786522413,
+          "false_safe_rate_sd": 0.008244494720896871,
+          "safe_precision_sd": 0.00824449472089668
         },
         {
           "threshold": 0.6,
           "coverage": 0.3997743904270525,
           "false_safe_rate": 0.09236510855978952,
-          "safe_precision": 0.9076348914402105
+          "safe_precision": 0.9076348914402105,
+          "coverage_sd": 0.012979102798821095,
+          "false_safe_rate_sd": 0.010317168799810122,
+          "safe_precision_sd": 0.010317168799810128
         },
         {
           "threshold": 0.7,
           "coverage": 0.37572087918041347,
           "false_safe_rate": 0.08642326692166558,
-          "safe_precision": 0.9135767330783345
+          "safe_precision": 0.9135767330783345,
+          "coverage_sd": 0.00817058378013904,
+          "false_safe_rate_sd": 0.004630564499017499,
+          "safe_precision_sd": 0.004630564499017567
         },
         {
           "threshold": 0.8,
           "coverage": 0.34446926798823263,
           "false_safe_rate": 0.07352369788796966,
-          "safe_precision": 0.9264763021120305
+          "safe_precision": 0.9264763021120305,
+          "coverage_sd": 0.008517620591657771,
+          "false_safe_rate_sd": 0.002597800909597639,
+          "safe_precision_sd": 0.002597800909597796
         },
         {
           "threshold": 0.9,
           "coverage": 0.2968162000750592,
           "false_safe_rate": 0.059504407437108074,
-          "safe_precision": 0.940495592562892
+          "safe_precision": 0.940495592562892,
+          "coverage_sd": 0.006851244348457618,
+          "false_safe_rate_sd": 0.005505409442778625,
+          "safe_precision_sd": 0.00550540944277865
         },
         {
           "threshold": 0.95,
           "coverage": 0.24384266528084028,
           "false_safe_rate": 0.046796784307228424,
-          "safe_precision": 0.9532032156927716
+          "safe_precision": 0.9532032156927716,
+          "coverage_sd": 0.007793100948299944,
+          "false_safe_rate_sd": 0.003766788215705078,
+          "safe_precision_sd": 0.003766788215705074
         }
       ],
       "radius_brier": {
@@ -667,37 +703,55 @@
           "threshold": 0.5,
           "coverage": 0.5169745243292825,
           "false_safe_rate": 0.1173981145921109,
-          "safe_precision": 0.8826018854078891
+          "safe_precision": 0.8826018854078891,
+          "coverage_sd": 0.004238741819364726,
+          "false_safe_rate_sd": 0.0058414091331433615,
+          "safe_precision_sd": 0.005841409133143393
         },
         {
           "threshold": 0.6,
           "coverage": 0.5169745243292825,
           "false_safe_rate": 0.1173981145921109,
-          "safe_precision": 0.8826018854078891
+          "safe_precision": 0.8826018854078891,
+          "coverage_sd": 0.004238741819364726,
+          "false_safe_rate_sd": 0.0058414091331433615,
+          "safe_precision_sd": 0.005841409133143393
         },
         {
           "threshold": 0.7,
           "coverage": 0.5169745243292825,
           "false_safe_rate": 0.1173981145921109,
-          "safe_precision": 0.8826018854078891
+          "safe_precision": 0.8826018854078891,
+          "coverage_sd": 0.004238741819364726,
+          "false_safe_rate_sd": 0.0058414091331433615,
+          "safe_precision_sd": 0.005841409133143393
         },
         {
           "threshold": 0.8,
           "coverage": 0.5169745243292825,
           "false_safe_rate": 0.1173981145921109,
-          "safe_precision": 0.8826018854078891
+          "safe_precision": 0.8826018854078891,
+          "coverage_sd": 0.004238741819364726,
+          "false_safe_rate_sd": 0.0058414091331433615,
+          "safe_precision_sd": 0.005841409133143393
         },
         {
           "threshold": 0.9,
           "coverage": 0.5169745243292825,
           "false_safe_rate": 0.1173981145921109,
-          "safe_precision": 0.8826018854078891
+          "safe_precision": 0.8826018854078891,
+          "coverage_sd": 0.004238741819364726,
+          "false_safe_rate_sd": 0.0058414091331433615,
+          "safe_precision_sd": 0.005841409133143393
         },
         {
           "threshold": 0.95,
           "coverage": 0.5169745243292825,
           "false_safe_rate": 0.1173981145921109,
-          "safe_precision": 0.8826018854078891
+          "safe_precision": 0.8826018854078891,
+          "coverage_sd": 0.004238741819364726,
+          "false_safe_rate_sd": 0.0058414091331433615,
+          "safe_precision_sd": 0.005841409133143393
         }
       ],
       "radius_brier": {

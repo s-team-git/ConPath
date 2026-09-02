@@ -468,6 +468,24 @@ but is binary and has `0.11740 ± 0.00584` false-safe. The reliability diagram a
 make this calibration/coverage trade-off visible instead of ranking methods by event Brier alone.
 All values are validation diagnostics, not final paper or test results.
 
+## PaSCo-inspired sample-budget check (completed)
+
+The existing three-subnet same-contract control was rerun with total posterior event budgets
+`K=32/64/128` (member allocations remain as even as possible). Exact scene-weighted validation
+metrics are:
+
+| Total K | Event Brier | Event NLL | Event ECE | False-safe @0.8 | Coverage @0.8 |
+|---:|---:|---:|---:|---:|---:|
+| 32 | 0.22898 | 2.89817 | 0.24841 | 0.01538 | 0.18981 |
+| 64 | 0.22842 | 2.86991 | 0.24810 | 0.01465 | 0.18691 |
+| 128 | 0.22806 | 2.84268 | 0.24830 | 0.01228 | 0.19122 |
+
+The small changes show that this ensemble-control result is not an artifact of K=32 sampling.
+The K=64 and K=128 predictions and exact reports remain ignored reproducibility artifacts under
+`results/p1_flatlands_pasco_ensemble_validation/`; the compact K-sensitivity snapshot is tracked
+on the site. The adapter is still explicitly PaSCo-inspired, not an original PaSCo 3-D
+reproduction, and all numbers remain validation-only.
+
 ## Exact next actions
 
 1. Port and evaluate recent strong uncertainty/completion methods under the same FlatLands contract;

@@ -5,65 +5,16 @@
   "paper_result": false,
   "validation_result": true,
   "test_evaluated": false,
-  "members": [
-    {
-      "path": "results/p1_flatlands_completion_seed20260831/best.pt",
-      "sha256": "cfa80ac94d72ac313fcb68ea04045970029baf166a3860800ee2ba9bec0c71d3",
-      "best_epoch": 15
-    },
-    {
-      "path": "results/p1_flatlands_completion_seed20260901/best.pt",
-      "sha256": "721e081faa315a68bda32311f6092f1c8b55992d8316adc041e9066d69554a12",
-      "best_epoch": 26
-    },
-    {
-      "path": "results/p1_flatlands_completion_seed20260902/best.pt",
-      "sha256": "1d19bff24c51452a8b76f4ce6c64ac11bb3ea59d2b1bf874aea6bd1bcae131a8",
-      "best_epoch": 13
-    }
-  ],
-  "config": {
-    "checkpoints": [
-      "results/p1_flatlands_completion_seed20260831/best.pt",
-      "results/p1_flatlands_completion_seed20260901/best.pt",
-      "results/p1_flatlands_completion_seed20260902/best.pt"
-    ],
-    "archive": "data/raw/flatlands/FlatLands_final_dataset.zip",
-    "selection": "results/p1_flatlands_query_audit_bounded/selected_observations.csv",
-    "queries": "results/p1_flatlands_query_audit_bounded/queries.csv",
-    "output_dir": "results/p1_flatlands_pasco_ensemble_validation",
-    "seed": 20260831,
-    "device": "cuda",
-    "event_workers": 8,
-    "total_samples": [
-      32
-    ],
-    "bootstrap_samples": 2000,
-    "reuse_existing": true
-  },
-  "data": {
-    "selection_sha256": "4e7ae4c992cf943ab81618e3826c4748fcaaa97c3c4d7cb187518ee3fe6a9409",
-    "queries_sha256": "33e7f8a0343269b0dde47b428b3be622c80effdb0f80ae34b352ca282018d60d",
-    "archive_bytes": 2054773316
-  },
   "radii_cells": [
     0,
     10,
     20
   ],
-  "validation_map_metrics": {
-    "scene_weighted_brier": 0.11054465686017947,
-    "scene_weighted_nll": 0.3567707305625619,
-    "scene_weighted_positive_rate": 0.6338158004946497,
-    "scene_weighted_mean_probability": 0.6256799259653837,
-    "scene_count": 160
-  },
-  "git": {
-    "head": "5e205d663517689a4c8f0f377f218a9012e1326f",
-    "status": [
-      "M scripts/evaluate_flatlands_recent_ensemble.py"
-    ]
-  },
+  "total_samples": [
+    32,
+    64,
+    128
+  ],
   "results": {
     "32": {
       "member_samples": [
@@ -78,108 +29,11 @@
       },
       "evaluation": "results/p1_flatlands_pasco_ensemble_validation/evaluation_pasco_ensemble_k32_validation/report.json",
       "scene_weighted": {
-        "weighting": "scene",
         "brier": 0.22898448064782584,
         "nll": 2.8981727782381244,
         "ece": 0.24840979490914214,
         "false_safe_rate@0.8": 0.015379697082596277,
-        "high_confidence_safe_coverage@0.8": 0.189810289145036,
-        "positive_rate": 0.46667441565187173,
-        "mean_probability": 0.21826462074272954,
-        "count": 4224,
-        "scene_count": 142,
-        "reliability": [
-          {
-            "bin": 0,
-            "lower": 0.0,
-            "upper": 0.1,
-            "count": 2951,
-            "weight": 0.734659539564589,
-            "confidence": 0.00026609712554185564,
-            "accuracy": 0.28167453122384106
-          },
-          {
-            "bin": 1,
-            "lower": 0.1,
-            "upper": 0.2,
-            "count": 21,
-            "weight": 0.004492990530305752,
-            "confidence": 0.14848755039999928,
-            "accuracy": 1.0
-          },
-          {
-            "bin": 2,
-            "lower": 0.2,
-            "upper": 0.30000000000000004,
-            "count": 24,
-            "weight": 0.006205856637003892,
-            "confidence": 0.253470400231213,
-            "accuracy": 0.8566982332473793
-          },
-          {
-            "bin": 3,
-            "lower": 0.30000000000000004,
-            "upper": 0.4,
-            "count": 29,
-            "weight": 0.00885439063392231,
-            "confidence": 0.33511114711198764,
-            "accuracy": 0.9758987794106625
-          },
-          {
-            "bin": 4,
-            "lower": 0.4,
-            "upper": 0.5,
-            "count": 33,
-            "weight": 0.009073066612420381,
-            "confidence": 0.4358696157763579,
-            "accuracy": 0.9601963457738476
-          },
-          {
-            "bin": 5,
-            "lower": 0.5,
-            "upper": 0.6000000000000001,
-            "count": 53,
-            "weight": 0.010583770949564782,
-            "confidence": 0.5571586769032866,
-            "accuracy": 0.982938916198556
-          },
-          {
-            "bin": 6,
-            "lower": 0.6000000000000001,
-            "upper": 0.7000000000000001,
-            "count": 60,
-            "weight": 0.011174976822460795,
-            "confidence": 0.6566392037424383,
-            "accuracy": 0.9628355034877005
-          },
-          {
-            "bin": 7,
-            "lower": 0.7000000000000001,
-            "upper": 0.8,
-            "count": 136,
-            "weight": 0.025145119104697005,
-            "confidence": 0.7543010204258184,
-            "accuracy": 0.9752649646196495
-          },
-          {
-            "bin": 8,
-            "lower": 0.8,
-            "upper": 0.9,
-            "count": 258,
-            "weight": 0.04653372250094223,
-            "confidence": 0.847454122422638,
-            "accuracy": 0.9877119886589021
-          },
-          {
-            "bin": 9,
-            "lower": 0.9,
-            "upper": 1.0,
-            "count": 659,
-            "weight": 0.14327656664409377,
-            "confidence": 0.9580781304041621,
-            "accuracy": 0.983616177471598
-          }
-        ]
+        "high_confidence_safe_coverage@0.8": 0.189810289145036
       },
       "map_metrics": {
         "scene_weighted_brier": 0.11054465686017947,
@@ -187,20 +41,62 @@
         "scene_weighted_positive_rate": 0.6338158004946497,
         "scene_weighted_mean_probability": 0.6256799259653837,
         "scene_count": 160
+      }
+    },
+    "64": {
+      "member_samples": [
+        22,
+        21,
+        21
+      ],
+      "prediction": {
+        "path": "results/p1_flatlands_pasco_ensemble_validation/predictions_pasco_ensemble_k64_validation.csv",
+        "rows": 4224,
+        "sha256": "75c1d389d2dace1baf3a58a20293cb2c684a2fe035f5488099a2b622afc54a67"
       },
-      "seconds": 0.0008698540041223168
+      "evaluation": "results/p1_flatlands_pasco_ensemble_validation/evaluation_pasco_ensemble_k64_validation/report.json",
+      "scene_weighted": {
+        "brier": 0.22842272195954128,
+        "nll": 2.869905778251068,
+        "ece": 0.24809673134214152,
+        "false_safe_rate@0.8": 0.014652566388764816,
+        "high_confidence_safe_coverage@0.8": 0.18690610739732091
+      },
+      "map_metrics": {
+        "scene_weighted_brier": 0.11054465686017947,
+        "scene_weighted_nll": 0.3567707305625619,
+        "scene_weighted_positive_rate": 0.6338158004946497,
+        "scene_weighted_mean_probability": 0.6256799259653837,
+        "scene_count": 160
+      }
+    },
+    "128": {
+      "member_samples": [
+        43,
+        43,
+        42
+      ],
+      "prediction": {
+        "path": "results/p1_flatlands_pasco_ensemble_validation/predictions_pasco_ensemble_k128_validation.csv",
+        "rows": 4224,
+        "sha256": "a776b388d3e41d4f83833b0a28304aed0a2ac7d54759902ae24208f45a0d08f4"
+      },
+      "evaluation": "results/p1_flatlands_pasco_ensemble_validation/evaluation_pasco_ensemble_k128_validation/report.json",
+      "scene_weighted": {
+        "brier": 0.22805763923417435,
+        "nll": 2.8426774457231208,
+        "ece": 0.24829906478589722,
+        "false_safe_rate@0.8": 0.012275709604856355,
+        "high_confidence_safe_coverage@0.8": 0.19122461478291505
+      },
+      "map_metrics": {
+        "scene_weighted_brier": 0.11054465686017947,
+        "scene_weighted_nll": 0.3567707305625619,
+        "scene_weighted_positive_rate": 0.6338158004946497,
+        "scene_weighted_mean_probability": 0.6256799259653837,
+        "scene_count": 160
+      }
     }
-  },
-  "runtime": {
-    "wall_seconds": 16.22802028899605,
-    "device": "cuda",
-    "gpu": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition"
-  },
-  "environment": {
-    "python": "3.11.15",
-    "numpy": "2.4.6",
-    "torch": "2.13.0+cu130",
-    "timestamp_utc": "2026-09-01T08:56:17.605003+00:00"
   },
   "claim_boundary": "Validation-only same-contract ensemble control inspired by PaSCo's multi-subnet uncertainty idea; it is not a reproduction of PaSCo's 3-D architecture and test remains locked."
 }

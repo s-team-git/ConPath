@@ -57,9 +57,10 @@ lock. Any method requiring a different sensor or label space is kept in the refe
 1. Finish the current CUDA diagnostic matrix and retain it as a low-capacity pilot.
 2. Re-run the three-seed ConPath/ablation matrix with the capacity lock above.
 3. **Done for the first validation pass:** add the 3-subnet ensemble control (PaSCo-inspired
-   uncertainty control) and compare event and map calibration at equal sample budget. The compact
-   report is tracked at `site/data/flatlands_pasco_ensemble_validation.json`; it remains validation-
-   only until the full recent-control matrix and final test gate are complete.
+   uncertainty control) and compare event and map calibration at equal sample budget. A follow-up
+   K-sensitivity run now evaluates total posterior budgets 32/64/128 under the same exact event
+   contract; the compact report is tracked at `site/data/flatlands_pasco_ensemble_validation.json`.
+   It remains validation-only until the full recent-control matrix and final test gate are complete.
 4. Attempt the S4C-style coordinate-query and diffusion-style 2-D completion ports only if they pass
    exact input/target leakage checks; otherwise document the incompatibility and keep them as related
    work.
@@ -85,6 +86,17 @@ event probabilities are pooled across the three members with a fixed total of 32
 | Control | Map Brier | Event Brier | Event NLL | Event ECE | False-safe @0.8 |
 |---|---:|---:|---:|---:|---:|
 | PaSCo-inspired 3-subnet ensemble (K=32) | 0.11054 | 0.22898 | 2.89817 | 0.24841 | 0.01538 |
+
+The fixed three-member ensemble's event metrics are stable as posterior sampling increases:
+
+| Total K | Event Brier | Event NLL | Event ECE | False-safe @0.8 | Coverage @0.8 |
+|---:|---:|---:|---:|---:|---:|
+| 32 | 0.22898 | 2.89817 | 0.24841 | 0.01538 | 0.18981 |
+| 64 | 0.22842 | 2.86991 | 0.24810 | 0.01465 | 0.18691 |
+| 128 | 0.22806 | 2.84268 | 0.24830 | 0.01228 | 0.19122 |
+
+This budget check addresses Monte-Carlo sensitivity only; it does not turn the PaSCo-inspired
+adapter into a PaSCo architecture reproduction or a final paper result.
 
 The corresponding member checkpoint SHA-256 values and prediction/evaluation hashes are in the
 machine-readable report. This row is a fair same-contract uncertainty control, not a reproduction

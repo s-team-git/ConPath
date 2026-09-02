@@ -147,9 +147,11 @@ def _aggregate_curve(curves: list[list[dict[str, float | None]]]) -> list[dict[s
     output: list[dict[str, float | None]] = []
     for index, threshold in enumerate(THRESHOLDS):
         fields: dict[str, float | None] = {"coverage": None, "false_safe_rate": None, "safe_precision": None}
-        for field in fields:
+        for field in tuple(fields):
             values = [curve[index][field] for curve in curves]
-            fields[field] = _mean_sd(values)["mean"]
+            summary = _mean_sd(values)
+            fields[field] = summary["mean"]
+            fields[f"{field}_sd"] = summary["sd"]
         output.append({"threshold": threshold, **fields})
     return output
 

@@ -47,6 +47,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--total-samples", type=int, nargs="+", default=[32, 64, 128])
     parser.add_argument("--bootstrap-samples", type=int, default=2_000)
     parser.add_argument("--reuse-existing", action="store_true", help="reuse existing prediction/evaluation files and only rebuild the integrity report")
+    parser.add_argument("--publish-site", action="store_true", help="write a compact validation-only snapshot under site/data")
     return parser.parse_args()
 
 
@@ -245,6 +246,43 @@ def main() -> None:
     with (args.output_dir / "report.json").open("w", encoding="utf-8") as handle:
         json.dump(report, handle, ensure_ascii=False, indent=2, allow_nan=False)
         handle.write("\n")
+    if args.publish_site:
+        site_snapshot = {
+            "schema_version": 1,
+            "kind": report["kind"],
+            "method_label": report["method_label"],
+            "paper_result": False,
+            "validation_result": True,
+            "test_evaluated": False,
+            "radii_cells": report["radii_cells"],
+            "total_samples": sorted(int(key) for key in summaries),
+            "results": {
+                key: {
+                    "member_samples": value["member_samples"],
+                    "prediction": value["prediction"],
+                    "evaluation": value["evaluation"],
+                    "scene_weighted": {
+                        metric: value["scene_weighted"][metric]
+                        for metric in (
+                            "brier",
+                            "nll",
+                            "ece",
+                            "false_safe_rate@0.8",
+                            "high_confidence_safe_coverage@0.8",
+                        )
+                    },
+                    "map_metrics": value["map_metrics"],
+                }
+                for key, value in summaries.items()
+            },
+            "claim_boundary": report["claim_boundary"],
+        }
+        site_path = PROJECT_ROOT / "site" / "data" / "flatlands_pasco_ensemble_validation.json"
+        site_path.parent.mkdir(parents=True, exist_ok=True)
+        site_path.write_text(
+            json.dumps(site_snapshot, ensure_ascii=False, indent=2, allow_nan=False) + "\n",
+            encoding="utf-8",
+        )
     print(json.dumps({"output_dir": str(args.output_dir), "results": {key: value["scene_weighted"] for key, value in summaries.items()}, "paper_result": False}, indent=2, allow_nan=False))
 
 
