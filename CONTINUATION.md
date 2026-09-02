@@ -451,22 +451,37 @@ stochastic posterior, event calibration collapses to a 0/1 output, and false-saf
 `0.11740`. This validates retaining the stochastic posterior and records the event/map trade-off
 for the paper's ablation section. The report and compact site snapshot remain validation-only.
 
+## Uncertainty and selective-risk curves (completed)
+
+`scripts/evaluate_flatlands_calibration.py` joins the nine existing label-free validation
+prediction manifests to the frozen query labels and aggregates equal-scene reliability and
+high-confidence risk across seeds 20260831/20260901/20260902. It does not train or open the test
+split. The compact snapshot is `results/p1_flatlands_calibration_validation/calibration_snapshot.json`
+and the public copies are `site/data/flatlands_calibration_validation.json`,
+`site/assets/flatlands_calibration_reliability.svg`, and
+`site/assets/flatlands_calibration_false_safe.svg`.
+
+At the 0.8 confidence threshold, ConPath has false-safe rate `0.06004 ± 0.01367` and accepted-event
+coverage `0.29114 ± 0.01591`; the independent decoder has `0.07352 ± 0.00260` false-safe and
+`0.34447 ± 0.00852` coverage. The deterministic mean-map control accepts more events (`0.51697`)
+but is binary and has `0.11740 ± 0.00584` false-safe. The reliability diagram and threshold sweep
+make this calibration/coverage trade-off visible instead of ranking methods by event Brier alone.
+All values are validation diagnostics, not final paper or test results.
+
 ## Exact next actions
 
-1. Add uncertainty/calibration curves around the completed stochastic, independent, and mean-map
-   controls; retain event and map metrics together.
-2. Port and evaluate recent strong uncertainty/completion methods under the same FlatLands contract;
+1. Port and evaluate recent strong uncertainty/completion methods under the same FlatLands contract;
    keep incompatible cross-task 3-D metrics as references only.
-3. Implement batched exact-forward connectivity (merge-tree/MST or a validated exact-forward /
+2. Implement batched exact-forward connectivity (merge-tree/MST or a validated exact-forward /
    soft-backward operator); compare against the NumPy oracle in error, latency, memory, and query
    scaling.
-4. Add source/radius reliability, threshold false-safe curves, bootstrap intervals, failure cases,
+3. Add source/radius reliability, threshold false-safe curves, bootstrap intervals, failure cases,
    symmetry/radius-monotonicity checks, and an explicit ARKitScenes saturation analysis.
-5. Audit and freeze one second domain (prefer ORFD semantics or UnScenes3D support surfaces), with
+4. Audit and freeze one second domain (prefer ORFD semantics or UnScenes3D support surfaces), with
    scene/site/sequence-held-out split and no adjacent-frame leakage.
-6. Only after the above, unlock the test split once, regenerate final JSON/CSV/SVG and qualitative
+5. Only after the above, unlock the test split once, regenerate final JSON/CSV/SVG and qualitative
    figures, freeze environment/data/checkpoint hashes, and update the website.
-7. Draft and internally review the ICRA/IROS paper: problem/claims, method, related work, main table/
+6. Draft and internally review the ICRA/IROS paper: problem/claims, method, related work, main table/
    figures, limitations, appendix, anonymization, and venue-format/compliance checks.
 
 ## Recovery commands

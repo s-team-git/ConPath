@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 570" role="img">
+<rect width="1000" height="570" fill="#fbfcfa"/>
+<style>text{font-family:Inter,Arial,sans-serif;fill:#26332f} .grid{stroke:#dce6e1;stroke-width:1} .axis{stroke:#6b7c75;stroke-width:1.4} .tick{font-size:13px} .title{font-size:22px;font-weight:700} .subtitle{font-size:13px;fill:#596a63} .legend{font-size:14px;font-weight:600}</style>
+<text x="90" y="36" class="title">FlatLands high-confidence risk</text>
+<text x="90" y="58" class="subtitle">False-safe rate versus coverage as the confidence threshold increases</text>
+<line x1="90.0" y1="90" x2="90.0" y2="480" class="grid"/>
+<line x1="90" y1="480.0" x2="910" y2="480.0" class="grid"/>
+<text x="90.0" y="504" text-anchor="middle" class="tick">0.0</text>
+<text x="76" y="485.0" text-anchor="end" class="tick">0.0</text>
+<line x1="254.0" y1="90" x2="254.0" y2="480" class="grid"/>
+<line x1="90" y1="402.0" x2="910" y2="402.0" class="grid"/>
+<text x="254.0" y="504" text-anchor="middle" class="tick">0.2</text>
+<text x="76" y="407.0" text-anchor="end" class="tick">0.2</text>
+<line x1="418.0" y1="90" x2="418.0" y2="480" class="grid"/>
+<line x1="90" y1="324.0" x2="910" y2="324.0" class="grid"/>
+<text x="418.0" y="504" text-anchor="middle" class="tick">0.4</text>
+<text x="76" y="329.0" text-anchor="end" class="tick">0.4</text>
+<line x1="582.0" y1="90" x2="582.0" y2="480" class="grid"/>
+<line x1="90" y1="246.0" x2="910" y2="246.0" class="grid"/>
+<text x="582.0" y="504" text-anchor="middle" class="tick">0.6</text>
+<text x="76" y="251.0" text-anchor="end" class="tick">0.6</text>
+<line x1="746.0" y1="90" x2="746.0" y2="480" class="grid"/>
+<line x1="90" y1="168.0" x2="910" y2="168.0" class="grid"/>
+<text x="746.0" y="504" text-anchor="middle" class="tick">0.8</text>
+<text x="76" y="173.0" text-anchor="end" class="tick">0.8</text>
+<line x1="910.0" y1="90" x2="910.0" y2="480" class="grid"/>
+<line x1="90" y1="90.0" x2="910" y2="90.0" class="grid"/>
+<text x="910.0" y="504" text-anchor="middle" class="tick">1.0</text>
+<text x="76" y="95.0" text-anchor="end" class="tick">1.0</text>
+<line x1="90" y1="90" x2="90" y2="480" class="axis"/><line x1="90" y1="480" x2="910" y2="480" class="axis"/>
+<text x="500.0" y="528" text-anchor="middle" class="subtitle">coverage of accepted events</text>
+<text x="22" y="285.0" text-anchor="middle" class="subtitle" transform="rotate(-90 22 285.0)">false-safe rate</text>
+<polyline points="447.7,435.9 404.7,445.4 368.4,452.9 328.7,456.6 284.3,466.9 241.8,469.5" fill="none" stroke="#168f63" stroke-width="3" stroke-linejoin="round"/>
+<circle cx="447.7" cy="435.9" r="5" fill="#168f63"/>
+<circle cx="404.7" cy="445.4" r="5" fill="#168f63"/>
+<circle cx="368.4" cy="452.9" r="5" fill="#168f63"/>
+<circle cx="328.7" cy="456.6" r="5" fill="#168f63"/>
+<circle cx="284.3" cy="466.9" r="5" fill="#168f63"/>
+<circle cx="241.8" cy="469.5" r="5" fill="#168f63"/>
+<polyline points="435.3,440.8 417.8,444.0 398.1,446.3 372.5,451.3 333.4,456.8 290.0,461.7" fill="none" stroke="#d97706" stroke-width="3" stroke-linejoin="round"/>
+<circle cx="435.3" cy="440.8" r="5" fill="#d97706"/>
+<circle cx="417.8" cy="444.0" r="5" fill="#d97706"/>
+<circle cx="398.1" cy="446.3" r="5" fill="#d97706"/>
+<circle cx="372.5" cy="451.3" r="5" fill="#d97706"/>
+<circle cx="333.4" cy="456.8" r="5" fill="#d97706"/>
+<circle cx="290.0" cy="461.7" r="5" fill="#d97706"/>
+<polyline points="513.9,434.2 513.9,434.2 513.9,434.2 513.9,434.2 513.9,434.2 513.9,434.2" fill="none" stroke="#7c3aed" stroke-width="3" stroke-linejoin="round"/>
+<circle cx="513.9" cy="434.2" r="5" fill="#7c3aed"/>
+<circle cx="513.9" cy="434.2" r="5" fill="#7c3aed"/>
+<circle cx="513.9" cy="434.2" r="5" fill="#7c3aed"/>
+<circle cx="513.9" cy="434.2" r="5" fill="#7c3aed"/>
+<circle cx="513.9" cy="434.2" r="5" fill="#7c3aed"/>
+<circle cx="513.9" cy="434.2" r="5" fill="#7c3aed"/>
+<line x1="120" y1="505" x2="144" y2="505" stroke="#168f63" stroke-width="4"/>
+<text x="152" y="510" class="legend">ConPath stochastic</text>
+<line x1="365" y1="505" x2="389" y2="505" stroke="#d97706" stroke-width="4"/>
+<text x="397" y="510" class="legend">Independent decoder</text>
+<line x1="610" y1="505" x2="634" y2="505" stroke="#7c3aed" stroke-width="4"/>
+<text x="642" y="510" class="legend">Posterior mean-map threshold</text>
+<text x="90" y="548" class="subtitle">Validation-only · equal-scene weighting · 3 seeds · FlatLands test split locked</text>
+</svg>
