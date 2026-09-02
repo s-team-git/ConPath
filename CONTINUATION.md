@@ -15,8 +15,9 @@ diagnostic, code change, or experiment; do not rely on chat history or ignored `
 - Active task: replace the desk-surface pilot with a ground-robot/floor visual, then complete
   second-domain checks on the frozen bounded manifests. The official ORFD semantics audit is now
   complete, but its metric-BEV adapter and sequence-held-out split are not. Official FlatLands and
-  SceneSense artifact audits are complete and both remain reference-only; do not use the leaking
-  official split or extract the archive.
+  SceneSense artifact audits are complete and both remain reference-only. UnScenes3D is now the
+  priority second-domain candidate; its raw pose smoke package is present, but labels/maps and the
+  adapter gate are incomplete. Do not use the leaking official split or extract the FlatLands archive.
 
 ### GPU visibility and publication status (2026-08-31)
 
@@ -187,11 +188,12 @@ merge-tree reference matched exhaustive search at zero error for 8/64/512 querie
 
 ## P1 FlatLands archive audit
 
-The workspace contains the ignored 830 MB TUM RGB-D pilot and the verified 2.055 GB FlatLands ZIP;
-it has no ORFD, UnScenes3D, or WildOcc assets. Official-source review selected FlatLands as the first
+The workspace contains the ignored 830 MB TUM RGB-D pilot, the verified 2.055 GB FlatLands ZIP, and
+the one-scene UnScenes3D raw pose smoke package. It has no ORFD or WildOcc assets and no UnScenes3D
+occupancy/elevation/local-map archives yet. Official-source review selected FlatLands as the first
 P1 audit target because it provides aligned observed/full floor maps, unobserved and valid masks,
-metric provenance, and split metadata. ORFD is a secondary off-road semantics audit;
-UnScenes3D/WildOcc remain P2.
+metric provenance, and split metadata. ORFD remains a secondary off-road semantics audit; UnScenes3D
+is now the priority second-domain candidate for support-surface occupancy.
 
 `P1_DATA_AUDIT.md` freezes the FlatLands release as `2,054,773,316` bytes with SHA-256
 `e4f2e5c7c54f7ba62ea696fb103fb5d3794f30f5a2e63715773e59d6a9f1d26f`, defines scene-disjointness,
@@ -458,6 +460,23 @@ domain; semantics audit complete, no local run**. The required download/hash, ca
 leakage, metric-BEV adapter, and label-validity gates are tracked in
 `ORFD_COMPATIBILITY_CHECK.md`.
 
+### UnScenes3D second-domain compatibility check (completed for planning)
+
+The official [UnScenes3D repository](https://github.com/ruiqi-song/UnScenes3D), its [release page](https://github.com/ruiqi-song/UnScenes3D/releases),
+and the [Scientific Data article](https://www.nature.com/articles/s41597-025-05532-5) were checked on
+2026-09-02. The release provides 3-D semantic occupancy, road elevation, local dense maps, camera/
+LiDAR calibration, and vehicle/ego-pose information; the article reports camera/LiDAR/IMU/RTK
+collection and approximately 23,549 frames. The official processing code loads `Tr_velo_to_imu`,
+`pose_odom`, local-map clouds, and scene timestamps, so it is a viable metric-BEV source in
+principle. The six-region description also provides an unseen-region generalization design.
+
+The official `raw_data.zip` mini asset (104,519,506 bytes,
+SHA-256 `d1050b22d0eb31ea7199d2625accbfb54ae3034b3b57653a9790cdbdfa522ae0`) has been downloaded,
+path-audited, and extracted under ignored `data/raw/unscenes3d/raw_data/`. It is a one-scene parser/
+pose smoke package, not an experiment. Occupancy/elevation/label and local-map archives still need
+hash/license checks, complete timestamp joins, coordinate/voxel validation, and a new
+scene/site/sequence-held-out target-blind event adapter before training or test access.
+
 ## Validation qualitative panels and website state
 
 Two real-checkpoint FlatLands validation panels were rendered and copied to the tracked site:
@@ -574,10 +593,10 @@ reproduction, and all numbers remain validation-only.
    footprint erosion, and a failure case; retain the TUM asset only as a labelled geometry appendix.
 2. Extend the completed reliability/selective-risk analysis with symmetry/radius-monotonicity checks,
    an explicit ARKitScenes saturation analysis, and a failure-case visual for the recent controls.
-3. Audit and freeze one second domain (prefer ORFD semantics or UnScenes3D support surfaces), with
-   scene/site/sequence-held-out split and no adjacent-frame leakage. ORFD's semantics audit is
-   complete; the remaining work is the data/pose audit and adapter, or a switch to UnScenes3D if
-   those fields cannot support metric reconstruction.
+3. Audit and freeze one second domain, prioritizing UnScenes3D support surfaces, with
+   scene/site/sequence-held-out split and no adjacent-frame leakage. Its raw pose smoke is complete;
+   the remaining work is label/local-map acquisition, coordinate validation, and the metric-BEV
+   adapter. ORFD remains a fallback semantics-only candidate.
 4. Only after the above, unlock the test split once, regenerate final JSON/CSV/SVG and qualitative
    figures, freeze environment/data/checkpoint hashes, and update the website.
 6. Draft and internally review the ICRA/IROS paper: problem/claims, method, related work, main table/
