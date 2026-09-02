@@ -466,7 +466,7 @@
       "role": "best completion validation checkpoint, seed 20260902",
       "required_for_resume": false,
       "bytes": 1495593,
-      "sha256": "1d19bff24c51452b8a76f4ce6c64ac11bb3ea59d2b1bf874aea6bd1bcae131a8"
+      "sha256": "1d19bff24c51452a8b76f4ce6c64ac11bb3ea59d2b1bf874aea6bd1bcae131a8"
     },
     {
       "path": "results/p1_flatlands_completion_seed20260902/evaluation_deterministic_validation/report.json",
@@ -765,7 +765,7 @@
   ],
   "last_verification": {
     "command": "PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -q && python3 -m compileall -q src scripts && PYTHONPATH=src .venv/bin/python scripts/verify_recovery_state.py",
-    "result": "Ran 69 tests in 1.292s; OK; all source/scripts compile; three-method calibration curves, PaSCo K=32/64/128 reports, and site snapshots registered; recovery quick verification passed with all registered artifacts present",
+    "result": "Ran 69 tests in 1.292s; OK; all source/scripts compile; three-method calibration curves, PaSCo K=32/64/128 reports, and site snapshots registered; full recovery verification passed with every registered artifact hash (including the 2.05 GB archive)",
     "implementation_commit": "80d6218"
   },
   "recovery_commands": [
