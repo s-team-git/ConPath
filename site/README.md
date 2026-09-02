@@ -42,6 +42,10 @@ The FlatLands section also links the completed three-seed independent-decoder ca
 snapshot. It is explicitly event-only, validation-only, and test-locked; it is shown to document
 the benefit of spatial correlation rather than to imply a final leaderboard result.
 
+The page also links the deterministic posterior mean-map diagnostic, which records both event and
+hidden-map metrics. Its lower binary event Brier but worse map/calibration behavior is shown as a
+trade-off, not as a replacement for the stochastic posterior.
+
 ## Preview locally
 
 ```bash

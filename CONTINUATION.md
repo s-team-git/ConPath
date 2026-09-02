@@ -431,10 +431,30 @@ manifests record peak memory and wall time; all three use the same test-locked v
 This control currently exports event predictions only; a separate deterministic mean-map control is
 still required before any map-quality claim is made.
 
+## Deterministic posterior mean-map control (completed)
+
+The new `scripts/evaluate_flatlands_conpath_mean_map.py` evaluator averages 128 conditional
+posterior free probabilities from each F16 ConPath checkpoint in K=32 chunks, thresholds the mean
+map at 0.5, and runs the exact connectivity oracle on that single binary map. It also scores hidden
+map probabilities before thresholding. All three seeds completed on the same 160-scene validation
+replay and 4,224 event rows:
+
+| Seed | Event Brier | Event NLL | Event ECE | Hidden-map Brier | Hidden-map NLL | Mean map probability |
+|---:|---:|---:|---:|---:|---:|---:|
+| 20260831 | 0.07512 | 1.03787 | 0.07512 | 0.17679 | 0.58670 | 0.79509 |
+| 20260901 | 0.07058 | 0.97506 | 0.07058 | 0.17431 | 0.55942 | 0.80110 |
+| 20260902 | 0.06763 | 0.93439 | 0.06763 | 0.18416 | 0.65597 | 0.80557 |
+| **mean ± sample SD** | **0.07111 ± 0.00377** | **0.98244 ± 0.05214** | **0.07111 ± 0.00377** | **0.17842 ± 0.00512** | **0.60070 ± 0.04977** | **0.80059 ± 0.00525** |
+
+The lower binary event Brier is not a free win: hidden-map Brier is substantially worse than the
+stochastic posterior, event calibration collapses to a 0/1 output, and false-safe@0.8 averages
+`0.11740`. This validates retaining the stochastic posterior and records the event/map trade-off
+for the paper's ablation section. The report and compact site snapshot remain validation-only.
+
 ## Exact next actions
 
-1. Add the deterministic mean-map control;
-   report map quality and event quality together.
+1. Add uncertainty/calibration curves around the completed stochastic, independent, and mean-map
+   controls; retain event and map metrics together.
 2. Port and evaluate recent strong uncertainty/completion methods under the same FlatLands contract;
    keep incompatible cross-task 3-D metrics as references only.
 3. Implement batched exact-forward connectivity (merge-tree/MST or a validated exact-forward /

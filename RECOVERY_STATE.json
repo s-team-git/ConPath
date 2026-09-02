@@ -5,10 +5,10 @@
   "timezone": "America/New_York",
   "branch": "main",
   "remote_sync": "Local main is clean and synchronized with origin/main via GitHub SSH over port 443; GitHub Pages can deploy the tracked site after the workflow completes.",
-  "latest_local_commit": "58e6962 Publish independent decoder validation control",
+  "latest_local_commit": "dfc7706 Add deterministic ConPath mean map evaluator",
   "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence.",
-  "scientific_status": "Synthetic P0 passes in two seeds. The official FlatLands split fails scene isolation. The non-official upstream-provenance split passes full integrity, a 512-scene bounded mask/query gate, direct-ZIP replay, and validation-only baselines. Three completion seeds, K=32/64/128 convergence, a PaSCo-inspired three-subnet same-contract control, and a three-seed independent-decoder control are now complete on validation; the public site adds two real-checkpoint qualitative diagnostics while test remains locked. The capacity-matched F=16 ConPath main model averages 0.09607 +/- 0.01222 exact Brier across three seeds, versus 0.11214 +/- 0.00306 for the independent decoder; these remain validation-only, not final paper results.",
-  "active_task": "Add deterministic mean-map control and extend recent strong-method comparisons beyond the first PaSCo-inspired ensemble; then add uncertainty/calibration, scalable connectivity, and second-domain checks before any test access or final site claim.",
+  "scientific_status": "Synthetic P0 passes in two seeds. The official FlatLands split fails scene isolation. The non-official upstream-provenance split passes full integrity, a 512-scene bounded mask/query gate, direct-ZIP replay, and validation-only baselines. Three completion seeds, K=32/64/128 convergence, a PaSCo-inspired three-subnet same-contract control, a three-seed independent-decoder control, and a three-seed deterministic posterior mean-map control are now complete on validation; the public site adds real-checkpoint qualitative diagnostics while test remains locked. The capacity-matched F=16 ConPath main model averages 0.09607 +/- 0.01222 exact Brier across three seeds, versus 0.11214 +/- 0.00306 for the independent decoder and 0.07111 +/- 0.00377 for binary mean-map events; the mean-map hidden-cell Brier is 0.17842 +/- 0.00512, so all remain validation-only diagnostics, not final paper results.",
+  "active_task": "Add uncertainty/calibration curves around the stochastic, independent, and mean-map controls; extend recent strong-method comparisons beyond the first PaSCo-inspired ensemble, then add scalable connectivity and second-domain checks before any test access or final site claim.",
   "completed_milestones": [
     "Interruption-safe P0 training with atomic checkpoints and exact resume",
     "Two-seed synthetic P0 pass and matched no-reach failure",
@@ -31,6 +31,7 @@
     ,"Two real-checkpoint FlatLands qualitative validation panels (positive and uncertainty/failure) added to tracked site assets"
     ,"Independent-decoder control implementation and chunked K=32 validation added for safe CUDA parallelism"
     ,"Independent-decoder F16 control completed for all three seeds with exact event reports; mean Brier 0.11214 +/- 0.00306"
+    ,"Deterministic ConPath posterior mean-map control completed for all three seeds with event/map metrics; mean event Brier 0.07111 and hidden-map Brier 0.17842"
   ],
   "tracked_files": [
     "CONTINUATION.md",
@@ -82,6 +83,7 @@
     "site/assets/flatlands_qualitative_validation_uncertain.svg",
     "site/data/flatlands_pasco_ensemble_validation.json",
     "site/data/flatlands_independent_decoder_validation.json",
+    "site/data/flatlands_conpath_mean_map_validation.json",
     "site/data/flatlands_qualitative_validation_positive.json",
     "site/data/flatlands_qualitative_validation_uncertain.json",
     "src/pathrel/labels.py",
@@ -579,6 +581,90 @@
       "required_for_resume": false,
       "bytes": 160429,
       "sha256": "30e0d921dc21427a10a05e05ce7284a40e3ea2b87b1792bf43d8e1c6dd7caf5f"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_mean_map_f16/seed20260831/run.json",
+      "role": "deterministic ConPath mean-map validation manifest, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 163471,
+      "sha256": "da56f5ccf67c9ad51e8186bbfca8419575ca6458ba3b21ba4d4a78e1db43af80"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_mean_map_f16/seed20260831/map_metrics.json",
+      "role": "hidden-cell map metrics for deterministic mean-map control, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 252,
+      "sha256": "6f4879487d37146d491e906373871974faf2e360765fe59e4bc488a91d6a25c8"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_mean_map_f16/seed20260831/predictions_validation.csv",
+      "role": "binary deterministic mean-map event predictions, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 77009,
+      "sha256": "e8706fe643010fc873545f3c3ce82b85864155e4994b4b3bec224404dbbf35a6"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_mean_map_f16/seed20260831/evaluation_validation/report.json",
+      "role": "deterministic mean-map exact event validation report, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 149164,
+      "sha256": "7377619b90c3c70a7e26b5d37b5a98a5449df664bf5a920412eef690ca353353"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_mean_map_f16/seed20260901/run.json",
+      "role": "deterministic ConPath mean-map validation manifest, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 163724,
+      "sha256": "16ccd84605c6690f5759bdbc1fdb757004a130f57704f2c57843e4094c06abc7"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_mean_map_f16/seed20260901/map_metrics.json",
+      "role": "hidden-cell map metrics for deterministic mean-map control, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 252,
+      "sha256": "6ae91ae1f93c223c4045386a7b62a30ed784ba542d194c730edc582e9d812871"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_mean_map_f16/seed20260901/predictions_validation.csv",
+      "role": "binary deterministic mean-map event predictions, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 77009,
+      "sha256": "db758b067befa7c0317ee5ccbadf354398c1f0082c117c155042eab0e0c44b10"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_mean_map_f16/seed20260901/evaluation_validation/report.json",
+      "role": "deterministic mean-map exact event validation report, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 149416,
+      "sha256": "f4d33e49475da26c4b20cc7b214c18caf852450107c20b7e0665eca02b700543"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_mean_map_f16/seed20260902/run.json",
+      "role": "deterministic ConPath mean-map validation manifest, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 163053,
+      "sha256": "43fb87feef2cc42af235cf65cfa618a704242545d0689f4b11b5b9fb85ff4c10"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_mean_map_f16/seed20260902/map_metrics.json",
+      "role": "hidden-cell map metrics for deterministic mean-map control, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 251,
+      "sha256": "add1d22df4582d65930e8320c3dfd2aa15c63e825fafb9c00555fec4f838d740"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_mean_map_f16/seed20260902/predictions_validation.csv",
+      "role": "binary deterministic mean-map event predictions, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 77009,
+      "sha256": "af8a2af39b483075c0a1d7a5c05c5d9bec756da7c86637680329a7a4cc76a14f"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_mean_map_f16/seed20260902/evaluation_validation/report.json",
+      "role": "deterministic mean-map exact event validation report, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 148746,
+      "sha256": "c6cb0afe6b5dd11fdbc41ee02e92a75e2baec557a958fb79ca2df25aa6c7e6dd"
     },
     {
       "path": "results/p1_flatlands_qualitative_validation/obs_008266_candidate0_r10.json",

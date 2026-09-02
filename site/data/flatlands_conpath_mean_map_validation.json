@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "project": "ConPath",
+  "dataset": "FlatLands",
+  "kind": "validation_deterministic_mean_map_snapshot",
+  "paper_result": false,
+  "test_evaluated": false,
+  "protocol": "P1_BASELINE_PROTOCOL.md v1 + ConPath posterior mean map; 128 samples, K=32 chunks, threshold 0.5",
+  "primary_weighting": "equal source-scene, then equal event within scene",
+  "radii_cells": [0, 10, 20],
+  "rows": [
+    {"seed": 20260831, "event_brier": 0.0751237147, "event_nll": 1.0378733990, "event_ece": 0.0751237147, "false_safe_rate@0.8": 0.1241164939, "map_brier": 0.1767896974, "map_nll": 0.5866998895, "mean_probability": 0.7950933454, "report": "results/p1_flatlands_conpath_mean_map_f16/seed20260831/run.json"},
+    {"seed": 20260901, "event_brier": 0.0705769448, "event_nll": 0.9750574552, "event_ece": 0.0705769448, "false_safe_rate@0.8": 0.1135196989, "map_brier": 0.1743117871, "map_nll": 0.5594180521, "mean_probability": 0.8011016868, "report": "results/p1_flatlands_conpath_mean_map_f16/seed20260901/run.json"},
+    {"seed": 20260902, "event_brier": 0.0676333393, "event_nll": 0.9343900451, "event_ece": 0.0676333393, "false_safe_rate@0.8": 0.1145581510, "map_brier": 0.1841588186, "map_nll": 0.6559677686, "mean_probability": 0.8055653404, "report": "results/p1_flatlands_conpath_mean_map_f16/seed20260902/run.json"}
+  ],
+  "mean_sample_sd": {
+    "event_brier": [0.0711113329, 0.0037736732],
+    "event_nll": [0.9824402998, 0.0521352177],
+    "event_ece": [0.0711113329, 0.0037736732],
+    "false_safe_rate@0.8": [0.1173981146, 0.0058414091],
+    "map_brier": [0.1784201010, 0.0051219791],
+    "map_nll": [0.6006952367, 0.0497731278]
+  },
+  "interpretation": "Validation-only diagnostic: thresholding a posterior mean map yields binary event predictions with lower Brier but loses probabilistic calibration and has substantially worse hidden-map Brier than the stochastic posterior. It is not a final paper result and does not unlock FlatLands test."
+}
