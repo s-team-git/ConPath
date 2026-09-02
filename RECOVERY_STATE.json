@@ -7,7 +7,7 @@
   "remote_sync": "Local main is clean and synchronized with origin/main via GitHub SSH over port 443; GitHub Pages can deploy the tracked site after the workflow completes.",
   "latest_local_commit": "097b11d Record S4C-inspired validation control",
   "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence.",
-  "scientific_status": "Synthetic P0 passes in two seeds. The official FlatLands split fails scene isolation. The non-official upstream-provenance split passes full integrity, a 512-scene bounded mask/query gate, direct-ZIP replay, and validation-only baselines. Three completion seeds, K=32/64/128 convergence, a PaSCo-inspired three-subnet same-contract control with K-sensitivity, a three-seed independent-decoder control, a three-seed deterministic posterior mean-map control, a three-seed S4C-inspired coordinate-query control, and four-method reliability/selective-risk curves are now complete on validation; the public site adds real-checkpoint qualitative and calibration diagnostics while test remains locked. The capacity-matched F=16 ConPath main model averages 0.09607 +/- 0.01222 exact Brier across three seeds, versus 0.11214 +/- 0.00306 for the independent decoder, 0.09204 +/- 0.00582 for the S4C-inspired coordinate control, and 0.07111 +/- 0.00377 for binary mean-map events; the mean-map hidden-map Brier is 0.17842 +/- 0.00512, so all remain validation-only diagnostics, not final paper results. The official ORFD semantics audit is complete as a ground-vehicle second-domain candidate, but its image-plane labels do not yet support a same-contract metric-BEV event result. UnScenes3D is now the priority second-domain candidate: the 13-scene raw mini package, 629-timestamp occupancy/elevation labels, and both local-map parts are acquired, path-audited, and timestamp-joined; the basic audit covers 629/629 map files, the train/validation-only 17,096-query manifest is frozen, and the first 1-epoch map-only GPU adapter smoke passed on a 32/16 frame subset. That smoke used one validation scene and is a pipeline diagnostic only; capacity-matched controls, multi-seed scoring, and held-out evaluation remain pending.",
+  "scientific_status": "Synthetic P0 passes in two seeds. The official FlatLands split fails scene isolation. The non-official upstream-provenance split passes full integrity, a 512-scene bounded mask/query gate, direct-ZIP replay, and validation-only baselines. Three completion seeds, K=32/64/128 convergence, a PaSCo-inspired three-subnet same-contract control with K-sensitivity, a three-seed independent-decoder control, a three-seed deterministic posterior mean-map control, a three-seed S4C-inspired coordinate-query control, and four-method reliability/selective-risk curves are now complete on validation; the public site adds real-checkpoint qualitative and calibration diagnostics while test remains locked. The capacity-matched F=16 ConPath main model averages 0.09607 +/- 0.01222 exact Brier across three seeds, versus 0.11214 +/- 0.00306 for the independent decoder, 0.09204 +/- 0.00582 for the S4C-inspired coordinate control, and 0.07111 +/- 0.00377 for binary mean-map events; the mean-map hidden-map Brier is 0.17842 +/- 0.00512, so all remain validation-only diagnostics, not final paper results. The official ORFD semantics audit is complete as a ground-vehicle second-domain candidate, but its image-plane labels do not yet support a same-contract metric-BEV event result. UnScenes3D is now the priority second-domain candidate: the 13-scene raw mini package, 629-timestamp occupancy/elevation labels, and both local-map parts are acquired, path-audited, and timestamp-joined; the basic audit covers 629/629 map files, the train/validation-only 17,096-query manifest is frozen, and the first full three-seed map-only adapter run completed on all 478 train / 62 validation frames. Its validation event Brier is 0.63165 +/- 0.00083, NLL 10.06875 +/- 0.02700, and ECE 0.73653 +/- 0.00143; this is a poor map-only diagnostic, not a final score or cross-domain claim. Event-loss training, capacity-matched controls, and held-out evaluation remain pending.",
   "active_task": "Run the first full UnScenes3D train/validation ConPath adapter and capacity-matched controls from the frozen 17,096-query manifest, then render a ground-robot qualitative panel before any test access or final site claim. Official FlatLands, SceneSense, and ORFD artifact/contract audits are recorded; FlatLands and SceneSense remain reference-only, ORFD has no local run, and UnScenes3D raw/label/map packages plus the initial smoke are diagnostics, not results.",
   "completed_milestones": [
     "Interruption-safe P0 training with atomic checkpoints and exact resume",
@@ -41,6 +41,7 @@
     ,"ORFD official semantics/contract audit completed; ground-vehicle image-plane freespace is a second-domain candidate, and the official loader was checked for calibration/pose fields (no documented ego-pose/world-map stream); no local archive, metric-BEV adapter, or score is available"
     ,"UnScenes3D official repository/release/code audit completed; 13-scene raw and 629-timestamp label mini archives acquired, hashed, path-audited, and joined; both local-map parts cover 629/629 label timestamps and pass the basic integrity audit; coordinate/support adapter protocol v0.1 and train/validation-only 17,096-query event manifest are frozen"
     ,"First UnScenes3D map-only GPU adapter smoke completed for a 32-frame train / 16-frame validation subset, one epoch, K=4; validation map Brier 0.14267 and event Brier 0.92268 are one-scene pipeline diagnostics only, not paper results; location-6 test remains locked"
+    ,"UnScenes3D three-seed map-only adapter completed on all 478 train / 62 validation frames; validation event Brier 0.63165 +/- 0.00083, NLL 10.06875 +/- 0.02700, and ECE 0.73653 +/- 0.00143 expose an underperforming event baseline, so event-loss training and capacity-matched controls are required before any effectiveness claim"
   ],
   "tracked_files": [
     "CONTINUATION.md",
@@ -192,6 +193,69 @@
       "required_for_resume": false,
       "bytes": 2168,
       "sha256": "fe67d48433994d10c4e658e360adf572e801ac1bb0f869b87f1259d8888ccb98"
+    },
+    {
+      "path": "results/unscenes3d_conpath_f16/seed20260831/best.pt",
+      "role": "UnScenes3D three-seed map-only adapter validation checkpoint; not a final paper score",
+      "required_for_resume": false,
+      "bytes": 1489229,
+      "sha256": "2cc3d7d0899a347bb0b7299463455ba4c29eb0a48c72b6737bcf946c3bdbfc6a"
+    },
+    {
+      "path": "results/unscenes3d_conpath_f16/seed20260831/latest.pt",
+      "role": "UnScenes3D three-seed map-only adapter latest checkpoint; not a final paper score",
+      "required_for_resume": false,
+      "bytes": 1489229,
+      "sha256": "2cc3d7d0899a347bb0b7299463455ba4c29eb0a48c72b6737bcf946c3bdbfc6a"
+    },
+    {
+      "path": "results/unscenes3d_conpath_f16/seed20260831/run.json",
+      "role": "UnScenes3D seed 20260831 map-only validation diagnostics",
+      "required_for_resume": false,
+      "bytes": 2766,
+      "sha256": "77337a00e47ae41f66805adff85c484850de64718de0a19b3c03b103b094b5d5"
+    },
+    {
+      "path": "results/unscenes3d_conpath_f16/seed20260901/best.pt",
+      "role": "UnScenes3D three-seed map-only adapter validation checkpoint; not a final paper score",
+      "required_for_resume": false,
+      "bytes": 1489229,
+      "sha256": "80a90737e0f16ea8123894b89b87ad0ee0bf965be7ebab5fb24f3edde7f4d33d"
+    },
+    {
+      "path": "results/unscenes3d_conpath_f16/seed20260901/latest.pt",
+      "role": "UnScenes3D three-seed map-only adapter latest checkpoint; not a final paper score",
+      "required_for_resume": false,
+      "bytes": 1489229,
+      "sha256": "80a90737e0f16ea8123894b89b87ad0ee0bf965be7ebab5fb24f3edde7f4d33d"
+    },
+    {
+      "path": "results/unscenes3d_conpath_f16/seed20260901/run.json",
+      "role": "UnScenes3D seed 20260901 map-only validation diagnostics",
+      "required_for_resume": false,
+      "bytes": 2780,
+      "sha256": "8b05553378493bb4a9b1d39364f358a6b52d65fbaca84620cc50d6a759cc399e"
+    },
+    {
+      "path": "results/unscenes3d_conpath_f16/seed20260902/best.pt",
+      "role": "UnScenes3D three-seed map-only adapter validation checkpoint; not a final paper score",
+      "required_for_resume": false,
+      "bytes": 1489101,
+      "sha256": "971846bcc76547b4af1fa7ba36ca34fa9c7b0da08f42cd94fc9e36830b4c250d"
+    },
+    {
+      "path": "results/unscenes3d_conpath_f16/seed20260902/latest.pt",
+      "role": "UnScenes3D three-seed map-only adapter latest checkpoint; not a final paper score",
+      "required_for_resume": false,
+      "bytes": 1489229,
+      "sha256": "b2e48e9a7946c85618886df78cfa07c47a3c1d47d02fc633cf72525fdb92d81b"
+    },
+    {
+      "path": "results/unscenes3d_conpath_f16/seed20260902/run.json",
+      "role": "UnScenes3D seed 20260902 map-only validation diagnostics",
+      "required_for_resume": false,
+      "bytes": 2782,
+      "sha256": "18285bc67f34babe36bac845246307f31fdb6997ff7e5436dc7881acac155988"
     },
     {
       "path": "results/p1_flatlands_provenance_manifest/report.json",

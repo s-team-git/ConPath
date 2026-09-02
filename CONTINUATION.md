@@ -493,6 +493,13 @@ ran end to end and wrote atomic checkpoints. Its validation map Brier was 0.1426
 diagnostic was 0.92268 on one validation scene with 568 queries, so it is a pipeline check only,
 not a comparison or paper result.
 
+The first full capacity-matched map-only adapter run now covers all 478 train and 62 validation
+frames for seeds `20260831`, `20260901`, and `20260902`. The validation event summary is Brier
+`0.63165 ± 0.00083`, NLL `10.06875 ± 0.02700`, and ECE `0.73653 ± 0.00143` (false-safe@0.8
+`0.30367 ± 0.02584`). This is deliberately recorded as an underperforming diagnostic: the map
+loss alone does not calibrate long-range connectivity, so it is not a method win, comparison
+table, or final paper result. The next run must include event loss and the same-contract controls.
+
 ## Validation qualitative panels and website state
 
 Two real-checkpoint FlatLands validation panels were rendered and copied to the tracked site:
