@@ -5,7 +5,7 @@ diagnostic, code change, or experiment; do not rely on chat history or ignored `
 
 ## Recovery snapshot
 
-- Updated: 2026-09-02 (America/New_York)
+- Updated: 2026-09-01 (America/New_York)
 - Repository: `/home/hairo/pathrel_transfer/pathrel_pro6000`
 - Durable checkpoint: `p1-flatlands-validation-baselines-v1` in tracked `RECOVERY_STATE.json`
 - Recovery-state commit: resolve with `git log -1 --format='%h %s' -- RECOVERY_STATE.json`
