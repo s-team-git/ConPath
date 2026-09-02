@@ -729,8 +729,8 @@
       "path": "results/p1_flatlands_calibration_validation/calibration_snapshot.json",
       "role": "four-method, three-seed validation reliability and selective-risk snapshot; test split locked",
       "required_for_resume": false,
-      "bytes": 32976,
-      "sha256": "91bccac09827ddbbda126ee5eff25d450f14307cd5b9819ebc13b61a16bb3a70"
+      "bytes": 38144,
+      "sha256": "be8093cb78ee84ed9fdf45fdfcfb61c5470d51b2a2f69762fe1bbac3c00eaf7d"
     },
     {
       "path": "results/p1_flatlands_s4c_coordinate_f16/seed20260831_s4c_coordinate/run.json",
