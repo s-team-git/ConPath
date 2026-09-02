@@ -259,6 +259,71 @@
           ]
         }
       },
+      "radius_monotonicity": {
+        "event_groups": {
+          "mean": 1408.0,
+          "sd": 0.0,
+          "values": [
+            1408.0,
+            1408.0,
+            1408.0
+          ]
+        },
+        "pair_count": {
+          "mean": 2816.0,
+          "sd": 0.0,
+          "values": [
+            2816.0,
+            2816.0,
+            2816.0
+          ]
+        },
+        "pairwise_probability_violation_rate": {
+          "mean": 0.0,
+          "sd": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "event_group_probability_violation_rate": {
+          "mean": 0.0,
+          "sd": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "mean_upward_delta": {
+          "mean": 0.0,
+          "sd": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "max_upward_delta": {
+          "mean": 0.0,
+          "sd": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "target_pairwise_violation_rate": {
+          "mean": 0.0,
+          "sd": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      },
       "event_count": 4224,
       "scene_count": 142
     },
@@ -518,6 +583,71 @@
             0.12186345755578348,
             0.10355916268062604,
             0.10329039438529031
+          ]
+        }
+      },
+      "radius_monotonicity": {
+        "event_groups": {
+          "mean": 1408.0,
+          "sd": 0.0,
+          "values": [
+            1408.0,
+            1408.0,
+            1408.0
+          ]
+        },
+        "pair_count": {
+          "mean": 2816.0,
+          "sd": 0.0,
+          "values": [
+            2816.0,
+            2816.0,
+            2816.0
+          ]
+        },
+        "pairwise_probability_violation_rate": {
+          "mean": 0.0,
+          "sd": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "event_group_probability_violation_rate": {
+          "mean": 0.0,
+          "sd": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "mean_upward_delta": {
+          "mean": 0.0,
+          "sd": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "max_upward_delta": {
+          "mean": 0.0,
+          "sd": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "target_pairwise_violation_rate": {
+          "mean": 0.0,
+          "sd": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
           ]
         }
       },
@@ -783,6 +913,71 @@
           ]
         }
       },
+      "radius_monotonicity": {
+        "event_groups": {
+          "mean": 1408.0,
+          "sd": 0.0,
+          "values": [
+            1408.0,
+            1408.0,
+            1408.0
+          ]
+        },
+        "pair_count": {
+          "mean": 2816.0,
+          "sd": 0.0,
+          "values": [
+            2816.0,
+            2816.0,
+            2816.0
+          ]
+        },
+        "pairwise_probability_violation_rate": {
+          "mean": 0.0,
+          "sd": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "event_group_probability_violation_rate": {
+          "mean": 0.0,
+          "sd": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "mean_upward_delta": {
+          "mean": 0.0,
+          "sd": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "max_upward_delta": {
+          "mean": 0.0,
+          "sd": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "target_pairwise_violation_rate": {
+          "mean": 0.0,
+          "sd": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      },
       "event_count": 4224,
       "scene_count": 142
     },
@@ -1042,6 +1237,71 @@
             0.09449556337896695,
             0.08279274748850943,
             0.08132102096686743
+          ]
+        }
+      },
+      "radius_monotonicity": {
+        "event_groups": {
+          "mean": 1408.0,
+          "sd": 0.0,
+          "values": [
+            1408.0,
+            1408.0,
+            1408.0
+          ]
+        },
+        "pair_count": {
+          "mean": 2816.0,
+          "sd": 0.0,
+          "values": [
+            2816.0,
+            2816.0,
+            2816.0
+          ]
+        },
+        "pairwise_probability_violation_rate": {
+          "mean": 0.0,
+          "sd": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "event_group_probability_violation_rate": {
+          "mean": 0.0,
+          "sd": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "mean_upward_delta": {
+          "mean": 0.0,
+          "sd": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "max_upward_delta": {
+          "mean": 0.0,
+          "sd": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "target_pairwise_violation_rate": {
+          "mean": 0.0,
+          "sd": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
           ]
         }
       },

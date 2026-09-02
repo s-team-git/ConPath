@@ -174,6 +174,45 @@ def _radius_summary(records_by_seed: list[tuple[object, ...]], radii: tuple[int,
     return output
 
 
+def _radius_monotonicity(records: tuple[object, ...], radii: tuple[int, ...]) -> dict[str, Any]:
+    """Measure the nested-event invariant p(r0) >= p(r10) >= p(r20).
+
+    The connectivity events are nested as the footprint grows.  This check is intentionally
+    separate from Brier/ECE: a method can be well calibrated on average while assigning a larger
+    probability to a stricter event.  The same invariant is checked for the joined labels.
+    """
+
+    grouped: dict[tuple[str, int], dict[int, object]] = {}
+    for record in records:
+        grouped.setdefault((record.global_id, record.candidate_index), {})[record.radius_cells] = record
+    deltas: list[float] = []
+    target_deltas: list[float] = []
+    scene_for_pair: list[tuple[str, str]] = []
+    for values in grouped.values():
+        if any(radius not in values for radius in radii):
+            continue
+        for left, right in zip(radii, radii[1:]):
+            deltas.append(float(values[right].probability - values[left].probability))
+            target_deltas.append(float(values[right].target) - float(values[left].target))
+            scene_for_pair.append(values[left].scene_key)
+    if not deltas:
+        raise ValueError("no complete radius groups for monotonicity check")
+    positive = np.asarray(deltas, dtype=np.float64) > 1e-12
+    target_positive = np.asarray(target_deltas, dtype=np.float64) > 1e-12
+    return {
+        "event_groups": int(sum(1 for values in grouped.values() if all(radius in values for radius in radii))),
+        "pair_count": len(deltas),
+        "pairwise_probability_violation_rate": float(np.mean(positive)),
+        "event_group_probability_violation_rate": float(
+            np.mean(np.asarray([any(delta > 1e-12 for delta in deltas[index : index + len(radii) - 1])
+                                for index in range(0, len(deltas), len(radii) - 1)], dtype=bool))
+        ),
+        "mean_upward_delta": float(np.mean(np.maximum(np.asarray(deltas), 0.0))),
+        "max_upward_delta": float(np.max(np.maximum(np.asarray(deltas), 0.0))),
+        "target_pairwise_violation_rate": float(np.mean(target_positive)),
+    }
+
+
 def _load_methods(args: argparse.Namespace) -> tuple[dict[str, Any], tuple[int, ...]]:
     methods: list[dict[str, Any]] = []
     radii: tuple[int, ...] | None = None
@@ -198,6 +237,7 @@ def _load_methods(args: argparse.Namespace) -> tuple[dict[str, Any], tuple[int, 
             elif tuple(method_radii) != radii:
                 raise ValueError("method prediction manifests disagree on radii")
         summaries = [_metric_summary(records, weighting="scene", bins=args.bins) for records in records_by_seed]
+        monotonicity_summaries = [_radius_monotonicity(records, radii or ()) for records in records_by_seed]
         metrics = {
             name: _mean_sd([summary[name] for summary in summaries])
             for name in ("brier", "nll", "ece", "false_safe_rate@0.8", "high_confidence_safe_coverage@0.8")
@@ -211,6 +251,10 @@ def _load_methods(args: argparse.Namespace) -> tuple[dict[str, Any], tuple[int, 
                 "reliability": _aggregate_reliability(summaries, args.bins),
                 "false_safe_curve": _aggregate_curve([_risk_curve(records) for records in records_by_seed]),
                 "radius_brier": _radius_summary(records_by_seed, radii or ()),
+                "radius_monotonicity": {
+                    key: _mean_sd([summary[key] for summary in monotonicity_summaries])
+                    for key in monotonicity_summaries[0]
+                },
                 "event_count": len(records_by_seed[0]),
                 "scene_count": len({row.scene_key for row in records_by_seed[0]}),
             }

@@ -542,6 +542,12 @@ but is binary and has `0.11740 ± 0.00584` false-safe. The reliability diagram a
 make this calibration/coverage trade-off visible instead of ranking methods by event Brier alone.
 All values are validation diagnostics, not final paper or test results.
 
+The calibration snapshot also records the nested-radius invariant. For every completed control and
+every seed, `p(r=0) >= p(r=10) >= p(r=20)` has zero violations over 1,408 endpoint groups (2,816
+adjacent-radius pairs); the joined validation labels likewise have zero violations. This confirms
+that the event sampler preserves the footprint ordering, but it is not a symmetry or generalization
+claim.
+
 ## PaSCo-inspired sample-budget check (completed)
 
 The existing three-subnet same-contract control was rerun with total posterior event budgets

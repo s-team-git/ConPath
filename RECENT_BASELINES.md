@@ -96,6 +96,14 @@ the coordinate-query adapter in the comparison matrix; it does not establish a p
 SOTA status, or faithful S4C reproduction. Per-seed checkpoints, label-free predictions, exact
 reports, and the four-method calibration snapshot are retained under the ignored results tree.
 
+## Nested-radius consistency diagnostic
+
+The validation calibration snapshot now includes the structural check that larger robot footprints
+cannot increase reachability probability. For all four completed controls and all three seeds,
+`p(r=0) >= p(r=10) >= p(r=20)` has zero violations over 1,408 endpoint groups (2,816 adjacent-radius
+pairs) per seed; the joined labels also have zero violations. This is a useful implementation
+sanity check, but it is not a symmetry or cross-domain generalization result.
+
 ## Official FlatLands artifact status
 
 The [official repository](https://github.com/1ssb/Flat_Lands/) and [project page](https://1ssb.github.io/Flat_Lands/)
