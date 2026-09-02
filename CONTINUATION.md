@@ -13,9 +13,10 @@ diagnostic, code change, or experiment; do not rely on chat history or ignored `
 - Scientific gate: **P0 GO; FlatLands bounded data gate and first validation baselines GO on a
   non-official provenance split; public-data model and paper claims not yet established**
 - Active task: replace the desk-surface pilot with a ground-robot/floor visual, then complete
-  second-domain checks on the frozen bounded manifests. Official FlatLands and SceneSense artifact
-  audits are complete and both remain reference-only; do not use the leaking official split or
-  extract the archive.
+  second-domain checks on the frozen bounded manifests. The official ORFD semantics audit is now
+  complete, but its metric-BEV adapter and sequence-held-out split are not. Official FlatLands and
+  SceneSense artifact audits are complete and both remain reference-only; do not use the leaking
+  official split or extract the archive.
 
 ### GPU visibility and publication status (2026-08-31)
 
@@ -442,6 +443,19 @@ a faithful same-contract run. It is therefore reference-only, with details in
 `SCENESENSE_COMPATIBILITY_CHECK.md`; a new 2-D diffusion adapter is deferred rather than mislabeled
 as a SceneSense reproduction.
 
+### ORFD second-domain compatibility check (completed for planning)
+
+The official [ORFD paper](https://arxiv.org/abs/2206.09907) and [implementation/data repository](https://github.com/chaytonmin/Off-Road-Freespace-Detection)
+were checked on 2026-09-02. ORFD is ground-vehicle off-road RGB/LiDAR data with 12,198 pairs from
+30 sequences and pixel-wise `traversable`/`non-traversable`/`unreachable` image labels. It is a
+stronger semantic candidate for the replacement visual than the desk pilot, but its task is not
+our metric hidden-grid two-terminal event: the paper labels the image plane, merges `unreachable`
+into `non-traversable` for evaluation, and only documents pair-level train/validation/test counts.
+No sequence-held-out guarantee or world-frame support-map/pose artifact has been established for
+our use. ORFD is therefore recorded as **candidate secondary domain; semantics audit complete, no
+local run**. The required download/hash, calibration/pose, leakage, metric-BEV adapter, and
+label-validity gates are tracked in `ORFD_COMPATIBILITY_CHECK.md`.
+
 ## Validation qualitative panels and website state
 
 Two real-checkpoint FlatLands validation panels were rendered and copied to the tracked site:
@@ -553,7 +567,9 @@ reproduction, and all numbers remain validation-only.
 2. Extend the completed reliability/selective-risk analysis with symmetry/radius-monotonicity checks,
    an explicit ARKitScenes saturation analysis, and a failure-case visual for the recent controls.
 3. Audit and freeze one second domain (prefer ORFD semantics or UnScenes3D support surfaces), with
-   scene/site/sequence-held-out split and no adjacent-frame leakage.
+   scene/site/sequence-held-out split and no adjacent-frame leakage. ORFD's semantics audit is
+   complete; the remaining work is the data/pose audit and adapter, or a switch to UnScenes3D if
+   those fields cannot support metric reconstruction.
 4. Only after the above, unlock the test split once, regenerate final JSON/CSV/SVG and qualitative
    figures, freeze environment/data/checkpoint hashes, and update the website.
 6. Draft and internally review the ICRA/IROS paper: problem/claims, method, related work, main table/

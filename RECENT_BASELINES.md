@@ -28,6 +28,7 @@ our event Brier/NLL/ECE. We use the papers below in two explicit tiers:
 | [SGN, IEEE TIP 2024](https://github.com/Jieqianyu/SGN) | Sparse-guided, multi-scale semantic scene completion; a published lightweight model | SGN-L reports 12.5M parameters and 7.16G training memory on SemanticKITTI. | **Reference-only:** camera/3-D voxel labels do not match FlatLands. The 12.5M figure is used as an external scale reference; no SGN score is copied into our table. |
 | [S4C, 3DV 2024](https://ahayler.github.io/publications/s4c/) | Self-supervised implicit semantic fields; arbitrary point queries and multi-view consistency | Implicit field rather than a dense voxel decoder; the project reports self-supervised training from video and pseudo-labels. | **Same-contract adapter evaluated:** an S4C-inspired coordinate-query event field with bilinear feature sampling and Fourier geometry encoding. This is explicitly not a reproduction of the original S4C 3-D system; report event calibration, not SSC mIoU. |
 | [SceneSense / frontier diffusion, 2024](https://arxiv.org/abs/2409.10681) | Diffusion occupancy completion and probabilistic map reconciliation for frontier navigation | The online variant reports 73% end-to-end runtime reduction and 28% fewer trainable parameters after removing conditioning; 3–5 predictions are merged per pose. | **Reference-only after contract audit:** official code is a 3-D point-cloud/voxel ROS system with robot-map inputs and FID/KID/exploration metrics, not the FlatLands 2-D event contract. No score is copied. |
+| [ORFD, ICRA 2022](https://arxiv.org/abs/2206.09907) | Ground-vehicle off-road freespace semantics with RGB/LiDAR | 12,198 synchronized pairs from 30 sequences; three image-plane labels (`traversable`, `non-traversable`, `unreachable`) and an approximately 7:1:2 train/val/test pair split. | **Candidate second domain; semantics audit complete, no local run:** image-plane labels and an undocumented-for-us world-frame support-map/pose contract require a new metric-BEV adapter and sequence-held-out split. No ORFD score is copied. See [`ORFD_COMPATIBILITY_CHECK.md`](ORFD_COMPATIBILITY_CHECK.md). |
 | [ReliOcc, 2024](https://arxiv.org/abs/2409.18026) | Reliability-focused uncertainty learning and calibration for semantic occupancy | Plug-in uncertainty and calibration strategies are evaluated under sensor failures and out-of-domain noise. | **Metric/control reference:** use its reliability perspective to motivate coverage and false-safe curves; do not claim a direct architecture reproduction until its input contract is aligned. |
 | [COTR, CVPR 2024](https://openaccess.thecvf.com/content/CVPR2024/html/Ma_COTR_Compact_Occupancy_TRansformer_for_Vision-based_3D_Occupancy_Prediction_CVPR_2024_paper.html) | Compact transformer for vision-based 3-D occupancy | Public code/paper provide a compact-vs-backbone comparison on Occ3D; the task remains camera/3-D voxel occupancy. | **Reference-only:** use as a recent compact-architecture citation; no cross-task score transfer. |
 | [FlatLands, 2026](https://arxiv.org/abs/2603.16016) | The closest task: partial-view BEV completion with multiple valid layouts and stochastic/flow completion | Dataset-native stochastic completion benchmark and official provenance must be checked before importing weights. | **Official check completed:** dataset and documentation are public, but the official repository currently says model weights/construction code/tooling are planned for release. No importable checkpoint is available; reference-only pending a future artifact audit. |
@@ -73,6 +74,9 @@ lock. Any method requiring a different sensor or label space is kept in the refe
    in [`OFFICIAL_FLATLANDS_CHECK.md`](OFFICIAL_FLATLANDS_CHECK.md), so no incompatible number is copied.
 7. Publish one table with same-dataset rows only. Published cross-dataset numbers appear in related
    work, never in the “ours vs baseline” cells.
+8. **Done for the planning gate:** audit ORFD's official semantics, files, and split description.
+   It is a credible ground-vehicle visual/second-domain candidate, but it remains unrun until the
+   archive, calibration/pose fields, and sequence-held-out metric-BEV adapter are frozen.
 
 ## S4C-inspired coordinate-query result
 
@@ -100,6 +104,18 @@ that model weights, construction code, and additional benchmark tooling are plan
 official model therefore remains **not yet importable / reference-only** for ConPath. See
 [`OFFICIAL_FLATLANDS_CHECK.md`](OFFICIAL_FLATLANDS_CHECK.md) for the compatibility checklist and the
 rule that future weights must pass before entering the same-dataset table.
+
+## ORFD second-domain status
+
+The official [ORFD paper](https://arxiv.org/abs/2206.09907) and [code/data repository](https://github.com/chaytonmin/Off-Road-Freespace-Detection)
+were checked on 2026-09-02. ORFD is collected from a ground vehicle in off-road scenes and is
+therefore a better semantic candidate for the replacement visual than the TUM desk pilot. Its
+ground truth is nevertheless pixel-wise image-plane freespace (with `unreachable` merged into
+`non-traversable` for the benchmark), not a metric hidden support grid or a two-terminal footprint
+event. The release's pair-level counts do not establish our required sequence/site-held-out gate.
+We therefore record ORFD as a candidate secondary-domain semantics audit, not a same-contract
+result; no download, training, test access, or published ORFD number has been performed. The full
+checklist and required adapter gates are in [`ORFD_COMPATIBILITY_CHECK.md`](ORFD_COMPATIBILITY_CHECK.md).
 
 ## Reproducibility rule
 

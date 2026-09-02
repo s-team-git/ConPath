@@ -21,10 +21,17 @@ and currently authorizes only a bounded direct-from-ZIP query audit, not extract
 The deterministic synthetic corridor generator in `src/pathrel/synthetic.py` remains the contract
 harness for the P0 death test, not a substitute for the real-data pilot.
 
+The official ORFD release has also been audited as the first second-domain candidate. It is a
+ground-vehicle off-road dataset with synchronized RGB/LiDAR and image-plane traversability labels,
+but it does not directly provide the metric hidden-grid/footprint-event contract used here. No
+ORFD archive is present locally and no ORFD score is reported. The compatibility decision and the
+adapter gates are recorded in [`ORFD_COMPATIBILITY_CHECK.md`](../ORFD_COMPATIBILITY_CHECK.md).
+
 Planned paper-grade audits/adapters, in order:
 
 1. FlatLands with a versioned scene-disjoint split and natural-query audit; ScanNet++ stays OOD.
-2. ORFD for a secondary off-road label-semantics audit.
+2. ORFD for a secondary off-road label-semantics audit (**official semantics audit complete;
+   adapter and sequence-held-out split still pending**).
 3. UnScenes3D for the main support-surface occupancy experiment.
 4. WildOcc for cross-dataset evaluation.
 
