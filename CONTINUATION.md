@@ -484,8 +484,14 @@ metric-BEV event adapter before training or test access. `UNSCENES3D_PROTOCOL.md
 location-held-out train/validation (`location_1/2/3` vs `location_4_5`) with `location_6` test locked,
 0.3 m grid radii 0/1/2, and a fixed 13/27/40-cell polar stencil. `src/pathrel/unscenes3d.py`
 implements the label-free LiDAR ray rasterizer, conservative class-11 support projection, and
-validity-only query geometry; four unit tests pass. This is the adapter gate, not a trained
-UnScenes3D result.
+validity-only query geometry; four unit tests pass. The frozen train/validation-only manifest at
+`results/unscenes3d_contract_manifest/manifest.json` contains 17,096 exact event queries (15,567
+train and 1,529 validation) across four monotone event patterns; location-6 test labels were not
+read. This is the adapter gate, not a trained UnScenes3D result. A first map-only GPU adapter smoke
+also completed for a 32-frame train / 16-frame validation subset (one epoch, K=4): the map path
+ran end to end and wrote atomic checkpoints. Its validation map Brier was 0.14267; the event
+diagnostic was 0.92268 on one validation scene with 568 queries, so it is a pipeline check only,
+not a comparison or paper result.
 
 ## Validation qualitative panels and website state
 
@@ -606,8 +612,9 @@ reproduction, and all numbers remain validation-only.
 3. Audit and freeze one second domain, prioritizing UnScenes3D support surfaces, with
    scene/site/sequence-held-out split and no adjacent-frame leakage. Its raw and label packages are
    acquired and timestamp-joined; both local-map parts cover every label timestamp, and the
-   remaining work is coordinate/voxel validation, conservative support mapping, and the metric-BEV
-   adapter. ORFD remains a fallback semantics-only candidate.
+   remaining work is the full adapter, capacity-matched controls, coordinate/voxel validation,
+   conservative support mapping, and the metric-BEV ground-robot visual. ORFD remains a fallback
+   semantics-only candidate.
 4. Only after the above, unlock the test split once, regenerate final JSON/CSV/SVG and qualitative
    figures, freeze environment/data/checkpoint hashes, and update the website.
 6. Draft and internally review the ICRA/IROS paper: problem/claims, method, related work, main table/

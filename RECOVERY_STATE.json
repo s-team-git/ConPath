@@ -7,8 +7,8 @@
   "remote_sync": "Local main is clean and synchronized with origin/main via GitHub SSH over port 443; GitHub Pages can deploy the tracked site after the workflow completes.",
   "latest_local_commit": "097b11d Record S4C-inspired validation control",
   "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence.",
-  "scientific_status": "Synthetic P0 passes in two seeds. The official FlatLands split fails scene isolation. The non-official upstream-provenance split passes full integrity, a 512-scene bounded mask/query gate, direct-ZIP replay, and validation-only baselines. Three completion seeds, K=32/64/128 convergence, a PaSCo-inspired three-subnet same-contract control with K-sensitivity, a three-seed independent-decoder control, a three-seed deterministic posterior mean-map control, a three-seed S4C-inspired coordinate-query control, and four-method reliability/selective-risk curves are now complete on validation; the public site adds real-checkpoint qualitative and calibration diagnostics while test remains locked. The capacity-matched F=16 ConPath main model averages 0.09607 +/- 0.01222 exact Brier across three seeds, versus 0.11214 +/- 0.00306 for the independent decoder, 0.09204 +/- 0.00582 for the S4C-inspired coordinate control, and 0.07111 +/- 0.00377 for binary mean-map events; the mean-map hidden-map Brier is 0.17842 +/- 0.00512, so all remain validation-only diagnostics, not final paper results. The official ORFD semantics audit is complete as a ground-vehicle second-domain candidate, but its image-plane labels do not yet support a same-contract metric-BEV event result. UnScenes3D is now the priority second-domain candidate: the 13-scene raw mini package, 629-timestamp occupancy/elevation labels, and both local-map parts are acquired, path-audited, and timestamp-joined; the basic audit covers 629/629 map files, and coordinate/support adaptation plus held-out scoring remain pending.",
-  "active_task": "Replace the desk-surface pilot with a ground-robot/floor visual, then finish the UnScenes3D coordinate, conservative support mapping, and sequence-held-out adapter checks before any test access or final site claim. Official FlatLands, SceneSense, and ORFD artifact/contract audits are recorded; FlatLands and SceneSense remain reference-only, ORFD has no local run, and UnScenes3D raw/label/map packages are diagnostics, not results.",
+  "scientific_status": "Synthetic P0 passes in two seeds. The official FlatLands split fails scene isolation. The non-official upstream-provenance split passes full integrity, a 512-scene bounded mask/query gate, direct-ZIP replay, and validation-only baselines. Three completion seeds, K=32/64/128 convergence, a PaSCo-inspired three-subnet same-contract control with K-sensitivity, a three-seed independent-decoder control, a three-seed deterministic posterior mean-map control, a three-seed S4C-inspired coordinate-query control, and four-method reliability/selective-risk curves are now complete on validation; the public site adds real-checkpoint qualitative and calibration diagnostics while test remains locked. The capacity-matched F=16 ConPath main model averages 0.09607 +/- 0.01222 exact Brier across three seeds, versus 0.11214 +/- 0.00306 for the independent decoder, 0.09204 +/- 0.00582 for the S4C-inspired coordinate control, and 0.07111 +/- 0.00377 for binary mean-map events; the mean-map hidden-map Brier is 0.17842 +/- 0.00512, so all remain validation-only diagnostics, not final paper results. The official ORFD semantics audit is complete as a ground-vehicle second-domain candidate, but its image-plane labels do not yet support a same-contract metric-BEV event result. UnScenes3D is now the priority second-domain candidate: the 13-scene raw mini package, 629-timestamp occupancy/elevation labels, and both local-map parts are acquired, path-audited, and timestamp-joined; the basic audit covers 629/629 map files, the train/validation-only 17,096-query manifest is frozen, and the first 1-epoch map-only GPU adapter smoke passed on a 32/16 frame subset. That smoke used one validation scene and is a pipeline diagnostic only; capacity-matched controls, multi-seed scoring, and held-out evaluation remain pending.",
+  "active_task": "Run the first full UnScenes3D train/validation ConPath adapter and capacity-matched controls from the frozen 17,096-query manifest, then render a ground-robot qualitative panel before any test access or final site claim. Official FlatLands, SceneSense, and ORFD artifact/contract audits are recorded; FlatLands and SceneSense remain reference-only, ORFD has no local run, and UnScenes3D raw/label/map packages plus the initial smoke are diagnostics, not results.",
   "completed_milestones": [
     "Interruption-safe P0 training with atomic checkpoints and exact resume",
     "Two-seed synthetic P0 pass and matched no-reach failure",
@@ -39,7 +39,8 @@
     ,"Official FlatLands implementation/weights audit completed; public repository has dataset/docs but no importable checkpoint and marks weights/construction code/tooling as planned"
     ,"SceneSense diffusion compatibility audit completed; official 3-D pointmap/ROS contract and metrics are incompatible with the FlatLands 2-D event protocol, so it remains reference-only"
     ,"ORFD official semantics/contract audit completed; ground-vehicle image-plane freespace is a second-domain candidate, and the official loader was checked for calibration/pose fields (no documented ego-pose/world-map stream); no local archive, metric-BEV adapter, or score is available"
-    ,"UnScenes3D official repository/release/code audit completed; 13-scene raw and 629-timestamp label mini archives acquired, hashed, path-audited, and joined; both local-map parts cover 629/629 label timestamps and pass the basic integrity audit; coordinate/support adapter protocol v0.1 and four-test sensor/label bridge are frozen, with model scoring still pending"
+    ,"UnScenes3D official repository/release/code audit completed; 13-scene raw and 629-timestamp label mini archives acquired, hashed, path-audited, and joined; both local-map parts cover 629/629 label timestamps and pass the basic integrity audit; coordinate/support adapter protocol v0.1 and train/validation-only 17,096-query event manifest are frozen"
+    ,"First UnScenes3D map-only GPU adapter smoke completed for a 32-frame train / 16-frame validation subset, one epoch, K=4; validation map Brier 0.14267 and event Brier 0.92268 are one-scene pipeline diagnostics only, not paper results; location-6 test remains locked"
   ],
   "tracked_files": [
     "CONTINUATION.md",
@@ -76,6 +77,8 @@
     "scripts/train_flatlands_direct_query.py",
     "scripts/train_flatlands_completion.py",
     "scripts/train_flatlands_conpath.py",
+    "scripts/build_unscenes3d_manifest.py",
+    "scripts/train_unscenes3d_conpath.py",
     "scripts/run_flatlands_conpath_matrix.sh",
     "scripts/render_flatlands_qualitative.py",
     "scripts/evaluate_flatlands_completion_k.py",
@@ -161,6 +164,34 @@
       "required_for_resume": false,
       "bytes": 5842,
       "sha256": "5df7df8d241196ff4b39d94ad4bd602a5dc647df26677174270df35eba4f0e5f"
+    },
+    {
+      "path": "results/unscenes3d_contract_manifest/manifest.json",
+      "role": "UnScenes3D train/validation-only target/event manifest; location-6 test labels not read",
+      "required_for_resume": false,
+      "bytes": 6008095,
+      "sha256": "888a054297b433d3bfbc589967c7b34dd83d7b6200b4a265950e743061dacff2"
+    },
+    {
+      "path": "results/unscenes3d_conpath_smoke_seed20260902/best.pt",
+      "role": "first UnScenes3D map-only adapter smoke checkpoint; one-scene validation subset, not a paper score",
+      "required_for_resume": false,
+      "bytes": 1489037,
+      "sha256": "efc26cd5656695943c2770d0fe40035cf35d8f432fc43d40d3cae04a3280d541"
+    },
+    {
+      "path": "results/unscenes3d_conpath_smoke_seed20260902/latest.pt",
+      "role": "first UnScenes3D map-only adapter smoke latest checkpoint; one-scene validation subset, not a paper score",
+      "required_for_resume": false,
+      "bytes": 1489037,
+      "sha256": "efc26cd5656695943c2770d0fe40035cf35d8f432fc43d40d3cae04a3280d541"
+    },
+    {
+      "path": "results/unscenes3d_conpath_smoke_seed20260902/run.json",
+      "role": "first UnScenes3D map-only adapter smoke metadata and validation-only diagnostics",
+      "required_for_resume": false,
+      "bytes": 2168,
+      "sha256": "fe67d48433994d10c4e658e360adf572e801ac1bb0f869b87f1259d8888ccb98"
     },
     {
       "path": "results/p1_flatlands_provenance_manifest/report.json",
@@ -947,8 +978,8 @@
   "next_command": "PYTHONPATH=src .venv/bin/python scripts/verify_recovery_state.py --quick",
   "next_actions": [
     "SceneSense diffusion compatibility check is complete; keep its incompatible 3-D pointmap/ROS contract reference-only rather than fabricating a 2-D reproduction.",
-    "Replace the desk-surface pilot with a clear ground-robot/floor visual showing posterior updates, footprint erosion, and a failure case; use UnScenes3D as the preferred source once its local-map overlay passes the coordinate gate.",
-    "Freeze a second scene/site/sequence-held-out domain on UnScenes3D: finish local-map/pose acquisition, coordinate and voxel checks, conservative support-surface mapping, and target-blind metric-BEV adapter; only then unlock FlatLands test once. ORFD remains a fallback semantics-only candidate.",
+    "Run the full UnScenes3D ConPath train/validation adapter from the frozen 15,567-train/1,529-validation event manifest with multiple seeds; keep location-6 test labels locked.",
+    "Add capacity-matched independent, deterministic, and recent coordinate-query controls on the same UnScenes3D train/validation records, then render a ground-robot posterior/footprint/failure panel. ORFD remains a fallback semantics-only candidate.",
     "Freeze final artifacts and write the ICRA/IROS paper package with explicit limitations and venue checks."
   ]
 }
