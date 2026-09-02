@@ -60,8 +60,19 @@ Until those checks pass, ORFD may be cited and used to motivate the visual/label
 no ORFD F-score/IoU or OFF-Net number is entered into the FlatLands event table and no ORFD
 number is described as evidence for ConPath.
 
+## Code-level follow-up (official repository)
+
+To reduce uncertainty without downloading the archive, the official repository was cloned at
+commit `50e63d24836198e8fb5af707e521f414104b4876` and its loader was inspected. The loader discovers
+frames by `training`/`validation`/`testing` directory and `image_data/*.png`, reads `dense_depth`
+and `gt_image`, and uses per-frame calibration files only for the camera intrinsic matrix `cam_K`
+when deriving surface normals. The checked code does not load an ego-pose, odometry, trajectory,
+world-frame map, or LiDAR-to-world transform. This makes a faithful metric BEV reconstruction
+unavailable from the documented pipeline alone; downloading ORFD would still be useful for a
+ground-vehicle visual and label inspection, but it is not by itself sufficient for our event
+evaluator.
+
 ## Sources
 
 * [ORFD: A Dataset and Benchmark for Off-Road Freespace Detection (ICRA 2022)](https://arxiv.org/abs/2206.09907)
 * [Official ORFD code/data repository](https://github.com/chaytonmin/Off-Road-Freespace-Detection)
-

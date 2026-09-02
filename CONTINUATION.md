@@ -451,10 +451,12 @@ were checked on 2026-09-02. ORFD is ground-vehicle off-road RGB/LiDAR data with 
 stronger semantic candidate for the replacement visual than the desk pilot, but its task is not
 our metric hidden-grid two-terminal event: the paper labels the image plane, merges `unreachable`
 into `non-traversable` for evaluation, and only documents pair-level train/validation/test counts.
-No sequence-held-out guarantee or world-frame support-map/pose artifact has been established for
-our use. ORFD is therefore recorded as **candidate secondary domain; semantics audit complete, no
-local run**. The required download/hash, calibration/pose, leakage, metric-BEV adapter, and
-label-validity gates are tracked in `ORFD_COMPATIBILITY_CHECK.md`.
+The official loader uses per-frame camera intrinsics for depth/normal processing but does not expose
+an ego-pose/world-map stream. No sequence-held-out guarantee or world-frame support-map/pose
+artifact has been established for our use. ORFD is therefore recorded as **candidate secondary
+domain; semantics audit complete, no local run**. The required download/hash, calibration/pose,
+leakage, metric-BEV adapter, and label-validity gates are tracked in
+`ORFD_COMPATIBILITY_CHECK.md`.
 
 ## Validation qualitative panels and website state
 

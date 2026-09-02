@@ -38,7 +38,7 @@
     ,"S4C-inspired F16 coordinate-query control completed for seeds 20260831, 20260901, and 20260902; mean exact Brier 0.09204 +/- 0.00582 and four-method calibration snapshot published"
     ,"Official FlatLands implementation/weights audit completed; public repository has dataset/docs but no importable checkpoint and marks weights/construction code/tooling as planned"
     ,"SceneSense diffusion compatibility audit completed; official 3-D pointmap/ROS contract and metrics are incompatible with the FlatLands 2-D event protocol, so it remains reference-only"
-    ,"ORFD official semantics/contract audit completed; ground-vehicle image-plane freespace is a second-domain candidate, but no local archive, metric-BEV adapter, or score is available"
+    ,"ORFD official semantics/contract audit completed; ground-vehicle image-plane freespace is a second-domain candidate, and the official loader was checked for calibration/pose fields (no documented ego-pose/world-map stream); no local archive, metric-BEV adapter, or score is available"
   ],
   "tracked_files": [
     "CONTINUATION.md",
