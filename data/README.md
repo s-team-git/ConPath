@@ -27,19 +27,21 @@ but it does not directly provide the metric hidden-grid/footprint-event contract
 ORFD archive is present locally and no ORFD score is reported. The compatibility decision and the
 adapter gates are recorded in [`ORFD_COMPATIBILITY_CHECK.md`](../ORFD_COMPATIBILITY_CHECK.md).
 
-The official UnScenes3D mini raw package is now present under ignored
-`data/raw/unscenes3d/raw_data/` for parser/pose smoke testing. It contains one scene and has not
-yet been used for training or scoring; the larger occupancy/elevation/local-map archives remain
-pending their own hash, license, and timestamp-join audit. See
+The official UnScenes3D mini raw and label packages are now present under ignored
+`data/raw/unscenes3d/` for parser and join smoke testing. The larger raw package has 13 scenes and
+1,336 synchronized image/cloud/calibration samples; the label package has 629 aligned occupancy,
+elevation, and depth timestamps. They have not been used for training or scoring. Both local-map
+parts are acquired; the coordinate adapter and held-out split remain pending. See
 [`UNSCENES3D_COMPATIBILITY_CHECK.md`](../UNSCENES3D_COMPATIBILITY_CHECK.md).
+The frozen bridge rules are in [`UNSCENES3D_PROTOCOL.md`](../UNSCENES3D_PROTOCOL.md).
 
 Planned paper-grade audits/adapters, in order:
 
 1. FlatLands with a versioned scene-disjoint split and natural-query audit; ScanNet++ stays OOD.
 2. ORFD for a secondary off-road label-semantics audit (**official semantics audit complete;
    adapter and sequence-held-out split still pending**).
-3. UnScenes3D for the main support-surface occupancy experiment (**priority candidate; raw pose
-   smoke acquired, labels/maps pending**).
+3. UnScenes3D for the main support-surface occupancy experiment (**priority candidate; raw and
+   label packages acquired, local map/adapter pending**).
 4. WildOcc for cross-dataset evaluation.
 
 Each adapter must map valid physical truth to `TRAVERSABLE` or `BLOCKED` and preserve a separate

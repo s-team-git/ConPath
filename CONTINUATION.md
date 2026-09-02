@@ -189,8 +189,8 @@ merge-tree reference matched exhaustive search at zero error for 8/64/512 querie
 ## P1 FlatLands archive audit
 
 The workspace contains the ignored 830 MB TUM RGB-D pilot, the verified 2.055 GB FlatLands ZIP, and
-the one-scene UnScenes3D raw pose smoke package. It has no ORFD or WildOcc assets and no UnScenes3D
-occupancy/elevation/local-map archives yet. Official-source review selected FlatLands as the first
+the one-scene UnScenes3D raw pose smoke package plus the larger mini raw/label/local-map packages.
+It has no ORFD or WildOcc assets. Official-source review selected FlatLands as the first
 P1 audit target because it provides aligned observed/full floor maps, unobserved and valid masks,
 metric provenance, and split metadata. ORFD remains a secondary off-road semantics audit; UnScenes3D
 is now the priority second-domain candidate for support-surface occupancy.
@@ -460,7 +460,7 @@ domain; semantics audit complete, no local run**. The required download/hash, ca
 leakage, metric-BEV adapter, and label-validity gates are tracked in
 `ORFD_COMPATIBILITY_CHECK.md`.
 
-### UnScenes3D second-domain compatibility check (completed for planning)
+### UnScenes3D second-domain compatibility check and adapter (audit complete; score pending)
 
 The official [UnScenes3D repository](https://github.com/ruiqi-song/UnScenes3D), its [release page](https://github.com/ruiqi-song/UnScenes3D/releases),
 and the [Scientific Data article](https://www.nature.com/articles/s41597-025-05532-5) were checked on
@@ -472,10 +472,20 @@ principle. The six-region description also provides an unseen-region generalizat
 
 The official `raw_data.zip` mini asset (104,519,506 bytes,
 SHA-256 `d1050b22d0eb31ea7199d2625accbfb54ae3034b3b57653a9790cdbdfa522ae0`) has been downloaded,
-path-audited, and extracted under ignored `data/raw/unscenes3d/raw_data/`. It is a one-scene parser/
-pose smoke package, not an experiment. Occupancy/elevation/label and local-map archives still need
-hash/license checks, complete timestamp joins, coordinate/voxel validation, and a new
-scene/site/sequence-held-out target-blind event adapter before training or test access.
+path-audited, and extracted under ignored `data/raw/unscenes3d/raw_data/`. The larger mini raw
+package has 13 scenes and 1,336 synchronized image/cloud/calibration stems; the label package has
+629 aligned occupancy/elevation/depth timestamps. Both local-map parts are now also present: their
+629 files cover all 629 occupancy timestamps. The read-only mini audit passes zero missing raw
+stems, duplicate timestamps, occupancy shape/bound/class errors, and bad map floats; a 50-frame
+scene-spread nearest-neighbour smoke gives 0.804 LiDAR/map overlap within 0.3 m and 0.875 within
+1 m. These are parser/label/coordinate diagnostics, not experiments. The remaining work is to
+freeze the conservative support-surface mapping, scene/site/sequence split, and target-blind
+metric-BEV event adapter before training or test access. `UNSCENES3D_PROTOCOL.md` now freezes the
+location-held-out train/validation (`location_1/2/3` vs `location_4_5`) with `location_6` test locked,
+0.3 m grid radii 0/1/2, and a fixed 13/27/40-cell polar stencil. `src/pathrel/unscenes3d.py`
+implements the label-free LiDAR ray rasterizer, conservative class-11 support projection, and
+validity-only query geometry; four unit tests pass. This is the adapter gate, not a trained
+UnScenes3D result.
 
 ## Validation qualitative panels and website state
 
@@ -594,8 +604,9 @@ reproduction, and all numbers remain validation-only.
 2. Extend the completed reliability/selective-risk analysis with symmetry/radius-monotonicity checks,
    an explicit ARKitScenes saturation analysis, and a failure-case visual for the recent controls.
 3. Audit and freeze one second domain, prioritizing UnScenes3D support surfaces, with
-   scene/site/sequence-held-out split and no adjacent-frame leakage. Its raw pose smoke is complete;
-   the remaining work is label/local-map acquisition, coordinate validation, and the metric-BEV
+   scene/site/sequence-held-out split and no adjacent-frame leakage. Its raw and label packages are
+   acquired and timestamp-joined; both local-map parts cover every label timestamp, and the
+   remaining work is coordinate/voxel validation, conservative support mapping, and the metric-BEV
    adapter. ORFD remains a fallback semantics-only candidate.
 4. Only after the above, unlock the test split once, regenerate final JSON/CSV/SVG and qualitative
    figures, freeze environment/data/checkpoint hashes, and update the website.

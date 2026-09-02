@@ -1,6 +1,6 @@
 # UnScenes3D compatibility check
 
-Status: **priority second-domain candidate; raw mini package acquired, label/map adapter pending**  
+Status: **priority second-domain candidate; raw and label mini packages acquired, local-map/metric adapter pending**
 Checked: 2026-09-02 (America/New_York)
 
 UnScenes3D is currently the strongest candidate for the second-domain experiment and for replacing
@@ -33,9 +33,12 @@ raw_data/
   scene_info.json
 ```
 
-The public release also lists separate label and local-map archives. The mini release page lists a
-14-scene package; the raw package currently acquired locally is the smaller `raw_data.zip` asset
-and contains one scene (`scene_00000`) for parser/pose smoke testing.
+The public release also lists separate label and local-map archives. The larger mini raw package
+acquired locally is a 13-scene release with 1,336 synchronized image/cloud/calibration stems; the
+smaller `raw_data.zip` asset remains available as a one-scene parser/pose smoke package. The label
+package contains 629 aligned occupancy/elevation/depth/caption timestamps, 1,336 vehicle
+information files, and 269 sparse 3-D label files. These are acquisition and join diagnostics only,
+not model scores.
 
 ## Code-level coordinate audit
 
@@ -51,15 +54,18 @@ read without modifying it. Its database loader:
 
 This is sufficient in principle to build a metric support raster in a vehicle/world frame and to
 make a ground-vehicle visual with camera, observed support, posterior occupancy, footprint erosion,
-and path probability. It is still necessary to verify coordinate handedness, voxel bounds, temporal
-leakage, and the exact meaning of occupancy/elevation values on the downloaded label/map archives.
+and path probability. The downloaded raw/label join is complete for all 629 label timestamps. The
+raw tree itself has no `pose_odom` or local-map directory, but the separate local-map parts now
+join all 629 labels; a metric world-frame pose/coordinate audit is still required. It is also
+necessary to verify coordinate handedness, voxel bounds, temporal leakage, and the exact meaning of
+occupancy/elevation values.
 
 ## Contract comparison and adapter gates
 
 | Dimension | ConPath/FlatLands | UnScenes3D | Decision |
 |---|---|---|---|
 | Input | Partial three-channel support raster | RGB, LiDAR, calibration, synchronized frames; can be reduced to the same three channels | Adapter required, but sensor geometry is available |
-| Truth | Hidden metric support grid and two-terminal footprint event | 3D semantic occupancy plus road elevation/local map | Project a conservative support slice; keep elevation/occupancy validity masks |
+| Truth | Hidden metric support grid and two-terminal footprint event | 3D semantic occupancy plus road elevation/local map | Map official `driveable_surface` (class 11) to traversable and all obstacle/terrain classes conservatively to blocked; keep elevation/occupancy validity masks |
 | World reference | Full support map with provenance | Local dense map and pose/odometry files | Promising; verify map-to-pose transform and bounds on labels |
 | Splits | Scene/site/sequence held out, no adjacent-frame leakage | `scene_info.json` plus six-region generalization description; mini raw smoke currently one scene | Freeze an explicit scene/site split before reading test labels |
 | Scale | 256x256 FlatLands raster | Release is multi-archive; raw mini is ~104.5 MB, labels/maps are larger | Download only after archive hashes and disk budget are recorded |
@@ -76,21 +82,34 @@ Before training, all of the following must pass:
    observation/label-validity mask; and
 6. a target-blind query manifest and exact event evaluator before any test labels are read.
 
-No UnScenes3D score is reported yet. The acquired raw package is a parser/pose smoke artifact, not
-a result and not evidence of ConPath superiority.
+No UnScenes3D score is reported yet. The acquired raw and label packages are parser/label-join
+artifacts, not results and not evidence of ConPath superiority.
 
 ## Local acquisition record
 
-The official release asset
-`https://github.com/ruiqi-song/UnScenes3D/releases/download/unscenes-mini/raw_data.zip` was
-downloaded on 2026-09-02, verified as 104,519,506 bytes, and hashed as
-`d1050b22d0eb31ea7199d2625accbfb54ae3034b3b57653a9790cdbdfa522ae0`. It was safely inspected for
-path traversal and extracted under ignored `data/raw/unscenes3d/raw_data/`; no FlatLands archive
-was extracted or modified.
+The official `raw_data.zip` smoke asset was downloaded on 2026-09-02, verified as 104,519,506 bytes,
+and hashed as `d1050b22d0eb31ea7199d2625accbfb54ae3034b3b57653a9790cdbdfa522ae0`. The larger
+`unscenes3d-mini_raw.zip` package was verified as 983,750,002 bytes with SHA-256
+`4e14f1b02e350f8c332032c50b2e3cb4c538f7a2cea0676733840539c02b8494`; its 4,014 members passed a
+path-traversal audit and were extracted under ignored `data/raw/unscenes3d/raw_package/`. The
+`unscenes3d-mini_label.zip` package was verified as 577,517,527 bytes with SHA-256
+`267b6744e6417826d8cceb3304495a3139ae6104984f74b8f07cb1cf5d163a1a`; its 4,128 members also passed
+the path audit and were extracted under ignored `data/raw/unscenes3d/label_package/`. No FlatLands
+archive was extracted or modified. The two local-map parts were then verified and path-audited:
+`unscenes3d-mini_loaclmap-1.zip` is 1,521,872,067 bytes with SHA-256
+`67ddd40392dbeb29dc9f40e209f320ace6ca1f83d0177a009b3f9457738c44ae`, and
+`unscenes3d-mini_loaclmap-2.zip` is 1,390,845,431 bytes with SHA-256
+`f947a738db47c95282b8b6d2bcd39bb35fa113324dd5c27ddfe1f2bdf83364dd`. Together they provide
+629/629 local-map files for the 629 occupancy timestamps. The read-only
+`scripts/audit_unscenes3d_mini.py` report passes basic integrity: zero missing raw stems, zero
+duplicate scene timestamps, zero occupancy shape/bound/class violations, zero bad map floats, and
+629/629 map joins. A separate 50-frame scene-spread nearest-neighbour smoke check found a
+median 0.804 fraction of LiDAR samples within 0.3 m of the corresponding map (0.875 within 1 m);
+this supports the same-frame coordinate hypothesis but is not a final model result. No FlatLands
+archive was extracted or modified.
 
 ## Sources
 
 * [Official UnScenes3D repository](https://github.com/ruiqi-song/UnScenes3D)
 * [UnScenes3D Scientific Data article](https://www.nature.com/articles/s41597-025-05532-5)
 * [Official mini-release page](https://github.com/ruiqi-song/UnScenes3D/releases)
-
