@@ -5,7 +5,7 @@
   "timezone": "America/New_York",
   "branch": "main",
   "remote_sync": "Local main is clean and synchronized with origin/main via GitHub SSH over port 443; GitHub Pages can deploy the tracked site after the workflow completes.",
-  "latest_local_commit": "80d6218 Extend recent ensemble sampling diagnostics",
+  "latest_local_commit": "07227cf Record batched connectivity scaling experiment",
   "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence.",
   "scientific_status": "Synthetic P0 passes in two seeds. The official FlatLands split fails scene isolation. The non-official upstream-provenance split passes full integrity, a 512-scene bounded mask/query gate, direct-ZIP replay, and validation-only baselines. Three completion seeds, K=32/64/128 convergence, a PaSCo-inspired three-subnet same-contract control with K-sensitivity, a three-seed independent-decoder control, a three-seed deterministic posterior mean-map control, and three-seed reliability/selective-risk curves are now complete on validation; the public site adds real-checkpoint qualitative and calibration diagnostics while test remains locked. The capacity-matched F=16 ConPath main model averages 0.09607 +/- 0.01222 exact Brier across three seeds, versus 0.11214 +/- 0.00306 for the independent decoder and 0.07111 +/- 0.00377 for binary mean-map events; the mean-map hidden-cell Brier is 0.17842 +/- 0.00512, so all remain validation-only diagnostics, not final paper results.",
   "active_task": "Extend recent strong-method comparisons beyond the first PaSCo-inspired ensemble, replace the desk-surface pilot with a ground-robot/floor visual, then add scalable connectivity and second-domain checks before any test access or final site claim.",
@@ -774,8 +774,8 @@
   ],
   "last_verification": {
     "command": "PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -q && python3 -m compileall -q src scripts && PYTHONPATH=src .venv/bin/python scripts/verify_recovery_state.py",
-    "result": "Ran 69 tests in 1.292s; OK; all source/scripts compile; three-method calibration curves, PaSCo K=32/64/128 reports, and site snapshots registered; full recovery verification passed with every registered artifact hash (including the 2.05 GB archive)",
-    "implementation_commit": "80d6218"
+    "result": "Ran 69 tests in 1.335s; OK; all source/scripts compile; 256x256 B=2 K=8 merge-tree output remained finite; full recovery verification passed with every registered artifact hash (including the 2.05 GB archive)",
+    "implementation_commit": "07227cf"
   },
   "recovery_commands": [
     "git status --short --branch",
