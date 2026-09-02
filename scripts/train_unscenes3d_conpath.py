@@ -174,7 +174,7 @@ def _validation_event_brier(
     """Bounded differentiable-event validation score for checkpoint selection."""
 
     model.eval()
-    scene_scores: list[float] = []
+    per_scene_scores: dict[str, list[float]] = defaultdict(list)
     for numpy_batch in loader:
         batch = _tensor_batch(numpy_batch, device)
         output = _event_forward(
@@ -186,24 +186,23 @@ def _validation_event_brier(
         )
         if output.reachability is None:
             raise RuntimeError("event validation forward did not return reachability")
-        valid = batch["query_mask"][..., None].expand_as(output.reachability)
-        counts = valid.sum(dim=(1, 2))
-        selected = counts > 0
-        if torch.any(selected):
-            errors = (output.reachability - batch["reachability_targets"].to(output.reachability.dtype)).square()
-            scene_scores.extend(
-                ((errors * valid).sum(dim=(1, 2))[selected] / counts[selected]).detach().cpu().tolist()
+        query_mask = batch["query_mask"]
+        errors = (output.reachability - batch["reachability_targets"].to(output.reachability.dtype)).square()
+        query_scores = errors.mean(dim=2)
+        for index, scene_id in enumerate(numpy_batch["scene_ids"]):
+            per_scene_scores[str(scene_id)].extend(
+                query_scores[index][query_mask[index]].detach().cpu().tolist()
             )
-    if not scene_scores:
+    if not per_scene_scores:
         raise RuntimeError("validation contains no event queries")
-    return float(np.mean(scene_scores))
+    return float(np.mean([np.mean(values) for values in per_scene_scores.values()]))
 
 
 @torch.inference_mode()
 def _validation_map_metrics(model: PathRelNet, loader: DataLoader, device: torch.device) -> dict[str, float | int]:
     model.eval()
-    briers: list[float] = []
-    nlls: list[float] = []
+    per_scene_briers: dict[str, list[float]] = defaultdict(list)
+    per_scene_nlls: dict[str, list[float]] = defaultdict(list)
     valid_cells = 0
     for numpy_batch in loader:
         batch = _tensor_batch(numpy_batch, device)
@@ -215,15 +214,18 @@ def _validation_map_metrics(model: PathRelNet, loader: DataLoader, device: torch
         for index in range(probability.shape[0]):
             selected = mask[index]
             if torch.any(selected):
-                briers.append(float((probability[index][selected] - target[index][selected]).square().mean().cpu()))
-                nlls.append(float(nll[index][selected].mean().cpu()))
+                scene_id = str(numpy_batch["scene_ids"][index])
+                per_scene_briers[scene_id].append(
+                    float((probability[index][selected] - target[index][selected]).square().mean().cpu())
+                )
+                per_scene_nlls[scene_id].append(float(nll[index][selected].mean().cpu()))
                 valid_cells += int(selected.sum().cpu())
-    if not briers:
+    if not per_scene_briers:
         raise RuntimeError("validation contains no hidden valid cells")
     return {
-        "scene_weighted_brier": float(np.mean(briers)),
-        "scene_weighted_nll": float(np.mean(nlls)),
-        "scene_count": len(briers),
+        "scene_weighted_brier": float(np.mean([np.mean(values) for values in per_scene_briers.values()])),
+        "scene_weighted_nll": float(np.mean([np.mean(values) for values in per_scene_nlls.values()])),
+        "scene_count": len(per_scene_briers),
         "hidden_valid_cells": valid_cells,
     }
 
