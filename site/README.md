@@ -60,6 +60,11 @@ opened, and the mean-map control is intentionally shown as a binary-risk trade-o
 coordinate-query row is a recent-method-inspired same-contract control, not a reproduction of the
 original S4C 3-D system.
 
+The official FlatLands implementation/weights audit is recorded in
+[`OFFICIAL_FLATLANDS_CHECK.md`](../OFFICIAL_FLATLANDS_CHECK.md). The public dataset and documentation
+are available, but the official repository currently marks model weights, construction code, and
+additional benchmark tooling as planned; no official checkpoint is imported into the ConPath table.
+
 ## Preview locally
 
 ```bash

@@ -12,9 +12,10 @@ diagnostic, code change, or experiment; do not rely on chat history or ignored `
 - Last durable implementation commit: `1b77b88` (S4C-inspired coordinate-query control and three-seed training entry point; pushed to GitHub)
 - Scientific gate: **P0 GO; FlatLands bounded data gate and first validation baselines GO on a
   non-official provenance split; public-data model and paper claims not yet established**
-- Active task: finish the recent-method matrix (diffusion-style port and official FlatLands
-  implementation/weights check), then ground-robot/floor visual replacement and second-domain
-  checks on the frozen bounded manifests. Do not use the leaking official split or extract the archive.
+- Active task: finish the recent-method matrix with a leakage-checked diffusion-style 2-D control,
+  then ground-robot/floor visual replacement and second-domain checks on the frozen bounded
+  manifests. The official FlatLands implementation/weights audit is complete; do not use the
+  leaking official split or extract the archive.
 
 ### GPU visibility and publication status (2026-08-31)
 
@@ -420,6 +421,17 @@ threshold is higher than ConPath (`0.09555` versus `0.06004`). The four-method c
 and JSON snapshot are regenerated on the site; all numbers remain validation diagnostics and do not
 support a final paper or SOTA claim.
 
+### Official FlatLands artifact check (completed)
+
+The official [FlatLands project page](https://1ssb.github.io/Flat_Lands/),
+[GitHub repository](https://github.com/1ssb/Flat_Lands/), and
+[Hugging Face dataset card](https://huggingface.co/datasets/Rudra1ssb/FlatLands) were checked on
+2026-09-02. The validated archive and documentation are public, but the official repository states
+that model weights, construction code, and additional benchmark tooling are planned for release.
+There is no importable official checkpoint/evaluator to run under the ConPath three-channel,
+256×256, provenance-original split, and exact event contract. The official method therefore remains
+reference-only; the detailed compatibility checklist is tracked in `OFFICIAL_FLATLANDS_CHECK.md`.
+
 ## Validation qualitative panels and website state
 
 Two real-checkpoint FlatLands validation panels were rendered and copied to the tracked site:
@@ -526,10 +538,10 @@ reproduction, and all numbers remain validation-only.
 
 ## Exact next actions
 
-1. Port and evaluate recent strong uncertainty/completion methods under the same FlatLands contract;
-   keep incompatible cross-task 3-D metrics as references only.
-2. Add source/radius reliability, threshold false-safe curves, bootstrap intervals, failure cases,
-   symmetry/radius-monotonicity checks, and an explicit ARKitScenes saturation analysis.
+1. Implement and evaluate a leakage-checked diffusion-style 2-D control under the same FlatLands
+   contract; keep incompatible cross-task 3-D metrics and unavailable official weights as references only.
+2. Extend the completed reliability/selective-risk analysis with symmetry/radius-monotonicity checks,
+   an explicit ARKitScenes saturation analysis, and a failure-case visual for the recent controls.
 3. Replace the desk-surface pilot with a ground-robot/floor sequence for the main website and paper
    figures; retain the current TUM asset only as a labelled geometry-pipeline appendix.
 4. Audit and freeze one second domain (prefer ORFD semantics or UnScenes3D support surfaces), with

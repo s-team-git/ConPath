@@ -30,7 +30,7 @@ our event Brier/NLL/ECE. We use the papers below in two explicit tiers:
 | [SceneSense / frontier diffusion, 2024](https://arxiv.org/abs/2409.10681) | Diffusion occupancy completion and probabilistic map reconciliation for frontier navigation | The online variant reports 73% end-to-end runtime reduction and 28% fewer trainable parameters after removing conditioning; 3–5 predictions are merged per pose. | **Reference + port candidate:** a 2-D conditional diffusion control with fixed sample count. The preprint's robot/3-D metrics are not used as FlatLands evidence. |
 | [ReliOcc, 2024](https://arxiv.org/abs/2409.18026) | Reliability-focused uncertainty learning and calibration for semantic occupancy | Plug-in uncertainty and calibration strategies are evaluated under sensor failures and out-of-domain noise. | **Metric/control reference:** use its reliability perspective to motivate coverage and false-safe curves; do not claim a direct architecture reproduction until its input contract is aligned. |
 | [COTR, CVPR 2024](https://openaccess.thecvf.com/content/CVPR2024/html/Ma_COTR_Compact_Occupancy_TRansformer_for_Vision-based_3D_Occupancy_Prediction_CVPR_2024_paper.html) | Compact transformer for vision-based 3-D occupancy | Public code/paper provide a compact-vs-backbone comparison on Occ3D; the task remains camera/3-D voxel occupancy. | **Reference-only:** use as a recent compact-architecture citation; no cross-task score transfer. |
-| [FlatLands, 2026](https://arxiv.org/abs/2603.16016) | The closest task: partial-view BEV completion with multiple valid layouts and stochastic/flow completion | Dataset-native stochastic completion benchmark and official provenance must be checked before importing weights. | **Mandatory same-task check:** audit official code/weights; if released and compatible, evaluate its samples through the exact ConPath event evaluator. |
+| [FlatLands, 2026](https://arxiv.org/abs/2603.16016) | The closest task: partial-view BEV completion with multiple valid layouts and stochastic/flow completion | Dataset-native stochastic completion benchmark and official provenance must be checked before importing weights. | **Official check completed:** dataset and documentation are public, but the official repository currently says model weights/construction code/tooling are planned for release. No importable checkpoint is available; reference-only pending a future artifact audit. |
 
 ## Parameter and optimization lock
 
@@ -67,8 +67,9 @@ lock. Any method requiring a different sensor or label space is kept in the refe
    S4C 3-D architecture is not claimed as reproduced.
 5. Attempt a diffusion-style 2-D completion port only if it passes exact input/target leakage checks;
    otherwise document the incompatibility and keep it as related work.
-6. Check the official FlatLands implementation/weights first. If unavailable or incompatible, state
-   this explicitly in the limitations instead of silently substituting a different dataset.
+6. **Done:** check the official FlatLands implementation/weights first. The public repository currently
+   has no importable checkpoint and marks weights/construction code/tooling as planned; this is recorded
+   in [`OFFICIAL_FLATLANDS_CHECK.md`](OFFICIAL_FLATLANDS_CHECK.md), so no incompatible number is copied.
 7. Publish one table with same-dataset rows only. Published cross-dataset numbers appear in related
    work, never in the “ours vs baseline” cells.
 
@@ -89,6 +90,15 @@ false-safe rate is higher (`0.09555` versus `0.06004` for ConPath). This result 
 the coordinate-query adapter in the comparison matrix; it does not establish a paper-level claim,
 SOTA status, or faithful S4C reproduction. Per-seed checkpoints, label-free predictions, exact
 reports, and the four-method calibration snapshot are retained under the ignored results tree.
+
+## Official FlatLands artifact status
+
+The [official repository](https://github.com/1ssb/Flat_Lands/) and [project page](https://1ssb.github.io/Flat_Lands/)
+were checked on 2026-09-02. The archive and documentation are available, while the repository states
+that model weights, construction code, and additional benchmark tooling are planned for release. The
+official model therefore remains **not yet importable / reference-only** for ConPath. See
+[`OFFICIAL_FLATLANDS_CHECK.md`](OFFICIAL_FLATLANDS_CHECK.md) for the compatibility checklist and the
+rule that future weights must pass before entering the same-dataset table.
 
 ## Reproducibility rule
 
