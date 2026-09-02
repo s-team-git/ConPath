@@ -10,6 +10,7 @@ import numpy as np
 from pathrel.flatlands_baselines import (
     DirectQueryBaseline,
     MarginalCompletionBaseline,
+    S4CInspiredCoordinateBaseline,
     fit_scene_weighted_radius_prior,
     radius_prior_prediction_rows,
 )
@@ -85,6 +86,42 @@ class FlatLandsDirectQueryBaselineTest(unittest.TestCase):
 
     def test_zero_query_batch_is_supported(self) -> None:
         model = DirectQueryBaseline(feature_channels=8)
+        observation = torch.zeros(1, 3, 16, 16)
+        starts = torch.empty(1, 0, 2, dtype=torch.long)
+        output = model(
+            observation,
+            starts,
+            starts,
+            torch.empty(1, 0),
+            torch.empty(1, 0, dtype=torch.long),
+            torch.tensor([0, 10, 20]),
+        )
+        self.assertEqual(output.shape, (1, 0, 3))
+
+
+class FlatLandsS4CInspiredCoordinateBaselineTest(unittest.TestCase):
+    def test_shapes_radius_conditioning_and_backward(self) -> None:
+        torch.manual_seed(17)
+        model = S4CInspiredCoordinateBaseline(feature_channels=8)
+        observation = torch.zeros(2, 3, 24, 24)
+        observation[:, 0, 10:13, 4:8] = 1.0
+        observation[:, 1, :, 12] = 1.0
+        observation[:, 2, 8:16, 8:16] = 1.0
+        starts = torch.tensor([[[11, 6], [10, 6]], [[11, 6], [12, 6]]])
+        goals = torch.tensor([[[11, 18], [10, 18]], [[11, 18], [12, 18]]])
+        distances = torch.tensor([[1.2, 1.2], [1.2, 1.2]])
+        angles = torch.tensor([[0, 30], [0, 330]])
+        radii = torch.tensor([0, 10, 20])
+
+        logits = model(observation, starts, goals, distances, angles, radii)
+        self.assertEqual(logits.shape, (2, 2, 3))
+        logits.square().mean().backward()
+        self.assertTrue(
+            all(parameter.grad is not None for parameter in model.parameters())
+        )
+
+    def test_zero_query_batch_is_supported(self) -> None:
+        model = S4CInspiredCoordinateBaseline(feature_channels=8)
         observation = torch.zeros(1, 3, 16, 16)
         starts = torch.empty(1, 0, 2, dtype=torch.long)
         output = model(

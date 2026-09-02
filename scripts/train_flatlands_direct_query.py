@@ -17,11 +17,14 @@ from typing import Any, Sequence
 
 import numpy as np
 import torch
-from torch import Tensor
+from torch import Tensor, nn
 from torch.nn import functional as F
 from torch.utils.data import DataLoader
 
-from pathrel.flatlands_baselines import DirectQueryBaseline
+from pathrel.flatlands_baselines import (
+    DirectQueryBaseline,
+    S4CInspiredCoordinateBaseline,
+)
 from pathrel.flatlands_data import FlatLandsReplayDataset, collate_flatlands_replay
 from pathrel.flatlands_eval import (
     evaluate_flatlands_prediction_file,
@@ -59,6 +62,12 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--seed", type=int, default=20260831)
     parser.add_argument("--device", choices=("cuda", "cpu"), default="cuda")
+    parser.add_argument(
+        "--architecture",
+        choices=("direct_query", "s4c_coordinate"),
+        default="direct_query",
+        help="direct fixed-geometry MLP or S4C-inspired coordinate-query control",
+    )
     parser.add_argument("--feature-channels", type=int, default=16)
     parser.add_argument("--batch-size", type=int, default=4)
     parser.add_argument("--max-epochs", type=int, default=120)
@@ -178,7 +187,7 @@ def _to_tensor_batch(batch: dict[str, object], device: torch.device) -> dict[str
     return output
 
 
-def _forward(model: DirectQueryBaseline, batch: dict[str, object]) -> Tensor:
+def _forward(model: nn.Module, batch: dict[str, object]) -> Tensor:
     return model(
         batch["observation"],
         batch["starts"],
@@ -204,7 +213,7 @@ def _scene_mean_loss(logits: Tensor, targets: Tensor, query_mask: Tensor) -> Ten
 
 @torch.inference_mode()
 def _validation_summary(
-    model: DirectQueryBaseline,
+    model: nn.Module,
     loader: DataLoader,
     device: torch.device,
 ) -> dict[str, float | int]:
@@ -244,7 +253,7 @@ def _validation_summary(
 
 @torch.inference_mode()
 def _prediction_rows(
-    model: DirectQueryBaseline,
+    model: nn.Module,
     loader: DataLoader,
     device: torch.device,
 ) -> list[dict[str, object]]:
@@ -275,7 +284,7 @@ def _prediction_rows(
 
 def _checkpoint_payload(
     *,
-    model: DirectQueryBaseline,
+    model: nn.Module,
     optimizer: torch.optim.Optimizer,
     epoch: int,
     best_epoch: int,
@@ -347,7 +356,25 @@ def main() -> None:
         collate_fn=collate_flatlands_replay,
         num_workers=0,
     )
-    model = DirectQueryBaseline(feature_channels=args.feature_channels).to(device)
+    if args.architecture == "s4c_coordinate":
+        model: nn.Module = S4CInspiredCoordinateBaseline(
+            feature_channels=args.feature_channels
+        ).to(device)
+        method_label = "s4c_inspired_coordinate"
+        run_kind = "flatlands_s4c_inspired_coordinate_training"
+        claim_boundary = (
+            "Three-seed validation-only S4C-inspired coordinate-query control. This is not "
+            "a reproduction of the original S4C 3-D system; test remains locked and this is "
+            "not a final public-data or paper result."
+        )
+    else:
+        model = DirectQueryBaseline(feature_channels=args.feature_channels).to(device)
+        method_label = "direct_query"
+        run_kind = "flatlands_direct_query_training"
+        claim_boundary = (
+            "Single-seed validation-only direct-query baseline. Test remains locked; this is not "
+            "a final public-data or paper result."
+        )
     optimizer = torch.optim.AdamW(
         model.parameters(), lr=args.learning_rate, weight_decay=args.weight_decay
     )
@@ -466,7 +493,7 @@ def main() -> None:
         prediction_path,
         args.selection,
         args.queries,
-        method="direct_query",
+        method=method_label,
         split="validation",
         bootstrap_samples=args.bootstrap_samples,
         seed=args.seed,
@@ -476,7 +503,7 @@ def main() -> None:
     total_seconds = time.monotonic() - started
     run_report = {
         "schema_version": 1,
-        "kind": "flatlands_direct_query_training",
+        "kind": run_kind,
         "paper_result": False,
         "validation_result": True,
         "protocol_version": PROTOCOL_VERSION,
@@ -530,10 +557,7 @@ def main() -> None:
             "argv": sys.argv,
         },
         "history": history,
-        "claim_boundary": (
-            "Single-seed validation-only direct-query baseline. Test remains locked; this is not "
-            "a final public-data or paper result."
-        ),
+        "claim_boundary": claim_boundary,
     }
     _atomic_json(args.output_dir / "run.json", run_report)
     overall = evaluation["metrics"][0]["scene_weighted"]
@@ -541,6 +565,7 @@ def main() -> None:
         json.dumps(
             {
                 "output_dir": str(args.output_dir),
+                "architecture": args.architecture,
                 "best_epoch": selected["best_epoch"],
                 "prediction_rows": prediction_count,
                 "scene_weighted_validation": {
