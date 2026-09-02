@@ -68,6 +68,7 @@
     "scripts/render_flatlands_qualitative.py",
     "scripts/evaluate_flatlands_completion_k.py",
     "scripts/evaluate_flatlands_recent_ensemble.py",
+    "scripts/evaluate_flatlands_conpath_mean_map.py",
     "RECENT_BASELINES.md",
     "scripts/build_demo_site.py",
     "site/index.html",
