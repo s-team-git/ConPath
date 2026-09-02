@@ -38,6 +38,12 @@ or temporary checkpoints must not be used. The current TUM video remains a geome
 reproducibility pilot; a final ConPath video must show posterior updates and footprint reachability,
 not only a static BEV.
 
+The hero video and qualitative panels are deliberately large. The page adds a four-step visual key
+(`observe → imagine → account for size → decide`) and plain-language captions so a reader can map
+each color and panel to the planning event. The desk-surface pilot is explicitly marked as an
+appendix-style geometry demonstration; it must be replaced by a ground-robot/floor scene before a
+navigation claim is presented.
+
 The FlatLands section also links the completed three-seed independent-decoder causal control
 snapshot. It is explicitly event-only, validation-only, and test-locked; it is shown to document
 the benefit of spatial correlation rather than to imply a final leaderboard result.

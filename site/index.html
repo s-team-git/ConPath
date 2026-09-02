@@ -28,13 +28,14 @@
     <main id="top">
       <section class="hero section">
         <div class="container narrow">
+          <div class="pilot-banner"><strong>Current media status.</strong> This large video is a TUM RGB-D geometry pilot on a desk surface, not a mobile-robot navigation result. It is retained only to make the coordinate-frame hand-off reproducible; the paper-grade hero will use a ground robot/floor scene.</div>
           <div class="hero-media media-frame">
             <video autoplay muted loop playsinline controls preload="metadata" poster="assets/tum_freiburg1_desk_demo_poster.jpg">
               <source src="assets/tum_freiburg1_desk_demo.mp4" type="video/mp4" />
               Your browser does not support embedded video. <a href="assets/tum_freiburg1_desk_demo.mp4">Download the real-data pilot video.</a>
             </video>
           </div>
-          <p class="media-caption">Real TUM RGB-D Freiburg1/desk: RGB observation, registered depth, and the world-frame BEV reference map. The black trajectory is the official motion-capture pose.</p>
+          <p class="media-caption"><strong>Pipeline pilot only:</strong> RGB observation → registered depth → world-frame raster. The black trajectory is the official motion-capture pose; no robot traversability label is claimed.</p>
 
           <p class="eyebrow">REAL-DATA PILOT · TUM RGB-D</p>
           <h1>ConPath: Connectivity-Calibrated Path Reliability</h1>
@@ -64,8 +65,14 @@
           <p class="section-lede">From partial RGB-D evidence to a task-level connectivity probability.</p>
           <figure class="figure figure-wide">
             <img src="assets/conpath_pipeline.svg" alt="ConPath pipeline: RGB-D evidence is lifted into a world-frame support map, sampled into correlated worlds, and evaluated with footprint-conditioned connectivity." loading="lazy" />
-            <figcaption>Figure 1. The real-data adapter supplies geometry; the ConPath research object is the event posterior <code>q(s, g, r | X)</code>.</figcaption>
+            <figcaption>Figure 1. Read left to right: partial sensor evidence, spatially coherent map hypotheses, footprint erosion, and the final probability that start <code>s</code> reaches goal <code>g</code> for radius <code>r</code>. The real-data adapter supplies geometry; ConPath's research object is the event posterior <code>q(s, g, r | X)</code>.</figcaption>
           </figure>
+          <div class="visual-key" aria-label="How to read the main figure">
+            <div><span class="visual-key-number">1</span><strong>Observe</strong><small>free / blocked / unknown input</small></div>
+            <div><span class="visual-key-number">2</span><strong>Imagine</strong><small>correlated posterior worlds</small></div>
+            <div><span class="visual-key-number">3</span><strong>Account for size</strong><small>erode by robot footprint</small></div>
+            <div><span class="visual-key-number">4</span><strong>Decide</strong><small>calibrated path probability</small></div>
+          </div>
           <div class="method-grid">
             <article>
               <span class="step">01</span>
@@ -92,7 +99,7 @@
           <p class="section-lede">One sequence, one transparent protocol, and no synthetic media in the primary presentation.</p>
           <figure class="figure figure-wide">
             <img src="assets/tum_freiburg1_desk_teaser.jpg" alt="Real TUM RGB-D frame, colorized depth, and world-frame BEV reference map with camera trajectory." loading="lazy" />
-            <figcaption>Figure 2. Every panel is derived from TUM RGB-D Freiburg1/desk. Green marks the fused support surface, blue marks elevated returns, and the black line is the supplied camera trajectory.</figcaption>
+            <figcaption>Figure 2. Geometry-only pilot: every panel is derived from TUM RGB-D Freiburg1/desk. Green marks the fused support surface, blue marks elevated returns, and the black line is the supplied camera trajectory. This is not evidence of a floor robot driving on the desk.</figcaption>
           </figure>
           <div class="raw-media-grid">
             <figure class="figure"><img src="assets/tum_freiburg1_desk_rgb.jpg" alt="Representative raw RGB frame from TUM RGB-D Freiburg1/desk." loading="lazy" /><figcaption>Measured RGB frame</figcaption></figure>

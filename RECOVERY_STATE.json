@@ -8,7 +8,7 @@
   "latest_local_commit": "80d6218 Extend recent ensemble sampling diagnostics",
   "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence.",
   "scientific_status": "Synthetic P0 passes in two seeds. The official FlatLands split fails scene isolation. The non-official upstream-provenance split passes full integrity, a 512-scene bounded mask/query gate, direct-ZIP replay, and validation-only baselines. Three completion seeds, K=32/64/128 convergence, a PaSCo-inspired three-subnet same-contract control with K-sensitivity, a three-seed independent-decoder control, a three-seed deterministic posterior mean-map control, and three-seed reliability/selective-risk curves are now complete on validation; the public site adds real-checkpoint qualitative and calibration diagnostics while test remains locked. The capacity-matched F=16 ConPath main model averages 0.09607 +/- 0.01222 exact Brier across three seeds, versus 0.11214 +/- 0.00306 for the independent decoder and 0.07111 +/- 0.00377 for binary mean-map events; the mean-map hidden-cell Brier is 0.17842 +/- 0.00512, so all remain validation-only diagnostics, not final paper results.",
-  "active_task": "Extend recent strong-method comparisons beyond the first PaSCo-inspired ensemble, then add scalable connectivity and second-domain checks before any test access or final site claim.",
+  "active_task": "Extend recent strong-method comparisons beyond the first PaSCo-inspired ensemble, replace the desk-surface pilot with a ground-robot/floor visual, then add scalable connectivity and second-domain checks before any test access or final site claim.",
   "completed_milestones": [
     "Interruption-safe P0 training with atomic checkpoints and exact resume",
     "Two-seed synthetic P0 pass and matched no-reach failure",
@@ -33,6 +33,7 @@
     ,"Independent-decoder F16 control completed for all three seeds with exact event reports; mean Brier 0.11214 +/- 0.00306"
     ,"Deterministic ConPath posterior mean-map control completed for all three seeds with event/map metrics; mean event Brier 0.07111 and hidden-map Brier 0.17842"
     ,"Three-seed reliability and selective-risk curves generated for ConPath, independent decoder, and deterministic mean-map controls; test remains locked"
+    ,"Website visual hierarchy enlarged and clarified; desk-surface TUM media explicitly marked as geometry-pipeline pilot pending ground-robot replacement"
   ],
   "tracked_files": [
     "CONTINUATION.md",

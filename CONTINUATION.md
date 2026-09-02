@@ -402,6 +402,16 @@ the second case is intentionally included to avoid a one-sided visual claim. The
 is still a geometry/BEV pilot. A final paper/site video must show posterior updates, radius-
 conditioned reachability, baseline comparison, and at least one failure/overconfidence case.
 
+### Visual presentation requirement (new)
+
+The desk-surface BEV is not semantically appropriate as the main mobile-robot navigation visual.
+It remains only a clearly-labelled geometry-pipeline pilot until a ground-robot/floor sequence is
+available. The hero video and paper figures must be large enough to read on first view, use no more
+than a few panels per figure, keep a shared legend/scale, and explain the chain
+`partial observation → posterior worlds → footprint erosion → path probability`. Existing dense
+multi-panel SVGs should be treated as diagnostics/appendix material until they are replaced or
+re-rendered with this visual hierarchy.
+
 ## Independent-decoder control (completed)
 
 The independent-cell decoder control has been added to
