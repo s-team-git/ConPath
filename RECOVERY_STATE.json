@@ -34,6 +34,7 @@
     ,"Deterministic ConPath posterior mean-map control completed for all three seeds with event/map metrics; mean event Brier 0.07111 and hidden-map Brier 0.17842"
     ,"Three-seed reliability and selective-risk curves generated for ConPath, independent decoder, and deterministic mean-map controls; test remains locked"
     ,"Website visual hierarchy enlarged and clarified; desk-surface TUM media explicitly marked as geometry-pipeline pilot pending ground-robot replacement"
+    ,"256×256 B=8 K=8 exact merge-tree shape benchmark completed; query-time scaling recorded and output finiteness verified"
   ],
   "tracked_files": [
     "CONTINUATION.md",
@@ -251,6 +252,13 @@
       "required_for_resume": false,
       "bytes": 1128,
       "sha256": "110fdc32d5b7a498d14c452a202cde2426932744a11ef4b9ba8e5f0992eaeb0d"
+    },
+    {
+      "path": "results/p1_flatlands_connectivity_benchmark/benchmark_b256_k8.json",
+      "role": "256x256 B=2 K=8 exact merge-tree shape/scaling benchmark",
+      "required_for_resume": false,
+      "bytes": 1337,
+      "sha256": "674bf9ee633f1002531742992a6cdef8b1402ae45ae55aca228d28f0688ae903"
     },
     {
       "path": "results/p1_flatlands_conpath_matrix/seed20260831_conpath/run.json",

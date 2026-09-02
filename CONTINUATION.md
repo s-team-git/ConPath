@@ -284,8 +284,8 @@ locked test split during validation. The four validation-only methods and scene-
 The deterministic completion has the lowest Brier; direct-query has the best NLL/ECE; independent
 cells are a deliberately fragmented negative control with low false-safe coverage but poor event
 calibration. These results establish evaluator plumbing and an initial difficulty baseline only. They
-are not paper results: one seed, validation only, no official/public completion weights, no scalable
-connectivity implementation, and no second domain yet. The direct-query run took 63.3 s (best epoch
+are not paper results: one seed, validation only, no official/public completion weights, and no second
+domain yet. The direct-query run took 63.3 s (best epoch
 42); marginal completion took 397.6 s including 353.4 s for K=32 event sampling on the RTX PRO 6000.
 
 The project site now publishes `site/data/flatlands_baselines_validation.{json,js}` plus comparison
@@ -341,8 +341,9 @@ forward validation on the same 4,224-row-per-seed manifest:
 Removing global factors worsens mean Brier by `0.01898` and NLL by `0.49976`; removing the
 reachability proper score worsens mean Brier by `0.10948` and NLL by `2.12098`. These are strong
 mechanistic signals, not final paper claims: all rows are validation-only, and false-safe/coverage
-trade-offs plus source/radius bootstrap intervals remain required. The independent decoder,
-deterministic mean-map, K-convergence, and recent strong-method ports are still pending.
+ trade-offs plus source/radius bootstrap intervals remain required. The independent decoder,
+deterministic mean-map, K-convergence, and PaSCo-inspired controls are now complete; additional
+recent-method ports remain pending.
 
 ## Scalable connectivity checkpoint
 
@@ -352,8 +353,12 @@ tree per map and answers all terminals with LCA lookups, so query cost is logari
 build rather than another `H*W` relaxation per query. A strict test compares every batch/sample/query
 entry to the existing single-map oracle. The synthetic CPU contract benchmark
 `results/p1_flatlands_connectivity_benchmark/benchmark.json` uses 64×64 maps and K=4: 32/128/512/2048
-queries take about 0.036/0.037/0.044/0.060 s, respectively. This is an exact-forward reference and
-efficiency diagnostic only; a CUDA implementation and soft backward path are still pending.
+queries take about 0.036/0.037/0.044/0.060 s, respectively. A larger shape check at 256×256 maps,
+B=2, K=8 (`results/p1_flatlands_connectivity_benchmark/benchmark_b256_k8.json`) keeps the exact
+output finite and takes 2.75/2.75/2.85/2.91/3.03 s for 32/128/512/2048/4224 queries. The near-flat
+query-time growth after tree construction confirms that batching amortizes the expensive map build.
+This is an exact-forward reference and efficiency diagnostic only; a CUDA implementation and soft
+backward path are still pending.
 
 `scripts/train_flatlands_conpath.py` is now the reproducible public-data neural entry point. It uses
 the canonical replay channels, hidden-cell posterior NLL, variogram score, reachability U-statistic,
@@ -500,11 +505,10 @@ reproduction, and all numbers remain validation-only.
 
 1. Port and evaluate recent strong uncertainty/completion methods under the same FlatLands contract;
    keep incompatible cross-task 3-D metrics as references only.
-2. Implement batched exact-forward connectivity (merge-tree/MST or a validated exact-forward /
-   soft-backward operator); compare against the NumPy oracle in error, latency, memory, and query
-   scaling.
-3. Add source/radius reliability, threshold false-safe curves, bootstrap intervals, failure cases,
+2. Add source/radius reliability, threshold false-safe curves, bootstrap intervals, failure cases,
    symmetry/radius-monotonicity checks, and an explicit ARKitScenes saturation analysis.
+3. Replace the desk-surface pilot with a ground-robot/floor sequence for the main website and paper
+   figures; retain the current TUM asset only as a labelled geometry-pipeline appendix.
 4. Audit and freeze one second domain (prefer ORFD semantics or UnScenes3D support surfaces), with
    scene/site/sequence-held-out split and no adjacent-frame leakage.
 5. Only after the above, unlock the test split once, regenerate final JSON/CSV/SVG and qualitative
