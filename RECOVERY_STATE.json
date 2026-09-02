@@ -5,10 +5,10 @@
   "timezone": "America/New_York",
   "branch": "main",
   "remote_sync": "Local main is clean and synchronized with origin/main via GitHub SSH over port 443; GitHub Pages can deploy the tracked site after the workflow completes.",
-  "latest_local_commit": "949e5dc Record deterministic mean map validation control",
+  "latest_local_commit": "80d6218 Extend recent ensemble sampling diagnostics",
   "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence.",
-  "scientific_status": "Synthetic P0 passes in two seeds. The official FlatLands split fails scene isolation. The non-official upstream-provenance split passes full integrity, a 512-scene bounded mask/query gate, direct-ZIP replay, and validation-only baselines. Three completion seeds, K=32/64/128 convergence, a PaSCo-inspired three-subnet same-contract control, a three-seed independent-decoder control, and a three-seed deterministic posterior mean-map control are now complete on validation; the public site adds real-checkpoint qualitative diagnostics while test remains locked. The capacity-matched F=16 ConPath main model averages 0.09607 +/- 0.01222 exact Brier across three seeds, versus 0.11214 +/- 0.00306 for the independent decoder and 0.07111 +/- 0.00377 for binary mean-map events; the mean-map hidden-cell Brier is 0.17842 +/- 0.00512, so all remain validation-only diagnostics, not final paper results.",
-  "active_task": "Add uncertainty/calibration curves around the stochastic, independent, and mean-map controls; extend recent strong-method comparisons beyond the first PaSCo-inspired ensemble, then add scalable connectivity and second-domain checks before any test access or final site claim.",
+  "scientific_status": "Synthetic P0 passes in two seeds. The official FlatLands split fails scene isolation. The non-official upstream-provenance split passes full integrity, a 512-scene bounded mask/query gate, direct-ZIP replay, and validation-only baselines. Three completion seeds, K=32/64/128 convergence, a PaSCo-inspired three-subnet same-contract control with K-sensitivity, a three-seed independent-decoder control, a three-seed deterministic posterior mean-map control, and three-seed reliability/selective-risk curves are now complete on validation; the public site adds real-checkpoint qualitative and calibration diagnostics while test remains locked. The capacity-matched F=16 ConPath main model averages 0.09607 +/- 0.01222 exact Brier across three seeds, versus 0.11214 +/- 0.00306 for the independent decoder and 0.07111 +/- 0.00377 for binary mean-map events; the mean-map hidden-cell Brier is 0.17842 +/- 0.00512, so all remain validation-only diagnostics, not final paper results.",
+  "active_task": "Extend recent strong-method comparisons beyond the first PaSCo-inspired ensemble, then add scalable connectivity and second-domain checks before any test access or final site claim.",
   "completed_milestones": [
     "Interruption-safe P0 training with atomic checkpoints and exact resume",
     "Two-seed synthetic P0 pass and matched no-reach failure",
@@ -27,11 +27,12 @@
     "F16 no-global and no-reachability causal ablations completed for all three seeds; mean exact Brier 0.11505 and 0.20555 respectively"
     ,"Completion baseline seeds 20260901 and 20260902 completed with exact validation reports; three-seed event/map control set is now available"
     ,"Completion K=32/64/128 convergence evaluated from one fixed checkpoint with shared posterior stream"
-    ,"PaSCo-inspired three-subnet same-contract ensemble evaluated at total K=32; event and hidden-map calibration recorded"
+    ,"PaSCo-inspired three-subnet same-contract ensemble evaluated at total K=32/64/128; event and hidden-map calibration recorded with sample-budget sensitivity"
     ,"Two real-checkpoint FlatLands qualitative validation panels (positive and uncertainty/failure) added to tracked site assets"
     ,"Independent-decoder control implementation and chunked K=32 validation added for safe CUDA parallelism"
     ,"Independent-decoder F16 control completed for all three seeds with exact event reports; mean Brier 0.11214 +/- 0.00306"
     ,"Deterministic ConPath posterior mean-map control completed for all three seeds with event/map metrics; mean event Brier 0.07111 and hidden-map Brier 0.17842"
+    ,"Three-seed reliability and selective-risk curves generated for ConPath, independent decoder, and deterministic mean-map controls; test remains locked"
   ],
   "tracked_files": [
     "CONTINUATION.md",
@@ -70,6 +71,7 @@
     "scripts/evaluate_flatlands_completion_k.py",
     "scripts/evaluate_flatlands_recent_ensemble.py",
     "scripts/evaluate_flatlands_conpath_mean_map.py",
+    "scripts/evaluate_flatlands_calibration.py",
     "RECENT_BASELINES.md",
     "scripts/build_demo_site.py",
     "site/index.html",
@@ -84,6 +86,9 @@
     "site/data/flatlands_pasco_ensemble_validation.json",
     "site/data/flatlands_independent_decoder_validation.json",
     "site/data/flatlands_conpath_mean_map_validation.json",
+    "site/data/flatlands_calibration_validation.json",
+    "site/assets/flatlands_calibration_reliability.svg",
+    "site/assets/flatlands_calibration_false_safe.svg",
     "site/data/flatlands_qualitative_validation_positive.json",
     "site/data/flatlands_qualitative_validation_uncertain.json",
     "src/pathrel/labels.py",
@@ -488,8 +493,8 @@
       "path": "results/p1_flatlands_pasco_ensemble_validation/report.json",
       "role": "PaSCo-inspired same-contract three-subnet ensemble validation report",
       "required_for_resume": false,
-      "bytes": 6616,
-      "sha256": "9771b1110fbb92e15586debd5e1c1514d502df436194414c414d7bf8460f7191"
+      "bytes": 14660,
+      "sha256": "17824dd85835852196e25fe90b388df11cde5ea2ec1fc6a8e5540c4e254cb653"
     },
     {
       "path": "results/p1_flatlands_pasco_ensemble_validation/evaluation_pasco_ensemble_k32_validation/report.json",
@@ -497,6 +502,34 @@
       "required_for_resume": false,
       "bytes": 151550,
       "sha256": "2b93be86be3cea912c72a1c9ade470fce72a4ba535f9e8f82ede2135c154c12e"
+    },
+    {
+      "path": "results/p1_flatlands_pasco_ensemble_validation/predictions_pasco_ensemble_k64_validation.csv",
+      "role": "PaSCo-inspired ensemble K=64 label-free validation predictions",
+      "required_for_resume": false,
+      "bytes": 84846,
+      "sha256": "75c1d389d2dace1baf3a58a20293cb2c684a2fe035f5488099a2b622afc54a67"
+    },
+    {
+      "path": "results/p1_flatlands_pasco_ensemble_validation/evaluation_pasco_ensemble_k64_validation/report.json",
+      "role": "PaSCo-inspired ensemble K=64 exact validation metrics",
+      "required_for_resume": false,
+      "bytes": 151861,
+      "sha256": "4877ad88904cd817e3052fa22c767b8c922105b0e6c0a4dd6fd63dd5fa217ecb"
+    },
+    {
+      "path": "results/p1_flatlands_pasco_ensemble_validation/predictions_pasco_ensemble_k128_validation.csv",
+      "role": "PaSCo-inspired ensemble K=128 label-free validation predictions",
+      "required_for_resume": false,
+      "bytes": 86358,
+      "sha256": "a776b388d3e41d4f83833b0a28304aed0a2ac7d54759902ae24208f45a0d08f4"
+    },
+    {
+      "path": "results/p1_flatlands_pasco_ensemble_validation/evaluation_pasco_ensemble_k128_validation/report.json",
+      "role": "PaSCo-inspired ensemble K=128 exact validation metrics",
+      "required_for_resume": false,
+      "bytes": 152091,
+      "sha256": "7063f65bbe390d2df1696130feea3477e96739e61f9810eed52e6565f037d27f"
     },
     {
       "path": "results/p1_flatlands_conpath_independent_f16/seed20260831_independent_decoder/run.json",
@@ -667,6 +700,13 @@
       "sha256": "c6cb0afe6b5dd11fdbc41ee02e92a75e2baec557a958fb79ca2df25aa6c7e6dd"
     },
     {
+      "path": "results/p1_flatlands_calibration_validation/calibration_snapshot.json",
+      "role": "three-seed validation reliability and selective-risk snapshot; test split locked",
+      "required_for_resume": false,
+      "bytes": 24713,
+      "sha256": "3ea388247d99cc882518452857c203ab34387d652b743bb5ca03f98c5054c947"
+    },
+    {
       "path": "results/p1_flatlands_qualitative_validation/obs_008266_candidate0_r10.json",
       "role": "positive real-checkpoint FlatLands qualitative validation metadata",
       "required_for_resume": false,
@@ -725,8 +765,8 @@
   ],
   "last_verification": {
     "command": "PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -q && python3 -m compileall -q src scripts && PYTHONPATH=src .venv/bin/python scripts/verify_recovery_state.py",
-    "result": "Ran 69 tests in 1.237s; OK; all source/scripts compile; deterministic mean-map three-seed reports and site snapshot registered; recovery quick verification passed with all registered artifacts present",
-    "implementation_commit": "949e5dc"
+    "result": "Ran 69 tests in 1.292s; OK; all source/scripts compile; three-method calibration curves, PaSCo K=32/64/128 reports, and site snapshots registered; recovery quick verification passed with all registered artifacts present",
+    "implementation_commit": "80d6218"
   },
   "recovery_commands": [
     "git status --short --branch",
