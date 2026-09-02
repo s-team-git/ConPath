@@ -8,7 +8,7 @@
   "latest_local_commit": "097b11d Record S4C-inspired validation control",
   "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence.",
   "scientific_status": "Synthetic P0 passes in two seeds. The official FlatLands split fails scene isolation. The non-official upstream-provenance split passes full integrity, a 512-scene bounded mask/query gate, direct-ZIP replay, and validation-only baselines. Three completion seeds, K=32/64/128 convergence, a PaSCo-inspired three-subnet same-contract control with K-sensitivity, a three-seed independent-decoder control, a three-seed deterministic posterior mean-map control, a three-seed S4C-inspired coordinate-query control, and four-method reliability/selective-risk curves are now complete on validation; the public site adds real-checkpoint qualitative and calibration diagnostics while test remains locked. The capacity-matched F=16 ConPath main model averages 0.09607 +/- 0.01222 exact Brier across three seeds, versus 0.11214 +/- 0.00306 for the independent decoder, 0.09204 +/- 0.00582 for the S4C-inspired coordinate control, and 0.07111 +/- 0.00377 for binary mean-map events; the mean-map hidden-cell Brier is 0.17842 +/- 0.00512, so all remain validation-only diagnostics, not final paper results.",
-  "active_task": "Finish the recent-method matrix with a leakage-checked diffusion-style 2-D control, replace the desk-surface pilot with a ground-robot/floor visual, then complete second-domain checks before any test access or final site claim.",
+  "active_task": "Replace the desk-surface pilot with a ground-robot/floor visual, then complete second-domain checks before any test access or final site claim. Official FlatLands and SceneSense artifact audits are complete and reference-only.",
   "completed_milestones": [
     "Interruption-safe P0 training with atomic checkpoints and exact resume",
     "Two-seed synthetic P0 pass and matched no-reach failure",
@@ -37,6 +37,7 @@
     ,"256×256 B=8 K=8 exact merge-tree shape benchmark completed; query-time scaling recorded and output finiteness verified"
     ,"S4C-inspired F16 coordinate-query control completed for seeds 20260831, 20260901, and 20260902; mean exact Brier 0.09204 +/- 0.00582 and four-method calibration snapshot published"
     ,"Official FlatLands implementation/weights audit completed; public repository has dataset/docs but no importable checkpoint and marks weights/construction code/tooling as planned"
+    ,"SceneSense diffusion compatibility audit completed; official 3-D pointmap/ROS contract and metrics are incompatible with the FlatLands 2-D event protocol, so it remains reference-only"
   ],
   "tracked_files": [
     "CONTINUATION.md",
@@ -78,6 +79,7 @@
     "scripts/evaluate_flatlands_calibration.py",
     "RECENT_BASELINES.md",
     "OFFICIAL_FLATLANDS_CHECK.md",
+    "SCENESENSE_COMPATIBILITY_CHECK.md",
     "scripts/build_demo_site.py",
     "site/index.html",
     "site/app.js",
@@ -894,8 +896,7 @@
   ],
   "next_command": "PYTHONPATH=src .venv/bin/python scripts/verify_recovery_state.py --quick",
   "next_actions": [
-    "Finish the remaining diffusion-style recent-method port only if its 2-D event contract passes leakage checks; otherwise document incompatibility.",
-    "Official FlatLands implementation/weights check is complete; keep unavailable weights reference-only until a future artifact audit.",
+    "SceneSense diffusion compatibility check is complete; keep its incompatible 3-D pointmap/ROS contract reference-only rather than fabricating a 2-D reproduction.",
     "Replace the desk-surface pilot with a clear ground-robot/floor visual showing posterior updates, footprint erosion, and a failure case.",
     "Audit and freeze a second scene/site-held-out domain; only then unlock FlatLands test once.",
     "Freeze final artifacts and write the ICRA/IROS paper package with explicit limitations and venue checks."

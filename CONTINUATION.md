@@ -12,10 +12,10 @@ diagnostic, code change, or experiment; do not rely on chat history or ignored `
 - Last durable implementation commit: `1b77b88` (S4C-inspired coordinate-query control and three-seed training entry point; pushed to GitHub)
 - Scientific gate: **P0 GO; FlatLands bounded data gate and first validation baselines GO on a
   non-official provenance split; public-data model and paper claims not yet established**
-- Active task: finish the recent-method matrix with a leakage-checked diffusion-style 2-D control,
-  then ground-robot/floor visual replacement and second-domain checks on the frozen bounded
-  manifests. The official FlatLands implementation/weights audit is complete; do not use the
-  leaking official split or extract the archive.
+- Active task: replace the desk-surface pilot with a ground-robot/floor visual, then complete
+  second-domain checks on the frozen bounded manifests. Official FlatLands and SceneSense artifact
+  audits are complete and both remain reference-only; do not use the leaking official split or
+  extract the archive.
 
 ### GPU visibility and publication status (2026-08-31)
 
@@ -432,6 +432,16 @@ There is no importable official checkpoint/evaluator to run under the ConPath th
 256×256, provenance-original split, and exact event contract. The official method therefore remains
 reference-only; the detailed compatibility checklist is tracked in `OFFICIAL_FLATLANDS_CHECK.md`.
 
+### SceneSense diffusion compatibility check (completed)
+
+The official [SceneSense repository](https://github.com/arpg/SceneSense) and its IROS/online papers
+were checked on 2026-09-02. SceneSense is a 3-D point-cloud/voxel ROS inpainting system using a
+running robot map; its public inputs and FID/KID/exploration metrics do not match the FlatLands
+three-channel 2-D packet or ConPath event metrics. No checkpoint/preprocessing path is available for
+a faithful same-contract run. It is therefore reference-only, with details in
+`SCENESENSE_COMPATIBILITY_CHECK.md`; a new 2-D diffusion adapter is deferred rather than mislabeled
+as a SceneSense reproduction.
+
 ## Validation qualitative panels and website state
 
 Two real-checkpoint FlatLands validation panels were rendered and copied to the tracked site:
@@ -538,15 +548,13 @@ reproduction, and all numbers remain validation-only.
 
 ## Exact next actions
 
-1. Implement and evaluate a leakage-checked diffusion-style 2-D control under the same FlatLands
-   contract; keep incompatible cross-task 3-D metrics and unavailable official weights as references only.
+1. Replace the desk-surface pilot with a clear ground-robot/floor visual showing posterior updates,
+   footprint erosion, and a failure case; retain the TUM asset only as a labelled geometry appendix.
 2. Extend the completed reliability/selective-risk analysis with symmetry/radius-monotonicity checks,
    an explicit ARKitScenes saturation analysis, and a failure-case visual for the recent controls.
-3. Replace the desk-surface pilot with a ground-robot/floor sequence for the main website and paper
-   figures; retain the current TUM asset only as a labelled geometry-pipeline appendix.
-4. Audit and freeze one second domain (prefer ORFD semantics or UnScenes3D support surfaces), with
+3. Audit and freeze one second domain (prefer ORFD semantics or UnScenes3D support surfaces), with
    scene/site/sequence-held-out split and no adjacent-frame leakage.
-5. Only after the above, unlock the test split once, regenerate final JSON/CSV/SVG and qualitative
+4. Only after the above, unlock the test split once, regenerate final JSON/CSV/SVG and qualitative
    figures, freeze environment/data/checkpoint hashes, and update the website.
 6. Draft and internally review the ICRA/IROS paper: problem/claims, method, related work, main table/
    figures, limitations, appendix, anonymization, and venue-format/compliance checks.

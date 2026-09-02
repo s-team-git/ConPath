@@ -64,6 +64,8 @@ The official FlatLands implementation/weights audit is recorded in
 [`OFFICIAL_FLATLANDS_CHECK.md`](../OFFICIAL_FLATLANDS_CHECK.md). The public dataset and documentation
 are available, but the official repository currently marks model weights, construction code, and
 additional benchmark tooling as planned; no official checkpoint is imported into the ConPath table.
+The SceneSense diffusion reference is likewise documented as a 3-D pointmap/ROS contract that is not
+directly comparable to the 2-D event protocol; see [`SCENESENSE_COMPATIBILITY_CHECK.md`](../SCENESENSE_COMPATIBILITY_CHECK.md).
 
 ## Preview locally
 
