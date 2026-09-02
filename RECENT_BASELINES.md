@@ -26,7 +26,7 @@ our event Brier/NLL/ECE. We use the papers below in two explicit tiers:
 |---|---|---|---|
 | [PaSCo, CVPR 2024](https://github.com/astra-vision/PaSCo) | Panoptic 3-D scene completion with uncertainty-aware multi-inference (MIMO) | Official recipe uses 1 or 3 subnets; 3-subnet training uses batch 2 on 2 A100-80G GPUs and `lr=1e-4`. | **Same-contract adapter evaluated:** three independently trained 16-channel completion members, fixed total event budget K=32. Labelled an ensemble control, not “PaSCo SOTA”. |
 | [SGN, IEEE TIP 2024](https://github.com/Jieqianyu/SGN) | Sparse-guided, multi-scale semantic scene completion; a published lightweight model | SGN-L reports 12.5M parameters and 7.16G training memory on SemanticKITTI. | **Reference-only:** camera/3-D voxel labels do not match FlatLands. The 12.5M figure is used as an external scale reference; no SGN score is copied into our table. |
-| [S4C, 3DV 2024](https://ahayler.github.io/publications/s4c/) | Self-supervised implicit semantic fields; arbitrary point queries and multi-view consistency | Implicit field rather than a dense voxel decoder; the project reports self-supervised training from video and pseudo-labels. | **Adaptation planned if compute permits:** coordinate-query hidden-cell completion, with observed cells clamped. Report event calibration, not SSC mIoU. |
+| [S4C, 3DV 2024](https://ahayler.github.io/publications/s4c/) | Self-supervised implicit semantic fields; arbitrary point queries and multi-view consistency | Implicit field rather than a dense voxel decoder; the project reports self-supervised training from video and pseudo-labels. | **Same-contract adapter evaluated:** an S4C-inspired coordinate-query event field with bilinear feature sampling and Fourier geometry encoding. This is explicitly not a reproduction of the original S4C 3-D system; report event calibration, not SSC mIoU. |
 | [SceneSense / frontier diffusion, 2024](https://arxiv.org/abs/2409.10681) | Diffusion occupancy completion and probabilistic map reconciliation for frontier navigation | The online variant reports 73% end-to-end runtime reduction and 28% fewer trainable parameters after removing conditioning; 3–5 predictions are merged per pose. | **Reference + port candidate:** a 2-D conditional diffusion control with fixed sample count. The preprint's robot/3-D metrics are not used as FlatLands evidence. |
 | [ReliOcc, 2024](https://arxiv.org/abs/2409.18026) | Reliability-focused uncertainty learning and calibration for semantic occupancy | Plug-in uncertainty and calibration strategies are evaluated under sensor failures and out-of-domain noise. | **Metric/control reference:** use its reliability perspective to motivate coverage and false-safe curves; do not claim a direct architecture reproduction until its input contract is aligned. |
 | [COTR, CVPR 2024](https://openaccess.thecvf.com/content/CVPR2024/html/Ma_COTR_Compact_Occupancy_TRansformer_for_Vision-based_3D_Occupancy_Prediction_CVPR_2024_paper.html) | Compact transformer for vision-based 3-D occupancy | Public code/paper provide a compact-vs-backbone comparison on Occ3D; the task remains camera/3-D voxel occupancy. | **Reference-only:** use as a recent compact-architecture citation; no cross-task score transfer. |
@@ -45,6 +45,7 @@ baselines. Measured trainable counts are:
 | ConPath final | `feature_channels=16, latent_dim=4` | 120,108 |
 | Independent completion | `feature_channels=16` | 119,921 |
 | Direct query | `feature_channels=16` | 127,905 |
+| S4C-inspired coordinate query | `feature_channels=16`, Fourier geometry, bilinear queries | 132,449 |
 
 The final report records parameter count, input channels, raster size, hidden-cell mask, optimizer,
 learning-rate schedule, batch size, epoch/patience budget, posterior sample count, peak GPU memory,
@@ -61,13 +62,33 @@ lock. Any method requiring a different sensor or label space is kept in the refe
    K-sensitivity run now evaluates total posterior budgets 32/64/128 under the same exact event
    contract; the compact report is tracked at `site/data/flatlands_pasco_ensemble_validation.json`.
    It remains validation-only until the full recent-control matrix and final test gate are complete.
-4. Attempt the S4C-style coordinate-query and diffusion-style 2-D completion ports only if they pass
-   exact input/target leakage checks; otherwise document the incompatibility and keep them as related
-   work.
-5. Check the official FlatLands implementation/weights first. If unavailable or incompatible, state
+4. **Done for the current validation pass:** evaluate the S4C-inspired coordinate-query control under
+   the exact FlatLands event contract. It uses three seeds and remains validation-only; the original
+   S4C 3-D architecture is not claimed as reproduced.
+5. Attempt a diffusion-style 2-D completion port only if it passes exact input/target leakage checks;
+   otherwise document the incompatibility and keep it as related work.
+6. Check the official FlatLands implementation/weights first. If unavailable or incompatible, state
    this explicitly in the limitations instead of silently substituting a different dataset.
-6. Publish one table with same-dataset rows only. Published cross-dataset numbers appear in related
+7. Publish one table with same-dataset rows only. Published cross-dataset numbers appear in related
    work, never in the “ours vs baseline” cells.
+
+## S4C-inspired coordinate-query result
+
+The adapter keeps the canonical three-channel input, F=16 encoder, frozen train/validation scenes,
+4,224 retained validation events, radii 0/10/20, AdamW protocol, and test lock. It changes only the
+query representation: start/goal/delta, distance, angle, and footprint radius are Fourier encoded,
+and start/goal features are sampled bilinearly from the raster feature field. Across seeds
+`20260831`, `20260901`, and `20260902`, the exact scene-weighted validation metrics are:
+
+| Control | Event Brier | Event NLL | Event ECE | False-safe @0.8 | Coverage @0.8 |
+|---|---:|---:|---:|---:|---:|
+| S4C-inspired coordinate query (F=16) | 0.09204 ± 0.00582 | 0.33411 ± 0.01859 | 0.04302 ± 0.00803 | 0.09555 ± 0.00357 | 0.39193 ± 0.03865 |
+
+The Brier/NLL/ECE values are competitive with the ConPath validation control, but the selective
+false-safe rate is higher (`0.09555` versus `0.06004` for ConPath). This result supports keeping
+the coordinate-query adapter in the comparison matrix; it does not establish a paper-level claim,
+SOTA status, or faithful S4C reproduction. Per-seed checkpoints, label-free predictions, exact
+reports, and the four-method calibration snapshot are retained under the ignored results tree.
 
 ## Reproducibility rule
 

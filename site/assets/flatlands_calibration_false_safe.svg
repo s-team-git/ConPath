@@ -51,11 +51,20 @@
 <circle cx="513.9" cy="434.2" r="5" fill="#7c3aed"/>
 <circle cx="513.9" cy="434.2" r="5" fill="#7c3aed"/>
 <circle cx="513.9" cy="434.2" r="5" fill="#7c3aed"/>
-<line x1="120" y1="505" x2="144" y2="505" stroke="#168f63" stroke-width="4"/>
-<text x="152" y="510" class="legend">ConPath stochastic</text>
-<line x1="365" y1="505" x2="389" y2="505" stroke="#d97706" stroke-width="4"/>
-<text x="397" y="510" class="legend">Independent decoder</text>
-<line x1="610" y1="505" x2="634" y2="505" stroke="#7c3aed" stroke-width="4"/>
-<text x="642" y="510" class="legend">Posterior mean-map threshold</text>
+<polyline points="493.0,422.7 468.0,429.6 442.0,436.2 411.4,442.7 375.9,446.5 345.8,452.0" fill="none" stroke="#2563eb" stroke-width="3" stroke-linejoin="round"/>
+<circle cx="493.0" cy="422.7" r="5" fill="#2563eb"/>
+<circle cx="468.0" cy="429.6" r="5" fill="#2563eb"/>
+<circle cx="442.0" cy="436.2" r="5" fill="#2563eb"/>
+<circle cx="411.4" cy="442.7" r="5" fill="#2563eb"/>
+<circle cx="375.9" cy="446.5" r="5" fill="#2563eb"/>
+<circle cx="345.8" cy="452.0" r="5" fill="#2563eb"/>
+<line x1="100" y1="505" x2="124" y2="505" stroke="#168f63" stroke-width="4"/>
+<text x="132" y="510" class="legend">ConPath stochastic</text>
+<line x1="315" y1="505" x2="339" y2="505" stroke="#d97706" stroke-width="4"/>
+<text x="347" y="510" class="legend">Independent decoder</text>
+<line x1="530" y1="505" x2="554" y2="505" stroke="#7c3aed" stroke-width="4"/>
+<text x="562" y="510" class="legend">Posterior mean-map threshold</text>
+<line x1="745" y1="505" x2="769" y2="505" stroke="#2563eb" stroke-width="4"/>
+<text x="777" y="510" class="legend">S4C coordinate control</text>
 <text x="90" y="548" class="subtitle">Validation-only · equal-scene weighting · 3 seeds · FlatLands test split locked</text>
 </svg>

@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
   "checkpoint_id": "p1-flatlands-validation-baselines-v1",
-  "updated_local_date": "2026-09-01",
+  "updated_local_date": "2026-09-02",
   "timezone": "America/New_York",
   "branch": "main",
   "remote_sync": "Local main is clean and synchronized with origin/main via GitHub SSH over port 443; GitHub Pages can deploy the tracked site after the workflow completes.",
-  "latest_local_commit": "07227cf Record batched connectivity scaling experiment",
+  "latest_local_commit": "1b77b88 Add S4C-inspired coordinate-query control",
   "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence.",
-  "scientific_status": "Synthetic P0 passes in two seeds. The official FlatLands split fails scene isolation. The non-official upstream-provenance split passes full integrity, a 512-scene bounded mask/query gate, direct-ZIP replay, and validation-only baselines. Three completion seeds, K=32/64/128 convergence, a PaSCo-inspired three-subnet same-contract control with K-sensitivity, a three-seed independent-decoder control, a three-seed deterministic posterior mean-map control, and three-seed reliability/selective-risk curves are now complete on validation; the public site adds real-checkpoint qualitative and calibration diagnostics while test remains locked. The capacity-matched F=16 ConPath main model averages 0.09607 +/- 0.01222 exact Brier across three seeds, versus 0.11214 +/- 0.00306 for the independent decoder and 0.07111 +/- 0.00377 for binary mean-map events; the mean-map hidden-cell Brier is 0.17842 +/- 0.00512, so all remain validation-only diagnostics, not final paper results.",
-  "active_task": "Extend recent strong-method comparisons beyond the first PaSCo-inspired ensemble, replace the desk-surface pilot with a ground-robot/floor visual, then add scalable connectivity and second-domain checks before any test access or final site claim.",
+  "scientific_status": "Synthetic P0 passes in two seeds. The official FlatLands split fails scene isolation. The non-official upstream-provenance split passes full integrity, a 512-scene bounded mask/query gate, direct-ZIP replay, and validation-only baselines. Three completion seeds, K=32/64/128 convergence, a PaSCo-inspired three-subnet same-contract control with K-sensitivity, a three-seed independent-decoder control, a three-seed deterministic posterior mean-map control, a three-seed S4C-inspired coordinate-query control, and four-method reliability/selective-risk curves are now complete on validation; the public site adds real-checkpoint qualitative and calibration diagnostics while test remains locked. The capacity-matched F=16 ConPath main model averages 0.09607 +/- 0.01222 exact Brier across three seeds, versus 0.11214 +/- 0.00306 for the independent decoder, 0.09204 +/- 0.00582 for the S4C-inspired coordinate control, and 0.07111 +/- 0.00377 for binary mean-map events; the mean-map hidden-cell Brier is 0.17842 +/- 0.00512, so all remain validation-only diagnostics, not final paper results.",
+  "active_task": "Finish the recent-method matrix with a diffusion-style port and official FlatLands implementation/weights check, replace the desk-surface pilot with a ground-robot/floor visual, then complete second-domain checks before any test access or final site claim.",
   "completed_milestones": [
     "Interruption-safe P0 training with atomic checkpoints and exact resume",
     "Two-seed synthetic P0 pass and matched no-reach failure",
@@ -35,6 +35,7 @@
     ,"Three-seed reliability and selective-risk curves generated for ConPath, independent decoder, and deterministic mean-map controls; test remains locked"
     ,"Website visual hierarchy enlarged and clarified; desk-surface TUM media explicitly marked as geometry-pipeline pilot pending ground-robot replacement"
     ,"256×256 B=8 K=8 exact merge-tree shape benchmark completed; query-time scaling recorded and output finiteness verified"
+    ,"S4C-inspired F16 coordinate-query control completed for seeds 20260831, 20260901, and 20260902; mean exact Brier 0.09204 +/- 0.00582 and four-method calibration snapshot published"
   ],
   "tracked_files": [
     "CONTINUATION.md",
@@ -88,6 +89,7 @@
     "site/data/flatlands_pasco_ensemble_validation.json",
     "site/data/flatlands_independent_decoder_validation.json",
     "site/data/flatlands_conpath_mean_map_validation.json",
+    "site/data/flatlands_s4c_coordinate_validation.json",
     "site/data/flatlands_calibration_validation.json",
     "site/assets/flatlands_calibration_reliability.svg",
     "site/assets/flatlands_calibration_false_safe.svg",
@@ -710,10 +712,115 @@
     },
     {
       "path": "results/p1_flatlands_calibration_validation/calibration_snapshot.json",
-      "role": "three-seed validation reliability and selective-risk snapshot; test split locked",
+      "role": "four-method, three-seed validation reliability and selective-risk snapshot; test split locked",
       "required_for_resume": false,
-      "bytes": 24713,
-      "sha256": "3ea388247d99cc882518452857c203ab34387d652b743bb5ca03f98c5054c947"
+      "bytes": 32976,
+      "sha256": "91bccac09827ddbbda126ee5eff25d450f14307cd5b9819ebc13b61a16bb3a70"
+    },
+    {
+      "path": "results/p1_flatlands_s4c_coordinate_f16/seed20260831_s4c_coordinate/run.json",
+      "role": "S4C-inspired coordinate-query validation training manifest, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 22273,
+      "sha256": "53debfb78c8542d591c084ed7ca75d8b1ad15bd284a23ba4402c90c169b80f87"
+    },
+    {
+      "path": "results/p1_flatlands_s4c_coordinate_f16/seed20260831_s4c_coordinate/best.pt",
+      "role": "S4C-inspired coordinate-query best validation checkpoint, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 1651081,
+      "sha256": "d5c9e20fd907204236fec8869d4d14d8f661a37f8b4b4e5a316ebb3e3ecab8c7"
+    },
+    {
+      "path": "results/p1_flatlands_s4c_coordinate_f16/seed20260831_s4c_coordinate/latest.pt",
+      "role": "S4C-inspired coordinate-query latest interruption-safe checkpoint, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 1654537,
+      "sha256": "001c400fa4c8992304a7e2f8fda89498d4e50fc0882d457b38d9891bfb7f3493"
+    },
+    {
+      "path": "results/p1_flatlands_s4c_coordinate_f16/seed20260831_s4c_coordinate/predictions_validation.csv",
+      "role": "label-free S4C-inspired coordinate-query validation predictions, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 153789,
+      "sha256": "10355aa7f1ad2e4fca8304d6a579825719b538bdc9bea8f6c741feabbdcca328"
+    },
+    {
+      "path": "results/p1_flatlands_s4c_coordinate_f16/seed20260831_s4c_coordinate/evaluation_validation/report.json",
+      "role": "S4C-inspired coordinate-query exact validation report, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 161255,
+      "sha256": "ac0c3d018cf563a2033b298276cfed4015f5b4287cfb21901a0fee4931f5358e"
+    },
+    {
+      "path": "results/p1_flatlands_s4c_coordinate_f16/seed20260901_s4c_coordinate/run.json",
+      "role": "S4C-inspired coordinate-query validation training manifest, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 32410,
+      "sha256": "0b26705cf6b0e383a80c48c623123a7ac49267b5058ec6062c88b0cc296a8894"
+    },
+    {
+      "path": "results/p1_flatlands_s4c_coordinate_f16/seed20260901_s4c_coordinate/best.pt",
+      "role": "S4C-inspired coordinate-query best validation checkpoint, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 1654537,
+      "sha256": "e43424319e46a09de93d6be027a06ee20dbc8405aa603b91e9b47d02c487b749"
+    },
+    {
+      "path": "results/p1_flatlands_s4c_coordinate_f16/seed20260901_s4c_coordinate/latest.pt",
+      "role": "S4C-inspired coordinate-query latest interruption-safe checkpoint, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 1657993,
+      "sha256": "74a9e550e09f8b4fadeb4bb8622250f23780cb615bd7dc2328797b6c06305616"
+    },
+    {
+      "path": "results/p1_flatlands_s4c_coordinate_f16/seed20260901_s4c_coordinate/predictions_validation.csv",
+      "role": "label-free S4C-inspired coordinate-query validation predictions, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 155431,
+      "sha256": "afc2622b735abe60d350a1fef437fba63822b9eadeb8f15d8b40e5309c1166b2"
+    },
+    {
+      "path": "results/p1_flatlands_s4c_coordinate_f16/seed20260901_s4c_coordinate/evaluation_validation/report.json",
+      "role": "S4C-inspired coordinate-query exact validation report, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 162123,
+      "sha256": "45d9a9dc713cf6bf30011b54bc4b57d806b44b7bca403f76561341c6b612070d"
+    },
+    {
+      "path": "results/p1_flatlands_s4c_coordinate_f16/seed20260902_s4c_coordinate/run.json",
+      "role": "S4C-inspired coordinate-query validation training manifest, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 23782,
+      "sha256": "7deab0ab81517c6fbeaf99a0d7c75ac899c88f6ffda1ee827494a9c399c4f52f"
+    },
+    {
+      "path": "results/p1_flatlands_s4c_coordinate_f16/seed20260902_s4c_coordinate/best.pt",
+      "role": "S4C-inspired coordinate-query best validation checkpoint, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 1651593,
+      "sha256": "45917febb11c5a235ac760f8bd9b342b335f069911600472983bbfd9ce739138"
+    },
+    {
+      "path": "results/p1_flatlands_s4c_coordinate_f16/seed20260902_s4c_coordinate/latest.pt",
+      "role": "S4C-inspired coordinate-query latest interruption-safe checkpoint, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 1655049,
+      "sha256": "776d06c6a82a6d412ffbdbfd266dbd39e0969ef7059eea23172256a3f9c95791"
+    },
+    {
+      "path": "results/p1_flatlands_s4c_coordinate_f16/seed20260902_s4c_coordinate/predictions_validation.csv",
+      "role": "label-free S4C-inspired coordinate-query validation predictions, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 154460,
+      "sha256": "2847c6a1d4c6c0a8c0b10870d6e336729ce388b0ef64d3119de496693cf109dd"
+    },
+    {
+      "path": "results/p1_flatlands_s4c_coordinate_f16/seed20260902_s4c_coordinate/evaluation_validation/report.json",
+      "role": "S4C-inspired coordinate-query exact validation report, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 161738,
+      "sha256": "fe1f4fe435e79453fb8343db324f83ae9414b4d37bf3fe712ea592987320e815"
     },
     {
       "path": "results/p1_flatlands_qualitative_validation/obs_008266_candidate0_r10.json",
@@ -775,7 +882,7 @@
   "last_verification": {
     "command": "PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -q && python3 -m compileall -q src scripts && PYTHONPATH=src .venv/bin/python scripts/verify_recovery_state.py",
     "result": "Ran 69 tests in 1.335s; OK; all source/scripts compile; 256x256 B=2 K=8 merge-tree output remained finite; full recovery verification passed with every registered artifact hash (including the 2.05 GB archive)",
-    "implementation_commit": "07227cf"
+    "implementation_commit": "1b77b88"
   },
   "recovery_commands": [
     "git status --short --branch",
@@ -785,10 +892,9 @@
   ],
   "next_command": "PYTHONPATH=src .venv/bin/python scripts/verify_recovery_state.py --quick",
   "next_actions": [
-    "Finish the running independent-decoder exact validation reports, then add deterministic-mean-map control; retain event and map metrics together.",
-    "Extend recent strong uncertainty/completion methods beyond the first PaSCo-inspired same-contract ensemble; keep cross-task metrics as references only.",
-    "Implement and validate batched exact-forward connectivity against the NumPy merge-tree oracle.",
-    "Report source/radius reliability, false-safe curves, bootstrap intervals, efficiency, and failure cases.",
+    "Finish the remaining diffusion-style recent-method port only if its 2-D event contract passes leakage checks; otherwise document incompatibility.",
+    "Check the official FlatLands implementation/weights and record compatibility or a principled reference-only decision.",
+    "Replace the desk-surface pilot with a clear ground-robot/floor visual showing posterior updates, footprint erosion, and a failure case.",
     "Audit and freeze a second scene/site-held-out domain; only then unlock FlatLands test once.",
     "Freeze final artifacts and write the ICRA/IROS paper package with explicit limitations and venue checks."
   ]

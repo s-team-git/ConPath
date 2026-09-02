@@ -5,16 +5,16 @@ diagnostic, code change, or experiment; do not rely on chat history or ignored `
 
 ## Recovery snapshot
 
-- Updated: 2026-09-01 (America/New_York)
+- Updated: 2026-09-02 (America/New_York)
 - Repository: `/home/hairo/pathrel_transfer/pathrel_pro6000`
 - Durable checkpoint: `p1-flatlands-validation-baselines-v1` in tracked `RECOVERY_STATE.json`
 - Recovery-state commit: resolve with `git log -1 --format='%h %s' -- RECOVERY_STATE.json`
-- Last durable implementation commit: `883ea65` (independent-decoder control plus chunked validation to permit safe CUDA parallelism; pushed to GitHub)
+- Last durable implementation commit: `1b77b88` (S4C-inspired coordinate-query control and three-seed training entry point; pushed to GitHub)
 - Scientific gate: **P0 GO; FlatLands bounded data gate and first validation baselines GO on a
   non-official provenance split; public-data model and paper claims not yet established**
-- Active task: run multi-seed ConPath and ablations, then scalable connectivity and calibration /
-  second-domain checks on the frozen bounded manifests. Do not use the leaking official split or
-  extract the archive.
+- Active task: finish the recent-method matrix (diffusion-style port and official FlatLands
+  implementation/weights check), then ground-robot/floor visual replacement and second-domain
+  checks on the frozen bounded manifests. Do not use the leaking official split or extract the archive.
 
 ### GPU visibility and publication status (2026-08-31)
 
@@ -396,6 +396,29 @@ architecture. The exact scene-weighted validation result is map Brier `0.110545`
 `0.228984`, NLL `2.898173`, ECE `0.248410`, and false-safe@0.8 `0.015380`. The compact report and
 member/prediction hashes are tracked in `site/data/flatlands_pasco_ensemble_validation.json`; the
 full ignored artifacts remain under `results/p1_flatlands_pasco_ensemble_validation/`.
+
+### S4C-inspired coordinate-query control (completed)
+
+`S4CInspiredCoordinateBaseline` is now available through
+`scripts/train_flatlands_direct_query.py --architecture s4c_coordinate`. It keeps the canonical
+three-channel replay, F=16 encoder, frozen train/validation scenes, 4,224 retained event rows,
+radii 0/10/20, AdamW protocol, and test lock. The only architectural change is a coordinate-query
+implicit field: bilinear start/goal feature sampling plus Fourier encodings of geometry and radius.
+It is explicitly a recent-method-inspired control, not a reproduction of S4C's original 3-D system.
+
+Three seeds completed in parallel without OOM or protocol failures:
+
+| Seed | Best epoch | Exact scene-weighted Brier | NLL | ECE | False-safe @0.8 |
+|---:|---:|---:|---:|---:|---:|
+| 20260831 | 18 | 0.09873 | 0.34064 | 0.04406 | 0.09431 |
+| 20260901 | 38 | 0.08812 | 0.34856 | 0.05047 | 0.09958 |
+| 20260902 | 21 | 0.08927 | 0.31314 | 0.03452 | 0.09276 |
+| **mean ± sample SD** | — | **0.09204 ± 0.00582** | **0.33411 ± 0.01859** | **0.04302 ± 0.00803** | **0.09555 ± 0.00357** |
+
+The coordinate control is competitive on event Brier/NLL/ECE, but its false-safe risk at the 0.8
+threshold is higher than ConPath (`0.09555` versus `0.06004`). The four-method calibration curves
+and JSON snapshot are regenerated on the site; all numbers remain validation diagnostics and do not
+support a final paper or SOTA claim.
 
 ## Validation qualitative panels and website state
 

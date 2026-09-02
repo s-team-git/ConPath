@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build validation-only calibration and high-confidence-risk diagnostics.
 
-The evaluator consumes the already-exported, label-free prediction manifests from the three
+The evaluator consumes the already-exported, label-free prediction manifests from the four
 capacity-matched controls.  It joins each manifest to the frozen provenance validation labels,
 then aggregates equal-scene metrics across the three seeds.  No checkpoint is selected here and
 the FlatLands test split is never opened.
@@ -30,6 +30,7 @@ COLORS = {
     "conpath": "#168f63",
     "independent_decoder": "#d97706",
     "mean_map": "#7c3aed",
+    "s4c_coordinate": "#2563eb",
 }
 
 
@@ -74,6 +75,12 @@ def _method_specs() -> tuple[dict[str, Any], ...]:
             "label": "Posterior mean-map threshold",
             "root": Path("results/p1_flatlands_conpath_mean_map_f16"),
             "pattern": "seed{seed}/predictions_validation.csv",
+        },
+        {
+            "id": "s4c_coordinate",
+            "label": "S4C coordinate control",
+            "root": Path("results/p1_flatlands_s4c_coordinate_f16"),
+            "pattern": "seed{seed}_s4c_coordinate/predictions_validation.csv",
         },
     )
 
@@ -258,7 +265,7 @@ def _write_reliability_svg(path: Path, methods: list[dict[str, Any]]) -> None:
             for x, y in points:
                 lines.append(f'<circle cx="{left + x * width:.1f}" cy="{top + (1 - y) * height:.1f}" r="5" fill="{color}"/>')
     for index, method in enumerate(methods):
-        x = 120 + index * 245
+        x = 100 + index * 215
         color = COLORS[method["id"]]
         lines.append(f'<line x1="{x}" y1="505" x2="{x + 24}" y2="505" stroke="{color}" stroke-width="4"/>')
         lines.append(f'<text x="{x + 32}" y="510" class="legend">{html.escape(method["label"])}</text>')
@@ -290,7 +297,7 @@ def _write_false_safe_svg(path: Path, methods: list[dict[str, Any]]) -> None:
             for x, y in points:
                 lines.append(f'<circle cx="{left + x * width:.1f}" cy="{top + (1 - y) * height:.1f}" r="5" fill="{color}"/>')
     for index, method in enumerate(methods):
-        x = 120 + index * 245
+        x = 100 + index * 215
         color = COLORS[method["id"]]
         lines.append(f'<line x1="{x}" y1="505" x2="{x + 24}" y2="505" stroke="{color}" stroke-width="4"/>')
         lines.append(f'<text x="{x + 32}" y="510" class="legend">{html.escape(method["label"])}</text>')

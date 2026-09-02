@@ -56,11 +56,24 @@
 <polyline points="90.0,471.6 910.0,135.8" fill="none" stroke="#7c3aed" stroke-width="3" stroke-linejoin="round"/>
 <circle cx="90.0" cy="471.6" r="5" fill="#7c3aed"/>
 <circle cx="910.0" cy="135.8" r="5" fill="#7c3aed"/>
-<line x1="120" y1="505" x2="144" y2="505" stroke="#168f63" stroke-width="4"/>
-<text x="152" y="510" class="legend">ConPath stochastic</text>
-<line x1="365" y1="505" x2="389" y2="505" stroke="#d97706" stroke-width="4"/>
-<text x="397" y="510" class="legend">Independent decoder</text>
-<line x1="610" y1="505" x2="634" y2="505" stroke="#7c3aed" stroke-width="4"/>
-<text x="642" y="510" class="legend">Posterior mean-map threshold</text>
+<polyline points="104.0,471.3 208.2,412.6 294.0,368.3 379.1,352.4 461.8,314.4 540.4,257.5 623.5,229.3 706.7,206.7 786.5,156.6 898.7,123.5" fill="none" stroke="#2563eb" stroke-width="3" stroke-linejoin="round"/>
+<circle cx="104.0" cy="471.3" r="5" fill="#2563eb"/>
+<circle cx="208.2" cy="412.6" r="5" fill="#2563eb"/>
+<circle cx="294.0" cy="368.3" r="5" fill="#2563eb"/>
+<circle cx="379.1" cy="352.4" r="5" fill="#2563eb"/>
+<circle cx="461.8" cy="314.4" r="5" fill="#2563eb"/>
+<circle cx="540.4" cy="257.5" r="5" fill="#2563eb"/>
+<circle cx="623.5" cy="229.3" r="5" fill="#2563eb"/>
+<circle cx="706.7" cy="206.7" r="5" fill="#2563eb"/>
+<circle cx="786.5" cy="156.6" r="5" fill="#2563eb"/>
+<circle cx="898.7" cy="123.5" r="5" fill="#2563eb"/>
+<line x1="100" y1="505" x2="124" y2="505" stroke="#168f63" stroke-width="4"/>
+<text x="132" y="510" class="legend">ConPath stochastic</text>
+<line x1="315" y1="505" x2="339" y2="505" stroke="#d97706" stroke-width="4"/>
+<text x="347" y="510" class="legend">Independent decoder</text>
+<line x1="530" y1="505" x2="554" y2="505" stroke="#7c3aed" stroke-width="4"/>
+<text x="562" y="510" class="legend">Posterior mean-map threshold</text>
+<line x1="745" y1="505" x2="769" y2="505" stroke="#2563eb" stroke-width="4"/>
+<text x="777" y="510" class="legend">S4C coordinate control</text>
 <text x="90" y="548" class="subtitle">Validation-only · equal-scene weighting · 3 seeds · FlatLands test split locked</text>
 </svg>

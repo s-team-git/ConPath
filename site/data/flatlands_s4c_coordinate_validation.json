@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "project": "ConPath",
+  "dataset": "FlatLands",
+  "kind": "validation_recent_method_control_snapshot",
+  "paper_result": false,
+  "test_evaluated": false,
+  "protocol": "P1_BASELINE_PROTOCOL.md v1 + S4C-inspired coordinate-query control; F=16",
+  "primary_weighting": "equal source-scene, then equal event within scene",
+  "radii_cells": [0, 10, 20],
+  "rows": [
+    {"seed": 20260831, "best_epoch": 18, "brier": 0.0987286898, "nll": 0.3406353775, "ece": 0.0440569700, "false_safe_rate@0.8": 0.0943148428, "coverage@0.8": 0.3489865479, "report": "results/p1_flatlands_s4c_coordinate_f16/seed20260831_s4c_coordinate/evaluation_validation/report.json"},
+    {"seed": 20260901, "best_epoch": 38, "brier": 0.0881152796, "nll": 0.3485613453, "ece": 0.0504737866, "false_safe_rate@0.8": 0.0995769872, "coverage@0.8": 0.4239442011, "report": "results/p1_flatlands_s4c_coordinate_f16/seed20260901_s4c_coordinate/evaluation_validation/report.json"},
+    {"seed": 20260902, "best_epoch": 21, "brier": 0.0892734107, "nll": 0.3131398986, "ece": 0.0345248035, "false_safe_rate@0.8": 0.0927614294, "coverage@0.8": 0.4028548905, "report": "results/p1_flatlands_s4c_coordinate_f16/seed20260902_s4c_coordinate/evaluation_validation/report.json"}
+  ],
+  "mean_sample_sd": {
+    "brier": [0.0920391267, 0.0058221996],
+    "nll": [0.3341122072, 0.0185898772],
+    "ece": [0.0430185200, 0.0080250420],
+    "false_safe_rate@0.8": [0.0955510865, 0.0035719996],
+    "coverage@0.8": [0.3919285465, 0.0386548986]
+  },
+  "interpretation": "Validation-only recent-method-inspired control: bilinear coordinate queries and Fourier geometry encoding under the exact FlatLands event contract. This is not a reproduction of S4C's original 3-D system, does not transfer cross-task scores, and does not unlock the FlatLands test split."
+}
