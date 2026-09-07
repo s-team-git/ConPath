@@ -293,6 +293,7 @@
           <p class="eyebrow audit-eyebrow">CLEAN CHECKPOINTS · SAME QUERIES · VALIDATION ONLY</p>
           <h2 class="center-title">What the controlled experiments show</h2>
           <p class="section-lede">Spatial dependence changes event accuracy, while the strongest deterministic control and equal-coverage risk qualify the result.</p>
+          <div class="scope-note"><strong>Training ablation protocol frozen · 2026-09-07.</strong> Six clean runs test removal of the event training loss or global decoder factors, with three matched seeds each. Architecture, support, queries, selection rules and K=128 evaluation remain fixed. The full model is reused; all seeds and null results will be reported after the audits. <a href="https://github.com/s-team-git/ConPath/blob/main/CLEAN_ABLATION_PLAN.md">Read the training and analysis plan ↗</a></div>
           <div class="scope-note"><strong>Fixed marginals.</strong> Independently shuffling the world index at every cell preserves each empirical occupancy probability exactly, but event Brier rises from <strong>0.06749</strong> to <strong>0.16139</strong>. The same-checkpoint mean map reaches <strong>0.06957</strong>, so the stochastic advantage over deterministic thresholding is small and reverses in one seed. The shuffle is an evaluation intervention, not a retrained architecture ablation.</div>
           <div class="table-wrap">
             <table>

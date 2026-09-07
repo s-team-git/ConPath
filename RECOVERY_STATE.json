@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "checkpoint_id": "paper-evidence-projection-v2-20260906",
-  "updated_local_date": "2026-09-06",
+  "checkpoint_id": "clean-causal-ablations-running-20260907",
+  "updated_local_date": "2026-09-07",
   "timezone": "America/New_York",
   "branch": "main",
-  "remote_sync": "First clean-support publication 2deced0/0000508 is on origin/main; Pages run 34077832249 succeeded. This handoff packages paper analyses and the final mean-map projection correction. Resolve the latest publication with git log -1 -- RECOVERY_STATE.json and the ignored deployment report results/maintenance_20260906/paper_deployed_artifacts.json.",
-  "latest_local_commit": "392017b adds paper-analysis controls; a00c86a fixes final mean-map projection and adds observation bounds. Manuscript/site/recovery evidence is committed with this handoff; resolve its revision using git log -1 -- RECOVERY_STATE.json.",
+  "remote_sync": "Source implementation e6f0910 is pushed to origin/main. The current handoff records the running six-experiment ablation matrix; the earlier paper/site bundle 0666676 deployed successfully.",
+  "latest_local_commit": "e6f0910 implements the matrix; resolve the documentation/status revision with git log -1 -- RECOVERY_STATE.json.",
   "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence.",
   "scientific_status": "P0 passes in two seeds. Clean-support FlatLands K=128 gives event Brier 0.06749 +/- 0.00936 versus independent 0.09521 +/- 0.00703 on the scene-disjoint non-official validation split. The nine-method comparison includes same-checkpoint mean maps (0.06957 +/- 0.00380) and a fixed empirical marginal shuffle (0.16139 +/- 0.00677); spatial dependence has positive mechanism evidence, but the mean-map advantage and equal-30%-coverage risk advantage (3.60% versus 3.90%) are not stable across paired intervals. All six original K=128 predictions replay exactly. UnScenes3D mean-map/qualitative v1 reopened invalid support after sampling and is superseded by v2: Brier 0.51142 +/- 0.00198 versus independent 0.51130 +/- 0.00218. Training weights and hidden-map metrics replay exactly; all 27,522 model predictions obey the exact observation bounds. The frozen hard-observation validation Brier lower bound is 0.47574, and only 15.66% of events are mutable through unknown completion. The manuscript remains a working draft. Both physical tests remain locked; no successful transfer or final-paper claim is supported.",
-  "active_task": "The September 6 paper-evidence bundle is complete. Next research gate: clean three-seed no-event/no-global FlatLands training, then a train-only observation-model audit for a separately versioned UnScenes3D protocol, scalable backward-operator evidence, and final same-contract baselines. No training process or runtime goal is active; physical tests stay locked.",
+  "active_task": "Clean FlatLands no-event/no-global three-seed matrix is running under results/paper_clean_ablation_matrix_v1. At launch three no_event workers are active and three no_global runs queued, maximum concurrency 3. Read progress.json for live status. The detached supervisor automatically audits all six and builds paired JSON/Markdown/SVG/PDF candidate evidence. Review complete evidence before paper/site promotion. Physical tests stay locked; no runtime goal is registered.",
   "completed_milestones": [
     "Interruption-safe P0 training with atomic checkpoints and exact resume",
     "Two-seed synthetic P0 pass and matched no-reach failure",
@@ -93,9 +93,12 @@
     "A new independent observation-bound check exposed UnScenes3D v1 mean-map postprocessing that reopened invalid support. Both evaluator and renderer now use final support projection; six original clean checkpoints replay exactly in v2 with zero hidden-map metric drift and zero bound violations among 27,522 event predictions.",
     "UnScenes3D v2 paired Brier is 0.51142 +/- 0.00198 versus independent 0.51130 +/- 0.00218; positive and false-safe qualitative panels were regenerated. Earlier v1 results remain archived and must not be used as current support-consistent event evidence.",
     "PAPER_DRAFT.md was rewritten around current positive and null findings; PAPER_DRAFT_HISTORY.md preserves the previous version, PAPER_EVIDENCE.md contains reproducible tables/commands, and five SVG/PDF scientific figure pairs plus compact JSON were added to the site.",
-    "89 unit tests pass. Paper evidence audit replays 23 FlatLands prediction files, checks 27,522 UnScenes3D bounds, 87 Python files, 29 site JSON files, 79 local links and 25 image elements; Chrome desktop/mobile checks pass."
+    "89 unit tests pass. Paper evidence audit replays 23 FlatLands prediction files, checks 27,522 UnScenes3D bounds, 87 Python files, 29 site JSON files, 79 local links and 25 image elements; Chrome desktop/mobile checks pass.",
+    "September 7 clean no-event/no-global protocol and analysis plan frozen before inspecting ablation outcomes; all training/model/data hashes match the clean full-model reference. Four configuration/resume regression tests bring the suite to 93 passing tests.",
+    "Detached six-run clean ablation supervisor launched on the RTX PRO 6000, initially three no_event workers with no_global queued. The new audit exactly replays full-model seed 20260831 Brier 0.059479796640678484. This is a running experiment, not a completed ablation result."
   ],
   "tracked_files": [
+    "CLEAN_ABLATION_PLAN.md",
     "CONTINUATION.md",
     "OFFICIAL_FLATLANDS_CHECK.md",
     "ORFD_COMPATIBILITY_CHECK.md",
@@ -110,6 +113,7 @@
     "UNSCENES3D_PROTOCOL.md",
     "WORK_PLAN.md",
     "results/verification.md",
+    "scripts/analyze_flatlands_clean_ablations.py",
     "scripts/analyze_flatlands_clean_validation.py",
     "scripts/audit_flatlands_archive.py",
     "scripts/audit_flatlands_conpath_k128.py",
@@ -140,6 +144,7 @@
     "scripts/render_flatlands_k128_advantage.py",
     "scripts/render_flatlands_qualitative.py",
     "scripts/render_unscenes3d_qualitative.py",
+    "scripts/run_flatlands_clean_ablations.py",
     "scripts/run_flatlands_conpath_matrix.sh",
     "scripts/run_flatlands_radius_prior.py",
     "scripts/train_flatlands_completion.py",
@@ -195,6 +200,7 @@
     "site/data/unscenes3d_replay_audit.json",
     "site/index.html",
     "site/styles.css",
+    "src/pathrel/ablation_protocol.py",
     "src/pathrel/flatlands.py",
     "src/pathrel/flatlands_baselines.py",
     "src/pathrel/flatlands_data.py",
@@ -209,6 +215,7 @@
     "src/pathrel/recovery.py",
     "src/pathrel/selective_risk.py",
     "src/pathrel/unscenes3d.py",
+    "tests/test_ablation_protocol.py",
     "tests/test_demo_site.py",
     "tests/test_flatlands_baselines.py",
     "tests/test_flatlands_conpath.py",
@@ -2413,12 +2420,89 @@
       "required_for_resume": true,
       "bytes": 1505,
       "sha256": "fef760c5b03d05221683489e84d3186c53834f72428016d1280d16c849b46b67"
+    },
+    {
+      "path": "results/paper_clean_ablation_matrix_v1/matrix.json",
+      "role": "immutable clean ablation matrix with complete configuration and reference/source hashes",
+      "required_for_resume": true,
+      "bytes": 20155,
+      "sha256": "5894178965c563399ce93120a3b2ab4e1d112d89710b1a4db4ef08b38b489d15"
+    },
+    {
+      "path": "results/paper_clean_ablation_matrix_v1/progress.json",
+      "role": "live ablation execution state; intentionally unhashed because it changes during training",
+      "required_for_resume": true
+    },
+    {
+      "path": "results/paper_clean_ablation_matrix_v1/supervisor.log",
+      "role": "live ablation execution state; intentionally unhashed because it changes during training",
+      "required_for_resume": true
+    },
+    {
+      "path": "results/paper_clean_ablation_matrix_v1/seed20260831_no_event/best.pt",
+      "role": "live clean ablation checkpoint; optional before first completed epoch, intentionally unhashed until training finishes",
+      "required_for_resume": false
+    },
+    {
+      "path": "results/paper_clean_ablation_matrix_v1/seed20260831_no_event/latest.pt",
+      "role": "live clean ablation checkpoint; optional before first completed epoch, intentionally unhashed until training finishes",
+      "required_for_resume": false
+    },
+    {
+      "path": "results/paper_clean_ablation_matrix_v1/seed20260831_no_global/best.pt",
+      "role": "live clean ablation checkpoint; optional before first completed epoch, intentionally unhashed until training finishes",
+      "required_for_resume": false
+    },
+    {
+      "path": "results/paper_clean_ablation_matrix_v1/seed20260831_no_global/latest.pt",
+      "role": "live clean ablation checkpoint; optional before first completed epoch, intentionally unhashed until training finishes",
+      "required_for_resume": false
+    },
+    {
+      "path": "results/paper_clean_ablation_matrix_v1/seed20260901_no_event/best.pt",
+      "role": "live clean ablation checkpoint; optional before first completed epoch, intentionally unhashed until training finishes",
+      "required_for_resume": false
+    },
+    {
+      "path": "results/paper_clean_ablation_matrix_v1/seed20260901_no_event/latest.pt",
+      "role": "live clean ablation checkpoint; optional before first completed epoch, intentionally unhashed until training finishes",
+      "required_for_resume": false
+    },
+    {
+      "path": "results/paper_clean_ablation_matrix_v1/seed20260901_no_global/best.pt",
+      "role": "live clean ablation checkpoint; optional before first completed epoch, intentionally unhashed until training finishes",
+      "required_for_resume": false
+    },
+    {
+      "path": "results/paper_clean_ablation_matrix_v1/seed20260901_no_global/latest.pt",
+      "role": "live clean ablation checkpoint; optional before first completed epoch, intentionally unhashed until training finishes",
+      "required_for_resume": false
+    },
+    {
+      "path": "results/paper_clean_ablation_matrix_v1/seed20260902_no_event/best.pt",
+      "role": "live clean ablation checkpoint; optional before first completed epoch, intentionally unhashed until training finishes",
+      "required_for_resume": false
+    },
+    {
+      "path": "results/paper_clean_ablation_matrix_v1/seed20260902_no_event/latest.pt",
+      "role": "live clean ablation checkpoint; optional before first completed epoch, intentionally unhashed until training finishes",
+      "required_for_resume": false
+    },
+    {
+      "path": "results/paper_clean_ablation_matrix_v1/seed20260902_no_global/best.pt",
+      "role": "live clean ablation checkpoint; optional before first completed epoch, intentionally unhashed until training finishes",
+      "required_for_resume": false
+    },
+    {
+      "path": "results/paper_clean_ablation_matrix_v1/seed20260902_no_global/latest.pt",
+      "role": "live clean ablation checkpoint; optional before first completed epoch, intentionally unhashed until training finishes",
+      "required_for_resume": false
     }
   ],
   "last_verification": {
-    "command": "PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 -m unittest discover -s tests -q; scripts/audit_paper_evidence.py; Chrome CDP desktop/mobile; git diff --check; scripts/verify_recovery_state.py",
-    "result": "89 tests passed; 23 FlatLands prediction files replay; 27,522 UnScenes3D predictions obey observation bounds; 87 Python files parse; 29 JSON files and 79 local links pass; 25 image elements load; desktop 1440/mobile 390 has no overflow. Full recovery SHA verification runs immediately before this handoff publication. Full recovery verification passed 438/438 entries with SHA-256 enabled and zero failures.",
-    "implementation_commit": "392017b / a00c86a"
+    "command": "93-test unittest suite; three-reference checkpoint/source/frozen-query preflight; independent new-auditor replay on existing full-model seed 20260831; AST parse; git diff --check; quick recovery verifier",
+    "result": "93 tests passed. Six configurations differ from the full reference only by the intended factor and output directory. Original full-model seed 20260831 replays exactly. Three real training workers are visible on the GPU. Previous full recovery verification passed 438 entries with hashes; live checkpoint files intentionally have no frozen hash until completion. The updated quick recovery verifier passed all 458 entries with zero failures.",
+    "implementation_commit": "e6f0910"
   },
   "recovery_commands": [
     "git status --short --branch",
@@ -2429,13 +2513,24 @@
     "PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/compare_flatlands_k128_paired.py --correlated-root results/p1_flatlands_conpath_k128_support_clamped_v1 --independent-root results/p1_flatlands_independent_k128_support_clamped_v1 --output /tmp/flatlands_clean_paired.json",
     "PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/audit_paper_evidence.py",
     "cat WORK_PLAN.md",
-    "tail -n 65 CONTINUATION.md"
+    "tail -n 65 CONTINUATION.md",
+    "cat results/paper_clean_ablation_matrix_v1/progress.json"
   ],
-  "next_command": "cat WORK_PLAN.md",
+  "next_command": "cat results/paper_clean_ablation_matrix_v1/progress.json",
   "next_actions": [
-    "Run clean no-event/no-global FlatLands training for all three fixed seeds; keep the full model, architecture, queries, selection rules, budgets and support contract fixed. Do not reuse superseded ablations.",
-    "Use training data only to audit a separately versioned second-domain observation likelihood before another adapter matrix. The frozen hard-observation bound cannot be removed by more optimization alone.",
-    "Complete scalable backward-operator evidence and the final same-contract recent-method baseline table; freeze paper tables and analysis decisions.",
-    "Keep FlatLands physical test and UnScenes3D location_6 locked until the method/control protocol and explicit test go/no-go are frozen."
-  ]
+    "Monitor the existing supervisor; do not launch duplicate workers. Check progress.json and logs for training/evaluation status.",
+    "After all six runs complete, inspect the automatically generated analysis/report.json and PAPER_ABLATIONS.md, including every seed and null or reversed effects.",
+    "Incorporate audited ablation statistics/figures into the working manuscript and website, update completed checkpoint hashes, then commit and push the result package.",
+    "Next research gate: train-only observation likelihood audit for a separate UnScenes3D adapter protocol, scalable backward-operator evidence and the final same-contract baseline comparison.",
+    "Keep the FlatLands physical test and UnScenes3D location_6 locked until the final method/control protocol and test go/no-go are frozen."
+  ],
+  "active_training": {
+    "root": "results/paper_clean_ablation_matrix_v1",
+    "launch_utc": "2026-09-07T05:18:33Z",
+    "supervisor_pid_at_launch": 4078565,
+    "progress": "results/paper_clean_ablation_matrix_v1/progress.json",
+    "log": "results/paper_clean_ablation_matrix_v1/supervisor.log",
+    "implementation_commit": "e6f0910",
+    "live_files_are_mutable": true
+  }
 }

@@ -5,9 +5,12 @@ diagnostic, code change, or experiment; do not rely on chat history or ignored `
 
 ## Recovery snapshot
 
-- Updated: 2026-09-06 (America/New_York)
+Active experiment: six clean training ablations launched on 2026-09-07. Live status:
+`results/paper_clean_ablation_matrix_v1/progress.json`; do not start duplicate workers.
+
+- Updated: 2026-09-07 (America/New_York)
 - Repository: `/home/hairo/pathrel_transfer/pathrel_pro6000`
-- Durable checkpoint: `clean-support-paper-continuation-20260906` in tracked `RECOVERY_STATE.json`
+- Durable checkpoint: `clean-causal-ablations-running-20260907` in tracked `RECOVERY_STATE.json`
 - Recovery-state commit: resolve with `git log -1 --format='%h %s' -- RECOVERY_STATE.json`
 - Implementation history: `61d617e` is the September 2 base. The September 6 publication packages the clean-support implementation, audits and figures; resolve its revision with `git log -1 -- WORK_PLAN.md`. Current execution order is in `WORK_PLAN.md`.
 - Scientific gate: **P0 GO; FlatLands K=128 clean-support validation candidate and bounded data gate
@@ -24,7 +27,7 @@ diagnostic, code change, or experiment; do not rely on chat history or ignored `
   more training. PAPER_DRAFT.md and PAPER_EVIDENCE.md now reflect these positive and null results.
   All results remain validation-only. The physical test and UnScenes3D location_6 remain locked;
   do not extract the FlatLands archive. The next research gate is the clean no-event/no-global
-  training matrix, followed by a train-only observation-model audit and scalable-operator evidence.
+  training matrix (launched 2026-09-07), followed by a train-only observation-model audit and scalable-operator evidence.
 
 ### GPU visibility and publication status (2026-08-31)
 
@@ -1134,3 +1137,31 @@ No active training or runtime goal is registered. Next: clean three-seed no-even
 training under the fixed FlatLands protocol; the shuffle intervention does not replace it.
 The deterministic-control gap, unstable equal-coverage advantage, small second-domain sample,
 and absent scalable backward operator remain explicit final-paper limitations.
+
+## 2026-09-07 clean ablation matrix launched
+
+The user requested the next step. Implementation `e6f0910` adds the frozen six-run
+matrix, configuration guards, safe resume/finalization, per-run strict audit and
+paired analysis. Trainer/model/data hashes exactly match the original clean full
+model. The full model is reused; no_event changes only reachability_weight to zero,
+and no_global changes only disable_global_factors to true. The protocol and analysis
+rules are in CLEAN_ABLATION_PLAN.md. All 93 unit tests pass, and the new audit replayed
+the original seed 20260831 full-model Brier exactly (0.059479796640678484).
+
+Supervisor PID at launch: 4078565. Initial no_event worker PIDs: 4078837 / 4078838 /
+4078839; the three no_global runs are queued. These are launch identifiers, not a
+promise that the same PID is still alive. Read the current ignored progress file:
+
+`results/paper_clean_ablation_matrix_v1/progress.json`
+
+The detached supervisor continues independently of this conversation, at most three
+workers at a time. It preserves the original training code and exact evaluation.
+The immutable matrix records complete commands, reference report/checkpoint hashes,
+training source hashes and launch revision. Do not launch duplicate workers. If the
+supervisor stops, inspect supervisor.log and per-worker logs before using the same
+runner command to resume; ambiguous directories are deliberately refused.
+
+After all six runs finish, the supervisor automatically audits them and writes the
+paired JSON, manuscript table and SVG/PDF candidates under `analysis/`. Review those
+results before incorporating them into PAPER_DRAFT.md and the published site. Both
+physical test sets remain locked. No runtime goal was registered.

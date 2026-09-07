@@ -118,3 +118,5 @@ Limitations include validation reuse for checkpoint selection, the non-official 
 The evidence supports further study of joint map structure and event scoring. It does not yet meet the final-paper gate: deterministic controls remain close, equal-coverage risk improvement over the independent decoder is not stable, and the second-domain adapter has a large observation-conditioned error floor.
 
 The next training milestone is a clean three-seed no-event/no-global causal matrix on the fixed FlatLands contract. Before another second-domain matrix, a training-only observation model audit must address the bound without held-out test labels. Scalable training-operator evidence, the final recent-method comparison, and a frozen official test protocol remain necessary. This remains a working draft; final public-data, transfer, and submission-ready claims are unsupported.
+
+The clean no-event/no-global training matrix was launched on 2026-09-07 under the frozen [ablation analysis plan](CLEAN_ABLATION_PLAN.md). No ablation result is claimed before all six seeds/runs complete their audits.
