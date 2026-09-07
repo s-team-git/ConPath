@@ -20,7 +20,7 @@ UnScenes3D 仅两个验证场景，相关模型和独立对照几乎一致。
 |---|---|---|
 | 1. 版本与网站 | 已完成：`2deced0` / `0000508`，Pages 部署成功，三张 PNG 与两份 JSON 线上字节一致 | 提交修正后的代码、审计与真实检查点图片；GitHub Pages 部署成功；线上图片和 JSON 与本地一致 |
 | 2. 修正后论文分析 | 已完成：九方法同查询表、分层指标与等覆盖率配对统计 | 用相同验证查询比较强基线；更新校准、分层风险和等覆盖率比较；结果可由命令重建 |
-| 3. 采样与消融 | K、均值图、固定边际干预已完成；六组 clean 训练消融已启动，最多三路并行 | 在 clean-support 检查点上检查 K 收敛与确定性均值图；no-event/no-global 必须使用修正后训练，旧结果仅归档 |
+| 3. 采样与消融 | K、均值图、固定边际干预已完成；六组 clean 训练消融按用户要求暂停，三组 no_event 完成第 4 轮，no_global 未启动 | 在 clean-support 检查点上检查 K 收敛与确定性均值图；no-event/no-global 必须使用修正后训练，旧结果仅归档 |
 | 4. 第二域失败分析 | 已完成观测下界诊断，修复均值图后处理并回放六组检查点；替代观测模型待验证 | 区分输入观测、支撑边界、预测对象及样本量的影响；无优势仍作为负结果报告，不能用测试集选方案 |
 | 5. 算法与论文冻结 | 新证据已写入主稿并生成图表；算子与最终冻结未完成 | 连通算子正确性及规模/时间/显存证据；主表、图、方法、局限和复现说明与有效报告一致 |
 | 6. 正式测试与投稿 | 尚未启动 | 在方法、查询、基线和分析规则冻结后，单独决定测试协议与 test go/no-go |
@@ -53,18 +53,21 @@ UnScenes3D 仅两个验证场景，相关模型和独立对照几乎一致。
 - 均值图/绘图后处理曾重新打开无效区域，已修复并保留 v1 历史。v2 六组验证 Brier 为
   0.51142 vs 0.51130，27,522 条预测均满足上下界；训练权重和隐藏区域地图指标完全复现。
 
-当前已启动同一 FlatLands clean-support 合同下的 no-event/no-global 三 seed 对照：
+已启动后按用户要求暂停同一 FlatLands clean-support 合同下的 no-event/no-global 三 seed 对照：
 固定 F=16、训练 K=8、验证 K=128/chunk=8、40 epoch 上限与 patience=8；
 仅分别改 `reachability_weight=0` 或 `disable_global_factors=true`，每组独立目录，保留完整模型参考。
 固定边际干预是评估时干预，不能替代这两项训练消融。
 
 第二域后续先做 train-only 的观测似然/置信度模型审计，再冻结新协议；不能按当前两验证场景
-选择观测阈值，也不能直接解锁 `location_6`。当前训练由可恢复 supervisor 执行，没有注册 runtime goal。
+选择观测阈值，也不能直接解锁 `location_6`。训练 supervisor 已退出，没有注册 runtime goal。
 
 ## 2026-09-07 执行状态
 
 训练与分析规则已冻结在 [CLEAN_ABLATION_PLAN.md](CLEAN_ABLATION_PLAN.md)，实现提交为 `e6f0910`。
-启动时三组 no_event 正在运行，三组 no_global 排队；实时状态以
-`results/paper_clean_ablation_matrix_v1/progress.json` 为准。
-六组完成后自动审计并生成配对报告与 SVG/PDF 候选图，再据结果更新论文和网站主表。
+01:50 EDT 按用户要求安全暂停：三组 no_event 均完成第 4 轮，三组 no_global 尚未启动；
+调度器和训练进程已退出，实验显存已释放。恢复状态以
+`results/paper_clean_ablation_matrix_v1/progress.json` 与 `pause_checkpoint_audit.json` 为准。
+九份 latest/best/interrupted 检查点的模型、优化器、配置和随机状态恢复核验通过。
+等待用户要求恢复，不能自动续训；恢复时由完整第 4 轮的 `latest.pt` 重跑第 5 轮，
+不使用包含半轮更新的 `interrupted.pt` 替换它。六组全部完成后再审计、生成候选图并更新论文与网站。
 新增恢复/配置保护测试后，93 项单元测试通过；原始 full-model CSV 的独立回放也通过。

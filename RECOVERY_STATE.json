@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "checkpoint_id": "clean-causal-ablations-running-20260907",
+  "checkpoint_id": "clean-causal-ablations-paused-20260907",
   "updated_local_date": "2026-09-07",
   "timezone": "America/New_York",
   "branch": "main",
-  "remote_sync": "Source implementation e6f0910 is pushed to origin/main. The current handoff records the running six-experiment ablation matrix; the earlier paper/site bundle 0666676 deployed successfully.",
-  "latest_local_commit": "e6f0910 implements the matrix; resolve the documentation/status revision with git log -1 -- RECOVERY_STATE.json.",
+  "remote_sync": "Implementation e6f0910 and launch/plan 69b6ac2 are pushed to origin/main; the plan website deployed successfully at 69b6ac2. Resolve the pause handoff revision with git log -1 -- RECOVERY_STATE.json.",
+  "latest_local_commit": "Pause handoff: resolve with git log -1 -- RECOVERY_STATE.json; the frozen training implementation remains e6f0910.",
   "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence.",
   "scientific_status": "P0 passes in two seeds. Clean-support FlatLands K=128 gives event Brier 0.06749 +/- 0.00936 versus independent 0.09521 +/- 0.00703 on the scene-disjoint non-official validation split. The nine-method comparison includes same-checkpoint mean maps (0.06957 +/- 0.00380) and a fixed empirical marginal shuffle (0.16139 +/- 0.00677); spatial dependence has positive mechanism evidence, but the mean-map advantage and equal-30%-coverage risk advantage (3.60% versus 3.90%) are not stable across paired intervals. All six original K=128 predictions replay exactly. UnScenes3D mean-map/qualitative v1 reopened invalid support after sampling and is superseded by v2: Brier 0.51142 +/- 0.00198 versus independent 0.51130 +/- 0.00218. Training weights and hidden-map metrics replay exactly; all 27,522 model predictions obey the exact observation bounds. The frozen hard-observation validation Brier lower bound is 0.47574, and only 15.66% of events are mutable through unknown completion. The manuscript remains a working draft. Both physical tests remain locked; no successful transfer or final-paper claim is supported.",
-  "active_task": "Clean FlatLands no-event/no-global three-seed matrix is running under results/paper_clean_ablation_matrix_v1. At launch three no_event workers are active and three no_global runs queued, maximum concurrency 3. Read progress.json for live status. The detached supervisor automatically audits all six and builds paired JSON/Markdown/SVG/PDF candidate evidence. Review complete evidence before paper/site promotion. Physical tests stay locked; no runtime goal is registered.",
+  "active_task": "Training paused at the user request on September 7, 01:50 EDT. All three no_event runs completed epoch 4; no_global has not started. Supervisor and workers exited, GPU allocations released, nine latest/best/interrupted checkpoints passed restoration/configuration/finiteness/RNG checks. Do not automatically resume or launch new training. On a subsequent user request, resume with the existing runner from latest.pt, rerunning epoch 5. Physical tests stay locked; no runtime goal is registered.",
   "completed_milestones": [
     "Interruption-safe P0 training with atomic checkpoints and exact resume",
     "Two-seed synthetic P0 pass and matched no-reach failure",
@@ -95,7 +95,8 @@
     "PAPER_DRAFT.md was rewritten around current positive and null findings; PAPER_DRAFT_HISTORY.md preserves the previous version, PAPER_EVIDENCE.md contains reproducible tables/commands, and five SVG/PDF scientific figure pairs plus compact JSON were added to the site.",
     "89 unit tests pass. Paper evidence audit replays 23 FlatLands prediction files, checks 27,522 UnScenes3D bounds, 87 Python files, 29 site JSON files, 79 local links and 25 image elements; Chrome desktop/mobile checks pass.",
     "September 7 clean no-event/no-global protocol and analysis plan frozen before inspecting ablation outcomes; all training/model/data hashes match the clean full-model reference. Four configuration/resume regression tests bring the suite to 93 passing tests.",
-    "Detached six-run clean ablation supervisor launched on the RTX PRO 6000, initially three no_event workers with no_global queued. The new audit exactly replays full-model seed 20260831 Brier 0.059479796640678484. This is a running experiment, not a completed ablation result."
+    "Detached six-run clean ablation supervisor launched on the RTX PRO 6000, initially three no_event workers with no_global queued. The new audit exactly replays full-model seed 20260831 Brier 0.059479796640678484. This is a running experiment, not a completed ablation result.",
+    "September 7 user-requested training pause completed at 05:50 UTC: supervisor and three workers exited, all three no_event runs preserve epoch-4 latest/best checkpoints, no_global unstarted. Nine checkpoint files restore models/optimizers with finite tensors and complete RNG states. Partial epoch 5 is excluded from the resume source; no final ablation result is available."
   ],
   "tracked_files": [
     "CLEAN_ABLATION_PLAN.md",
@@ -2440,13 +2441,13 @@
     },
     {
       "path": "results/paper_clean_ablation_matrix_v1/seed20260831_no_event/best.pt",
-      "role": "live clean ablation checkpoint; optional before first completed epoch, intentionally unhashed until training finishes",
-      "required_for_resume": false
+      "role": "Paused clean ablation checkpoint required for resume; pause-time hashes are in pause_checkpoint_audit.json, file may change only after user-requested resumption.",
+      "required_for_resume": true
     },
     {
       "path": "results/paper_clean_ablation_matrix_v1/seed20260831_no_event/latest.pt",
-      "role": "live clean ablation checkpoint; optional before first completed epoch, intentionally unhashed until training finishes",
-      "required_for_resume": false
+      "role": "Paused clean ablation checkpoint required for resume; pause-time hashes are in pause_checkpoint_audit.json, file may change only after user-requested resumption.",
+      "required_for_resume": true
     },
     {
       "path": "results/paper_clean_ablation_matrix_v1/seed20260831_no_global/best.pt",
@@ -2460,13 +2461,13 @@
     },
     {
       "path": "results/paper_clean_ablation_matrix_v1/seed20260901_no_event/best.pt",
-      "role": "live clean ablation checkpoint; optional before first completed epoch, intentionally unhashed until training finishes",
-      "required_for_resume": false
+      "role": "Paused clean ablation checkpoint required for resume; pause-time hashes are in pause_checkpoint_audit.json, file may change only after user-requested resumption.",
+      "required_for_resume": true
     },
     {
       "path": "results/paper_clean_ablation_matrix_v1/seed20260901_no_event/latest.pt",
-      "role": "live clean ablation checkpoint; optional before first completed epoch, intentionally unhashed until training finishes",
-      "required_for_resume": false
+      "role": "Paused clean ablation checkpoint required for resume; pause-time hashes are in pause_checkpoint_audit.json, file may change only after user-requested resumption.",
+      "required_for_resume": true
     },
     {
       "path": "results/paper_clean_ablation_matrix_v1/seed20260901_no_global/best.pt",
@@ -2480,13 +2481,13 @@
     },
     {
       "path": "results/paper_clean_ablation_matrix_v1/seed20260902_no_event/best.pt",
-      "role": "live clean ablation checkpoint; optional before first completed epoch, intentionally unhashed until training finishes",
-      "required_for_resume": false
+      "role": "Paused clean ablation checkpoint required for resume; pause-time hashes are in pause_checkpoint_audit.json, file may change only after user-requested resumption.",
+      "required_for_resume": true
     },
     {
       "path": "results/paper_clean_ablation_matrix_v1/seed20260902_no_event/latest.pt",
-      "role": "live clean ablation checkpoint; optional before first completed epoch, intentionally unhashed until training finishes",
-      "required_for_resume": false
+      "role": "Paused clean ablation checkpoint required for resume; pause-time hashes are in pause_checkpoint_audit.json, file may change only after user-requested resumption.",
+      "required_for_resume": true
     },
     {
       "path": "results/paper_clean_ablation_matrix_v1/seed20260902_no_global/best.pt",
@@ -2497,12 +2498,20 @@
       "path": "results/paper_clean_ablation_matrix_v1/seed20260902_no_global/latest.pt",
       "role": "live clean ablation checkpoint; optional before first completed epoch, intentionally unhashed until training finishes",
       "required_for_resume": false
+    },
+    {
+      "path": "results/paper_clean_ablation_matrix_v1/pause_checkpoint_audit.json",
+      "role": "User-requested pause receipt with restored model/optimizer/RNG/configuration checks and pause-time hashes of nine checkpoints",
+      "required_for_resume": true,
+      "bytes": 5539,
+      "sha256": "b793c618d212344ff854a10451098968f5ed3cbc4c882983ba6a6e590ca51bc0"
     }
   ],
   "last_verification": {
-    "command": "93-test unittest suite; three-reference checkpoint/source/frozen-query preflight; independent new-auditor replay on existing full-model seed 20260831; AST parse; git diff --check; quick recovery verifier",
-    "result": "93 tests passed. Six configurations differ from the full reference only by the intended factor and output directory. Original full-model seed 20260831 replays exactly. Three real training workers are visible on the GPU. Previous full recovery verification passed 438 entries with hashes; live checkpoint files intentionally have no frozen hash until completion. The updated quick recovery verifier passed all 458 entries with zero failures.",
-    "implementation_commit": "e6f0910"
+    "command": "Pause checkpoint restore audit; process/GPU inspection; quick recovery verifier; git diff --check",
+    "result": "Nine checkpoint files passed strict model/optimizer/configuration/RNG/finiteness checks. Supervisor and all three workers exited; GPU process list retains only an unrelated Python process. No training/source changes; the previous 93-test suite remains applicable. Updated quick recovery verification passed; receipt: results/paper_clean_ablation_matrix_v1/pause_recovery_verification.json.",
+    "implementation_commit": "e6f0910",
+    "pause_audit": "results/paper_clean_ablation_matrix_v1/pause_checkpoint_audit.json"
   },
   "recovery_commands": [
     "git status --short --branch",
@@ -2518,7 +2527,7 @@
   ],
   "next_command": "cat results/paper_clean_ablation_matrix_v1/progress.json",
   "next_actions": [
-    "Monitor the existing supervisor; do not launch duplicate workers. Check progress.json and logs for training/evaluation status.",
+    "Keep training paused until the user requests resumption. Inspect progress.json and pause_checkpoint_audit.json without launching workers. After such a request, run the existing supervisor; latest.pt resumes from completed epoch 4 and reruns epoch 5.",
     "After all six runs complete, inspect the automatically generated analysis/report.json and PAPER_ABLATIONS.md, including every seed and null or reversed effects.",
     "Incorporate audited ablation statistics/figures into the working manuscript and website, update completed checkpoint hashes, then commit and push the result package.",
     "Next research gate: train-only observation likelihood audit for a separate UnScenes3D adapter protocol, scalable backward-operator evidence and the final same-contract baseline comparison.",
@@ -2531,6 +2540,20 @@
     "progress": "results/paper_clean_ablation_matrix_v1/progress.json",
     "log": "results/paper_clean_ablation_matrix_v1/supervisor.log",
     "implementation_commit": "e6f0910",
-    "live_files_are_mutable": true
+    "live_files_are_mutable": true,
+    "status": "paused_by_user",
+    "paused_at_utc": "2026-09-07T05:50:02.538327+00:00",
+    "automatic_resume_allowed": false,
+    "supervisor_running": false,
+    "workers_running": 0,
+    "no_event_completed_epochs": {
+      "20260831": 4,
+      "20260901": 4,
+      "20260902": 4
+    },
+    "no_global_status": "not_started",
+    "pause_audit": "results/paper_clean_ablation_matrix_v1/pause_checkpoint_audit.json",
+    "resume_checkpoint": "latest.pt; completed epoch 4; next epoch 5",
+    "interrupted_checkpoint_note": "partial-epoch artifact; do not substitute for latest.pt"
   }
 }

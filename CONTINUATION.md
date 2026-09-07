@@ -5,12 +5,14 @@ diagnostic, code change, or experiment; do not rely on chat history or ignored `
 
 ## Recovery snapshot
 
-Active experiment: six clean training ablations launched on 2026-09-07. Live status:
-`results/paper_clean_ablation_matrix_v1/progress.json`; do not start duplicate workers.
+Training paused at the user's request on 2026-09-07 at 01:50 EDT. All three no_event
+runs have completed epoch 4; no_global has not started. The supervisor and workers
+have exited and released their GPU allocations. Do not restart training until the
+user requests it. State: `results/paper_clean_ablation_matrix_v1/progress.json`.
 
 - Updated: 2026-09-07 (America/New_York)
 - Repository: `/home/hairo/pathrel_transfer/pathrel_pro6000`
-- Durable checkpoint: `clean-causal-ablations-running-20260907` in tracked `RECOVERY_STATE.json`
+- Durable checkpoint: `clean-causal-ablations-paused-20260907` in tracked `RECOVERY_STATE.json`
 - Recovery-state commit: resolve with `git log -1 --format='%h %s' -- RECOVERY_STATE.json`
 - Implementation history: `61d617e` is the September 2 base. The September 6 publication packages the clean-support implementation, audits and figures; resolve its revision with `git log -1 -- WORK_PLAN.md`. Current execution order is in `WORK_PLAN.md`.
 - Scientific gate: **P0 GO; FlatLands K=128 clean-support validation candidate and bounded data gate
@@ -27,7 +29,7 @@ Active experiment: six clean training ablations launched on 2026-09-07. Live sta
   more training. PAPER_DRAFT.md and PAPER_EVIDENCE.md now reflect these positive and null results.
   All results remain validation-only. The physical test and UnScenes3D location_6 remain locked;
   do not extract the FlatLands archive. The next research gate is the clean no-event/no-global
-  training matrix (launched 2026-09-07), followed by a train-only observation-model audit and scalable-operator evidence.
+  training matrix (launched then paused by the user on 2026-09-07), followed by a train-only observation-model audit and scalable-operator evidence.
 
 ### GPU visibility and publication status (2026-08-31)
 
@@ -1165,3 +1167,19 @@ After all six runs finish, the supervisor automatically audits them and writes t
 paired JSON, manuscript table and SVG/PDF candidates under `analysis/`. Review those
 results before incorporating them into PAPER_DRAFT.md and the published site. Both
 physical test sets remain locked. No runtime goal was registered.
+
+## 2026-09-07 user-requested training pause
+
+At 05:50 UTC / 01:50 EDT, the user requested a pause after the runtime estimate.
+SIGTERM to the verified supervisor triggered its existing graceful SIGINT cleanup
+for all three workers; the queue stopped and all four recorded processes exited.
+The three no_event runs retain complete epoch-4 latest checkpoints and their best
+checkpoints; none of the no_global runs has started. No final ablation result exists.
+
+`results/paper_clean_ablation_matrix_v1/pause_checkpoint_audit.json` verifies strict
+model and optimizer restoration, finite tensors, the frozen configuration and RNG
+states for all nine latest/best/interrupted checkpoint files. When the user requests
+resumption, use the existing runner and its `latest.pt` recovery to start epoch 5.
+The incomplete fifth epoch will be rerun. `interrupted.pt` includes partial-epoch
+state and must not replace the complete-epoch `latest.pt`. Do not resume merely
+because an older continuation section describes an active supervisor.

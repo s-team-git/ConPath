@@ -119,4 +119,4 @@ The evidence supports further study of joint map structure and event scoring. It
 
 The next training milestone is a clean three-seed no-event/no-global causal matrix on the fixed FlatLands contract. Before another second-domain matrix, a training-only observation model audit must address the bound without held-out test labels. Scalable training-operator evidence, the final recent-method comparison, and a frozen official test protocol remain necessary. This remains a working draft; final public-data, transfer, and submission-ready claims are unsupported.
 
-The clean no-event/no-global training matrix was launched on 2026-09-07 under the frozen [ablation analysis plan](CLEAN_ABLATION_PLAN.md). No ablation result is claimed before all six seeds/runs complete their audits.
+The clean no-event/no-global training matrix was launched on 2026-09-07 under the frozen [ablation analysis plan](CLEAN_ABLATION_PLAN.md), then paused with three no-event runs at completed epoch 4 and no-global not yet started. No ablation result is claimed before all six seeds/runs complete their audits.

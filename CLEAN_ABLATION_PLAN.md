@@ -49,6 +49,12 @@ different questions and must both remain in the evidence.
 
 ## Execution and recovery
 
+Execution status: paused at the user's request on 2026-09-07 at 01:50 EDT. Three
+no_event runs completed epoch 4; no_global has not started. All workers and the
+supervisor have exited. Do not run the launch command below until the user requests
+resumption. Resume uses complete-epoch `latest.pt` and reruns epoch 5; the separately
+retained `interrupted.pt` is a partial-epoch artifact, not the resume source.
+
 ```bash
 PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/run_flatlands_clean_ablations.py --prepare-only
 PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/run_flatlands_clean_ablations.py
