@@ -19,6 +19,7 @@ def main():
     panels=''.join(zoom(case['panels'][key],caption,True) for key,caption in [('observed','① 已观测地图：绿色可通行，深灰阻挡，浅灰未知。S 为起点，G 为目标。'),('correlated','② ConPath 推测：米白至青绿表示单元格可通行概率从 0 到 1。'),('correlated_sample','③ 第一次随机补全的完整世界：绿色可通行，深灰阻挡。'),('reference','④ 数据集完整参考地图，用于核对通路是否存在。')])
     first=data['gallery']['flatlands'][0]
     gallery=zoom(first['observed'],'训练集中的已观测地图')+zoom(first['reference'],'同一场景的完整参考地图')
+    gallery_source=html.escape(f"训练集 · {first['source']} / {first['scene']} · {first['id']} · 每格 {first['resolution_m']:.2f} 米。模型输入与完整参考严格区分。")
     thumbs=''.join(f'<button class="thumbnail {"selected" if i==0 else ""}" type="button" data-gallery-index="{i}" aria-label="查看 {html.escape(row["source"])} 场景 {i+1}" aria-pressed="{"true" if i==0 else "false"}"><img src="{row["observed"]}" alt="" role="presentation" loading="lazy"><span>{html.escape(row["source"])}</span></button>' for i,row in enumerate(data['gallery']['flatlands']))
     frame=data['gallery']['sequence'][0]
     sequence=f'<figure><div class="camera-stage">{zoom(frame["camera"],"同一时刻的原始相机照片")}</div><figcaption>① 相机原始画面<span>帮助理解场景；当前模型输入来自激光雷达</span></figcaption></figure>'+''.join(f'<figure>{zoom(frame[key],label)}<figcaption>{label}</figcaption></figure>' for key,label in [('observed','② 激光雷达观测'),('reference','③ 数据集参考地图')])
@@ -69,7 +70,7 @@ def main():
       <div id="gallery-stage" class="gallery-stage">{{GALLERY}}</div>
       <div class="map-legend"><span><i class="swatch free"></i>可通行</span><span><i class="swatch blocked"></i>阻挡</span><span><i class="swatch unknown"></i>未知</span><span><i class="swatch outside"></i>有效范围外</span></div>
       <div id="gallery-thumbnails" class="thumbnails" aria-label="选择具体场景">{{THUMBNAILS}}</div>
-      <p id="gallery-source" class="provenance">训练集 · 来源 3RScan · obs_015733。点击缩略图查看其他来源，点击大图查看标注。</p>
+      <p id="gallery-source" class="provenance">{{GALLERY_SOURCE}}</p>
       <div class="sequence-intro"><h3>同一时刻：相机照片 → 观测地图 → 参考地图</h3><p>这是一段 UnScenes3D 原始数据的逐帧浏览。照片是前视图，地图是俯视图；当前模型读取激光雷达生成的观测地图，参考地图用于监督和评估。</p></div>
       <div id="sequence-stage" class="sequence-stage">{{SEQUENCE}}</div>
       <div class="sequence-controls"><button id="sequence-play" type="button" class="pill small" aria-pressed="false">播放浏览</button><label for="sequence-frame" class="sr-only">选择数据帧</label><input id="sequence-frame" type="range" min="0" max="17" value="0" step="1"><output id="sequence-counter" for="sequence-frame">01 / 18</output></div>
@@ -110,7 +111,7 @@ def main():
   <p id="interaction-error" class="interaction-error" hidden>交互数据暂时加载失败；已展示首个示例与完整静态结果，请刷新重试。</p>
 </body></html>
 '''
-    for key,value in [('PANELS',panels),('GALLERY',gallery),('THUMBNAILS',thumbs),('SEQUENCE',sequence),('ROWS','\n'.join(rows))]:page=page.replace('{{'+key+'}}',value)
+    for key,value in [('PANELS',panels),('GALLERY',gallery),('GALLERY_SOURCE',gallery_source),('THUMBNAILS',thumbs),('SEQUENCE',sequence),('ROWS','\n'.join(rows))]:page=page.replace('{{'+key+'}}',value)
     assert '{{' not in page
     (SITE/'index.html').write_text(page)
     print('Chinese page built: 9 methods, 2 model examples, 12 gallery scenes, 18 frames.')

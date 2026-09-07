@@ -74,6 +74,6 @@
     new IntersectionObserver((entries)=>{if(!entries[0].isIntersecting)stopPlayback();},{threshold:0}).observe($('#sequence-stage'));
     const explanations={brier:'Brier 衡量预测概率与实际结果的偏差，0 最好。横线表示训练种子标准差，不是置信区间。所有对照使用相同验证查询。',risk:'横轴是模型愿意接受多少查询，纵轴是接受后却实际无路的比例，越低越好。应在相同覆盖率下比较。浅色带为训练种子标准差；30% 覆盖率的配对区间未证实稳定的风险改善。',reliability:'横轴是模型说“有路”的概率，纵轴是这些查询实际有路的比例。越接近灰色对角线越可信；每个点是一个概率分箱的加权统计，不是单次预测。',sampling:'横轴是评估时的地图采样数 K，纵轴是路径概率误差。这里复用已训练模型；增加采样不等于重新训练。误差线是三个训练种子的标准差。',dependence:'两组的每格经验概率完全相同。仅打散不同位置之间的共同变化，路径误差就增大了；这是一项评估时干预，不是新的训练消融。'};
     all('button[data-chart]').forEach((button)=>button.addEventListener('click',()=>{const name=button.dataset.chart,chart=data.charts[name];$('#chart-image').src=chart.svg;$('#chart-mobile').srcset=chart.mobile_svg;$('#chart-image').alt=`${chart.title}。${chart.note}`;$('#chart-open').href=matchMedia('(max-width: 600px)').matches?chart.mobile_svg:chart.svg;$('#chart-open').dataset.caption=chart.title;$('#chart-pdf').href=chart.pdf;$('#chart-caption').textContent='怎么看：'+explanations[name];choose('button[data-chart]',name,'chart');}));
-    showExample();document.documentElement.dataset.interactiveReady='true';
+    showExample();showGallery();document.documentElement.dataset.interactiveReady='true';
   }).catch((error)=>{console.error(error);$('#interaction-error').hidden=false;});
 })();
