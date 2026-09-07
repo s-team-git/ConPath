@@ -30,6 +30,7 @@ sys.path.insert(0, str(SCRIPTS_ROOT))
 from audit_unscenes3d_coordinate import _parse_calibration, _project  # noqa: E402
 from pathrel.labels import clearance_radius_map, maximum_clearance_map  # noqa: E402
 from pathrel.model import PathRelNet  # noqa: E402
+from pathrel.posterior_audits import MEAN_MAP_PROJECTION_VERSION, threshold_supported_mean_map  # noqa: E402
 from pathrel.unscenes3d import GRID_SHAPE, load_frame  # noqa: E402
 
 
@@ -170,9 +171,9 @@ def _posterior_mean(
         remaining -= current
     assert total is not None
     probability = (total / float(samples))[0].cpu().numpy()
-    deterministic = probability >= 0.5
-    deterministic[frame.input_bev[1] > 0.5] = False
-    deterministic[frame.input_bev[0] > 0.5] = True
+    deterministic = threshold_supported_mean_map(
+        probability, frame.input_bev, frame.target_valid
+    )
     clearance = clearance_radius_map(deterministic)
     return probability, deterministic, clearance
 
@@ -533,7 +534,7 @@ def main() -> None:
         label="false-safe failure",
     )
     report = {
-        "schema_version": 1,
+        "schema_version": 2,
         "kind": "unscenes3d_qualitative_validation_panel",
         "paper_result": False,
         "validation_result": True,
@@ -557,6 +558,11 @@ def main() -> None:
         "decoder": {"variant": variant, **decoder},
         "forward": {
             "invalid_support_clamped": True,
+            "mean_map_projection_version": MEAN_MAP_PROJECTION_VERSION,
+            "implementation_sha256": {
+                "renderer": _sha256(Path(__file__)),
+                "mean_map_projection": _sha256(PROJECT_ROOT / "src/pathrel/posterior_audits.py"),
+            },
             "valid_support_policy": VALID_SUPPORT_POLICY,
         },
         "selection": {

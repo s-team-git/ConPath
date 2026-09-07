@@ -22,6 +22,8 @@ import numpy as np
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(PROJECT_ROOT / "src"))
+from pathrel.posterior_audits import MEAN_MAP_PROJECTION_VERSION
 SEEDS = (20260831, 20260901, 20260902)
 RADII = (0, 1, 2)
 EXPECTED_ROWS = 4587
@@ -207,6 +209,7 @@ def _validate_report(
         forward.get("invalid_support_clamped") is not True
         or forward.get("valid_support_policy") != EXPECTED_SUPPORT_POLICY
         or forward.get("checkpoint_trained_with_same_support_policy") is not True
+        or forward.get("mean_map_projection_version") != MEAN_MAP_PROJECTION_VERSION
     ):
         raise ValueError(f"support-forward contract mismatch: {report_path}")
     manifest = report.get("manifest", {})
@@ -396,6 +399,7 @@ def main() -> None:
         "retraining_required": False,
         "protocol_version": EXPECTED_PROTOCOL,
         "support_policy": EXPECTED_SUPPORT_POLICY,
+        "mean_map_projection_version": MEAN_MAP_PROJECTION_VERSION,
         "manifest": {
             "path": _relative(manifest_path),
             "sha256": _sha256(manifest_path),

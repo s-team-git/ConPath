@@ -9,10 +9,10 @@ audit_python="$gpu_python"
 manifest="results/unscenes3d_contract_manifest_ground_valid/manifest.json"
 correlated_training="results/unscenes3d_ground_valid_support_clamped_f16_v1"
 independent_training="results/unscenes3d_ground_valid_independent_support_clamped_f16_v1"
-correlated_evaluation="results/unscenes3d_ground_valid_support_clamped_mean_map_k128_v1"
-independent_evaluation="results/unscenes3d_ground_valid_independent_support_clamped_mean_map_k128_v1"
-comparison_root="results/unscenes3d_ground_valid_support_clamped_k128_comparison_v1"
-qualitative_root="results/unscenes3d_ground_valid_support_clamped_qualitative_v1"
+correlated_evaluation="results/unscenes3d_ground_valid_support_clamped_mean_map_k128_v2"
+independent_evaluation="results/unscenes3d_ground_valid_independent_support_clamped_mean_map_k128_v2"
+comparison_root="results/unscenes3d_ground_valid_support_clamped_k128_comparison_v2"
+qualitative_root="results/unscenes3d_ground_valid_support_clamped_qualitative_v2"
 log_root="results/unscenes3d_support_clamped_training_logs"
 seeds=(20260831 20260901 20260902)
 
@@ -149,7 +149,7 @@ best_seed="$($audit_python - <<'PY'
 import json
 from pathlib import Path
 
-root = Path("results/unscenes3d_ground_valid_support_clamped_mean_map_k128_v1")
+root = Path("results/unscenes3d_ground_valid_support_clamped_mean_map_k128_v2")
 records = []
 for path in root.glob("seed*/run.json"):
     run = json.loads(path.read_text(encoding="utf-8"))

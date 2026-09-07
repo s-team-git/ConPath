@@ -29,6 +29,7 @@ sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
 from pathrel.labels import clearance_radius_map, maximum_clearance_map  # noqa: E402
 from pathrel.model import PathRelNet  # noqa: E402
+from pathrel.posterior_audits import MEAN_MAP_PROJECTION_VERSION, threshold_supported_mean_map  # noqa: E402
 from pathrel.unscenes3d import load_frame  # noqa: E402
 
 
@@ -280,9 +281,9 @@ def evaluate(
                 }
             )
 
-        deterministic_map = probability >= 0.5
-        deterministic_map[frame.input_bev[1] > 0.5] = False
-        deterministic_map[frame.input_bev[0] > 0.5] = True
+        deterministic_map = threshold_supported_mean_map(
+            probability, frame.input_bev, frame.target_valid
+        )
         clearance = clearance_radius_map(deterministic_map)
         query_rows = list(record["queries"])
         if query_rows:
@@ -387,7 +388,7 @@ def main() -> None:
         writer.writerows(event_rows)
     metrics = _event_metrics(event_rows, targets)
     report = {
-        "schema_version": 1,
+        "schema_version": 2,
         "kind": "unscenes3d_conpath_deterministic_mean_map",
         "paper_result": False,
         "validation_result": True,
@@ -407,6 +408,11 @@ def main() -> None:
         "decoder": {"variant": variant, "feature_channels": feature_channels, "latent_dim": latent_dim, "local_kernel_size": 1 if independent else 5, "disable_global_factors": independent},
         "forward": {
             "invalid_support_clamped": True,
+            "mean_map_projection_version": MEAN_MAP_PROJECTION_VERSION,
+            "implementation_sha256": {
+                "evaluator": _sha256(Path(__file__)),
+                "mean_map_projection": _sha256(PROJECT_ROOT / "src/pathrel/posterior_audits.py"),
+            },
             "valid_support_policy": VALID_SUPPORT_POLICY,
             "checkpoint_trained_with_same_support_policy": checkpoint_trained_with_support,
         },
