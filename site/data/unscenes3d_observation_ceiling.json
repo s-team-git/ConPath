@@ -1,0 +1,320 @@
+{
+  "kind": "unscenes3d_observation_event_bounds",
+  "schema_version": 1,
+  "test_evaluated": false,
+  "paper_result": false,
+  "validation_only": true,
+  "manifest": {
+    "path": "results/unscenes3d_contract_manifest_ground_valid/manifest.json",
+    "sha256": "d866be0b25ba6635d5ad934bac9c822c55be8034fabd8f4627803bb9efa972d5"
+  },
+  "software": {
+    "script_sha256": "81660ca38afd92ddc55aa0570e43138182e5ed2d70fb0ba5202e19513bb5bd9f",
+    "adapter_sha256": "c089bf7acea5d30511d3724995cac0159d0a0f6084ec2332c2c56d6c56c4c27e",
+    "model_sha256": "397f7558362f389af3a419aec39db36f67184e8106c6b05643908001e4f81045",
+    "oracle_sha256": "3d9dac0555fbced0485c81694e73e1618b81d62870b4916495712e11566cf669"
+  },
+  "prediction_bound_audit": {
+    "passed": true,
+    "event_comparisons": 27522,
+    "inputs": [
+      {
+        "path": "results/unscenes3d_ground_valid_support_clamped_mean_map_k128_v2/seed20260831/predictions_validation.csv",
+        "sha256": "6ec27a2e9ea25b5cb96596cd7cb987ba33070f3f3b3225ceb036bbd725eac35b",
+        "events": 4587,
+        "bound_violations": 0,
+        "checkpoint_and_hidden_map_replay_exact": true,
+        "superseded_v1": {
+          "path": "results/unscenes3d_ground_valid_support_clamped_mean_map_k128_v1/seed20260831/predictions_validation.csv",
+          "sha256": "3cc25c4a444c04d63766df0b6a7db0504861686cdf54999c87447edb0a960692",
+          "bound_violations": 117,
+          "changed_predictions": 117
+        }
+      },
+      {
+        "path": "results/unscenes3d_ground_valid_support_clamped_mean_map_k128_v2/seed20260901/predictions_validation.csv",
+        "sha256": "f9d069c73b66e9200eba5b1d8273e373b0e6ad89521e5c5e5beaf6e0d3dc2952",
+        "events": 4587,
+        "bound_violations": 0,
+        "checkpoint_and_hidden_map_replay_exact": true,
+        "superseded_v1": {
+          "path": "results/unscenes3d_ground_valid_support_clamped_mean_map_k128_v1/seed20260901/predictions_validation.csv",
+          "sha256": "bb1bebe7b52f2607df350cb41f39927ab7e583567a33c20f36091fa4c88070e7",
+          "bound_violations": 112,
+          "changed_predictions": 116
+        }
+      },
+      {
+        "path": "results/unscenes3d_ground_valid_support_clamped_mean_map_k128_v2/seed20260902/predictions_validation.csv",
+        "sha256": "6a90c1ed49e4424811636ff7792bad5b12038e00b8205ace79a8a87807d688f3",
+        "events": 4587,
+        "bound_violations": 0,
+        "checkpoint_and_hidden_map_replay_exact": true,
+        "superseded_v1": {
+          "path": "results/unscenes3d_ground_valid_support_clamped_mean_map_k128_v1/seed20260902/predictions_validation.csv",
+          "sha256": "5c9100da735428e8365ec674b5c81425813712ba2d482f9baac97807ee4eb52a",
+          "bound_violations": 117,
+          "changed_predictions": 117
+        }
+      },
+      {
+        "path": "results/unscenes3d_ground_valid_independent_support_clamped_mean_map_k128_v2/seed20260831/predictions_validation.csv",
+        "sha256": "6ec27a2e9ea25b5cb96596cd7cb987ba33070f3f3b3225ceb036bbd725eac35b",
+        "events": 4587,
+        "bound_violations": 0,
+        "checkpoint_and_hidden_map_replay_exact": true,
+        "superseded_v1": {
+          "path": "results/unscenes3d_ground_valid_independent_support_clamped_mean_map_k128_v1/seed20260831/predictions_validation.csv",
+          "sha256": "3cc25c4a444c04d63766df0b6a7db0504861686cdf54999c87447edb0a960692",
+          "bound_violations": 117,
+          "changed_predictions": 117
+        }
+      },
+      {
+        "path": "results/unscenes3d_ground_valid_independent_support_clamped_mean_map_k128_v2/seed20260901/predictions_validation.csv",
+        "sha256": "e0f1f8af3b15caeb9d72516f734e7e261e24282fdd119524ab7eef699cf8b51e",
+        "events": 4587,
+        "bound_violations": 0,
+        "checkpoint_and_hidden_map_replay_exact": true,
+        "superseded_v1": {
+          "path": "results/unscenes3d_ground_valid_independent_support_clamped_mean_map_k128_v1/seed20260901/predictions_validation.csv",
+          "sha256": "bb1bebe7b52f2607df350cb41f39927ab7e583567a33c20f36091fa4c88070e7",
+          "bound_violations": 112,
+          "changed_predictions": 117
+        }
+      },
+      {
+        "path": "results/unscenes3d_ground_valid_independent_support_clamped_mean_map_k128_v2/seed20260902/predictions_validation.csv",
+        "sha256": "6a90c1ed49e4424811636ff7792bad5b12038e00b8205ace79a8a87807d688f3",
+        "events": 4587,
+        "bound_violations": 0,
+        "checkpoint_and_hidden_map_replay_exact": true,
+        "superseded_v1": {
+          "path": "results/unscenes3d_ground_valid_independent_support_clamped_mean_map_k128_v1/seed20260902/predictions_validation.csv",
+          "sha256": "9de874bb37825c5a58fc3b9f996d7163d92b824bc7ebe0593d57c55740972406",
+          "bound_violations": 120,
+          "changed_predictions": 120
+        }
+      }
+    ]
+  },
+  "accelerator_audit": {
+    "passed": true,
+    "seed": 20260903,
+    "random_maps": 12,
+    "event_comparisons": 96,
+    "reference": "pathrel.labels clearance_radius_map + batched merge-tree"
+  },
+  "radii_cells": [
+    0,
+    1,
+    2
+  ],
+  "splits": {
+    "train": {
+      "overall": {
+        "events": 46701,
+        "scene_count": 9,
+        "scene_weighted_positive_rate": 0.8220535376042,
+        "scene_weighted_unavoidable_false_negative": 0.07372156185277733,
+        "scene_weighted_unavoidable_false_positive": 0.05724639964344883,
+        "scene_weighted_brier_lower_bound": 0.13096796149622617,
+        "query_weighted_brier_lower_bound": 0.13126057257874563,
+        "scene_weighted_mutable_event_fraction": 0.045183007722968634
+      },
+      "by_radius": {
+        "0": {
+          "events": 15567,
+          "scene_count": 9,
+          "scene_weighted_positive_rate": 0.8771452832720763,
+          "scene_weighted_unavoidable_false_negative": 0.05330861129442828,
+          "scene_weighted_unavoidable_false_positive": 0.07027046881228839,
+          "scene_weighted_brier_lower_bound": 0.12357908010671664,
+          "query_weighted_brier_lower_bound": 0.1229523993062247,
+          "scene_weighted_mutable_event_fraction": 0.04206880441875445
+        },
+        "1": {
+          "events": 15567,
+          "scene_count": 9,
+          "scene_weighted_positive_rate": 0.8218539115638783,
+          "scene_weighted_unavoidable_false_negative": 0.0769424717360159,
+          "scene_weighted_unavoidable_false_positive": 0.054120548323832174,
+          "scene_weighted_brier_lower_bound": 0.13106302005984807,
+          "query_weighted_brier_lower_bound": 0.13175306738613735,
+          "scene_weighted_mutable_event_fraction": 0.04571422016570575
+        },
+        "2": {
+          "events": 15567,
+          "scene_count": 9,
+          "scene_weighted_positive_rate": 0.7671614179766456,
+          "scene_weighted_unavoidable_false_negative": 0.0909136025278878,
+          "scene_weighted_unavoidable_false_positive": 0.04734818179422595,
+          "scene_weighted_brier_lower_bound": 0.13826178432211375,
+          "query_weighted_brier_lower_bound": 0.13907625104387486,
+          "scene_weighted_mutable_event_fraction": 0.04776599858444568
+        }
+      },
+      "by_scene": {
+        "scene_00000": {
+          "events": 5727,
+          "scene_count": 1,
+          "scene_weighted_positive_rate": 0.8889470927187009,
+          "scene_weighted_unavoidable_false_negative": 0.025144054478784705,
+          "scene_weighted_unavoidable_false_positive": 0.041906757464641176,
+          "scene_weighted_brier_lower_bound": 0.06705081194342588,
+          "query_weighted_brier_lower_bound": 0.06705081194342588,
+          "scene_weighted_mutable_event_fraction": 0.001396891915488039
+        },
+        "scene_00029": {
+          "events": 6147,
+          "scene_count": 1,
+          "scene_weighted_positive_rate": 0.8653001464128843,
+          "scene_weighted_unavoidable_false_negative": 0.0021148527737107534,
+          "scene_weighted_unavoidable_false_positive": 0.03888075483975923,
+          "scene_weighted_brier_lower_bound": 0.040995607613469986,
+          "query_weighted_brier_lower_bound": 0.040995607613469986,
+          "scene_weighted_mutable_event_fraction": 0.06588579795021962
+        },
+        "scene_00142": {
+          "events": 5994,
+          "scene_count": 1,
+          "scene_weighted_positive_rate": 0.8740407073740407,
+          "scene_weighted_unavoidable_false_negative": 0.06489823156489823,
+          "scene_weighted_unavoidable_false_positive": 0.022022022022022022,
+          "scene_weighted_brier_lower_bound": 0.08692025358692025,
+          "query_weighted_brier_lower_bound": 0.08692025358692025,
+          "scene_weighted_mutable_event_fraction": 0.0031698365031698366
+        },
+        "scene_00162": {
+          "events": 2868,
+          "scene_count": 1,
+          "scene_weighted_positive_rate": 0.9013249651324965,
+          "scene_weighted_unavoidable_false_negative": 0.02580195258019526,
+          "scene_weighted_unavoidable_false_positive": 0.051952580195258016,
+          "scene_weighted_brier_lower_bound": 0.07775453277545327,
+          "query_weighted_brier_lower_bound": 0.07775453277545327,
+          "scene_weighted_mutable_event_fraction": 0.006276150627615063
+        },
+        "scene_00225": {
+          "events": 4740,
+          "scene_count": 1,
+          "scene_weighted_positive_rate": 0.7381856540084388,
+          "scene_weighted_unavoidable_false_negative": 0.05590717299578059,
+          "scene_weighted_unavoidable_false_positive": 0.07236286919831224,
+          "scene_weighted_brier_lower_bound": 0.12827004219409283,
+          "query_weighted_brier_lower_bound": 0.12827004219409283,
+          "scene_weighted_mutable_event_fraction": 0.03143459915611815
+        },
+        "scene_00243": {
+          "events": 5631,
+          "scene_count": 1,
+          "scene_weighted_positive_rate": 0.8531344343811046,
+          "scene_weighted_unavoidable_false_negative": 0.34736281299946725,
+          "scene_weighted_unavoidable_false_positive": 0.0193571301722607,
+          "scene_weighted_brier_lower_bound": 0.36671994317172796,
+          "query_weighted_brier_lower_bound": 0.36671994317172796,
+          "scene_weighted_mutable_event_fraction": 0.0015982951518380393
+        },
+        "scene_00277": {
+          "events": 4782,
+          "scene_count": 1,
+          "scene_weighted_positive_rate": 0.6041405269761606,
+          "scene_weighted_unavoidable_false_negative": 0.028858218318695106,
+          "scene_weighted_unavoidable_false_positive": 0.198452530322041,
+          "scene_weighted_brier_lower_bound": 0.22731074864073608,
+          "query_weighted_brier_lower_bound": 0.22731074864073608,
+          "scene_weighted_mutable_event_fraction": 0.008364700961940611
+        },
+        "scene_00377": {
+          "events": 4878,
+          "scene_count": 1,
+          "scene_weighted_positive_rate": 0.7537925379253793,
+          "scene_weighted_unavoidable_false_negative": 0.04920049200492005,
+          "scene_weighted_unavoidable_false_positive": 0.04551045510455105,
+          "scene_weighted_brier_lower_bound": 0.09471094710947109,
+          "query_weighted_brier_lower_bound": 0.09471094710947109,
+          "scene_weighted_mutable_event_fraction": 0.16769167691676917
+        },
+        "scene_00385": {
+          "events": 5934,
+          "scene_count": 1,
+          "scene_weighted_positive_rate": 0.9196157735085946,
+          "scene_weighted_unavoidable_false_negative": 0.06420626895854398,
+          "scene_weighted_unavoidable_false_positive": 0.024772497472194135,
+          "scene_weighted_brier_lower_bound": 0.08897876643073811,
+          "query_weighted_brier_lower_bound": 0.08897876643073811,
+          "scene_weighted_mutable_event_fraction": 0.12082912032355915
+        }
+      }
+    },
+    "validation": {
+      "overall": {
+        "events": 4587,
+        "scene_count": 2,
+        "scene_weighted_positive_rate": 0.679936322918353,
+        "scene_weighted_unavoidable_false_negative": 0.43894184069936865,
+        "scene_weighted_unavoidable_false_positive": 0.03679442555717446,
+        "scene_weighted_brier_lower_bound": 0.4757362662565431,
+        "query_weighted_brier_lower_bound": 0.63025942882058,
+        "scene_weighted_mutable_event_fraction": 0.15664494630618964
+      },
+      "by_radius": {
+        "0": {
+          "events": 1529,
+          "scene_count": 2,
+          "scene_weighted_positive_rate": 0.7428504937672009,
+          "scene_weighted_unavoidable_false_negative": 0.4076503561599482,
+          "scene_weighted_unavoidable_false_positive": 0.06896551724137931,
+          "scene_weighted_brier_lower_bound": 0.4766158734013275,
+          "query_weighted_brier_lower_bound": 0.6088947024198823,
+          "scene_weighted_mutable_event_fraction": 0.17185931682046302
+        },
+        "1": {
+          "events": 1529,
+          "scene_count": 2,
+          "scene_weighted_positive_rate": 0.6763801197992553,
+          "scene_weighted_unavoidable_false_negative": 0.4556226728185203,
+          "scene_weighted_unavoidable_false_positive": 0.02740913874048891,
+          "scene_weighted_brier_lower_bound": 0.48303181155900926,
+          "query_weighted_brier_lower_bound": 0.6474820143884892,
+          "scene_weighted_mutable_event_fraction": 0.1612220738222438
+        },
+        "2": {
+          "events": 1529,
+          "scene_count": 2,
+          "scene_weighted_positive_rate": 0.6205783551886028,
+          "scene_weighted_unavoidable_false_negative": 0.45355249311963736,
+          "scene_weighted_unavoidable_false_positive": 0.014008620689655173,
+          "scene_weighted_brier_lower_bound": 0.46756111380929255,
+          "query_weighted_brier_lower_bound": 0.6344015696533682,
+          "scene_weighted_mutable_event_fraction": 0.13685344827586207
+        }
+      },
+      "by_scene": {
+        "scene_00401": {
+          "events": 3195,
+          "scene_count": 1,
+          "scene_weighted_positive_rate": 0.934585289514867,
+          "scene_weighted_unavoidable_false_negative": 0.8685446009389671,
+          "scene_weighted_unavoidable_false_positive": 0.00031298904538341156,
+          "scene_weighted_brier_lower_bound": 0.8688575899843506,
+          "query_weighted_brier_lower_bound": 0.8688575899843506,
+          "scene_weighted_mutable_event_fraction": 0.004381846635367762
+        },
+        "scene_00427": {
+          "events": 1392,
+          "scene_count": 1,
+          "scene_weighted_positive_rate": 0.42528735632183906,
+          "scene_weighted_unavoidable_false_negative": 0.009339080459770116,
+          "scene_weighted_unavoidable_false_positive": 0.07327586206896551,
+          "scene_weighted_brier_lower_bound": 0.08261494252873564,
+          "query_weighted_brier_lower_bound": 0.08261494252873564,
+          "scene_weighted_mutable_event_fraction": 0.3089080459770115
+        }
+      }
+    }
+  },
+  "runtime_seconds": 33.19256629099982,
+  "interpretation": "For any posterior world respecting the hard observation and target-valid support, event probability lies between pessimistic and optimistic connectivity. A positive target with upper=0, or negative target with lower=1, forces Brier error one. This is an adapter-conditioned lower bound, not a universal impossibility result.",
+  "claim_boundary": "Frozen train/validation diagnostic only. Target labels are used after observation construction to audit conflicts; no sensor policy is fitted, no manifest changed and location_6 remains unopened."
+}

@@ -15,10 +15,22 @@ seeds. The paired independent-minus-ConPath Brier delta is `+0.02772 +/- 0.00993
 per-seed scene-bootstrap interval is positive. This is still validation-only on the non-official
 provenance split; physical test labels remain unopened.
 
-The responsive page repeats the main comparison immediately below the hero as three text cards:
-29.1% lower event Brier, 20.0% lower high-confidence false-safe rate, and positive paired Brier
-intervals for 3/3 seeds. This keeps the result legible on narrow screens where the full 1800-pixel
-figure must be opened or zoomed. The cards inherit the same validation-only/non-official split caveat.
+The responsive page repeats the main comparison below the hero: 29.1% lower event Brier,
+3.60% versus 3.90% false-safe rate at equal 30% coverage, and positive paired Brier intervals
+for 3/3 seeds. The equal-coverage risk intervals all include zero; the caption discloses that
+the PNG's 20.0% fixed-threshold reduction uses unequal coverage. Mobile navigation wraps and
+reproduction cards do not force horizontal page scrolling.
+
+## Clean paper analysis
+
+The `#paper-analysis` section contains a nine-control table generated from
+`data/flatlands_clean_paper_analysis.json`, plus clean reliability, equal-coverage risk,
+nested K=32/64/128 and fixed-marginal shuffle figures. The UnScenes3D section adds a rigorous
+observation-conditioned error-floor diagnostic. All five new figures include standalone PDFs.
+Generate the statistical report and figure/table package with the commands in
+[`PAPER_EVIDENCE.md`](../PAPER_EVIDENCE.md); `scripts/build_paper_evidence.py` updates the table
+between the `CLEAN_PAPER_ROWS` markers in `index.html`. It does not regenerate the original
+checkpoint PNGs or archived calibration snapshots.
 
 ## Refresh the real-data page
 
@@ -82,9 +94,9 @@ populate the released support-masked unknown region. No test split was opened.
 The page also includes an UnScenes3D ground-vehicle validation section. A 2026-09-03 audit found the
 same support-boundary class of error in the older map-derived paths: the complement of
 `target_valid` was not hard-blocked before posterior sampling. Six fresh F=16 runs now use the
-corrected support contract. The exact K=128 mean-map event Brier is `0.54704 +/- 0.00218` for
-correlated ConPath and `0.54740 +/- 0.00251` for the matched independent decoder (paired delta
-`+0.00036 +/- 0.00062`), so this second-domain adapter does not show a measurable correlation win
+corrected support contract. The exact K=128 mean-map event Brier is `0.51142 +/- 0.00198` for
+correlated ConPath and `0.51130 +/- 0.00218` for the matched independent decoder (paired delta
+`-0.00012 +/- 0.00021`), so this second-domain adapter does not show a measurable correlation win
 on its two held-out validation scenes. It is a support-consistency/transfer diagnostic, not a final
 cross-domain result. The clean ground-robot panels are
 `assets/unscenes3d_clean_candidate_positive.png` and
@@ -126,3 +138,9 @@ provenance split because the physical archive split leaks scenes. The baseline n
 validation-only diagnostics; they are not a public-data or final-paper claim. See
 [`REAL_DATA_PILOT.md`](../REAL_DATA_PILOT.md), [`P1_DATA_AUDIT.md`](../P1_DATA_AUDIT.md), and
 [`P1_BASELINE_PROTOCOL.md`](../P1_BASELINE_PROTOCOL.md) for exact protocols and limitations.
+
+The September 6 final-projection audit supersedes UnScenes3D mean-map/qualitative v1: restoring
+observed-free cells had reopened invalid support after sampling. Current candidate JSON and
+PNG files come from v2 replay of the same six clean checkpoints. All 27,522 corrected event
+predictions satisfy the pessimistic/optimistic bounds, and hidden-map metrics replay exactly.
+The old versions remain in Git history and their original results directories.

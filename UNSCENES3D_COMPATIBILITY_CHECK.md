@@ -102,8 +102,8 @@ posterior-mean-map control is `0.62774 ± 0.00145` (hidden-cell map Brier `0.150
 Both are likewise superseded. The trainer, mean-map evaluator, and qualitative renderer now pass
 `target_valid` as a hard support mask and record whether the source checkpoint used the same policy;
 Six fresh F=16 map adapters were then trained under the corrected contract. Their exact K=128
-mean-map replay gives event Brier `0.54704 ± 0.00218` for correlated ConPath and
-`0.54740 ± 0.00251` for the independent control (paired delta `+0.00036 ± 0.00062`). With only
+mean-map replay gives event Brier `0.51142 ± 0.00198` for correlated ConPath and
+`0.51130 ± 0.00218` for the independent control (paired delta `−0.00012 ± 0.00021`). With only
 two held-out validation scenes, this is a reproducible support/transfer diagnostic with no measurable
 correlation advantage, not a cross-domain method claim. The unaffected S4C-inspired coordinate-query control is
 `0.20379 ± 0.03485` with NLL

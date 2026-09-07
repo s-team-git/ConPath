@@ -12,18 +12,19 @@ diagnostic, code change, or experiment; do not rely on chat history or ignored `
 - Implementation history: `61d617e` is the September 2 base. The September 6 publication packages the clean-support implementation, audits and figures; resolve its revision with `git log -1 -- WORK_PLAN.md`. Current execution order is in `WORK_PLAN.md`.
 - Scientific gate: **P0 GO; FlatLands K=128 clean-support validation candidate and bounded data gate
   GO on a non-official provenance split; public-data test and paper claims remain gated**
-- Handoff status: the prior three-seed FlatLands K=128 candidate and matched independent control
-  are superseded by the support-boundary audit. Both new three-seed clean-support groups are now
-  complete and independently audited: ConPath Brier 0.06749 ± 0.00936, matched independent Brier
-  0.09521 ± 0.00703, paired delta +0.02772 ± 0.00993 with all per-seed intervals positive. The
-  checkpoint-derived clean visual and machine-readable provenance are ready for the local site.
-  UnScenes3D support-consistent map reruns are complete as a validation diagnostic: the exact K=128
-  paired delta is +0.00036 ± 0.00062 on two held-out scenes, with no measurable correlation gain.
-  Everything remains validation-only because the FlatLands provenance split is non-official and both physical test
-  sites are locked. Any follow-up test or cross-domain run requires an explicit go/no-go. The
-  official ORFD semantics audit is complete but remains a fallback; FlatLands and SceneSense remain
-  reference-only. Do not use the leaking official split, read the UnScenes3D `location_6` test site,
-  or extract the FlatLands archive.
+- Handoff status: the clean FlatLands three-seed validation result is 0.06749 ± 0.00936
+  versus independent 0.09521 ± 0.00703. The new nine-method paper table includes a strong
+  same-checkpoint mean-map control (0.06957), exact fixed-marginal shuffle (0.16139), and
+  equal-coverage risk analysis (3.60% versus 3.90% at 30%; all per-seed risk intervals include zero).
+  The six-checkpoint nested K replay exactly reproduces every original K=128 prediction.
+  UnScenes3D mean-map/qualitative v1 had a final-projection bug that reopened invalid support.
+  Corrected v2 Brier is 0.51142 ± 0.00198 versus 0.51130 ± 0.00218; all 27,522 predictions
+  satisfy the observation bounds and hidden-map metrics reproduce exactly. A frozen-observation
+  lower bound of 0.47574 explains why this hard-observation adapter needs investigation before
+  more training. PAPER_DRAFT.md and PAPER_EVIDENCE.md now reflect these positive and null results.
+  All results remain validation-only. The physical test and UnScenes3D location_6 remain locked;
+  do not extract the FlatLands archive. The next research gate is the clean no-event/no-global
+  training matrix, followed by a train-only observation-model audit and scalable-operator evidence.
 
 ### GPU visibility and publication status (2026-08-31)
 
@@ -1093,3 +1094,43 @@ four dynamically rendered fixed-baseline rows. The final site audit and Git publ
 recorded under `results/maintenance_20260906/`. The earlier 599-check control audit remains an
 archived structural audit of the historical control package, not new scientific evidence.
 No new training or locked test read was performed for this publication step.
+
+## 2026-09-06 paper evidence and final-projection correction
+
+Git publication `2deced0` / `0000508` completed first; Pages run `34077832249` succeeded.
+Paper analysis source is committed in `392017b`, and the final mean-map projection/bound audit
+in `a00c86a`. The shuffle helper recorded in the frozen reports is recoverable exactly from
+`392017b:src/pathrel/posterior_audits.py`; the later module adds an independent projection helper.
+
+New evidence roots:
+
+- `results/paper_clean_checkpoint_controls_v1`: six exact RNG replays, nested K=32/64/128,
+  deterministic mean maps and hidden-map metrics; original K=128 event drift is zero.
+- `results/paper_clean_marginal_shuffle_v1`: three controls preserving every empirical cell count;
+  Brier becomes 0.16139 ± 0.00677, with positive paired Brier intervals in every seed.
+- `results/paper_clean_analysis_v1`: nine methods, 23 prediction files, identical 4,224 events,
+  142 contributing scenes, whole-scene paired bootstrap and fractional label-blind boundary ties.
+- `results/unscenes3d_ground_valid_support_clamped_mean_map_k128_v2` and its `independent_`
+  companion: unchanged six clean checkpoints with the final mean-map support projection fixed.
+- `results/unscenes3d_ground_valid_support_clamped_k128_comparison_v2`: corrected paired replay.
+- `results/unscenes3d_ground_valid_support_clamped_qualitative_v2/seed20260901`: newly rendered
+  positive and radius-2 false-safe panels. Label-based diagnostic selection is disclosed.
+- `results/unscenes3d_observation_ceiling_v1`: exact pessimistic/optimistic bounds over all
+  51,288 train/validation events, plus 27,522 corrected model predictions checked against them.
+
+The mean-map bug was found by the independent bound audit: v1 restored observed-free cells
+outside target_valid after correct model sampling. The shared projection now gives blocked
+observations precedence and applies support last. Training does not need to be repeated for
+this correction. Old v1 reports/images remain in their original results directories and Git
+history; their event numbers must not be used as current support-consistent evidence.
+
+The working manuscript is rewritten around the current evidence; its earlier version is
+`PAPER_DRAFT_HISTORY.md`. Five SVG/PDF figure pairs and compact JSON are included in the site.
+Validation: 89 unit tests, exact numeric/hash replay, 79 local HTML links, 29 JSON snapshots,
+25 image elements, and Chrome 1440/390 px checks pass. Full recovery verification passed all 438 entries with SHA-256 enabled; hashes are recorded in
+RECOVERY_STATE.json. Neither physical test was evaluated.
+
+No active training or runtime goal is registered. Next: clean three-seed no-event/no-global
+training under the fixed FlatLands protocol; the shuffle intervention does not replace it.
+The deterministic-control gap, unstable equal-coverage advantage, small second-domain sample,
+and absent scalable backward operator remain explicit final-paper limitations.

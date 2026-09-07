@@ -5,6 +5,12 @@
 当前执行顺序和完成条件见 [WORK_PLAN.md](WORK_PLAN.md)（2026-09-06）。本文件的长期
 研究目标不代表当前会话已经注册了活动 goal；历史执行日志以 `CONTINUATION.md` 的最新条目为准。
 
+2026-09-06 已补齐 clean 检查点的九方法同查询分析、等覆盖率风险、K=32/64/128 回放和
+固定经验边际的空间打散干预，数值与图见 [PAPER_EVIDENCE.md](PAPER_EVIDENCE.md)。空间打散
+把 Brier 从 0.06749 提高到 0.16139，但确定性均值图为 0.06957，且等覆盖率风险尚无稳定优势。
+UnScenes3D 冻结观测约束的验证 Brier 下界为 0.47574，后续需先诊断观测模型；不能把增加训练
+时长视为解决该下界的方法。旧 no-event/no-global 训练仍需在修正后的边界下重做。
+
 ## 一句话目标
 
 输入不完整的环境观测，学习一组空间相关的可能地图，并输出：
@@ -167,7 +173,7 @@ L_reachability_U-statistic_Brier
 | forward/backward smoke | 已完成 | `scripts/` 与 `tests/` |
 | ORFD adapter | 未开始 | P1 |
 | FlatLands completion/query audit | 512 场景 data gate、fixed support-bounded baselines 与统一 evaluator 已完成；旧 PathRelNet 矩阵因缺少 `epistemic_mask` 硬边界而作废；K=128 三 seed clean correlated/independent 已完成并通过 strict audit，ConPath Brier 0.06749、independent 0.09521；官方 split 与 paper/test 仍 gated | P1 |
-| UnScenes3D ground-valid adapter/controls | 坐标/manifest 审计有效；旧 map-model/mean-map/定性结果因缺少 `target_valid` 硬边界而降级为历史记录；六组 clean rerun、K=128 配对审计和候选图已完成，Brier 0.54704 vs 0.54740（仅两验证场景、无可测相关优势）；`location_6` 仍锁定 | P2 |
+| UnScenes3D ground-valid adapter/controls | 坐标/manifest 审计有效；旧 map-model/mean-map/定性结果因缺少 `target_valid` 硬边界而降级为历史记录；六组 clean rerun、K=128 配对审计和候选图已完成，Brier 0.51142 vs 0.51130（仅两验证场景、无可测相关优势）；`location_6` 仍锁定 | P2 |
 | WildOcc cross-domain | 未开始 | P2 |
 | scalable path-cut bounds | NumPy merge-tree 已有单图 exact reference，新增 batch×sample×query 封装与 CPU contract benchmark；共享起点传播和 ConPath public-data 入口已接通，CUDA/soft-backward 未完成 | P3 |
 | SE(2) 矩形 footprint | 未开始 | 2.5-D 版本成立后再做 |
@@ -227,7 +233,7 @@ provenance split 的 validation candidate。
 若室内 floor-map 不足以代表小车支撑面，再使用 UnScenes3D 的 occupancy 与 road elevation
 构造 2.5-D 地图，WildOcc 做跨域测试。当前 UnScenes3D 已完成 train/validation-only ground-valid
 坐标与 manifest 合同（15,567/1,529 queries），但旧 map-derived 对照已被 `target_valid` 边界审计
-重新打开；clean rerun 已完成但仅在两个验证场景上得到近零相关优势（0.54704 vs 0.54740），所以仍是 transfer diagnostic；`location_6` 仍锁定。若要形成正式公开数据或跨域结论，必须另行冻结
+重新打开；clean rerun 已完成但仅在两个验证场景上得到近零模型差异（0.51142 vs 0.51130），所以仍是 transfer diagnostic；`location_6` 仍锁定。若要形成正式公开数据或跨域结论，必须另行冻结
 版本、审阅所有 controls，并取得明确 test go/no-go。所有拆分仍按场景/矿区/序列，禁止
 相邻帧随机拆分。
 
@@ -258,7 +264,7 @@ ConPath validation 入口已经在最终预测阶段使用该 exact-forward help
 
 ## 从现在到论文定稿的完整任务链
 
-以下顺序是当前持续 goal；每一阶段必须留下配置、随机种子、机器可读报告、图表和网站快照，
+以下顺序是长期研究路线；当前阶段与状态见 `WORK_PLAN.md`。每一阶段必须留下配置、随机种子、机器可读报告、图表和网站快照，
 不能因为后面的结果更好而修改前面的 split 或 query。
 
 1. **P1 评测合同与强基线（首轮与 K=128 controls 已完成）。** 冻结统一 evaluator、scene-

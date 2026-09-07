@@ -84,7 +84,7 @@ remain gated.
 The same audit found that older UnScenes3D map-derived forwards omitted the `target_valid` support
 clamp; their model/mean-map/qualitative artifacts are now historical only, while the non-map
 coordinate-query and radius-prior controls remain usable. The clean UnScenes3D K=128 mean-map
-diagnostic is `0.54704 +/- 0.00218` versus `0.54740 +/- 0.00251` on two validation scenes, so it
+diagnostic is `0.51142 +/- 0.00198` versus `0.51130 +/- 0.00218` on two validation scenes, so it
 does not establish a correlation win. Clean training and rendering pass the support mask explicitly,
 and `location_6` remains unopened.
 
@@ -97,6 +97,15 @@ PYTHONPATH=src .venv/bin/python scripts/verify_recovery_state.py --quick
 Then read `WORK_PLAN.md` for current tasks and the latest entry in `CONTINUATION.md` for the hand-off.
 The full verifier (without `--quick`) rehashes the registered ignored
 artifacts, including the FlatLands archive.
+
+The next paper evidence package is [PAPER_EVIDENCE.md](PAPER_EVIDENCE.md): a nine-control
+same-query table, equal-coverage risk, exact nested K replay, fixed-empirical-marginal spatial
+shuffle, and an observation-conditioned error bound for UnScenes3D. The shuffle raises FlatLands
+Brier from `0.06749` to `0.16139` with every empirical cell probability unchanged, while the
+same-checkpoint mean map is close at `0.06957`. Equal-coverage risk improvement over the matched
+independent decoder is not established. The UnScenes3D adapter imposes a validation Brier lower
+bound `0.47574`; its observation model needs attention before further second-domain training.
+These findings refine the working paper, not the locked-test or final-publication gate.
 
 ## Environment
 

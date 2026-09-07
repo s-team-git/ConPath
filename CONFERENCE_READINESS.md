@@ -2,9 +2,13 @@
 
 ## 当前判断
 
-当前仓库仍不是可直接投稿的 ICRA/IROS 论文。神经 P0 已在两个优化种子上通过，并有匹配的
-no-reach 对照；FlatLands 的 512 场景 bounded mask/query data gate 也已在非官方 provenance
-split 上通过。但尚未有公开数据上的模型校准结果、完整独立强基线或可扩展的大图算法。
+当前仓库仍不是可直接投稿的论文。2026-09-06 的有效证据已超过早期 P0/baseline pilot：
+clean FlatLands K=128 三种子结果、九方法同查询比较、固定经验边际干预、K 收敛和等覆盖率
+风险分析均已完成，见 [PAPER_EVIDENCE.md](PAPER_EVIDENCE.md)。固定经验边际后打散空间结构
+会大幅增加 Brier，但同检查点均值图仍很强，等覆盖率风险改善尚不稳定。UnScenes3D 冻结观测
+约束的验证 Brier 下界达 0.47574，不能作为跨域成功证据。clean 训练消融、观测模型诊断、
+可扩展训练算子和正式测试仍未完成。下方日期与历史 gate 仅供过程追踪；当前执行计划见
+[WORK_PLAN.md](WORK_PLAN.md)。
 
 ## 时间选择（截至 2026-08-28）
 

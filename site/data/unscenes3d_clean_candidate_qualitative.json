@@ -21,7 +21,12 @@
     "variant": "correlated"
   },
   "forward": {
+    "implementation_sha256": {
+      "mean_map_projection": "7bb1b38bf6ac42656d25f2f7eb904bdf5036546ede1f3a8b323bbde7e184514c",
+      "renderer": "06839d3be6393c680eac4dcb023687e3fec030cd28cbd22f95f68cf691b40da9"
+    },
     "invalid_support_clamped": true,
+    "mean_map_projection_version": "v2: observed blocked wins; invalid support blocked last",
     "valid_support_policy": "UnScenes3D target_valid complement is deterministically blocked before posterior sampling"
   },
   "kind": "unscenes3d_qualitative_validation_panel",
@@ -36,10 +41,10 @@
   },
   "panels": {
     "failure": {
-      "candidate_index": 11,
+      "candidate_index": 20,
       "label": "false-safe failure",
-      "max_clearance_cells": 13,
-      "path": "results/unscenes3d_ground_valid_support_clamped_qualitative_v1/seed20260901/qualitative_failure.png",
+      "max_clearance_cells": 7,
+      "path": "results/unscenes3d_ground_valid_support_clamped_qualitative_v2/seed20260901/qualitative_failure.png",
       "point_count": 14702,
       "prediction": [
         true,
@@ -58,22 +63,22 @@
     "positive": {
       "candidate_index": 8,
       "label": "true-positive",
-      "max_clearance_cells": 13,
-      "path": "results/unscenes3d_ground_valid_support_clamped_qualitative_v1/seed20260901/qualitative_positive.png",
-      "point_count": 14702,
+      "max_clearance_cells": 12,
+      "path": "results/unscenes3d_ground_valid_support_clamped_qualitative_v2/seed20260901/qualitative_positive.png",
+      "point_count": 14618,
       "prediction": [
         true,
         true,
         true
       ],
-      "projected_points": 14702,
+      "projected_points": 14618,
       "scene_id": "scene_00427",
       "target": [
         true,
         true,
         true
       ],
-      "timestamp": "1693304938.969453"
+      "timestamp": "1693304940.212691"
     }
   },
   "paper_result": false,
@@ -84,9 +89,9 @@
     "device": "cuda",
     "gpu": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
     "peak_gpu_memory_bytes": 200377344,
-    "wall_seconds": 17.239053240977228
+    "wall_seconds": 15.414137619999565
   },
-  "schema_version": 1,
+  "schema_version": 2,
   "selection": {
     "frames_scanned": 62,
     "posterior_samples": 128,

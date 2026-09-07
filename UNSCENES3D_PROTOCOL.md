@@ -3,6 +3,21 @@
 Status: **coordinate-audited contract; clean validation diagnostic complete; no final model score**
 Frozen: 2026-09-04 (America/New_York)
 
+Evaluation correction, 2026-09-06: mean-map/qualitative v1 restored observed-free cells after
+sampling and could reopen invalid support. Version 2 gives blocked observations priority and
+applies `target_valid` last. All six original clean checkpoints and their hidden-map metrics
+replay exactly; all 27,522 corrected validation predictions satisfy the observation bounds.
+Use `*support_clamped_mean_map_k128_v2` and `*support_clamped_qualitative_v2` for current
+evidence. Training checkpoints, adapter parameters, frozen queries and physical test locks
+are unchanged; v1 predictions and figures are retained as superseded history.
+
+Diagnostic added 2026-09-06 (the frozen adapter/query contract is unchanged): exact optimistic
+and pessimistic worlds imply a scene-weighted Brier lower bound of 0.13097 on train and 0.47574
+on validation. Only 15.66% of validation events can change through unknown completion. See
+`scripts/audit_unscenes3d_observation_ceiling.py`, `PAPER_EVIDENCE.md`, and
+`site/data/unscenes3d_observation_ceiling.json`. This identifies an observation-model limitation;
+future changes must be trained/tuned on training data under a separate versioned protocol.
+
 The previous v0.1 contract (all LiDAR returns treated as blocked endpoints) is
 retained as a legacy diagnostic. The canonical train/validation control contract
 below uses the label-free ground-endpoint policy after the coordinate audit.
@@ -94,7 +109,7 @@ validation queries); the older v0.1 manifest remains at `results/unscenes3d_cont
    `0.62774 ± 0.00145`, and the S4C-inspired coordinate query is `0.20379 ± 0.03485`; these
    predictive objects are not interchangeable. The map-derived values are superseded, while the
    coordinate-query row remains a valid non-map control. The clean K=128 map-derived diagnostic is
-   `0.54704 ± 0.00218` (correlated) versus `0.54740 ± 0.00251` (independent), with no measurable
+   `0.51142 ± 0.00198` (correlated) versus `0.51130 ± 0.00218` (independent), with no measurable
    correlation gain on two scenes; none is a final cross-domain claim.
    `scripts/evaluate_unscenes3d_calibration.py` additionally writes validation-only reliability
    and selective-risk snapshots for the controls that export per-event rows; scalar-only stochastic

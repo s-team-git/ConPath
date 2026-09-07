@@ -1,0 +1,190 @@
+{
+  "kind": "flatlands_clean_nested_k_controls",
+  "validation_only": true,
+  "paper_result": false,
+  "test_evaluated": false,
+  "canonical_k128_replay_max_drift": 0,
+  "controls": {
+    "correlated": {
+      "event_brier": {
+        "32": {
+          "mean": 0.06860998443819241,
+          "sample_sd": 0.01032379793857219,
+          "values": [
+            0.05907277358141681,
+            0.06718488252109492,
+            0.07957229721206552
+          ]
+        },
+        "64": {
+          "mean": 0.06770515397198171,
+          "sample_sd": 0.009225702519154954,
+          "values": [
+            0.05978330050977815,
+            0.06549787470259419,
+            0.07783428670357279
+          ]
+        },
+        "128": {
+          "mean": 0.06749355699246364,
+          "sample_sd": 0.00936227024789587,
+          "values": [
+            0.059479796640678484,
+            0.06521658182607205,
+            0.0777842925106404
+          ]
+        },
+        "mean_map": {
+          "mean": 0.06957235876251777,
+          "sample_sd": 0.0038022841174833746,
+          "values": [
+            0.0659370909024792,
+            0.06925786108323281,
+            0.0735221243018413
+          ]
+        }
+      },
+      "hidden_map_brier": {
+        "mean": 0.15451434837333192,
+        "sample_sd": 0.022073015619975874,
+        "values": [
+          0.1440989320921935,
+          0.13957615503673598,
+          0.17986795799106634
+        ]
+      },
+      "runtime_seconds": {
+        "mean": 37.93735943799993,
+        "sample_sd": 0.07449305706658597,
+        "values": [
+          37.85298169099997,
+          37.96507376799991,
+          37.99402285499991
+        ]
+      },
+      "sampling_seconds": {
+        "mean": 3.1372082090016797,
+        "sample_sd": 0.22018604736216127,
+        "values": [
+          3.3897632130156126,
+          3.036305357999481,
+          2.985556055989946
+        ]
+      },
+      "connectivity_seconds": {
+        "mean": 33.90032552900342,
+        "sample_sd": 0.3082134860226702,
+        "values": [
+          33.548526594004215,
+          34.02960220201021,
+          34.12284779099582
+        ]
+      },
+      "peak_gpu_bytes": {
+        "mean": 124093440.0,
+        "sample_sd": 0.0,
+        "values": [
+          124093440,
+          124093440,
+          124093440
+        ]
+      },
+      "reports": [
+        "results/paper_clean_checkpoint_controls_v1/correlated/seed20260831/run.json",
+        "results/paper_clean_checkpoint_controls_v1/correlated/seed20260901/run.json",
+        "results/paper_clean_checkpoint_controls_v1/correlated/seed20260902/run.json"
+      ]
+    },
+    "independent": {
+      "event_brier": {
+        "32": {
+          "mean": 0.09574619610894856,
+          "sample_sd": 0.006560356543756587,
+          "values": [
+            0.09871375440659283,
+            0.08822640202527315,
+            0.10029843189497972
+          ]
+        },
+        "64": {
+          "mean": 0.09539744568075519,
+          "sample_sd": 0.006900246860876441,
+          "values": [
+            0.09893131845178271,
+            0.08744607608194871,
+            0.0998149425085341
+          ]
+        },
+        "128": {
+          "mean": 0.09521006056164817,
+          "sample_sd": 0.007033913750637799,
+          "values": [
+            0.09865829173037971,
+            0.0871174114720983,
+            0.09985447848246655
+          ]
+        },
+        "mean_map": {
+          "mean": 0.07183769424944805,
+          "sample_sd": 0.0034906007704739194,
+          "values": [
+            0.07149920245704705,
+            0.06852867028569073,
+            0.07548521000560637
+          ]
+        }
+      },
+      "hidden_map_brier": {
+        "mean": 0.16789322064877707,
+        "sample_sd": 0.029445143935474732,
+        "values": [
+          0.20134982561067355,
+          0.14592009312798934,
+          0.15640974320766832
+        ]
+      },
+      "runtime_seconds": {
+        "mean": 42.69199940400009,
+        "sample_sd": 3.7440874718205723,
+        "values": [
+          44.17071367000017,
+          45.47091515500006,
+          38.43436938700006
+        ]
+      },
+      "sampling_seconds": {
+        "mean": 6.9389701023271,
+        "sample_sd": 3.558460523357794,
+        "values": [
+          8.156925525994211,
+          9.728533214989511,
+          2.931451565997577
+        ]
+      },
+      "connectivity_seconds": {
+        "mean": 34.7755590146697,
+        "sample_sd": 0.20299380497668246,
+        "values": [
+          35.00370526700226,
+          34.70805251301999,
+          34.61491926398685
+        ]
+      },
+      "peak_gpu_bytes": {
+        "mean": 124093440.0,
+        "sample_sd": 0.0,
+        "values": [
+          124093440,
+          124093440,
+          124093440
+        ]
+      },
+      "reports": [
+        "results/paper_clean_checkpoint_controls_v1/independent/seed20260831/run.json",
+        "results/paper_clean_checkpoint_controls_v1/independent/seed20260901/run.json",
+        "results/paper_clean_checkpoint_controls_v1/independent/seed20260902/run.json"
+      ]
+    }
+  },
+  "claim_boundary": "Fixed checkpoints and saved RNG, nested K prefixes. Timings describe this accelerated validation diagnostic only, not end-to-end robot latency or a new CUDA training operator."
+}

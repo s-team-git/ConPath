@@ -263,8 +263,8 @@ positive per-seed intervals. The official directory split remains rejected, the 
 explicitly non-official, and no physical test label has been read.
 
 The analogous UnScenes3D target-valid-support rerun also completed six fresh adapters and strict
-checkpoint audits. Its exact K=128 mean-map event Brier is `0.54704 +/- 0.00218` (correlated) versus
-`0.54740 +/- 0.00251` (independent), a near-zero delta on only two held-out validation scenes. It is
+checkpoint audits. Its exact K=128 mean-map event Brier is `0.51142 +/- 0.00198` (correlated) versus
+`0.51130 +/- 0.00218` (independent), a near-zero delta on only two held-out validation scenes. It is
 a reproducible transfer/support diagnostic, not evidence for a cross-domain method win; `location_6`
 remains locked.
 

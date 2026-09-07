@@ -38,8 +38,8 @@ depth timestamps. Both local-map parts are acquired and the coordinate/projectio
 complete. The ground-valid site-held-out manifest has 15,567 train and 1,529 validation queries.
 Older correlated/independent/mean-map outputs omitted the `target_valid` hard support boundary and
 are now superseded; their entry points are corrected and six clean target-valid-support adapters plus
-K=128 paired evaluation now pass strict audits. The clean event Brier is 0.54704 (correlated) versus
-0.54740 (independent) on two validation scenes, so no correlation advantage is claimed. The non-map
+K=128 paired evaluation now pass strict audits. The clean event Brier is 0.51142 (correlated) versus
+0.51130 (independent) on two validation scenes, so no correlation advantage is claimed. The non-map
 S4C-inspired coordinate-query control is unaffected. `location_6` test files/labels remain locked. See
 [`UNSCENES3D_COMPATIBILITY_CHECK.md`](../UNSCENES3D_COMPATIBILITY_CHECK.md) and
 [`UNSCENES3D_PROTOCOL.md`](../UNSCENES3D_PROTOCOL.md).

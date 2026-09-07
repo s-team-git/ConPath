@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "checkpoint_id": "clean-support-paper-continuation-20260906",
+  "checkpoint_id": "paper-evidence-projection-v2-20260906",
   "updated_local_date": "2026-09-06",
   "timezone": "America/New_York",
   "branch": "main",
-  "remote_sync": "Remote main verified at 61d617e; clean-support code, audit artifacts, images and current plan are being prepared for a normal fast-forward publication.",
-  "latest_local_commit": "Working tree: September 6 plan reconciliation and clean-support website publication preparation; base commit 61d617e.",
+  "remote_sync": "First clean-support publication 2deced0/0000508 is on origin/main; Pages run 34077832249 succeeded. This handoff packages paper analyses and the final mean-map projection correction. Resolve the latest publication with git log -1 -- RECOVERY_STATE.json and the ignored deployment report results/maintenance_20260906/paper_deployed_artifacts.json.",
+  "latest_local_commit": "392017b adds paper-analysis controls; a00c86a fixes final mean-map projection and adds observation bounds. Manuscript/site/recovery evidence is committed with this handoff; resolve its revision using git log -1 -- RECOVERY_STATE.json.",
   "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence.",
-  "scientific_status": "Synthetic P0 passes in two seeds. The official FlatLands split fails scene isolation. A 2026-09-03 validation audit found that pre-correction map-derived FlatLands forwards did not hard-block cells outside epistemic_mask, so the earlier K=32/K=128 neural tables are superseded. The six-checkpoint K=128 post-hoc support-clamped replay remains a recovery diagnostic only. The new three-seed clean-support K=128 groups for correlated and independent decoders have completed and passed strict checkpoint/support/replay audits: scene-weighted Brier 0.06749 +/- 0.00936 versus 0.09521 +/- 0.00703, paired delta +0.02772 +/- 0.00993 with all per-seed intervals positive. These are validation-only on the non-official provenance split; FlatLands test remains locked. The analogous six-run UnScenes3D target-valid-support rerun and K=128 paired replay also passed strict audits: correlated Brier 0.54704 +/- 0.00218 versus independent 0.54740 +/- 0.00251, near-zero delta on two held-out scenes. Both clean packages remain validation diagnostics; no test or final cross-domain claim is authorized. Non-map coordinate-query/radius-prior controls are unaffected and location_6 remains locked.",
-  "active_task": "Publish the reviewed clean-support code, real-checkpoint figures and website; then follow WORK_PLAN.md to complete clean calibration/paired-control analysis, sampling and ablation evidence, and the working paper. Final integrity audits are complete; locked tests remain unopened.",
+  "scientific_status": "P0 passes in two seeds. Clean-support FlatLands K=128 gives event Brier 0.06749 +/- 0.00936 versus independent 0.09521 +/- 0.00703 on the scene-disjoint non-official validation split. The nine-method comparison includes same-checkpoint mean maps (0.06957 +/- 0.00380) and a fixed empirical marginal shuffle (0.16139 +/- 0.00677); spatial dependence has positive mechanism evidence, but the mean-map advantage and equal-30%-coverage risk advantage (3.60% versus 3.90%) are not stable across paired intervals. All six original K=128 predictions replay exactly. UnScenes3D mean-map/qualitative v1 reopened invalid support after sampling and is superseded by v2: Brier 0.51142 +/- 0.00198 versus independent 0.51130 +/- 0.00218. Training weights and hidden-map metrics replay exactly; all 27,522 model predictions obey the exact observation bounds. The frozen hard-observation validation Brier lower bound is 0.47574, and only 15.66% of events are mutable through unknown completion. The manuscript remains a working draft. Both physical tests remain locked; no successful transfer or final-paper claim is supported.",
+  "active_task": "The September 6 paper-evidence bundle is complete. Next research gate: clean three-seed no-event/no-global FlatLands training, then a train-only observation-model audit for a separately versioned UnScenes3D protocol, scalable backward-operator evidence, and final same-contract baselines. No training process or runtime goal is active; physical tests stay locked.",
   "completed_milestones": [
     "Interruption-safe P0 training with atomic checkpoints and exact resume",
     "Two-seed synthetic P0 pass and matched no-reach failure",
@@ -82,111 +82,145 @@
     "Clean FlatLands correlated K=128 support-v2 training and exact validation completed for seeds 20260831/20260901/20260902; all three reports have 4,224 label-free validation rows, support clamp metadata, frozen query hashes, and scene-weighted Brier 0.06749 +/- 0.00936; matched independent training subsequently completed",
     "Clean FlatLands matched independent K=128 support-v2 training and exact validation completed for seeds 20260831/20260901/20260902; all three reports have 4,224 label-free validation rows and scene-weighted Brier 0.09521 +/- 0.00703; paired clean comparison and checkpoint-derived candidate visual passed the strict zero-failure audit",
     "UnScenes3D clean target-valid-support supervisor entered the six-run training lane after FlatLands finalization; all six adapters, K=128 paired replay, and candidate qualitative panels completed with location_6 still locked",
-    "Clean UnScenes3D target-valid-support package passed both three-seed training audits, six K=128 exact replay reports, paired comparison, and qualitative metadata checks; correlated Brier 0.54704 +/- 0.00218 versus independent 0.54740 +/- 0.00251 on two validation scenes, validation-only",
+    "[Historical v1 mean-map evidence, superseded by the September 6 final-projection audit] Clean UnScenes3D target-valid-support package passed both three-seed training audits, six K=128 exact replay reports, paired comparison, and qualitative metadata checks; correlated Brier 0.54704 +/- 0.00218 versus independent 0.54740 +/- 0.00251 on two validation scenes, validation-only",
     "Final site presentation promoted the clean FlatLands hero and clean UnScenes3D diagnostic table/panels; 80-test, static-link/DOM, paired-replay, and full 344-entry recovery checks passed with no training process active",
-    "September 6 review found no active runtime goal; consolidated WORK_PLAN.md reconciles completed overnight audits, superseded ablations, clean-support recovery commands and the Python 3.13 checkpoint interpreter. Three real-checkpoint figures were visually reviewed; stale website method/calibration text and unequal-coverage claims were corrected."
+    "September 6 review found no active runtime goal; consolidated WORK_PLAN.md reconciles completed overnight audits, superseded ablations, clean-support recovery commands and the Python 3.13 checkpoint interpreter. Three real-checkpoint figures were visually reviewed; stale website method/calibration text and unequal-coverage claims were corrected.",
+    "Normal Git publication completed: 2deced0 implementation and 0000508 evidence/site; GitHub Pages run 34077832249 succeeded and the deployed HTML, three clean PNGs and two JSON reports matched local bytes.",
+    "Same-query analysis of six valid FlatLands controls rebuilt the Brier table and whole-scene paired bootstrap. At equal 30% coverage, ConPath false-safe is 0.035997 versus independent 0.039008; all three paired intervals include zero, so fixed-threshold risk improvement is not a robust equal-coverage claim.",
+    "All six clean checkpoints replayed K=128 exactly from the final saved CUDA sampling RNG. Nested K=32/64/128 budgets and both deterministic mean-map controls are complete in results/paper_clean_checkpoint_controls_v1.",
+    "The frozen UnScenes3D observation-bound audit replayed 478 train and 62 validation frames and all 51,288 events exactly. Hard observation/support constraints imply scene-weighted Brier lower bounds 0.130968 train and 0.475736 validation, with only 15.6645% of validation events mutable by unknown-cell completion.",
+    "Nine-method FlatLands paper table now replays 23 prediction files over the same 4,224 events from 142 scenes; fixed-marginal shuffle preserves every per-cell count and yields Brier 0.16139 +/- 0.00677.",
+    "A new independent observation-bound check exposed UnScenes3D v1 mean-map postprocessing that reopened invalid support. Both evaluator and renderer now use final support projection; six original clean checkpoints replay exactly in v2 with zero hidden-map metric drift and zero bound violations among 27,522 event predictions.",
+    "UnScenes3D v2 paired Brier is 0.51142 +/- 0.00198 versus independent 0.51130 +/- 0.00218; positive and false-safe qualitative panels were regenerated. Earlier v1 results remain archived and must not be used as current support-consistent event evidence.",
+    "PAPER_DRAFT.md was rewritten around current positive and null findings; PAPER_DRAFT_HISTORY.md preserves the previous version, PAPER_EVIDENCE.md contains reproducible tables/commands, and five SVG/PDF scientific figure pairs plus compact JSON were added to the site.",
+    "89 unit tests pass. Paper evidence audit replays 23 FlatLands prediction files, checks 27,522 UnScenes3D bounds, 87 Python files, 29 site JSON files, 79 local links and 25 image elements; Chrome desktop/mobile checks pass."
   ],
   "tracked_files": [
     "CONTINUATION.md",
-    "PAPER_DRAFT.md",
-    "ROADMAP_ZH.md",
-    "P1_DATA_AUDIT.md",
-    "results/verification.md",
-    "scripts/audit_flatlands_archive.py",
-    "scripts/audit_flatlands_queries.py",
-    "scripts/audit_unscenes3d_mini.py",
-    "scripts/verify_recovery_state.py",
-    "src/pathrel/flatlands.py",
-    "src/pathrel/unscenes3d.py",
-    "src/pathrel/flatlands_query.py",
-    "src/pathrel/flatlands_data.py",
-    "src/pathrel/flatlands_eval.py",
-    "src/pathrel/flatlands_baselines.py",
-    "src/pathrel/flatlands_sampling.py",
-    "src/pathrel/labels.py",
-    "src/pathrel/reachability.py",
-    "src/pathrel/model.py",
-    "src/pathrel/gpu_diagnostics.py",
-    "src/pathrel/recovery.py",
-    "tests/test_flatlands_query.py",
-    "tests/test_unscenes3d.py",
-    "tests/test_flatlands_data.py",
-    "tests/test_flatlands_eval.py",
-    "tests/test_flatlands_baselines.py",
-    "tests/test_flatlands_conpath.py",
-    "tests/test_gpu_diagnostics.py",
-    "tests/test_demo_site.py",
-    "scripts/evaluate_flatlands_predictions.py",
-    "scripts/run_flatlands_radius_prior.py",
-    "scripts/train_flatlands_direct_query.py",
-    "scripts/train_flatlands_completion.py",
-    "scripts/train_flatlands_conpath.py",
-    "scripts/build_unscenes3d_manifest.py",
-    "scripts/audit_unscenes3d_coordinate.py",
-    "scripts/audit_unscenes3d_controls.py",
-    "scripts/compare_unscenes3d_manifest.py",
-    "scripts/compare_unscenes3d_replay.py",
-    "scripts/evaluate_unscenes3d_calibration.py",
-    "scripts/train_unscenes3d_conpath.py",
-    "scripts/evaluate_unscenes3d_conpath_mean_map.py",
-    "scripts/train_unscenes3d_coordinate.py",
-    "scripts/render_unscenes3d_qualitative.py",
-    "scripts/run_flatlands_conpath_matrix.sh",
-    "scripts/render_flatlands_qualitative.py",
-    "scripts/evaluate_flatlands_completion_k.py",
-    "scripts/evaluate_flatlands_recent_ensemble.py",
-    "scripts/evaluate_flatlands_conpath_mean_map.py",
-    "scripts/evaluate_flatlands_calibration.py",
-    "scripts/audit_flatlands_conpath_k128.py",
-    "scripts/build_flatlands_k128_snapshot.py",
-    "scripts/compare_flatlands_k128_paired.py",
-    "scripts/evaluate_flatlands_support_clamped.py",
-    "scripts/render_flatlands_k128_advantage.py",
-    "scripts/wait_and_finalize_flatlands_valid_support.sh",
-    "RECENT_BASELINES.md",
     "OFFICIAL_FLATLANDS_CHECK.md",
-    "SCENESENSE_COMPATIBILITY_CHECK.md",
     "ORFD_COMPATIBILITY_CHECK.md",
+    "P1_DATA_AUDIT.md",
+    "PAPER_DRAFT.md",
+    "PAPER_DRAFT_HISTORY.md",
+    "PAPER_EVIDENCE.md",
+    "RECENT_BASELINES.md",
+    "ROADMAP_ZH.md",
+    "SCENESENSE_COMPATIBILITY_CHECK.md",
     "UNSCENES3D_COMPATIBILITY_CHECK.md",
     "UNSCENES3D_PROTOCOL.md",
+    "WORK_PLAN.md",
+    "results/verification.md",
+    "scripts/analyze_flatlands_clean_validation.py",
+    "scripts/audit_flatlands_archive.py",
+    "scripts/audit_flatlands_conpath_k128.py",
+    "scripts/audit_flatlands_queries.py",
+    "scripts/audit_paper_evidence.py",
+    "scripts/audit_unscenes3d_controls.py",
+    "scripts/audit_unscenes3d_coordinate.py",
+    "scripts/audit_unscenes3d_mini.py",
+    "scripts/audit_unscenes3d_observation_ceiling.py",
+    "scripts/benchmark_connectivity.py",
     "scripts/build_demo_site.py",
-    "site/index.html",
+    "scripts/build_flatlands_k128_snapshot.py",
+    "scripts/build_paper_evidence.py",
+    "scripts/build_unscenes3d_manifest.py",
+    "scripts/compare_flatlands_k128_paired.py",
+    "scripts/compare_unscenes3d_manifest.py",
+    "scripts/compare_unscenes3d_replay.py",
+    "scripts/evaluate_flatlands_calibration.py",
+    "scripts/evaluate_flatlands_clean_controls.py",
+    "scripts/evaluate_flatlands_completion_k.py",
+    "scripts/evaluate_flatlands_conpath_mean_map.py",
+    "scripts/evaluate_flatlands_marginal_shuffle.py",
+    "scripts/evaluate_flatlands_predictions.py",
+    "scripts/evaluate_flatlands_recent_ensemble.py",
+    "scripts/evaluate_flatlands_support_clamped.py",
+    "scripts/evaluate_unscenes3d_calibration.py",
+    "scripts/evaluate_unscenes3d_conpath_mean_map.py",
+    "scripts/render_flatlands_k128_advantage.py",
+    "scripts/render_flatlands_qualitative.py",
+    "scripts/render_unscenes3d_qualitative.py",
+    "scripts/run_flatlands_conpath_matrix.sh",
+    "scripts/run_flatlands_radius_prior.py",
+    "scripts/train_flatlands_completion.py",
+    "scripts/train_flatlands_conpath.py",
+    "scripts/train_flatlands_direct_query.py",
+    "scripts/train_unscenes3d_conpath.py",
+    "scripts/train_unscenes3d_coordinate.py",
+    "scripts/verify_recovery_state.py",
+    "scripts/wait_and_finalize_flatlands_valid_support.sh",
     "site/app.js",
-    "site/styles.css",
-    "site/data/flatlands_audit.json",
-    "site/data/flatlands_baselines_validation.json",
     "site/assets/flatlands_baseline_comparison.svg",
     "site/assets/flatlands_baseline_reliability.svg",
+    "site/assets/flatlands_calibration_false_safe.svg",
+    "site/assets/flatlands_calibration_reliability.svg",
+    "site/assets/flatlands_clean_equal_coverage.pdf",
+    "site/assets/flatlands_clean_equal_coverage.svg",
+    "site/assets/flatlands_clean_k_convergence.pdf",
+    "site/assets/flatlands_clean_k_convergence.svg",
+    "site/assets/flatlands_clean_marginal_shuffle.pdf",
+    "site/assets/flatlands_clean_marginal_shuffle.svg",
+    "site/assets/flatlands_clean_reliability.pdf",
+    "site/assets/flatlands_clean_reliability.svg",
+    "site/assets/flatlands_k128_support_clamped_advantage.png",
     "site/assets/flatlands_qualitative_validation_positive.svg",
     "site/assets/flatlands_qualitative_validation_uncertain.svg",
-    "site/data/flatlands_pasco_ensemble_validation.json",
-    "site/data/flatlands_independent_decoder_validation.json",
-    "site/data/flatlands_conpath_mean_map_validation.json",
-    "site/data/flatlands_s4c_coordinate_validation.json",
+    "site/assets/unscenes3d_calibration_false_safe.svg",
+    "site/assets/unscenes3d_calibration_reliability.svg",
+    "site/assets/unscenes3d_observation_ceiling.pdf",
+    "site/assets/unscenes3d_observation_ceiling.svg",
+    "site/assets/unscenes3d_qualitative_failure.png",
+    "site/assets/unscenes3d_qualitative_positive.png",
+    "site/data/flatlands_audit.json",
+    "site/data/flatlands_baselines_validation.json",
     "site/data/flatlands_calibration_validation.json",
+    "site/data/flatlands_clean_checkpoint_controls.json",
+    "site/data/flatlands_clean_paper_analysis.json",
     "site/data/flatlands_conpath_k128_validation.json",
+    "site/data/flatlands_conpath_mean_map_validation.json",
+    "site/data/flatlands_independent_decoder_validation.json",
     "site/data/flatlands_independent_k128_validation.json",
     "site/data/flatlands_k128_paired_comparison.json",
     "site/data/flatlands_k128_support_clamped_advantage.json",
-    "site/assets/flatlands_k128_support_clamped_advantage.png",
-    "site/assets/flatlands_calibration_reliability.svg",
-    "site/assets/flatlands_calibration_false_safe.svg",
+    "site/data/flatlands_pasco_ensemble_validation.json",
     "site/data/flatlands_qualitative_validation_positive.json",
     "site/data/flatlands_qualitative_validation_uncertain.json",
-    "tests/test_labels.py",
-    "tests/test_reachability.py",
-    "scripts/benchmark_connectivity.py",
-    "site/assets/unscenes3d_qualitative_positive.png",
-    "site/assets/unscenes3d_qualitative_failure.png",
-    "site/assets/unscenes3d_calibration_reliability.svg",
-    "site/assets/unscenes3d_calibration_false_safe.svg",
-    "site/data/unscenes3d_qualitative_validation.json",
-    "site/data/unscenes3d_controls_validation.json",
+    "site/data/flatlands_s4c_coordinate_validation.json",
     "site/data/unscenes3d_calibration_validation.json",
     "site/data/unscenes3d_controls_audit.json",
+    "site/data/unscenes3d_controls_validation.json",
     "site/data/unscenes3d_manifest_replay_audit.json",
+    "site/data/unscenes3d_observation_ceiling.json",
+    "site/data/unscenes3d_qualitative_validation.json",
     "site/data/unscenes3d_replay_audit.json",
-    "WORK_PLAN.md"
+    "site/index.html",
+    "site/styles.css",
+    "src/pathrel/flatlands.py",
+    "src/pathrel/flatlands_baselines.py",
+    "src/pathrel/flatlands_data.py",
+    "src/pathrel/flatlands_eval.py",
+    "src/pathrel/flatlands_query.py",
+    "src/pathrel/flatlands_sampling.py",
+    "src/pathrel/gpu_diagnostics.py",
+    "src/pathrel/labels.py",
+    "src/pathrel/model.py",
+    "src/pathrel/posterior_audits.py",
+    "src/pathrel/reachability.py",
+    "src/pathrel/recovery.py",
+    "src/pathrel/selective_risk.py",
+    "src/pathrel/unscenes3d.py",
+    "tests/test_demo_site.py",
+    "tests/test_flatlands_baselines.py",
+    "tests/test_flatlands_conpath.py",
+    "tests/test_flatlands_data.py",
+    "tests/test_flatlands_eval.py",
+    "tests/test_flatlands_query.py",
+    "tests/test_gpu_diagnostics.py",
+    "tests/test_labels.py",
+    "tests/test_posterior_audits.py",
+    "tests/test_reachability.py",
+    "tests/test_selective_risk.py",
+    "tests/test_unscenes3d.py"
   ],
   "ignored_artifacts": [
     {
@@ -1810,29 +1844,29 @@
       "path": "site/data/unscenes3d_clean_support_k128_candidate.json",
       "role": "Clean UnScenes3D K=128 paired validation candidate provenance and metrics",
       "required_for_resume": false,
-      "bytes": 16920,
-      "sha256": "af368cb4eff99f97575eb23dcccefd963df1dace5ca07cb959fcd73c335070a9"
+      "bytes": 17060,
+      "sha256": "84eae2f418dee0c9d925c391ce961cc04f952e9e05615748673a179f46a7d730"
     },
     {
       "path": "site/data/unscenes3d_clean_candidate_qualitative.json",
       "role": "Clean UnScenes3D ground-robot qualitative candidate provenance",
       "required_for_resume": false,
-      "bytes": 3049,
-      "sha256": "af2c981cf4a72d1893c88ad4f2623ff0826c20d80b01d440263c49142b7358d6"
+      "bytes": 3362,
+      "sha256": "b2781a012d8bfe5ada4262fd48f1dfaf830429796ff00cfc03c6b09571698014"
     },
     {
       "path": "site/assets/unscenes3d_clean_candidate_positive.png",
       "role": "Clean UnScenes3D true-positive validation candidate panel",
       "required_for_resume": false,
-      "bytes": 385964,
-      "sha256": "c8b7c644383e3d84d7faa30d1ac03085559ff41a621424d20f655fd60f40e910"
+      "bytes": 382656,
+      "sha256": "96a0f261c59bfec54047cb6afd0cc31ca7789c6866d07b5794bff6920202a653"
     },
     {
       "path": "site/assets/unscenes3d_clean_candidate_failure.png",
       "role": "Clean UnScenes3D false-safe validation candidate panel",
       "required_for_resume": false,
-      "bytes": 385416,
-      "sha256": "394c6d2e61565ad825f3df679b68b641f35bf493667ec2c230abb114b752242b"
+      "bytes": 385832,
+      "sha256": "c37a873f7d0ec60fd317fcd7575ae3b3b8d31a248ef0befbc48a9fcca728e94a"
     },
     {
       "path": "results/unscenes3d_ground_valid_support_clamped_f16_v1/audit.json",
@@ -1903,12 +1937,488 @@
       "required_for_resume": false,
       "bytes": 1486873,
       "sha256": "f8aa8df214f7d4f57b1a2217df97335d7da22008eadb9751e791ab70823a9d64"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/correlated/seed20260901/predictions_128.csv",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 93734,
+      "sha256": "a0e20ff31c14b5b7ee34a3ba3b186e9feca4633b0a9195753c970f0e109d33bb"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/correlated/seed20260901/predictions_64.csv",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 90137,
+      "sha256": "2fb57f7a942a1cffeddc798d35f268ff862986e1b98516e4d6b4f77b99bb0aa9"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/correlated/seed20260901/progress.json",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 119,
+      "sha256": "178a50ca79909ef4cb2c47cf1526df30240659f218bfe8ea7a113051ad29b03c"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/correlated/seed20260901/predictions_mean_map.csv",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 77009,
+      "sha256": "413439c3eb117f49738e9f5e2f4dc848d1b9c720f24ff0e7c931015286eea3f1"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/correlated/seed20260901/run.json",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 36466,
+      "sha256": "5627c8d63c0680da33d95a2865d7c28d53d4bff84777b9f3c94f85f867c839e5"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/correlated/seed20260901/predictions_32.csv",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 87245,
+      "sha256": "60b7046cec3c0693dcdb71f96b87e31c278ea132cfbb3423eb7206cafd170f81"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/correlated/seed20260902/predictions_128.csv",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 92340,
+      "sha256": "812b11067c844793b15e25f77e29ca4339026f96f3b5a37d619b26360e5106c3"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/correlated/seed20260902/predictions_64.csv",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 89280,
+      "sha256": "63e7860883f1b6ab3c61b0659572b2b35c2f18b95c53f9aac99e8c91eb5cd60b"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/correlated/seed20260902/progress.json",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 119,
+      "sha256": "94c32c1eeabf5359f27ba8baddaf94a7deba33f3aea0875ccae7c96fcd52fccd"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/correlated/seed20260902/predictions_mean_map.csv",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 77009,
+      "sha256": "b86978d92eb8e6f8f3fde11f2413f342059d32b76a22cca74380cc97dee827d9"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/correlated/seed20260902/run.json",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 36441,
+      "sha256": "25e1979cb7bd5e090de361ed79e22aa2da57026a7e62d1c504a2d5968f50f414"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/correlated/seed20260902/predictions_32.csv",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 86785,
+      "sha256": "cbf8575bd6b03ddfb76d3d4ee21334f14e2ef46a71af2f99c1dc4bfa39407982"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/correlated/seed20260831/predictions_128.csv",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 93594,
+      "sha256": "50c94f29c7461988ff4467cfca9d9ae5e604e4543ad60604d82337d6dc378a0d"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/correlated/seed20260831/predictions_64.csv",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 90411,
+      "sha256": "cc09343e263930842e55f87b3377006fbe4eaf6a5210effe6e6d96d7757de430"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/correlated/seed20260831/progress.json",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 119,
+      "sha256": "2862d261807d3bbce43dc24b58d0152117199a1d6dab256a023a4d453ac5eb43"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/correlated/seed20260831/predictions_mean_map.csv",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 77009,
+      "sha256": "0ff9edf3f4e5e781295bfe479daab1728fbeaa8e931d70de776acf5cec9cc721"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/correlated/seed20260831/run.json",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 36488,
+      "sha256": "a53881e425d9a24f284ab6104aaacaf2edbd59e26794f353bc2fae8d3af093f0"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/correlated/seed20260831/predictions_32.csv",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 87200,
+      "sha256": "a6fa9c442f54edda1188c13d4729e7a1e8c4454782db51b03e12482cec3390c0"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/independent/seed20260901/predictions_128.csv",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 87801,
+      "sha256": "8d73eacb72f6697f26f4b9d4be0f32395ff544bd3d333e0a546a01734981cd43"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/independent/seed20260901/predictions_64.csv",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 85565,
+      "sha256": "dadb4e90e5ca606df9836dfb425da508b1763bea424f9e087d9395b83c9068aa"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/independent/seed20260901/progress.json",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 120,
+      "sha256": "c705dcea800b84f38f999b3ad3cde7936cf3897de250fd8b0c7df99ce434d9b7"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/independent/seed20260901/predictions_mean_map.csv",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 77009,
+      "sha256": "22d19bcc9f33224097dead18c2aa3e11bd6766a6aaea4e46bc747db4e12aca12"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/independent/seed20260901/run.json",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 36490,
+      "sha256": "b121add1dbdb1d6f6ea83a2774f1307a9dbd77fb2f8aa90b567dcae92eb1f0a3"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/independent/seed20260901/predictions_32.csv",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 83344,
+      "sha256": "e1640de86c45b02e34cf723fcec75f6d4d079ae0452787204ff1011cf3fc86db"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/independent/seed20260902/predictions_128.csv",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 87941,
+      "sha256": "40faa371a2e55c5660be29066908ab3593f37b235f1c130ee2453fb055e1969a"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/independent/seed20260902/predictions_64.csv",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 85848,
+      "sha256": "8a951b56f4d8b8a41a1081ab1f1b0cf3df21523149308f346ce02261156839e9"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/independent/seed20260902/progress.json",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 120,
+      "sha256": "60b24b8a04fb8744d9bd9c882afaea49a14e6aaddaf3b719fc50082f1a5167e9"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/independent/seed20260902/predictions_mean_map.csv",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 77009,
+      "sha256": "45ec5d247e997acfccc23df8480551b790904c722cacd2a23e95d28703388436"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/independent/seed20260902/run.json",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 36478,
+      "sha256": "1a5212535e278eddb58f80b9361ea01e1ba7d9adf5d19b00b2c65ac5a39bd58a"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/independent/seed20260902/predictions_32.csv",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 83733,
+      "sha256": "1db41aa4685ceae99fe99656156363cc308d2d12d6273565737547f7c24ab6be"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/independent/seed20260831/predictions_128.csv",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 88092,
+      "sha256": "e185ed3f06d3a3eaedac1be52426b4fa204f77064cbaf6138bb77e439f5a1759"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/independent/seed20260831/predictions_64.csv",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 85840,
+      "sha256": "c99fa98506247c2e18eaa08ed00e0ee731ddd0a5154b5f1baf56f373824d0d1d"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/independent/seed20260831/progress.json",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 120,
+      "sha256": "615ceb22f7666b87f5ea854b8e4dd5531ba93a1770ddbf9a9297990cca436f1b"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/independent/seed20260831/predictions_mean_map.csv",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 77009,
+      "sha256": "fb2f0eb093146e1644ad0600c49c1936798c9d0ddf123a32a7a3025fe47e4b2e"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/independent/seed20260831/run.json",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 36455,
+      "sha256": "4e0f369f399a1ba19917e34300ae532386d50505f43c34d3376d8646404e12f2"
+    },
+    {
+      "path": "results/paper_clean_checkpoint_controls_v1/independent/seed20260831/predictions_32.csv",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 83889,
+      "sha256": "6e134af099985f4596319a4b8b5fd9d3b3383f59b523aafa58366078a95e9ae5"
+    },
+    {
+      "path": "results/paper_clean_marginal_shuffle_v1/seed20260901/run.json",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 4414,
+      "sha256": "e81381740c0823d5ac88f29d8f620decb67ea2d3d5dfe758dba7140461790b34"
+    },
+    {
+      "path": "results/paper_clean_marginal_shuffle_v1/seed20260901/predictions_validation.csv",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 88247,
+      "sha256": "3d08af6265d1050364db1ec72c017014f1e95329a253f7325eb8080fdd8075a1"
+    },
+    {
+      "path": "results/paper_clean_marginal_shuffle_v1/seed20260902/run.json",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 4409,
+      "sha256": "912cc3a39ccc29c4e9669aab6fc661227a1678c028af86a6278f07b8db14bcfc"
+    },
+    {
+      "path": "results/paper_clean_marginal_shuffle_v1/seed20260902/predictions_validation.csv",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 88319,
+      "sha256": "e9a568b863aa99c443a9cb94e6af77c558452e3c0083cb11479ef4517ff230af"
+    },
+    {
+      "path": "results/paper_clean_marginal_shuffle_v1/seed20260831/run.json",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 4411,
+      "sha256": "222d4577c5e327c6340a9c9b336b2bae720ed3d7f575d01ab2fe6d73a44a31c8"
+    },
+    {
+      "path": "results/paper_clean_marginal_shuffle_v1/seed20260831/predictions_validation.csv",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 88184,
+      "sha256": "bf70fa48fd9400ad12281403d244a70eab0af0302d321688edfb3f4dda84035a"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_support_clamped_mean_map_k128_v2/seed20260901/run.json",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 3231,
+      "sha256": "346ac9f7c72ed429e3a60a1ee0f3474b8d71588783ed977b0ac6fcd2e67635e7"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_support_clamped_mean_map_k128_v2/seed20260901/map_metrics.json",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 270,
+      "sha256": "dc87c88157a25f7b408cf8d0f2a5632e98be7f034c568f7b229ce2f721ec3aab"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_support_clamped_mean_map_k128_v2/seed20260901/predictions_validation.csv",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 181921,
+      "sha256": "f9d069c73b66e9200eba5b1d8273e373b0e6ad89521e5c5e5beaf6e0d3dc2952"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_support_clamped_mean_map_k128_v2/seed20260902/run.json",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 3228,
+      "sha256": "3cb29d6064287a95ef976a026a9037a53dc7837aff1edd2bccdaedd9e8eb6973"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_support_clamped_mean_map_k128_v2/seed20260902/map_metrics.json",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 270,
+      "sha256": "0ed8588e1da82f9c3d0ae791b2bf5fc0a3253e39fbe410341bad02465a3aa1e4"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_support_clamped_mean_map_k128_v2/seed20260902/predictions_validation.csv",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 181921,
+      "sha256": "6a90c1ed49e4424811636ff7792bad5b12038e00b8205ace79a8a87807d688f3"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_support_clamped_mean_map_k128_v2/seed20260831/run.json",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 3228,
+      "sha256": "4b9c495d53fe4023d6fbc76d77753caa5939d9ca1464a680503f39cd0228959a"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_support_clamped_mean_map_k128_v2/seed20260831/map_metrics.json",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 268,
+      "sha256": "2ef1aa7996df30baea36752b9a192b327468faaab033b315bd2cb52486503406"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_support_clamped_mean_map_k128_v2/seed20260831/predictions_validation.csv",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 181921,
+      "sha256": "6ec27a2e9ea25b5cb96596cd7cb987ba33070f3f3b3225ceb036bbd725eac35b"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_independent_support_clamped_mean_map_k128_v2/seed20260901/run.json",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 3257,
+      "sha256": "45af492f355305297855c5f1c197568e7a44b431dc0cfc45b01a7836f9ff2c2e"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_independent_support_clamped_mean_map_k128_v2/seed20260901/map_metrics.json",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 271,
+      "sha256": "d9aad0c2ba2a281cc4af93664bf8524a62e72235137916d2f1319c738f064515"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_independent_support_clamped_mean_map_k128_v2/seed20260901/predictions_validation.csv",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 181921,
+      "sha256": "e0f1f8af3b15caeb9d72516f734e7e261e24282fdd119524ab7eef699cf8b51e"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_independent_support_clamped_mean_map_k128_v2/seed20260902/run.json",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 3253,
+      "sha256": "9e1d4fd0b5ac98ecbf5209894325639717ae9fada7b86b80b4d76fe6de666b75"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_independent_support_clamped_mean_map_k128_v2/seed20260902/map_metrics.json",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 269,
+      "sha256": "0c9e75ef9ea8dd4c747a72f1e0fe8d495177795af01ff2038e0234401bc162de"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_independent_support_clamped_mean_map_k128_v2/seed20260902/predictions_validation.csv",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 181921,
+      "sha256": "6a90c1ed49e4424811636ff7792bad5b12038e00b8205ace79a8a87807d688f3"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_independent_support_clamped_mean_map_k128_v2/seed20260831/run.json",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 3254,
+      "sha256": "8a809ed5beffe012eb35a10a67db4087200f4e71d57eef79698ae2ba2dda82b1"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_independent_support_clamped_mean_map_k128_v2/seed20260831/map_metrics.json",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 270,
+      "sha256": "f6469b50eb42442f03094e385a9f07c057d5a2fd44a88a0fb90028c85dbd43b3"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_independent_support_clamped_mean_map_k128_v2/seed20260831/predictions_validation.csv",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 181921,
+      "sha256": "6ec27a2e9ea25b5cb96596cd7cb987ba33070f3f3b3225ceb036bbd725eac35b"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_support_clamped_qualitative_v2/seed20260901/report.json",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 3362,
+      "sha256": "b2781a012d8bfe5ada4262fd48f1dfaf830429796ff00cfc03c6b09571698014"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_support_clamped_qualitative_v2/seed20260901/qualitative_failure.png",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 385832,
+      "sha256": "c37a873f7d0ec60fd317fcd7575ae3b3b8d31a248ef0befbc48a9fcca728e94a"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_support_clamped_qualitative_v2/seed20260901/qualitative_positive.png",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 382656,
+      "sha256": "96a0f261c59bfec54047cb6afd0cc31ca7789c6866d07b5794bff6920202a653"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_support_clamped_k128_comparison_v2/paired_comparison.json",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 17060,
+      "sha256": "84eae2f418dee0c9d925c391ce961cc04f952e9e05615748673a179f46a7d730"
+    },
+    {
+      "path": "results/paper_clean_analysis_v1/report.json",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 260625,
+      "sha256": "29ca7640437695dbb432c256dc6a0ab0f176ddfb108c17bd8723e17a223e9de3"
+    },
+    {
+      "path": "results/unscenes3d_observation_ceiling_v1/report.json",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 19813322,
+      "sha256": "7435ab981c8d4ce0c3d64be62e5f8dadd135a0419c6b3ccc60b7770b01d53389"
+    },
+    {
+      "path": "results/maintenance_20260906/paper_evidence_audit.json",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 284,
+      "sha256": "f1ce259a6a40e6735fc2a70e1ebbcf82064d3e6729a7ec1c27531deed6f81ebe"
+    },
+    {
+      "path": "results/maintenance_20260906/paper_browser_check.json",
+      "role": "September 6 reproducible validation evidence; see PAPER_EVIDENCE.md and CONTINUATION.md",
+      "required_for_resume": true,
+      "bytes": 1505,
+      "sha256": "fef760c5b03d05221683489e84d3186c53834f72428016d1280d16c849b46b67"
     }
   ],
   "last_verification": {
-    "command": "PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 -m unittest discover -s tests -q; four explicit clean-support audits; Python AST parse; static HTML/JSON/link audit; Chrome CDP desktop/mobile smoke; git diff --check; full recovery SHA verifier",
-    "result": "September 6 publication checks: 80 tests passed; 61 Python files parse; both FlatLands and both UnScenes3D three-seed clean audits have zero failures; Chrome 1440/390px has no broken images or page overflow and renders current metrics plus four baseline rows. Static-site counts are recorded in results/maintenance_20260906/site_audit.json. Full recovery hashes are checked immediately before commit. September 4 paired replay and archived control audit results remain recorded in CONTINUATION.md.",
-    "implementation_commit": "Publication working tree based on 61d617e; resolve the new revision with git log -1 -- WORK_PLAN.md"
+    "command": "PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 -m unittest discover -s tests -q; scripts/audit_paper_evidence.py; Chrome CDP desktop/mobile; git diff --check; scripts/verify_recovery_state.py",
+    "result": "89 tests passed; 23 FlatLands prediction files replay; 27,522 UnScenes3D predictions obey observation bounds; 87 Python files parse; 29 JSON files and 79 local links pass; 25 image elements load; desktop 1440/mobile 390 has no overflow. Full recovery SHA verification runs immediately before this handoff publication. Full recovery verification passed 438/438 entries with SHA-256 enabled and zero failures.",
+    "implementation_commit": "392017b / a00c86a"
   },
   "recovery_commands": [
     "git status --short --branch",
@@ -1917,15 +2427,15 @@
     "PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/audit_flatlands_conpath_k128.py --root results/p1_flatlands_conpath_k128_support_clamped_v1 --output /tmp/conpath_clean_audit.json",
     "PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/audit_flatlands_conpath_k128.py --root results/p1_flatlands_independent_k128_support_clamped_v1 --run-suffix independent --decoder-variant independent --method independent_k128_audit --output /tmp/independent_clean_audit.json",
     "PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/compare_flatlands_k128_paired.py --correlated-root results/p1_flatlands_conpath_k128_support_clamped_v1 --independent-root results/p1_flatlands_independent_k128_support_clamped_v1 --output /tmp/flatlands_clean_paired.json",
+    "PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/audit_paper_evidence.py",
     "cat WORK_PLAN.md",
-    "tail -n 70 CONTINUATION.md"
+    "tail -n 65 CONTINUATION.md"
   ],
   "next_command": "cat WORK_PLAN.md",
   "next_actions": [
-    "Finish a normal Git publication and verify GitHub Pages plus the three clean checkpoint figures and their JSON provenance.",
-    "Complete clean-support same-query strong-control comparisons, calibration and equal-coverage false-safe analysis; preserve historical artifacts.",
-    "Evaluate clean-checkpoint K convergence and deterministic mean-map controls; retrain no-event/no-global ablations under the corrected support contract before using them as causal evidence.",
-    "Diagnose the two-scene UnScenes3D null result, complete scalable-operator evidence, and update the working paper without claiming successful transfer.",
-    "Keep FlatLands physical test and UnScenes3D location_6 locked until the final method/control protocol and explicit test decision are frozen."
+    "Run clean no-event/no-global FlatLands training for all three fixed seeds; keep the full model, architecture, queries, selection rules, budgets and support contract fixed. Do not reuse superseded ablations.",
+    "Use training data only to audit a separately versioned second-domain observation likelihood before another adapter matrix. The frozen hard-observation bound cannot be removed by more optimization alone.",
+    "Complete scalable backward-operator evidence and the final same-contract recent-method baseline table; freeze paper tables and analysis decisions.",
+    "Keep FlatLands physical test and UnScenes3D location_6 locked until the method/control protocol and explicit test go/no-go are frozen."
   ]
 }
