@@ -1,5 +1,11 @@
 # Recent-baseline bridge for ConPath
 
+> **2026-09-07 文献复核后的主线：** 已读八篇正文。主比较优先采用 LaMa/集成、条件流匹配，
+> 以及 CogniPlan 原生地图上的官方生成模块；KITTI-360 暂不列为必跑。
+> 见 [LITERATURE_REVIEW_ZH.md](LITERATURE_REVIEW_ZH.md) 与 [EXPERIMENT_DESIGN_ZH.md](EXPERIMENT_DESIGN_ZH.md)。
+> FlatLands 的主要定量实验本身统一使用 BEV 条件；原代码/损失与本地尺度仍需审计。
+> 下文保留较早的三维方法筛查与本地适配历史，不代表新外部实验已经执行。
+
 > **2026-09-07 当前说明：** 原论文的数据集与本地适配对照不是一回事。PaSCo / SGN 的官方实验使用
 > SemanticKITTI、SSCBench-KITTI360，S4C 使用 KITTI-360；并不都使用 FlatLands / UnScenes3D。
 > 中文选型、原方法与自建对照的区别、仍缺少的正式基线，见 [DATASET_CHOICE_ZH.md](DATASET_CHOICE_ZH.md)。

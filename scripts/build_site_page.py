@@ -94,15 +94,19 @@ def main():
     <section id="comparison" class="section section-wash"><div class="shell text-shell">
       <div class="section-heading"><p class="section-number">04 / 研究选择</p><h2>为什么是这两个数据集？</h2></div>
       <div class="dataset-rationale"><article><span class="small-label">主实验 / 室内</span><h3>FlatLands</h3><p>它直接提供<strong>部分观测、完整俯视地面地图和有效范围</strong>，适合构造“这两个点之间，对指定尺寸的机器人是否有路”的标签。选它首先是因为与研究问题匹配。</p><p class="provenance">当前使用场景隔离的自建来源划分，不是官方排行榜划分。本地输入是地图通道，没有声称复现原论文从单张 RGB 图像出发的完整系统。<a href="https://1ssb.github.io/Flat_Lands/">官方介绍 ↗</a></p></article><article><span class="small-label">第二域诊断 / 户外</span><h3>UnScenes3D</h3><p>它提供<strong>真实车辆相机、激光雷达和三维占用标注</strong>，可检查从室内地图换到户外观测时，方法哪里会失效。标注可投影为保守的可通行地面图。</p><p class="provenance">目前使用公开 mini 数据中的 9 个训练场景、2 个验证场景，测试地点 location_6 未使用。它与常见的 nuScenes 是两个不同数据集。<a href="https://www.nature.com/articles/s41597-025-05532-5">数据论文 ↗</a></p></article></div>
-      <h3 class="comparison-title">其他论文并不都用这两个数据集。</h3><p>下面区分<strong>原论文使用的数据</strong>与<strong>我们实际做的对照</strong>。借鉴一种思路，不等于复现了原论文的方法与成绩。</p>
-      <div class="table-scroll"><table class="literature-table"><caption>已核实的相关论文与数据集</caption><thead><tr><th scope="col">原论文</th><th scope="col">原论文 / 官方实验数据</th><th scope="col">在本项目中的关系</th></tr></thead><tbody>
+      <h3 class="comparison-title">读过相关论文后，我们准备怎样比较？</h3><p>已核查八篇论文的实验章节与相关官方代码。主实验优先比较<strong>地图补全方法</strong>，再用共同的通路判断评估；外部方法比较与消融都需要。下面的新增对照仍是计划，尚未运行。</p>
+      <div class="table-scroll"><table class="literature-table"><caption>原论文的实验设置与当前对照选择</caption><thead><tr><th scope="col">原论文</th><th scope="col">原论文的数据与比较方式</th><th scope="col">本项目的采用方式</th></tr></thead><tbody>
+        <tr><th scope="row"><a href="https://arxiv.org/html/2603.16016v3">FlatLands · 2026 ↗</a></th><td>统一 BEV 输入；U-Net、LaMa/集成、扩散与流匹配</td><td>主实验优先增加 LaMa/集成和条件生成强对照；官方生成模型工具仍待发布。</td></tr>
+        <tr><th scope="row"><a href="https://github.com/castacks/MapEx">MapEx · ICRA 2025 ↗</a></th><td>KTH 楼层图；比较 Nearest、UPEN、IG-Hector</td><td>使用公开 LaMa 补全代码；补全模块的比较不等于完整探索系统比较。</td></tr>
+        <tr><th scope="row"><a href="https://proceedings.mlr.press/v305/wang25d.html">CogniPlan · CoRL 2025 ↗</a></th><td>模拟地图及 KTH；分别评估探索与导航</td><td>优先在其原生地图上比较官方生成模块，保留原有布局条件。</td></tr>
         <tr><th scope="row"><a href="https://github.com/astra-vision/PaSCo">PaSCo · CVPR 2024 ↗</a></th><td>SemanticKITTI、SSCBench-KITTI360</td><td>借鉴集成不确定性思路；旧集成对照尚未形成当前修正协议下的最终基线。</td></tr>
         <tr><th scope="row"><a href="https://github.com/ahayler/s4c">S4C · 3DV 2024 ↗</a></th><td>KITTI-360；在 SSCBench-KITTI360 上评估</td><td>本地坐标查询对照借鉴其隐式查询思路，并非原版三维系统。</td></tr>
-        <tr><th scope="row"><a href="https://github.com/Jieqianyu/SGN">SGN · TIP 2024 ↗</a></th><td>SemanticKITTI、SSCBench-KITTI360</td><td>相关工作参考；尚未在本项目相同输入和任务上运行。</td></tr>
+        <tr><th scope="row"><a href="https://github.com/Jieqianyu/SGN">SGN · TIP 2024 ↗</a></th><td>SemanticKITTI、SSCBench-KITTI360；另有 NYUv2</td><td>相关工作参考；尚未在本项目相同输入和任务上运行。</td></tr>
         <tr><th scope="row"><a href="https://arxiv.org/html/2409.10681v1">在线 SceneSense · 2024 ↗</a></th><td>作者采集的真实建筑占用地图</td><td>三维占用生成与探索任务；不能直接把其分数放进路径概率表。</td></tr>
       </tbody></table></div>
-      <p class="research-decision"><strong>当前判断：</strong>这两个数据集适合先验证机制、查清失败原因，但还不足以声称优于主流三维场景补全方法。若论文要做这类比较，需要另行建立 KITTI-360 等公共基准上的统一输入、标签和评估协议，并运行可复现的原方法对照。</p>
-      <p class="source-line"><a href="https://github.com/s-team-git/ConPath/blob/main/DATASET_CHOICE_ZH.md">阅读中文选型分析 ↗</a> · <a href="https://github.com/s-team-git/ConPath/blob/main/RECENT_BASELINES.md">方法兼容性记录 ↗</a></p>
+      <p class="research-decision"><strong>当前方案：</strong>FlatLands 做主比较，CogniPlan 原生地图补充外部生成模块比较，KTH 作为后续泛化补充。KITTI-360 暂不列为必跑。先核对数据尺度、原生实现和计算预算，再安排训练；所有方法统一起终点、机器人尺寸与评价规则，实验数值由实际运行产生。</p>
+      <details class="plain-details"><summary>主实验具体比较什么？</summary><div class="detail-body"><p>第一张新表计划统一为 4 个完整地图输出，比较 ConPath、LaMa 集成、条件流匹配等；确定性方法保留单个输出。另一张表记录实际采样量、误差、耗时和显存。现有 128 次采样的数值不会直接混进这张新表。</p><p>已知限制也会保留：均值地图结果很接近，外部强基线尚未运行，FlatLands 原文与本地元数据的尺度差异待核对。训练仍暂停，当前没有新的性能结论。</p></div></details>
+      <p class="source-line"><a href="https://github.com/s-team-git/ConPath/blob/main/LITERATURE_REVIEW_ZH.md">八篇论文怎样做比较 ↗</a> · <a href="https://github.com/s-team-git/ConPath/blob/main/EXPERIMENT_DESIGN_ZH.md">具体对比实验方案 ↗</a> · <a href="https://github.com/s-team-git/ConPath/blob/main/DATASET_CHOICE_ZH.md">数据集选型分析 ↗</a></p>
     </div></section>
     <section class="section shell closing"><h2>目前做到哪一步？</h2><p>主验证结果与图表已完成。新增的六组训练消融按要求暂停：三组完成第 4 轮，另外三组尚未开始。<br>论文仍是工作草稿，后续重点是补齐对照与训练消融，并处理第二域观测模型的问题。</p><div class="resource-links"><a href="https://github.com/s-team-git/ConPath/blob/main/WORK_PLAN.md">中文工作计划 ↗</a><a href="https://github.com/s-team-git/ConPath/blob/main/CLEAN_ABLATION_PLAN.md">消融方案 ↗</a><a href="archive/index.html">旧版页面与图表归档 ↗</a></div></section>
   </main>

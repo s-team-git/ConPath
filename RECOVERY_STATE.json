@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "checkpoint_id": "chinese-readable-website-training-paused-20260907",
+  "checkpoint_id": "literature-driven-comparison-design-training-paused-20260907",
   "updated_local_date": "2026-09-07",
   "timezone": "America/New_York",
   "branch": "main",
-  "remote_sync": "Previous main commit 8dd8d9a was synchronized. Resolve the website revision with git log -1 -- site/index.html; publication receipts are kept in results/site_redesign_20260907/deployment.json and deployed_artifacts.json.",
-  "latest_local_commit": "Resolve current website/handoff revision with git log -1 -- RECOVERY_STATE.json; frozen training implementation remains e6f0910.",
+  "remote_sync": "Previous website revision 2b7bdd7 was synchronized and deployed. Resolve this literature/design revision with git log -1 -- EXPERIMENT_DESIGN_ZH.md. Publication receipts for the new update are results/literature_protocol_20260907/deployment.json and deployed_artifacts.json.",
+  "latest_local_commit": "Resolve the literature/design handoff revision with git log -1 -- RECOVERY_STATE.json; frozen training implementation remains e6f0910.",
   "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence.",
   "scientific_status": "P0 passes in two seeds. Clean-support FlatLands K=128 gives event Brier 0.06749 +/- 0.00936 versus independent 0.09521 +/- 0.00703 on the scene-disjoint non-official validation split. The nine-method comparison includes same-checkpoint mean maps (0.06957 +/- 0.00380) and a fixed empirical marginal shuffle (0.16139 +/- 0.00677); spatial dependence has positive mechanism evidence, but the mean-map advantage and equal-30%-coverage risk advantage (3.60% versus 3.90%) are not stable across paired intervals. All six original K=128 predictions replay exactly. UnScenes3D mean-map/qualitative v1 reopened invalid support after sampling and is superseded by v2: Brier 0.51142 +/- 0.00198 versus independent 0.51130 +/- 0.00218. Training weights and hidden-map metrics replay exactly; all 27,522 model predictions obey the exact observation bounds. The frozen hard-observation validation Brier lower bound is 0.47574, and only 15.66% of events are mutable through unknown completion. The manuscript remains a working draft. Both physical tests remain locked; no successful transfer or final-paper claim is supported.",
-  "active_task": "Chinese website redesign, labelled real-data galleries and dataset/baseline rationale are locally validated. Source is ready for normal GitHub Pages publication; inspect results/site_redesign_20260907/deployment.json for live deployment status. Six clean training ablations remain paused at the user request: three no_event runs at completed epoch 4 and three no_global unstarted. Do not resume training or launch replacement experiments without a subsequent user request. Continue to communicate primarily in Chinese.",
+  "active_task": "Eight-paper literature/code review and Chinese prospective experiment design completed. Prioritize LaMa/ensemble and conditional flow completion on FlatLands, then CogniPlan generator comparison on native maps; KITTI-360 is conditional. Next implementation gate: train-only data/interface audit, especially FlatLands metric resolution and CogniPlan layout labels. External experiments not run, no new experimental data/checkpoints downloaded, no test evaluated, training remains paused. Read EXPERIMENT_DESIGN_ZH.md and LITERATURE_REVIEW_ZH.md. Website now explains this as a plan, not new results.",
   "completed_milestones": [
     "Interruption-safe P0 training with atomic checkpoints and exact resume",
     "Two-seed synthetic P0 pass and matched no-reach failure",
@@ -34,7 +34,7 @@
     "Deterministic ConPath posterior mean-map control completed for all three seeds with event/map metrics; mean event Brier 0.07111 and hidden-map Brier 0.17842",
     "Three-seed reliability and selective-risk curves generated for ConPath, independent decoder, and deterministic mean-map controls; test remains locked",
     "Website visual hierarchy enlarged and clarified; desk-surface TUM media explicitly marked as geometry-pipeline pilot pending ground-robot replacement",
-    "256×256 B=8 K=8 exact merge-tree shape benchmark completed; query-time scaling recorded and output finiteness verified",
+    "256\u00d7256 B=8 K=8 exact merge-tree shape benchmark completed; query-time scaling recorded and output finiteness verified",
     "S4C-inspired F16 coordinate-query control completed for seeds 20260831, 20260901, and 20260902; mean exact Brier 0.09204 +/- 0.00582 and four-method calibration snapshot published",
     "Official FlatLands implementation/weights audit completed; public repository has dataset/docs but no importable checkpoint and marks weights/construction code/tooling as planned",
     "SceneSense diffusion compatibility audit completed; official 3-D pointmap/ROS contract and metrics are incompatible with the FlatLands 2-D event protocol, so it remains reference-only",
@@ -97,12 +97,15 @@
     "September 7 clean no-event/no-global protocol and analysis plan frozen before inspecting ablation outcomes; all training/model/data hashes match the clean full-model reference. Four configuration/resume regression tests bring the suite to 93 passing tests.",
     "Detached six-run clean ablation supervisor launched on the RTX PRO 6000, initially three no_event workers with no_global queued. The new audit exactly replays full-model seed 20260831 Brier 0.059479796640678484. This is a running experiment, not a completed ablation result.",
     "September 7 user-requested training pause completed at 05:50 UTC: supervisor and three workers exited, all three no_event runs preserve epoch-4 latest/best checkpoints, no_global unstarted. Nine checkpoint files restore models/optimizers with finite tensors and complete RNG states. Partial epoch 5 is excluded from the resume source; no final ablation result is available.",
-    "Chinese website rebuilt from the user-supplied Lightweight-3DGS reference, with labelled S/G markers and no query connectors, separate phone/desktop scientific plots, 12 train-only dataset examples, 23 unchanged raw camera images, 18 synchronized frames, two fixed checkpoint diagnostic cases and nine exact numeric rows. Old English audit/media clutter is archived. Official dataset/baseline differences are explained in DATASET_CHOICE_ZH.md. Visual hash/provenance audit and Chrome 1440/390 interaction checks pass; training remains paused."
+    "Chinese website rebuilt from the user-supplied Lightweight-3DGS reference, with labelled S/G markers and no query connectors, separate phone/desktop scientific plots, 12 train-only dataset examples, 23 unchanged raw camera images, 18 synchronized frames, two fixed checkpoint diagnostic cases and nine exact numeric rows. Old English audit/media clutter is archived. Official dataset/baseline differences are explained in DATASET_CHOICE_ZH.md. Visual hash/provenance audit and Chrome 1440/390 interaction checks pass; training remains paused.",
+    "Read experiments/supplements of eight related papers and inspect four official repositories; record source PDF versions/hashes and code revisions. Write LITERATURE_REVIEW_ZH.md and EXPERIMENT_DESIGN_ZH.md. Update manuscript/work plan/site with prospective external baselines, K=4 and cost comparisons, native CogniPlan data and preserved training pause. No external method performance claimed."
   ],
   "tracked_files": [
     "CLEAN_ABLATION_PLAN.md",
     "CONTINUATION.md",
     "DATASET_CHOICE_ZH.md",
+    "EXPERIMENT_DESIGN_ZH.md",
+    "LITERATURE_REVIEW_ZH.md",
     "OFFICIAL_FLATLANDS_CHECK.md",
     "ORFD_COMPATIBILITY_CHECK.md",
     "P1_DATA_AUDIT.md",
@@ -2659,16 +2662,65 @@
       "required_for_resume": true,
       "bytes": 54335,
       "sha256": "3fe0c0270fa2db16eb17e3ac6d69415592740df22c113c0258716ed12de832f8"
+    },
+    {
+      "path": "results/literature_protocol_20260907/sources.json",
+      "role": "Eight research PDF source URLs, versions and hashes",
+      "required_for_resume": true,
+      "bytes": 3763,
+      "sha256": "7a78dc5701f90c7e1ba679a0985c7988e0d58988a571b6d07e081bf078510c91"
+    },
+    {
+      "path": "results/literature_protocol_20260907/code_sources.json",
+      "role": "Official repository revisions and reviewed entry points",
+      "required_for_resume": true,
+      "bytes": 4395,
+      "sha256": "d33f1b22a66a46947cf1f7f81bf1487561d3c120d34842da76c5f12facc76c9f"
+    },
+    {
+      "path": "results/literature_protocol_20260907/code_files.json",
+      "role": "Reviewed source file URLs and hashes",
+      "required_for_resume": true,
+      "bytes": 4170,
+      "sha256": "31c4ce52e8acfb577189fe7d3dbce26ed4a18fb0ed4167956ab183a92baeade5"
+    },
+    {
+      "path": "results/literature_protocol_20260907/cogniplan_release.json",
+      "role": "Public release metadata only; no model or dataset payload downloaded",
+      "required_for_resume": true,
+      "bytes": 18241,
+      "sha256": "5b0dbf48dc024f3ef0cb83744332e55926326d3e9493d99daa735f7537c8acda"
+    },
+    {
+      "path": "results/literature_protocol_20260907/document_audit.json",
+      "role": "Chinese document link and proposed-status validation",
+      "required_for_resume": true,
+      "bytes": 373,
+      "sha256": "02a2a5e753b51e1cdc6e651709b531c3d485fdc4bdb20cc7a6659ac8e53267ed"
+    },
+    {
+      "path": "results/literature_protocol_20260907/paper_evidence_audit.json",
+      "role": "Unchanged scientific numerical evidence audit after literature edits",
+      "required_for_resume": true,
+      "bytes": 284,
+      "sha256": "be8198f2dc4ecbc2d4c693cd9e03fad53b394ba29e64a029a16ad78b34546d79"
+    },
+    {
+      "path": "results/literature_protocol_20260907/browser/report.json",
+      "role": "Desktop/mobile review of changed literature section and scale provenance",
+      "required_for_resume": true,
+      "bytes": 616,
+      "sha256": "0406fe6f9c4f2a7358903c0bd98e81bc4153d8b716029f04f3749543c9709fb0"
     }
   ],
   "last_verification": {
-    "command": "audit_site_visuals.py; audit_paper_evidence.py with separate output; check_site_browser.mjs; syntax checks; git diff --check; quick recovery verification",
-    "result": "113 media assets hashed; 23 camera images match released bytes; 12 training gallery examples and 18 training frames pass provenance gates; two frozen validation example probabilities and nine table rows match exactly. Paper audit replays 23 prediction files and 27,522 UnScenes3D bound comparisons. Chrome 1440/390 checks pass model/example switches, all 12 gallery scenes, five charts/PDFs, image modal/Escape, sequence seek/play/pause and mobile step navigation without overflow, broken images or JavaScript exceptions. No current training worker exists. Only visualization, documentation and audit tooling changed; training/model/data implementations stay frozen.",
+    "command": "audit_site_visuals.py; audit_paper_evidence.py with separate output; document/link and syntax checks; focused Chrome review at 1440/390; git diff --check; quick recovery verification",
+    "result": "Unchanged 113 media assets and 10 source hashes, 23 prediction-file replays, nine numerical rows and 27,522 UnScenes3D bounds pass. New literature/design documents link correctly; changed webpage section has seven literature rows, working document links, qualified metric scale, expandable plan and no viewport overflow or JS exceptions. No training, external inference or formal test ran.",
     "implementation_commit": "e6f0910",
     "receipts": [
-      "results/site_redesign_20260907/visual_audit.json",
-      "results/site_redesign_20260907/paper_evidence_audit.json",
-      "results/site_redesign_20260907/browser/report.json"
+      "results/literature_protocol_20260907/document_audit.json",
+      "results/literature_protocol_20260907/paper_evidence_audit.json",
+      "results/literature_protocol_20260907/browser/report.json"
     ]
   },
   "recovery_commands": [
@@ -2684,13 +2736,14 @@
     "cat results/paper_clean_ablation_matrix_v1/progress.json",
     "PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/audit_site_visuals.py"
   ],
-  "next_command": "cat WORK_PLAN.md",
+  "next_command": "cat EXPERIMENT_DESIGN_ZH.md",
   "next_actions": [
-    "Keep training paused until the user requests resumption. Read the Chinese website and DATASET_CHOICE_ZH.md for the current presentation and baseline gaps; inspect deployment receipts for publication. Do not infer permission to train from a visualization or paper-editing request.",
-    "After all six runs complete, inspect the automatically generated analysis/report.json and PAPER_ABLATIONS.md, including every seed and null or reversed effects.",
-    "Incorporate audited ablation statistics/figures into the working manuscript and website, update completed checkpoint hashes, then commit and push the result package.",
-    "Next research gate: train-only observation likelihood audit for a separate UnScenes3D adapter protocol, scalable backward-operator evidence and the final same-contract baseline comparison.",
-    "Keep the FlatLands physical test and UnScenes3D location_6 locked until the final method/control protocol and test go/no-go are frozen."
+    "Keep training paused until the user requests resumption. Read EXPERIMENT_DESIGN_ZH.md and LITERATURE_REVIEW_ZH.md; inspect publication receipts. Do not infer permission to train from literature or website work.",
+    "Next useful work: train-only external-method/data interface audit for LaMa/ensemble, conditional flow and the native CogniPlan generator; resolve FlatLands paper-versus-metadata scale, native map splits and layout-type labels before running experiments.",
+    "After resumption is requested, perform original-module sanity checks and small train-only resource measurements; freeze common data, calibration split, training recipes, seeds, K=4 comparison and cost budgets before large runs.",
+    "Keep the existing no_event/no_global ablation contract and paused checkpoints intact. Do not mix old runs with an expanded-dataset protocol. When all six old runs complete, inspect and audit their generated analysis including null/reversed effects before publication.",
+    "Preserve test isolation for FlatLands, UnScenes3D location_6 and any new held-out dataset. Native checkpoint checks must not consume the final test for method development.",
+    "Before claiming navigation or 3-D system superiority, design and run the corresponding system comparison; the proposed static event experiment supports only map/event claims."
   ],
   "active_training": {
     "root": "results/paper_clean_ablation_matrix_v1",

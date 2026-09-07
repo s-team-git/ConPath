@@ -3,6 +3,10 @@
 更新：2026-09-07。此文把选型依据与已完成的实验分开说明。当前训练按用户要求暂停，
 本次网页整理没有恢复训练，也没有读取正式测试样本。
 
+随后按用户要求阅读了八篇相关论文，当前建议已细化：优先 FlatLands 上的强补全方法，
+以及 CogniPlan 原生地图上的外部生成模块；KITTI-360 暂不列为必跑。
+见 [文献核查](LITERATURE_REVIEW_ZH.md) 与 [具体实验方案](EXPERIMENT_DESIGN_ZH.md)。
+
 ## 先回答结论
 
 **其他 baseline 论文并不都使用 FlatLands 和 UnScenes3D。** 当前选这两个数据集，
@@ -32,9 +36,12 @@ FlatLands 正式测试数据及 UnScenes3D 的 `location_6` 仍不参与此次�
 
 | 原方法 | 经官方来源核实的原实验数据 | 本项目的实际关系 |
 |---|---|---|
+| [FlatLands，2026](https://arxiv.org/html/2603.16016v3) | 主要定量实验统一输入 BEV；U-Net、LaMa/集成、扩散、流匹配等共享评估；RGB前端另评 | 主实验最接近的对照设计；LaMa/集成和条件生成方法拟作为外部强基线，尚未运行 |
+| [MapEx，ICRA 2025](https://github.com/castacks/MapEx) | KTH 楼层图；与 Nearest、UPEN、IG-Hector 比较探索、地图与规划表现 | 优先借助公开 LaMa 补全代码；模块比较不能称为完整 MapEx 导航比较 |
+| [CogniPlan，CoRL 2025](https://proceedings.mlr.press/v305/wang25d.html) | 原生模拟地图及 KTH；分别比较探索与导航方法 | 优先在原生地图上比较官方条件生成模块；其布局标签不直接套用到 FlatLands |
 | [PaSCo，CVPR 2024](https://github.com/astra-vision/PaSCo) | SemanticKITTI、SSCBench-KITTI360；仓库另有 Robo3D / SemanticKITTI-C 鲁棒性评估 | 历史上做过借鉴集成思路的二维补全对照，不能称为 PaSCo 原版复现；旧集成还未形成修正支持范围后的最终基线 |
 | [S4C，3DV 2024](https://github.com/ahayler/s4c) | 用 KITTI-360 视频与伪标签训练，在 SSCBench-KITTI360 上评估 | 本地坐标查询对照只借鉴隐式空间查询思路，输入、网络与预测对象均有差别 |
-| [SGN，TIP 2024](https://github.com/Jieqianyu/SGN) | SemanticKITTI、SSCBench-KITTI360 | 尚未在本项目的相同协议上运行；其三维 IoU / mIoU 不进入本地路径概率表 |
+| [SGN，TIP 2024](https://github.com/Jieqianyu/SGN) | SemanticKITTI、SSCBench-KITTI360，论文另有 NYUv2 | 尚未在本项目的相同协议上运行；其三维 IoU / mIoU 不进入本地路径概率表 |
 | [在线 SceneSense，2024](https://arxiv.org/html/2409.10681v1) | 作者采集的真实建筑占用地图；原文说明约 1 小时数据、11,296 个位姿 | 当前仅为相关工作，三维占用生成和探索指标不能直接与二维路径事件分数比较 |
 
 因此，网站用“**本地对照**”描述独立单元、均值地图、确定性补全、坐标查询等实验。
@@ -52,14 +59,17 @@ UnScenes3D 修正后的均值地图 Brier 为 0.51142 与 0.51130，基本相同
 而不是继续在同一错误约束下增加训练时长。
 上述本地结果可由 [PAPER_EVIDENCE.md](PAPER_EVIDENCE.md) 中的命令追溯。
 
-如果论文目标是与三维场景补全方法比较，下一步应先做 **KITTI-360 / SSCBench-KITTI360
+当前主线依据更贴近任务的文献，优先采用本节新增的二维地图对照。若以后论文目标扩展到
+与三维场景补全方法比较，届时应先做 **KITTI-360 / SSCBench-KITTI360
 的协议可行性审计**：确认输入传感器一致、未知区域定义一致、语义到可通行标签的映射合理，
 并能在相同终点和机器人尺寸上比较事件概率。选择它的理由是已有多个相关原方法的公开代码、
 权重和共同评估数据；这仍是新的研究协议，不能把它们原有的 mIoU 数字搬到本文 Brier 表。
 
 如果论文目标保持为“二维地图后验的路径概率”，也可以保留 FlatLands 为主实验；
-但需要优先补完当前训练消融，以及可复现的强随机补全基线，并清楚限定适用范围。
-目前不下载新数据、不启动新训练，先供用户理解和决定论文比较目标。
+需要先确定外部强方法与共同协议，随后完成主比较和训练消融，并清楚限定适用范围。
+FlatLands 论文的主要定量输入本身也是 BEV；此前不能把“不是RGB前端复现”当成排除其补全基线的理由。
+v3 中约0.039米/格与本地元数据0.01米/格的差异待核对，现有按格子计算的结果保持不变。
+目前不下载新实验数据、不恢复训练。
 
 ## 本次图片、点和线的解释
 

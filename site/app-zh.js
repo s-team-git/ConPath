@@ -37,7 +37,7 @@
       $('#example-verdict').textContent=`参考地图：${row.target?'存在通路':'不存在通路'}`;
       $('#example-probability').textContent=`${model} 预测通路概率 ${(row.event_probability[variant]*100).toFixed(1)}%`;
       $('#example-explanation').textContent=row.target?(variant==='correlated'?'ConPath 在这个示例中给出了较高的通路概率。单个格子看起来可走还不够，整张补全地图中的空间结构也会影响是否连通。':'独立对照在这个示例中低估了通路概率。虽然均值概率地图看起来接近，独立采样可能破坏整条通路的共同结构。'):'这是一个需要保留的失败例子：参考地图判定无路，但两个模型仍给出较高的通路概率。ConPath 的概率较低，也不意味着它已经判断正确。';
-      $('#example-source').textContent=`FlatLands / ${row.source} · ${row.global_id} · 机器人半径 ${row.radius_cells} 格（${row.radius_m.toFixed(2)} 米）· 模型种子 ${row.seed}。固定采样示例与原验证统计使用不同随机流；通路概率来自原验证结果。按标签挑选的解释性示例，不能代替整体统计。`;
+      $('#example-source').textContent=`FlatLands / ${row.source} · ${row.global_id} · 机器人半径 ${row.radius_cells} 格（按发布包元数据换算为 ${row.radius_m.toFixed(2)} 米，物理尺度待核对）· 模型种子 ${row.seed}。固定采样示例与原验证统计使用不同随机流；通路概率来自原验证结果。按标签挑选的解释性示例，不能代替整体统计。`;
       choose('[data-example]',exampleIndex,'example');
     }
     all('[data-example]').forEach((button)=>button.addEventListener('click',()=>{exampleIndex=Number(button.dataset.example);showExample();}));

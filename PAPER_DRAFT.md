@@ -1,6 +1,6 @@
 # ConPath: Connectivity-Calibrated Path Reliability from Partial BEV Observations
 
-Working manuscript, updated 2026-09-06. Current numerical tables and standalone figures are generated in [PAPER_EVIDENCE.md](PAPER_EVIDENCE.md). Earlier tables and superseded experiments are preserved in [PAPER_DRAFT_HISTORY.md](PAPER_DRAFT_HISTORY.md).
+Working manuscript, updated 2026-09-07 (literature and prospective experimental design; numerical results unchanged). Current numerical tables and standalone figures are generated in [PAPER_EVIDENCE.md](PAPER_EVIDENCE.md). Earlier tables and superseded experiments are preserved in [PAPER_DRAFT_HISTORY.md](PAPER_DRAFT_HISTORY.md).
 
 ## Abstract
 
@@ -23,7 +23,9 @@ The prototype operates on rasters, circular footprints, and four-neighbor connec
 
 The comparison separates deterministic completion, independent stochastic completion, joint stochastic completion, and direct event prediction. The primary dependence comparison matches encoder capacity and sample budget. The fixed-marginal shuffle additionally changes the joint arrangement of generated worlds while preserving every empirical cell probability, addressing a confound that separately trained models cannot eliminate.
 
-The coordinate-query control is inspired by implicit-field representations; it is not a faithful S4C reproduction. The repository also contains an ensemble uncertainty control and compatibility audits for recent occupancy/completion methods. Sources, task differences, and implementation status are recorded in [RECENT_BASELINES.md](RECENT_BASELINES.md). Cross-task 3-D mIoU, FID, or exploration scores do not enter the event table. A full literature synthesis and final same-contract recent-method table remain submission requirements.
+The coordinate-query control is inspired by implicit-field representations; it is not a faithful S4C reproduction. Sources, task differences, and implementation status are recorded in [RECENT_BASELINES.md](RECENT_BASELINES.md). An eight-paper review now prioritizes BEV completion over a wholesale transition to 3-D SSC: the FlatLands benchmark compares completion families under shared BEV conditioning; MapEx uses LaMa-based map predictions; CogniPlan provides a conditional generative map module with native layout-type supervision. PaSCo's separate common-backbone uncertainty comparisons and S4C's re-evaluation under a shared support mask inform the proposed controls. The review and source locations are recorded in [LITERATURE_REVIEW_ZH.md](LITERATURE_REVIEW_ZH.md).
+
+The prospective external comparison includes LaMa/ensemble and conditional flow completion on FlatLands, followed by CogniPlan's released generator on its native map data. The generator's layout labels prevent treating a file-path replacement as a faithful FlatLands transfer. These experiments have not been run. Module adaptations will retain their core mechanisms and disclose changes; full navigation-system claims require separate closed-loop evaluation. Cross-task 3-D mIoU, FID, or exploration scores do not enter the event table. [EXPERIMENT_DESIGN_ZH.md](EXPERIMENT_DESIGN_ZH.md) specifies a new matched-output K=4 comparison and measured cost curves; neither overwrites the frozen K=128 validation evidence.
 
 ## 3. Method
 
@@ -117,6 +119,6 @@ Limitations include validation reuse for checkpoint selection, the non-official 
 
 The evidence supports further study of joint map structure and event scoring. It does not yet meet the final-paper gate: deterministic controls remain close, equal-coverage risk improvement over the independent decoder is not stable, and the second-domain adapter has a large observation-conditioned error floor.
 
-The next training milestone is a clean three-seed no-event/no-global causal matrix on the fixed FlatLands contract. Before another second-domain matrix, a training-only observation model audit must address the bound without held-out test labels. Scalable training-operator evidence, the final recent-method comparison, and a frozen official test protocol remain necessary. This remains a working draft; final public-data, transfer, and submission-ready claims are unsupported.
+The next design milestone is to validate external-method interfaces and dataset provenance, including a discrepancy between the FlatLands paper's nominal spatial resolution and the local release metadata, before expanding physical-footprint claims or scheduling expensive runs. The clean three-seed no-event/no-global matrix remains a required causal experiment under its frozen contract and is paused. Before another UnScenes3D matrix, a training-only observation model audit must address the bound without held-out test labels. Scalable training-operator evidence, the external-method comparison, and a frozen test protocol remain necessary. This remains a working draft; final public-data, transfer, and submission-ready claims are unsupported.
 
 The clean no-event/no-global training matrix was launched on 2026-09-07 under the frozen [ablation analysis plan](CLEAN_ABLATION_PLAN.md), then paused with three no-event runs at completed epoch 4 and no-global not yet started. No ablation result is claimed before all six seeds/runs complete their audits.
