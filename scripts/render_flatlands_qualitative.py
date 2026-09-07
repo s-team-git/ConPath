@@ -28,6 +28,12 @@ from pathrel.labels import batched_merge_tree_bottleneck_scores, clearance_radiu
 from pathrel.model import PathRelNet  # noqa: E402
 
 
+TRAINING_SUPPORT_PROTOCOL = "P1_BASELINE_PROTOCOL.md v1 + ConPath valid-support v2"
+VALID_SUPPORT_POLICY = (
+    "FlatLands epistemic_mask complement is deterministically blocked before posterior sampling"
+)
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--checkpoint", type=Path, required=True, help="trained ConPath best.pt")
@@ -225,8 +231,11 @@ def main() -> None:
         raise SystemExit("samples must be at least two and max-reachability-steps must be positive")
     if args.device == "cuda" and not torch.cuda.is_available():
         raise SystemExit(cuda_unavailable_message(torch))
+    if args.split == "test":
+        raise SystemExit("FlatLands test rendering is locked; use train or validation only")
     device = torch.device(args.device)
     state, config = _load_checkpoint(args.checkpoint, device)
+    checkpoint_trained_with_support = state.get("protocol_version") == TRAINING_SUPPORT_PROTOCOL
     dataset = FlatLandsReplayDataset(
         args.archive,
         args.selection,
@@ -241,17 +250,28 @@ def main() -> None:
         if args.radius not in sample.radii_cells:
             raise ValueError(f"radius {args.radius} is not in frozen radii {sample.radii_cells}")
         observation = torch.from_numpy(sample.input_bev[None]).to(device=device, dtype=torch.float32)
+        valid_support_mask = torch.from_numpy(sample.epistemic_mask[None]).to(
+            device=device, dtype=torch.bool
+        )
         starts = torch.tensor([[[query.start_row, query.start_col]]], dtype=torch.long, device=device)
         goals = torch.tensor([[[query.goal_row, query.goal_col]]], dtype=torch.long, device=device)
         feature_channels = int(config.get("feature_channels", 32))
         latent_dim = int(config.get("latent_dim", 8))
-        model = PathRelNet(input_channels=3, feature_channels=feature_channels, latent_dim=latent_dim).to(device)
+        decoder_variant = str(config.get("decoder_variant", "correlated"))
+        independent = decoder_variant == "independent"
+        model = PathRelNet(
+            input_channels=3,
+            feature_channels=feature_channels,
+            latent_dim=latent_dim,
+            local_kernel_size=1 if independent else 5,
+        ).to(device)
         model.load_state_dict(state["model"])
         model.eval()
         generator = torch.Generator(device=device).manual_seed(args.seed)
         with torch.inference_mode():
             output = model(
                 observation,
+                valid_support_mask=valid_support_mask,
                 starts=starts,
                 goals=goals,
                 footprint_radii_cells=(args.radius,),
@@ -259,7 +279,7 @@ def main() -> None:
                 hard_samples=True,
                 max_reachability_steps=args.max_reachability_steps,
                 shared_start=True,
-                disable_global_factors=bool(config.get("disable_global_factors", False)),
+                disable_global_factors=bool(config.get("disable_global_factors", False) or independent),
                 generator=generator,
             )
         conpath_probability = output.posterior.conditional_class_probs[0, :, 0].mean(dim=0).cpu().numpy()
@@ -276,7 +296,7 @@ def main() -> None:
             completion_model.eval()
             with torch.inference_mode():
                 completion_probability = completion_model.free_probability(observation)[0].cpu().numpy()
-            deterministic_world = completion_probability > 0.5
+            deterministic_world = (completion_probability > 0.5) & sample.epistemic_mask.astype(bool)
             completion_event = float(
                 batched_merge_tree_bottleneck_scores(
                     clearance_radius_map(deterministic_world)[None, None],
@@ -310,6 +330,10 @@ def main() -> None:
             "conpath_event": conpath_event,
             "completion_event": completion_event,
             "direct_query_event": direct_event,
+            "decoder_variant": decoder_variant,
+            "posthoc_checkpoint_evaluation": not checkpoint_trained_with_support,
+            "retraining_required": not checkpoint_trained_with_support,
+            "valid_support_policy": VALID_SUPPORT_POLICY,
         }
         svg = _build_svg(
             panel_values,
@@ -332,6 +356,14 @@ def main() -> None:
             "conpath_event_exact": conpath_event,
             "completion_event": completion_event,
             "direct_query_event": direct_event,
+            "decoder_variant": decoder_variant,
+            "forward": {
+                "invalid_support_clamped": True,
+                "valid_support_policy": VALID_SUPPORT_POLICY,
+                "checkpoint_trained_with_same_support_policy": checkpoint_trained_with_support,
+            },
+            "posthoc_checkpoint_evaluation": not checkpoint_trained_with_support,
+            "retraining_required": not checkpoint_trained_with_support,
             "test_evaluated": False,
         }
         args.output.with_suffix(".json").write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")

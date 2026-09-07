@@ -181,6 +181,30 @@ class FlatLandsMarginalCompletionBaselineTest(unittest.TestCase):
         self.assertTrue(np.array_equal(first.deterministic, first.independent))
         self.assertEqual(first.deterministic.tolist(), [[1.0, 0.0, 0.0]])
 
+    def test_completion_sampler_never_uses_probability_outside_unknown_support(self) -> None:
+        probability = np.ones((9, 9), dtype=np.float64)
+        observed_free = np.zeros((9, 9), dtype=bool)
+        observed_free[4, 1] = True
+        observed_free[4, 7] = True
+        # A buggy sampler that draws from ``probability`` everywhere would connect the endpoints.
+        # The fixed baseline samples only this explicit (empty) unknown-support mask.
+        unknown = np.zeros((9, 9), dtype=bool)
+        task = CompletionEventTask(
+            global_id="support-fixture",
+            free_probability=probability,
+            observed_free=observed_free,
+            unknown=unknown,
+            starts=np.asarray([[4, 1]]),
+            goals=np.asarray([[4, 7]]),
+            candidate_indices=np.asarray([0]),
+            radii_cells=(0,),
+            posterior_samples=4,
+            seed=13,
+        )
+        result = completion_event_probabilities(task)
+        self.assertEqual(result.deterministic.tolist(), [[0.0]])
+        self.assertEqual(result.independent.tolist(), [[0.0]])
+
 
 if __name__ == "__main__":
     unittest.main()

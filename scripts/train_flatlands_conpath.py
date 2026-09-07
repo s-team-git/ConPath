@@ -48,7 +48,7 @@ from pathrel.losses import (  # noqa: E402
 from pathrel.model import PathRelNet  # noqa: E402
 
 
-PROTOCOL_VERSION = "P1_BASELINE_PROTOCOL.md v1 + ConPath pilot v1"
+PROTOCOL_VERSION = "P1_BASELINE_PROTOCOL.md v1 + ConPath valid-support v2"
 
 
 def parse_args() -> argparse.Namespace:
@@ -170,8 +170,8 @@ def _cache_split(archive: Path, selection: Path, queries: Path, split: str, limi
 
 def _to_tensor_batch(batch: dict[str, object], device: torch.device) -> dict[str, object]:
     output = dict(batch)
-    for key in ("observation", "target_free", "loss_mask", "starts", "goals", "reachability_targets", "query_mask"):
-        dtype = torch.bool if key in ("loss_mask", "reachability_targets", "query_mask") else None
+    for key in ("observation", "valid_support_mask", "target_free", "loss_mask", "starts", "goals", "reachability_targets", "query_mask"):
+        dtype = torch.bool if key in ("valid_support_mask", "loss_mask", "reachability_targets", "query_mask") else None
         tensor = torch.from_numpy(batch[key])
         if dtype is not None:
             tensor = tensor.to(dtype=dtype)
@@ -223,6 +223,7 @@ def _scene_event_brier(events: Tensor, targets: Tensor, query_mask: Tensor) -> T
 def _forward(model: PathRelNet, batch: dict[str, object], radii: tuple[int, ...], samples: int, max_steps: int, generator: torch.Generator, *, disable_global_factors: bool = False) -> Any:
     return model(
         batch["observation"],
+        valid_support_mask=batch["valid_support_mask"],
         starts=batch["starts"],
         goals=batch["goals"],
         footprint_radii_cells=radii,
@@ -488,11 +489,18 @@ def main() -> None:
             "training_event_operator": "shared-start differentiable max-min propagation",
             "validation_prediction_operator": "exact NumPy disk-clearance + batched Kruskal merge-tree",
             "validation_exact_forward": True,
+            "invalid_support_clamped": True,
+            "valid_support_policy": "FlatLands epistemic_mask complement is deterministically blocked before posterior sampling",
             "training_max_reachability_steps": args.max_reachability_steps,
             "decoder_variant": args.decoder_variant,
             "effective_disable_global_factors": effective_disable_global_factors,
             "local_kernel_size": 1 if independent_decoder else 5,
             "validation_sample_chunk": args.validation_sample_chunk,
+            "implementation_sha256": {
+                "model": sha256_path(PROJECT_ROOT / "src/pathrel/model.py"),
+                "flatlands_data": sha256_path(PROJECT_ROOT / "src/pathrel/flatlands_data.py"),
+                "trainer": sha256_path(Path(__file__)),
+            },
         },
         "evaluation": evaluation,
         "runtime": {
@@ -505,7 +513,8 @@ def main() -> None:
         "history": history,
         "claim_boundary": (
             f"Single-seed {args.decoder_variant} decoder validation run. The differentiable event uses a bounded "
-            f"shared-start propagation budget of {args.max_reachability_steps} steps; test is locked and this is not a final paper result."
+            f"shared-start propagation budget of {args.max_reachability_steps} steps; invalid support is hard-blocked, "
+            "test is locked, and this is not a final paper result."
         ),
     }
     _atomic_json(args.output_dir / "run.json", report)

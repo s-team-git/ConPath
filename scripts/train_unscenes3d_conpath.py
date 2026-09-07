@@ -12,7 +12,9 @@ from __future__ import annotations
 import argparse
 from collections import defaultdict
 from datetime import datetime, timezone
+import hashlib
 import json
+import math
 import os
 from pathlib import Path
 import random
@@ -38,8 +40,97 @@ from pathrel.model import PathRelNet  # noqa: E402
 from pathrel.unscenes3d import load_frame  # noqa: E402
 
 
-PROTOCOL_VERSION = "UNSCENES3D_PROTOCOL.md v0.1"
+PROTOCOL_VERSION = "UNSCENES3D_PROTOCOL.md v0.2"
+VALID_SUPPORT_POLICY = (
+    "UnScenes3D target_valid complement is deterministically blocked before posterior sampling"
+)
 RADII_CELLS = (0, 1, 2)
+
+DEFAULT_ADAPTER_CONFIG: dict[str, object] = {
+    "endpoint_policy": "blocked",
+    "start_selection": "valid",
+    "ground_margin_m": 0.35,
+    "ground_bin_size_m": 1.2,
+    "ground_lateral_limit_m": 20.0,
+    "ground_quantile": 0.15,
+}
+
+
+def _sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def _resolve_adapter_config(
+    manifest: dict[str, object], args: argparse.Namespace
+) -> dict[str, object]:
+    """Resolve one adapter contract from manifest metadata and optional CLI overrides."""
+
+    manifest_config = manifest.get("adapter", {})
+    if not isinstance(manifest_config, dict):
+        raise SystemExit("manifest adapter metadata must be an object")
+    resolved: dict[str, object] = {}
+    for key, default in DEFAULT_ADAPTER_CONFIG.items():
+        value = getattr(args, key, None)
+        if value is not None and key in manifest_config:
+            expected = manifest_config[key]
+            if isinstance(default, str):
+                matches = str(value) == str(expected)
+            else:
+                matches = math.isclose(float(value), float(expected), rel_tol=0.0, abs_tol=1e-12)
+            if not matches:
+                raise SystemExit(
+                    f"CLI adapter override {key}={value!r} disagrees with manifest "
+                    f"value {expected!r}; build a new manifest instead"
+                )
+        if value is None:
+            value = manifest_config.get(key, default)
+        resolved[key] = value
+    if resolved["endpoint_policy"] not in {"blocked", "ground"}:
+        raise SystemExit("adapter endpoint_policy must be 'blocked' or 'ground'")
+    if resolved["start_selection"] not in {"valid", "observed_free"}:
+        raise SystemExit("adapter start_selection must be 'valid' or 'observed_free'")
+    if float(resolved["ground_margin_m"]) < 0:
+        raise SystemExit("adapter ground_margin_m must be non-negative")
+    if float(resolved["ground_bin_size_m"]) <= 0:
+        raise SystemExit("adapter ground_bin_size_m must be positive")
+    if float(resolved["ground_lateral_limit_m"]) <= 0:
+        raise SystemExit("adapter ground_lateral_limit_m must be positive")
+    if not 0.0 < float(resolved["ground_quantile"]) <= 0.5:
+        raise SystemExit("adapter ground_quantile must lie in (0, 0.5]")
+    # Normalize values read from JSON/argparse so checkpoints and run manifests
+    # have stable scalar types.
+    return {
+        "endpoint_policy": str(resolved["endpoint_policy"]),
+        "start_selection": str(resolved["start_selection"]),
+        "ground_margin_m": float(resolved["ground_margin_m"]),
+        "ground_bin_size_m": float(resolved["ground_bin_size_m"]),
+        "ground_lateral_limit_m": float(resolved["ground_lateral_limit_m"]),
+        "ground_quantile": float(resolved["ground_quantile"]),
+    }
+
+
+def _load_adapter_frame(
+    timestamp: str,
+    *,
+    raw_root: Path,
+    label_root: Path,
+    adapter: dict[str, object],
+) -> Any:
+    return load_frame(
+        timestamp,
+        raw_root=raw_root,
+        label_root=label_root,
+        endpoint_policy=str(adapter["endpoint_policy"]),
+        start_selection=str(adapter["start_selection"]),
+        ground_margin_m=float(adapter["ground_margin_m"]),
+        ground_bin_size_m=float(adapter["ground_bin_size_m"]),
+        ground_lateral_limit_m=float(adapter["ground_lateral_limit_m"]),
+        ground_quantile=float(adapter["ground_quantile"]),
+    )
 
 
 def _atomic_json(path: Path, payload: object) -> None:
@@ -64,17 +155,29 @@ def _atomic_torch_save(path: Path, payload: object) -> None:
 
 
 class UnScenesFrameDataset(Dataset[dict[str, object]]):
-    def __init__(self, records: list[dict[str, object]], raw_root: Path, label_root: Path) -> None:
+    def __init__(
+        self,
+        records: list[dict[str, object]],
+        raw_root: Path,
+        label_root: Path,
+        adapter: dict[str, object],
+    ) -> None:
         self.records = records
         self.raw_root = raw_root
         self.label_root = label_root
+        self.adapter = adapter
 
     def __len__(self) -> int:
         return len(self.records)
 
     def __getitem__(self, index: int) -> dict[str, object]:
         record = self.records[index]
-        frame = load_frame(str(record["timestamp"]), raw_root=self.raw_root, label_root=self.label_root)
+        frame = _load_adapter_frame(
+            str(record["timestamp"]),
+            raw_root=self.raw_root,
+            label_root=self.label_root,
+            adapter=self.adapter,
+        )
         unknown = frame.input_bev[2] > 0.5
         loss_mask = frame.target_valid & unknown
         return {
@@ -83,6 +186,7 @@ class UnScenesFrameDataset(Dataset[dict[str, object]]):
             "location": str(record["location"]),
             "observation": frame.input_bev.astype(np.float32, copy=False),
             "target_free": frame.target_free.astype(np.float32, copy=False),
+            "valid_support_mask": frame.target_valid.astype(bool, copy=False),
             "loss_mask": loss_mask,
             "queries": list(record["queries"]),
         }
@@ -115,6 +219,7 @@ def _collate(batch: list[dict[str, object]]) -> dict[str, object]:
         "locations": [str(item["location"]) for item in batch],
         "observation": np.stack([item["observation"] for item in batch]),
         "target_free": np.stack([item["target_free"] for item in batch]),
+        "valid_support_mask": np.stack([item["valid_support_mask"] for item in batch]),
         "loss_mask": np.stack([item["loss_mask"] for item in batch]),
         "starts": starts,
         "goals": goals,
@@ -127,6 +232,7 @@ def _tensor_batch(batch: dict[str, object], device: torch.device) -> dict[str, t
     return {
         "observation": torch.from_numpy(batch["observation"]).to(device=device, non_blocking=True),
         "target_free": torch.from_numpy(batch["target_free"]).to(device=device, non_blocking=True),
+        "valid_support_mask": torch.from_numpy(batch["valid_support_mask"]).to(device=device, dtype=torch.bool, non_blocking=True),
         "loss_mask": torch.from_numpy(batch["loss_mask"]).to(device=device, dtype=torch.bool, non_blocking=True),
         "starts": torch.from_numpy(batch["starts"]).to(device=device, dtype=torch.long, non_blocking=True),
         "goals": torch.from_numpy(batch["goals"]).to(device=device, dtype=torch.long, non_blocking=True),
@@ -147,9 +253,11 @@ def _event_forward(
     samples: int,
     max_reachability_steps: int,
     generator: torch.Generator,
+    disable_global_factors: bool = False,
 ) -> Any:
     return model(
         batch["observation"],
+        valid_support_mask=batch["valid_support_mask"],
         starts=batch["starts"],
         goals=batch["goals"],
         footprint_radii_cells=RADII_CELLS,
@@ -157,6 +265,7 @@ def _event_forward(
         hard_samples=True,
         max_reachability_steps=max_reachability_steps,
         shared_start=True,
+        disable_global_factors=disable_global_factors,
         generator=generator,
     )
 
@@ -170,6 +279,7 @@ def _validation_event_brier(
     samples: int,
     max_reachability_steps: int,
     generator: torch.Generator,
+    disable_global_factors: bool = False,
 ) -> float:
     """Bounded differentiable-event validation score for checkpoint selection."""
 
@@ -183,6 +293,7 @@ def _validation_event_brier(
             samples=samples,
             max_reachability_steps=max_reachability_steps,
             generator=generator,
+            disable_global_factors=disable_global_factors,
         )
         if output.reachability is None:
             raise RuntimeError("event validation forward did not return reachability")
@@ -199,14 +310,26 @@ def _validation_event_brier(
 
 
 @torch.inference_mode()
-def _validation_map_metrics(model: PathRelNet, loader: DataLoader, device: torch.device) -> dict[str, float | int]:
+def _validation_map_metrics(
+    model: PathRelNet,
+    loader: DataLoader,
+    device: torch.device,
+    *,
+    disable_global_factors: bool = False,
+) -> dict[str, float | int]:
     model.eval()
     per_scene_briers: dict[str, list[float]] = defaultdict(list)
     per_scene_nlls: dict[str, list[float]] = defaultdict(list)
     valid_cells = 0
     for numpy_batch in loader:
         batch = _tensor_batch(numpy_batch, device)
-        posterior = model(batch["observation"], num_samples=4, hard_samples=True).posterior
+        posterior = model(
+            batch["observation"],
+            valid_support_mask=batch["valid_support_mask"],
+            num_samples=4,
+            hard_samples=True,
+            disable_global_factors=disable_global_factors,
+        ).posterior
         probability = posterior.posterior_marginal_probs[:, 0]
         target = batch["target_free"]
         mask = batch["loss_mask"]
@@ -238,6 +361,8 @@ def _event_probabilities(
     device: torch.device,
     posterior_samples: int,
     generator: torch.Generator,
+    adapter: dict[str, object],
+    disable_global_factors: bool = False,
 ) -> dict[str, object]:
     model.eval()
     per_scene: dict[str, list[float]] = defaultdict(list)
@@ -246,7 +371,12 @@ def _event_probabilities(
     monotonicity_violations = 0
     query_count = 0
     for record in records:
-        frame = load_frame(str(record["timestamp"]), raw_root=raw_root, label_root=label_root)
+        frame = _load_adapter_frame(
+            str(record["timestamp"]),
+            raw_root=raw_root,
+            label_root=label_root,
+            adapter=adapter,
+        )
         query_rows = list(record["queries"])
         if not query_rows:
             continue
@@ -255,10 +385,15 @@ def _event_probabilities(
         targets = np.asarray([row["reachable"] for row in query_rows], dtype=np.float64)
         with torch.inference_mode():
             observation = torch.from_numpy(frame.input_bev[None]).to(device=device)
+            valid_support_mask = torch.from_numpy(frame.target_valid[None]).to(
+                device=device, dtype=torch.bool
+            )
             posterior = model(
                 observation,
+                valid_support_mask=valid_support_mask,
                 num_samples=posterior_samples,
                 hard_samples=True,
+                disable_global_factors=disable_global_factors,
                 generator=generator,
             ).posterior
             worlds = posterior.safe_samples().detach().cpu().numpy()[0] > 0.5
@@ -329,9 +464,21 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--manifest", type=Path, default=Path("results/unscenes3d_contract_manifest/manifest.json"))
     parser.add_argument("--raw-root", type=Path, default=Path("data/raw/unscenes3d/raw_package/unscenes3d-mini_raw"))
     parser.add_argument("--label-root", type=Path, default=Path("data/raw/unscenes3d/label_package/unscenes3d-mini_label"))
+    parser.add_argument("--endpoint-policy", choices=("blocked", "ground"), default=None)
+    parser.add_argument("--start-selection", choices=("valid", "observed_free"), default=None)
+    parser.add_argument("--ground-margin-m", dest="ground_margin_m", type=float, default=None)
+    parser.add_argument("--ground-bin-size-m", dest="ground_bin_size_m", type=float, default=None)
+    parser.add_argument("--ground-lateral-limit-m", dest="ground_lateral_limit_m", type=float, default=None)
+    parser.add_argument("--ground-quantile", dest="ground_quantile", type=float, default=None)
     parser.add_argument("--output-dir", type=Path, default=Path("results/unscenes3d_conpath_smoke_seed20260902"))
     parser.add_argument("--seed", type=int, default=20260902)
     parser.add_argument("--device", choices=("cuda", "cpu"), default="cuda")
+    parser.add_argument(
+        "--decoder-variant",
+        choices=("correlated", "independent"),
+        default="correlated",
+        help="correlated ConPath posterior or independent-cell local-noise control",
+    )
     parser.add_argument("--feature-channels", type=int, default=16)
     parser.add_argument("--latent-dim", type=int, default=4)
     parser.add_argument("--batch-size", type=int, default=4)
@@ -367,6 +514,7 @@ def main() -> None:
     if args.output_dir.exists() and any(args.output_dir.iterdir()):
         raise SystemExit(f"output directory is non-empty: {args.output_dir}")
     manifest = json.loads(args.manifest.read_text(encoding="utf-8"))
+    adapter = _resolve_adapter_config(manifest, args)
     train_records = list(manifest["records"]["train"])
     validation_records = list(manifest["records"]["validation"])
     if args.train_frame_limit is not None:
@@ -378,7 +526,7 @@ def main() -> None:
     device = torch.device(args.device)
     loader_generator, sample_generator = _seed(args.seed, device)
     train_loader = DataLoader(
-        UnScenesFrameDataset(train_records, args.raw_root, args.label_root),
+        UnScenesFrameDataset(train_records, args.raw_root, args.label_root, adapter),
         batch_size=args.batch_size,
         shuffle=True,
         generator=loader_generator,
@@ -386,13 +534,19 @@ def main() -> None:
         collate_fn=_collate,
     )
     validation_loader = DataLoader(
-        UnScenesFrameDataset(validation_records, args.raw_root, args.label_root),
+        UnScenesFrameDataset(validation_records, args.raw_root, args.label_root, adapter),
         batch_size=args.batch_size,
         shuffle=False,
         num_workers=0,
         collate_fn=_collate,
     )
-    model = PathRelNet(input_channels=3, feature_channels=args.feature_channels, latent_dim=args.latent_dim).to(device)
+    independent_decoder = args.decoder_variant == "independent"
+    model = PathRelNet(
+        input_channels=3,
+        feature_channels=args.feature_channels,
+        latent_dim=args.latent_dim,
+        local_kernel_size=(1 if independent_decoder else 5),
+    ).to(device)
     optimizer = torch.optim.AdamW(model.parameters(), lr=args.learning_rate, weight_decay=args.weight_decay)
     started = time.monotonic()
     history: list[dict[str, object]] = []
@@ -411,12 +565,15 @@ def main() -> None:
                     samples=args.train_samples,
                     max_reachability_steps=args.max_reachability_steps,
                     generator=sample_generator,
+                    disable_global_factors=independent_decoder,
                 )
             else:
                 output = model(
                     batch["observation"],
+                    valid_support_mask=batch["valid_support_mask"],
                     num_samples=args.train_samples,
                     hard_samples=True,
+                    disable_global_factors=independent_decoder,
                     generator=sample_generator,
                 )
             map_loss = posterior_marginal_nll(output.posterior.sample_logits, target_classes)
@@ -445,7 +602,12 @@ def main() -> None:
             torch.nn.utils.clip_grad_norm_(model.parameters(), 5.0)
             optimizer.step()
             losses.append(float(loss.detach().cpu()))
-        validation = _validation_map_metrics(model, validation_loader, device)
+        validation = _validation_map_metrics(
+            model,
+            validation_loader,
+            device,
+            disable_global_factors=independent_decoder,
+        )
         validation_event = None
         if args.reachability_weight > 0:
             validation_event = _validation_event_brier(
@@ -455,6 +617,7 @@ def main() -> None:
                 samples=min(args.posterior_samples, 4),
                 max_reachability_steps=args.max_reachability_steps,
                 generator=sample_generator,
+                disable_global_factors=independent_decoder,
             )
             selection_value = validation_event
         else:
@@ -473,9 +636,17 @@ def main() -> None:
             "elapsed_seconds": time.monotonic() - started,
         }
         history.append(record)
-        _atomic_torch_save(args.output_dir / "latest.pt", {"model": model.state_dict(), "optimizer": optimizer.state_dict(), "history": history, "config": vars(args)})
+        # Keep checkpoints portable across Python versions. Python 3.13 moved the concrete
+        # ``Path`` pickle class to ``pathlib._local``, which older interpreters cannot import.
+        checkpoint_config = {
+            key: str(value) if isinstance(value, Path) else value
+            for key, value in vars(args).items()
+        }
+        checkpoint_config["adapter"] = adapter
+        checkpoint_config["valid_support_policy"] = VALID_SUPPORT_POLICY
+        _atomic_torch_save(args.output_dir / "latest.pt", {"model": model.state_dict(), "optimizer": optimizer.state_dict(), "history": history, "config": checkpoint_config})
         if epoch == best_epoch:
-            _atomic_torch_save(args.output_dir / "best.pt", {"model": model.state_dict(), "optimizer": optimizer.state_dict(), "history": history, "config": vars(args)})
+            _atomic_torch_save(args.output_dir / "best.pt", {"model": model.state_dict(), "optimizer": optimizer.state_dict(), "history": history, "config": checkpoint_config})
         print(json.dumps(record, sort_keys=True), flush=True)
 
     selected = torch.load(args.output_dir / "best.pt", map_location=device, weights_only=False)
@@ -488,6 +659,8 @@ def main() -> None:
         device,
         args.posterior_samples,
         sample_generator,
+        adapter,
+        independent_decoder,
     )
     run = {
         "schema_version": 1,
@@ -496,16 +669,41 @@ def main() -> None:
         "validation_result": True,
         "test_evaluated": False,
         "protocol_version": PROTOCOL_VERSION,
-        "config": {key: str(value) if isinstance(value, Path) else value for key, value in vars(args).items()},
+        "config": {
+            **{key: str(value) if isinstance(value, Path) else value for key, value in vars(args).items()},
+            "adapter": adapter,
+        },
         "data": {
             "train_records": len(train_records),
             "validation_records": len(validation_records),
             "manifest": str(args.manifest),
             "test_locked_sites": manifest["test_locked_sites"],
         },
+        # Keep a self-contained contract envelope in new reports.  ``data`` above
+        # remains for compatibility with the first v0.1 diagnostics, while this
+        # block lets a recovery audit verify the exact manifest bytes and query
+        # count without consulting an external notebook.
+        "manifest": {
+            "path": str(args.manifest),
+            "sha256": _sha256(args.manifest),
+            "train_records": len(train_records),
+            "validation_records": len(validation_records),
+            "validation_queries": sum(len(record["queries"]) for record in validation_records),
+            "test_locked_sites": manifest["test_locked_sites"],
+        },
         "selection": {
             "criterion": "validation event Brier" if args.reachability_weight > 0 else "validation hidden-valid-cell NLL",
             "best_epoch": best_epoch,
+        },
+        "forward": {
+            "invalid_support_clamped": True,
+            "valid_support_policy": VALID_SUPPORT_POLICY,
+            "decoder_variant": args.decoder_variant,
+            "implementation_sha256": {
+                "model": _sha256(PROJECT_ROOT / "src/pathrel/model.py"),
+                "unscenes3d": _sha256(PROJECT_ROOT / "src/pathrel/unscenes3d.py"),
+                "trainer": _sha256(Path(__file__)),
+            },
         },
         "validation_event_metrics": event_metrics,
         "runtime": {

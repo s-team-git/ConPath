@@ -179,6 +179,10 @@ class FlatLandsReplayDatasetTest(unittest.TestCase):
 
             batch = collate_flatlands_replay([sample, sample])
             self.assertEqual(batch["observation"].shape, (2, 3, 32, 32))
+            self.assertEqual(batch["valid_support_mask"].shape, (2, 32, 32))
+            self.assertTrue(
+                np.array_equal(batch["valid_support_mask"][0], sample.epistemic_mask)
+            )
             self.assertEqual(batch["reachability_targets"].shape[0], 2)
             self.assertEqual(batch["reachability_targets"].shape[-1], 3)
             self.assertTrue(np.all(batch["query_mask"].sum(axis=1) > 0))

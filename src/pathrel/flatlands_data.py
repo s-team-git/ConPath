@@ -513,6 +513,7 @@ def collate_flatlands_replay(
             candidate_indices[batch_index, query_index] = query.candidate_index
     return {
         "observation": np.stack([sample.input_bev for sample in samples]),
+        "valid_support_mask": np.stack([sample.epistemic_mask for sample in samples]),
         "target_free": np.stack([sample.target_free for sample in samples]),
         "loss_mask": np.stack([sample.loss_mask for sample in samples]),
         "starts": starts,

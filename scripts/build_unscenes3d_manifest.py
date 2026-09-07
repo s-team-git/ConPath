@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Build a train/validation-only UnScenes3D event manifest.
 
-Query geometry is generated from the frozen adapter using bounds and the published
-label-validity mask.  Event labels are then computed with the exact ConPath
-clearance/merge geometry.  The location-6 test site is deliberately excluded and
-is not opened by this script.
+Query geometry is generated from one explicit adapter configuration using bounds
+and the published label-validity mask.  Optional sensor-derived start selection is
+label-free and is recorded in the manifest.  Event labels are then computed with
+the exact ConPath clearance/merge geometry.  The location-6 test site is
+deliberately excluded and is not opened by this script.
 """
 
 from __future__ import annotations
@@ -18,10 +19,10 @@ import time
 import numpy as np
 
 from pathrel.labels import clearance_radius_map, maximum_clearance_map
-from pathrel.unscenes3d import deterministic_queries, occupancy_support
+from pathrel.unscenes3d import deterministic_queries, lidar_observation, occupancy_support
 
 
-PROTOCOL_VERSION = "UNSCENES3D_PROTOCOL.md v0.1"
+PROTOCOL_VERSION = "UNSCENES3D_PROTOCOL.md v0.2"
 SPLIT_SITES = {
     "train": frozenset({"location_1", "location_2", "location_3"}),
     "validation": frozenset({"location_4_5"}),
@@ -58,7 +59,38 @@ def _event_labels(target_free: np.ndarray, starts: np.ndarray, goals: np.ndarray
     return labels, max_clearance
 
 
-def build_manifest(raw_root: Path, label_root: Path) -> dict[str, object]:
+def build_manifest(
+    raw_root: Path,
+    label_root: Path,
+    *,
+    endpoint_policy: str = "blocked",
+    start_selection: str = "valid",
+    ground_margin_m: float = 0.35,
+    ground_bin_size_m: float = 1.2,
+    ground_lateral_limit_m: float = 20.0,
+    ground_quantile: float = 0.15,
+) -> dict[str, object]:
+    """Build a manifest for one explicit, reproducible sensor/query contract.
+
+    The original manifest used conservative blocked endpoints and a validity-only
+    anchor.  Candidate contracts are intentionally opt-in: when
+    ``start_selection='observed_free'`` the raw cloud is rasterized with the same
+    endpoint policy used by training, but occupancy classes are still used only for
+    the published validity mask and event labels.
+    """
+
+    if endpoint_policy not in {"blocked", "ground"}:
+        raise ValueError("endpoint_policy must be 'blocked' or 'ground'")
+    if start_selection not in {"valid", "observed_free"}:
+        raise ValueError("start_selection must be 'valid' or 'observed_free'")
+    if ground_margin_m < 0:
+        raise ValueError("ground_margin_m must be non-negative")
+    if ground_bin_size_m <= 0:
+        raise ValueError("ground_bin_size_m must be positive")
+    if ground_lateral_limit_m <= 0:
+        raise ValueError("ground_lateral_limit_m must be positive")
+    if not 0.0 < ground_quantile <= 0.5:
+        raise ValueError("ground_quantile must lie in (0, 0.5]")
     scene_info = json.loads((raw_root / "imagesets" / "scene_info.json").read_text(encoding="utf-8"))
     records: dict[str, list[dict[str, object]]] = {"train": [], "validation": []}
     split_summary: dict[str, object] = {}
@@ -78,10 +110,30 @@ def build_manifest(raw_root: Path, label_root: Path) -> dict[str, object]:
                     continue
                 occupancy = np.load(occupancy_path, allow_pickle=False)
                 support = occupancy_support(occupancy)
+                start_mask = None
+                if start_selection == "observed_free":
+                    cloud_path = raw_root / "clouds" / f"{timestamp}.bin"
+                    if not cloud_path.exists():
+                        raise FileNotFoundError(
+                            f"missing LiDAR cloud required for observed-free start: {cloud_path}"
+                        )
+                    cloud = np.fromfile(cloud_path, dtype=np.float32)
+                    if cloud.size % 4:
+                        raise ValueError(f"LiDAR file is not Nx4 float32: {cloud_path}")
+                    observation = lidar_observation(
+                        cloud.reshape(-1, 4),
+                        endpoint_policy=endpoint_policy,
+                        ground_margin_m=ground_margin_m,
+                        ground_bin_size_m=ground_bin_size_m,
+                        ground_lateral_limit_m=ground_lateral_limit_m,
+                        ground_quantile=ground_quantile,
+                    )
+                    start_mask = observation[0] > 0.5
                 starts, goals = deterministic_queries(
                     support.valid,
                     distances_cells=DISTANCES_CELLS,
                     angles_deg=ANGLES_DEG,
+                    start_mask=start_mask,
                 )
                 labels, max_clearance = _event_labels(support.free, starts, goals)
                 frame_count += 1
@@ -148,6 +200,14 @@ def build_manifest(raw_root: Path, label_root: Path) -> dict[str, object]:
         "query_distances_cells": list(DISTANCES_CELLS),
         "query_angles_deg": list(ANGLES_DEG),
         "anchor_hint": [96, 128],
+        "adapter": {
+            "endpoint_policy": endpoint_policy,
+            "start_selection": start_selection,
+            "ground_margin_m": float(ground_margin_m),
+            "ground_bin_size_m": float(ground_bin_size_m),
+            "ground_lateral_limit_m": float(ground_lateral_limit_m),
+            "ground_quantile": float(ground_quantile),
+        },
         "test_locked_sites": ["location_6"],
         "split_summary": split_summary,
         "records": records,
@@ -161,8 +221,23 @@ def main() -> None:
     parser.add_argument("--raw-root", type=Path, default=Path("data/raw/unscenes3d/raw_package/unscenes3d-mini_raw"))
     parser.add_argument("--label-root", type=Path, default=Path("data/raw/unscenes3d/label_package/unscenes3d-mini_label"))
     parser.add_argument("--output", type=Path, default=Path("results/unscenes3d_contract_manifest/manifest.json"))
+    parser.add_argument("--endpoint-policy", choices=("blocked", "ground"), default="blocked")
+    parser.add_argument("--start-selection", choices=("valid", "observed_free"), default="valid")
+    parser.add_argument("--ground-margin-m", type=float, default=0.35)
+    parser.add_argument("--ground-bin-size-m", type=float, default=1.2)
+    parser.add_argument("--ground-lateral-limit-m", type=float, default=20.0)
+    parser.add_argument("--ground-quantile", type=float, default=0.15)
     args = parser.parse_args()
-    manifest = build_manifest(args.raw_root, args.label_root)
+    manifest = build_manifest(
+        args.raw_root,
+        args.label_root,
+        endpoint_policy=args.endpoint_policy,
+        start_selection=args.start_selection,
+        ground_margin_m=args.ground_margin_m,
+        ground_bin_size_m=args.ground_bin_size_m,
+        ground_lateral_limit_m=args.ground_lateral_limit_m,
+        ground_quantile=args.ground_quantile,
+    )
     _atomic_json(args.output, manifest)
     print(
         json.dumps(

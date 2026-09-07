@@ -127,6 +127,43 @@ class PathRelModelTest(unittest.TestCase):
         torch.testing.assert_close(posterior.sample_probs[:, :, 0, :, :6], torch.ones(1, 4, 12, 6))
         torch.testing.assert_close(posterior.sample_probs[:, :, 1, :, 6:], torch.ones(1, 4, 12, 6))
 
+    def test_invalid_support_is_clamped_as_blocked(self) -> None:
+        from pathrel.model import PathRelNet
+
+        model = PathRelNet(input_channels=3, feature_channels=8, latent_dim=3).eval()
+        observation = torch.zeros(1, 3, 12, 12)
+        observation[:, 2] = 1.0  # unknown but valid throughout
+        valid_support = torch.ones(1, 12, 12, dtype=torch.bool)
+        valid_support[:, :, 7] = False
+        with torch.no_grad():
+            posterior = model(
+                observation,
+                valid_support_mask=valid_support,
+                num_samples=4,
+                generator=torch.Generator().manual_seed(93),
+            ).posterior
+        torch.testing.assert_close(
+            posterior.sample_probs[:, :, 1, :, 7],
+            torch.ones(1, 4, 12),
+        )
+        torch.testing.assert_close(
+            posterior.conditional_class_probs[:, :, 1, :, 7],
+            torch.ones(1, 4, 12),
+            atol=1e-7,
+            rtol=0.0,
+        )
+
+    def test_invalid_support_shape_is_checked(self) -> None:
+        from pathrel.model import PathRelNet
+
+        model = PathRelNet(input_channels=3, feature_channels=8, latent_dim=3).eval()
+        with self.assertRaisesRegex(ValueError, "valid_support_mask"):
+            model(
+                torch.zeros(1, 3, 12, 12),
+                valid_support_mask=torch.ones(1, 11, 12, dtype=torch.bool),
+                num_samples=2,
+            )
+
     def test_soft_samples_are_rejected_for_probability_queries(self) -> None:
         from pathrel.model import PathRelNet
 

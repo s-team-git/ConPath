@@ -32,7 +32,11 @@ from pathrel.flatlands_query import sha256_path
 from pathrel.gpu_diagnostics import cuda_unavailable_message
 
 
-PROTOCOL_VERSION = "P1_BASELINE_PROTOCOL.md v1 + ConPath deterministic mean-map control"
+PROTOCOL_VERSION = "P1_BASELINE_PROTOCOL.md v1 + ConPath deterministic mean-map valid-support v2"
+TRAINING_SUPPORT_PROTOCOL = "P1_BASELINE_PROTOCOL.md v1 + ConPath valid-support v2"
+VALID_SUPPORT_POLICY = (
+    "FlatLands epistemic_mask complement is deterministically blocked before posterior sampling"
+)
 
 
 def parse_args() -> argparse.Namespace:
@@ -87,6 +91,9 @@ def _to_device(batch: dict[str, object], device: torch.device) -> dict[str, obje
     output = dict(batch)
     for key in ("observation", "target_free", "loss_mask"):
         output[key] = torch.from_numpy(batch[key]).to(device=device, non_blocking=True)
+    output["valid_support_mask"] = torch.from_numpy(batch["valid_support_mask"]).to(
+        device=device, dtype=torch.bool, non_blocking=True
+    )
     return output
 
 
@@ -125,16 +132,20 @@ def evaluate(
         remaining = posterior_samples
         while remaining > 0:
             current = min(sample_chunk, remaining)
-            output = model(batch["observation"], num_samples=current, hard_samples=True, disable_global_factors=disable_global_factors, generator=generator)
+            output = model(
+                batch["observation"],
+                valid_support_mask=batch["valid_support_mask"],
+                num_samples=current,
+                hard_samples=True,
+                disable_global_factors=disable_global_factors,
+                generator=generator,
+            )
             current_probability = output.posterior.posterior_marginal_probs[:, 0]
             probability_sum = current_probability * current if probability_sum is None else probability_sum + current_probability * current
             remaining -= current
         assert probability_sum is not None
         probability = (probability_sum / float(posterior_samples))[0].cpu().numpy()
-        observation = numpy_batch["observation"][0]
-        support = observation[0] > 0.5
-        support |= observation[1] > 0.5
-        support |= observation[2] > 0.5
+        support = numpy_batch["valid_support_mask"][0].astype(bool)
         hidden = numpy_batch["loss_mask"][0].astype(bool)
         target = numpy_batch["target_free"][0].astype(np.float64)
         selected = hidden
@@ -170,8 +181,10 @@ def evaluate(
 
 def main() -> None:
     args = parse_args()
-    if args.validation_samples < 1 or args.sample_chunk < 1:
-        raise SystemExit("validation-samples and sample-chunk must be positive")
+    if args.validation_samples < 2 or args.sample_chunk < 2:
+        raise SystemExit("validation-samples and sample-chunk must both be at least two")
+    if args.validation_samples % args.sample_chunk:
+        raise SystemExit("validation-samples must be divisible by sample-chunk")
     if args.device == "cuda" and not torch.cuda.is_available():
         raise SystemExit(cuda_unavailable_message(torch))
     if args.output_dir.exists() and any(args.output_dir.iterdir()) and not args.resume:
@@ -183,6 +196,7 @@ def main() -> None:
     samples, radii = _cache_validation(args.archive, args.selection, args.queries)
     state = torch.load(args.checkpoint, map_location=device, weights_only=False)
     config = state.get("config", {})
+    checkpoint_trained_with_support = state.get("protocol_version") == TRAINING_SUPPORT_PROTOCOL
     variant = str(config.get("decoder_variant", "correlated"))
     independent = variant == "independent"
     feature_channels = int(config.get("feature_channels", 16))
@@ -202,17 +216,32 @@ def main() -> None:
         "validation_result": True,
         "protocol_version": PROTOCOL_VERSION,
         "test_evaluated": False,
+        "posthoc_checkpoint_evaluation": not checkpoint_trained_with_support,
+        "retraining_required": not checkpoint_trained_with_support,
         "git": {"head": subprocess.run(("git", "rev-parse", "HEAD"), check=True, capture_output=True, text=True).stdout.strip()},
         "config": {key: str(value) if isinstance(value, Path) else value for key, value in vars(args).items()},
         "checkpoint": {"path": str(args.checkpoint), "sha256": sha256_path(args.checkpoint), "best_epoch": int(state.get("best_epoch", 0))},
         "data": {"validation_scenes": len(samples), "selection_sha256": sha256_path(args.selection), "queries_sha256": sha256_path(args.queries), "archive_bytes": args.archive.stat().st_size},
         "decoder": {"variant": variant, "feature_channels": feature_channels, "latent_dim": latent_dim, "local_kernel_size": 1 if independent else 5, "disable_global_factors": disable_global_factors},
+        "forward": {
+            "invalid_support_clamped": True,
+            "valid_support_policy": VALID_SUPPORT_POLICY,
+            "checkpoint_trained_with_same_support_policy": checkpoint_trained_with_support,
+        },
         "mean_map": {"posterior_samples": args.validation_samples, "sample_chunk": args.sample_chunk, "threshold": 0.5, "metrics": map_metrics},
         "prediction": {"path": str(prediction_path), "rows": prediction_count, "sha256": sha256_path(prediction_path)},
         "event_evaluation": event_evaluation,
         "runtime": {"wall_seconds": time.monotonic() - started, "device": str(device), "gpu": torch.cuda.get_device_name(device) if device.type == "cuda" else None, "peak_gpu_memory_bytes": int(torch.cuda.max_memory_allocated(device)) if device.type == "cuda" else None},
         "environment": {"python": platform.python_version(), "numpy": np.__version__, "torch": torch.__version__, "argv": sys.argv},
-        "claim_boundary": "Validation-only deterministic threshold of a ConPath posterior mean map. The event output is binary and this control is not a final paper result; FlatLands test remains locked.",
+        "claim_boundary": (
+            "Validation-only post-hoc support-clamped deterministic mean-map diagnostic; the "
+            "checkpoint predates this support policy and requires clean retraining; FlatLands test "
+            "remains locked."
+            if not checkpoint_trained_with_support
+            else "Validation-only deterministic threshold of a support-consistent ConPath "
+            "posterior mean map. The event output is binary, this is not a final paper result, and "
+            "FlatLands test remains locked."
+        ),
     }
     _atomic_json(args.output_dir / "map_metrics.json", map_metrics)
     _atomic_json(args.output_dir / "run.json", report)

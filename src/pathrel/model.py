@@ -128,6 +128,7 @@ class PathRelNet(nn.Module):
         self,
         observation_bev: Tensor,
         *,
+        valid_support_mask: Tensor | None = None,
         starts: Tensor | None = None,
         goals: Tensor | None = None,
         footprint_radii_cells: Sequence[int] | Tensor | None = None,
@@ -156,6 +157,7 @@ class PathRelNet(nn.Module):
             known_classes = torch.where(observation_bev[:, 1] > 0.5, 1, known_classes)
         return self.forward_features(
             features,
+            valid_support_mask=valid_support_mask,
             starts=starts,
             goals=goals,
             footprint_radii_cells=footprint_radii_cells,
@@ -175,6 +177,7 @@ class PathRelNet(nn.Module):
         self,
         features: Tensor,
         *,
+        valid_support_mask: Tensor | None = None,
         starts: Tensor | None = None,
         goals: Tensor | None = None,
         footprint_radii_cells: Sequence[int] | Tensor | None = None,
@@ -194,6 +197,34 @@ class PathRelNet(nn.Module):
         Public-dataset adapters can use an official BEVFusion/OccFormer/Co-Occ encoder and call
         this method, keeping the stochastic posterior and reliability code unchanged.
         """
+
+        if valid_support_mask is not None:
+            expected_shape = features.shape[:1] + features.shape[-2:]
+            if valid_support_mask.shape != expected_shape:
+                raise ValueError(
+                    "valid_support_mask must have shape [B,H,W], "
+                    f"got {tuple(valid_support_mask.shape)}"
+                )
+            valid_support_mask = valid_support_mask.to(
+                device=features.device, dtype=torch.bool
+            )
+            if known_classes is None:
+                known_classes = torch.full(
+                    expected_shape,
+                    -1,
+                    dtype=torch.long,
+                    device=features.device,
+                )
+            else:
+                known_classes = known_classes.to(
+                    device=features.device, dtype=torch.long
+                )
+            blocked_index = 0 if self.traversable_index != 0 else 1
+            known_classes = torch.where(
+                valid_support_mask,
+                known_classes,
+                torch.full_like(known_classes, blocked_index),
+            )
 
         posterior = self.decoder(
             features,
