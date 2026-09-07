@@ -1,0 +1,107 @@
+{
+  "canonical_root": "results/unscenes3d_ground_valid_f16",
+  "claim_boundary": "GPU replay stability check only; no test labels or cross-domain claim.",
+  "failures": [],
+  "kind": "unscenes3d_replay_contract_audit",
+  "max_abs_metric_delta": 0.00015111122314337422,
+  "passed": true,
+  "records": [
+    {
+      "canonical_metrics": {
+        "false_safe_rate@0.8": 0.2887323943661972,
+        "high_confidence_coverage@0.8": 0.18574231523871812,
+        "mean_prediction": 0.22544691519511664,
+        "query_weighted_ece": 0.6681109657728362,
+        "query_weighted_nll": 9.055079522849038,
+        "scene_weighted_brier": 0.5589376363846392
+      },
+      "canonical_protocol": "UNSCENES3D_PROTOCOL.md v0.1",
+      "contract_equal": true,
+      "deltas_replay_minus_canonical": {
+        "false_safe_rate@0.8": 0.0,
+        "high_confidence_coverage@0.8": 0.0,
+        "mean_prediction": 0.0,
+        "query_weighted_ece": 0.0,
+        "query_weighted_nll": 0.0,
+        "scene_weighted_brier": 0.0
+      },
+      "max_abs_delta": 0.0,
+      "replay_metrics": {
+        "false_safe_rate@0.8": 0.2887323943661972,
+        "high_confidence_coverage@0.8": 0.18574231523871812,
+        "mean_prediction": 0.22544691519511664,
+        "query_weighted_ece": 0.6681109657728362,
+        "query_weighted_nll": 9.055079522849038,
+        "scene_weighted_brier": 0.5589376363846392
+      },
+      "replay_protocol": "UNSCENES3D_PROTOCOL.md v0.2",
+      "seed": 20260831
+    },
+    {
+      "canonical_metrics": {
+        "false_safe_rate@0.8": 0.2623941958887545,
+        "high_confidence_coverage@0.8": 0.1802921299324177,
+        "mean_prediction": 0.22283082624809245,
+        "query_weighted_ece": 0.6651678657074339,
+        "query_weighted_nll": 9.028077744915908,
+        "scene_weighted_brier": 0.5579240423985484
+      },
+      "canonical_protocol": "UNSCENES3D_PROTOCOL.md v0.1",
+      "contract_equal": true,
+      "deltas_replay_minus_canonical": {
+        "false_safe_rate@0.8": 0.0,
+        "high_confidence_coverage@0.8": 0.0,
+        "mean_prediction": -2.725092653152461e-05,
+        "query_weighted_ece": 2.7250926531441344e-05,
+        "query_weighted_nll": 0.00015111122314337422,
+        "scene_weighted_brier": 7.29615660919336e-05
+      },
+      "max_abs_delta": 0.00015111122314337422,
+      "replay_metrics": {
+        "false_safe_rate@0.8": 0.2623941958887545,
+        "high_confidence_coverage@0.8": 0.1802921299324177,
+        "mean_prediction": 0.22280357532156092,
+        "query_weighted_ece": 0.6651951166339654,
+        "query_weighted_nll": 9.028228856139052,
+        "scene_weighted_brier": 0.5579970039646404
+      },
+      "replay_protocol": "UNSCENES3D_PROTOCOL.md v0.2",
+      "seed": 20260901
+    },
+    {
+      "canonical_metrics": {
+        "false_safe_rate@0.8": 0.2723735408560311,
+        "high_confidence_coverage@0.8": 0.16808371484630477,
+        "mean_prediction": 0.1998310442555047,
+        "query_weighted_ece": 0.679174841944626,
+        "query_weighted_nll": 9.114068606492543,
+        "scene_weighted_brier": 0.5712958290331067
+      },
+      "canonical_protocol": "UNSCENES3D_PROTOCOL.md v0.1",
+      "contract_equal": true,
+      "deltas_replay_minus_canonical": {
+        "false_safe_rate@0.8": 0.0,
+        "high_confidence_coverage@0.8": 0.0,
+        "mean_prediction": 0.0,
+        "query_weighted_ece": 0.0,
+        "query_weighted_nll": 0.0,
+        "scene_weighted_brier": 0.0
+      },
+      "max_abs_delta": 0.0,
+      "replay_metrics": {
+        "false_safe_rate@0.8": 0.2723735408560311,
+        "high_confidence_coverage@0.8": 0.16808371484630477,
+        "mean_prediction": 0.1998310442555047,
+        "query_weighted_ece": 0.679174841944626,
+        "query_weighted_nll": 9.114068606492543,
+        "scene_weighted_brier": 0.5712958290331067
+      },
+      "replay_protocol": "UNSCENES3D_PROTOCOL.md v0.2",
+      "seed": 20260902
+    }
+  ],
+  "replay_root": "results/unscenes3d_ground_valid_f16_v2",
+  "schema_version": 1,
+  "test_evaluated": false,
+  "validation_only": true
+}

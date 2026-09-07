@@ -1,0 +1,754 @@
+{
+  "claim_boundary": "Historical mixed-contract validation calibration snapshot. The mean-map method is superseded by the target_valid support audit; radius-prior and coordinate-query methods are unaffected. No location_6 files or test labels are used.",
+  "kind": "unscenes3d_validation_calibration_snapshot",
+  "manifest": {
+    "path": "results/unscenes3d_contract_manifest_ground_valid/manifest.json",
+    "validation_queries": 1529,
+    "validation_records": 62
+  },
+  "methods": [
+    {
+      "event_row_count": 4587,
+      "false_safe_curve": [
+        {
+          "coverage": 0.9999999999999999,
+          "coverage_sd": 0.0,
+          "false_safe_rate": 0.21996947896228472,
+          "false_safe_rate_sd": 0.0,
+          "safe_precision": 0.7800305210377153,
+          "safe_precision_sd": 0.0,
+          "threshold": 0.5
+        },
+        {
+          "coverage": 0.9999999999999999,
+          "coverage_sd": 0.0,
+          "false_safe_rate": 0.21996947896228472,
+          "false_safe_rate_sd": 0.0,
+          "safe_precision": 0.7800305210377153,
+          "safe_precision_sd": 0.0,
+          "threshold": 0.6
+        },
+        {
+          "coverage": 0.9999999999999999,
+          "coverage_sd": 0.0,
+          "false_safe_rate": 0.21996947896228472,
+          "false_safe_rate_sd": 0.0,
+          "safe_precision": 0.7800305210377153,
+          "safe_precision_sd": 0.0,
+          "threshold": 0.7
+        },
+        {
+          "coverage": 0.6666666666666665,
+          "coverage_sd": 0.0,
+          "false_safe_rate": 0.1935905820797907,
+          "false_safe_rate_sd": 0.0,
+          "safe_precision": 0.8064094179202094,
+          "safe_precision_sd": 0.0,
+          "threshold": 0.8
+        },
+        {
+          "coverage": 0.0,
+          "coverage_sd": 0.0,
+          "false_safe_rate": null,
+          "false_safe_rate_sd": null,
+          "safe_precision": null,
+          "safe_precision_sd": null,
+          "threshold": 0.9
+        },
+        {
+          "coverage": 0.0,
+          "coverage_sd": 0.0,
+          "false_safe_rate": null,
+          "false_safe_rate_sd": null,
+          "safe_precision": null,
+          "safe_precision_sd": null,
+          "threshold": 0.95
+        }
+      ],
+      "id": "radius_prior",
+      "superseded": false,
+      "label": "Train-fitted radius prior",
+      "metrics_mean_sd": {
+        "brier": {
+          "mean": 0.23267774998483645,
+          "sd": 0.0,
+          "values": [
+            0.23267774998483645,
+            0.23267774998483645,
+            0.23267774998483645
+          ]
+        },
+        "coverage@0.8": {
+          "mean": 0.6666666666666665,
+          "sd": 0.0,
+          "values": [
+            0.6666666666666665,
+            0.6666666666666665,
+            0.6666666666666665
+          ]
+        },
+        "ece": {
+          "mean": 0.03236906577859795,
+          "sd": 0.0,
+          "values": [
+            0.03236906577859795,
+            0.03236906577859795,
+            0.03236906577859795
+          ]
+        },
+        "false_safe_rate@0.8": {
+          "mean": 0.1935905820797907,
+          "sd": 0.0,
+          "values": [
+            0.1935905820797907,
+            0.1935905820797907,
+            0.1935905820797907
+          ]
+        },
+        "nll": {
+          "mean": 0.5250909741773225,
+          "sd": 0.0,
+          "values": [
+            0.5250909741773225,
+            0.5250909741773225,
+            0.5250909741773225
+          ]
+        }
+      },
+      "prediction_paths": [],
+      "prior_probabilities": {
+        "0": 0.8717409557691302,
+        "1": 0.8106648580464519,
+        "2": 0.7547929466333572
+      },
+      "reliability": [
+        {
+          "accuracy": null,
+          "accuracy_sd": null,
+          "bin": 0,
+          "confidence": null,
+          "confidence_sd": null,
+          "lower": 0.0,
+          "upper": 0.1,
+          "weight": 0.0
+        },
+        {
+          "accuracy": null,
+          "accuracy_sd": null,
+          "bin": 1,
+          "confidence": null,
+          "confidence_sd": null,
+          "lower": 0.1,
+          "upper": 0.2,
+          "weight": 0.0
+        },
+        {
+          "accuracy": null,
+          "accuracy_sd": null,
+          "bin": 2,
+          "confidence": null,
+          "confidence_sd": null,
+          "lower": 0.2,
+          "upper": 0.3,
+          "weight": 0.0
+        },
+        {
+          "accuracy": null,
+          "accuracy_sd": null,
+          "bin": 3,
+          "confidence": null,
+          "confidence_sd": null,
+          "lower": 0.3,
+          "upper": 0.4,
+          "weight": 0.0
+        },
+        {
+          "accuracy": null,
+          "accuracy_sd": null,
+          "bin": 4,
+          "confidence": null,
+          "confidence_sd": null,
+          "lower": 0.4,
+          "upper": 0.5,
+          "weight": 0.0
+        },
+        {
+          "accuracy": null,
+          "accuracy_sd": null,
+          "bin": 5,
+          "confidence": null,
+          "confidence_sd": null,
+          "lower": 0.5,
+          "upper": 0.6,
+          "weight": 0.0
+        },
+        {
+          "accuracy": null,
+          "accuracy_sd": null,
+          "bin": 6,
+          "confidence": null,
+          "confidence_sd": null,
+          "lower": 0.6,
+          "upper": 0.7,
+          "weight": 0.0
+        },
+        {
+          "accuracy": 0.7272727272727272,
+          "accuracy_sd": 1.3597399555105182e-16,
+          "bin": 7,
+          "confidence": 0.7547929466333573,
+          "confidence_sd": 0.0,
+          "lower": 0.7,
+          "upper": 0.8,
+          "weight": 0.33333333333333326
+        },
+        {
+          "accuracy": 0.8064094179202094,
+          "accuracy_sd": 0.0,
+          "bin": 8,
+          "confidence": 0.8412029069077912,
+          "confidence_sd": 1.3597399555105182e-16,
+          "lower": 0.8,
+          "upper": 0.9,
+          "weight": 0.6666666666666665
+        },
+        {
+          "accuracy": null,
+          "accuracy_sd": null,
+          "bin": 9,
+          "confidence": null,
+          "confidence_sd": null,
+          "lower": 0.9,
+          "upper": 1.0,
+          "weight": 0.0
+        }
+      ],
+      "scene_count": 2,
+      "seed_metrics": [
+        {
+          "brier": 0.23267774998483645,
+          "coverage@0.8": 0.6666666666666665,
+          "ece": 0.03236906577859795,
+          "false_safe_rate@0.8": 0.1935905820797907,
+          "nll": 0.5250909741773225
+        },
+        {
+          "brier": 0.23267774998483645,
+          "coverage@0.8": 0.6666666666666665,
+          "ece": 0.03236906577859795,
+          "false_safe_rate@0.8": 0.1935905820797907,
+          "nll": 0.5250909741773225
+        },
+        {
+          "brier": 0.23267774998483645,
+          "coverage@0.8": 0.6666666666666665,
+          "ece": 0.03236906577859795,
+          "false_safe_rate@0.8": 0.1935905820797907,
+          "nll": 0.5250909741773225
+        }
+      ]
+    },
+    {
+      "event_row_count": 4587,
+      "false_safe_curve": [
+        {
+          "coverage": 0.2907492188067727,
+          "coverage_sd": 0.0008810664670432491,
+          "false_safe_rate": 0.3993964757752708,
+          "false_safe_rate_sd": 0.0018187080012156264,
+          "safe_precision": 0.6006035242247294,
+          "safe_precision_sd": 0.0018187080012156518,
+          "threshold": 0.5
+        },
+        {
+          "coverage": 0.2907492188067727,
+          "coverage_sd": 0.0008810664670432491,
+          "false_safe_rate": 0.3993964757752708,
+          "false_safe_rate_sd": 0.0018187080012156264,
+          "safe_precision": 0.6006035242247294,
+          "safe_precision_sd": 0.0018187080012156518,
+          "threshold": 0.6
+        },
+        {
+          "coverage": 0.2907492188067727,
+          "coverage_sd": 0.0008810664670432491,
+          "false_safe_rate": 0.3993964757752708,
+          "false_safe_rate_sd": 0.0018187080012156264,
+          "safe_precision": 0.6006035242247294,
+          "safe_precision_sd": 0.0018187080012156518,
+          "threshold": 0.7
+        },
+        {
+          "coverage": 0.2907492188067727,
+          "coverage_sd": 0.0008810664670432491,
+          "false_safe_rate": 0.3993964757752708,
+          "false_safe_rate_sd": 0.0018187080012156264,
+          "safe_precision": 0.6006035242247294,
+          "safe_precision_sd": 0.0018187080012156518,
+          "threshold": 0.8
+        },
+        {
+          "coverage": 0.2907492188067727,
+          "coverage_sd": 0.0008810664670432491,
+          "false_safe_rate": 0.3993964757752708,
+          "false_safe_rate_sd": 0.0018187080012156264,
+          "safe_precision": 0.6006035242247294,
+          "safe_precision_sd": 0.0018187080012156518,
+          "threshold": 0.9
+        },
+        {
+          "coverage": 0.2907492188067727,
+          "coverage_sd": 0.0008810664670432491,
+          "false_safe_rate": 0.3993964757752708,
+          "false_safe_rate_sd": 0.0018187080012156264,
+          "safe_precision": 0.6006035242247294,
+          "safe_precision_sd": 0.0018187080012156518,
+          "threshold": 0.95
+        }
+      ],
+      "id": "mean_map",
+      "superseded": true,
+      "label": "Posterior mean-map threshold",
+      "metrics_mean_sd": {
+        "brier": {
+          "mean": 0.6277410150558523,
+          "sd": 0.0014516709354624323,
+          "values": [
+            0.6275015514543197,
+            0.629297528465814,
+            0.6264239652474232
+          ]
+        },
+        "coverage@0.8": {
+          "mean": 0.2907492188067727,
+          "sd": 0.0008810664670432491,
+          "values": [
+            0.290603880531938,
+            0.29169391759319807,
+            0.28994985829518194
+          ]
+        },
+        "ece": {
+          "mean": 0.7215318654167572,
+          "sd": 0.0008810664670432491,
+          "values": [
+            0.7213865271419225,
+            0.7224765642031826,
+            0.7207325049051665
+          ]
+        },
+        "false_safe_rate@0.8": {
+          "mean": 0.3993964757752708,
+          "sd": 0.0018187080012156264,
+          "values": [
+            0.399099774943736,
+            0.40134529147982073,
+            0.39774436090225573
+          ]
+        },
+        "nll": {
+          "mean": 9.968331383037805,
+          "sd": 0.012172382196612215,
+          "values": [
+            9.966323460712692,
+            9.981382878151035,
+            9.957287810249687
+          ]
+        }
+      },
+      "prediction_paths": [
+        "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/predictions_validation.csv",
+        "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/predictions_validation.csv",
+        "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/predictions_validation.csv"
+      ],
+      "prior_probabilities": null,
+      "reliability": [
+        {
+          "accuracy": 0.8535869439979219,
+          "accuracy_sd": 0.001060685835733479,
+          "bin": 0,
+          "confidence": 0.0,
+          "confidence_sd": 0.0,
+          "lower": 0.0,
+          "upper": 0.1,
+          "weight": 0.709250781193227
+        },
+        {
+          "accuracy": null,
+          "accuracy_sd": null,
+          "bin": 1,
+          "confidence": null,
+          "confidence_sd": null,
+          "lower": 0.1,
+          "upper": 0.2,
+          "weight": 0.0
+        },
+        {
+          "accuracy": null,
+          "accuracy_sd": null,
+          "bin": 2,
+          "confidence": null,
+          "confidence_sd": null,
+          "lower": 0.2,
+          "upper": 0.3,
+          "weight": 0.0
+        },
+        {
+          "accuracy": null,
+          "accuracy_sd": null,
+          "bin": 3,
+          "confidence": null,
+          "confidence_sd": null,
+          "lower": 0.3,
+          "upper": 0.4,
+          "weight": 0.0
+        },
+        {
+          "accuracy": null,
+          "accuracy_sd": null,
+          "bin": 4,
+          "confidence": null,
+          "confidence_sd": null,
+          "lower": 0.4,
+          "upper": 0.5,
+          "weight": 0.0
+        },
+        {
+          "accuracy": null,
+          "accuracy_sd": null,
+          "bin": 5,
+          "confidence": null,
+          "confidence_sd": null,
+          "lower": 0.5,
+          "upper": 0.6,
+          "weight": 0.0
+        },
+        {
+          "accuracy": null,
+          "accuracy_sd": null,
+          "bin": 6,
+          "confidence": null,
+          "confidence_sd": null,
+          "lower": 0.6,
+          "upper": 0.7,
+          "weight": 0.0
+        },
+        {
+          "accuracy": null,
+          "accuracy_sd": null,
+          "bin": 7,
+          "confidence": null,
+          "confidence_sd": null,
+          "lower": 0.7,
+          "upper": 0.8,
+          "weight": 0.0
+        },
+        {
+          "accuracy": null,
+          "accuracy_sd": null,
+          "bin": 8,
+          "confidence": null,
+          "confidence_sd": null,
+          "lower": 0.8,
+          "upper": 0.9,
+          "weight": 0.0
+        },
+        {
+          "accuracy": 0.6006035242247294,
+          "accuracy_sd": 0.0018187080012156518,
+          "bin": 9,
+          "confidence": 1.0,
+          "confidence_sd": 0.0,
+          "lower": 0.9,
+          "upper": 1.0,
+          "weight": 0.2907492188067727
+        }
+      ],
+      "scene_count": 2,
+      "seed_metrics": [
+        {
+          "brier": 0.6275015514543197,
+          "coverage@0.8": 0.290603880531938,
+          "ece": 0.7213865271419225,
+          "false_safe_rate@0.8": 0.399099774943736,
+          "nll": 9.966323460712692
+        },
+        {
+          "brier": 0.629297528465814,
+          "coverage@0.8": 0.29169391759319807,
+          "ece": 0.7224765642031826,
+          "false_safe_rate@0.8": 0.40134529147982073,
+          "nll": 9.981382878151035
+        },
+        {
+          "brier": 0.6264239652474232,
+          "coverage@0.8": 0.28994985829518194,
+          "ece": 0.7207325049051665,
+          "false_safe_rate@0.8": 0.39774436090225573,
+          "nll": 9.957287810249687
+        }
+      ]
+    },
+    {
+      "event_row_count": 4587,
+      "false_safe_curve": [
+        {
+          "coverage": 0.801903931400334,
+          "coverage_sd": 0.0658618156542517,
+          "false_safe_rate": 0.16710820214673625,
+          "false_safe_rate_sd": 0.017872062899083368,
+          "safe_precision": 0.832891797853264,
+          "safe_precision_sd": 0.017872062899083295,
+          "threshold": 0.5
+        },
+        {
+          "coverage": 0.7452220042148098,
+          "coverage_sd": 0.07470542842492957,
+          "false_safe_rate": 0.15698006702451614,
+          "false_safe_rate_sd": 0.018588116933172187,
+          "safe_precision": 0.8430199329754839,
+          "safe_precision_sd": 0.0185881169331721,
+          "threshold": 0.6
+        },
+        {
+          "coverage": 0.6654312913305718,
+          "coverage_sd": 0.07928439346485472,
+          "false_safe_rate": 0.14643086255969726,
+          "false_safe_rate_sd": 0.017531492847780016,
+          "safe_precision": 0.8535691374403026,
+          "safe_precision_sd": 0.01753149284778004,
+          "threshold": 0.7
+        },
+        {
+          "coverage": 0.5432018021946078,
+          "coverage_sd": 0.07851364760932866,
+          "false_safe_rate": 0.13341638862813623,
+          "false_safe_rate_sd": 0.018748629573757943,
+          "safe_precision": 0.8665836113718637,
+          "safe_precision_sd": 0.018748629573757874,
+          "threshold": 0.8
+        },
+        {
+          "coverage": 0.3363127679674442,
+          "coverage_sd": 0.07852666128067014,
+          "false_safe_rate": 0.12624961352910638,
+          "false_safe_rate_sd": 0.02317593107492563,
+          "safe_precision": 0.8737503864708936,
+          "safe_precision_sd": 0.02317593107492562,
+          "threshold": 0.9
+        },
+        {
+          "coverage": 0.18530630041421403,
+          "coverage_sd": 0.07074365720993661,
+          "false_safe_rate": 0.11731527286926198,
+          "false_safe_rate_sd": 0.014143980669796991,
+          "safe_precision": 0.8826847271307381,
+          "safe_precision_sd": 0.014143980669796946,
+          "threshold": 0.95
+        }
+      ],
+      "id": "s4c_coordinate",
+      "superseded": false,
+      "label": "S4C-inspired coordinate query",
+      "metrics_mean_sd": {
+        "brier": {
+          "mean": 0.20378705095050087,
+          "sd": 0.0348549911673537,
+          "values": [
+            0.1635511970471695,
+            0.2230819014909903,
+            0.2247280543133428
+          ]
+        },
+        "coverage@0.8": {
+          "mean": 0.5432018021946078,
+          "sd": 0.07851364760932866,
+          "values": [
+            0.632657510355352,
+            0.5112273817309787,
+            0.4857205144974928
+          ]
+        },
+        "ece": {
+          "mean": 0.11107342436389069,
+          "sd": 0.0531191102433205,
+          "values": [
+            0.05290668986841075,
+            0.15701244709106235,
+            0.12330113613219897
+          ]
+        },
+        "false_safe_rate@0.8": {
+          "mean": 0.13341638862813623,
+          "sd": 0.018748629573757943,
+          "values": [
+            0.11302549965541007,
+            0.1373134328358209,
+            0.14991023339317777
+          ]
+        },
+        "nll": {
+          "mean": 0.572893497258285,
+          "sd": 0.10572335732625833,
+          "values": [
+            0.4517579502537232,
+            0.6465785388932568,
+            0.6203440026278748
+          ]
+        }
+      },
+      "prediction_paths": [
+        "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/predictions_validation.csv",
+        "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/predictions_validation.csv",
+        "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/predictions_validation.csv"
+      ],
+      "prior_probabilities": null,
+      "reliability": [
+        {
+          "accuracy": 0.37711493977543276,
+          "accuracy_sd": 0.2432732405551355,
+          "bin": 0,
+          "confidence": 0.043862215796951785,
+          "confidence_sd": 0.010994615580293833,
+          "lower": 0.0,
+          "upper": 0.1,
+          "weight": 0.045200203473584756
+        },
+        {
+          "accuracy": 0.5126562574505658,
+          "accuracy_sd": 0.23475332711785976,
+          "bin": 1,
+          "confidence": 0.15015580738192283,
+          "confidence_sd": 0.0006074875706453941,
+          "lower": 0.1,
+          "upper": 0.2,
+          "weight": 0.03553520819707869
+        },
+        {
+          "accuracy": 0.5376011403893788,
+          "accuracy_sd": 0.2248048205884893,
+          "bin": 2,
+          "confidence": 0.25042292716691616,
+          "confidence_sd": 0.0031379747960006907,
+          "lower": 0.2,
+          "upper": 0.3,
+          "weight": 0.03320979579972385
+        },
+        {
+          "accuracy": 0.6055475995635571,
+          "accuracy_sd": 0.12040345537900665,
+          "bin": 3,
+          "confidence": 0.3500476112349085,
+          "confidence_sd": 0.003493194373351557,
+          "lower": 0.3,
+          "upper": 0.4,
+          "weight": 0.039677349029867005
+        },
+        {
+          "accuracy": 0.6347571979871236,
+          "accuracy_sd": 0.08223282383207652,
+          "bin": 4,
+          "confidence": 0.4543514555954539,
+          "confidence_sd": 0.000854344851447217,
+          "lower": 0.4,
+          "upper": 0.5,
+          "weight": 0.04447351209941137
+        },
+        {
+          "accuracy": 0.6930096318984417,
+          "accuracy_sd": 0.03425079700908495,
+          "bin": 5,
+          "confidence": 0.551455524469621,
+          "confidence_sd": 0.0031330473367635996,
+          "lower": 0.5,
+          "upper": 0.6,
+          "weight": 0.056681927185524304
+        },
+        {
+          "accuracy": 0.7541028463630307,
+          "accuracy_sd": 0.025482623706476786,
+          "bin": 6,
+          "confidence": 0.6544032420578324,
+          "confidence_sd": 0.001500652576926619,
+          "lower": 0.6,
+          "upper": 0.7,
+          "weight": 0.07979071288423804
+        },
+        {
+          "accuracy": 0.7926388993497526,
+          "accuracy_sd": 0.011536880680779295,
+          "bin": 7,
+          "confidence": 0.754187524451626,
+          "confidence_sd": 0.0007169982067386899,
+          "lower": 0.7,
+          "upper": 0.8,
+          "weight": 0.12222948913596393
+        },
+        {
+          "accuracy": 0.8504116394465031,
+          "accuracy_sd": 0.02305278507416923,
+          "bin": 8,
+          "confidence": 0.8546114358925859,
+          "confidence_sd": 0.0009296813738302249,
+          "lower": 0.8,
+          "upper": 0.9,
+          "weight": 0.20688903422716368
+        },
+        {
+          "accuracy": 0.8737503864708936,
+          "accuracy_sd": 0.02317593107492562,
+          "bin": 9,
+          "confidence": 0.9511969951055894,
+          "confidence_sd": 0.00726959894526357,
+          "lower": 0.9,
+          "upper": 1.0,
+          "weight": 0.3363127679674442
+        }
+      ],
+      "scene_count": 2,
+      "seed_metrics": [
+        {
+          "brier": 0.1635511970471695,
+          "coverage@0.8": 0.632657510355352,
+          "ece": 0.05290668986841075,
+          "false_safe_rate@0.8": 0.11302549965541007,
+          "nll": 0.4517579502537232
+        },
+        {
+          "brier": 0.2230819014909903,
+          "coverage@0.8": 0.5112273817309787,
+          "ece": 0.15701244709106235,
+          "false_safe_rate@0.8": 0.1373134328358209,
+          "nll": 0.6465785388932568
+        },
+        {
+          "brier": 0.2247280543133428,
+          "coverage@0.8": 0.4857205144974928,
+          "ece": 0.12330113613219897,
+          "false_safe_rate@0.8": 0.14991023339317777,
+          "nll": 0.6203440026278748
+        }
+      ]
+    }
+  ],
+  "protocol_version": "UNSCENES3D_PROTOCOL.md v0.2",
+  "paper_result": false,
+  "retraining_required": true,
+  "support_contract_status": "mixed_historical_snapshot",
+  "schema_version": 1,
+  "test_evaluated": false,
+  "thresholds": [
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9,
+    0.95
+  ],
+  "validation_only": true,
+  "weighting": {
+    "brier": "equal scene, then equal validation event",
+    "nll_ece_false_safe_coverage_and_curves": "equal validation event (query weighted)",
+    "radius_prior_fit": "equal train scene, then equal frame, then equal retained query"
+  }
+}

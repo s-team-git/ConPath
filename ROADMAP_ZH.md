@@ -2,6 +2,9 @@
 
 这份文档回答三个问题：现在代码做了什么、下一步具体做什么、做到什么程度才值得继续写论文。
 
+当前执行顺序和完成条件见 [WORK_PLAN.md](WORK_PLAN.md)（2026-09-06）。本文件的长期
+研究目标不代表当前会话已经注册了活动 goal；历史执行日志以 `CONTINUATION.md` 的最新条目为准。
+
 ## 一句话目标
 
 输入不完整的环境观测，学习一组空间相关的可能地图，并输出：
@@ -163,8 +166,8 @@ L_reachability_U-statistic_Brier
 | 合成歧义数据 | 已完成 | `src/pathrel/synthetic.py` |
 | forward/backward smoke | 已完成 | `scripts/` 与 `tests/` |
 | ORFD adapter | 未开始 | P1 |
-| FlatLands completion/query audit | 512 场景 data gate、direct-ZIP adapter、统一 evaluator 与首轮 validation baseline 已通过；最终结果待多 seed/扩展性/第二域 | P1 |
-| UnScenes3D encoder/loader | 未开始 | P2 |
+| FlatLands completion/query audit | 512 场景 data gate、fixed support-bounded baselines 与统一 evaluator 已完成；旧 PathRelNet 矩阵因缺少 `epistemic_mask` 硬边界而作废；K=128 三 seed clean correlated/independent 已完成并通过 strict audit，ConPath Brier 0.06749、independent 0.09521；官方 split 与 paper/test 仍 gated | P1 |
+| UnScenes3D ground-valid adapter/controls | 坐标/manifest 审计有效；旧 map-model/mean-map/定性结果因缺少 `target_valid` 硬边界而降级为历史记录；六组 clean rerun、K=128 配对审计和候选图已完成，Brier 0.54704 vs 0.54740（仅两验证场景、无可测相关优势）；`location_6` 仍锁定 | P2 |
 | WildOcc cross-domain | 未开始 | P2 |
 | scalable path-cut bounds | NumPy merge-tree 已有单图 exact reference，新增 batch×sample×query 封装与 CPU contract benchmark；共享起点传播和 ConPath public-data 入口已接通，CUDA/soft-backward 未完成 | P3 |
 | SE(2) 矩形 footprint | 未开始 | 2.5-D 版本成立后再做 |
@@ -207,17 +210,26 @@ NO-GO；非官方 `provenance.original_split` 在 512 个不同场景、16 个 s
 mask 与最低 query-balance gate。4,653 个有效端点中有 121 个 radius-0 断连、3,095 个足迹失败和
 1,437 个 20 cm 正例。该分布并不均匀：test/ARKitScenes 的 115 个有效 query 在 20 cm 下没有
 正例。direct-from-ZIP loader 已完成 512/512 场景回放、双进程加载与防 split 泄漏测试，审计
-JSON/图表也已同步到项目网站。首轮 validation-only 对照已完成：radius prior 的 Brier 为
+JSON/图表也已同步到项目网站。固定 validation-only 对照仍有效：radius prior 的 Brier 为
 0.15870，deterministic completion 为 0.08556，independent-cell K=32 为 0.22546，direct-query
-为 0.09119；这些数字不是最终论文结果，test 仍锁定。下一步是多 seed ConPath、逐项消融、可扩展
-connectivity、calibration/false-safe 与第二数据域，仍必须按 source/radius 报告。
+为 0.09119；其 completion world 只使用 support-masked `unknown`，不受边界修复影响。旧三 seed
+F=16 ConPath/independent K=128 数值因未硬阻断 `~epistemic_mask` 已作废。对六个旧 checkpoint 的
+K=128 post-hoc 修复回放得到 ConPath 0.08467 ± 0.01350、independent 0.10352 ± 0.00388，且三个
+逐 seed paired bootstrap 区间均为正；但 checkpoint 训练时仍使用旧 forward，所以只能作为恢复
+诊断。clean 三 seed 重训现已在独立目录完成，exact replay/hash/checkpoint 审计全部通过；ConPath
+0.06749 ± 0.00936、independent 0.09521 ± 0.00703，test 继续锁定，仍只能作为非官方
+provenance split 的 validation candidate。
 
 ### P2：正式公开数据实验
 
 若 FlatLands 固定基线证明该事件任务可学习，先在明确标注为非官方的 provenance split 上测
 “completion samples 到路径事件”的校准；不得使用存在 scene leakage 的公开目录 split。
 若室内 floor-map 不足以代表小车支撑面，再使用 UnScenes3D 的 occupancy 与 road elevation
-构造 2.5-D 地图，WildOcc 做跨域测试。必须按场景/矿区/序列拆分，禁止相邻帧随机拆分。
+构造 2.5-D 地图，WildOcc 做跨域测试。当前 UnScenes3D 已完成 train/validation-only ground-valid
+坐标与 manifest 合同（15,567/1,529 queries），但旧 map-derived 对照已被 `target_valid` 边界审计
+重新打开；clean rerun 已完成但仅在两个验证场景上得到近零相关优势（0.54704 vs 0.54740），所以仍是 transfer diagnostic；`location_6` 仍锁定。若要形成正式公开数据或跨域结论，必须另行冻结
+版本、审阅所有 controls，并取得明确 test go/no-go。所有拆分仍按场景/矿区/序列，禁止
+相邻帧随机拆分。
 
 ### P3：论文完整算法
 
@@ -249,15 +261,17 @@ ConPath validation 入口已经在最终预测阶段使用该 exact-forward help
 以下顺序是当前持续 goal；每一阶段必须留下配置、随机种子、机器可读报告、图表和网站快照，
 不能因为后面的结果更好而修改前面的 split 或 query。
 
-1. **P1 评测合同与强基线（当前已完成首轮）。** 冻结统一 evaluator、scene-weighted 指标、
-   bootstrap 单位和 train-only 拟合边界；已完成 deterministic completion、independent-cell
-   posterior、direct-query predictor 与 train-only radius prior。首轮结果仅用于诊断，下一轮补
-   多 seed、K 收敛和强官方 completion baseline；继续按 split/source/radius 输出 Brier、NLL、ECE、
-   false-safe 与效率。
+1. **P1 评测合同与强基线（首轮与 K=128 controls 已完成）。** 冻结统一 evaluator、scene-
+   weighted 指标、bootstrap 单位和 train-only 拟合边界；deterministic completion、independent-
+   cell posterior、direct-query predictor、radius prior 与三 seed ConPath K=128 candidate 均已
+   留下 validation-only 报告；matched independent K=128 control 也已完成并通过独立 replay。
+   继续按 split/source/radius 输出 Brier、NLL、ECE、false-safe 与效率。
 2. **可扩展连通算子。** 将已验证的 merge-tree exact-forward 参考推进为批量实现，或采用
    exact-forward/soft-backward 算子；证明与离线 oracle 一致，报告显存、时间和 query 数扩展。
-3. **ConPath 正式训练与消融。** 至少三个固定种子；比较完整模型、无 event loss、无全局相关
-   因子、independent decoder、不同 K 和确定性均值图。所有方法共享 encoder、数据与 query。
+3. **ConPath 正式训练与消融。** 三 seed K=128 完整模型 candidate 与 matched independent
+   K=128 control 均已完成；旧 no-event/no-global/K 敏感性/确定性均值图仅保留为历史记录，
+   需要在修正后边界下重新建立有效消融。所有方法共享
+   encoder、数据与 query，且在 test 解锁前继续保持 validation-only。
 4. **校准与安全分析。** 做 source/radius reliability、false-safe 阈值曲线、K 收敛、scene
    bootstrap 置信区间、失败案例和饱和 stratum 报告；不得用 pooled 均值掩盖 ARKitScenes。
 5. **外部有效性。** 根据 P1 结果选择一个第二数据域；优先补足真实支撑/越野语义，而非再做一套

@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "kind": "unscenes3d_validation_controls_snapshot",
+  "protocol_version": "UNSCENES3D_PROTOCOL.md v0.2",
+  "validation_only": true,
+  "paper_result": false,
+  "retraining_required": true,
+  "test_evaluated": false,
+  "support_contract_status": {
+    "audit_date": "2026-09-03",
+    "status": "mixed_historical_snapshot",
+    "superseded_control_ids": ["conpath_stochastic", "independent_stochastic", "conpath_mean_map_k128", "independent_mean_map_k128"],
+    "unaffected_control_ids": ["s4c_inspired_coordinate", "radius_prior_control"],
+    "reason": "Older PathRelNet worlds did not hard-block the complement of target_valid; clean support-consistent reruns are required."
+  },
+  "manifest": {
+    "path": "results/unscenes3d_contract_manifest_ground_valid/manifest.json",
+    "sha256": "d866be0b25ba6635d5ad934bac9c822c55be8034fabd8f4627803bb9efa972d5",
+    "train_records": 478,
+    "validation_records": 62,
+    "train_queries": 15567,
+    "validation_queries": 1529,
+    "test_locked_sites": ["location_6"]
+  },
+  "adapter": {
+    "endpoint_policy": "ground",
+    "start_selection": "valid",
+    "ground_margin_m": 0.35,
+    "ground_bin_size_m": 1.2,
+    "ground_lateral_limit_m": 20.0,
+    "ground_quantile": 0.15,
+    "grid_shape": [256, 256],
+    "voxel_size_m": 0.3,
+    "radii_cells": [0, 1, 2]
+  },
+  "controls": [
+    {
+      "id": "conpath_stochastic",
+      "superseded": true,
+      "label": "Correlated ConPath (stochastic)",
+      "predictive_object": "posterior event probability from hard sampled worlds",
+      "seeds": [
+        {"seed": 20260831, "brier": 0.5589376363846392, "nll": 9.055079522849038, "ece": 0.6681109657728362, "false_safe_rate_at_0_8": 0.2887323943661972, "coverage_at_0_8": 0.18574231523871812, "radius_monotonicity_violations": 0},
+        {"seed": 20260901, "brier": 0.5579240423985484, "nll": 9.028077744915908, "ece": 0.6651678657074339, "false_safe_rate_at_0_8": 0.2623941958887545, "coverage_at_0_8": 0.1802921299324177, "radius_monotonicity_violations": 0},
+        {"seed": 20260902, "brier": 0.5712958290331067, "nll": 9.114068606492543, "ece": 0.679174841944626, "false_safe_rate_at_0_8": 0.2723735408560311, "coverage_at_0_8": 0.16808371484630477, "radius_monotonicity_violations": 0}
+      ],
+      "mean_sd": {"brier": [0.5627191692720981, 0.00744487492737372], "nll": [9.06574195808583, 0.04397581960322264], "ece": [0.6708178911082989, 0.007385420062479397], "false_safe_rate_at_0_8": [0.2745000437036609, 0.013297243531095747]}
+    },
+    {
+      "id": "independent_stochastic",
+      "superseded": true,
+      "label": "Independent decoder (stochastic)",
+      "predictive_object": "posterior event probability with local_kernel_size=1 and global factors disabled",
+      "seeds": [
+        {"seed": 20260831, "brier": 0.5603710874261373, "nll": 9.061944969741388, "ece": 0.6700457815565728, "false_safe_rate_at_0_8": 0.28857479387514723, "coverage_at_0_8": 0.18508829300196206, "radius_monotonicity_violations": 0},
+        {"seed": 20260901, "brier": 0.5593422160417003, "nll": 9.054283200828538, "ece": 0.668737737083061, "false_safe_rate_at_0_8": 0.2689075630252101, "coverage_at_0_8": 0.1816001744059298, "radius_monotonicity_violations": 0},
+        {"seed": 20260902, "brier": 0.5691821095394204, "nll": 9.143792886072092, "ece": 0.678411816001744, "false_safe_rate_at_0_8": 0.253315649867374, "coverage_at_0_8": 0.1643775888380205, "radius_monotonicity_violations": 0}
+      ],
+      "mean_sd": {"brier": [0.562965137669086, 0.005408576384671401], "nll": [9.08667368554734, 0.04961479590744365], "ece": [0.6723984448804593, 0.005248639823533805], "false_safe_rate_at_0_8": [0.27026600225591045, 0.017668781132057505]}
+    },
+    {
+      "id": "conpath_mean_map_k128",
+      "superseded": true,
+      "label": "Posterior mean-map threshold (K=128)",
+      "predictive_object": "one binary map obtained by thresholding the posterior mean at 0.5",
+      "seeds": [
+        {"seed": 20260831, "brier": 0.6275015514543197, "nll": 9.966323460712692, "ece": 0.7213865271419229, "false_safe_rate_at_0_8": 0.39909977494373594, "coverage_at_0_8": 0.2906038805319381, "radius_monotonicity_violations": 0, "hidden_map_brier": 0.19390891487761786},
+        {"seed": 20260901, "brier": 0.629297528465814, "nll": 9.981382878151036, "ece": 0.722476564203183, "false_safe_rate_at_0_8": 0.4013452914798206, "coverage_at_0_8": 0.2916939175931982, "radius_monotonicity_violations": 0, "hidden_map_brier": 0.13599920529607473},
+        {"seed": 20260902, "brier": 0.6264239652474233, "nll": 9.957287810249689, "ece": 0.7207325049051667, "false_safe_rate_at_0_8": 0.3977443609022556, "coverage_at_0_8": 0.28994985829518205, "radius_monotonicity_violations": 0, "hidden_map_brier": 0.12084061100840204}
+      ],
+      "mean_sd": {"brier": [0.6277410150558523, 0.0014516709354623818], "nll": [9.968331383037806, 0.01217238224378575], "ece": [0.7215318654167576, 0.0008810664997576742], "false_safe_rate_at_0_8": [0.39939647579193736, 0.0018187080213812438], "hidden_map_brier": [0.15024957706069822, 0.03856227533683002]}
+    },
+    {
+      "id": "independent_mean_map_k128",
+      "superseded": true,
+      "label": "Independent mean-map threshold (K=128)",
+      "predictive_object": "one binary map from the independent decoder posterior mean",
+      "seeds": [
+        {"seed": 20260831, "brier": 0.6275015514543197, "nll": 9.966323460712692, "ece": 0.7213865271419229, "false_safe_rate_at_0_8": 0.39909977494373594, "coverage_at_0_8": 0.2906038805319381, "radius_monotonicity_violations": 0, "hidden_map_brier": 0.19382093423553365},
+        {"seed": 20260901, "brier": 0.6289383330635152, "nll": 9.978370994663367, "ece": 0.7222585567909309, "false_safe_rate_at_0_8": 0.40089753178758414, "coverage_at_0_8": 0.29147591018094615, "radius_monotonicity_violations": 0, "hidden_map_brier": 0.13110439846532898},
+        {"seed": 20260902, "brier": 0.6264239652474233, "nll": 9.957287810249689, "ece": 0.7207325049051667, "false_safe_rate_at_0_8": 0.3977443609022556, "coverage_at_0_8": 0.28994985829518205, "radius_monotonicity_violations": 0, "hidden_map_brier": 0.12064453176101987}
+      ],
+      "mean_sd": {"brier": [0.627621283255086, 0.001261452796079105], "hidden_map_brier": [0.14852328815396082, 0.03957599977595702]}
+    },
+    {
+      "id": "s4c_inspired_coordinate",
+      "superseded": false,
+      "label": "S4C-inspired coordinate query",
+      "predictive_object": "direct event logits from bilinear coordinate queries and Fourier geometry features",
+      "seeds": [
+        {"seed": 20260831, "brier": 0.1635511970471695, "nll": 0.4517579502537232, "ece": 0.05290668986841074, "false_safe_rate_at_0_8": 0.11302549965541006, "coverage_at_0_8": 0.6326575103553521, "radius_monotonicity_violations": 0},
+        {"seed": 20260901, "brier": 0.22308190149099033, "nll": 0.6465785388932568, "ece": 0.1570124470910624, "false_safe_rate_at_0_8": 0.1373134328358209, "coverage_at_0_8": 0.5112273817309788, "radius_monotonicity_violations": 0},
+        {"seed": 20260902, "brier": 0.2247280543133428, "nll": 0.6203440026278748, "ece": 0.12330113613219895, "false_safe_rate_at_0_8": 0.14991023339317774, "coverage_at_0_8": 0.48572051449749293, "radius_monotonicity_violations": 0}
+      ],
+      "mean_sd": {"brier": [0.20378705095050087, 0.03485499116735371], "nll": [0.5728934972582849, 0.10572335732625833], "ece": [0.1110734243638907, 0.053119110243320534], "false_safe_rate_at_0_8": [0.13341638862813623, 0.01874862957375794], "coverage_at_0_8": [0.5432018021946079, 0.07851364760932866]}
+    }
+  ],
+  "radius_prior_control": {
+    "superseded": false,
+    "fit": "train scene-weighted radius prevalence",
+    "probabilities": {"0": 0.87174096, "1": 0.81066486, "2": 0.75479295},
+    "validation_brier": 0.23267774998483637,
+    "validation_nll": 0.5250909741773225,
+    "validation_ece": 0.03236906577859773,
+    "validation_false_safe_rate_at_0_8": 0.1935905820797907,
+    "validation_coverage_at_0_8": 0.6666666666666666
+  },
+  "k_sensitivity": {
+    "superseded": true,
+    "checkpoint": "results/unscenes3d_ground_valid_f16/seed20260831/best.pt",
+    "evaluation_seed": 20260910,
+    "posterior_mean_hidden_map_brier": {"32": 0.19398740673478565, "64": 0.19385307610106242, "128": 0.19390891487761786},
+    "thresholded_event_brier": {"32": 0.6275015514543197, "64": 0.6275015514543197, "128": 0.6275015514543197},
+    "radius_monotonicity_violations": {"32": 0, "64": 0, "128": 0}
+  },
+  "qualitative": {
+    "superseded": true,
+    "report": "site/data/unscenes3d_qualitative_validation.json",
+    "positive_asset": "assets/unscenes3d_qualitative_positive.png",
+    "failure_asset": "assets/unscenes3d_qualitative_failure.png"
+  },
+  "claim_boundary": "Historical mixed-contract validation snapshot. PathRelNet-derived model, mean-map, K-sensitivity, and qualitative values are superseded pending a target_valid support-consistent rerun; coordinate-query and radius-prior controls are unaffected. No location_6 files or test labels were used."
+}

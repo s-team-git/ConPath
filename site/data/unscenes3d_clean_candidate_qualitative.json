@@ -1,0 +1,99 @@
+{
+  "adapter": {
+    "endpoint_policy": "ground",
+    "ground_bin_size_m": 1.2,
+    "ground_lateral_limit_m": 20.0,
+    "ground_margin_m": 0.35,
+    "ground_quantile": 0.15,
+    "start_selection": "valid"
+  },
+  "checkpoint": {
+    "path": "results/unscenes3d_ground_valid_support_clamped_f16_v1/seed20260901/best.pt",
+    "sha256": "f7993532e70447c6b56e6f403fb2ec9573e96c0de488c1623657faecc5d27638"
+  },
+  "claim_boundary": "Validation-only support-consistent qualitative diagnostic; target labels select the displayed cases, location_6 remains locked, and no final paper claim is made.",
+  "decoder": {
+    "checkpoint_trained_with_same_support_policy": true,
+    "disable_global_factors": false,
+    "feature_channels": 16,
+    "latent_dim": 4,
+    "local_kernel_size": 5,
+    "variant": "correlated"
+  },
+  "forward": {
+    "invalid_support_clamped": true,
+    "valid_support_policy": "UnScenes3D target_valid complement is deterministically blocked before posterior sampling"
+  },
+  "kind": "unscenes3d_qualitative_validation_panel",
+  "manifest": {
+    "path": "results/unscenes3d_contract_manifest_ground_valid/manifest.json",
+    "sha256": "d866be0b25ba6635d5ad934bac9c822c55be8034fabd8f4627803bb9efa972d5",
+    "test_locked_sites": [
+      "location_6"
+    ],
+    "validation_queries": 1529,
+    "validation_records": 62
+  },
+  "panels": {
+    "failure": {
+      "candidate_index": 11,
+      "label": "false-safe failure",
+      "max_clearance_cells": 13,
+      "path": "results/unscenes3d_ground_valid_support_clamped_qualitative_v1/seed20260901/qualitative_failure.png",
+      "point_count": 14702,
+      "prediction": [
+        true,
+        true,
+        true
+      ],
+      "projected_points": 14702,
+      "scene_id": "scene_00427",
+      "target": [
+        true,
+        true,
+        false
+      ],
+      "timestamp": "1693304938.969453"
+    },
+    "positive": {
+      "candidate_index": 8,
+      "label": "true-positive",
+      "max_clearance_cells": 13,
+      "path": "results/unscenes3d_ground_valid_support_clamped_qualitative_v1/seed20260901/qualitative_positive.png",
+      "point_count": 14702,
+      "prediction": [
+        true,
+        true,
+        true
+      ],
+      "projected_points": 14702,
+      "scene_id": "scene_00427",
+      "target": [
+        true,
+        true,
+        true
+      ],
+      "timestamp": "1693304938.969453"
+    }
+  },
+  "paper_result": false,
+  "posthoc_checkpoint_evaluation": false,
+  "protocol_version": "UNSCENES3D_PROTOCOL.md v0.2",
+  "retraining_required": false,
+  "runtime": {
+    "device": "cuda",
+    "gpu": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+    "peak_gpu_memory_bytes": 200377344,
+    "wall_seconds": 17.239053240977228
+  },
+  "schema_version": 1,
+  "selection": {
+    "frames_scanned": 62,
+    "posterior_samples": 128,
+    "rule": "highest deterministic max-clearance false-safe radius-2 query and highest max-clearance all-radii true-positive query",
+    "sample_chunk": 16,
+    "seed": 20260901
+  },
+  "test_evaluated": false,
+  "validation_result": true
+}

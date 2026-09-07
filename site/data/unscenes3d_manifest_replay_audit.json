@@ -1,0 +1,30 @@
+{
+  "canonical_adapter": {
+    "endpoint_policy": "ground",
+    "ground_bin_size_m": 1.2,
+    "ground_lateral_limit_m": 20.0,
+    "ground_margin_m": 0.35,
+    "ground_quantile": 0.15,
+    "start_selection": "valid"
+  },
+  "canonical_contract_sha256": "017b368b0364ca518e1c0d744ed81d53d92f190b72ee66109417b29c5bee77d5",
+  "canonical_path": "results/unscenes3d_contract_manifest_ground_valid/manifest.json",
+  "canonical_protocol": "UNSCENES3D_PROTOCOL.md v0.2",
+  "canonical_train_queries": 15567,
+  "canonical_train_records": 478,
+  "canonical_validation_queries": 1529,
+  "canonical_validation_records": 62,
+  "claim_boundary": "Train/validation manifest replay only; location_6 files and test labels were not read.",
+  "contract_equal": true,
+  "ignored_runtime_fields": [
+    "generation_seconds"
+  ],
+  "kind": "unscenes3d_manifest_replay_audit",
+  "locked_record_count": 0,
+  "passed": true,
+  "protocol_version": "UNSCENES3D_PROTOCOL.md v0.2",
+  "rebuilt_contract_sha256": "017b368b0364ca518e1c0d744ed81d53d92f190b72ee66109417b29c5bee77d5",
+  "schema_version": 1,
+  "test_evaluated": false,
+  "validation_only": true
+}

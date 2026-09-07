@@ -1,8 +1,16 @@
 # ConPath P1 FlatLands baseline protocol v1
 
-Status: **frozen before any learned FlatLands validation/test result**
+Status: **frozen contract; clean K=128 validation candidate audited; test remains locked**
 
 Frozen: 2026-08-31 (America/New_York)
+
+Amended 2026-09-04 (validation-only support-boundary correction; test remained locked): every
+map-derived method must deterministically set `~epistemic_mask` to blocked before footprint erosion
+or connectivity. The all-zero input encoding alone is not a hard geometric constraint. Earlier
+neural/map-sampling validation artifacts that omitted this clamp are superseded and must be rerun
+under a versioned output path. The clean three-seed ConPath and independent K=128 reruns now pass
+the strict checkpoint/support/replay audit. This correction changes no selected scene, query, target,
+metric, seed, or test-access rule.
 
 This document fixes the first public-data evaluation contract. Changing a rule below after seeing
 validation results requires a new protocol version and an explicit reason; the test split remains
@@ -34,10 +42,11 @@ The canonical three-channel model input is:
 2. epistemic-valid observed blocked;
 3. epistemic-valid unknown.
 
-The channels are mutually exclusive; invalid support is all-zero. Observed blocked is reconstructed
-without `floor_map` as `epistemic_mask & ~unobserved & ~observed_floor`. Completion loss is evaluated
-only on `unobserved & epistemic_mask`. Queries and coordinates are already frozen before targets are
-read.
+The channels are mutually exclusive; invalid support is all-zero in the encoder input and is also
+passed as an explicit validity mask so the stochastic decoder hard-clamps it to `BLOCKED` before
+any training or evaluation connectivity operation. Observed blocked is reconstructed without
+`floor_map` as `epistemic_mask & ~unobserved & ~observed_floor`. Completion loss is evaluated only
+on `unobserved & epistemic_mask`. Queries and coordinates are already frozen before targets are read.
 
 ## Evaluation and statistical unit
 
@@ -115,5 +124,8 @@ monotonicity diagnostics are recorded. Failure triggers a baseline/data diagnosi
 large ConPath training.
 
 This protocol does not turn the bounded audit, control row, or synthetic P0 result into a public-data
-model result. Paper-grade evidence still requires multi-seed ConPath results, ablations, final locked
-test evaluation, false-safe analysis, scalable connectivity, and external-domain validation.
+model result. The pre-correction three-seed F=16 K=128 ConPath and independent artifacts remain an
+audit trail only. The clean versioned candidate is validation-only on the non-official provenance
+split (ConPath Brier `0.06749 +/- 0.00936`; independent `0.09521 +/- 0.00703`; paired delta
+`+0.02772 +/- 0.00993`). Paper-grade evidence still requires an explicit final locked-test go/no-go,
+false-safe analysis, scalable connectivity, and external-domain validation.

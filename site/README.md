@@ -1,10 +1,24 @@
 # ConPath project page
 
-This directory is a static, GitHub Pages-ready academic project page. The primary media are derived
-from the real TUM RGB-D Freiburg1/desk sequence: the RGB/depth/pose composite, the pilot video, and
-the event-metric figures. It also publishes the bounded FlatLands data-gate snapshot and figures,
-explicitly labelled as target statistics rather than model results. No synthetic video or synthetic
-figure is referenced by `index.html`.
+This directory is a static, GitHub Pages-ready academic project page. The primary visual is now a
+clean-support checkpoint-derived FlatLands K=128 comparison at
+`assets/flatlands_k128_clean_candidate.png`; its machine-readable provenance is
+`data/flatlands_k128_clean_candidate.json`. The TUM RGB-D Freiburg1/desk video is retained lower on
+the page as a geometry-only pipeline pilot. No synthetic video or fabricated model figure is
+referenced by `index.html`.
+
+The 2026-09-03 model audit found that older FlatLands neural forwards did not explicitly hard-block
+cells outside `epistemic_mask`. The old checkpoints and their support-clamped post-hoc replay remain
+archived for recovery, while the hero now reports the independently audited clean-support rerun:
+ConPath Brier `0.06749 +/- 0.00936` versus independent-decoder `0.09521 +/- 0.00703` over three
+seeds. The paired independent-minus-ConPath Brier delta is `+0.02772 +/- 0.00993`, and every
+per-seed scene-bootstrap interval is positive. This is still validation-only on the non-official
+provenance split; physical test labels remain unopened.
+
+The responsive page repeats the main comparison immediately below the hero as three text cards:
+29.1% lower event Brier, 20.0% lower high-confidence false-safe rate, and positive paired Brier
+intervals for 3/3 seeds. This keeps the result legible on narrow screens where the full 1800-pixel
+figure must be opened or zoomed. The cards inherit the same validation-only/non-official split caveat.
 
 ## Refresh the real-data page
 
@@ -30,35 +44,56 @@ and are never committed.
 The legacy synthetic P0 snapshot can still be regenerated for development with
 `scripts/build_demo_site.py --include-legacy`, but it is intentionally excluded from the public page.
 
-The page now includes two same-scene qualitative validation diagnostics generated with
-`scripts/render_flatlands_qualitative.py`. The renderer records the FlatLands provenance split,
-source, scene/query identity, footprint radius, and event probabilities in SVG/JSON. A positive case
-and an uncertainty/failure case are shown together; they are not final paper claims, and synthetic
-or temporary checkpoints must not be used. The current TUM video remains a geometry/BEV
-reproducibility pilot; a final ConPath video must show posterior updates and footprint reachability,
-not only a static BEV.
+The model comparison is generated with `scripts/render_flatlands_k128_advantage.py`. It records all
+six prediction hashes, both canonical checkpoint hashes, fixed visual sampling seeds, exact query
+keys, the support policy, and label-derived case-selection rules. One case recovers a real path; the
+other avoids an independent-decoder false-safe decision. Both show observed input, posterior mean,
+the first four deterministic sample worlds, and reference support. They explain the clean-support
+validation candidate and are not unbiased effect estimates or final paper claims.
 
-The hero video and qualitative panels are deliberately large. The page adds a four-step visual key
+The hero comparison and qualitative panels are deliberately large. The page adds a four-step visual key
 (`observe → imagine → account for size → decide`) and plain-language captions so a reader can map
 each color and panel to the planning event. The desk-surface pilot is explicitly marked as an
 appendix-style geometry demonstration; it must be replaced by a ground-robot/floor scene before a
 navigation claim is presented.
 
-The FlatLands section also links the completed three-seed independent-decoder causal control
-snapshot. It is explicitly event-only, validation-only, and test-locked; it is shown to document
-the benefit of spatial correlation rather than to imply a final leaderboard result.
+The FlatLands section retains the older three-seed independent-decoder causal-control snapshot for
+audit continuity, but its unmasked PathRelNet probabilities are superseded. The clean-support
+three-seed rerun and paired report are now the current validation evidence; the old post-hoc figure
+is retained under its original filename as an archive record.
 
-The page also links the deterministic posterior mean-map diagnostic, which records both event and
-hidden-map metrics. Its lower binary event Brier but worse map/calibration behavior is shown as a
-trade-off, not as a replacement for the stochastic posterior.
+The earlier K=128 snapshots remain archived as reproducibility records, but their unmasked neural
+event values are superseded by the support-boundary audit and must not be cited as current evidence.
+The post-hoc corrected independent-minus-correlated Brier delta is `+0.01886 +/- 0.00963` across
+three seeds, and each per-seed 2,000-resample paired interval is positive. The JSON hero metadata
+links back to the full ignored validation manifests and paired comparison. This remains a recovery
+effect-size check, not a significance, test, leaderboard, or clean-training claim.
 
-The FlatLands section now includes reliability and selective-risk curves generated by
-`scripts/evaluate_flatlands_calibration.py`. They aggregate the completed ConPath stochastic,
-independent-decoder, deterministic mean-map, and S4C-inspired coordinate-query controls over three
-seeds with equal-scene weighting. The curves are validation-only diagnostics: the test split is not
-opened, and the mean-map control is intentionally shown as a binary-risk trade-off. The
-coordinate-query row is a recent-method-inspired same-contract control, not a reproduction of the
-original S4C 3-D system.
+The page also archives the deterministic PathRelNet posterior mean-map diagnostic. Its event and
+map metrics predate the support clamp and are explicitly superseded; it is not current comparative
+evidence.
+
+The FlatLands reliability/selective-risk curves generated by
+`scripts/evaluate_flatlands_calibration.py` are now a mixed historical view: their stochastic and
+mean-map PathRelNet traces are superseded, while the direct S4C-inspired coordinate-query trace is
+unaffected. The fixed baseline table above them remains valid because its completion samplers only
+populate the released support-masked unknown region. No test split was opened.
+
+The page also includes an UnScenes3D ground-vehicle validation section. A 2026-09-03 audit found the
+same support-boundary class of error in the older map-derived paths: the complement of
+`target_valid` was not hard-blocked before posterior sampling. Six fresh F=16 runs now use the
+corrected support contract. The exact K=128 mean-map event Brier is `0.54704 +/- 0.00218` for
+correlated ConPath and `0.54740 +/- 0.00251` for the matched independent decoder (paired delta
+`+0.00036 +/- 0.00062`), so this second-domain adapter does not show a measurable correlation win
+on its two held-out validation scenes. It is a support-consistency/transfer diagnostic, not a final
+cross-domain result. The clean ground-robot panels are
+`assets/unscenes3d_clean_candidate_positive.png` and
+`assets/unscenes3d_clean_candidate_failure.png`, with provenance in
+`data/unscenes3d_clean_support_k128_candidate.json` and
+`data/unscenes3d_clean_candidate_qualitative.json`. The historical pre-correction controls and
+panels remain labelled superseded; direct coordinate-query and train-fitted radius-prior controls
+are unaffected. `location_6` and its test labels remain locked, and published JSON paths stay
+repository-relative.
 
 The official FlatLands implementation/weights audit is recorded in
 [`OFFICIAL_FLATLANDS_CHECK.md`](../OFFICIAL_FLATLANDS_CHECK.md). The public dataset and documentation

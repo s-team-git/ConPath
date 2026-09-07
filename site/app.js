@@ -115,7 +115,10 @@
     if (independentCard) independentCard.textContent = independent ? number(overall(independent).brier, 4) : "—";
     if (testCard) testCard.textContent = baselines.test_evaluated ? "EVALUATED" : "LOCKED";
     if (headlineCard) headlineCard.textContent = best ? number(overall(best).brier, 4) : "—";
-    if (claimCard) claimCard.textContent = baselines.claim_boundary || "Validation-only baseline diagnostics; no test result is published.";
+    if (claimCard) {
+      const archivedClaim = baselines.claim_boundary || "Validation-only baseline diagnostics; no test result is published.";
+      claimCard.textContent = `Support-bounded fixed baseline snapshot. ${archivedClaim}`;
+    }
 
     if (baselineRadiusBody) {
       const radii = Array.isArray(baselines.radii_cells) ? baselines.radii_cells : [0, 10, 20];

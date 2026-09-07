@@ -1,7 +1,7 @@
 # Recent-baseline bridge for ConPath
 
-Status: **protocol v1; first same-contract recent-method control evaluated (validation-only)**
-Frozen: 2026-09-01 (America/New_York)
+Status: **protocol v1; same-contract recent-method controls and clean support-boundary diagnostics evaluated (validation-only)**
+Frozen: 2026-09-04 (America/New_York)
 
 This file records how the FlatLands comparison will include strong methods from the last few
 years without mixing incompatible tasks. A number copied from another paper is **not** a FlatLands
@@ -29,7 +29,7 @@ our event Brier/NLL/ECE. We use the papers below in two explicit tiers:
 | [S4C, 3DV 2024](https://ahayler.github.io/publications/s4c/) | Self-supervised implicit semantic fields; arbitrary point queries and multi-view consistency | Implicit field rather than a dense voxel decoder; the project reports self-supervised training from video and pseudo-labels. | **Same-contract adapter evaluated:** an S4C-inspired coordinate-query event field with bilinear feature sampling and Fourier geometry encoding. This is explicitly not a reproduction of the original S4C 3-D system; report event calibration, not SSC mIoU. |
 | [SceneSense / frontier diffusion, 2024](https://arxiv.org/abs/2409.10681) | Diffusion occupancy completion and probabilistic map reconciliation for frontier navigation | The online variant reports 73% end-to-end runtime reduction and 28% fewer trainable parameters after removing conditioning; 3–5 predictions are merged per pose. | **Reference-only after contract audit:** official code is a 3-D point-cloud/voxel ROS system with robot-map inputs and FID/KID/exploration metrics, not the FlatLands 2-D event contract. No score is copied. |
 | [ORFD, ICRA 2022](https://arxiv.org/abs/2206.09907) | Ground-vehicle off-road freespace semantics with RGB/LiDAR | 12,198 synchronized pairs from 30 sequences; three image-plane labels (`traversable`, `non-traversable`, `unreachable`) and an approximately 7:1:2 train/val/test pair split. | **Candidate second domain; semantics audit complete, no local run:** the official loader exposes per-frame camera intrinsics and sensor products but no documented ego-pose/world-map stream; a new metric-BEV adapter and sequence-held-out split are required. No ORFD score is copied. See [`ORFD_COMPATIBILITY_CHECK.md`](ORFD_COMPATIBILITY_CHECK.md). |
-| [UnScenes3D, Scientific Data 2025](https://github.com/ruiqi-song/UnScenes3D) | Ground-vehicle 3-D occupancy, road elevation, and local-map reconstruction | Approximately 23,549 frames with camera/LiDAR/IMU/RTK, vehicle motion, occupancy/elevation labels, and local dense maps; official mini release exposes scene/split metadata. | **Priority second-domain candidate; raw pose smoke acquired, no score:** occupancy and world-frame fields match the needed adapter in principle; label/map archives, coordinate bounds, license terms, and held-out split remain to be audited. See [`UNSCENES3D_COMPATIBILITY_CHECK.md`](UNSCENES3D_COMPATIBILITY_CHECK.md). |
+| [UnScenes3D, Scientific Data 2025](https://github.com/ruiqi-song/UnScenes3D) | Ground-vehicle 3-D occupancy, road elevation, and local-map reconstruction | Approximately 23,549 frames with camera/LiDAR/IMU/RTK, vehicle motion, occupancy/elevation labels, and local dense maps; official mini release exposes scene/split metadata. | **Clean target-valid-support diagnostic complete:** the site-held-out 15,567/1,529-query contract passes, six fresh F=16 adapters pass strict audits, and exact K=128 mean-map Brier is 0.54704 (correlated) vs 0.54740 (independent) on two validation scenes. This is not a cross-domain method claim; `location_6` is locked. See [`UNSCENES3D_COMPATIBILITY_CHECK.md`](UNSCENES3D_COMPATIBILITY_CHECK.md). |
 | [ReliOcc, 2024](https://arxiv.org/abs/2409.18026) | Reliability-focused uncertainty learning and calibration for semantic occupancy | Plug-in uncertainty and calibration strategies are evaluated under sensor failures and out-of-domain noise. | **Metric/control reference:** use its reliability perspective to motivate coverage and false-safe curves; do not claim a direct architecture reproduction until its input contract is aligned. |
 | [COTR, CVPR 2024](https://openaccess.thecvf.com/content/CVPR2024/html/Ma_COTR_Compact_Occupancy_TRansformer_for_Vision-based_3D_Occupancy_Prediction_CVPR_2024_paper.html) | Compact transformer for vision-based 3-D occupancy | Public code/paper provide a compact-vs-backbone comparison on Occ3D; the task remains camera/3-D voxel occupancy. | **Reference-only:** use as a recent compact-architecture citation; no cross-task score transfer. |
 | [FlatLands, 2026](https://arxiv.org/abs/2603.16016) | The closest task: partial-view BEV completion with multiple valid layouts and stochastic/flow completion | Dataset-native stochastic completion benchmark and official provenance must be checked before importing weights. | **Official check completed:** dataset and documentation are public, but the official repository currently says model weights/construction code/tooling are planned for release. No importable checkpoint is available; reference-only pending a future artifact audit. |
@@ -92,7 +92,8 @@ and start/goal features are sampled bilinearly from the raster feature field. Ac
 | S4C-inspired coordinate query (F=16) | 0.09204 ± 0.00582 | 0.33411 ± 0.01859 | 0.04302 ± 0.00803 | 0.09555 ± 0.00357 | 0.39193 ± 0.03865 |
 
 The Brier/NLL/ECE values are competitive with the ConPath validation control, but the selective
-false-safe rate is higher (`0.09555` versus `0.06004` for ConPath). This result supports keeping
+false-safe rate is higher (`0.09555` versus `0.04552` for the clean-support K=128 ConPath candidate,
+with respective coverage `0.39193` and `0.33644`; this is not an equal-coverage comparison). This result supports keeping
 the coordinate-query adapter in the comparison matrix; it does not establish a paper-level claim,
 SOTA status, or faithful S4C reproduction. Per-seed checkpoints, label-free predictions, exact
 reports, and the four-method calibration snapshot are retained under the ignored results tree.
@@ -127,6 +128,20 @@ our required sequence/site-held-out gate.
 We therefore record ORFD as a candidate secondary-domain semantics audit, not a same-contract
 result; no download, training, test access, or published ORFD number has been performed. The full
 checklist and required adapter gates are in [`ORFD_COMPATIBILITY_CHECK.md`](ORFD_COMPATIBILITY_CHECK.md).
+
+## UnScenes3D second-domain status
+
+The 2026-09-02 package freezes a coordinate-audited, ground-valid adapter on
+`location_1/2/3` train and `location_4_5` validation (478/62 frames; 15,567/1,529 queries), with
+`location_6` unopened. The direct LiDAR/local-map overlap audit and manifest replay passed. The
+historical three-seed validation controls and the 1800×1280 ground-robot panels are published in
+the local site data. The former 599-check audit remains a structural/replay record, but a later
+support audit found that its map-derived forwards did not clamp `~target_valid`; those model,
+mean-map, and qualitative values are superseded. The trainer/evaluator/renderer now apply the hard
+support mask. Six clean target-valid-support adapters and an exact K=128 paired replay now pass
+strict audits; event Brier is `0.54704` (correlated) versus `0.54740` (independent) on the two
+held-out validation scenes, so no measurable correlation advantage is claimed. The direct
+coordinate-query control is unaffected, and `location_6` remains locked.
 
 ## Reproducibility rule
 

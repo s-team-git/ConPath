@@ -1,0 +1,349 @@
+{
+  "schema_version": 1,
+  "kind": "flatlands_correlated_k128_validation_snapshot",
+  "validation_only": true,
+  "paper_result": false,
+  "test_evaluated": false,
+  "posthoc_checkpoint_evaluation": false,
+  "retraining_required": false,
+  "decoder_variant": "correlated",
+  "protocol": {
+    "name": "P1_BASELINE_PROTOCOL.md v1 + ConPath valid-support v2",
+    "split": "FlatLands provenance.original_split",
+    "official_archive_split_used": false,
+    "radii_cells": [
+      0,
+      10,
+      20
+    ],
+    "train_samples": 8,
+    "validation_samples": 128,
+    "validation_sample_chunk": 8,
+    "selection_query_limit": 8,
+    "primary_weighting": "equal scene, then equal event within scene",
+    "exact_forward": "NumPy disk-clearance + batched Kruskal merge-tree",
+    "support_policy": "FlatLands epistemic_mask complement is deterministically blocked before posterior sampling",
+    "bootstrap_samples": 2000,
+    "test_lock": "No test labels read; physical test remains locked"
+  },
+  "benchmark": {
+    "train_scenes": 160,
+    "validation_scenes": 160,
+    "report_scene_count": 142,
+    "prediction_rows_per_seed": 4224,
+    "endpoint_groups_per_seed": 1408,
+    "selection_sha256": "4e7ae4c992cf943ab81618e3826c4748fcaaa97c3c4d7cb187518ee3fe6a9409",
+    "queries_sha256": "33e7f8a0343269b0dde47b428b3be622c80effdb0f80ae34b352ca282018d60d",
+    "archive_bytes": 2054773316
+  },
+  "seeds": [
+    {
+      "seed": 20260831,
+      "best_epoch": 19,
+      "epochs_completed": 27,
+      "selection_brier": 0.056313128025325065,
+      "brier": 0.059479796640678484,
+      "nll": 0.3039193041613506,
+      "ece": 0.04942857493605275,
+      "false_safe_rate@0.8": 0.03720468250778245,
+      "coverage@0.8": 0.3410483602592136,
+      "prediction_rows": 4224,
+      "prediction_sha256": "50c94f29c7461988ff4467cfca9d9ae5e604e4543ad60604d82337d6dc378a0d",
+      "report_scene_count": 142,
+      "replay_matches": true,
+      "radius_monotonicity_failures": 0,
+      "checkpoint": {
+        "best_epoch": 19,
+        "best_score": 0.056313128025325065,
+        "epoch": 19,
+        "finite_tensors": true,
+        "parameter_count": 120108,
+        "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260831_conpath/best.pt",
+        "sha256": "f7b42163fb2fd6127a19e2a967f44181814a263c699020a7a59f895d913b797c",
+        "strict_restore": true
+      }
+    },
+    {
+      "seed": 20260901,
+      "best_epoch": 16,
+      "epochs_completed": 24,
+      "selection_brier": 0.05648154443698927,
+      "brier": 0.06521658182607205,
+      "nll": 0.2709072468281362,
+      "ece": 0.06237502403236683,
+      "false_safe_rate@0.8": 0.037343835896232434,
+      "coverage@0.8": 0.3299489773051344,
+      "prediction_rows": 4224,
+      "prediction_sha256": "a0e20ff31c14b5b7ee34a3ba3b186e9feca4633b0a9195753c970f0e109d33bb",
+      "report_scene_count": 142,
+      "replay_matches": true,
+      "radius_monotonicity_failures": 0,
+      "checkpoint": {
+        "best_epoch": 16,
+        "best_score": 0.05648154443698927,
+        "epoch": 16,
+        "finite_tensors": true,
+        "parameter_count": 120108,
+        "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260901_conpath/best.pt",
+        "sha256": "9a39816f303fadc1ab28a60ac6e8cdc80c92a4953d0e309919da7ebd2ee90dbf",
+        "strict_restore": true
+      }
+    },
+    {
+      "seed": 20260902,
+      "best_epoch": 8,
+      "epochs_completed": 16,
+      "selection_brier": 0.05933949099649703,
+      "brier": 0.0777842925106404,
+      "nll": 0.29078037095176756,
+      "ece": 0.059650413934631004,
+      "false_safe_rate@0.8": 0.062026065131708594,
+      "coverage@0.8": 0.3383316295375337,
+      "prediction_rows": 4224,
+      "prediction_sha256": "812b11067c844793b15e25f77e29ca4339026f96f3b5a37d619b26360e5106c3",
+      "report_scene_count": 142,
+      "replay_matches": true,
+      "radius_monotonicity_failures": 0,
+      "checkpoint": {
+        "best_epoch": 8,
+        "best_score": 0.05933949099649703,
+        "epoch": 8,
+        "finite_tensors": true,
+        "parameter_count": 120108,
+        "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260902_conpath/best.pt",
+        "sha256": "d1b5b9a1a85e36a68dce0fd929938522ad5944f8088d096a85ef7b12045f3322",
+        "strict_restore": true
+      }
+    }
+  ],
+  "aggregate_scene_weighted": {
+    "brier": {
+      "mean": 0.06749355699246365,
+      "sample_sd": 0.00936227024789587,
+      "available_seed_count": 3,
+      "total_seed_count": 3
+    },
+    "nll": {
+      "mean": 0.2885356406470848,
+      "sample_sd": 0.016620111099160235,
+      "available_seed_count": 3,
+      "total_seed_count": 3
+    },
+    "ece": {
+      "mean": 0.057151337634350194,
+      "sample_sd": 0.0068254430491237585,
+      "available_seed_count": 3,
+      "total_seed_count": 3
+    },
+    "false_safe_rate@0.8": {
+      "mean": 0.045524861178574495,
+      "sample_sd": 0.014290631191223698,
+      "available_seed_count": 3,
+      "total_seed_count": 3
+    },
+    "high_confidence_safe_coverage@0.8": {
+      "mean": 0.3364429890339606,
+      "sample_sd": 0.0057856976851654385,
+      "available_seed_count": 3,
+      "total_seed_count": 3
+    }
+  },
+  "per_radius_scene_weighted": {
+    "0": {
+      "brier": {
+        "mean": 0.07618553705169785,
+        "sample_sd": 0.004053305787738047,
+        "available_seed_count": 3,
+        "total_seed_count": 3
+      },
+      "nll": {
+        "mean": 0.43702349830036274,
+        "sample_sd": 0.095837014328372,
+        "available_seed_count": 3,
+        "total_seed_count": 3
+      },
+      "ece": {
+        "mean": 0.07045539437252911,
+        "sample_sd": 0.013198822936837055,
+        "available_seed_count": 3,
+        "total_seed_count": 3
+      },
+      "false_safe_rate@0.8": {
+        "mean": 0.030040095970565076,
+        "sample_sd": 0.01405975406639967,
+        "available_seed_count": 3,
+        "total_seed_count": 3
+      },
+      "high_confidence_safe_coverage@0.8": {
+        "mean": 0.789098031928778,
+        "sample_sd": 0.033994766219693516,
+        "available_seed_count": 3,
+        "total_seed_count": 3
+      }
+    },
+    "10": {
+      "brier": {
+        "mean": 0.07153968048089353,
+        "sample_sd": 0.01152119415044799,
+        "available_seed_count": 3,
+        "total_seed_count": 3
+      },
+      "nll": {
+        "mean": 0.24455407245262614,
+        "sample_sd": 0.03874966254501433,
+        "available_seed_count": 3,
+        "total_seed_count": 3
+      },
+      "ece": {
+        "mean": 0.047749872673286606,
+        "sample_sd": 0.011627421003680253,
+        "available_seed_count": 3,
+        "total_seed_count": 3
+      },
+      "false_safe_rate@0.8": {
+        "mean": 0.1008506998323137,
+        "sample_sd": 0.028749658867507088,
+        "available_seed_count": 3,
+        "total_seed_count": 3
+      },
+      "high_confidence_safe_coverage@0.8": {
+        "mean": 0.18684483710755892,
+        "sample_sd": 0.00612823014380058,
+        "available_seed_count": 3,
+        "total_seed_count": 3
+      }
+    },
+    "20": {
+      "brier": {
+        "mean": 0.05475545344479957,
+        "sample_sd": 0.012949999946528873,
+        "available_seed_count": 3,
+        "total_seed_count": 3
+      },
+      "nll": {
+        "mean": 0.18402935118826552,
+        "sample_sd": 0.037458321932900496,
+        "available_seed_count": 3,
+        "total_seed_count": 3
+      },
+      "ece": {
+        "mean": 0.06374992238782912,
+        "sample_sd": 0.01165077854851671,
+        "available_seed_count": 3,
+        "total_seed_count": 3
+      },
+      "false_safe_rate@0.8": {
+        "mean": 0.08996952210340904,
+        "sample_sd": 0.02608253769549056,
+        "available_seed_count": 3,
+        "total_seed_count": 3
+      },
+      "high_confidence_safe_coverage@0.8": {
+        "mean": 0.03338609806554471,
+        "sample_sd": 0.022575290853334068,
+        "available_seed_count": 3,
+        "total_seed_count": 3
+      }
+    }
+  },
+  "artifacts": [
+    {
+      "seed": 20260831,
+      "role": "canonical best checkpoint",
+      "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260831_conpath/best.pt",
+      "bytes": 1503621,
+      "sha256": "f7b42163fb2fd6127a19e2a967f44181814a263c699020a7a59f895d913b797c"
+    },
+    {
+      "seed": 20260831,
+      "role": "run metadata",
+      "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260831_conpath/run.json",
+      "bytes": 190686,
+      "sha256": "3395c4e85bd8fffc11cba0418af61bf898f6ac662eecbe06cd1f0ba31d78fdd3"
+    },
+    {
+      "seed": 20260831,
+      "role": "label-free validation predictions",
+      "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260831_conpath/predictions_validation.csv",
+      "bytes": 93594,
+      "sha256": "50c94f29c7461988ff4467cfca9d9ae5e604e4543ad60604d82337d6dc378a0d"
+    },
+    {
+      "seed": 20260831,
+      "role": "exact validation report",
+      "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260831_conpath/evaluation_validation/report.json",
+      "bytes": 160705,
+      "sha256": "51bf5d8fa284caf051687c0a0ece970cb415f75a037bcbc5236c98c015564abd"
+    },
+    {
+      "seed": 20260901,
+      "role": "canonical best checkpoint",
+      "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260901_conpath/best.pt",
+      "bytes": 1503173,
+      "sha256": "9a39816f303fadc1ab28a60ac6e8cdc80c92a4953d0e309919da7ebd2ee90dbf"
+    },
+    {
+      "seed": 20260901,
+      "role": "run metadata",
+      "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260901_conpath/run.json",
+      "bytes": 189887,
+      "sha256": "056e99bc40fc24a554acb93d2451e63392b896a891bc5d882934f0bde435d866"
+    },
+    {
+      "seed": 20260901,
+      "role": "label-free validation predictions",
+      "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260901_conpath/predictions_validation.csv",
+      "bytes": 93734,
+      "sha256": "a0e20ff31c14b5b7ee34a3ba3b186e9feca4633b0a9195753c970f0e109d33bb"
+    },
+    {
+      "seed": 20260901,
+      "role": "exact validation report",
+      "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260901_conpath/evaluation_validation/report.json",
+      "bytes": 161180,
+      "sha256": "4143ceb936c47513458b784514d729cbd3ab0b884358df18ac5233af78440659"
+    },
+    {
+      "seed": 20260902,
+      "role": "canonical best checkpoint",
+      "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260902_conpath/best.pt",
+      "bytes": 1502021,
+      "sha256": "d1b5b9a1a85e36a68dce0fd929938522ad5944f8088d096a85ef7b12045f3322"
+    },
+    {
+      "seed": 20260902,
+      "role": "run metadata",
+      "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260902_conpath/run.json",
+      "bytes": 186067,
+      "sha256": "926f809a46f911a5f557b88186fb431c7f401a567a55bcb1f3a940aaebaa9b7c"
+    },
+    {
+      "seed": 20260902,
+      "role": "label-free validation predictions",
+      "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260902_conpath/predictions_validation.csv",
+      "bytes": 92340,
+      "sha256": "812b11067c844793b15e25f77e29ca4339026f96f3b5a37d619b26360e5106c3"
+    },
+    {
+      "seed": 20260902,
+      "role": "exact validation report",
+      "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260902_conpath/evaluation_validation/report.json",
+      "bytes": 160738,
+      "sha256": "4bcb581e39cf7b442c2010a3ee217b2be627a8eca5ddfcfa75beba026b6005b9"
+    }
+  ],
+  "audit": {
+    "audit_report": "results/p1_flatlands_conpath_k128_support_clamped_v1/audit.json",
+    "passed": true,
+    "all_processes_exit_code_0": true,
+    "flags_and_config_match": true,
+    "prediction_hashes_match": true,
+    "rows_finite_and_in_range": true,
+    "radius_monotonicity_violations": 0,
+    "independent_report_replay_matches": true,
+    "all_invalid_support_clamped": true,
+    "all_checkpoints_restore_strictly": true,
+    "all_checkpoint_tensors_finite": true,
+    "label_scope": "validation only"
+  }
+}

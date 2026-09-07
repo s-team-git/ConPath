@@ -1,0 +1,498 @@
+{
+  "aggregate": {
+    "correlated": {
+      "false_safe_rate@0.8": {
+        "mean": 0.277713151681364,
+        "sample_sd": 0.003973882775198882,
+        "seed_values": [
+          0.2803234501347709,
+          0.2731397459165154,
+          0.27967625899280574
+        ]
+      },
+      "high_confidence_coverage@0.8": {
+        "mean": 0.24177022018748637,
+        "sample_sd": 0.0013260873185738382,
+        "seed_values": [
+          0.24264224983649443,
+          0.24024416830172227,
+          0.24242424242424243
+        ]
+      },
+      "query_weighted_ece": {
+        "mean": 0.6725528667974712,
+        "sample_sd": 0.0013260873185738451,
+        "seed_values": [
+          0.6734248964464792,
+          0.671026814911707,
+          0.6732068890342272
+        ]
+      },
+      "query_weighted_nll": {
+        "mean": 9.291661559474969,
+        "sample_sd": 0.01832057202441363,
+        "seed_values": [
+          9.303709093425642,
+          9.27057837506129,
+          9.300697209937974
+        ]
+      },
+      "scene_weighted_brier": {
+        "mean": 0.5470417813393772,
+        "sample_sd": 0.0021849003341588595,
+        "seed_values": [
+          0.5484785629485727,
+          0.5445274135232853,
+          0.5481193675462738
+        ]
+      }
+    },
+    "delta_independent_minus_correlated": {
+      "false_safe_rate@0.8": {
+        "mean": 0.0006460302609930061,
+        "sample_sd": 0.0011189572352668688,
+        "seed_values": [
+          0.0,
+          0.0,
+          0.0019380907829790184
+        ]
+      },
+      "high_confidence_coverage@0.8": {
+        "mean": 0.00021800741225201184,
+        "sample_sd": 0.0003775999144470983,
+        "seed_values": [
+          0.0,
+          0.0,
+          0.0006540222367560355
+        ]
+      },
+      "query_weighted_ece": {
+        "mean": 0.00021800741225201184,
+        "sample_sd": 0.0003775999144470983,
+        "seed_values": [
+          0.0,
+          0.0,
+          0.0006540222367560355
+        ]
+      },
+      "query_weighted_nll": {
+        "mean": 0.00301188348766838,
+        "sample_sd": 0.005216735227119384,
+        "seed_values": [
+          0.0,
+          0.0,
+          0.00903565046300514
+        ]
+      },
+      "scene_weighted_brier": {
+        "mean": 0.0003591954022988582,
+        "sample_sd": 0.0006221446866267651,
+        "seed_values": [
+          0.0,
+          0.0,
+          0.0010775862068965747
+        ]
+      }
+    },
+    "independent": {
+      "false_safe_rate@0.8": {
+        "mean": 0.27835918194235704,
+        "sample_sd": 0.004566014650839655,
+        "seed_values": [
+          0.2803234501347709,
+          0.2731397459165154,
+          0.28161434977578476
+        ]
+      },
+      "high_confidence_coverage@0.8": {
+        "mean": 0.2419882275997384,
+        "sample_sd": 0.0015260518857641073,
+        "seed_values": [
+          0.24264224983649443,
+          0.24024416830172227,
+          0.24307826466099847
+        ]
+      },
+      "query_weighted_ece": {
+        "mean": 0.6727708742097231,
+        "sample_sd": 0.0015260518857641173,
+        "seed_values": [
+          0.6734248964464792,
+          0.671026814911707,
+          0.6738609112709832
+        ]
+      },
+      "query_weighted_nll": {
+        "mean": 9.294673442962637,
+        "sample_sd": 0.02108318441367921,
+        "seed_values": [
+          9.303709093425642,
+          9.27057837506129,
+          9.30973286040098
+        ]
+      },
+      "scene_weighted_brier": {
+        "mean": 0.5474009767416761,
+        "sample_sd": 0.002514367816091973,
+        "seed_values": [
+          0.5484785629485727,
+          0.5445274135232853,
+          0.5491969537531703
+        ]
+      }
+    }
+  },
+  "claim_boundary": "Clean-support validation-only deterministic mean-map diagnostic. Only two validation scenes are available, so scene-bootstrap intervals are descriptive; location_6 remains locked and this report is not a final paper result.",
+  "kind": "unscenes3d_clean_support_k128_paired_mean_map_comparison",
+  "manifest": {
+    "event_rows": 4587,
+    "path": "results/unscenes3d_contract_manifest_ground_valid/manifest.json",
+    "sha256": "d866be0b25ba6635d5ad934bac9c822c55be8034fabd8f4627803bb9efa972d5",
+    "test_locked_sites": [
+      "location_6"
+    ],
+    "validation_queries": 1529,
+    "validation_scenes": [
+      "scene_00401",
+      "scene_00427"
+    ]
+  },
+  "paper_result": false,
+  "posthoc_checkpoint_evaluation": false,
+  "protocol_version": "UNSCENES3D_PROTOCOL.md v0.2",
+  "retraining_required": false,
+  "schema_version": 1,
+  "seeds": [
+    {
+      "bootstrap_samples": 2000,
+      "bootstrap_seed": 20260903,
+      "correlated": {
+        "false_safe_rate@0.8": 0.2803234501347709,
+        "high_confidence_coverage@0.8": 0.24264224983649443,
+        "query_weighted_ece": 0.6734248964464792,
+        "query_weighted_nll": 9.303709093425642,
+        "scene_weighted_brier": 0.5484785629485727
+      },
+      "delta_independent_minus_correlated": {
+        "false_safe_rate@0.8": {
+          "point": 0.0,
+          "scene_bootstrap_95": [
+            0.0,
+            0.0
+          ]
+        },
+        "high_confidence_coverage@0.8": {
+          "point": 0.0,
+          "scene_bootstrap_95": [
+            0.0,
+            0.0
+          ]
+        },
+        "query_weighted_ece": {
+          "point": 0.0,
+          "scene_bootstrap_95": [
+            0.0,
+            0.0
+          ]
+        },
+        "query_weighted_nll": {
+          "point": 0.0,
+          "scene_bootstrap_95": [
+            0.0,
+            0.0
+          ]
+        },
+        "scene_weighted_brier": {
+          "point": 0.0,
+          "scene_bootstrap_95": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "event_row_count": 4587,
+      "independent": {
+        "false_safe_rate@0.8": 0.2803234501347709,
+        "high_confidence_coverage@0.8": 0.24264224983649443,
+        "query_weighted_ece": 0.6734248964464792,
+        "query_weighted_nll": 9.303709093425642,
+        "scene_weighted_brier": 0.5484785629485727
+      },
+      "inputs": {
+        "correlated": {
+          "checkpoint": {
+            "path": "results/unscenes3d_ground_valid_support_clamped_f16_v1/seed20260831/best.pt",
+            "sha256": "5091cbd47ef0da4090175e5c5a6624c5cbe884287f953a2983f4e31717679b08"
+          },
+          "mean_map_metrics": {
+            "cell_count": 209074,
+            "frame_count": 62,
+            "scene_count": 2,
+            "scene_weighted_brier": 0.1937544062342738,
+            "scene_weighted_mean_probability": 0.4408779648474268,
+            "scene_weighted_nll": 0.6201690529921691,
+            "scene_weighted_positive_rate": 0.603847281001545
+          },
+          "prediction": {
+            "path": "results/unscenes3d_ground_valid_support_clamped_mean_map_k128_v1/seed20260831/predictions_validation.csv",
+            "sha256": "3cc25c4a444c04d63766df0b6a7db0504861686cdf54999c87447edb0a960692"
+          },
+          "report": {
+            "path": "results/unscenes3d_ground_valid_support_clamped_mean_map_k128_v1/seed20260831/run.json",
+            "sha256": "1f7d1f3b9c2fa31517c2130b42ab3ceb046585d6a4f0277afda215fbf813f66c"
+          }
+        },
+        "independent": {
+          "checkpoint": {
+            "path": "results/unscenes3d_ground_valid_independent_support_clamped_f16_v1/seed20260831/best.pt",
+            "sha256": "5f964d05854c1f0631dfc528ec351e5ae97b9f49050adfc801170df75a9b3637"
+          },
+          "mean_map_metrics": {
+            "cell_count": 209074,
+            "frame_count": 62,
+            "scene_count": 2,
+            "scene_weighted_brier": 0.19375153598963926,
+            "scene_weighted_mean_probability": 0.44226061376267456,
+            "scene_weighted_nll": 0.6202232945614439,
+            "scene_weighted_positive_rate": 0.603847281001545
+          },
+          "prediction": {
+            "path": "results/unscenes3d_ground_valid_independent_support_clamped_mean_map_k128_v1/seed20260831/predictions_validation.csv",
+            "sha256": "3cc25c4a444c04d63766df0b6a7db0504861686cdf54999c87447edb0a960692"
+          },
+          "report": {
+            "path": "results/unscenes3d_ground_valid_independent_support_clamped_mean_map_k128_v1/seed20260831/run.json",
+            "sha256": "6bba7ab4a25f42a17f37c3c014ea75addbf947e38de2214695b84f17d5319206"
+          }
+        }
+      },
+      "scene_count": 2,
+      "seed": 20260831
+    },
+    {
+      "bootstrap_samples": 2000,
+      "bootstrap_seed": 20261004,
+      "correlated": {
+        "false_safe_rate@0.8": 0.2731397459165154,
+        "high_confidence_coverage@0.8": 0.24024416830172227,
+        "query_weighted_ece": 0.671026814911707,
+        "query_weighted_nll": 9.27057837506129,
+        "scene_weighted_brier": 0.5445274135232853
+      },
+      "delta_independent_minus_correlated": {
+        "false_safe_rate@0.8": {
+          "point": 0.0,
+          "scene_bootstrap_95": [
+            0.0,
+            0.0
+          ]
+        },
+        "high_confidence_coverage@0.8": {
+          "point": 0.0,
+          "scene_bootstrap_95": [
+            0.0,
+            0.0
+          ]
+        },
+        "query_weighted_ece": {
+          "point": 0.0,
+          "scene_bootstrap_95": [
+            0.0,
+            0.0
+          ]
+        },
+        "query_weighted_nll": {
+          "point": 0.0,
+          "scene_bootstrap_95": [
+            0.0,
+            0.0
+          ]
+        },
+        "scene_weighted_brier": {
+          "point": 0.0,
+          "scene_bootstrap_95": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "event_row_count": 4587,
+      "independent": {
+        "false_safe_rate@0.8": 0.2731397459165154,
+        "high_confidence_coverage@0.8": 0.24024416830172227,
+        "query_weighted_ece": 0.671026814911707,
+        "query_weighted_nll": 9.27057837506129,
+        "scene_weighted_brier": 0.5445274135232853
+      },
+      "inputs": {
+        "correlated": {
+          "checkpoint": {
+            "path": "results/unscenes3d_ground_valid_support_clamped_f16_v1/seed20260901/best.pt",
+            "sha256": "f7993532e70447c6b56e6f403fb2ec9573e96c0de488c1623657faecc5d27638"
+          },
+          "mean_map_metrics": {
+            "cell_count": 209074,
+            "frame_count": 62,
+            "scene_count": 2,
+            "scene_weighted_brier": 0.13599359756982576,
+            "scene_weighted_mean_probability": 0.49146605017111056,
+            "scene_weighted_nll": 0.4425170335924385,
+            "scene_weighted_positive_rate": 0.603847281001545
+          },
+          "prediction": {
+            "path": "results/unscenes3d_ground_valid_support_clamped_mean_map_k128_v1/seed20260901/predictions_validation.csv",
+            "sha256": "bb1bebe7b52f2607df350cb41f39927ab7e583567a33c20f36091fa4c88070e7"
+          },
+          "report": {
+            "path": "results/unscenes3d_ground_valid_support_clamped_mean_map_k128_v1/seed20260901/run.json",
+            "sha256": "f7fb1176b64d50a567fafefeb2e810968d57062895dc40dc4e73f49f52462ffd"
+          }
+        },
+        "independent": {
+          "checkpoint": {
+            "path": "results/unscenes3d_ground_valid_independent_support_clamped_f16_v1/seed20260901/best.pt",
+            "sha256": "e3e9aa464ca79154e872ba87b5c57b6c0c35fabcbee35a1c8da04bdde695add7"
+          },
+          "mean_map_metrics": {
+            "cell_count": 209074,
+            "frame_count": 62,
+            "scene_count": 2,
+            "scene_weighted_brier": 0.13107919813909738,
+            "scene_weighted_mean_probability": 0.49245422396900057,
+            "scene_weighted_nll": 0.42620615110482307,
+            "scene_weighted_positive_rate": 0.603847281001545
+          },
+          "prediction": {
+            "path": "results/unscenes3d_ground_valid_independent_support_clamped_mean_map_k128_v1/seed20260901/predictions_validation.csv",
+            "sha256": "bb1bebe7b52f2607df350cb41f39927ab7e583567a33c20f36091fa4c88070e7"
+          },
+          "report": {
+            "path": "results/unscenes3d_ground_valid_independent_support_clamped_mean_map_k128_v1/seed20260901/run.json",
+            "sha256": "68fd410ed612ba8d9319017b3755c18d438d3a693ee70b7442eeb4923d3f90dd"
+          }
+        }
+      },
+      "scene_count": 2,
+      "seed": 20260901
+    },
+    {
+      "bootstrap_samples": 2000,
+      "bootstrap_seed": 20261105,
+      "correlated": {
+        "false_safe_rate@0.8": 0.27967625899280574,
+        "high_confidence_coverage@0.8": 0.24242424242424243,
+        "query_weighted_ece": 0.6732068890342272,
+        "query_weighted_nll": 9.300697209937974,
+        "scene_weighted_brier": 0.5481193675462738
+      },
+      "delta_independent_minus_correlated": {
+        "false_safe_rate@0.8": {
+          "point": 0.0019380907829790184,
+          "scene_bootstrap_95": [
+            0.0,
+            0.002205283030366101
+          ]
+        },
+        "high_confidence_coverage@0.8": {
+          "point": 0.0006540222367560355,
+          "scene_bootstrap_95": [
+            0.0,
+            0.0021551724137931494
+          ]
+        },
+        "query_weighted_ece": {
+          "point": 0.0006540222367560355,
+          "scene_bootstrap_95": [
+            0.0,
+            0.0021551724137931216
+          ]
+        },
+        "query_weighted_nll": {
+          "point": 0.00903565046300514,
+          "scene_bootstrap_95": [
+            0.0,
+            0.02977480508175656
+          ]
+        },
+        "scene_weighted_brier": {
+          "point": 0.0010775862068965747,
+          "scene_bootstrap_95": [
+            0.0,
+            0.002155172413793094
+          ]
+        }
+      },
+      "event_row_count": 4587,
+      "independent": {
+        "false_safe_rate@0.8": 0.28161434977578476,
+        "high_confidence_coverage@0.8": 0.24307826466099847,
+        "query_weighted_ece": 0.6738609112709832,
+        "query_weighted_nll": 9.30973286040098,
+        "scene_weighted_brier": 0.5491969537531703
+      },
+      "inputs": {
+        "correlated": {
+          "checkpoint": {
+            "path": "results/unscenes3d_ground_valid_support_clamped_f16_v1/seed20260902/best.pt",
+            "sha256": "3a8d083c0b1917da4beaad8e293eecbef08cd9c6cd5c60f5f8d5830e8333ac4d"
+          },
+          "mean_map_metrics": {
+            "cell_count": 209074,
+            "frame_count": 62,
+            "scene_count": 2,
+            "scene_weighted_brier": 0.12072757686894967,
+            "scene_weighted_mean_probability": 0.5753748457344371,
+            "scene_weighted_nll": 0.39851556558051604,
+            "scene_weighted_positive_rate": 0.603847281001545
+          },
+          "prediction": {
+            "path": "results/unscenes3d_ground_valid_support_clamped_mean_map_k128_v1/seed20260902/predictions_validation.csv",
+            "sha256": "5c9100da735428e8365ec674b5c81425813712ba2d482f9baac97807ee4eb52a"
+          },
+          "report": {
+            "path": "results/unscenes3d_ground_valid_support_clamped_mean_map_k128_v1/seed20260902/run.json",
+            "sha256": "6fb99672dfd2404a33d86f10e931764bb0151d78e5caf705db2699ba4b66a08c"
+          }
+        },
+        "independent": {
+          "checkpoint": {
+            "path": "results/unscenes3d_ground_valid_independent_support_clamped_f16_v1/seed20260902/best.pt",
+            "sha256": "f8aa8df214f7d4f57b1a2217df97335d7da22008eadb9751e791ab70823a9d64"
+          },
+          "mean_map_metrics": {
+            "cell_count": 209074,
+            "frame_count": 62,
+            "scene_count": 2,
+            "scene_weighted_brier": 0.12065356557169292,
+            "scene_weighted_mean_probability": 0.5758837510515274,
+            "scene_weighted_nll": 0.3979683320206235,
+            "scene_weighted_positive_rate": 0.603847281001545
+          },
+          "prediction": {
+            "path": "results/unscenes3d_ground_valid_independent_support_clamped_mean_map_k128_v1/seed20260902/predictions_validation.csv",
+            "sha256": "9de874bb37825c5a58fc3b9f996d7163d92b824bc7ebe0593d57c55740972406"
+          },
+          "report": {
+            "path": "results/unscenes3d_ground_valid_independent_support_clamped_mean_map_k128_v1/seed20260902/run.json",
+            "sha256": "2f2354f98ca16d4da91415b6c984b147cd401333609ea21173e5788b83213cc7"
+          }
+        }
+      },
+      "scene_count": 2,
+      "seed": 20260902
+    }
+  ],
+  "support_policy": "UnScenes3D target_valid complement is deterministically blocked before posterior sampling",
+  "test_evaluated": false,
+  "training_audits": {
+    "correlated": {
+      "path": "results/unscenes3d_ground_valid_support_clamped_f16_v1/audit.json",
+      "sha256": "277c0baf810e4d5ba67fa6331da6e5517c64e4e306da9d7bb97d1f26dde86810"
+    },
+    "independent": {
+      "path": "results/unscenes3d_ground_valid_independent_support_clamped_f16_v1/audit.json",
+      "sha256": "c154fc423314004c8b7585a2a694af0b5b3ad39936be5daade3d5427e6871b85"
+    }
+  },
+  "validation_only": true
+}

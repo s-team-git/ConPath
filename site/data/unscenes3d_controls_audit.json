@@ -1,0 +1,4919 @@
+{
+  "checks": [
+    {
+      "detail": "results/unscenes3d_contract_manifest_ground_valid/manifest.json",
+      "name": "canonical manifest exists",
+      "passed": true
+    },
+    {
+      "detail": "site/data/unscenes3d_controls_validation.json",
+      "name": "compact snapshot exists",
+      "passed": true
+    },
+    {
+      "detail": "UNSCENES3D_PROTOCOL.md v0.2",
+      "name": "manifest protocol",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "d866be0b25ba6635d5ad934bac9c822c55be8034fabd8f4627803bb9efa972d5",
+        "snapshot": "d866be0b25ba6635d5ad934bac9c822c55be8034fabd8f4627803bb9efa972d5"
+      },
+      "name": "manifest sha matches snapshot",
+      "passed": true
+    },
+    {
+      "detail": [
+        "location_6"
+      ],
+      "name": "manifest test lock",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "ground",
+        "expected": "ground"
+      },
+      "name": "manifest adapter.endpoint_policy",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "valid",
+        "expected": "valid"
+      },
+      "name": "manifest adapter.start_selection",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.35,
+        "expected": 0.35
+      },
+      "name": "manifest adapter.ground_margin_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 1.2,
+        "expected": 1.2
+      },
+      "name": "manifest adapter.ground_bin_size_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 20.0,
+        "expected": 20.0
+      },
+      "name": "manifest adapter.ground_lateral_limit_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.15,
+        "expected": 0.15
+      },
+      "name": "manifest adapter.ground_quantile",
+      "passed": true
+    },
+    {
+      "detail": 1529,
+      "name": "validation query count",
+      "passed": true
+    },
+    {
+      "detail": 15567,
+      "name": "train query count",
+      "passed": true
+    },
+    {
+      "detail": 62,
+      "name": "validation record count",
+      "passed": true
+    },
+    {
+      "detail": 478,
+      "name": "train record count",
+      "passed": true
+    },
+    {
+      "detail": 0,
+      "name": "train/validation contain no locked-site records",
+      "passed": true
+    },
+    {
+      "detail": {
+        "scene_00401": 1065,
+        "scene_00427": 464
+      },
+      "name": "validation scene counts",
+      "passed": true
+    },
+    {
+      "detail": "results/unscenes3d_manifest_replay_audit/report.json",
+      "name": "manifest replay report exists",
+      "passed": true
+    },
+    {
+      "detail": "Train/validation manifest replay only; location_6 files and test labels were not read.",
+      "name": "manifest replay report passed",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": [
+          "017b368b0364ca518e1c0d744ed81d53d92f190b72ee66109417b29c5bee77d5",
+          "017b368b0364ca518e1c0d744ed81d53d92f190b72ee66109417b29c5bee77d5"
+        ],
+        "expected": "017b368b0364ca518e1c0d744ed81d53d92f190b72ee66109417b29c5bee77d5"
+      },
+      "name": "manifest replay contract hash",
+      "passed": true
+    },
+    {
+      "detail": {
+        "canonical_adapter": {
+          "endpoint_policy": "ground",
+          "ground_bin_size_m": 1.2,
+          "ground_lateral_limit_m": 20.0,
+          "ground_margin_m": 0.35,
+          "ground_quantile": 0.15,
+          "start_selection": "valid"
+        },
+        "canonical_contract_sha256": "017b368b0364ca518e1c0d744ed81d53d92f190b72ee66109417b29c5bee77d5",
+        "canonical_path": "results/unscenes3d_contract_manifest_ground_valid/manifest.json",
+        "canonical_protocol": "UNSCENES3D_PROTOCOL.md v0.2",
+        "canonical_train_queries": 15567,
+        "canonical_train_records": 478,
+        "canonical_validation_queries": 1529,
+        "canonical_validation_records": 62,
+        "claim_boundary": "Train/validation manifest replay only; location_6 files and test labels were not read.",
+        "contract_equal": true,
+        "ignored_runtime_fields": [
+          "generation_seconds"
+        ],
+        "kind": "unscenes3d_manifest_replay_audit",
+        "locked_record_count": 0,
+        "passed": true,
+        "protocol_version": "UNSCENES3D_PROTOCOL.md v0.2",
+        "rebuilt_contract_sha256": "017b368b0364ca518e1c0d744ed81d53d92f190b72ee66109417b29c5bee77d5",
+        "schema_version": 1,
+        "test_evaluated": false,
+        "validation_only": true
+      },
+      "name": "manifest replay split counts",
+      "passed": true
+    },
+    {
+      "detail": 0,
+      "name": "manifest replay has no locked records",
+      "passed": true
+    },
+    {
+      "detail": "conpath_stochastic",
+      "name": "snapshot control present: conpath_stochastic",
+      "passed": true
+    },
+    {
+      "detail": "results/unscenes3d_ground_valid_f16/seed20260831/run.json",
+      "name": "run report exists: results/unscenes3d_ground_valid_f16/seed20260831/run.json",
+      "passed": true
+    },
+    {
+      "detail": "UNSCENES3D_PROTOCOL.md v0.1",
+      "name": "results/unscenes3d_ground_valid_f16/seed20260831/run.json protocol",
+      "passed": true
+    },
+    {
+      "detail": 1,
+      "name": "results/unscenes3d_ground_valid_f16/seed20260831/run.json schema_version",
+      "passed": true
+    },
+    {
+      "detail": false,
+      "name": "results/unscenes3d_ground_valid_f16/seed20260831/run.json test_evaluated",
+      "passed": true
+    },
+    {
+      "detail": true,
+      "name": "results/unscenes3d_ground_valid_f16/seed20260831/run.json validation_result",
+      "passed": true
+    },
+    {
+      "detail": false,
+      "name": "results/unscenes3d_ground_valid_f16/seed20260831/run.json paper_result",
+      "passed": true
+    },
+    {
+      "detail": "UnScenes3D adapter validation-only run; event-loss optimization is enabled only when reachability_weight is positive, and location_6 test remains locked.",
+      "name": "results/unscenes3d_ground_valid_f16/seed20260831/run.json locks location_6",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "d866be0b25ba6635d5ad934bac9c822c55be8034fabd8f4627803bb9efa972d5",
+        "expected": "d866be0b25ba6635d5ad934bac9c822c55be8034fabd8f4627803bb9efa972d5"
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260831/run.json manifest hash via config",
+      "passed": true
+    },
+    {
+      "detail": 62,
+      "name": "results/unscenes3d_ground_valid_f16/seed20260831/run.json validation records",
+      "passed": true
+    },
+    {
+      "detail": 1529,
+      "name": "results/unscenes3d_ground_valid_f16/seed20260831/run.json validation queries via event report",
+      "passed": true
+    },
+    {
+      "detail": [
+        "location_6"
+      ],
+      "name": "results/unscenes3d_ground_valid_f16/seed20260831/run.json test lock metadata",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "ground",
+        "expected": "ground"
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260831/run.json adapter.endpoint_policy",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "valid",
+        "expected": "valid"
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260831/run.json adapter.start_selection",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.35,
+        "expected": 0.35
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260831/run.json adapter.ground_margin_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 1.2,
+        "expected": 1.2
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260831/run.json adapter.ground_bin_size_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 20.0,
+        "expected": 20.0
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260831/run.json adapter.ground_lateral_limit_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.15,
+        "expected": 0.15
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260831/run.json adapter.ground_quantile",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.5589376363846392,
+        "expected": 0.5589376363846392
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260831/run.json metric scene_weighted_brier",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 9.055079522849038,
+        "expected": 9.055079522849038
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260831/run.json metric query_weighted_nll",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.6681109657728362,
+        "expected": 0.6681109657728362
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260831/run.json metric query_weighted_ece",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.2887323943661972,
+        "expected": 0.2887323943661972
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260831/run.json metric false_safe_rate@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.18574231523871812,
+        "expected": 0.18574231523871812
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260831/run.json metric high_confidence_coverage@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0,
+        "expected": 0
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260831/run.json metric radius_monotonicity_violations",
+      "passed": true
+    },
+    {
+      "detail": "results/unscenes3d_ground_valid_f16/seed20260901/run.json",
+      "name": "run report exists: results/unscenes3d_ground_valid_f16/seed20260901/run.json",
+      "passed": true
+    },
+    {
+      "detail": "UNSCENES3D_PROTOCOL.md v0.1",
+      "name": "results/unscenes3d_ground_valid_f16/seed20260901/run.json protocol",
+      "passed": true
+    },
+    {
+      "detail": 1,
+      "name": "results/unscenes3d_ground_valid_f16/seed20260901/run.json schema_version",
+      "passed": true
+    },
+    {
+      "detail": false,
+      "name": "results/unscenes3d_ground_valid_f16/seed20260901/run.json test_evaluated",
+      "passed": true
+    },
+    {
+      "detail": true,
+      "name": "results/unscenes3d_ground_valid_f16/seed20260901/run.json validation_result",
+      "passed": true
+    },
+    {
+      "detail": false,
+      "name": "results/unscenes3d_ground_valid_f16/seed20260901/run.json paper_result",
+      "passed": true
+    },
+    {
+      "detail": "UnScenes3D adapter validation-only run; event-loss optimization is enabled only when reachability_weight is positive, and location_6 test remains locked.",
+      "name": "results/unscenes3d_ground_valid_f16/seed20260901/run.json locks location_6",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "d866be0b25ba6635d5ad934bac9c822c55be8034fabd8f4627803bb9efa972d5",
+        "expected": "d866be0b25ba6635d5ad934bac9c822c55be8034fabd8f4627803bb9efa972d5"
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260901/run.json manifest hash via config",
+      "passed": true
+    },
+    {
+      "detail": 62,
+      "name": "results/unscenes3d_ground_valid_f16/seed20260901/run.json validation records",
+      "passed": true
+    },
+    {
+      "detail": 1529,
+      "name": "results/unscenes3d_ground_valid_f16/seed20260901/run.json validation queries via event report",
+      "passed": true
+    },
+    {
+      "detail": [
+        "location_6"
+      ],
+      "name": "results/unscenes3d_ground_valid_f16/seed20260901/run.json test lock metadata",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "ground",
+        "expected": "ground"
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260901/run.json adapter.endpoint_policy",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "valid",
+        "expected": "valid"
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260901/run.json adapter.start_selection",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.35,
+        "expected": 0.35
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260901/run.json adapter.ground_margin_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 1.2,
+        "expected": 1.2
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260901/run.json adapter.ground_bin_size_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 20.0,
+        "expected": 20.0
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260901/run.json adapter.ground_lateral_limit_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.15,
+        "expected": 0.15
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260901/run.json adapter.ground_quantile",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.5579240423985484,
+        "expected": 0.5579240423985484
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260901/run.json metric scene_weighted_brier",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 9.028077744915908,
+        "expected": 9.028077744915908
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260901/run.json metric query_weighted_nll",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.6651678657074339,
+        "expected": 0.6651678657074339
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260901/run.json metric query_weighted_ece",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.2623941958887545,
+        "expected": 0.2623941958887545
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260901/run.json metric false_safe_rate@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.1802921299324177,
+        "expected": 0.1802921299324177
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260901/run.json metric high_confidence_coverage@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0,
+        "expected": 0
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260901/run.json metric radius_monotonicity_violations",
+      "passed": true
+    },
+    {
+      "detail": "results/unscenes3d_ground_valid_f16/seed20260902/run.json",
+      "name": "run report exists: results/unscenes3d_ground_valid_f16/seed20260902/run.json",
+      "passed": true
+    },
+    {
+      "detail": "UNSCENES3D_PROTOCOL.md v0.1",
+      "name": "results/unscenes3d_ground_valid_f16/seed20260902/run.json protocol",
+      "passed": true
+    },
+    {
+      "detail": 1,
+      "name": "results/unscenes3d_ground_valid_f16/seed20260902/run.json schema_version",
+      "passed": true
+    },
+    {
+      "detail": false,
+      "name": "results/unscenes3d_ground_valid_f16/seed20260902/run.json test_evaluated",
+      "passed": true
+    },
+    {
+      "detail": true,
+      "name": "results/unscenes3d_ground_valid_f16/seed20260902/run.json validation_result",
+      "passed": true
+    },
+    {
+      "detail": false,
+      "name": "results/unscenes3d_ground_valid_f16/seed20260902/run.json paper_result",
+      "passed": true
+    },
+    {
+      "detail": "UnScenes3D adapter validation-only run; event-loss optimization is enabled only when reachability_weight is positive, and location_6 test remains locked.",
+      "name": "results/unscenes3d_ground_valid_f16/seed20260902/run.json locks location_6",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "d866be0b25ba6635d5ad934bac9c822c55be8034fabd8f4627803bb9efa972d5",
+        "expected": "d866be0b25ba6635d5ad934bac9c822c55be8034fabd8f4627803bb9efa972d5"
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260902/run.json manifest hash via config",
+      "passed": true
+    },
+    {
+      "detail": 62,
+      "name": "results/unscenes3d_ground_valid_f16/seed20260902/run.json validation records",
+      "passed": true
+    },
+    {
+      "detail": 1529,
+      "name": "results/unscenes3d_ground_valid_f16/seed20260902/run.json validation queries via event report",
+      "passed": true
+    },
+    {
+      "detail": [
+        "location_6"
+      ],
+      "name": "results/unscenes3d_ground_valid_f16/seed20260902/run.json test lock metadata",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "ground",
+        "expected": "ground"
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260902/run.json adapter.endpoint_policy",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "valid",
+        "expected": "valid"
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260902/run.json adapter.start_selection",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.35,
+        "expected": 0.35
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260902/run.json adapter.ground_margin_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 1.2,
+        "expected": 1.2
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260902/run.json adapter.ground_bin_size_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 20.0,
+        "expected": 20.0
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260902/run.json adapter.ground_lateral_limit_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.15,
+        "expected": 0.15
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260902/run.json adapter.ground_quantile",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.5712958290331067,
+        "expected": 0.5712958290331067
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260902/run.json metric scene_weighted_brier",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 9.114068606492543,
+        "expected": 9.114068606492543
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260902/run.json metric query_weighted_nll",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.679174841944626,
+        "expected": 0.679174841944626
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260902/run.json metric query_weighted_ece",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.2723735408560311,
+        "expected": 0.2723735408560311
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260902/run.json metric false_safe_rate@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.16808371484630477,
+        "expected": 0.16808371484630477
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260902/run.json metric high_confidence_coverage@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0,
+        "expected": 0
+      },
+      "name": "results/unscenes3d_ground_valid_f16/seed20260902/run.json metric radius_monotonicity_violations",
+      "passed": true
+    },
+    {
+      "detail": "independent_stochastic",
+      "name": "snapshot control present: independent_stochastic",
+      "passed": true
+    },
+    {
+      "detail": "results/unscenes3d_ground_valid_independent_f16/seed20260831/run.json",
+      "name": "run report exists: results/unscenes3d_ground_valid_independent_f16/seed20260831/run.json",
+      "passed": true
+    },
+    {
+      "detail": "UNSCENES3D_PROTOCOL.md v0.2",
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260831/run.json protocol",
+      "passed": true
+    },
+    {
+      "detail": 1,
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260831/run.json schema_version",
+      "passed": true
+    },
+    {
+      "detail": false,
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260831/run.json test_evaluated",
+      "passed": true
+    },
+    {
+      "detail": true,
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260831/run.json validation_result",
+      "passed": true
+    },
+    {
+      "detail": false,
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260831/run.json paper_result",
+      "passed": true
+    },
+    {
+      "detail": "UnScenes3D adapter validation-only run; event-loss optimization is enabled only when reachability_weight is positive, and location_6 test remains locked.",
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260831/run.json locks location_6",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "d866be0b25ba6635d5ad934bac9c822c55be8034fabd8f4627803bb9efa972d5",
+        "expected": "d866be0b25ba6635d5ad934bac9c822c55be8034fabd8f4627803bb9efa972d5"
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260831/run.json manifest hash via config",
+      "passed": true
+    },
+    {
+      "detail": 62,
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260831/run.json validation records",
+      "passed": true
+    },
+    {
+      "detail": 1529,
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260831/run.json validation queries via event report",
+      "passed": true
+    },
+    {
+      "detail": [
+        "location_6"
+      ],
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260831/run.json test lock metadata",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "ground",
+        "expected": "ground"
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260831/run.json adapter.endpoint_policy",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "valid",
+        "expected": "valid"
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260831/run.json adapter.start_selection",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.35,
+        "expected": 0.35
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260831/run.json adapter.ground_margin_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 1.2,
+        "expected": 1.2
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260831/run.json adapter.ground_bin_size_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 20.0,
+        "expected": 20.0
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260831/run.json adapter.ground_lateral_limit_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.15,
+        "expected": 0.15
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260831/run.json adapter.ground_quantile",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.5603710874261373,
+        "expected": 0.5603710874261373
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260831/run.json metric scene_weighted_brier",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 9.061944969741388,
+        "expected": 9.061944969741388
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260831/run.json metric query_weighted_nll",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.6700457815565728,
+        "expected": 0.6700457815565728
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260831/run.json metric query_weighted_ece",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.28857479387514723,
+        "expected": 0.28857479387514723
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260831/run.json metric false_safe_rate@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.18508829300196206,
+        "expected": 0.18508829300196206
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260831/run.json metric high_confidence_coverage@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0,
+        "expected": 0
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260831/run.json metric radius_monotonicity_violations",
+      "passed": true
+    },
+    {
+      "detail": "results/unscenes3d_ground_valid_independent_f16/seed20260901/run.json",
+      "name": "run report exists: results/unscenes3d_ground_valid_independent_f16/seed20260901/run.json",
+      "passed": true
+    },
+    {
+      "detail": "UNSCENES3D_PROTOCOL.md v0.2",
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260901/run.json protocol",
+      "passed": true
+    },
+    {
+      "detail": 1,
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260901/run.json schema_version",
+      "passed": true
+    },
+    {
+      "detail": false,
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260901/run.json test_evaluated",
+      "passed": true
+    },
+    {
+      "detail": true,
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260901/run.json validation_result",
+      "passed": true
+    },
+    {
+      "detail": false,
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260901/run.json paper_result",
+      "passed": true
+    },
+    {
+      "detail": "UnScenes3D adapter validation-only run; event-loss optimization is enabled only when reachability_weight is positive, and location_6 test remains locked.",
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260901/run.json locks location_6",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "d866be0b25ba6635d5ad934bac9c822c55be8034fabd8f4627803bb9efa972d5",
+        "expected": "d866be0b25ba6635d5ad934bac9c822c55be8034fabd8f4627803bb9efa972d5"
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260901/run.json manifest hash via config",
+      "passed": true
+    },
+    {
+      "detail": 62,
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260901/run.json validation records",
+      "passed": true
+    },
+    {
+      "detail": 1529,
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260901/run.json validation queries via event report",
+      "passed": true
+    },
+    {
+      "detail": [
+        "location_6"
+      ],
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260901/run.json test lock metadata",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "ground",
+        "expected": "ground"
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260901/run.json adapter.endpoint_policy",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "valid",
+        "expected": "valid"
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260901/run.json adapter.start_selection",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.35,
+        "expected": 0.35
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260901/run.json adapter.ground_margin_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 1.2,
+        "expected": 1.2
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260901/run.json adapter.ground_bin_size_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 20.0,
+        "expected": 20.0
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260901/run.json adapter.ground_lateral_limit_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.15,
+        "expected": 0.15
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260901/run.json adapter.ground_quantile",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.5593422160417003,
+        "expected": 0.5593422160417003
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260901/run.json metric scene_weighted_brier",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 9.054283200828538,
+        "expected": 9.054283200828538
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260901/run.json metric query_weighted_nll",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.668737737083061,
+        "expected": 0.668737737083061
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260901/run.json metric query_weighted_ece",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.2689075630252101,
+        "expected": 0.2689075630252101
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260901/run.json metric false_safe_rate@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.1816001744059298,
+        "expected": 0.1816001744059298
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260901/run.json metric high_confidence_coverage@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0,
+        "expected": 0
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260901/run.json metric radius_monotonicity_violations",
+      "passed": true
+    },
+    {
+      "detail": "results/unscenes3d_ground_valid_independent_f16/seed20260902/run.json",
+      "name": "run report exists: results/unscenes3d_ground_valid_independent_f16/seed20260902/run.json",
+      "passed": true
+    },
+    {
+      "detail": "UNSCENES3D_PROTOCOL.md v0.2",
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260902/run.json protocol",
+      "passed": true
+    },
+    {
+      "detail": 1,
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260902/run.json schema_version",
+      "passed": true
+    },
+    {
+      "detail": false,
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260902/run.json test_evaluated",
+      "passed": true
+    },
+    {
+      "detail": true,
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260902/run.json validation_result",
+      "passed": true
+    },
+    {
+      "detail": false,
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260902/run.json paper_result",
+      "passed": true
+    },
+    {
+      "detail": "UnScenes3D adapter validation-only run; event-loss optimization is enabled only when reachability_weight is positive, and location_6 test remains locked.",
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260902/run.json locks location_6",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "d866be0b25ba6635d5ad934bac9c822c55be8034fabd8f4627803bb9efa972d5",
+        "expected": "d866be0b25ba6635d5ad934bac9c822c55be8034fabd8f4627803bb9efa972d5"
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260902/run.json manifest hash via config",
+      "passed": true
+    },
+    {
+      "detail": 62,
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260902/run.json validation records",
+      "passed": true
+    },
+    {
+      "detail": 1529,
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260902/run.json validation queries via event report",
+      "passed": true
+    },
+    {
+      "detail": [
+        "location_6"
+      ],
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260902/run.json test lock metadata",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "ground",
+        "expected": "ground"
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260902/run.json adapter.endpoint_policy",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "valid",
+        "expected": "valid"
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260902/run.json adapter.start_selection",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.35,
+        "expected": 0.35
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260902/run.json adapter.ground_margin_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 1.2,
+        "expected": 1.2
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260902/run.json adapter.ground_bin_size_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 20.0,
+        "expected": 20.0
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260902/run.json adapter.ground_lateral_limit_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.15,
+        "expected": 0.15
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260902/run.json adapter.ground_quantile",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.5691821095394204,
+        "expected": 0.5691821095394204
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260902/run.json metric scene_weighted_brier",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 9.143792886072092,
+        "expected": 9.143792886072092
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260902/run.json metric query_weighted_nll",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.678411816001744,
+        "expected": 0.678411816001744
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260902/run.json metric query_weighted_ece",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.253315649867374,
+        "expected": 0.253315649867374
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260902/run.json metric false_safe_rate@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.1643775888380205,
+        "expected": 0.1643775888380205
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260902/run.json metric high_confidence_coverage@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0,
+        "expected": 0
+      },
+      "name": "results/unscenes3d_ground_valid_independent_f16/seed20260902/run.json metric radius_monotonicity_violations",
+      "passed": true
+    },
+    {
+      "detail": "conpath_mean_map_k128",
+      "name": "snapshot control present: conpath_mean_map_k128",
+      "passed": true
+    },
+    {
+      "detail": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json",
+      "name": "run report exists: results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json",
+      "passed": true
+    },
+    {
+      "detail": "UNSCENES3D_PROTOCOL.md v0.2",
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json protocol",
+      "passed": true
+    },
+    {
+      "detail": 1,
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json schema_version",
+      "passed": true
+    },
+    {
+      "detail": false,
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json test_evaluated",
+      "passed": true
+    },
+    {
+      "detail": true,
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json validation_result",
+      "passed": true
+    },
+    {
+      "detail": false,
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json paper_result",
+      "passed": true
+    },
+    {
+      "detail": "Validation-only deterministic threshold of a UnScenes3D ConPath posterior mean map; binary event output is a control, not a final paper or cross-domain result; location_6 remains locked.",
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json locks location_6",
+      "passed": true
+    },
+    {
+      "detail": "d866be0b25ba6635d5ad934bac9c822c55be8034fabd8f4627803bb9efa972d5",
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json manifest hash",
+      "passed": true
+    },
+    {
+      "detail": 62,
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json validation records",
+      "passed": true
+    },
+    {
+      "detail": 1529,
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json validation queries",
+      "passed": true
+    },
+    {
+      "detail": [
+        "location_6"
+      ],
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json test lock metadata",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "ground",
+        "expected": "ground"
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json adapter.endpoint_policy",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "valid",
+        "expected": "valid"
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json adapter.start_selection",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.35,
+        "expected": 0.35
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json adapter.ground_margin_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 1.2,
+        "expected": 1.2
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json adapter.ground_bin_size_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 20.0,
+        "expected": 20.0
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json adapter.ground_lateral_limit_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.15,
+        "expected": 0.15
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json adapter.ground_quantile",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.6275015514543197,
+        "expected": 0.6275015514543197
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json metric scene_weighted_brier",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 9.966323460712692,
+        "expected": 9.966323460712692
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json metric query_weighted_nll",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.7213865271419229,
+        "expected": 0.7213865271419229
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json metric query_weighted_ece",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.39909977494373594,
+        "expected": 0.39909977494373594
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json metric false_safe_rate@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.2906038805319381,
+        "expected": 0.2906038805319381
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json metric high_confidence_coverage@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0,
+        "expected": 0
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json metric radius_monotonicity_violations",
+      "passed": true
+    },
+    {
+      "detail": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/predictions_validation.csv",
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json prediction exists",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "5a144717b557e1d9fd330c148186a2186fd153974e48acc3c15bd26206efe213",
+        "expected": "5a144717b557e1d9fd330c148186a2186fd153974e48acc3c15bd26206efe213"
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json prediction sha256",
+      "passed": true
+    },
+    {
+      "detail": [
+        "candidate_index",
+        "probability",
+        "radius_cells",
+        "scene_id",
+        "timestamp"
+      ],
+      "name": "prediction header label-free: results/unscenes3d_ground_valid_mean_map_k128/seed20260831/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "prediction rows parseable: results/unscenes3d_ground_valid_mean_map_k128/seed20260831/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "examples": [],
+        "invalid_count": 0
+      },
+      "name": "prediction probabilities bounded: results/unscenes3d_ground_valid_mean_map_k128/seed20260831/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "duplicate_count": 0,
+        "examples": []
+      },
+      "name": "prediction keys unique: results/unscenes3d_ground_valid_mean_map_k128/seed20260831/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "prediction keys in frozen validation manifest: results/unscenes3d_ground_valid_mean_map_k128/seed20260831/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 4587,
+        "expected": 4587
+      },
+      "name": "prediction row count: results/unscenes3d_ground_valid_mean_map_k128/seed20260831/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 4587,
+        "expected": 4587
+      },
+      "name": "prediction key set complete: results/unscenes3d_ground_valid_mean_map_k128/seed20260831/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 2,
+        "reported": 2
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json recomputed scene_count",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.6275015514543197,
+        "reported": 0.6275015514543197
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json recomputed scene_weighted_brier",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 9.966323460712692,
+        "reported": 9.966323460712692
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json recomputed query_weighted_nll",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.7213865271419229,
+        "reported": 0.7213865271419229
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json recomputed query_weighted_ece",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.39909977494373594,
+        "reported": 0.39909977494373594
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json recomputed false_safe_rate@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.2906038805319381,
+        "reported": 0.2906038805319381
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json recomputed high_confidence_coverage@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.7800305210377153,
+        "reported": 0.7800305210377153
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json recomputed positive_prevalence",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.2906038805319381,
+        "reported": 0.2906038805319381
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json recomputed mean_prediction",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0,
+        "reported": 0
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json recomputed radius_monotonicity_violations",
+      "passed": true
+    },
+    {
+      "detail": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json",
+      "name": "run report exists: results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json",
+      "passed": true
+    },
+    {
+      "detail": "UNSCENES3D_PROTOCOL.md v0.2",
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json protocol",
+      "passed": true
+    },
+    {
+      "detail": 1,
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json schema_version",
+      "passed": true
+    },
+    {
+      "detail": false,
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json test_evaluated",
+      "passed": true
+    },
+    {
+      "detail": true,
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json validation_result",
+      "passed": true
+    },
+    {
+      "detail": false,
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json paper_result",
+      "passed": true
+    },
+    {
+      "detail": "Validation-only deterministic threshold of a UnScenes3D ConPath posterior mean map; binary event output is a control, not a final paper or cross-domain result; location_6 remains locked.",
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json locks location_6",
+      "passed": true
+    },
+    {
+      "detail": "d866be0b25ba6635d5ad934bac9c822c55be8034fabd8f4627803bb9efa972d5",
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json manifest hash",
+      "passed": true
+    },
+    {
+      "detail": 62,
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json validation records",
+      "passed": true
+    },
+    {
+      "detail": 1529,
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json validation queries",
+      "passed": true
+    },
+    {
+      "detail": [
+        "location_6"
+      ],
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json test lock metadata",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "ground",
+        "expected": "ground"
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json adapter.endpoint_policy",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "valid",
+        "expected": "valid"
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json adapter.start_selection",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.35,
+        "expected": 0.35
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json adapter.ground_margin_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 1.2,
+        "expected": 1.2
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json adapter.ground_bin_size_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 20.0,
+        "expected": 20.0
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json adapter.ground_lateral_limit_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.15,
+        "expected": 0.15
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json adapter.ground_quantile",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.629297528465814,
+        "expected": 0.629297528465814
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json metric scene_weighted_brier",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 9.981382878151036,
+        "expected": 9.981382878151036
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json metric query_weighted_nll",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.722476564203183,
+        "expected": 0.722476564203183
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json metric query_weighted_ece",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.4013452914798206,
+        "expected": 0.4013452914798206
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json metric false_safe_rate@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.2916939175931982,
+        "expected": 0.2916939175931982
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json metric high_confidence_coverage@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0,
+        "expected": 0
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json metric radius_monotonicity_violations",
+      "passed": true
+    },
+    {
+      "detail": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/predictions_validation.csv",
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json prediction exists",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "bf8dc10e0f264f3c09b9fee0f00e971d6508518e5abd528c52eb14e0c572a8d4",
+        "expected": "bf8dc10e0f264f3c09b9fee0f00e971d6508518e5abd528c52eb14e0c572a8d4"
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json prediction sha256",
+      "passed": true
+    },
+    {
+      "detail": [
+        "candidate_index",
+        "probability",
+        "radius_cells",
+        "scene_id",
+        "timestamp"
+      ],
+      "name": "prediction header label-free: results/unscenes3d_ground_valid_mean_map_k128/seed20260901/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "prediction rows parseable: results/unscenes3d_ground_valid_mean_map_k128/seed20260901/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "examples": [],
+        "invalid_count": 0
+      },
+      "name": "prediction probabilities bounded: results/unscenes3d_ground_valid_mean_map_k128/seed20260901/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "duplicate_count": 0,
+        "examples": []
+      },
+      "name": "prediction keys unique: results/unscenes3d_ground_valid_mean_map_k128/seed20260901/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "prediction keys in frozen validation manifest: results/unscenes3d_ground_valid_mean_map_k128/seed20260901/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 4587,
+        "expected": 4587
+      },
+      "name": "prediction row count: results/unscenes3d_ground_valid_mean_map_k128/seed20260901/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 4587,
+        "expected": 4587
+      },
+      "name": "prediction key set complete: results/unscenes3d_ground_valid_mean_map_k128/seed20260901/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 2,
+        "reported": 2
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json recomputed scene_count",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.629297528465814,
+        "reported": 0.629297528465814
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json recomputed scene_weighted_brier",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 9.981382878151036,
+        "reported": 9.981382878151036
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json recomputed query_weighted_nll",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.722476564203183,
+        "reported": 0.722476564203183
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json recomputed query_weighted_ece",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.4013452914798206,
+        "reported": 0.4013452914798206
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json recomputed false_safe_rate@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.2916939175931982,
+        "reported": 0.2916939175931982
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json recomputed high_confidence_coverage@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.7800305210377153,
+        "reported": 0.7800305210377153
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json recomputed positive_prevalence",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.2916939175931982,
+        "reported": 0.2916939175931982
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json recomputed mean_prediction",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0,
+        "reported": 0
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json recomputed radius_monotonicity_violations",
+      "passed": true
+    },
+    {
+      "detail": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json",
+      "name": "run report exists: results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json",
+      "passed": true
+    },
+    {
+      "detail": "UNSCENES3D_PROTOCOL.md v0.2",
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json protocol",
+      "passed": true
+    },
+    {
+      "detail": 1,
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json schema_version",
+      "passed": true
+    },
+    {
+      "detail": false,
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json test_evaluated",
+      "passed": true
+    },
+    {
+      "detail": true,
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json validation_result",
+      "passed": true
+    },
+    {
+      "detail": false,
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json paper_result",
+      "passed": true
+    },
+    {
+      "detail": "Validation-only deterministic threshold of a UnScenes3D ConPath posterior mean map; binary event output is a control, not a final paper or cross-domain result; location_6 remains locked.",
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json locks location_6",
+      "passed": true
+    },
+    {
+      "detail": "d866be0b25ba6635d5ad934bac9c822c55be8034fabd8f4627803bb9efa972d5",
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json manifest hash",
+      "passed": true
+    },
+    {
+      "detail": 62,
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json validation records",
+      "passed": true
+    },
+    {
+      "detail": 1529,
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json validation queries",
+      "passed": true
+    },
+    {
+      "detail": [
+        "location_6"
+      ],
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json test lock metadata",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "ground",
+        "expected": "ground"
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json adapter.endpoint_policy",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "valid",
+        "expected": "valid"
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json adapter.start_selection",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.35,
+        "expected": 0.35
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json adapter.ground_margin_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 1.2,
+        "expected": 1.2
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json adapter.ground_bin_size_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 20.0,
+        "expected": 20.0
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json adapter.ground_lateral_limit_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.15,
+        "expected": 0.15
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json adapter.ground_quantile",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.6264239652474233,
+        "expected": 0.6264239652474233
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json metric scene_weighted_brier",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 9.957287810249689,
+        "expected": 9.957287810249689
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json metric query_weighted_nll",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.7207325049051667,
+        "expected": 0.7207325049051667
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json metric query_weighted_ece",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.3977443609022556,
+        "expected": 0.3977443609022556
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json metric false_safe_rate@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.28994985829518205,
+        "expected": 0.28994985829518205
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json metric high_confidence_coverage@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0,
+        "expected": 0
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json metric radius_monotonicity_violations",
+      "passed": true
+    },
+    {
+      "detail": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/predictions_validation.csv",
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json prediction exists",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "fc332684b9462be2de0c0083ed79f39ccfbe893a5f626387fd3510de259e4ed5",
+        "expected": "fc332684b9462be2de0c0083ed79f39ccfbe893a5f626387fd3510de259e4ed5"
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json prediction sha256",
+      "passed": true
+    },
+    {
+      "detail": [
+        "candidate_index",
+        "probability",
+        "radius_cells",
+        "scene_id",
+        "timestamp"
+      ],
+      "name": "prediction header label-free: results/unscenes3d_ground_valid_mean_map_k128/seed20260902/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "prediction rows parseable: results/unscenes3d_ground_valid_mean_map_k128/seed20260902/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "examples": [],
+        "invalid_count": 0
+      },
+      "name": "prediction probabilities bounded: results/unscenes3d_ground_valid_mean_map_k128/seed20260902/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "duplicate_count": 0,
+        "examples": []
+      },
+      "name": "prediction keys unique: results/unscenes3d_ground_valid_mean_map_k128/seed20260902/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "prediction keys in frozen validation manifest: results/unscenes3d_ground_valid_mean_map_k128/seed20260902/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 4587,
+        "expected": 4587
+      },
+      "name": "prediction row count: results/unscenes3d_ground_valid_mean_map_k128/seed20260902/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 4587,
+        "expected": 4587
+      },
+      "name": "prediction key set complete: results/unscenes3d_ground_valid_mean_map_k128/seed20260902/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 2,
+        "reported": 2
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json recomputed scene_count",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.6264239652474233,
+        "reported": 0.6264239652474233
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json recomputed scene_weighted_brier",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 9.957287810249689,
+        "reported": 9.957287810249689
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json recomputed query_weighted_nll",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.7207325049051667,
+        "reported": 0.7207325049051667
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json recomputed query_weighted_ece",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.3977443609022556,
+        "reported": 0.3977443609022556
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json recomputed false_safe_rate@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.28994985829518205,
+        "reported": 0.28994985829518205
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json recomputed high_confidence_coverage@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.7800305210377153,
+        "reported": 0.7800305210377153
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json recomputed positive_prevalence",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.28994985829518205,
+        "reported": 0.28994985829518205
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json recomputed mean_prediction",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0,
+        "reported": 0
+      },
+      "name": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json recomputed radius_monotonicity_violations",
+      "passed": true
+    },
+    {
+      "detail": "independent_mean_map_k128",
+      "name": "snapshot control present: independent_mean_map_k128",
+      "passed": true
+    },
+    {
+      "detail": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json",
+      "name": "run report exists: results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json",
+      "passed": true
+    },
+    {
+      "detail": "UNSCENES3D_PROTOCOL.md v0.2",
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json protocol",
+      "passed": true
+    },
+    {
+      "detail": 1,
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json schema_version",
+      "passed": true
+    },
+    {
+      "detail": false,
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json test_evaluated",
+      "passed": true
+    },
+    {
+      "detail": true,
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json validation_result",
+      "passed": true
+    },
+    {
+      "detail": false,
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json paper_result",
+      "passed": true
+    },
+    {
+      "detail": "Validation-only deterministic threshold of a UnScenes3D ConPath posterior mean map; binary event output is a control, not a final paper or cross-domain result; location_6 remains locked.",
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json locks location_6",
+      "passed": true
+    },
+    {
+      "detail": "d866be0b25ba6635d5ad934bac9c822c55be8034fabd8f4627803bb9efa972d5",
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json manifest hash",
+      "passed": true
+    },
+    {
+      "detail": 62,
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json validation records",
+      "passed": true
+    },
+    {
+      "detail": 1529,
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json validation queries",
+      "passed": true
+    },
+    {
+      "detail": [
+        "location_6"
+      ],
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json test lock metadata",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "ground",
+        "expected": "ground"
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json adapter.endpoint_policy",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "valid",
+        "expected": "valid"
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json adapter.start_selection",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.35,
+        "expected": 0.35
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json adapter.ground_margin_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 1.2,
+        "expected": 1.2
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json adapter.ground_bin_size_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 20.0,
+        "expected": 20.0
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json adapter.ground_lateral_limit_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.15,
+        "expected": 0.15
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json adapter.ground_quantile",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.6275015514543197,
+        "expected": 0.6275015514543197
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json metric scene_weighted_brier",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 9.966323460712692,
+        "expected": 9.966323460712692
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json metric query_weighted_nll",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.7213865271419229,
+        "expected": 0.7213865271419229
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json metric query_weighted_ece",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.39909977494373594,
+        "expected": 0.39909977494373594
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json metric false_safe_rate@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.2906038805319381,
+        "expected": 0.2906038805319381
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json metric high_confidence_coverage@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0,
+        "expected": 0
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json metric radius_monotonicity_violations",
+      "passed": true
+    },
+    {
+      "detail": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/predictions_validation.csv",
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json prediction exists",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "5a144717b557e1d9fd330c148186a2186fd153974e48acc3c15bd26206efe213",
+        "expected": "5a144717b557e1d9fd330c148186a2186fd153974e48acc3c15bd26206efe213"
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json prediction sha256",
+      "passed": true
+    },
+    {
+      "detail": [
+        "candidate_index",
+        "probability",
+        "radius_cells",
+        "scene_id",
+        "timestamp"
+      ],
+      "name": "prediction header label-free: results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "prediction rows parseable: results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "examples": [],
+        "invalid_count": 0
+      },
+      "name": "prediction probabilities bounded: results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "duplicate_count": 0,
+        "examples": []
+      },
+      "name": "prediction keys unique: results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "prediction keys in frozen validation manifest: results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 4587,
+        "expected": 4587
+      },
+      "name": "prediction row count: results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 4587,
+        "expected": 4587
+      },
+      "name": "prediction key set complete: results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 2,
+        "reported": 2
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json recomputed scene_count",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.6275015514543197,
+        "reported": 0.6275015514543197
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json recomputed scene_weighted_brier",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 9.966323460712692,
+        "reported": 9.966323460712692
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json recomputed query_weighted_nll",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.7213865271419229,
+        "reported": 0.7213865271419229
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json recomputed query_weighted_ece",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.39909977494373594,
+        "reported": 0.39909977494373594
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json recomputed false_safe_rate@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.2906038805319381,
+        "reported": 0.2906038805319381
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json recomputed high_confidence_coverage@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.7800305210377153,
+        "reported": 0.7800305210377153
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json recomputed positive_prevalence",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.2906038805319381,
+        "reported": 0.2906038805319381
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json recomputed mean_prediction",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0,
+        "reported": 0
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json recomputed radius_monotonicity_violations",
+      "passed": true
+    },
+    {
+      "detail": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json",
+      "name": "run report exists: results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json",
+      "passed": true
+    },
+    {
+      "detail": "UNSCENES3D_PROTOCOL.md v0.2",
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json protocol",
+      "passed": true
+    },
+    {
+      "detail": 1,
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json schema_version",
+      "passed": true
+    },
+    {
+      "detail": false,
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json test_evaluated",
+      "passed": true
+    },
+    {
+      "detail": true,
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json validation_result",
+      "passed": true
+    },
+    {
+      "detail": false,
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json paper_result",
+      "passed": true
+    },
+    {
+      "detail": "Validation-only deterministic threshold of a UnScenes3D ConPath posterior mean map; binary event output is a control, not a final paper or cross-domain result; location_6 remains locked.",
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json locks location_6",
+      "passed": true
+    },
+    {
+      "detail": "d866be0b25ba6635d5ad934bac9c822c55be8034fabd8f4627803bb9efa972d5",
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json manifest hash",
+      "passed": true
+    },
+    {
+      "detail": 62,
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json validation records",
+      "passed": true
+    },
+    {
+      "detail": 1529,
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json validation queries",
+      "passed": true
+    },
+    {
+      "detail": [
+        "location_6"
+      ],
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json test lock metadata",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "ground",
+        "expected": "ground"
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json adapter.endpoint_policy",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "valid",
+        "expected": "valid"
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json adapter.start_selection",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.35,
+        "expected": 0.35
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json adapter.ground_margin_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 1.2,
+        "expected": 1.2
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json adapter.ground_bin_size_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 20.0,
+        "expected": 20.0
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json adapter.ground_lateral_limit_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.15,
+        "expected": 0.15
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json adapter.ground_quantile",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.6289383330635152,
+        "expected": 0.6289383330635152
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json metric scene_weighted_brier",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 9.978370994663367,
+        "expected": 9.978370994663367
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json metric query_weighted_nll",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.7222585567909309,
+        "expected": 0.7222585567909309
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json metric query_weighted_ece",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.40089753178758414,
+        "expected": 0.40089753178758414
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json metric false_safe_rate@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.29147591018094615,
+        "expected": 0.29147591018094615
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json metric high_confidence_coverage@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0,
+        "expected": 0
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json metric radius_monotonicity_violations",
+      "passed": true
+    },
+    {
+      "detail": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/predictions_validation.csv",
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json prediction exists",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "942fd5120ad1afd233696935550f7e41450f1c884a3a4aa6cf5b628d35de3d4d",
+        "expected": "942fd5120ad1afd233696935550f7e41450f1c884a3a4aa6cf5b628d35de3d4d"
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json prediction sha256",
+      "passed": true
+    },
+    {
+      "detail": [
+        "candidate_index",
+        "probability",
+        "radius_cells",
+        "scene_id",
+        "timestamp"
+      ],
+      "name": "prediction header label-free: results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "prediction rows parseable: results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "examples": [],
+        "invalid_count": 0
+      },
+      "name": "prediction probabilities bounded: results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "duplicate_count": 0,
+        "examples": []
+      },
+      "name": "prediction keys unique: results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "prediction keys in frozen validation manifest: results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 4587,
+        "expected": 4587
+      },
+      "name": "prediction row count: results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 4587,
+        "expected": 4587
+      },
+      "name": "prediction key set complete: results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 2,
+        "reported": 2
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json recomputed scene_count",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.6289383330635152,
+        "reported": 0.6289383330635152
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json recomputed scene_weighted_brier",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 9.978370994663367,
+        "reported": 9.978370994663367
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json recomputed query_weighted_nll",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.7222585567909309,
+        "reported": 0.7222585567909309
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json recomputed query_weighted_ece",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.40089753178758414,
+        "reported": 0.40089753178758414
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json recomputed false_safe_rate@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.29147591018094615,
+        "reported": 0.29147591018094615
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json recomputed high_confidence_coverage@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.7800305210377153,
+        "reported": 0.7800305210377153
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json recomputed positive_prevalence",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.29147591018094615,
+        "reported": 0.29147591018094615
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json recomputed mean_prediction",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0,
+        "reported": 0
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json recomputed radius_monotonicity_violations",
+      "passed": true
+    },
+    {
+      "detail": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json",
+      "name": "run report exists: results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json",
+      "passed": true
+    },
+    {
+      "detail": "UNSCENES3D_PROTOCOL.md v0.2",
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json protocol",
+      "passed": true
+    },
+    {
+      "detail": 1,
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json schema_version",
+      "passed": true
+    },
+    {
+      "detail": false,
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json test_evaluated",
+      "passed": true
+    },
+    {
+      "detail": true,
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json validation_result",
+      "passed": true
+    },
+    {
+      "detail": false,
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json paper_result",
+      "passed": true
+    },
+    {
+      "detail": "Validation-only deterministic threshold of a UnScenes3D ConPath posterior mean map; binary event output is a control, not a final paper or cross-domain result; location_6 remains locked.",
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json locks location_6",
+      "passed": true
+    },
+    {
+      "detail": "d866be0b25ba6635d5ad934bac9c822c55be8034fabd8f4627803bb9efa972d5",
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json manifest hash",
+      "passed": true
+    },
+    {
+      "detail": 62,
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json validation records",
+      "passed": true
+    },
+    {
+      "detail": 1529,
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json validation queries",
+      "passed": true
+    },
+    {
+      "detail": [
+        "location_6"
+      ],
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json test lock metadata",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "ground",
+        "expected": "ground"
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json adapter.endpoint_policy",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "valid",
+        "expected": "valid"
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json adapter.start_selection",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.35,
+        "expected": 0.35
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json adapter.ground_margin_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 1.2,
+        "expected": 1.2
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json adapter.ground_bin_size_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 20.0,
+        "expected": 20.0
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json adapter.ground_lateral_limit_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.15,
+        "expected": 0.15
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json adapter.ground_quantile",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.6264239652474233,
+        "expected": 0.6264239652474233
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json metric scene_weighted_brier",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 9.957287810249689,
+        "expected": 9.957287810249689
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json metric query_weighted_nll",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.7207325049051667,
+        "expected": 0.7207325049051667
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json metric query_weighted_ece",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.3977443609022556,
+        "expected": 0.3977443609022556
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json metric false_safe_rate@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.28994985829518205,
+        "expected": 0.28994985829518205
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json metric high_confidence_coverage@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0,
+        "expected": 0
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json metric radius_monotonicity_violations",
+      "passed": true
+    },
+    {
+      "detail": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/predictions_validation.csv",
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json prediction exists",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "fc332684b9462be2de0c0083ed79f39ccfbe893a5f626387fd3510de259e4ed5",
+        "expected": "fc332684b9462be2de0c0083ed79f39ccfbe893a5f626387fd3510de259e4ed5"
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json prediction sha256",
+      "passed": true
+    },
+    {
+      "detail": [
+        "candidate_index",
+        "probability",
+        "radius_cells",
+        "scene_id",
+        "timestamp"
+      ],
+      "name": "prediction header label-free: results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "prediction rows parseable: results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "examples": [],
+        "invalid_count": 0
+      },
+      "name": "prediction probabilities bounded: results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "duplicate_count": 0,
+        "examples": []
+      },
+      "name": "prediction keys unique: results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "prediction keys in frozen validation manifest: results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 4587,
+        "expected": 4587
+      },
+      "name": "prediction row count: results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 4587,
+        "expected": 4587
+      },
+      "name": "prediction key set complete: results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 2,
+        "reported": 2
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json recomputed scene_count",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.6264239652474233,
+        "reported": 0.6264239652474233
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json recomputed scene_weighted_brier",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 9.957287810249689,
+        "reported": 9.957287810249689
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json recomputed query_weighted_nll",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.7207325049051667,
+        "reported": 0.7207325049051667
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json recomputed query_weighted_ece",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.3977443609022556,
+        "reported": 0.3977443609022556
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json recomputed false_safe_rate@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.28994985829518205,
+        "reported": 0.28994985829518205
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json recomputed high_confidence_coverage@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.7800305210377153,
+        "reported": 0.7800305210377153
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json recomputed positive_prevalence",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.28994985829518205,
+        "reported": 0.28994985829518205
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json recomputed mean_prediction",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0,
+        "reported": 0
+      },
+      "name": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json recomputed radius_monotonicity_violations",
+      "passed": true
+    },
+    {
+      "detail": "s4c_inspired_coordinate",
+      "name": "snapshot control present: s4c_inspired_coordinate",
+      "passed": true
+    },
+    {
+      "detail": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json",
+      "name": "run report exists: results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json",
+      "passed": true
+    },
+    {
+      "detail": "UNSCENES3D_PROTOCOL.md v0.2",
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json protocol",
+      "passed": true
+    },
+    {
+      "detail": 1,
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json schema_version",
+      "passed": true
+    },
+    {
+      "detail": false,
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json test_evaluated",
+      "passed": true
+    },
+    {
+      "detail": true,
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json validation_result",
+      "passed": true
+    },
+    {
+      "detail": false,
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json paper_result",
+      "passed": true
+    },
+    {
+      "detail": "Validation-only S4C-inspired coordinate-query control on the UnScenes3D adapter; this is not a reproduction of an original 3-D S4C system, location_6 remains locked, and no final cross-domain claim is made.",
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json locks location_6",
+      "passed": true
+    },
+    {
+      "detail": "d866be0b25ba6635d5ad934bac9c822c55be8034fabd8f4627803bb9efa972d5",
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json manifest hash",
+      "passed": true
+    },
+    {
+      "detail": 62,
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json validation records",
+      "passed": true
+    },
+    {
+      "detail": 1529,
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json validation queries",
+      "passed": true
+    },
+    {
+      "detail": [
+        "location_6"
+      ],
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json test lock metadata",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "ground",
+        "expected": "ground"
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json adapter.endpoint_policy",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "valid",
+        "expected": "valid"
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json adapter.start_selection",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.35,
+        "expected": 0.35
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json adapter.ground_margin_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 1.2,
+        "expected": 1.2
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json adapter.ground_bin_size_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 20.0,
+        "expected": 20.0
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json adapter.ground_lateral_limit_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.15,
+        "expected": 0.15
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json adapter.ground_quantile",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.1635511970471695,
+        "expected": 0.1635511970471695
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json metric scene_weighted_brier",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.4517579502537232,
+        "expected": 0.4517579502537232
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json metric query_weighted_nll",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.05290668986841074,
+        "expected": 0.05290668986841074
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json metric query_weighted_ece",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.11302549965541006,
+        "expected": 0.11302549965541006
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json metric false_safe_rate@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.6326575103553521,
+        "expected": 0.6326575103553521
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json metric high_confidence_coverage@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0,
+        "expected": 0
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json metric radius_monotonicity_violations",
+      "passed": true
+    },
+    {
+      "detail": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/predictions_validation.csv",
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json prediction exists",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "330fa93ff7a98d0bc73c4ac83e1a03804c900cfe8e9359dc0e74e80df853da39",
+        "expected": "330fa93ff7a98d0bc73c4ac83e1a03804c900cfe8e9359dc0e74e80df853da39"
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json prediction sha256",
+      "passed": true
+    },
+    {
+      "detail": [
+        "candidate_index",
+        "probability",
+        "radius_cells",
+        "scene_id",
+        "timestamp"
+      ],
+      "name": "prediction header label-free: results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "prediction rows parseable: results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "examples": [],
+        "invalid_count": 0
+      },
+      "name": "prediction probabilities bounded: results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "duplicate_count": 0,
+        "examples": []
+      },
+      "name": "prediction keys unique: results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "prediction keys in frozen validation manifest: results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 4587,
+        "expected": 4587
+      },
+      "name": "prediction row count: results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 4587,
+        "expected": 4587
+      },
+      "name": "prediction key set complete: results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 2,
+        "reported": 2
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json recomputed scene_count",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.16355119704716953,
+        "reported": 0.1635511970471695
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json recomputed scene_weighted_brier",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.4517579502537232,
+        "reported": 0.4517579502537232
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json recomputed query_weighted_nll",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.05290668986841074,
+        "reported": 0.05290668986841074
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json recomputed query_weighted_ece",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.11302549965541006,
+        "reported": 0.11302549965541006
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json recomputed false_safe_rate@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.6326575103553521,
+        "reported": 0.6326575103553521
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json recomputed high_confidence_coverage@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.7800305210377153,
+        "reported": 0.7800305210377153
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json recomputed positive_prevalence",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.7717580359876509,
+        "reported": 0.7717580359876509
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json recomputed mean_prediction",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0,
+        "reported": 0
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json recomputed radius_monotonicity_violations",
+      "passed": true
+    },
+    {
+      "detail": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json",
+      "name": "run report exists: results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json",
+      "passed": true
+    },
+    {
+      "detail": "UNSCENES3D_PROTOCOL.md v0.2",
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json protocol",
+      "passed": true
+    },
+    {
+      "detail": 1,
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json schema_version",
+      "passed": true
+    },
+    {
+      "detail": false,
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json test_evaluated",
+      "passed": true
+    },
+    {
+      "detail": true,
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json validation_result",
+      "passed": true
+    },
+    {
+      "detail": false,
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json paper_result",
+      "passed": true
+    },
+    {
+      "detail": "Validation-only S4C-inspired coordinate-query control on the UnScenes3D adapter; this is not a reproduction of an original 3-D S4C system, location_6 remains locked, and no final cross-domain claim is made.",
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json locks location_6",
+      "passed": true
+    },
+    {
+      "detail": "d866be0b25ba6635d5ad934bac9c822c55be8034fabd8f4627803bb9efa972d5",
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json manifest hash",
+      "passed": true
+    },
+    {
+      "detail": 62,
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json validation records",
+      "passed": true
+    },
+    {
+      "detail": 1529,
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json validation queries",
+      "passed": true
+    },
+    {
+      "detail": [
+        "location_6"
+      ],
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json test lock metadata",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "ground",
+        "expected": "ground"
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json adapter.endpoint_policy",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "valid",
+        "expected": "valid"
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json adapter.start_selection",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.35,
+        "expected": 0.35
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json adapter.ground_margin_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 1.2,
+        "expected": 1.2
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json adapter.ground_bin_size_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 20.0,
+        "expected": 20.0
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json adapter.ground_lateral_limit_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.15,
+        "expected": 0.15
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json adapter.ground_quantile",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.22308190149099033,
+        "expected": 0.22308190149099033
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json metric scene_weighted_brier",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.6465785388932568,
+        "expected": 0.6465785388932568
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json metric query_weighted_nll",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.1570124470910624,
+        "expected": 0.1570124470910624
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json metric query_weighted_ece",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.1373134328358209,
+        "expected": 0.1373134328358209
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json metric false_safe_rate@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.5112273817309788,
+        "expected": 0.5112273817309788
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json metric high_confidence_coverage@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0,
+        "expected": 0
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json metric radius_monotonicity_violations",
+      "passed": true
+    },
+    {
+      "detail": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/predictions_validation.csv",
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json prediction exists",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "7a2f046808cdee125eeaf6e5b7ae3667751336a9158d894fbcc84e3b6211f624",
+        "expected": "7a2f046808cdee125eeaf6e5b7ae3667751336a9158d894fbcc84e3b6211f624"
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json prediction sha256",
+      "passed": true
+    },
+    {
+      "detail": [
+        "candidate_index",
+        "probability",
+        "radius_cells",
+        "scene_id",
+        "timestamp"
+      ],
+      "name": "prediction header label-free: results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "prediction rows parseable: results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "examples": [],
+        "invalid_count": 0
+      },
+      "name": "prediction probabilities bounded: results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "duplicate_count": 0,
+        "examples": []
+      },
+      "name": "prediction keys unique: results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "prediction keys in frozen validation manifest: results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 4587,
+        "expected": 4587
+      },
+      "name": "prediction row count: results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 4587,
+        "expected": 4587
+      },
+      "name": "prediction key set complete: results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 2,
+        "reported": 2
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json recomputed scene_count",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.22308190149099028,
+        "reported": 0.22308190149099033
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json recomputed scene_weighted_brier",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.6465785388932568,
+        "reported": 0.6465785388932568
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json recomputed query_weighted_nll",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.1570124470910624,
+        "reported": 0.1570124470910624
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json recomputed query_weighted_ece",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.1373134328358209,
+        "reported": 0.1373134328358209
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json recomputed false_safe_rate@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.5112273817309788,
+        "reported": 0.5112273817309788
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json recomputed high_confidence_coverage@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.7800305210377153,
+        "reported": 0.7800305210377153
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json recomputed positive_prevalence",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.6906509259953418,
+        "reported": 0.6906509259953418
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json recomputed mean_prediction",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0,
+        "reported": 0
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json recomputed radius_monotonicity_violations",
+      "passed": true
+    },
+    {
+      "detail": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json",
+      "name": "run report exists: results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json",
+      "passed": true
+    },
+    {
+      "detail": "UNSCENES3D_PROTOCOL.md v0.2",
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json protocol",
+      "passed": true
+    },
+    {
+      "detail": 1,
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json schema_version",
+      "passed": true
+    },
+    {
+      "detail": false,
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json test_evaluated",
+      "passed": true
+    },
+    {
+      "detail": true,
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json validation_result",
+      "passed": true
+    },
+    {
+      "detail": false,
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json paper_result",
+      "passed": true
+    },
+    {
+      "detail": "Validation-only S4C-inspired coordinate-query control on the UnScenes3D adapter; this is not a reproduction of an original 3-D S4C system, location_6 remains locked, and no final cross-domain claim is made.",
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json locks location_6",
+      "passed": true
+    },
+    {
+      "detail": "d866be0b25ba6635d5ad934bac9c822c55be8034fabd8f4627803bb9efa972d5",
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json manifest hash",
+      "passed": true
+    },
+    {
+      "detail": 62,
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json validation records",
+      "passed": true
+    },
+    {
+      "detail": 1529,
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json validation queries",
+      "passed": true
+    },
+    {
+      "detail": [
+        "location_6"
+      ],
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json test lock metadata",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "ground",
+        "expected": "ground"
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json adapter.endpoint_policy",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "valid",
+        "expected": "valid"
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json adapter.start_selection",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.35,
+        "expected": 0.35
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json adapter.ground_margin_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 1.2,
+        "expected": 1.2
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json adapter.ground_bin_size_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 20.0,
+        "expected": 20.0
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json adapter.ground_lateral_limit_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.15,
+        "expected": 0.15
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json adapter.ground_quantile",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.2247280543133428,
+        "expected": 0.2247280543133428
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json metric scene_weighted_brier",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.6203440026278748,
+        "expected": 0.6203440026278748
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json metric query_weighted_nll",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.12330113613219895,
+        "expected": 0.12330113613219895
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json metric query_weighted_ece",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.14991023339317774,
+        "expected": 0.14991023339317774
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json metric false_safe_rate@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.48572051449749293,
+        "expected": 0.48572051449749293
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json metric high_confidence_coverage@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0,
+        "expected": 0
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json metric radius_monotonicity_violations",
+      "passed": true
+    },
+    {
+      "detail": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/predictions_validation.csv",
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json prediction exists",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "e0a5d7c7e8c5dc9dc4c3024b84667bf1b8098b2c4a93a6fac0287ec646d9f8ce",
+        "expected": "e0a5d7c7e8c5dc9dc4c3024b84667bf1b8098b2c4a93a6fac0287ec646d9f8ce"
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json prediction sha256",
+      "passed": true
+    },
+    {
+      "detail": [
+        "candidate_index",
+        "probability",
+        "radius_cells",
+        "scene_id",
+        "timestamp"
+      ],
+      "name": "prediction header label-free: results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "prediction rows parseable: results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "examples": [],
+        "invalid_count": 0
+      },
+      "name": "prediction probabilities bounded: results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "duplicate_count": 0,
+        "examples": []
+      },
+      "name": "prediction keys unique: results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "prediction keys in frozen validation manifest: results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 4587,
+        "expected": 4587
+      },
+      "name": "prediction row count: results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 4587,
+        "expected": 4587
+      },
+      "name": "prediction key set complete: results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/predictions_validation.csv",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 2,
+        "reported": 2
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json recomputed scene_count",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.22472805431334283,
+        "reported": 0.2247280543133428
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json recomputed scene_weighted_brier",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.6203440026278748,
+        "reported": 0.6203440026278748
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json recomputed query_weighted_nll",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.12330113613219895,
+        "reported": 0.12330113613219895
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json recomputed query_weighted_ece",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.14991023339317774,
+        "reported": 0.14991023339317774
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json recomputed false_safe_rate@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.48572051449749293,
+        "reported": 0.48572051449749293
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json recomputed high_confidence_coverage@0.8",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.7800305210377153,
+        "reported": 0.7800305210377153
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json recomputed positive_prevalence",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0.704719596749311,
+        "reported": 0.704719596749311
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json recomputed mean_prediction",
+      "passed": true
+    },
+    {
+      "detail": {
+        "recomputed": 0,
+        "reported": 0
+      },
+      "name": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json recomputed radius_monotonicity_violations",
+      "passed": true
+    },
+    {
+      "detail": "results/unscenes3d_ground_valid_mean_map_k32/seed20260831/run.json",
+      "name": "K=32 report exists",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.19398740673478565,
+        "expected": 0.19398740673478565
+      },
+      "name": "K=32 hidden-map Brier",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.6275015514543197,
+        "expected": 0.6275015514543197
+      },
+      "name": "K=32 event Brier",
+      "passed": true
+    },
+    {
+      "detail": 0,
+      "name": "K=32 monotonicity",
+      "passed": true
+    },
+    {
+      "detail": "results/unscenes3d_ground_valid_mean_map_k64/seed20260831/run.json",
+      "name": "K=64 report exists",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.19385307610106242,
+        "expected": 0.19385307610106242
+      },
+      "name": "K=64 hidden-map Brier",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.6275015514543197,
+        "expected": 0.6275015514543197
+      },
+      "name": "K=64 event Brier",
+      "passed": true
+    },
+    {
+      "detail": 0,
+      "name": "K=64 monotonicity",
+      "passed": true
+    },
+    {
+      "detail": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json",
+      "name": "K=128 report exists",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.19390891487761786,
+        "expected": 0.19390891487761786
+      },
+      "name": "K=128 hidden-map Brier",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.6275015514543197,
+        "expected": 0.6275015514543197
+      },
+      "name": "K=128 event Brier",
+      "passed": true
+    },
+    {
+      "detail": 0,
+      "name": "K=128 monotonicity",
+      "passed": true
+    },
+    {
+      "detail": {
+        "0": 0.87174096,
+        "1": 0.81066486,
+        "2": 0.75479295
+      },
+      "name": "radius-prior probabilities nested",
+      "passed": true
+    },
+    {
+      "detail": false,
+      "name": "radius-prior is validation-only",
+      "passed": true
+    },
+    {
+      "detail": "site/data/unscenes3d_qualitative_validation.json",
+      "name": "qualitative report exists",
+      "passed": true
+    },
+    {
+      "detail": "UNSCENES3D_PROTOCOL.md v0.2",
+      "name": "site/data/unscenes3d_qualitative_validation.json protocol",
+      "passed": true
+    },
+    {
+      "detail": 1,
+      "name": "site/data/unscenes3d_qualitative_validation.json schema_version",
+      "passed": true
+    },
+    {
+      "detail": false,
+      "name": "site/data/unscenes3d_qualitative_validation.json test_evaluated",
+      "passed": true
+    },
+    {
+      "detail": true,
+      "name": "site/data/unscenes3d_qualitative_validation.json validation_result",
+      "passed": true
+    },
+    {
+      "detail": false,
+      "name": "site/data/unscenes3d_qualitative_validation.json paper_result",
+      "passed": true
+    },
+    {
+      "detail": "Archived pre-correction qualitative diagnostic. The source checkpoint and renderer did not hard-block the complement of target_valid; this artifact is superseded pending a clean support-consistent rerun. location_6 remains locked.",
+      "name": "site/data/unscenes3d_qualitative_validation.json locks location_6",
+      "passed": true
+    },
+    {
+      "detail": "d866be0b25ba6635d5ad934bac9c822c55be8034fabd8f4627803bb9efa972d5",
+      "name": "site/data/unscenes3d_qualitative_validation.json manifest hash",
+      "passed": true
+    },
+    {
+      "detail": 62,
+      "name": "site/data/unscenes3d_qualitative_validation.json validation records",
+      "passed": true
+    },
+    {
+      "detail": 1529,
+      "name": "site/data/unscenes3d_qualitative_validation.json validation queries",
+      "passed": true
+    },
+    {
+      "detail": [
+        "location_6"
+      ],
+      "name": "site/data/unscenes3d_qualitative_validation.json test lock metadata",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "ground",
+        "expected": "ground"
+      },
+      "name": "qualitative adapter.endpoint_policy",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "valid",
+        "expected": "valid"
+      },
+      "name": "qualitative adapter.start_selection",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.35,
+        "expected": 0.35
+      },
+      "name": "qualitative adapter.ground_margin_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 1.2,
+        "expected": 1.2
+      },
+      "name": "qualitative adapter.ground_bin_size_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 20.0,
+        "expected": 20.0
+      },
+      "name": "qualitative adapter.ground_lateral_limit_m",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": 0.15,
+        "expected": 0.15
+      },
+      "name": "qualitative adapter.ground_quantile",
+      "passed": true
+    },
+    {
+      "detail": "results/unscenes3d_ground_valid_f16/seed20260831/best.pt",
+      "name": "qualitative checkpoint exists",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actual": "77c1165680f365d8125c3016a5d142cc4e3ff52aeb927c3bbfdfca83d3877cff",
+        "expected": "77c1165680f365d8125c3016a5d142cc4e3ff52aeb927c3bbfdfca83d3877cff"
+      },
+      "name": "qualitative checkpoint sha256",
+      "passed": true
+    },
+    {
+      "detail": "results/unscenes3d_qualitative_validation/qualitative_positive.png",
+      "name": "qualitative positive image exists",
+      "passed": true
+    },
+    {
+      "detail": [
+        1800,
+        1280
+      ],
+      "name": "qualitative positive PNG dimensions",
+      "passed": true
+    },
+    {
+      "detail": {
+        "prediction": [
+          true,
+          true,
+          true
+        ],
+        "target": [
+          true,
+          true,
+          true
+        ]
+      },
+      "name": "qualitative positive is actually true-positive",
+      "passed": true
+    },
+    {
+      "detail": "results/unscenes3d_qualitative_validation/qualitative_failure.png",
+      "name": "qualitative failure image exists",
+      "passed": true
+    },
+    {
+      "detail": [
+        1800,
+        1280
+      ],
+      "name": "qualitative failure PNG dimensions",
+      "passed": true
+    },
+    {
+      "detail": {
+        "prediction": [
+          true,
+          true,
+          true
+        ],
+        "target": [
+          false,
+          false,
+          false
+        ]
+      },
+      "name": "qualitative failure is actually false-safe",
+      "passed": true
+    },
+    {
+      "detail": {
+        "failure_asset": "assets/unscenes3d_qualitative_failure.png",
+        "positive_asset": "assets/unscenes3d_qualitative_positive.png",
+        "report": "site/data/unscenes3d_qualitative_validation.json",
+        "superseded": true
+      },
+      "name": "snapshot qualitative paths",
+      "passed": true
+    },
+    {
+      "detail": {
+        "checked": 43,
+        "missing": []
+      },
+      "name": "site local href/src links",
+      "passed": true
+    },
+    {
+      "detail": "snapshot link",
+      "name": "site contains UnScenes3D snapshot link",
+      "passed": true
+    },
+    {
+      "detail": "claim-boundary wording",
+      "name": "site explicitly labels rejected observed-free result",
+      "passed": true
+    },
+    {
+      "detail": "calibration figures",
+      "name": "site contains UnScenes3D calibration assets",
+      "passed": true
+    },
+    {
+      "detail": "audit/replay links",
+      "name": "site exposes replay/audit evidence",
+      "passed": true
+    },
+    {
+      "detail": "site/data/unscenes3d_controls_audit.json",
+      "name": "published evidence exists: site/data/unscenes3d_controls_audit.json",
+      "passed": true
+    },
+    {
+      "detail": {
+        "published": "site/data/unscenes3d_controls_audit.json",
+        "source": "results/unscenes3d_controls_audit/run.json"
+      },
+      "name": "published evidence matches result: site/data/unscenes3d_controls_audit.json",
+      "passed": true
+    },
+    {
+      "detail": "site/data/unscenes3d_manifest_replay_audit.json",
+      "name": "published evidence exists: site/data/unscenes3d_manifest_replay_audit.json",
+      "passed": true
+    },
+    {
+      "detail": {
+        "published": "site/data/unscenes3d_manifest_replay_audit.json",
+        "source": "results/unscenes3d_manifest_replay_audit/report.json"
+      },
+      "name": "published evidence matches result: site/data/unscenes3d_manifest_replay_audit.json",
+      "passed": true
+    },
+    {
+      "detail": "site/data/unscenes3d_replay_audit.json",
+      "name": "published evidence exists: site/data/unscenes3d_replay_audit.json",
+      "passed": true
+    },
+    {
+      "detail": {
+        "published": "site/data/unscenes3d_replay_audit.json",
+        "source": "results/unscenes3d_replay_audit/report.json"
+      },
+      "name": "published evidence matches result: site/data/unscenes3d_replay_audit.json",
+      "passed": true
+    },
+    {
+      "detail": "results/unscenes3d_replay_audit/report.json",
+      "name": "GPU replay audit exists",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "GPU replay audit passed",
+      "passed": true
+    },
+    {
+      "detail": "site/assets/unscenes3d_qualitative_positive.png",
+      "name": "tracked site artifact exists: site/assets/unscenes3d_qualitative_positive.png",
+      "passed": true
+    },
+    {
+      "detail": "site/assets/unscenes3d_qualitative_failure.png",
+      "name": "tracked site artifact exists: site/assets/unscenes3d_qualitative_failure.png",
+      "passed": true
+    },
+    {
+      "detail": "site/assets/unscenes3d_calibration_reliability.svg",
+      "name": "tracked site artifact exists: site/assets/unscenes3d_calibration_reliability.svg",
+      "passed": true
+    },
+    {
+      "detail": "site/assets/unscenes3d_calibration_false_safe.svg",
+      "name": "tracked site artifact exists: site/assets/unscenes3d_calibration_false_safe.svg",
+      "passed": true
+    },
+    {
+      "detail": "site/data/unscenes3d_qualitative_validation.json",
+      "name": "tracked site artifact exists: site/data/unscenes3d_qualitative_validation.json",
+      "passed": true
+    },
+    {
+      "detail": "site/data/unscenes3d_calibration_validation.json",
+      "name": "tracked site artifact exists: site/data/unscenes3d_calibration_validation.json",
+      "passed": true
+    },
+    {
+      "detail": "site/data/unscenes3d_controls_audit.json",
+      "name": "tracked site artifact exists: site/data/unscenes3d_controls_audit.json",
+      "passed": true
+    },
+    {
+      "detail": "site/data/unscenes3d_manifest_replay_audit.json",
+      "name": "tracked site artifact exists: site/data/unscenes3d_manifest_replay_audit.json",
+      "passed": true
+    },
+    {
+      "detail": "site/data/unscenes3d_replay_audit.json",
+      "name": "tracked site artifact exists: site/data/unscenes3d_replay_audit.json",
+      "passed": true
+    },
+    {
+      "detail": "Historical mixed-contract validation calibration snapshot. The mean-map method is superseded by the target_valid support audit; radius-prior and coordinate-query methods are unaffected. No location_6 files or test labels are used.",
+      "name": "calibration snapshot validation-only",
+      "passed": true
+    },
+    {
+      "detail": [
+        {
+          "event_row_count": 4587,
+          "false_safe_curve": [
+            {
+              "coverage": 0.9999999999999999,
+              "coverage_sd": 0.0,
+              "false_safe_rate": 0.21996947896228472,
+              "false_safe_rate_sd": 0.0,
+              "safe_precision": 0.7800305210377153,
+              "safe_precision_sd": 0.0,
+              "threshold": 0.5
+            },
+            {
+              "coverage": 0.9999999999999999,
+              "coverage_sd": 0.0,
+              "false_safe_rate": 0.21996947896228472,
+              "false_safe_rate_sd": 0.0,
+              "safe_precision": 0.7800305210377153,
+              "safe_precision_sd": 0.0,
+              "threshold": 0.6
+            },
+            {
+              "coverage": 0.9999999999999999,
+              "coverage_sd": 0.0,
+              "false_safe_rate": 0.21996947896228472,
+              "false_safe_rate_sd": 0.0,
+              "safe_precision": 0.7800305210377153,
+              "safe_precision_sd": 0.0,
+              "threshold": 0.7
+            },
+            {
+              "coverage": 0.6666666666666665,
+              "coverage_sd": 0.0,
+              "false_safe_rate": 0.1935905820797907,
+              "false_safe_rate_sd": 0.0,
+              "safe_precision": 0.8064094179202094,
+              "safe_precision_sd": 0.0,
+              "threshold": 0.8
+            },
+            {
+              "coverage": 0.0,
+              "coverage_sd": 0.0,
+              "false_safe_rate": null,
+              "false_safe_rate_sd": null,
+              "safe_precision": null,
+              "safe_precision_sd": null,
+              "threshold": 0.9
+            },
+            {
+              "coverage": 0.0,
+              "coverage_sd": 0.0,
+              "false_safe_rate": null,
+              "false_safe_rate_sd": null,
+              "safe_precision": null,
+              "safe_precision_sd": null,
+              "threshold": 0.95
+            }
+          ],
+          "id": "radius_prior",
+          "label": "Train-fitted radius prior",
+          "metrics_mean_sd": {
+            "brier": {
+              "mean": 0.23267774998483645,
+              "sd": 0.0,
+              "values": [
+                0.23267774998483645,
+                0.23267774998483645,
+                0.23267774998483645
+              ]
+            },
+            "coverage@0.8": {
+              "mean": 0.6666666666666665,
+              "sd": 0.0,
+              "values": [
+                0.6666666666666665,
+                0.6666666666666665,
+                0.6666666666666665
+              ]
+            },
+            "ece": {
+              "mean": 0.03236906577859795,
+              "sd": 0.0,
+              "values": [
+                0.03236906577859795,
+                0.03236906577859795,
+                0.03236906577859795
+              ]
+            },
+            "false_safe_rate@0.8": {
+              "mean": 0.1935905820797907,
+              "sd": 0.0,
+              "values": [
+                0.1935905820797907,
+                0.1935905820797907,
+                0.1935905820797907
+              ]
+            },
+            "nll": {
+              "mean": 0.5250909741773225,
+              "sd": 0.0,
+              "values": [
+                0.5250909741773225,
+                0.5250909741773225,
+                0.5250909741773225
+              ]
+            }
+          },
+          "prediction_paths": [],
+          "prior_probabilities": {
+            "0": 0.8717409557691302,
+            "1": 0.8106648580464519,
+            "2": 0.7547929466333572
+          },
+          "reliability": [
+            {
+              "accuracy": null,
+              "accuracy_sd": null,
+              "bin": 0,
+              "confidence": null,
+              "confidence_sd": null,
+              "lower": 0.0,
+              "upper": 0.1,
+              "weight": 0.0
+            },
+            {
+              "accuracy": null,
+              "accuracy_sd": null,
+              "bin": 1,
+              "confidence": null,
+              "confidence_sd": null,
+              "lower": 0.1,
+              "upper": 0.2,
+              "weight": 0.0
+            },
+            {
+              "accuracy": null,
+              "accuracy_sd": null,
+              "bin": 2,
+              "confidence": null,
+              "confidence_sd": null,
+              "lower": 0.2,
+              "upper": 0.3,
+              "weight": 0.0
+            },
+            {
+              "accuracy": null,
+              "accuracy_sd": null,
+              "bin": 3,
+              "confidence": null,
+              "confidence_sd": null,
+              "lower": 0.3,
+              "upper": 0.4,
+              "weight": 0.0
+            },
+            {
+              "accuracy": null,
+              "accuracy_sd": null,
+              "bin": 4,
+              "confidence": null,
+              "confidence_sd": null,
+              "lower": 0.4,
+              "upper": 0.5,
+              "weight": 0.0
+            },
+            {
+              "accuracy": null,
+              "accuracy_sd": null,
+              "bin": 5,
+              "confidence": null,
+              "confidence_sd": null,
+              "lower": 0.5,
+              "upper": 0.6,
+              "weight": 0.0
+            },
+            {
+              "accuracy": null,
+              "accuracy_sd": null,
+              "bin": 6,
+              "confidence": null,
+              "confidence_sd": null,
+              "lower": 0.6,
+              "upper": 0.7,
+              "weight": 0.0
+            },
+            {
+              "accuracy": 0.7272727272727272,
+              "accuracy_sd": 1.3597399555105182e-16,
+              "bin": 7,
+              "confidence": 0.7547929466333573,
+              "confidence_sd": 0.0,
+              "lower": 0.7,
+              "upper": 0.8,
+              "weight": 0.33333333333333326
+            },
+            {
+              "accuracy": 0.8064094179202094,
+              "accuracy_sd": 0.0,
+              "bin": 8,
+              "confidence": 0.8412029069077912,
+              "confidence_sd": 1.3597399555105182e-16,
+              "lower": 0.8,
+              "upper": 0.9,
+              "weight": 0.6666666666666665
+            },
+            {
+              "accuracy": null,
+              "accuracy_sd": null,
+              "bin": 9,
+              "confidence": null,
+              "confidence_sd": null,
+              "lower": 0.9,
+              "upper": 1.0,
+              "weight": 0.0
+            }
+          ],
+          "scene_count": 2,
+          "seed_metrics": [
+            {
+              "brier": 0.23267774998483645,
+              "coverage@0.8": 0.6666666666666665,
+              "ece": 0.03236906577859795,
+              "false_safe_rate@0.8": 0.1935905820797907,
+              "nll": 0.5250909741773225
+            },
+            {
+              "brier": 0.23267774998483645,
+              "coverage@0.8": 0.6666666666666665,
+              "ece": 0.03236906577859795,
+              "false_safe_rate@0.8": 0.1935905820797907,
+              "nll": 0.5250909741773225
+            },
+            {
+              "brier": 0.23267774998483645,
+              "coverage@0.8": 0.6666666666666665,
+              "ece": 0.03236906577859795,
+              "false_safe_rate@0.8": 0.1935905820797907,
+              "nll": 0.5250909741773225
+            }
+          ],
+          "superseded": false
+        },
+        {
+          "event_row_count": 4587,
+          "false_safe_curve": [
+            {
+              "coverage": 0.2907492188067727,
+              "coverage_sd": 0.0008810664670432491,
+              "false_safe_rate": 0.3993964757752708,
+              "false_safe_rate_sd": 0.0018187080012156264,
+              "safe_precision": 0.6006035242247294,
+              "safe_precision_sd": 0.0018187080012156518,
+              "threshold": 0.5
+            },
+            {
+              "coverage": 0.2907492188067727,
+              "coverage_sd": 0.0008810664670432491,
+              "false_safe_rate": 0.3993964757752708,
+              "false_safe_rate_sd": 0.0018187080012156264,
+              "safe_precision": 0.6006035242247294,
+              "safe_precision_sd": 0.0018187080012156518,
+              "threshold": 0.6
+            },
+            {
+              "coverage": 0.2907492188067727,
+              "coverage_sd": 0.0008810664670432491,
+              "false_safe_rate": 0.3993964757752708,
+              "false_safe_rate_sd": 0.0018187080012156264,
+              "safe_precision": 0.6006035242247294,
+              "safe_precision_sd": 0.0018187080012156518,
+              "threshold": 0.7
+            },
+            {
+              "coverage": 0.2907492188067727,
+              "coverage_sd": 0.0008810664670432491,
+              "false_safe_rate": 0.3993964757752708,
+              "false_safe_rate_sd": 0.0018187080012156264,
+              "safe_precision": 0.6006035242247294,
+              "safe_precision_sd": 0.0018187080012156518,
+              "threshold": 0.8
+            },
+            {
+              "coverage": 0.2907492188067727,
+              "coverage_sd": 0.0008810664670432491,
+              "false_safe_rate": 0.3993964757752708,
+              "false_safe_rate_sd": 0.0018187080012156264,
+              "safe_precision": 0.6006035242247294,
+              "safe_precision_sd": 0.0018187080012156518,
+              "threshold": 0.9
+            },
+            {
+              "coverage": 0.2907492188067727,
+              "coverage_sd": 0.0008810664670432491,
+              "false_safe_rate": 0.3993964757752708,
+              "false_safe_rate_sd": 0.0018187080012156264,
+              "safe_precision": 0.6006035242247294,
+              "safe_precision_sd": 0.0018187080012156518,
+              "threshold": 0.95
+            }
+          ],
+          "id": "mean_map",
+          "label": "Posterior mean-map threshold",
+          "metrics_mean_sd": {
+            "brier": {
+              "mean": 0.6277410150558523,
+              "sd": 0.0014516709354624323,
+              "values": [
+                0.6275015514543197,
+                0.629297528465814,
+                0.6264239652474232
+              ]
+            },
+            "coverage@0.8": {
+              "mean": 0.2907492188067727,
+              "sd": 0.0008810664670432491,
+              "values": [
+                0.290603880531938,
+                0.29169391759319807,
+                0.28994985829518194
+              ]
+            },
+            "ece": {
+              "mean": 0.7215318654167572,
+              "sd": 0.0008810664670432491,
+              "values": [
+                0.7213865271419225,
+                0.7224765642031826,
+                0.7207325049051665
+              ]
+            },
+            "false_safe_rate@0.8": {
+              "mean": 0.3993964757752708,
+              "sd": 0.0018187080012156264,
+              "values": [
+                0.399099774943736,
+                0.40134529147982073,
+                0.39774436090225573
+              ]
+            },
+            "nll": {
+              "mean": 9.968331383037805,
+              "sd": 0.012172382196612215,
+              "values": [
+                9.966323460712692,
+                9.981382878151035,
+                9.957287810249687
+              ]
+            }
+          },
+          "prediction_paths": [
+            "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/predictions_validation.csv",
+            "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/predictions_validation.csv",
+            "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/predictions_validation.csv"
+          ],
+          "prior_probabilities": null,
+          "reliability": [
+            {
+              "accuracy": 0.8535869439979219,
+              "accuracy_sd": 0.001060685835733479,
+              "bin": 0,
+              "confidence": 0.0,
+              "confidence_sd": 0.0,
+              "lower": 0.0,
+              "upper": 0.1,
+              "weight": 0.709250781193227
+            },
+            {
+              "accuracy": null,
+              "accuracy_sd": null,
+              "bin": 1,
+              "confidence": null,
+              "confidence_sd": null,
+              "lower": 0.1,
+              "upper": 0.2,
+              "weight": 0.0
+            },
+            {
+              "accuracy": null,
+              "accuracy_sd": null,
+              "bin": 2,
+              "confidence": null,
+              "confidence_sd": null,
+              "lower": 0.2,
+              "upper": 0.3,
+              "weight": 0.0
+            },
+            {
+              "accuracy": null,
+              "accuracy_sd": null,
+              "bin": 3,
+              "confidence": null,
+              "confidence_sd": null,
+              "lower": 0.3,
+              "upper": 0.4,
+              "weight": 0.0
+            },
+            {
+              "accuracy": null,
+              "accuracy_sd": null,
+              "bin": 4,
+              "confidence": null,
+              "confidence_sd": null,
+              "lower": 0.4,
+              "upper": 0.5,
+              "weight": 0.0
+            },
+            {
+              "accuracy": null,
+              "accuracy_sd": null,
+              "bin": 5,
+              "confidence": null,
+              "confidence_sd": null,
+              "lower": 0.5,
+              "upper": 0.6,
+              "weight": 0.0
+            },
+            {
+              "accuracy": null,
+              "accuracy_sd": null,
+              "bin": 6,
+              "confidence": null,
+              "confidence_sd": null,
+              "lower": 0.6,
+              "upper": 0.7,
+              "weight": 0.0
+            },
+            {
+              "accuracy": null,
+              "accuracy_sd": null,
+              "bin": 7,
+              "confidence": null,
+              "confidence_sd": null,
+              "lower": 0.7,
+              "upper": 0.8,
+              "weight": 0.0
+            },
+            {
+              "accuracy": null,
+              "accuracy_sd": null,
+              "bin": 8,
+              "confidence": null,
+              "confidence_sd": null,
+              "lower": 0.8,
+              "upper": 0.9,
+              "weight": 0.0
+            },
+            {
+              "accuracy": 0.6006035242247294,
+              "accuracy_sd": 0.0018187080012156518,
+              "bin": 9,
+              "confidence": 1.0,
+              "confidence_sd": 0.0,
+              "lower": 0.9,
+              "upper": 1.0,
+              "weight": 0.2907492188067727
+            }
+          ],
+          "scene_count": 2,
+          "seed_metrics": [
+            {
+              "brier": 0.6275015514543197,
+              "coverage@0.8": 0.290603880531938,
+              "ece": 0.7213865271419225,
+              "false_safe_rate@0.8": 0.399099774943736,
+              "nll": 9.966323460712692
+            },
+            {
+              "brier": 0.629297528465814,
+              "coverage@0.8": 0.29169391759319807,
+              "ece": 0.7224765642031826,
+              "false_safe_rate@0.8": 0.40134529147982073,
+              "nll": 9.981382878151035
+            },
+            {
+              "brier": 0.6264239652474232,
+              "coverage@0.8": 0.28994985829518194,
+              "ece": 0.7207325049051665,
+              "false_safe_rate@0.8": 0.39774436090225573,
+              "nll": 9.957287810249687
+            }
+          ],
+          "superseded": true
+        },
+        {
+          "event_row_count": 4587,
+          "false_safe_curve": [
+            {
+              "coverage": 0.801903931400334,
+              "coverage_sd": 0.0658618156542517,
+              "false_safe_rate": 0.16710820214673625,
+              "false_safe_rate_sd": 0.017872062899083368,
+              "safe_precision": 0.832891797853264,
+              "safe_precision_sd": 0.017872062899083295,
+              "threshold": 0.5
+            },
+            {
+              "coverage": 0.7452220042148098,
+              "coverage_sd": 0.07470542842492957,
+              "false_safe_rate": 0.15698006702451614,
+              "false_safe_rate_sd": 0.018588116933172187,
+              "safe_precision": 0.8430199329754839,
+              "safe_precision_sd": 0.0185881169331721,
+              "threshold": 0.6
+            },
+            {
+              "coverage": 0.6654312913305718,
+              "coverage_sd": 0.07928439346485472,
+              "false_safe_rate": 0.14643086255969726,
+              "false_safe_rate_sd": 0.017531492847780016,
+              "safe_precision": 0.8535691374403026,
+              "safe_precision_sd": 0.01753149284778004,
+              "threshold": 0.7
+            },
+            {
+              "coverage": 0.5432018021946078,
+              "coverage_sd": 0.07851364760932866,
+              "false_safe_rate": 0.13341638862813623,
+              "false_safe_rate_sd": 0.018748629573757943,
+              "safe_precision": 0.8665836113718637,
+              "safe_precision_sd": 0.018748629573757874,
+              "threshold": 0.8
+            },
+            {
+              "coverage": 0.3363127679674442,
+              "coverage_sd": 0.07852666128067014,
+              "false_safe_rate": 0.12624961352910638,
+              "false_safe_rate_sd": 0.02317593107492563,
+              "safe_precision": 0.8737503864708936,
+              "safe_precision_sd": 0.02317593107492562,
+              "threshold": 0.9
+            },
+            {
+              "coverage": 0.18530630041421403,
+              "coverage_sd": 0.07074365720993661,
+              "false_safe_rate": 0.11731527286926198,
+              "false_safe_rate_sd": 0.014143980669796991,
+              "safe_precision": 0.8826847271307381,
+              "safe_precision_sd": 0.014143980669796946,
+              "threshold": 0.95
+            }
+          ],
+          "id": "s4c_coordinate",
+          "label": "S4C-inspired coordinate query",
+          "metrics_mean_sd": {
+            "brier": {
+              "mean": 0.20378705095050087,
+              "sd": 0.0348549911673537,
+              "values": [
+                0.1635511970471695,
+                0.2230819014909903,
+                0.2247280543133428
+              ]
+            },
+            "coverage@0.8": {
+              "mean": 0.5432018021946078,
+              "sd": 0.07851364760932866,
+              "values": [
+                0.632657510355352,
+                0.5112273817309787,
+                0.4857205144974928
+              ]
+            },
+            "ece": {
+              "mean": 0.11107342436389069,
+              "sd": 0.0531191102433205,
+              "values": [
+                0.05290668986841075,
+                0.15701244709106235,
+                0.12330113613219897
+              ]
+            },
+            "false_safe_rate@0.8": {
+              "mean": 0.13341638862813623,
+              "sd": 0.018748629573757943,
+              "values": [
+                0.11302549965541007,
+                0.1373134328358209,
+                0.14991023339317777
+              ]
+            },
+            "nll": {
+              "mean": 0.572893497258285,
+              "sd": 0.10572335732625833,
+              "values": [
+                0.4517579502537232,
+                0.6465785388932568,
+                0.6203440026278748
+              ]
+            }
+          },
+          "prediction_paths": [
+            "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/predictions_validation.csv",
+            "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/predictions_validation.csv",
+            "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/predictions_validation.csv"
+          ],
+          "prior_probabilities": null,
+          "reliability": [
+            {
+              "accuracy": 0.37711493977543276,
+              "accuracy_sd": 0.2432732405551355,
+              "bin": 0,
+              "confidence": 0.043862215796951785,
+              "confidence_sd": 0.010994615580293833,
+              "lower": 0.0,
+              "upper": 0.1,
+              "weight": 0.045200203473584756
+            },
+            {
+              "accuracy": 0.5126562574505658,
+              "accuracy_sd": 0.23475332711785976,
+              "bin": 1,
+              "confidence": 0.15015580738192283,
+              "confidence_sd": 0.0006074875706453941,
+              "lower": 0.1,
+              "upper": 0.2,
+              "weight": 0.03553520819707869
+            },
+            {
+              "accuracy": 0.5376011403893788,
+              "accuracy_sd": 0.2248048205884893,
+              "bin": 2,
+              "confidence": 0.25042292716691616,
+              "confidence_sd": 0.0031379747960006907,
+              "lower": 0.2,
+              "upper": 0.3,
+              "weight": 0.03320979579972385
+            },
+            {
+              "accuracy": 0.6055475995635571,
+              "accuracy_sd": 0.12040345537900665,
+              "bin": 3,
+              "confidence": 0.3500476112349085,
+              "confidence_sd": 0.003493194373351557,
+              "lower": 0.3,
+              "upper": 0.4,
+              "weight": 0.039677349029867005
+            },
+            {
+              "accuracy": 0.6347571979871236,
+              "accuracy_sd": 0.08223282383207652,
+              "bin": 4,
+              "confidence": 0.4543514555954539,
+              "confidence_sd": 0.000854344851447217,
+              "lower": 0.4,
+              "upper": 0.5,
+              "weight": 0.04447351209941137
+            },
+            {
+              "accuracy": 0.6930096318984417,
+              "accuracy_sd": 0.03425079700908495,
+              "bin": 5,
+              "confidence": 0.551455524469621,
+              "confidence_sd": 0.0031330473367635996,
+              "lower": 0.5,
+              "upper": 0.6,
+              "weight": 0.056681927185524304
+            },
+            {
+              "accuracy": 0.7541028463630307,
+              "accuracy_sd": 0.025482623706476786,
+              "bin": 6,
+              "confidence": 0.6544032420578324,
+              "confidence_sd": 0.001500652576926619,
+              "lower": 0.6,
+              "upper": 0.7,
+              "weight": 0.07979071288423804
+            },
+            {
+              "accuracy": 0.7926388993497526,
+              "accuracy_sd": 0.011536880680779295,
+              "bin": 7,
+              "confidence": 0.754187524451626,
+              "confidence_sd": 0.0007169982067386899,
+              "lower": 0.7,
+              "upper": 0.8,
+              "weight": 0.12222948913596393
+            },
+            {
+              "accuracy": 0.8504116394465031,
+              "accuracy_sd": 0.02305278507416923,
+              "bin": 8,
+              "confidence": 0.8546114358925859,
+              "confidence_sd": 0.0009296813738302249,
+              "lower": 0.8,
+              "upper": 0.9,
+              "weight": 0.20688903422716368
+            },
+            {
+              "accuracy": 0.8737503864708936,
+              "accuracy_sd": 0.02317593107492562,
+              "bin": 9,
+              "confidence": 0.9511969951055894,
+              "confidence_sd": 0.00726959894526357,
+              "lower": 0.9,
+              "upper": 1.0,
+              "weight": 0.3363127679674442
+            }
+          ],
+          "scene_count": 2,
+          "seed_metrics": [
+            {
+              "brier": 0.1635511970471695,
+              "coverage@0.8": 0.632657510355352,
+              "ece": 0.05290668986841075,
+              "false_safe_rate@0.8": 0.11302549965541007,
+              "nll": 0.4517579502537232
+            },
+            {
+              "brier": 0.2230819014909903,
+              "coverage@0.8": 0.5112273817309787,
+              "ece": 0.15701244709106235,
+              "false_safe_rate@0.8": 0.1373134328358209,
+              "nll": 0.6465785388932568
+            },
+            {
+              "brier": 0.2247280543133428,
+              "coverage@0.8": 0.4857205144974928,
+              "ece": 0.12330113613219897,
+              "false_safe_rate@0.8": 0.14991023339317777,
+              "nll": 0.6203440026278748
+            }
+          ],
+          "superseded": false
+        }
+      ],
+      "name": "calibration snapshot row count",
+      "passed": true
+    },
+    {
+      "detail": [
+        "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/predictions_validation.csv",
+        "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/predictions_validation.csv",
+        "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/predictions_validation.csv",
+        "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/predictions_validation.csv",
+        "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/predictions_validation.csv",
+        "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/predictions_validation.csv"
+      ],
+      "name": "calibration published paths are portable",
+      "passed": true
+    }
+  ],
+  "failures": [],
+  "kind": "unscenes3d_controls_audit",
+  "manifest": {
+    "path": "results/unscenes3d_contract_manifest_ground_valid/manifest.json",
+    "sha256": "d866be0b25ba6635d5ad934bac9c822c55be8034fabd8f4627803bb9efa972d5",
+    "validation_queries": 1529,
+    "validation_records": 62
+  },
+  "passed": true,
+  "protocol_version": "UNSCENES3D_PROTOCOL.md v0.2",
+  "schema_version": 1,
+  "test_evaluated": false,
+  "validation_only": true,
+  "warnings": [
+    "legacy protocol metadata in results/unscenes3d_ground_valid_f16/seed20260831/run.json: UNSCENES3D_PROTOCOL.md v0.1",
+    "legacy protocol metadata in results/unscenes3d_ground_valid_f16/seed20260901/run.json: UNSCENES3D_PROTOCOL.md v0.1",
+    "legacy protocol metadata in results/unscenes3d_ground_valid_f16/seed20260902/run.json: UNSCENES3D_PROTOCOL.md v0.1"
+  ]
+}

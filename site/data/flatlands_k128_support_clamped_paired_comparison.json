@@ -1,0 +1,1960 @@
+{
+  "schema_version": 1,
+  "kind": "flatlands_k128_paired_validation_comparison",
+  "validation_only": true,
+  "paper_result": false,
+  "test_evaluated": false,
+  "posthoc_checkpoint_evaluation": false,
+  "retraining_required": false,
+  "clean_support_training": true,
+  "protocol": {
+    "split": "FlatLands provenance.original_split",
+    "official_archive_split_used": false,
+    "radii_cells": [
+      0,
+      10,
+      20
+    ],
+    "weighting": "equal scene, then equal event within scene",
+    "bootstrap": "paired cluster resampling of (source_dataset, scene_id)",
+    "bootstrap_samples": 2000,
+    "test_lock": "No test labels read; physical test remains locked",
+    "delta_sign": "independent minus correlated (positive means independent is worse for lower-is-better metrics)",
+    "support_policy": "valid-support-clean-training"
+  },
+  "benchmark": {
+    "selection_sha256": "4e7ae4c992cf943ab81618e3826c4748fcaaa97c3c4d7cb187518ee3fe6a9409",
+    "queries_sha256": "33e7f8a0343269b0dde47b428b3be622c80effdb0f80ae34b352ca282018d60d",
+    "prediction_rows_per_seed": 4224,
+    "endpoint_groups_per_seed": 1408,
+    "seed_count": 3
+  },
+  "source_audits": {
+    "correlated": {
+      "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/audit.json",
+      "sha256": "2f38b4cad334b6247dc34eafea3fd447235632ae601219754e89230047bb4896"
+    },
+    "independent": {
+      "path": "results/p1_flatlands_independent_k128_support_clamped_v1/audit.json",
+      "sha256": "7e9c29457d4fb7221cf8141905b6605d3d1594a1f53a207ce06807d5ea5099eb"
+    }
+  },
+  "seeds": [
+    {
+      "seed": 20260831,
+      "correlated_prediction_sha256": "50c94f29c7461988ff4467cfca9d9ae5e604e4543ad60604d82337d6dc378a0d",
+      "independent_prediction_sha256": "e185ed3f06d3a3eaedac1be52426b4fa204f77064cbaf6138bb77e439f5a1759",
+      "source_runs": {
+        "correlated": {
+          "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260831_conpath/run.json",
+          "sha256": "3395c4e85bd8fffc11cba0418af61bf898f6ac662eecbe06cd1f0ba31d78fdd3"
+        },
+        "independent": {
+          "path": "results/p1_flatlands_independent_k128_support_clamped_v1/seed20260831_independent/run.json",
+          "sha256": "72d2c5a42a6943cc386926c9b3c89104be8683a06e1c4c5dd15de7bed489114d"
+        }
+      },
+      "strata": {
+        "overall": {
+          "scene_count": 142,
+          "event_count": 4224,
+          "bootstrap_samples": 2000,
+          "bootstrap_seed": 20260903,
+          "correlated_scene_weighted": {
+            "brier": 0.0594797966406785,
+            "nll": 0.30391930416135055,
+            "ece": 0.04942857493605277,
+            "false_safe_rate@0.8": 0.037204682507782444,
+            "high_confidence_safe_coverage@0.8": 0.3410483602592136
+          },
+          "independent_scene_weighted": {
+            "brier": 0.0986582917303797,
+            "nll": 0.7395806270429846,
+            "ece": 0.08359542265034928,
+            "false_safe_rate@0.8": 0.06106708972494845,
+            "high_confidence_safe_coverage@0.8": 0.3571660607989261
+          },
+          "delta": {
+            "brier": {
+              "independent_minus_correlated": 0.0391784950897012,
+              "bootstrap_95": [
+                0.024156064108949174,
+                0.05479859067270524
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "nll": {
+              "independent_minus_correlated": 0.435661322881634,
+              "bootstrap_95": [
+                0.26970267850511864,
+                0.6189099610384823
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "ece": {
+              "independent_minus_correlated": 0.034166847714296504,
+              "bootstrap_95": [
+                0.018229184072537704,
+                0.0507581534844152
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "false_safe_rate@0.8": {
+              "independent_minus_correlated": 0.02386240721716601,
+              "bootstrap_95": [
+                0.0013756097412883446,
+                0.050460812204693596
+              ],
+              "bootstrap_probability_positive": 0.9835
+            },
+            "high_confidence_safe_coverage@0.8": {
+              "independent_minus_correlated": 0.01611770053971251,
+              "bootstrap_95": [
+                0.00030378353740831697,
+                0.032512277449185924
+              ],
+              "bootstrap_probability_positive": 0.9775
+            }
+          }
+        },
+        "radius_0": {
+          "scene_count": 142,
+          "event_count": 1408,
+          "bootstrap_samples": 2000,
+          "bootstrap_seed": 20260904,
+          "correlated_scene_weighted": {
+            "brier": 0.07171655278887648,
+            "nll": 0.5437398166483621,
+            "ece": 0.0705362100881749,
+            "false_safe_rate@0.8": 0.021212228026547746,
+            "high_confidence_safe_coverage@0.8": 0.7862068958987155
+          },
+          "independent_scene_weighted": {
+            "brier": 0.06576574944289494,
+            "nll": 0.2963127607811576,
+            "ece": 0.04223334685609481,
+            "false_safe_rate@0.8": 0.0468719768031426,
+            "high_confidence_safe_coverage@0.8": 0.8736657839476377
+          },
+          "delta": {
+            "brier": {
+              "independent_minus_correlated": -0.00595080334598154,
+              "bootstrap_95": [
+                -0.03496256617518606,
+                0.02159228697965674
+              ],
+              "bootstrap_probability_positive": 0.353
+            },
+            "nll": {
+              "independent_minus_correlated": -0.24742705586720454,
+              "bootstrap_95": [
+                -0.5721471640565216,
+                0.003825184004808281
+              ],
+              "bootstrap_probability_positive": 0.0295
+            },
+            "ece": {
+              "independent_minus_correlated": -0.02830286323208009,
+              "bootstrap_95": [
+                -0.05933340063755815,
+                0.011437134886678732
+              ],
+              "bootstrap_probability_positive": 0.1035
+            },
+            "false_safe_rate@0.8": {
+              "independent_minus_correlated": 0.02565974877659485,
+              "bootstrap_95": [
+                0.004474027625153092,
+                0.05178793534081568
+              ],
+              "bootstrap_probability_positive": 0.997
+            },
+            "high_confidence_safe_coverage@0.8": {
+              "independent_minus_correlated": 0.08745888804892221,
+              "bootstrap_95": [
+                0.055064756043646974,
+                0.12124337314865144
+              ],
+              "bootstrap_probability_positive": 1.0
+            }
+          }
+        },
+        "radius_10": {
+          "scene_count": 142,
+          "event_count": 1408,
+          "bootstrap_samples": 2000,
+          "bootstrap_seed": 20260914,
+          "correlated_scene_weighted": {
+            "brier": 0.062188117054448135,
+            "nll": 0.21229953633670146,
+            "ece": 0.036825426501017174,
+            "false_safe_rate@0.8": 0.09066983542123552,
+            "high_confidence_safe_coverage@0.8": 0.18461371226872905
+          },
+          "independent_scene_weighted": {
+            "brier": 0.12399182991729384,
+            "nll": 0.9628926304434965,
+            "ece": 0.10642703972006012,
+            "false_safe_rate@0.8": 0.11960761867393206,
+            "high_confidence_safe_coverage@0.8": 0.18261368679843146
+          },
+          "delta": {
+            "brier": {
+              "independent_minus_correlated": 0.0618037128628457,
+              "bootstrap_95": [
+                0.041894749711761284,
+                0.08336958450247459
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "nll": {
+              "independent_minus_correlated": 0.7505930941067951,
+              "bootstrap_95": [
+                0.5396686548555263,
+                0.9792731751792715
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "ece": {
+              "independent_minus_correlated": 0.06960161321904296,
+              "bootstrap_95": [
+                0.045801559214347365,
+                0.09394197772362789
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "false_safe_rate@0.8": {
+              "independent_minus_correlated": 0.02893778325269654,
+              "bootstrap_95": [
+                -0.028262788793006005,
+                0.08596929026476191
+              ],
+              "bootstrap_probability_positive": 0.85
+            },
+            "high_confidence_safe_coverage@0.8": {
+              "independent_minus_correlated": -0.002000025470297595,
+              "bootstrap_95": [
+                -0.024432116585672636,
+                0.019462493299874158
+              ],
+              "bootstrap_probability_positive": 0.42
+            }
+          }
+        },
+        "radius_20": {
+          "scene_count": 142,
+          "event_count": 1408,
+          "bootstrap_samples": 2000,
+          "bootstrap_seed": 20260924,
+          "correlated_scene_weighted": {
+            "brier": 0.04453472007871083,
+            "nll": 0.15571855949898813,
+            "ece": 0.05527468944979288,
+            "false_safe_rate@0.8": 0.08886268313899172,
+            "high_confidence_safe_coverage@0.8": 0.052324472610196245
+          },
+          "independent_scene_weighted": {
+            "brier": 0.10621729583095034,
+            "nll": 0.9595364899042993,
+            "ece": 0.11900069621034293,
+            "false_safe_rate@0.8": 0.17352619137766953,
+            "high_confidence_safe_coverage@0.8": 0.015218711650709208
+          },
+          "delta": {
+            "brier": {
+              "independent_minus_correlated": 0.06168257575223951,
+              "bootstrap_95": [
+                0.04354495410452797,
+                0.08135236784725162
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "nll": {
+              "independent_minus_correlated": 0.8038179304053111,
+              "bootstrap_95": [
+                0.5829498927320075,
+                1.0546433641902666
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "ece": {
+              "independent_minus_correlated": 0.06372600676055004,
+              "bootstrap_95": [
+                0.04783526742895984,
+                0.08387121219168674
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "false_safe_rate@0.8": {
+              "independent_minus_correlated": 0.08466350823867781,
+              "bootstrap_95": [
+                -0.163941269503985,
+                0.37605373974559925
+              ],
+              "bootstrap_probability_positive": 0.6305
+            },
+            "high_confidence_safe_coverage@0.8": {
+              "independent_minus_correlated": -0.03710576095948703,
+              "bootstrap_95": [
+                -0.05399283585018932,
+                -0.020523145715901532
+              ],
+              "bootstrap_probability_positive": 0.0
+            }
+          }
+        },
+        "source_3RScan": {
+          "scene_count": 21,
+          "event_count": 417,
+          "bootstrap_samples": 2000,
+          "bootstrap_seed": 20260913,
+          "correlated_scene_weighted": {
+            "brier": 0.06872269334165958,
+            "nll": 0.4814032692823219,
+            "ece": 0.06852217516280015,
+            "false_safe_rate@0.8": 0.0366846401993781,
+            "high_confidence_safe_coverage@0.8": 0.24962788534217106
+          },
+          "independent_scene_weighted": {
+            "brier": 0.07810213319769682,
+            "nll": 0.47232643979494976,
+            "ece": 0.07567395815163674,
+            "false_safe_rate@0.8": 0.03366769451109698,
+            "high_confidence_safe_coverage@0.8": 0.2719969184254898
+          },
+          "delta": {
+            "brier": {
+              "independent_minus_correlated": 0.009379439856037244,
+              "bootstrap_95": [
+                -0.039710496784580385,
+                0.05355040131422575
+              ],
+              "bootstrap_probability_positive": 0.6665
+            },
+            "nll": {
+              "independent_minus_correlated": -0.009076829487372151,
+              "bootstrap_95": [
+                -0.5602138555727066,
+                0.5013117260690835
+              ],
+              "bootstrap_probability_positive": 0.4795
+            },
+            "ece": {
+              "independent_minus_correlated": 0.007151782988836591,
+              "bootstrap_95": [
+                -0.03940151407785324,
+                0.04786099936769561
+              ],
+              "bootstrap_probability_positive": 0.6565
+            },
+            "false_safe_rate@0.8": {
+              "independent_minus_correlated": -0.0030169456882811196,
+              "bootstrap_95": [
+                -0.0890641781109369,
+                0.08481920433840479
+              ],
+              "bootstrap_probability_positive": 0.383
+            },
+            "high_confidence_safe_coverage@0.8": {
+              "independent_minus_correlated": 0.022369033083318723,
+              "bootstrap_95": [
+                -0.020724424385138655,
+                0.07246976568405136
+              ],
+              "bootstrap_probability_positive": 0.8435
+            }
+          }
+        },
+        "source_ARKitScenes": {
+          "scene_count": 26,
+          "event_count": 381,
+          "bootstrap_samples": 2000,
+          "bootstrap_seed": 20260914,
+          "correlated_scene_weighted": {
+            "brier": 0.06213058530677854,
+            "nll": 0.4684543984036609,
+            "ece": 0.05170119413283477,
+            "false_safe_rate@0.8": 0.029018442443842322,
+            "high_confidence_safe_coverage@0.8": 0.20372150997150998
+          },
+          "independent_scene_weighted": {
+            "brier": 0.06440619816855778,
+            "nll": 0.23790224150349965,
+            "ece": 0.05875432437932443,
+            "false_safe_rate@0.8": 0.15956391549008522,
+            "high_confidence_safe_coverage@0.8": 0.2743920431420431
+          },
+          "delta": {
+            "brier": {
+              "independent_minus_correlated": 0.0022756128617792346,
+              "bootstrap_95": [
+                -0.03856912163830309,
+                0.04665220248975738
+              ],
+              "bootstrap_probability_positive": 0.5605
+            },
+            "nll": {
+              "independent_minus_correlated": -0.23055215690016123,
+              "bootstrap_95": [
+                -0.6580607485241842,
+                0.11319019807547277
+              ],
+              "bootstrap_probability_positive": 0.1335
+            },
+            "ece": {
+              "independent_minus_correlated": 0.00705313024648966,
+              "bootstrap_95": [
+                -0.041608732702482686,
+                0.047558625050080135
+              ],
+              "bootstrap_probability_positive": 0.5655
+            },
+            "false_safe_rate@0.8": {
+              "independent_minus_correlated": 0.1305454730462429,
+              "bootstrap_95": [
+                0.01738223059979055,
+                0.2726475429372099
+              ],
+              "bootstrap_probability_positive": 0.9955
+            },
+            "high_confidence_safe_coverage@0.8": {
+              "independent_minus_correlated": 0.0706705331705331,
+              "bootstrap_95": [
+                0.03342834249084245,
+                0.11710978835978836
+              ],
+              "bootstrap_probability_positive": 1.0
+            }
+          }
+        },
+        "source_Matterport3D": {
+          "scene_count": 31,
+          "event_count": 1104,
+          "bootstrap_samples": 2000,
+          "bootstrap_seed": 20260915,
+          "correlated_scene_weighted": {
+            "brier": 0.07161436201934791,
+            "nll": 0.2816641207679531,
+            "ece": 0.060231238212323845,
+            "false_safe_rate@0.8": 0.08823516833681716,
+            "high_confidence_safe_coverage@0.8": 0.43956960005347095
+          },
+          "independent_scene_weighted": {
+            "brier": 0.13681744019971662,
+            "nll": 1.0932362835755727,
+            "ece": 0.12351015202428473,
+            "false_safe_rate@0.8": 0.09406671432028539,
+            "high_confidence_safe_coverage@0.8": 0.4196605114686609
+          },
+          "delta": {
+            "brier": {
+              "independent_minus_correlated": 0.0652030781803687,
+              "bootstrap_95": [
+                0.03622474046924415,
+                0.09644955916818364
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "nll": {
+              "independent_minus_correlated": 0.8115721628076196,
+              "bootstrap_95": [
+                0.4703215007961776,
+                1.2097744985258059
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "ece": {
+              "independent_minus_correlated": 0.06327891381196088,
+              "bootstrap_95": [
+                0.04146877724812469,
+                0.09008528046914481
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "false_safe_rate@0.8": {
+              "independent_minus_correlated": 0.005831545983468231,
+              "bootstrap_95": [
+                -0.026867287441273473,
+                0.04050677004268071
+              ],
+              "bootstrap_probability_positive": 0.6395
+            },
+            "high_confidence_safe_coverage@0.8": {
+              "independent_minus_correlated": -0.019909088584810053,
+              "bootstrap_95": [
+                -0.049975494699603454,
+                0.009529513179237305
+              ],
+              "bootstrap_probability_positive": 0.0975
+            }
+          }
+        },
+        "source_ScanNet": {
+          "scene_count": 32,
+          "event_count": 1008,
+          "bootstrap_samples": 2000,
+          "bootstrap_seed": 20260916,
+          "correlated_scene_weighted": {
+            "brier": 0.039330997697812994,
+            "nll": 0.12725524063015226,
+            "ece": 0.03504716214555261,
+            "false_safe_rate@0.8": 0.01911577241184028,
+            "high_confidence_safe_coverage@0.8": 0.30424991974793636
+          },
+          "independent_scene_weighted": {
+            "brier": 0.061917440510732474,
+            "nll": 0.43518830180444235,
+            "ece": 0.05044159388686211,
+            "false_safe_rate@0.8": 0.03181619786676902,
+            "high_confidence_safe_coverage@0.8": 0.34600371714342304
+          },
+          "delta": {
+            "brier": {
+              "independent_minus_correlated": 0.02258644281291948,
+              "bootstrap_95": [
+                0.0061295570722951775,
+                0.03971969578449832
+              ],
+              "bootstrap_probability_positive": 0.999
+            },
+            "nll": {
+              "independent_minus_correlated": 0.3079330611742901,
+              "bootstrap_95": [
+                0.13772447323751302,
+                0.5081066649437086
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "ece": {
+              "independent_minus_correlated": 0.0153944317413095,
+              "bootstrap_95": [
+                -0.005696448476929489,
+                0.034602939543333044
+              ],
+              "bootstrap_probability_positive": 0.9285
+            },
+            "false_safe_rate@0.8": {
+              "independent_minus_correlated": 0.012700425454928742,
+              "bootstrap_95": [
+                -0.006701850796519672,
+                0.03923736780476542
+              ],
+              "bootstrap_probability_positive": 0.846
+            },
+            "high_confidence_safe_coverage@0.8": {
+              "independent_minus_correlated": 0.04175379739548668,
+              "bootstrap_95": [
+                0.020139509277594603,
+                0.0653854397225564
+              ],
+              "bootstrap_probability_positive": 1.0
+            }
+          }
+        },
+        "source_ZInD": {
+          "scene_count": 32,
+          "event_count": 1314,
+          "bootstrap_samples": 2000,
+          "bootstrap_seed": 20260917,
+          "correlated_scene_weighted": {
+            "brier": 0.05965381862173285,
+            "nll": 0.25198446042238826,
+            "ece": 0.08792355329075056,
+            "false_safe_rate@0.8": 0.004633197080257385,
+            "high_confidence_safe_coverage@0.8": 0.45397710224287235
+          },
+          "independent_scene_weighted": {
+            "brier": 0.1397522729264103,
+            "nll": 1.2843682836479358,
+            "ece": 0.16630998707018846,
+            "false_safe_rate@0.8": 0.013812774466416978,
+            "high_confidence_safe_coverage@0.8": 0.43093304439690855
+          },
+          "delta": {
+            "brier": {
+              "independent_minus_correlated": 0.08009845430467744,
+              "bootstrap_95": [
+                0.05150177627573509,
+                0.11056923988056624
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "nll": {
+              "independent_minus_correlated": 1.0323838232255476,
+              "bootstrap_95": [
+                0.7000874222076843,
+                1.3883181664881237
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "ece": {
+              "independent_minus_correlated": 0.0783864337794379,
+              "bootstrap_95": [
+                0.05230949228596278,
+                0.10308572968980079
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "false_safe_rate@0.8": {
+              "independent_minus_correlated": 0.009179577386159592,
+              "bootstrap_95": [
+                -0.0036278122974689017,
+                0.029297418914283144
+              ],
+              "bootstrap_probability_positive": 0.7715
+            },
+            "high_confidence_safe_coverage@0.8": {
+              "independent_minus_correlated": -0.023044057845963806,
+              "bootstrap_95": [
+                -0.05757833856527135,
+                0.009531632031601778
+              ],
+              "bootstrap_probability_positive": 0.0985
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 20260901,
+      "correlated_prediction_sha256": "a0e20ff31c14b5b7ee34a3ba3b186e9feca4633b0a9195753c970f0e109d33bb",
+      "independent_prediction_sha256": "8d73eacb72f6697f26f4b9d4be0f32395ff544bd3d333e0a546a01734981cd43",
+      "source_runs": {
+        "correlated": {
+          "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260901_conpath/run.json",
+          "sha256": "056e99bc40fc24a554acb93d2451e63392b896a891bc5d882934f0bde435d866"
+        },
+        "independent": {
+          "path": "results/p1_flatlands_independent_k128_support_clamped_v1/seed20260901_independent/run.json",
+          "sha256": "ae62bf37d05cec0368cda4ce1b632f8b175d6cd1ab5490e6e73b80b3d0b6ada9"
+        }
+      },
+      "strata": {
+        "overall": {
+          "scene_count": 142,
+          "event_count": 4224,
+          "bootstrap_samples": 2000,
+          "bootstrap_seed": 20261004,
+          "correlated_scene_weighted": {
+            "brier": 0.06521658182607205,
+            "nll": 0.27090724682813616,
+            "ece": 0.06237502403236646,
+            "false_safe_rate@0.8": 0.037343835896232434,
+            "high_confidence_safe_coverage@0.8": 0.32994897730513434
+          },
+          "independent_scene_weighted": {
+            "brier": 0.0871174114720983,
+            "nll": 0.782247739803187,
+            "ece": 0.08228652673861872,
+            "false_safe_rate@0.8": 0.04730397395146118,
+            "high_confidence_safe_coverage@0.8": 0.3854248098552158
+          },
+          "delta": {
+            "brier": {
+              "independent_minus_correlated": 0.021900829646026243,
+              "bootstrap_95": [
+                0.01603784980577996,
+                0.028007319612356016
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "nll": {
+              "independent_minus_correlated": 0.5113404929750508,
+              "bootstrap_95": [
+                0.3763981696821927,
+                0.6567409462282223
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "ece": {
+              "independent_minus_correlated": 0.019911502706252263,
+              "bootstrap_95": [
+                0.004646524237292597,
+                0.03132228594194717
+              ],
+              "bootstrap_probability_positive": 0.9995
+            },
+            "false_safe_rate@0.8": {
+              "independent_minus_correlated": 0.009960138055228746,
+              "bootstrap_95": [
+                0.001868321383446277,
+                0.019206462647398104
+              ],
+              "bootstrap_probability_positive": 0.9955
+            },
+            "high_confidence_safe_coverage@0.8": {
+              "independent_minus_correlated": 0.05547583255008148,
+              "bootstrap_95": [
+                0.0432931720245989,
+                0.06781896036968553
+              ],
+              "bootstrap_probability_positive": 1.0
+            }
+          }
+        },
+        "radius_0": {
+          "scene_count": 142,
+          "event_count": 1408,
+          "bootstrap_samples": 2000,
+          "bootstrap_seed": 20261005,
+          "correlated_scene_weighted": {
+            "brier": 0.07721569428246754,
+            "nll": 0.4090317315396116,
+            "ece": 0.08361362388880819,
+            "false_safe_rate@0.8": 0.02265452804292199,
+            "high_confidence_safe_coverage@0.8": 0.7566411644903882
+          },
+          "independent_scene_weighted": {
+            "brier": 0.08780761222037721,
+            "nll": 0.8938043693318694,
+            "ece": 0.0908480891707831,
+            "false_safe_rate@0.8": 0.022708558609055598,
+            "high_confidence_safe_coverage@0.8": 0.7936051988051291
+          },
+          "delta": {
+            "brier": {
+              "independent_minus_correlated": 0.010591917937909673,
+              "bootstrap_95": [
+                0.0013778921979682713,
+                0.021644637025842208
+              ],
+              "bootstrap_probability_positive": 0.988
+            },
+            "nll": {
+              "independent_minus_correlated": 0.48477263779225777,
+              "bootstrap_95": [
+                0.18985158924959114,
+                0.8409996513010558
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "ece": {
+              "independent_minus_correlated": 0.007234465281974911,
+              "bootstrap_95": [
+                -0.01670883342386169,
+                0.019796925497040214
+              ],
+              "bootstrap_probability_positive": 0.639
+            },
+            "false_safe_rate@0.8": {
+              "independent_minus_correlated": 5.403056613360879e-05,
+              "bootstrap_95": [
+                -0.0017494481046078539,
+                0.0027118454409917896
+              ],
+              "bootstrap_probability_positive": 0.499
+            },
+            "high_confidence_safe_coverage@0.8": {
+              "independent_minus_correlated": 0.036964034314740934,
+              "bootstrap_95": [
+                0.020347903358166813,
+                0.054787312583188134
+              ],
+              "bootstrap_probability_positive": 1.0
+            }
+          }
+        },
+        "radius_10": {
+          "scene_count": 142,
+          "event_count": 1408,
+          "bootstrap_samples": 2000,
+          "bootstrap_seed": 20261015,
+          "correlated_scene_weighted": {
+            "brier": 0.06802100609482606,
+            "nll": 0.23382486973886615,
+            "ece": 0.046452711462851314,
+            "false_safe_rate@0.8": 0.07857682344288806,
+            "high_confidence_safe_coverage@0.8": 0.1937760479139169
+          },
+          "independent_scene_weighted": {
+            "brier": 0.0963334073525097,
+            "nll": 0.7916180056496677,
+            "ece": 0.08619731936151462,
+            "false_safe_rate@0.8": 0.1067891134787128,
+            "high_confidence_safe_coverage@0.8": 0.2381754741005057
+          },
+          "delta": {
+            "brier": {
+              "independent_minus_correlated": 0.02831240125768364,
+              "bootstrap_95": [
+                0.017807557509777788,
+                0.038685141365665886
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "nll": {
+              "independent_minus_correlated": 0.5577931359108015,
+              "bootstrap_95": [
+                0.36075626463316895,
+                0.7735110464878392
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "ece": {
+              "independent_minus_correlated": 0.039744607898663305,
+              "bootstrap_95": [
+                0.012255892568604142,
+                0.05702633320682106
+              ],
+              "bootstrap_probability_positive": 0.9995
+            },
+            "false_safe_rate@0.8": {
+              "independent_minus_correlated": 0.028212290035824733,
+              "bootstrap_95": [
+                -0.001604938007269081,
+                0.0671656470963166
+              ],
+              "bootstrap_probability_positive": 0.9595
+            },
+            "high_confidence_safe_coverage@0.8": {
+              "independent_minus_correlated": 0.04439942618658882,
+              "bootstrap_95": [
+                0.03035531051644566,
+                0.05926358633018387
+              ],
+              "bootstrap_probability_positive": 1.0
+            }
+          }
+        },
+        "radius_20": {
+          "scene_count": 142,
+          "event_count": 1408,
+          "bootstrap_samples": 2000,
+          "bootstrap_seed": 20261025,
+          "correlated_scene_weighted": {
+            "brier": 0.05041304510092258,
+            "nll": 0.1698651392059308,
+            "ece": 0.058939419672668955,
+            "false_safe_rate@0.8": 0.11658785964163351,
+            "high_confidence_safe_coverage@0.8": 0.039429719511097874
+          },
+          "independent_scene_weighted": {
+            "brier": 0.07721121484340798,
+            "nll": 0.6613208444280236,
+            "ece": 0.07524583031835351,
+            "false_safe_rate@0.8": 0.09028723927520246,
+            "high_confidence_safe_coverage@0.8": 0.12449375666001272
+          },
+          "delta": {
+            "brier": {
+              "independent_minus_correlated": 0.026798169742485403,
+              "bootstrap_95": [
+                0.01809970472947323,
+                0.0357506683635218
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "nll": {
+              "independent_minus_correlated": 0.4914557052220928,
+              "bootstrap_95": [
+                0.33081712412210695,
+                0.6668639452712488
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "ece": {
+              "independent_minus_correlated": 0.016306410645684555,
+              "bootstrap_95": [
+                0.007417863417167107,
+                0.031913996086505074
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "false_safe_rate@0.8": {
+              "independent_minus_correlated": -0.02630062036643105,
+              "bootstrap_95": [
+                -0.11248745837479071,
+                0.03483793714154548
+              ],
+              "bootstrap_probability_positive": 0.2455
+            },
+            "high_confidence_safe_coverage@0.8": {
+              "independent_minus_correlated": 0.08506403714891485,
+              "bootstrap_95": [
+                0.0592758422508537,
+                0.10872767404509323
+              ],
+              "bootstrap_probability_positive": 1.0
+            }
+          }
+        },
+        "source_3RScan": {
+          "scene_count": 21,
+          "event_count": 417,
+          "bootstrap_samples": 2000,
+          "bootstrap_seed": 20261014,
+          "correlated_scene_weighted": {
+            "brier": 0.062325986104411056,
+            "nll": 0.3056230585787716,
+            "ece": 0.06943581385545666,
+            "false_safe_rate@0.8": 0.005549646210054109,
+            "high_confidence_safe_coverage@0.8": 0.22001424501424502
+          },
+          "independent_scene_weighted": {
+            "brier": 0.0904497405776964,
+            "nll": 0.9365119715919002,
+            "ece": 0.08796817538447002,
+            "false_safe_rate@0.8": 0.045598816823703404,
+            "high_confidence_safe_coverage@0.8": 0.2624149659863946
+          },
+          "delta": {
+            "brier": {
+              "independent_minus_correlated": 0.02812375447328535,
+              "bootstrap_95": [
+                0.012964652847901315,
+                0.04569203377934457
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "nll": {
+              "independent_minus_correlated": 0.6308889130131287,
+              "bootstrap_95": [
+                0.2064514875165818,
+                1.1733816803083388
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "ece": {
+              "independent_minus_correlated": 0.018532361529013358,
+              "bootstrap_95": [
+                0.00048659090372257335,
+                0.031215329447751267
+              ],
+              "bootstrap_probability_positive": 0.978
+            },
+            "false_safe_rate@0.8": {
+              "independent_minus_correlated": 0.04004917061364929,
+              "bootstrap_95": [
+                0.0,
+                0.10725242171472447
+              ],
+              "bootstrap_probability_positive": 0.958
+            },
+            "high_confidence_safe_coverage@0.8": {
+              "independent_minus_correlated": 0.04240072097214956,
+              "bootstrap_95": [
+                0.015831298331298312,
+                0.07475521832664676
+              ],
+              "bootstrap_probability_positive": 1.0
+            }
+          }
+        },
+        "source_ARKitScenes": {
+          "scene_count": 26,
+          "event_count": 381,
+          "bootstrap_samples": 2000,
+          "bootstrap_seed": 20261015,
+          "correlated_scene_weighted": {
+            "brier": 0.06554297360648068,
+            "nll": 0.3406124154541482,
+            "ece": 0.05645997882326008,
+            "false_safe_rate@0.8": 0.03788700882869124,
+            "high_confidence_safe_coverage@0.8": 0.1898733211233211
+          },
+          "independent_scene_weighted": {
+            "brier": 0.08002065674871463,
+            "nll": 0.8445459913180878,
+            "ece": 0.07541375724969476,
+            "false_safe_rate@0.8": 0.04395952346398935,
+            "high_confidence_safe_coverage@0.8": 0.19280881155881152
+          },
+          "delta": {
+            "brier": {
+              "independent_minus_correlated": 0.014477683142233952,
+              "bootstrap_95": [
+                0.0046605226845095014,
+                0.02546815601266588
+              ],
+              "bootstrap_probability_positive": 0.998
+            },
+            "nll": {
+              "independent_minus_correlated": 0.5039335758639396,
+              "bootstrap_95": [
+                0.14261334947359647,
+                0.9460191453639228
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "ece": {
+              "independent_minus_correlated": 0.018953778426434684,
+              "bootstrap_95": [
+                -0.0022202011313340007,
+                0.028892227564102625
+              ],
+              "bootstrap_probability_positive": 0.958
+            },
+            "false_safe_rate@0.8": {
+              "independent_minus_correlated": 0.006072514635298107,
+              "bootstrap_95": [
+                -0.002108918270258017,
+                0.021088754599188828
+              ],
+              "bootstrap_probability_positive": 0.765
+            },
+            "high_confidence_safe_coverage@0.8": {
+              "independent_minus_correlated": 0.0029354904354904343,
+              "bootstrap_95": [
+                -0.013556166056166063,
+                0.019099893162393123
+              ],
+              "bootstrap_probability_positive": 0.6665
+            }
+          }
+        },
+        "source_Matterport3D": {
+          "scene_count": 31,
+          "event_count": 1104,
+          "bootstrap_samples": 2000,
+          "bootstrap_seed": 20261016,
+          "correlated_scene_weighted": {
+            "brier": 0.08758337084499868,
+            "nll": 0.3076095651934356,
+            "ece": 0.06928954322295139,
+            "false_safe_rate@0.8": 0.09289346967140312,
+            "high_confidence_safe_coverage@0.8": 0.42443965359924607
+          },
+          "independent_scene_weighted": {
+            "brier": 0.11666933243323405,
+            "nll": 0.9416300992945553,
+            "ece": 0.10509852536095378,
+            "false_safe_rate@0.8": 0.0932069531817859,
+            "high_confidence_safe_coverage@0.8": 0.5002416435353617
+          },
+          "delta": {
+            "brier": {
+              "independent_minus_correlated": 0.02908596158823537,
+              "bootstrap_95": [
+                0.016546282598687186,
+                0.04309344346172588
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "nll": {
+              "independent_minus_correlated": 0.6340205341011198,
+              "bootstrap_95": [
+                0.3979103180158444,
+                0.8938906821825123
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "ece": {
+              "independent_minus_correlated": 0.03580898213800239,
+              "bootstrap_95": [
+                0.004651704309646421,
+                0.05335593044971179
+              ],
+              "bootstrap_probability_positive": 0.988
+            },
+            "false_safe_rate@0.8": {
+              "independent_minus_correlated": 0.000313483510382781,
+              "bootstrap_95": [
+                -0.014282431856271751,
+                0.01739466047399141
+              ],
+              "bootstrap_probability_positive": 0.5475
+            },
+            "high_confidence_safe_coverage@0.8": {
+              "independent_minus_correlated": 0.07580198993611564,
+              "bootstrap_95": [
+                0.05204719485067527,
+                0.10463746744200908
+              ],
+              "bootstrap_probability_positive": 1.0
+            }
+          }
+        },
+        "source_ScanNet": {
+          "scene_count": 32,
+          "event_count": 1008,
+          "bootstrap_samples": 2000,
+          "bootstrap_seed": 20261017,
+          "correlated_scene_weighted": {
+            "brier": 0.045311931352106344,
+            "nll": 0.15722403544754282,
+            "ece": 0.042551872421532994,
+            "false_safe_rate@0.8": 0.023818741033047465,
+            "high_confidence_safe_coverage@0.8": 0.30358494100391353
+          },
+          "independent_scene_weighted": {
+            "brier": 0.057797659502531636,
+            "nll": 0.4634433140198393,
+            "ece": 0.05606155631711981,
+            "false_safe_rate@0.8": 0.0344547030968084,
+            "high_confidence_safe_coverage@0.8": 0.35400642663365184
+          },
+          "delta": {
+            "brier": {
+              "independent_minus_correlated": 0.012485728150425292,
+              "bootstrap_95": [
+                0.0009592311825437428,
+                0.025204651654215312
+              ],
+              "bootstrap_probability_positive": 0.985
+            },
+            "nll": {
+              "independent_minus_correlated": 0.30621927857229647,
+              "bootstrap_95": [
+                0.10106414158979148,
+                0.5494746358358281
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "ece": {
+              "independent_minus_correlated": 0.013509683895586815,
+              "bootstrap_95": [
+                -0.0060891146388005945,
+                0.035787032251261175
+              ],
+              "bootstrap_probability_positive": 0.8995
+            },
+            "false_safe_rate@0.8": {
+              "independent_minus_correlated": 0.010635962063760933,
+              "bootstrap_95": [
+                -0.0003238118099637913,
+                0.024009164015610512
+              ],
+              "bootstrap_probability_positive": 0.968
+            },
+            "high_confidence_safe_coverage@0.8": {
+              "independent_minus_correlated": 0.050421485629738305,
+              "bootstrap_95": [
+                0.029916521886033717,
+                0.07423707902510751
+              ],
+              "bootstrap_probability_positive": 1.0
+            }
+          }
+        },
+        "source_ZInD": {
+          "scene_count": 32,
+          "event_count": 1314,
+          "bootstrap_samples": 2000,
+          "bootstrap_seed": 20261018,
+          "correlated_scene_weighted": {
+            "brier": 0.06508516555871062,
+            "nll": 0.26961738632235654,
+            "ece": 0.10339603033507756,
+            "false_safe_rate@0.8": 0.00577764759370889,
+            "high_confidence_safe_coverage@0.8": 0.45073130966005387
+          },
+          "independent_scene_weighted": {
+            "brier": 0.09138801224776519,
+            "nll": 0.7947972733620714,
+            "ece": 0.09919612450267033,
+            "false_safe_rate@0.8": 0.016210655866476915,
+            "high_confidence_safe_coverage@0.8": 0.5428400941038808
+          },
+          "delta": {
+            "brier": {
+              "independent_minus_correlated": 0.026302846689054568,
+              "bootstrap_95": [
+                0.013458745143154753,
+                0.03966434331724755
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "nll": {
+              "independent_minus_correlated": 0.5251798870397149,
+              "bootstrap_95": [
+                0.2940535227422058,
+                0.7813140859654271
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "ece": {
+              "independent_minus_correlated": -0.00419990583240723,
+              "bootstrap_95": [
+                -0.01198383811559194,
+                0.013746142340083188
+              ],
+              "bootstrap_probability_positive": 0.318
+            },
+            "false_safe_rate@0.8": {
+              "independent_minus_correlated": 0.010433008272768026,
+              "bootstrap_95": [
+                0.0,
+                0.025381637023951967
+              ],
+              "bootstrap_probability_positive": 0.96
+            },
+            "high_confidence_safe_coverage@0.8": {
+              "independent_minus_correlated": 0.09210878444382692,
+              "bootstrap_95": [
+                0.06469559521683164,
+                0.11978205998928468
+              ],
+              "bootstrap_probability_positive": 1.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 20260902,
+      "correlated_prediction_sha256": "812b11067c844793b15e25f77e29ca4339026f96f3b5a37d619b26360e5106c3",
+      "independent_prediction_sha256": "40faa371a2e55c5660be29066908ab3593f37b235f1c130ee2453fb055e1969a",
+      "source_runs": {
+        "correlated": {
+          "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260902_conpath/run.json",
+          "sha256": "926f809a46f911a5f557b88186fb431c7f401a567a55bcb1f3a940aaebaa9b7c"
+        },
+        "independent": {
+          "path": "results/p1_flatlands_independent_k128_support_clamped_v1/seed20260902_independent/run.json",
+          "sha256": "6f21f11f908da66fc131175210c90432cbb11e9efcc139624f3e80bde188d05f"
+        }
+      },
+      "strata": {
+        "overall": {
+          "scene_count": 142,
+          "event_count": 4224,
+          "bootstrap_samples": 2000,
+          "bootstrap_seed": 20261105,
+          "correlated_scene_weighted": {
+            "brier": 0.07778429251064041,
+            "nll": 0.2907803709517676,
+            "ece": 0.059650413934631136,
+            "false_safe_rate@0.8": 0.0620260651317086,
+            "high_confidence_safe_coverage@0.8": 0.33833162953753365
+          },
+          "independent_scene_weighted": {
+            "brier": 0.09985447848246654,
+            "nll": 0.8332591271926924,
+            "ece": 0.0957289405678677,
+            "false_safe_rate@0.8": 0.0622915166587792,
+            "high_confidence_safe_coverage@0.8": 0.35517220659292126
+          },
+          "delta": {
+            "brier": {
+              "independent_minus_correlated": 0.022070185971826126,
+              "bootstrap_95": [
+                0.012386892541666954,
+                0.03219748159348684
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "nll": {
+              "independent_minus_correlated": 0.5424787562409248,
+              "bootstrap_95": [
+                0.40718055281943505,
+                0.6892454754433538
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "ece": {
+              "independent_minus_correlated": 0.03607852663323656,
+              "bootstrap_95": [
+                0.024264612126603576,
+                0.04561427054535643
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "false_safe_rate@0.8": {
+              "independent_minus_correlated": 0.0002654515270706023,
+              "bootstrap_95": [
+                -0.020472777245509267,
+                0.021377376008243784
+              ],
+              "bootstrap_probability_positive": 0.5175
+            },
+            "high_confidence_safe_coverage@0.8": {
+              "independent_minus_correlated": 0.016840577055387607,
+              "bootstrap_95": [
+                0.003982659040824374,
+                0.029584726026078215
+              ],
+              "bootstrap_probability_positive": 0.993
+            }
+          }
+        },
+        "radius_0": {
+          "scene_count": 142,
+          "event_count": 1408,
+          "bootstrap_samples": 2000,
+          "bootstrap_seed": 20261106,
+          "correlated_scene_weighted": {
+            "brier": 0.07962436408374955,
+            "nll": 0.3582989467131145,
+            "ece": 0.057216349140604215,
+            "false_safe_rate@0.8": 0.0462535318422255,
+            "high_confidence_safe_coverage@0.8": 0.8244460353972302
+          },
+          "independent_scene_weighted": {
+            "brier": 0.0981861622190723,
+            "nll": 0.9411196441097144,
+            "ece": 0.0919798707541,
+            "false_safe_rate@0.8": 0.04355134226569179,
+            "high_confidence_safe_coverage@0.8": 0.8199029924469248
+          },
+          "delta": {
+            "brier": {
+              "independent_minus_correlated": 0.018561798135322743,
+              "bootstrap_95": [
+                -0.004307623431354386,
+                0.0407315423480558
+              ],
+              "bootstrap_probability_positive": 0.9445
+            },
+            "nll": {
+              "independent_minus_correlated": 0.5828206973965999,
+              "bootstrap_95": [
+                0.24948356284105688,
+                0.9598222490326074
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "ece": {
+              "independent_minus_correlated": 0.03476352161349578,
+              "bootstrap_95": [
+                0.006952717434838054,
+                0.0522305018920035
+              ],
+              "bootstrap_probability_positive": 0.993
+            },
+            "false_safe_rate@0.8": {
+              "independent_minus_correlated": -0.0027021895765337103,
+              "bootstrap_95": [
+                -0.024712667654770887,
+                0.01559785306594897
+              ],
+              "bootstrap_probability_positive": 0.4045
+            },
+            "high_confidence_safe_coverage@0.8": {
+              "independent_minus_correlated": -0.004543042950305387,
+              "bootstrap_95": [
+                -0.030928203138704796,
+                0.01917011250107251
+              ],
+              "bootstrap_probability_positive": 0.352
+            }
+          }
+        },
+        "radius_10": {
+          "scene_count": 142,
+          "event_count": 1408,
+          "bootstrap_samples": 2000,
+          "bootstrap_seed": 20261116,
+          "correlated_scene_weighted": {
+            "brier": 0.08440991829340638,
+            "nll": 0.28753781128231065,
+            "ece": 0.059971480055991226,
+            "false_safe_rate@0.8": 0.1333054406328175,
+            "high_confidence_safe_coverage@0.8": 0.18214475114003087
+          },
+          "independent_scene_weighted": {
+            "brier": 0.10882571678559418,
+            "nll": 0.7428989140757181,
+            "ece": 0.10205585232096734,
+            "false_safe_rate@0.8": 0.1300301475339836,
+            "high_confidence_safe_coverage@0.8": 0.19596139696459103
+          },
+          "delta": {
+            "brier": {
+              "independent_minus_correlated": 0.024415798492187793,
+              "bootstrap_95": [
+                0.009462277879755662,
+                0.039920626218886056
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "nll": {
+              "independent_minus_correlated": 0.4553611027934074,
+              "bootstrap_95": [
+                0.3112187636138129,
+                0.6126889742293976
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "ece": {
+              "independent_minus_correlated": 0.04208437226497611,
+              "bootstrap_95": [
+                0.018539443754813336,
+                0.0544269079065964
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "false_safe_rate@0.8": {
+              "independent_minus_correlated": -0.003275293098833898,
+              "bootstrap_95": [
+                -0.06353895364247933,
+                0.06295636853247882
+              ],
+              "bootstrap_probability_positive": 0.4575
+            },
+            "high_confidence_safe_coverage@0.8": {
+              "independent_minus_correlated": 0.013816645824560159,
+              "bootstrap_95": [
+                -0.00275217013826495,
+                0.030715646337484945
+              ],
+              "bootstrap_probability_positive": 0.95
+            }
+          }
+        },
+        "radius_20": {
+          "scene_count": 142,
+          "event_count": 1408,
+          "bootstrap_samples": 2000,
+          "bootstrap_seed": 20261126,
+          "correlated_scene_weighted": {
+            "brier": 0.06931859515476528,
+            "nll": 0.22650435485987755,
+            "ece": 0.07703565804102559,
+            "false_safe_rate@0.8": 0.06445802352960184,
+            "high_confidence_safe_coverage@0.8": 0.00840410207534003
+          },
+          "independent_scene_weighted": {
+            "brier": 0.09255155644273312,
+            "nll": 0.8157588233926442,
+            "ece": 0.09985973306152095,
+            "false_safe_rate@0.8": 0.10440379064184366,
+            "high_confidence_safe_coverage@0.8": 0.04965223036724802
+          },
+          "delta": {
+            "brier": {
+              "independent_minus_correlated": 0.02323296128796784,
+              "bootstrap_95": [
+                0.013320543953638438,
+                0.03325164433791825
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "nll": {
+              "independent_minus_correlated": 0.5892544685327666,
+              "bootstrap_95": [
+                0.4089182571412633,
+                0.7828906618664727
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "ece": {
+              "independent_minus_correlated": 0.022824075020495355,
+              "bootstrap_95": [
+                0.014245830320110635,
+                0.03599993608293544
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "false_safe_rate@0.8": {
+              "independent_minus_correlated": 0.03994576711224182,
+              "bootstrap_95": [
+                -0.13854537762945401,
+                0.21165381236535624
+              ],
+              "bootstrap_probability_positive": 0.6975
+            },
+            "high_confidence_safe_coverage@0.8": {
+              "independent_minus_correlated": 0.04124812829190799,
+              "bootstrap_95": [
+                0.02658621061873199,
+                0.056755170736919186
+              ],
+              "bootstrap_probability_positive": 1.0
+            }
+          }
+        },
+        "source_3RScan": {
+          "scene_count": 21,
+          "event_count": 417,
+          "bootstrap_samples": 2000,
+          "bootstrap_seed": 20261115,
+          "correlated_scene_weighted": {
+            "brier": 0.06638387940333218,
+            "nll": 0.22553753418027433,
+            "ece": 0.07226615873379263,
+            "false_safe_rate@0.8": 0.03894658753709199,
+            "high_confidence_safe_coverage@0.8": 0.23512994941566367
+          },
+          "independent_scene_weighted": {
+            "brier": 0.09980223885427567,
+            "nll": 0.9131669830881715,
+            "ece": 0.09595005069335426,
+            "false_safe_rate@0.8": 0.06587497199193366,
+            "high_confidence_safe_coverage@0.8": 0.25949183092040234
+          },
+          "delta": {
+            "brier": {
+              "independent_minus_correlated": 0.033418359450943486,
+              "bootstrap_95": [
+                0.010193491911942187,
+                0.060444381738708475
+              ],
+              "bootstrap_probability_positive": 0.997
+            },
+            "nll": {
+              "independent_minus_correlated": 0.6876294489078971,
+              "bootstrap_95": [
+                0.27224895058463106,
+                1.1920510334222267
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "ece": {
+              "independent_minus_correlated": 0.023683891959561623,
+              "bootstrap_95": [
+                0.0004433062287415621,
+                0.046040091584176386
+              ],
+              "bootstrap_probability_positive": 0.977
+            },
+            "false_safe_rate@0.8": {
+              "independent_minus_correlated": 0.026928384454841678,
+              "bootstrap_95": [
+                -0.0069436222941213575,
+                0.09703924984787558
+              ],
+              "bootstrap_probability_positive": 0.64
+            },
+            "high_confidence_safe_coverage@0.8": {
+              "independent_minus_correlated": 0.02436188150473867,
+              "bootstrap_95": [
+                0.002869643583929285,
+                0.04787095179952321
+              ],
+              "bootstrap_probability_positive": 0.9895
+            }
+          }
+        },
+        "source_ARKitScenes": {
+          "scene_count": 26,
+          "event_count": 381,
+          "bootstrap_samples": 2000,
+          "bootstrap_seed": 20261116,
+          "correlated_scene_weighted": {
+            "brier": 0.07694406350259621,
+            "nll": 0.3254166375820636,
+            "ece": 0.07264694940476185,
+            "false_safe_rate@0.8": 0.11038396222507559,
+            "high_confidence_safe_coverage@0.8": 0.24565527065527062
+          },
+          "independent_scene_weighted": {
+            "brier": 0.07529334137000153,
+            "nll": 0.7683969871952727,
+            "ece": 0.06997378345034594,
+            "false_safe_rate@0.8": 0.04576145825877414,
+            "high_confidence_safe_coverage@0.8": 0.21323260073260067
+          },
+          "delta": {
+            "brier": {
+              "independent_minus_correlated": -0.0016507221325946786,
+              "bootstrap_95": [
+                -0.03262873682589565,
+                0.028377180025739555
+              ],
+              "bootstrap_probability_positive": 0.472
+            },
+            "nll": {
+              "independent_minus_correlated": 0.44298034961320915,
+              "bootstrap_95": [
+                0.09664644383904245,
+                0.844968298200418
+              ],
+              "bootstrap_probability_positive": 0.997
+            },
+            "ece": {
+              "independent_minus_correlated": -0.0026731659544159125,
+              "bootstrap_95": [
+                -0.042678782083078945,
+                0.03448626731341571
+              ],
+              "bootstrap_probability_positive": 0.464
+            },
+            "false_safe_rate@0.8": {
+              "independent_minus_correlated": -0.06462250396630145,
+              "bootstrap_95": [
+                -0.1751069218848619,
+                0.011681232821699902
+              ],
+              "bootstrap_probability_positive": 0.0805
+            },
+            "high_confidence_safe_coverage@0.8": {
+              "independent_minus_correlated": -0.032422669922669956,
+              "bootstrap_95": [
+                -0.06689827533577535,
+                -0.0055837912087912025
+              ],
+              "bootstrap_probability_positive": 0.0065
+            }
+          }
+        },
+        "source_Matterport3D": {
+          "scene_count": 31,
+          "event_count": 1104,
+          "bootstrap_samples": 2000,
+          "bootstrap_seed": 20261117,
+          "correlated_scene_weighted": {
+            "brier": 0.10244059691650985,
+            "nll": 0.36544774271022584,
+            "ece": 0.08035055769148915,
+            "false_safe_rate@0.8": 0.10060172618384848,
+            "high_confidence_safe_coverage@0.8": 0.41244038298367675
+          },
+          "independent_scene_weighted": {
+            "brier": 0.12020201153060622,
+            "nll": 0.8442470691334178,
+            "ece": 0.11873142039721374,
+            "false_safe_rate@0.8": 0.10201269408713858,
+            "high_confidence_safe_coverage@0.8": 0.4426029105146253
+          },
+          "delta": {
+            "brier": {
+              "independent_minus_correlated": 0.017761414614096374,
+              "bootstrap_95": [
+                -0.0051690930281655225,
+                0.03517867574410105
+              ],
+              "bootstrap_probability_positive": 0.9435
+            },
+            "nll": {
+              "independent_minus_correlated": 0.478799326423192,
+              "bootstrap_95": [
+                0.226282061051823,
+                0.7290527818128828
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "ece": {
+              "independent_minus_correlated": 0.03838086270572459,
+              "bootstrap_95": [
+                0.00690029177018862,
+                0.05930338255793897
+              ],
+              "bootstrap_probability_positive": 0.9885
+            },
+            "false_safe_rate@0.8": {
+              "independent_minus_correlated": 0.0014109679032900946,
+              "bootstrap_95": [
+                -0.035985481685439864,
+                0.042785459702367606
+              ],
+              "bootstrap_probability_positive": 0.5185
+            },
+            "high_confidence_safe_coverage@0.8": {
+              "independent_minus_correlated": 0.030162527530948557,
+              "bootstrap_95": [
+                0.003998102032376302,
+                0.057693774855277435
+              ],
+              "bootstrap_probability_positive": 0.9865
+            }
+          }
+        },
+        "source_ScanNet": {
+          "scene_count": 32,
+          "event_count": 1008,
+          "bootstrap_samples": 2000,
+          "bootstrap_seed": 20261118,
+          "correlated_scene_weighted": {
+            "brier": 0.0525815699138438,
+            "nll": 0.19010349428392545,
+            "ece": 0.04636318233083144,
+            "false_safe_rate@0.8": 0.06726400993891771,
+            "high_confidence_safe_coverage@0.8": 0.3276333735082284
+          },
+          "independent_scene_weighted": {
+            "brier": 0.07469111653477406,
+            "nll": 0.5737837030274249,
+            "ece": 0.06776163327694945,
+            "false_safe_rate@0.8": 0.08295030546995713,
+            "high_confidence_safe_coverage@0.8": 0.353675521826886
+          },
+          "delta": {
+            "brier": {
+              "independent_minus_correlated": 0.02210954662093026,
+              "bootstrap_95": [
+                0.007243968941888624,
+                0.039732373094060316
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "nll": {
+              "independent_minus_correlated": 0.3836802087434994,
+              "bootstrap_95": [
+                0.16205685496615815,
+                0.6519442452198125
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "ece": {
+              "independent_minus_correlated": 0.02139845094611801,
+              "bootstrap_95": [
+                -0.0007591431654688955,
+                0.040929971686990606
+              ],
+              "bootstrap_probability_positive": 0.972
+            },
+            "false_safe_rate@0.8": {
+              "independent_minus_correlated": 0.015686295531039424,
+              "bootstrap_95": [
+                -0.010606952943004667,
+                0.05931024331004333
+              ],
+              "bootstrap_probability_positive": 0.7145
+            },
+            "high_confidence_safe_coverage@0.8": {
+              "independent_minus_correlated": 0.026042148318657588,
+              "bootstrap_95": [
+                -0.0032141892384611845,
+                0.05501205904178519
+              ],
+              "bootstrap_probability_positive": 0.959
+            }
+          }
+        },
+        "source_ZInD": {
+          "scene_count": 32,
+          "event_count": 1314,
+          "bootstrap_samples": 2000,
+          "bootstrap_seed": 20261119,
+          "correlated_scene_weighted": {
+            "brier": 0.08726542738495793,
+            "nll": 0.3337968762227802,
+            "ece": 0.1251041900747817,
+            "false_safe_rate@0.8": 0.006775317376834884,
+            "high_confidence_safe_coverage@0.8": 0.42026267483770385
+          },
+          "independent_scene_weighted": {
+            "brier": 0.12529637394965176,
+            "nll": 1.0823509409193768,
+            "ece": 0.14876653218762648,
+            "false_safe_rate@0.8": 0.013224968942409675,
+            "high_confidence_safe_coverage@0.8": 0.4500865732314068
+          },
+          "delta": {
+            "brier": {
+              "independent_minus_correlated": 0.03803094656469383,
+              "bootstrap_95": [
+                0.022246949289718505,
+                0.056064611451791896
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "nll": {
+              "independent_minus_correlated": 0.7485540646965966,
+              "bootstrap_95": [
+                0.47232601497232457,
+                1.095701368469134
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "ece": {
+              "independent_minus_correlated": 0.023662342112844764,
+              "bootstrap_95": [
+                0.01237648581025147,
+                0.042096159781545954
+              ],
+              "bootstrap_probability_positive": 1.0
+            },
+            "false_safe_rate@0.8": {
+              "independent_minus_correlated": 0.006449651565574791,
+              "bootstrap_95": [
+                -0.00545358357078925,
+                0.026694933779117743
+              ],
+              "bootstrap_probability_positive": 0.641
+            },
+            "high_confidence_safe_coverage@0.8": {
+              "independent_minus_correlated": 0.02982389839370292,
+              "bootstrap_95": [
+                0.00903552539436824,
+                0.05182795978652092
+              ],
+              "bootstrap_probability_positive": 0.9985
+            }
+          }
+        }
+      }
+    }
+  ],
+  "aggregate_delta": {
+    "overall": {
+      "brier": {
+        "mean": 0.027716503569184522,
+        "sample_sd": 0.009926737006870346,
+        "seed_values": [
+          0.0391784950897012,
+          0.021900829646026243,
+          0.022070185971826126
+        ]
+      },
+      "nll": {
+        "mean": 0.49649352403253655,
+        "sample_sd": 0.05493464646697582,
+        "seed_values": [
+          0.435661322881634,
+          0.5113404929750508,
+          0.5424787562409248
+        ]
+      },
+      "ece": {
+        "mean": 0.030052292351261774,
+        "sample_sd": 0.008834044376191976,
+        "seed_values": [
+          0.034166847714296504,
+          0.019911502706252263,
+          0.03607852663323656
+        ]
+      },
+      "false_safe_rate@0.8": {
+        "mean": 0.011362665599821785,
+        "sample_sd": 0.011860834376007792,
+        "seed_values": [
+          0.02386240721716601,
+          0.009960138055228746,
+          0.0002654515270706023
+        ]
+      },
+      "high_confidence_safe_coverage@0.8": {
+        "mean": 0.029478036715060534,
+        "sample_sd": 0.02251765260465227,
+        "seed_values": [
+          0.01611770053971251,
+          0.05547583255008148,
+          0.016840577055387607
+        ]
+      }
+    },
+    "radius_0": {
+      "brier": {
+        "mean": 0.007734304242416959,
+        "sample_sd": 0.012503654460589148,
+        "seed_values": [
+          -0.00595080334598154,
+          0.010591917937909673,
+          0.018561798135322743
+        ]
+      },
+      "nll": {
+        "mean": 0.2733887597738844,
+        "sample_sd": 0.45369614376194967,
+        "seed_values": [
+          -0.24742705586720454,
+          0.48477263779225777,
+          0.5828206973965999
+        ]
+      },
+      "ece": {
+        "mean": 0.004565041221130201,
+        "sample_sd": 0.0316178208133488,
+        "seed_values": [
+          -0.02830286323208009,
+          0.007234465281974911,
+          0.03476352161349578
+        ]
+      },
+      "false_safe_rate@0.8": {
+        "mean": 0.007670529922064916,
+        "sample_sd": 0.015639954719111008,
+        "seed_values": [
+          0.02565974877659485,
+          5.403056613360879e-05,
+          -0.0027021895765337103
+        ]
+      },
+      "high_confidence_safe_coverage@0.8": {
+        "mean": 0.039959959804452584,
+        "sample_sd": 0.04607407626910807,
+        "seed_values": [
+          0.08745888804892221,
+          0.036964034314740934,
+          -0.004543042950305387
+        ]
+      }
+    },
+    "radius_10": {
+      "brier": {
+        "mean": 0.038177304204239045,
+        "sample_sd": 0.020553619337129656,
+        "seed_values": [
+          0.0618037128628457,
+          0.02831240125768364,
+          0.024415798492187793
+        ]
+      },
+      "nll": {
+        "mean": 0.587915777603668,
+        "sample_sd": 0.14990334329371932,
+        "seed_values": [
+          0.7505930941067951,
+          0.5577931359108015,
+          0.4553611027934074
+        ]
+      },
+      "ece": {
+        "mean": 0.050476864460894125,
+        "sample_sd": 0.016603783774164348,
+        "seed_values": [
+          0.06960161321904296,
+          0.039744607898663305,
+          0.04208437226497611
+        ]
+      },
+      "false_safe_rate@0.8": {
+        "mean": 0.017958260063229124,
+        "sample_sd": 0.01839237396359016,
+        "seed_values": [
+          0.02893778325269654,
+          0.028212290035824733,
+          -0.003275293098833898
+        ]
+      },
+      "high_confidence_safe_coverage@0.8": {
+        "mean": 0.018738682180283794,
+        "sample_sd": 0.023588071348252145,
+        "seed_values": [
+          -0.002000025470297595,
+          0.04439942618658882,
+          0.013816645824560159
+        ]
+      }
+    },
+    "radius_20": {
+      "brier": {
+        "mean": 0.037237902260897585,
+        "sample_sd": 0.02124462813053636,
+        "seed_values": [
+          0.06168257575223951,
+          0.026798169742485403,
+          0.02323296128796784
+        ]
+      },
+      "nll": {
+        "mean": 0.6281760347200569,
+        "sample_sd": 0.15977705143795404,
+        "seed_values": [
+          0.8038179304053111,
+          0.4914557052220928,
+          0.5892544685327666
+        ]
+      },
+      "ece": {
+        "mean": 0.03428549747557665,
+        "sample_sd": 0.025703651052810042,
+        "seed_values": [
+          0.06372600676055004,
+          0.016306410645684555,
+          0.022824075020495355
+        ]
+      },
+      "false_safe_rate@0.8": {
+        "mean": 0.03276955166149619,
+        "sample_sd": 0.055829051670428946,
+        "seed_values": [
+          0.08466350823867781,
+          -0.02630062036643105,
+          0.03994576711224182
+        ]
+      },
+      "high_confidence_safe_coverage@0.8": {
+        "mean": 0.02973546816044527,
+        "sample_sd": 0.06189322176085882,
+        "seed_values": [
+          -0.03710576095948703,
+          0.08506403714891485,
+          0.04124812829190799
+        ]
+      }
+    }
+  },
+  "claim_boundary": "Matched clean-support training validation diagnostic; test labels remain locked. Paper release still requires the remaining baseline and cross-domain gates."
+}

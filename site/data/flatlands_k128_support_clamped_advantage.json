@@ -1,0 +1,375 @@
+{
+  "schema_version": 1,
+  "kind": "flatlands_k128_support_clamped_model_advantage_figure",
+  "created_utc": "2026-09-04T03:18:09.218865+00:00",
+  "validation_only": true,
+  "paper_result": false,
+  "posthoc_checkpoint_evaluation": true,
+  "retraining_required": true,
+  "clean_support_training": false,
+  "test_evaluated": false,
+  "figure": {
+    "path": "site/assets/flatlands_k128_support_clamped_advantage.png",
+    "sha256": "1d68d016b371ed87a6857a3e19a34686ce2c136a0cf3037f8e223b97875fba78",
+    "width": 1800,
+    "height": 1330
+  },
+  "software": {
+    "renderer_path": "scripts/render_flatlands_k128_advantage.py",
+    "renderer_sha256": "9eac7cd92557f67d71c80c7ddbcb58dc07b1a9f6c889626f07aa043edd152313",
+    "model_path": "src/pathrel/model.py",
+    "model_sha256": "397f7558362f389af3a419aec39db36f67184e8106c6b05643908001e4f81045",
+    "torch_version": "2.12.1+cu130",
+    "render_device": "cpu"
+  },
+  "protocol": {
+    "provenance_split": "validation",
+    "official_archive_split_used": false,
+    "posterior_samples": 128,
+    "sample_chunk": 32,
+    "seeds": [
+      20260831,
+      20260901,
+      20260902
+    ],
+    "canonical_map_seed": 20260831,
+    "support_policy": "epistemic_mask complement clamped to blocked",
+    "example_selection": "validation-label-derived diagnostic with predeclared all-seed rules",
+    "test_lock": "No test labels read; physical test remains locked"
+  },
+  "benchmark": {
+    "selection_path": "results/p1_flatlands_query_audit_bounded/selected_observations.csv",
+    "selection_sha256": "4e7ae4c992cf943ab81618e3826c4748fcaaa97c3c4d7cb187518ee3fe6a9409",
+    "queries_path": "results/p1_flatlands_query_audit_bounded/queries.csv",
+    "queries_sha256": "33e7f8a0343269b0dde47b428b3be622c80effdb0f80ae34b352ca282018d60d",
+    "prediction_rows_per_seed": 4224,
+    "scene_count": 142
+  },
+  "aggregate_scene_weighted": {
+    "correlated": {
+      "brier": {
+        "mean": 0.08466617911533764,
+        "sample_sd": 0.013503709129084884,
+        "seed_values": {
+          "20260831": 0.09783095205885423,
+          "20260901": 0.0708473069459378,
+          "20260902": 0.08532027834122088
+        }
+      },
+      "nll": {
+        "mean": 0.40034649634902947,
+        "sample_sd": 0.06452061778567104,
+        "seed_values": {
+          "20260831": 0.4735845512726881,
+          "20260901": 0.375561766614316,
+          "20260902": 0.3518931711600843
+        }
+      },
+      "ece": {
+        "mean": 0.08978863203993387,
+        "sample_sd": 0.01627064031942254,
+        "seed_values": {
+          "20260831": 0.10755320555488693,
+          "20260901": 0.07561024461518433,
+          "20260902": 0.08620244594973034
+        }
+      },
+      "false_safe_rate@0.8": {
+        "mean": 0.033911828815149536,
+        "sample_sd": 0.007220704028126736,
+        "seed_values": {
+          "20260831": 0.028898976562104748,
+          "20260901": 0.03064832852284616,
+          "20260902": 0.04218818136049769
+        }
+      },
+      "high_confidence_safe_coverage@0.8": {
+        "mean": 0.2815003064213627,
+        "sample_sd": 0.022897795278409523,
+        "seed_values": {
+          "20260831": 0.25603079650113403,
+          "20260901": 0.3003821807824228,
+          "20260902": 0.2880879419805312
+        }
+      }
+    },
+    "independent": {
+      "brier": {
+        "mean": 0.10352127110961637,
+        "sample_sd": 0.0038787447177493738,
+        "seed_values": {
+          "20260831": 0.10739997292925622,
+          "20260901": 0.09964248349518076,
+          "20260902": 0.10352135690441214
+        }
+      },
+      "nll": {
+        "mean": 0.8471482012142038,
+        "sample_sd": 0.013657540184297233,
+        "seed_values": {
+          "20260831": 0.8498458367265107,
+          "20260901": 0.8323431404508901,
+          "20260902": 0.8592556264652106
+        }
+      },
+      "ece": {
+        "mean": 0.09964460321834373,
+        "sample_sd": 0.010381936417903111,
+        "seed_values": {
+          "20260831": 0.10718264046736356,
+          "20260901": 0.08780290848180783,
+          "20260902": 0.10394826070585982
+        }
+      },
+      "false_safe_rate@0.8": {
+        "mean": 0.05468159416087735,
+        "sample_sd": 0.006780171797294856,
+        "seed_values": {
+          "20260831": 0.06222845437122033,
+          "20260901": 0.04910416701441421,
+          "20260902": 0.05271216109699752
+        }
+      },
+      "high_confidence_safe_coverage@0.8": {
+        "mean": 0.33800589565962247,
+        "sample_sd": 0.007789880894721238,
+        "seed_values": {
+          "20260831": 0.33441661086893937,
+          "20260901": 0.346943368052414,
+          "20260902": 0.33265770805751405
+        }
+      }
+    }
+  },
+  "paired_overall_brier_delta": {
+    "mean": 0.018855091994278733,
+    "sample_sd": 0.009629748995835212,
+    "seed_values": [
+      0.009569020870401984,
+      0.02879517654924295,
+      0.018201078563191267
+    ]
+  },
+  "paired_per_seed_overall": [
+    {
+      "seed": 20260831,
+      "brier": {
+        "independent_minus_correlated": 0.009569020870401984,
+        "bootstrap_95": [
+          0.0012732517392936454,
+          0.0185094133745098
+        ],
+        "bootstrap_probability_positive": 0.9875
+      }
+    },
+    {
+      "seed": 20260901,
+      "brier": {
+        "independent_minus_correlated": 0.02879517654924295,
+        "bootstrap_95": [
+          0.01887584841599285,
+          0.03832598370620882
+        ],
+        "bootstrap_probability_positive": 1.0
+      }
+    },
+    {
+      "seed": 20260902,
+      "brier": {
+        "independent_minus_correlated": 0.018201078563191267,
+        "bootstrap_95": [
+          0.009629779664491692,
+          0.027254632559128175
+        ],
+        "bootstrap_probability_positive": 1.0
+      }
+    }
+  ],
+  "cases": [
+    {
+      "case_id": "positive_recovery",
+      "key": [
+        "obs_163088",
+        19,
+        20
+      ],
+      "global_id": "obs_163088",
+      "candidate_index": 19,
+      "radius_cells": 20,
+      "target": 1,
+      "source_dataset": "ScanNet",
+      "scene_id": "scene0189_00",
+      "title": "Recovers a real path",
+      "description": "The independent decoder nearly rules the path out in every seed.",
+      "selection_rule": "target=1, correlated probability exceeds independent probability in all three seeds; rank by mean per-event Brier gain",
+      "eligible_count": 345,
+      "rank": 1,
+      "mean_brier_gain": 0.6441243489583334,
+      "event_probability": {
+        "correlated": {
+          "20260831": 0.40625,
+          "20260901": 0.625,
+          "20260902": 0.2734375
+        },
+        "independent": {
+          "20260831": 0.0078125,
+          "20260901": 0.0,
+          "20260902": 0.015625
+        }
+      },
+      "mean_event_probability": {
+        "correlated": 0.4348958333333333,
+        "independent": 0.0078125
+      },
+      "visual_sampling_seed": 20260903,
+      "displayed_sample_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "displayed_sample_events": {
+        "correlated": [
+          false,
+          true,
+          true,
+          true
+        ],
+        "independent": [
+          false,
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "case_id": "false_safe_avoided",
+      "key": [
+        "obs_127112",
+        34,
+        0
+      ],
+      "global_id": "obs_127112",
+      "candidate_index": 34,
+      "radius_cells": 0,
+      "target": 0,
+      "source_dataset": "Matterport3D",
+      "scene_id": "vyrNrziPKCB_region_segmentations_region44.ply",
+      "title": "Avoids a false-safe decision",
+      "description": "The independent decoder is confidently unsafe-to-trust in every seed.",
+      "selection_rule": "target=0, independent probability >=0.8 and correlated probability <0.8 in all three seeds; rank by mean per-event Brier gain",
+      "eligible_count": 2,
+      "rank": 1,
+      "mean_brier_gain": 0.5608927408854166,
+      "event_probability": {
+        "correlated": {
+          "20260831": 0.71875,
+          "20260901": 0.1796875,
+          "20260902": 0.765625
+        },
+        "independent": {
+          "20260831": 0.984375,
+          "20260901": 0.9296875,
+          "20260902": 0.9921875
+        }
+      },
+      "mean_event_probability": {
+        "correlated": 0.5546875,
+        "independent": 0.96875
+      },
+      "visual_sampling_seed": 20260904,
+      "displayed_sample_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "displayed_sample_events": {
+        "correlated": [
+          false,
+          true,
+          true,
+          true
+        ],
+        "independent": [
+          false,
+          true,
+          true,
+          true
+        ]
+      }
+    }
+  ],
+  "canonical_checkpoints": {
+    "correlated": {
+      "path": "results/p1_flatlands_conpath_k128_validation_v2/seed20260831_conpath/best.pt",
+      "sha256": "15966a3bff17dfbf8672f7cb06fea0edea896680d7aa1dde4cf361c4af0b4005",
+      "training_seed": 20260831,
+      "feature_channels": 16,
+      "latent_dim": 4,
+      "decoder_variant": "correlated",
+      "protocol_version": "P1_BASELINE_PROTOCOL.md v1 + ConPath pilot v1"
+    },
+    "independent": {
+      "path": "results/p1_flatlands_independent_k128_validation_v2/seed20260831_independent/best.pt",
+      "sha256": "22100a72392580050f070aed9d73005ebf8d804b75e1b68740e3815f65141551",
+      "training_seed": 20260831,
+      "feature_channels": 16,
+      "latent_dim": 4,
+      "decoder_variant": "independent",
+      "protocol_version": "P1_BASELINE_PROTOCOL.md v1 + ConPath pilot v1"
+    }
+  },
+  "source_artifacts": {
+    "prediction_manifests": [
+      {
+        "variant": "correlated",
+        "seed": 20260831,
+        "path": "results/p1_flatlands_support_clamped_posthoc_k128_validation/seed20260831_correlated/predictions_validation.csv",
+        "sha256": "4a3795e167c195af6779e74bfddd989ccaa944fd0c952d19e102b49b4384bc58",
+        "rows": 4224
+      },
+      {
+        "variant": "correlated",
+        "seed": 20260901,
+        "path": "results/p1_flatlands_support_clamped_posthoc_k128_validation/seed20260901_correlated/predictions_validation.csv",
+        "sha256": "80706f163d0688acebea0a4c05d23da308e182246edaabf5dc99dc47543cd0ec",
+        "rows": 4224
+      },
+      {
+        "variant": "correlated",
+        "seed": 20260902,
+        "path": "results/p1_flatlands_support_clamped_posthoc_k128_validation/seed20260902_correlated/predictions_validation.csv",
+        "sha256": "444e58a4177b7b33b58be4d70a4d437ce2356dddcb752102af2e2c4adf27320f",
+        "rows": 4224
+      },
+      {
+        "variant": "independent",
+        "seed": 20260831,
+        "path": "results/p1_flatlands_support_clamped_posthoc_k128_validation/seed20260831_independent/predictions_validation.csv",
+        "sha256": "32dc1b93725780bc6ccfe30a08a3455d13c1c58fee6a03baee0c357bd7f5fdb0",
+        "rows": 4224
+      },
+      {
+        "variant": "independent",
+        "seed": 20260901,
+        "path": "results/p1_flatlands_support_clamped_posthoc_k128_validation/seed20260901_independent/predictions_validation.csv",
+        "sha256": "ba4d6f2a569c2489563bf5b8911a5c2e0363a83a35e0cbd0d80993aafcfc3b6b",
+        "rows": 4224
+      },
+      {
+        "variant": "independent",
+        "seed": 20260902,
+        "path": "results/p1_flatlands_support_clamped_posthoc_k128_validation/seed20260902_independent/predictions_validation.csv",
+        "sha256": "59b6957e6d7ea90ee3077ba2daaeabcda49b5ac8faf8404da9087db47c137ea8",
+        "rows": 4224
+      }
+    ],
+    "paired_comparison": {
+      "path": "results/p1_flatlands_support_clamped_posthoc_k128_validation/paired_comparison.json",
+      "sha256": "318f57334096fa6d7a1af92ec1ccfda69ca610aa5e1316b74d7468f8b6364f9c"
+    }
+  },
+  "claim_boundary": "This visual demonstrates a validation diagnostic after correcting invalid-support routing in checkpoints trained under the earlier contract. It is suitable for an honest project-page progress visual, but clean retraining is required before any paper, leaderboard, test, or generalization claim."
+}

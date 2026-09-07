@@ -49,6 +49,14 @@ observation_bev [B, Cin, H, W]
 - a process-safe FlatLands dataset adapter that streams the frozen 512-scene benchmark directly
   from the ZIP, filters only by the scene-disjoint provenance split, and replays query geometry
   from input-side masks before exposing targets;
+- a versioned valid-support clamp for FlatLands posterior worlds, a six-checkpoint K=128 post-hoc
+  recovery audit, and completed clean three-seed ConPath/independent K=128 training with strict
+  validation replay (validation-only, with all pre-correction PathRelNet-derived matrices marked
+  superseded);
+- a train/validation-only UnScenes3D ground-valid adapter with coordinate checks, correlated and
+  independent posterior controls, a deterministic mean-map evaluator, and an S4C-inspired
+  coordinate-query control; six clean target-valid-support adapters and a K=128 paired diagnostic
+  now pass strict audits, while its `location_6` test site remains locked;
 - tracked machine-readable recovery state with byte/SHA verification for required ignored results;
 - an exact NumPy merge-tree forward reference (`merge_tree_bottleneck_scores`) for many terminal
   queries on one map;
@@ -57,7 +65,9 @@ observation_bev [B, Cin, H, W]
 ## What is intentionally not claimed yet
 
 - raw RGB-to-BEV lifting or PointPillars/SECOND integration;
-- an ORFD, UnScenes3D, or WildOcc loader;
+- an official ORFD or WildOcc loader, or a final public-data/cross-domain result (the current
+  UnScenes3D adapter is validation-only, its pre-correction map results are superseded, and its test
+  site is locked);
 - SE(2) rectangular swept-footprint connectivity;
 - the final top-K path/cut probability bounds;
 - a paper-grade traversability, collision, or real-robot navigation result.
@@ -65,8 +75,18 @@ observation_bev [B, Cin, H, W]
 Those are separate milestones. The code now has both a synthetic contract harness and a real RGB-D
 geometry path. The real pilot is explicitly a reference-map audit because TUM does not provide
 traversability labels. The corrected neural model passes the synthetic P0 gate in two optimization
-seeds and its matched no-reach ablation fails, but no trained checkpoint has yet been validated on a
-paper-grade public benchmark.
+seeds and its matched no-reach ablation fails. The pre-correction FlatLands checkpoints have been
+re-evaluated with invalid support hard-blocked; the correlation advantage survives, but those
+checkpoints were trained under the old forward and therefore remain recovery diagnostics. Clean
+K=128 retraining now passes strict replay, with ConPath Brier `0.06749 +/- 0.00936` versus
+independent `0.09521 +/- 0.00703`; the physical test split and any paper-grade public-data claim
+remain gated.
+The same audit found that older UnScenes3D map-derived forwards omitted the `target_valid` support
+clamp; their model/mean-map/qualitative artifacts are now historical only, while the non-map
+coordinate-query and radius-prior controls remain usable. The clean UnScenes3D K=128 mean-map
+diagnostic is `0.54704 +/- 0.00218` versus `0.54740 +/- 0.00251` on two validation scenes, so it
+does not establish a correlation win. Clean training and rendering pass the support mask explicitly,
+and `location_6` remains unopened.
 
 After an interrupted session, start with:
 
@@ -74,13 +94,16 @@ After an interrupted session, start with:
 PYTHONPATH=src .venv/bin/python scripts/verify_recovery_state.py --quick
 ```
 
-Then read `CONTINUATION.md`. The full verifier (without `--quick`) rehashes the registered ignored
+Then read `WORK_PLAN.md` for current tasks and the latest entry in `CONTINUATION.md` for the hand-off.
+The full verifier (without `--quick`) rehashes the registered ignored
 artifacts, including the FlatLands archive.
 
 ## Environment
 
-Use Python 3.10-3.12. The repository's current default Python 3.14 PyTorch installation is not
-usable, so create an isolated environment rather than modifying it:
+The clean September 2026 checkpoints and the latest full regression were produced with
+Python 3.13.13 at `/home/hairo/miniconda3/bin/python3.13`. Use that interpreter on this machine
+for checkpoint replay; the separate `.venv` is Python 3.11.15 and does not reproduce the checkpoint
+serialization environment. Fresh source-only environments may use Python 3.10-3.13. For example:
 
 ```powershell
 cd /path/to/ConPath
@@ -134,6 +157,7 @@ src/pathrel/
   flatlands_query.py      target-blind bounded query selection/scoring
   flatlands_data.py       frozen direct-ZIP benchmark replay and collation
   flatlands_eval.py       exact-coverage scene-weighted event evaluator
+  unscenes3d.py           label-free LiDAR adapter and ground-valid query geometry
   stochastic_decoder.py  joint stochastic occupancy posterior
   reachability.py         footprint and max-min connectivity layer
   losses.py               proper task-level and map losses
@@ -148,7 +172,7 @@ The official FlatLands observation split fails scene isolation. The upstream
 `provenance.original_split` replacement is explicitly non-official but scene-disjoint, and its
 512-scene direct-from-ZIP bounded mask/query audit passes the frozen data gate. The streaming
 adapter is now implemented and verified across all 512 packets; this authorizes the fixed-baseline
-milestone, not a trained public-data or paper result. Reproduce the audit without extraction using:
+and validation-candidate milestones, not a final paper result. Reproduce the audit without extraction using:
 
 ```bash
 PYTHONPATH=src .venv/bin/python scripts/audit_flatlands_queries.py \
@@ -177,6 +201,21 @@ prediction schema, scene-weighted metrics, test-lock policy, and first three lea
 the rule that cross-task 3-D mIoU/FID numbers are not copied into the FlatLands event table and the
 final parameter-matching budget (ConPath F=16, approximately 120k parameters).
 
+The current recovery hand-off is the clean candidate
+`site/data/flatlands_k128_clean_candidate.json`, with its checkpoint-derived visual at
+`site/assets/flatlands_k128_clean_candidate.png`. It summarizes the corrected six-checkpoint
+K=128 rerun: correlated Brier `0.06749 +/- 0.00936` versus independent `0.09521 +/- 0.00703`,
+over 4,224 validation events per seed, with positive paired intervals for all three seeds. The
+old checkpoint directories and pre-correction snapshots remain intact as an audit trail, while
+clean replacements are written to `results/p1_flatlands_conpath_k128_support_clamped_v1/` and
+`results/p1_flatlands_independent_k128_support_clamped_v1/`. No test label was read.
+The fail-closed `scripts/wait_and_finalize_flatlands_valid_support.sh` watcher waited for all six
+reports, audited support/checkpoint/prediction/replay contracts, and wrote the clean candidate only
+after every per-seed paired Brier interval had a positive lower bound. The analogous UnScenes3D
+supervisor produced `site/data/unscenes3d_clean_support_k128_candidate.json` and two ground-robot
+candidate panels; both packages remain validation-only and are promoted to the local page only after
+manual review.
+
 ## Versioning and publication
 
 The local repository is branded **ConPath** while retaining the `pathrel` Python import namespace
@@ -196,10 +235,11 @@ itself is a separate setting on GitHub; the code and distribution are already na
 ## Academic project page
 
 The repository contains a static, GitHub Pages-ready project page under [`site/`](site/). Its primary
-video, teaser, depth visualization, and comparison figures are derived from the real TUM RGB-D
-`freiburg1/desk` sequence. It also publishes generated FlatLands audit JSON plus source/radius and
-query-outcome figures, all explicitly labelled as a bounded **data audit**, not model performance.
-The page is styled as an academic project page with centered media and inspectable data tables.
+media now show the clean trained K=128 FlatLands correlated-versus-independent comparison, including
+three-seed metrics, posterior maps, and fixed sample worlds; a separate UnScenes3D section shows the
+clean ground-robot transfer diagnostic and its deliberately visible false-safe case. The real TUM
+RGB-D `freiburg1/desk` video remains lower on the page as a geometry-only appendix. All model media
+are explicitly validation candidates, not synthetic media or final paper/test results.
 
 The TUM sequence has RGB/depth and a motion-capture camera trajectory, but no traversability or
 collision labels. Therefore the pilot is a reproducibility milestone, not a public navigation

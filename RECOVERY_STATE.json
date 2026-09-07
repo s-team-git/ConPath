@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "checkpoint_id": "p1-flatlands-validation-baselines-v1",
-  "updated_local_date": "2026-09-02",
+  "checkpoint_id": "clean-support-paper-continuation-20260906",
+  "updated_local_date": "2026-09-06",
   "timezone": "America/New_York",
   "branch": "main",
-  "remote_sync": "Local main is clean and synchronized with origin/main via GitHub SSH over port 443; GitHub Pages can deploy the tracked site after the workflow completes.",
-  "latest_local_commit": "097b11d Record S4C-inspired validation control",
+  "remote_sync": "Remote main verified at 61d617e; clean-support code, audit artifacts, images and current plan are being prepared for a normal fast-forward publication.",
+  "latest_local_commit": "Working tree: September 6 plan reconciliation and clean-support website publication preparation; base commit 61d617e.",
   "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence.",
-  "scientific_status": "Synthetic P0 passes in two seeds. The official FlatLands split fails scene isolation. The non-official upstream-provenance split passes full integrity, a 512-scene bounded mask/query gate, direct-ZIP replay, and validation-only baselines. Three completion seeds, K=32/64/128 convergence, a PaSCo-inspired three-subnet same-contract control with K-sensitivity, a three-seed independent-decoder control, a three-seed deterministic posterior mean-map control, a three-seed S4C-inspired coordinate-query control, and four-method reliability/selective-risk curves are now complete on validation; the public site adds real-checkpoint qualitative and calibration diagnostics while test remains locked. The capacity-matched F=16 ConPath main model averages 0.09607 +/- 0.01222 exact Brier across three seeds, versus 0.11214 +/- 0.00306 for the independent decoder, 0.09204 +/- 0.00582 for the S4C-inspired coordinate control, and 0.07111 +/- 0.00377 for binary mean-map events; the mean-map hidden-map Brier is 0.17842 +/- 0.00512, so all remain validation-only diagnostics, not final paper results. The official ORFD semantics audit is complete as a ground-vehicle second-domain candidate, but its image-plane labels do not yet support a same-contract metric-BEV event result. UnScenes3D is now the priority second-domain candidate: the 13-scene raw mini package, 629-timestamp occupancy/elevation labels, and both local-map parts are acquired, path-audited, and timestamp-joined; the basic audit covers 629/629 map files, the train/validation-only 17,096-query manifest is frozen, and the first full three-seed map-only adapter run completed on all 478 train / 62 validation frames. Its validation event Brier is 0.63165 +/- 0.00083, NLL 10.06875 +/- 0.02700, and ECE 0.73653 +/- 0.00143; this is a poor map-only diagnostic, not a final score or cross-domain claim. Event-loss training, capacity-matched controls, and held-out evaluation remain pending.",
-  "active_task": "Run the first full UnScenes3D train/validation ConPath adapter and capacity-matched controls from the frozen 17,096-query manifest, then render a ground-robot qualitative panel before any test access or final site claim. Official FlatLands, SceneSense, and ORFD artifact/contract audits are recorded; FlatLands and SceneSense remain reference-only, ORFD has no local run, and UnScenes3D raw/label/map packages plus the initial smoke are diagnostics, not results.",
+  "scientific_status": "Synthetic P0 passes in two seeds. The official FlatLands split fails scene isolation. A 2026-09-03 validation audit found that pre-correction map-derived FlatLands forwards did not hard-block cells outside epistemic_mask, so the earlier K=32/K=128 neural tables are superseded. The six-checkpoint K=128 post-hoc support-clamped replay remains a recovery diagnostic only. The new three-seed clean-support K=128 groups for correlated and independent decoders have completed and passed strict checkpoint/support/replay audits: scene-weighted Brier 0.06749 +/- 0.00936 versus 0.09521 +/- 0.00703, paired delta +0.02772 +/- 0.00993 with all per-seed intervals positive. These are validation-only on the non-official provenance split; FlatLands test remains locked. The analogous six-run UnScenes3D target-valid-support rerun and K=128 paired replay also passed strict audits: correlated Brier 0.54704 +/- 0.00218 versus independent 0.54740 +/- 0.00251, near-zero delta on two held-out scenes. Both clean packages remain validation diagnostics; no test or final cross-domain claim is authorized. Non-map coordinate-query/radius-prior controls are unaffected and location_6 remains locked.",
+  "active_task": "Publish the reviewed clean-support code, real-checkpoint figures and website; then follow WORK_PLAN.md to complete clean calibration/paired-control analysis, sampling and ablation evidence, and the working paper. Final integrity audits are complete; locked tests remain unopened.",
   "completed_milestones": [
     "Interruption-safe P0 training with atomic checkpoints and exact resume",
     "Two-seed synthetic P0 pass and matched no-reach failure",
@@ -24,24 +24,67 @@
     "Capacity-matched matrix default changed to feature_channels=16 for final paper runs",
     "Single-seed F=8 ConPath FlatLands validation pilot completed with exact-forward report; test remains locked",
     "Capacity-matched F=16 ConPath validation set completed for seeds 20260831, 20260901, and 20260902; mean exact Brier 0.09607 +/- 0.01222",
-    "F16 no-global and no-reachability causal ablations completed for all three seeds; mean exact Brier 0.11505 and 0.20555 respectively"
-    ,"Completion baseline seeds 20260901 and 20260902 completed with exact validation reports; three-seed event/map control set is now available"
-    ,"Completion K=32/64/128 convergence evaluated from one fixed checkpoint with shared posterior stream"
-    ,"PaSCo-inspired three-subnet same-contract ensemble evaluated at total K=32/64/128; event and hidden-map calibration recorded with sample-budget sensitivity"
-    ,"Two real-checkpoint FlatLands qualitative validation panels (positive and uncertainty/failure) added to tracked site assets"
-    ,"Independent-decoder control implementation and chunked K=32 validation added for safe CUDA parallelism"
-    ,"Independent-decoder F16 control completed for all three seeds with exact event reports; mean Brier 0.11214 +/- 0.00306"
-    ,"Deterministic ConPath posterior mean-map control completed for all three seeds with event/map metrics; mean event Brier 0.07111 and hidden-map Brier 0.17842"
-    ,"Three-seed reliability and selective-risk curves generated for ConPath, independent decoder, and deterministic mean-map controls; test remains locked"
-    ,"Website visual hierarchy enlarged and clarified; desk-surface TUM media explicitly marked as geometry-pipeline pilot pending ground-robot replacement"
-    ,"256×256 B=8 K=8 exact merge-tree shape benchmark completed; query-time scaling recorded and output finiteness verified"
-    ,"S4C-inspired F16 coordinate-query control completed for seeds 20260831, 20260901, and 20260902; mean exact Brier 0.09204 +/- 0.00582 and four-method calibration snapshot published"
-    ,"Official FlatLands implementation/weights audit completed; public repository has dataset/docs but no importable checkpoint and marks weights/construction code/tooling as planned"
-    ,"SceneSense diffusion compatibility audit completed; official 3-D pointmap/ROS contract and metrics are incompatible with the FlatLands 2-D event protocol, so it remains reference-only"
-    ,"ORFD official semantics/contract audit completed; ground-vehicle image-plane freespace is a second-domain candidate, and the official loader was checked for calibration/pose fields (no documented ego-pose/world-map stream); no local archive, metric-BEV adapter, or score is available"
-    ,"UnScenes3D official repository/release/code audit completed; 13-scene raw and 629-timestamp label mini archives acquired, hashed, path-audited, and joined; both local-map parts cover 629/629 label timestamps and pass the basic integrity audit; coordinate/support adapter protocol v0.1 and train/validation-only 17,096-query event manifest are frozen"
-    ,"First UnScenes3D map-only GPU adapter smoke completed for a 32-frame train / 16-frame validation subset, one epoch, K=4; validation map Brier 0.14267 and event Brier 0.92268 are one-scene pipeline diagnostics only, not paper results; location-6 test remains locked"
-    ,"UnScenes3D three-seed map-only adapter completed on all 478 train / 62 validation frames; validation event Brier 0.63165 +/- 0.00083, NLL 10.06875 +/- 0.02700, and ECE 0.73653 +/- 0.00143 expose an underperforming event baseline, so event-loss training and capacity-matched controls are required before any effectiveness claim"
+    "F16 no-global and no-reachability causal ablations completed for all three seeds; mean exact Brier 0.11505 and 0.20555 respectively",
+    "Completion baseline seeds 20260901 and 20260902 completed with exact validation reports; three-seed event/map control set is now available",
+    "Completion K=32/64/128 convergence evaluated from one fixed checkpoint with shared posterior stream",
+    "PaSCo-inspired three-subnet same-contract ensemble evaluated at total K=32/64/128; event and hidden-map calibration recorded with sample-budget sensitivity",
+    "Two real-checkpoint FlatLands qualitative validation panels (positive and uncertainty/failure) added to tracked site assets",
+    "Independent-decoder control implementation and chunked K=32 validation added for safe CUDA parallelism",
+    "Independent-decoder F16 control completed for all three seeds with exact event reports; mean Brier 0.11214 +/- 0.00306",
+    "Deterministic ConPath posterior mean-map control completed for all three seeds with event/map metrics; mean event Brier 0.07111 and hidden-map Brier 0.17842",
+    "Three-seed reliability and selective-risk curves generated for ConPath, independent decoder, and deterministic mean-map controls; test remains locked",
+    "Website visual hierarchy enlarged and clarified; desk-surface TUM media explicitly marked as geometry-pipeline pilot pending ground-robot replacement",
+    "256×256 B=8 K=8 exact merge-tree shape benchmark completed; query-time scaling recorded and output finiteness verified",
+    "S4C-inspired F16 coordinate-query control completed for seeds 20260831, 20260901, and 20260902; mean exact Brier 0.09204 +/- 0.00582 and four-method calibration snapshot published",
+    "Official FlatLands implementation/weights audit completed; public repository has dataset/docs but no importable checkpoint and marks weights/construction code/tooling as planned",
+    "SceneSense diffusion compatibility audit completed; official 3-D pointmap/ROS contract and metrics are incompatible with the FlatLands 2-D event protocol, so it remains reference-only",
+    "ORFD official semantics/contract audit completed; ground-vehicle image-plane freespace is a second-domain candidate, and the official loader was checked for calibration/pose fields (no documented ego-pose/world-map stream); no local archive, metric-BEV adapter, or score is available",
+    "UnScenes3D official repository/release/code audit completed; 13-scene raw and 629-timestamp label mini archives acquired, hashed, path-audited, and joined; both local-map parts cover 629/629 label timestamps and pass the basic integrity audit; coordinate/support adapter protocol v0.2 and train/validation-only 17,096-query event manifest are frozen",
+    "First UnScenes3D map-only GPU adapter smoke completed for a 32-frame train / 16-frame validation subset, one epoch, K=4; validation map Brier 0.14267 and event Brier 0.92268 are one-scene pipeline diagnostics only, not paper results; location-6 test remains locked",
+    "UnScenes3D three-seed map-only adapter completed on all 478 train / 62 validation frames; validation event Brier 0.63165 +/- 0.00083, NLL 10.06875 +/- 0.02700, and ECE 0.73653 +/- 0.00143 expose an underperforming event baseline, so event-loss training and capacity-matched controls are required before any effectiveness claim",
+    "UnScenes3D bounded event-loss training completed for three seeds (five epochs, F=16, K=4, max propagation 64); exact validation event Brier 0.63704 +/- 0.00317 was not better than the map-only diagnostic, exposing an approximate-training/exact-oracle mismatch; location-6 test remains locked",
+    "UnScenes3D corrected scene/query-weighted bounded event-loss run completed for three seeds (five epochs, F=16, K=4, max propagation 64); exact validation event Brier 0.63316 +/- 0.00094 remained statistically indistinguishable from map-only 0.63165 +/- 0.00083; coordinate/projection audit is now the gate before more training",
+    "UnScenes3D coordinate audit completed on 55 train/validation frames: direct LiDAR/local-map overlap 0.791 within 0.3 m and 0.863 within 1 m, IMU-transform alternatives zero; location_6 remained unopened",
+    "Ground-endpoint candidate contract frozen for controls with fixed validity-only starts; manifest replay matched runtime starts/goals for all 540 train/validation frames and 17,096 queries",
+    "Three-seed F=16 ground-valid map-only adapter diagnostic completed; exact validation event Brier 0.56272 +/- 0.00744, still validation-only and not a cross-domain claim",
+    "Three-seed F=16 ground-valid bounded event-loss diagnostic completed; exact validation event Brier 0.59126 +/- 0.00855 belongs to the rejected observed-free-start ablation and is not a canonical-contract result",
+    "Canonical ground-valid independent decoder completed for three seeds; stochastic event Brier 0.56297 +/- 0.00541 and K=128 mean-map event Brier 0.62762 +/- 0.00126; validation-only",
+    "Canonical ground-valid deterministic posterior mean-map evaluator completed for three seeds at K=128 plus K=32/64 sensitivity; evaluator checks manifest/runtime geometry and keeps location_6 locked",
+    "Canonical ground-valid S4C-inspired coordinate-query control completed for three seeds after scene-weighting correction; event Brier 0.20379 +/- 0.03485, NLL 0.57289 +/- 0.10572, ECE 0.11107 +/- 0.05312, zero radius monotonicity violations",
+    "Validation-only UnScenes3D qualitative renderer completed: 1800x1280 true-positive and false-safe panels, camera/LiDAR projection, posterior mean, and radius-specific footprint maps mirrored into site assets",
+    "Autonomous overnight 13-hour audit/package plan recorded; test site location_6 remains locked",
+    "UnScenes3D v0.2 correlated three-seed GPU replay completed in a separate directory; maximum displayed-metric drift versus the legacy metadata reports was 1.51e-4 and the replay contract audit passed",
+    "Read-only UnScenes3D control audit recomputed 4,587 validation rows per CSV, checked hashes/K/site/qualitative/calibration/manifest-replay/published-evidence/portable-path invariants, and passed 599 checks with zero failures",
+    "Deterministic ground-valid manifest rebuild matched every contract field after excluding generation_seconds; normalized contract SHA 017b368b0364ca518e1c0d744ed81d53d92f190b72ee66109417b29c5bee77d5",
+    "Published UnScenes3D calibration snapshot now stores repository-relative prediction paths; numeric diagnostics are unchanged and the control audit passes 599 checks including the portability invariant",
+    "Current README, data notes, recent-baseline bridge, Chinese roadmap, and site hand-off now agree that the UnScenes3D validation controls are complete while the test site remains locked",
+    "Paper dataset readiness audit completed: FlatLands archive hash verified, UnScenes3D 13-scene/629-timestamp/629-localmap join passed, TUM RGB-D pilot is extracted, and the full recovery verifier passed with hashes enabled; final test and cross-domain claims remain gated",
+    "PAPER_DRAFT.md and CONTINUATION.md now record the recommended P0 + FlatLands primary dataset plan, UnScenes3D secondary role, TUM pilot boundary, and absent optional ORFD/WildOcc packages",
+    "FlatLands F=16 ConPath K=128 validation candidate completed for seeds 20260831/20260901/20260902; exact scene-weighted Brier 0.09583 +/- 0.01148, all 4,224-row manifests/hash checks/radius monotonicity checks passed, test remains locked",
+    "K=128 validation snapshot and paper/site hand-off added at site/data/flatlands_conpath_k128_validation.json; independent evaluator replay reproduced all three reports",
+    "Matched FlatLands independent-decoder K=128 training completed for all three fixed seeds with early stopping; final exact validation manifests/reports subsequently completed and test remained locked",
+    "Matched FlatLands independent-decoder K=128 exact validation manifests completed for all three fixed seeds; scene-weighted Brier 0.11394 +/- 0.00328, NLL 0.87654 +/- 0.02979, ECE 0.09715 +/- 0.00913, false-safe 0.07857 +/- 0.00715, and coverage 0.34687 +/- 0.00839",
+    "FlatLands independent K=128 audit passed 3 seeds/0 failures with frozen selection/query hashes, 4,224 finite rows per seed, zero radius-order violations, exact evaluator replay, and test lock; portable snapshot generated at site/data/flatlands_independent_k128_validation.json",
+    "Paired FlatLands K=128 scene-bootstrap comparison completed on identical validation keys; independent-minus-correlated Brier delta +0.01810 +/- 0.00876 across three seeds, with positive per-seed 2,000-resample intervals; no test labels read",
+    "Final validation/package regression gate rerun after the paired report: 77 tests passed, source/scripts compileall and git diff --check passed, static site had 19 JSON files and 43 local references with no missing targets, DOM smoke passed, full recovery verification passed 314/314, and UnScenes3D manifest/GPU/control checks passed (599/0/3)",
+    "FlatLands support-boundary audit found that pre-correction stochastic forwards could route through cells outside epistemic_mask; old map-derived K=32/K=128 results are superseded, test remained locked",
+    "Explicit valid_support_mask clamp added to PathRelNet and FlatLands training/collation; completion support-bounding received a regression test; 80 unit tests and a CUDA train smoke passed",
+    "Six old K=128 checkpoints received a support-clamped post-hoc validation replay: ConPath Brier 0.08467 +/- 0.01350 versus independent 0.10352 +/- 0.00388; paired delta +0.01886 +/- 0.00963 and all three per-seed intervals positive",
+    "Checkpoint-derived FlatLands comparison PNG and provenance JSON replaced the TUM desk video as the local site hero; the TUM video moved to the geometry-pilot section and a 1440x1200 Chrome screenshot passed",
+    "Clean FlatLands valid-support K=128 three-seed correlated training launched in a new versioned directory; matched independent training is queued by the same controller and no old checkpoint is overwritten",
+    "Clean FlatLands correlated seeds completed two epochs without OOM; seed 20260831 improved validation Brier to 0.17264 while the other two seeds used one of eight early-stopping patience steps",
+    "UnScenes3D target_valid boundary audit found the same missing-clamp class in historical map-derived forwards; trainer, mean-map evaluator, and qualitative renderer now clamp it, old map artifacts are superseded, and a synthetic forward smoke confirmed zero safe samples outside support",
+    "Local site hero passed a 1440x1200 Chrome render and 43-reference link audit; its provenance JSON now includes every per-seed paired bootstrap Brier interval",
+    "A fail-closed supervisor now waits for all six clean FlatLands reports, runs strict checkpoint/support/replay audits, builds paired bootstrap artifacts, and only renders a clean candidate hero when every per-seed Brier interval remains positive",
+    "Three old UnScenes3D correlated checkpoints received a validation-only K=128 target_valid-clamped mean-map diagnostic: event Brier changed from 0.62774 +/- 0.00145 to 0.54740 +/- 0.00251 over 4,587 rows per seed with zero radius violations; hidden-map Brier stayed about 0.15017, and all reports remain post-hoc/retraining-required/test-locked",
+    "A queued second-domain supervisor now waits for the FlatLands GPU/finalizer lane, then runs six clean target_valid-clamped UnScenes3D trainings, strict checkpoint audits, six K=128 paired evaluations, whole-scene comparison, and candidate-only qualitative rendering without opening location_6",
+    "FlatLands and UnScenes3D finalizers were unified on the Python 3.13 training interpreter after a Python 3.11 pathlib pickle incompatibility was detected; all three live epoch-9 checkpoints restored with finite tensors and the exact-environment 80-test suite passed",
+    "Clean FlatLands correlated K=128 support-v2 training and exact validation completed for seeds 20260831/20260901/20260902; all three reports have 4,224 label-free validation rows, support clamp metadata, frozen query hashes, and scene-weighted Brier 0.06749 +/- 0.00936; matched independent training subsequently completed",
+    "Clean FlatLands matched independent K=128 support-v2 training and exact validation completed for seeds 20260831/20260901/20260902; all three reports have 4,224 label-free validation rows and scene-weighted Brier 0.09521 +/- 0.00703; paired clean comparison and checkpoint-derived candidate visual passed the strict zero-failure audit",
+    "UnScenes3D clean target-valid-support supervisor entered the six-run training lane after FlatLands finalization; all six adapters, K=128 paired replay, and candidate qualitative panels completed with location_6 still locked",
+    "Clean UnScenes3D target-valid-support package passed both three-seed training audits, six K=128 exact replay reports, paired comparison, and qualitative metadata checks; correlated Brier 0.54704 +/- 0.00218 versus independent 0.54740 +/- 0.00251 on two validation scenes, validation-only",
+    "Final site presentation promoted the clean FlatLands hero and clean UnScenes3D diagnostic table/panels; 80-test, static-link/DOM, paired-replay, and full 344-entry recovery checks passed with no training process active",
+    "September 6 review found no active runtime goal; consolidated WORK_PLAN.md reconciles completed overnight audits, superseded ablations, clean-support recovery commands and the Python 3.13 checkpoint interpreter. Three real-checkpoint figures were visually reviewed; stale website method/calibration text and unequal-coverage claims were corrected."
   ],
   "tracked_files": [
     "CONTINUATION.md",
@@ -79,13 +122,27 @@
     "scripts/train_flatlands_completion.py",
     "scripts/train_flatlands_conpath.py",
     "scripts/build_unscenes3d_manifest.py",
+    "scripts/audit_unscenes3d_coordinate.py",
+    "scripts/audit_unscenes3d_controls.py",
+    "scripts/compare_unscenes3d_manifest.py",
+    "scripts/compare_unscenes3d_replay.py",
+    "scripts/evaluate_unscenes3d_calibration.py",
     "scripts/train_unscenes3d_conpath.py",
+    "scripts/evaluate_unscenes3d_conpath_mean_map.py",
+    "scripts/train_unscenes3d_coordinate.py",
+    "scripts/render_unscenes3d_qualitative.py",
     "scripts/run_flatlands_conpath_matrix.sh",
     "scripts/render_flatlands_qualitative.py",
     "scripts/evaluate_flatlands_completion_k.py",
     "scripts/evaluate_flatlands_recent_ensemble.py",
     "scripts/evaluate_flatlands_conpath_mean_map.py",
     "scripts/evaluate_flatlands_calibration.py",
+    "scripts/audit_flatlands_conpath_k128.py",
+    "scripts/build_flatlands_k128_snapshot.py",
+    "scripts/compare_flatlands_k128_paired.py",
+    "scripts/evaluate_flatlands_support_clamped.py",
+    "scripts/render_flatlands_k128_advantage.py",
+    "scripts/wait_and_finalize_flatlands_valid_support.sh",
     "RECENT_BASELINES.md",
     "OFFICIAL_FLATLANDS_CHECK.md",
     "SCENESENSE_COMPATIBILITY_CHECK.md",
@@ -107,14 +164,29 @@
     "site/data/flatlands_conpath_mean_map_validation.json",
     "site/data/flatlands_s4c_coordinate_validation.json",
     "site/data/flatlands_calibration_validation.json",
+    "site/data/flatlands_conpath_k128_validation.json",
+    "site/data/flatlands_independent_k128_validation.json",
+    "site/data/flatlands_k128_paired_comparison.json",
+    "site/data/flatlands_k128_support_clamped_advantage.json",
+    "site/assets/flatlands_k128_support_clamped_advantage.png",
     "site/assets/flatlands_calibration_reliability.svg",
     "site/assets/flatlands_calibration_false_safe.svg",
     "site/data/flatlands_qualitative_validation_positive.json",
     "site/data/flatlands_qualitative_validation_uncertain.json",
-    "src/pathrel/labels.py",
     "tests/test_labels.py",
     "tests/test_reachability.py",
-    "scripts/benchmark_connectivity.py"
+    "scripts/benchmark_connectivity.py",
+    "site/assets/unscenes3d_qualitative_positive.png",
+    "site/assets/unscenes3d_qualitative_failure.png",
+    "site/assets/unscenes3d_calibration_reliability.svg",
+    "site/assets/unscenes3d_calibration_false_safe.svg",
+    "site/data/unscenes3d_qualitative_validation.json",
+    "site/data/unscenes3d_controls_validation.json",
+    "site/data/unscenes3d_calibration_validation.json",
+    "site/data/unscenes3d_controls_audit.json",
+    "site/data/unscenes3d_manifest_replay_audit.json",
+    "site/data/unscenes3d_replay_audit.json",
+    "WORK_PLAN.md"
   ],
   "ignored_artifacts": [
     {
@@ -256,6 +328,69 @@
       "required_for_resume": false,
       "bytes": 2782,
       "sha256": "18285bc67f34babe36bac845246307f31fdb6997ff7e5436dc7881acac155988"
+    },
+    {
+      "path": "results/unscenes3d_conpath_event_f16/seed20260831/best.pt",
+      "role": "UnScenes3D bounded event-loss validation checkpoint; exact event score underperformed, not a paper result",
+      "required_for_resume": false,
+      "bytes": 1489485,
+      "sha256": "dc45c2241889adc0b314d516cd442da5f94aa8aca3aa466613f0bfc0ad087582"
+    },
+    {
+      "path": "results/unscenes3d_conpath_event_f16/seed20260831/latest.pt",
+      "role": "UnScenes3D bounded event-loss latest checkpoint; exact event score underperformed, not a paper result",
+      "required_for_resume": false,
+      "bytes": 1489869,
+      "sha256": "c70e179474625611a6c1def741609ef6284a1a8650fb5d75d22a5aa391654b9a"
+    },
+    {
+      "path": "results/unscenes3d_conpath_event_f16/seed20260831/run.json",
+      "role": "UnScenes3D seed 20260831 bounded event-loss validation diagnostics",
+      "required_for_resume": false,
+      "bytes": 4234,
+      "sha256": "0e1bf31f55b13320f70a0c2aa1e397cc07f49de14dbd0e8ad44462a4c48dd1a2"
+    },
+    {
+      "path": "results/unscenes3d_conpath_event_f16/seed20260901/best.pt",
+      "role": "UnScenes3D bounded event-loss validation checkpoint; exact event score underperformed, not a paper result",
+      "required_for_resume": false,
+      "bytes": 1489293,
+      "sha256": "a6f2062ac148313fddc2b4e125de28103c37e39e839cb76b48c2130162a75e6a"
+    },
+    {
+      "path": "results/unscenes3d_conpath_event_f16/seed20260901/latest.pt",
+      "role": "UnScenes3D bounded event-loss latest checkpoint; exact event score underperformed, not a paper result",
+      "required_for_resume": false,
+      "bytes": 1489869,
+      "sha256": "9d09021128e64a079298660cd64b119c45098a7c85957302e8a60faef3db8ba7"
+    },
+    {
+      "path": "results/unscenes3d_conpath_event_f16/seed20260901/run.json",
+      "role": "UnScenes3D seed 20260901 bounded event-loss validation diagnostics",
+      "required_for_resume": false,
+      "bytes": 4230,
+      "sha256": "3e1c8c30906d23a10d711f48361fc34b398ed27086efa53ccd386ba3097e2d71"
+    },
+    {
+      "path": "results/unscenes3d_conpath_event_f16/seed20260902/best.pt",
+      "role": "UnScenes3D bounded event-loss validation checkpoint; exact event score underperformed, not a paper result",
+      "required_for_resume": false,
+      "bytes": 1489293,
+      "sha256": "6681bfbf6a8f867cc0c12e6cacebb93b86703fb797247d02765cafab9d43c5ef"
+    },
+    {
+      "path": "results/unscenes3d_conpath_event_f16/seed20260902/latest.pt",
+      "role": "UnScenes3D bounded event-loss latest checkpoint; exact event score underperformed, not a paper result",
+      "required_for_resume": false,
+      "bytes": 1489869,
+      "sha256": "0b3b541dcd417e7189910df6e188e861274af410afed3a76a895cebd4ba2c04d"
+    },
+    {
+      "path": "results/unscenes3d_conpath_event_f16/seed20260902/run.json",
+      "role": "UnScenes3D seed 20260902 bounded event-loss validation diagnostics",
+      "required_for_resume": false,
+      "bytes": 4240,
+      "sha256": "83276e63317dee962d5ae07724deca91e54bc16799fd04963bfe41ba7624d2f0"
     },
     {
       "path": "results/p1_flatlands_provenance_manifest/report.json",
@@ -1026,24 +1161,771 @@
       "required_for_resume": false,
       "bytes": 5808211,
       "sha256": "a78ceafd9ad3cdded9358dcd8090b41dea9bf807f11f52384f86769dbc8b810e"
+    },
+    {
+      "path": "results/unscenes3d_coordinate_audit/report.json",
+      "role": "UnScenes3D train/validation coordinate and projection audit; location_6 unopened",
+      "required_for_resume": false,
+      "bytes": 513402,
+      "sha256": "dc9297d5c8260db5370a8b6b53ba61e4e779358208115ebf87a8265ec5e4e17e"
+    },
+    {
+      "path": "results/unscenes3d_coordinate_audit/coordinate_overlay.png",
+      "role": "UnScenes3D camera/BEV coordinate audit overlay; validation diagnostic",
+      "required_for_resume": false,
+      "bytes": 998660,
+      "sha256": "77be1427cfa4b2c9175f25b5c44f02b57de2d05f29e3b67d2ada55f1feca4195"
+    },
+    {
+      "path": "results/unscenes3d_contract_manifest_ground_valid/manifest.json",
+      "role": "UnScenes3D coordinate-audited ground-endpoint, fixed-valid-start train/validation manifest",
+      "required_for_resume": false,
+      "bytes": 6008303,
+      "sha256": "d866be0b25ba6635d5ad934bac9c822c55be8034fabd8f4627803bb9efa972d5"
+    },
+    {
+      "path": "results/unscenes3d_ground_candidate_f16/seed20260831/run.json",
+      "role": "UnScenes3D ground-endpoint observed-free-start map-only diagnostic, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 3762,
+      "sha256": "1937dcea4addf7395d7072d19ce7dc52529b3bac00f0d5f8aba2b6802ec7e051"
+    },
+    {
+      "path": "results/unscenes3d_ground_candidate_f16/seed20260901/run.json",
+      "role": "UnScenes3D ground-endpoint observed-free-start map-only diagnostic, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 3752,
+      "sha256": "1f37488127a890d98dbb1923f30e193ba3fb23d41ad9b96a0bd3e544e988092c"
+    },
+    {
+      "path": "results/unscenes3d_ground_candidate_f16/seed20260902/run.json",
+      "role": "UnScenes3D ground-endpoint observed-free-start map-only diagnostic, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 3768,
+      "sha256": "7e3cc7fe95e0cffced54012066c6918dc6790e2259c391feeaaef15876236e76"
+    },
+    {
+      "path": "results/unscenes3d_ground_candidate_event_f16/seed20260831/run.json",
+      "role": "UnScenes3D ground-endpoint observed-free-start bounded event-loss diagnostic, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 4685,
+      "sha256": "2f3239e6517dfdafacf9018765b968d3210c626fb0b50bf47801ad4a6fe3a834"
+    },
+    {
+      "path": "results/unscenes3d_ground_candidate_event_f16/seed20260901/run.json",
+      "role": "UnScenes3D ground-endpoint observed-free-start bounded event-loss diagnostic, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 4686,
+      "sha256": "a77152281c58adc17de1cc51ff96e8a343d210f36e3d724d5a034ae4cc142daf"
+    },
+    {
+      "path": "results/unscenes3d_ground_candidate_event_f16/seed20260902/run.json",
+      "role": "UnScenes3D ground-endpoint observed-free-start bounded event-loss diagnostic, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 4684,
+      "sha256": "9f23916e6bdb0ed3162fb338dd28524b9ab964b5f9c5f858b8693f46a24a849b"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_f16/seed20260831/run.json",
+      "role": "UnScenes3D canonical ground-valid map-only diagnostic, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 3747,
+      "sha256": "d37a641da8938961997be1643d7ffa98a055c670d641717e0afb6c82cfa756d1"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_f16/seed20260901/run.json",
+      "role": "UnScenes3D canonical ground-valid map-only diagnostic, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 3753,
+      "sha256": "866023a40caa61fbe13087b51481fdb72b11190de8f590f7fa443c034cf57687"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_f16/seed20260902/run.json",
+      "role": "UnScenes3D canonical ground-valid map-only diagnostic, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 3755,
+      "sha256": "f4e3fd6411931aea3b481fee6dd2c257f8f41530a057ef653ab0777f7203f48e"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_mean_map_k32/seed20260831/run.json",
+      "role": "UnScenes3D correlated posterior mean-map K=32 sensitivity report, validation-only",
+      "required_for_resume": false,
+      "bytes": 2594,
+      "sha256": "1b2dc86beaa6634e692957be4e40fc1c5641ae265ef583b9e136f6e65448dd21"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_mean_map_k64/seed20260831/run.json",
+      "role": "UnScenes3D correlated posterior mean-map K=64 sensitivity report, validation-only",
+      "required_for_resume": false,
+      "bytes": 2594,
+      "sha256": "2dd88828a861c7808801058ff44fda8edde0881262983833efa17eab2d2de16d"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_mean_map_k128/seed20260831/run.json",
+      "role": "UnScenes3D correlated posterior mean-map K=128 report, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 2596,
+      "sha256": "3c6e6fbd9b6db4752450107558ae6f04825f44b3059058062205e708f78e36ad"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_mean_map_k128/seed20260901/run.json",
+      "role": "UnScenes3D correlated posterior mean-map K=128 report, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 2595,
+      "sha256": "daf0de7616ca68510e43cf418aed83ece6754df2f76d408ffb32d2dde0230521"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_mean_map_k128/seed20260902/run.json",
+      "role": "UnScenes3D correlated posterior mean-map K=128 report, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 2598,
+      "sha256": "e0c059fc12e298927dc22eaec5621e0682dd1a1e58e3d574543b404a5ace315a"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260831/run.json",
+      "role": "UnScenes3D independent decoder mean-map K=128 report, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 2621,
+      "sha256": "61b6d183398a44fdf51c9a01563841162a3b0495d7d97fcd4201895f7fc6bf39"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260901/run.json",
+      "role": "UnScenes3D independent decoder mean-map K=128 report, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 2618,
+      "sha256": "7cd92061fdf132c10119925f45dd1ab8afd4ab61435604dcb72630bfe0613dce"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_independent_mean_map_k128/seed20260902/run.json",
+      "role": "UnScenes3D independent decoder mean-map K=128 report, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 2621,
+      "sha256": "220b98dea3a097dae6e6bf60fa8e23fc30b3ad99f3b162501743d73c0d2e19ed"
+    },
+    {
+      "path": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/run.json",
+      "role": "UnScenes3D corrected S4C-inspired coordinate-query validation report, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 9003,
+      "sha256": "a95f980baf910673a6e45a260e86e217e011d92fd8066bf78ee09c31d9b13105"
+    },
+    {
+      "path": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/run.json",
+      "role": "UnScenes3D corrected S4C-inspired coordinate-query validation report, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 9004,
+      "sha256": "e8db576e4463e8a0579c5b5b6e6b25fcc3832267414c1b740d7a9dc2ff33755e"
+    },
+    {
+      "path": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/run.json",
+      "role": "UnScenes3D corrected S4C-inspired coordinate-query validation report, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 9011,
+      "sha256": "fd6005d17275c5ccaad77fcd18da488a7ca76be1b423bb0e14bffb34b290e3cb"
+    },
+    {
+      "path": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260831/predictions_validation.csv",
+      "role": "Label-free UnScenes3D coordinate-query validation predictions, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 250742,
+      "sha256": "330fa93ff7a98d0bc73c4ac83e1a03804c900cfe8e9359dc0e74e80df853da39"
+    },
+    {
+      "path": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260901/predictions_validation.csv",
+      "role": "Label-free UnScenes3D coordinate-query validation predictions, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 251132,
+      "sha256": "7a2f046808cdee125eeaf6e5b7ae3667751336a9158d894fbcc84e3b6211f624"
+    },
+    {
+      "path": "results/unscenes3d_s4c_coordinate_f16_v2/seed20260902/predictions_validation.csv",
+      "role": "Label-free UnScenes3D coordinate-query validation predictions, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 250816,
+      "sha256": "e0a5d7c7e8c5dc9dc4c3024b84667bf1b8098b2c4a93a6fac0287ec646d9f8ce"
+    },
+    {
+      "path": "results/unscenes3d_qualitative_validation/report.json",
+      "role": "UnScenes3D validation qualitative panel selection and hash report",
+      "required_for_resume": false,
+      "bytes": 2663,
+      "sha256": "08438a9db2046a2727d403cd1757fc7e0da2df2438c9b5dd5aa55acffdd03aef"
+    },
+    {
+      "path": "results/unscenes3d_qualitative_validation/qualitative_positive.png",
+      "role": "UnScenes3D validation true-positive ground-robot panel",
+      "required_for_resume": false,
+      "bytes": 422028,
+      "sha256": "f3a31f239fdf2d2d42746a6b35215b990a090ded46229e257a8ba392092fad5d"
+    },
+    {
+      "path": "results/unscenes3d_qualitative_validation/qualitative_failure.png",
+      "role": "UnScenes3D validation false-safe ground-robot panel",
+      "required_for_resume": false,
+      "bytes": 418787,
+      "sha256": "43711d13848c313ba514da316e423ce0caf99c012ab9635f7dabc02c30421041"
+    },
+    {
+      "path": "results/unscenes3d_controls_audit/run.json",
+      "role": "Read-only UnScenes3D validation control/hash/site audit report",
+      "required_for_resume": false,
+      "bytes": 157591,
+      "sha256": "239cef1602af8638cbb6b132369d97a6ba2b7a5cda7b02683f6a04b9bff95bf6"
+    },
+    {
+      "path": "results/unscenes3d_manifest_replay_audit/report.json",
+      "role": "Deterministic UnScenes3D ground-valid manifest rebuild/contract audit",
+      "required_for_resume": false,
+      "bytes": 1125,
+      "sha256": "c2dffd30ab4fa933cb1ba58dd0c8cdb2d2959ba79d5bc7f7e6466c8a870c6d9a"
+    },
+    {
+      "path": "results/unscenes3d_replay_audit/report.json",
+      "role": "UnScenes3D v0.2 three-seed GPU replay stability audit",
+      "required_for_resume": false,
+      "bytes": 4043,
+      "sha256": "0f7962ef870f654de0984d325c723f32947f0205be1b95fe470bcd88ba7e06d7"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_f16_v2/seed20260831/run.json",
+      "role": "UnScenes3D v0.2 correlated replay report, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 3791,
+      "sha256": "d84acf031838012cfbaf8341680464624319ccc77a44fdfa4022700a951b2286"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_f16_v2/seed20260901/run.json",
+      "role": "UnScenes3D v0.2 correlated replay report, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 3790,
+      "sha256": "0ad1caeb9b441b1f9b1ef3c317e63db0e6f3df27ed46e5bbc8be209d41352afd"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_f16_v2/seed20260902/run.json",
+      "role": "UnScenes3D v0.2 correlated replay report, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 3786,
+      "sha256": "692d9ebb7ae00f9646030dd8ac5bd0aa5563d8bdc7a191137b9d2147b0aac93e"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_f16_v2/seed20260831/best.pt",
+      "role": "UnScenes3D v0.2 correlated replay best checkpoint, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 1489933,
+      "sha256": "6c7ee662eb9637e9b5d289017bcea5804582e39f7bce9343cb5f3fbd2741ce9d"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_f16_v2/seed20260831/latest.pt",
+      "role": "UnScenes3D v0.2 correlated replay latest checkpoint, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 1489933,
+      "sha256": "6c7ee662eb9637e9b5d289017bcea5804582e39f7bce9343cb5f3fbd2741ce9d"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_f16_v2/seed20260901/best.pt",
+      "role": "UnScenes3D v0.2 correlated replay best checkpoint, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 1489805,
+      "sha256": "72fa18061edb239cd9a310573c2a71f47b2f1f9350854bd214f395a1d5494b10"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_f16_v2/seed20260901/latest.pt",
+      "role": "UnScenes3D v0.2 correlated replay latest checkpoint, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 1489933,
+      "sha256": "5fb1d8b4f42d071a69b8bd3dc90503f20bd8aaa91837d465cefc9801b78ead5c"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_f16_v2/seed20260902/best.pt",
+      "role": "UnScenes3D v0.2 correlated replay best checkpoint, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 1489677,
+      "sha256": "9ca6be9577abe2ef9d90367d511129ab410b7e17479d553db60841aa91f59630"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_f16_v2/seed20260902/latest.pt",
+      "role": "UnScenes3D v0.2 correlated replay latest checkpoint, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 1489933,
+      "sha256": "c785db76f834700450be37323944ddcd4d3aa2829c8ff00815f313b59a28083f"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_v2_mean_map_k128/seed20260831/run.json",
+      "role": "UnScenes3D replay deterministic mean-map report, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 2602,
+      "sha256": "2de8d61a022ef9f6ed6a7efc99a1344c5fdbed603333b68dc64b1384a9b25b92"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_v2_mean_map_k128/seed20260901/run.json",
+      "role": "UnScenes3D replay deterministic mean-map report, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 2599,
+      "sha256": "017088f63b47f6babe84ee6910d953741af9160d9a3e3aec47334b10b78ed9c6"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_v2_mean_map_k128/seed20260902/run.json",
+      "role": "UnScenes3D replay deterministic mean-map report, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 2602,
+      "sha256": "c7774dc94dc5ec1f919fa35278906af231b98f444656e2b07079921299cec679"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_v2_mean_map_k128/seed20260831/predictions_validation.csv",
+      "role": "UnScenes3D replay mean-map label-free validation predictions, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 181921,
+      "sha256": "caedd9ef22a75ae0df16d335c8052e49de28428e70ad16fda5e8ac3e85c1f71f"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_v2_mean_map_k128/seed20260901/predictions_validation.csv",
+      "role": "UnScenes3D replay mean-map label-free validation predictions, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 181921,
+      "sha256": "bf8dc10e0f264f3c09b9fee0f00e971d6508518e5abd528c52eb14e0c572a8d4"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_v2_mean_map_k128/seed20260902/predictions_validation.csv",
+      "role": "UnScenes3D replay mean-map label-free validation predictions, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 181921,
+      "sha256": "fc332684b9462be2de0c0083ed79f39ccfbe893a5f626387fd3510de259e4ed5"
+    },
+    {
+      "path": "results/unscenes3d_calibration_validation/calibration_snapshot.json",
+      "role": "UnScenes3D validation reliability/selective-risk snapshot",
+      "required_for_resume": false,
+      "bytes": 21978,
+      "sha256": "3fc84c1ff22cf2d8c3ec1762b7d8aaa3f59401a1ae1374b622b6e494b3b96246"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_k128_validation_v2/seed20260831_conpath/best.pt",
+      "role": "FlatLands F=16 ConPath K=128 validation candidate best checkpoint, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 1501445,
+      "sha256": "15966a3bff17dfbf8672f7cb06fea0edea896680d7aa1dde4cf361c4af0b4005"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_k128_validation_v2/seed20260831_conpath/latest.pt",
+      "role": "FlatLands F=16 ConPath K=128 validation candidate latest checkpoint, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 1502597,
+      "sha256": "7ee13681cfdcb4852221a4f8d5de20ce2f0c625cdd132ef8bcee04867148c7a0"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_k128_validation_v2/seed20260831_conpath/predictions_validation.csv",
+      "role": "Label-free FlatLands K=128 validation predictions, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 97912,
+      "sha256": "b011bcad3c35416a8b6c99e7ebaf1bbc2089e434fb858c6839441acda06d58f2"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_k128_validation_v2/seed20260831_conpath/evaluation_validation/report.json",
+      "role": "FlatLands K=128 exact validation event report, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 159817,
+      "sha256": "11e3d108a726d47d4bdc1fe25370311a702c7bf64712d6d3ac173bf4b03f5363"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_k128_validation_v2/seed20260831_conpath/run.json",
+      "role": "FlatLands K=128 validation run metadata, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 181814,
+      "sha256": "04ebc3015dce790d6cf48c92ad51df9add3d885e5b3e20762cfeca891df53bd4"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_k128_validation_v2/seed20260901_conpath/best.pt",
+      "role": "FlatLands F=16 ConPath K=128 validation candidate best checkpoint, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 1503173,
+      "sha256": "187fadcbcf534411147feb0d12a50fa75659e147168ad8eefd3d748195c9958b"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_k128_validation_v2/seed20260901_conpath/latest.pt",
+      "role": "FlatLands F=16 ConPath K=128 validation candidate latest checkpoint, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 1504325,
+      "sha256": "67276f939e70fd8f5b1c99867c2c334d53a3396f516c996edd009133176fba1e"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_k128_validation_v2/seed20260901_conpath/predictions_validation.csv",
+      "role": "Label-free FlatLands K=128 validation predictions, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 97401,
+      "sha256": "38391222766d48909280b6ed0d71974b74b6adb55db70a079e7d29d1d10f6b1c"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_k128_validation_v2/seed20260901_conpath/evaluation_validation/report.json",
+      "role": "FlatLands K=128 exact validation event report, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 161098,
+      "sha256": "cee78a7f73e34ab10a62f95e2eb30bd0488eec159f8e1677aaeca493593cae18"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_k128_validation_v2/seed20260901_conpath/run.json",
+      "role": "FlatLands K=128 validation run metadata, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 188171,
+      "sha256": "435b80aec8a556f85182ed0c6f330b9dd1b274f603b7324a340110a881e7aebc"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_k128_validation_v2/seed20260902_conpath/best.pt",
+      "role": "FlatLands F=16 ConPath K=128 validation candidate best checkpoint, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 1502021,
+      "sha256": "32b8bc0cda339dfb4f6018c814d859230cd131bdda6ee2480a7ca8dd9a99a7a1"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_k128_validation_v2/seed20260902_conpath/latest.pt",
+      "role": "FlatLands F=16 ConPath K=128 validation candidate latest checkpoint, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 1503173,
+      "sha256": "d1d191f4ca7d48e1109710c180c40180738d5f897ba36a31fd14405e3c574e22"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_k128_validation_v2/seed20260902_conpath/predictions_validation.csv",
+      "role": "Label-free FlatLands K=128 validation predictions, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 97833,
+      "sha256": "b997c51362824a6a1155e6355b211e1034613d754ae90ca23810d8c37f0fb0f0"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_k128_validation_v2/seed20260902_conpath/evaluation_validation/report.json",
+      "role": "FlatLands K=128 exact validation event report, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 160272,
+      "sha256": "b29897fa128a9d2de83f511df7d07b85f31b103b91e6207f76b1b19ecdb24e29"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_k128_validation_v2/seed20260902_conpath/run.json",
+      "role": "FlatLands K=128 validation run metadata, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 183949,
+      "sha256": "4e60e94513525307ef1d0baa2aee3fb3bd738493729a01a3fbb27377e14f3151"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_k128_validation_v2/audit.json",
+      "role": "Superseded pre-correction FlatLands K=128 audit; current support audit intentionally records contract failures",
+      "required_for_resume": false,
+      "bytes": 5638,
+      "sha256": "e58f46386e8f637f2b369f75e29863e4689ebd32cd3ef5e0d768575b278de264"
+    },
+    {
+      "path": "results/p1_flatlands_independent_k128_validation_v2/seed20260831_independent/best.pt",
+      "role": "FlatLands F=16 independent-decoder K=128 validation best checkpoint, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 1498705,
+      "sha256": "22100a72392580050f070aed9d73005ebf8d804b75e1b68740e3815f65141551"
+    },
+    {
+      "path": "results/p1_flatlands_independent_k128_validation_v2/seed20260831_independent/latest.pt",
+      "role": "FlatLands F=16 independent-decoder K=128 validation latest checkpoint, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 1499857,
+      "sha256": "d62f27a0d9548a7e5e6c416d5b6af20c4afbeb49837037111a912114ed8c7ee1"
+    },
+    {
+      "path": "results/p1_flatlands_independent_k128_validation_v2/seed20260831_independent/predictions_validation.csv",
+      "role": "Label-free FlatLands independent-decoder K=128 validation predictions, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 89307,
+      "sha256": "b3a1e8d7c3e05448562763b4d7e266256dc14d1d4f4ba35e573b3da60a6e0958"
+    },
+    {
+      "path": "results/p1_flatlands_independent_k128_validation_v2/seed20260831_independent/evaluation_validation/report.json",
+      "role": "FlatLands independent-decoder K=128 exact validation event report, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 160449,
+      "sha256": "d2b8125ee27b3c24a0b7d48c2c928783357c205eb2ca26f1a71a466411c54af1"
+    },
+    {
+      "path": "results/p1_flatlands_independent_k128_validation_v2/seed20260831_independent/run.json",
+      "role": "FlatLands independent-decoder K=128 validation run metadata, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 182385,
+      "sha256": "1eaaef9b34ba389584be56951a2d08f082018c7d8974a7e2da64710c7e89a9e8"
+    },
+    {
+      "path": "results/p1_flatlands_independent_k128_validation_v2/seed20260901_independent/best.pt",
+      "role": "FlatLands F=16 independent-decoder K=128 validation best checkpoint, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 1499537,
+      "sha256": "a9baa4dfc4d88dd22157760583780a2e868eeb5488221bc0393b926f02fa446f"
+    },
+    {
+      "path": "results/p1_flatlands_independent_k128_validation_v2/seed20260901_independent/latest.pt",
+      "role": "FlatLands F=16 independent-decoder K=128 validation latest checkpoint, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 1500689,
+      "sha256": "53c1338683bbf64d6cf8db09b48c4363da37dcec744e95c61d8a38fc7328a227"
+    },
+    {
+      "path": "results/p1_flatlands_independent_k128_validation_v2/seed20260901_independent/predictions_validation.csv",
+      "role": "Label-free FlatLands independent-decoder K=128 validation predictions, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 89225,
+      "sha256": "b5c4f0d7b6a5ec1c2d46bcbf8b92218f3aa8d3e573f8cafaf6e810878ca2030a"
+    },
+    {
+      "path": "results/p1_flatlands_independent_k128_validation_v2/seed20260901_independent/evaluation_validation/report.json",
+      "role": "FlatLands independent-decoder K=128 exact validation event report, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 160323,
+      "sha256": "c3265a2ade036a0f700b4f0b3cb19a8a9606faf9a89cf2d45681d80ce04d1577"
+    },
+    {
+      "path": "results/p1_flatlands_independent_k128_validation_v2/seed20260901_independent/run.json",
+      "role": "FlatLands independent-decoder K=128 validation run metadata, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 184857,
+      "sha256": "15c43dad7d77b0740739d2be9b35618656c736d5407b2fb6e2ee2f00a6aa2de8"
+    },
+    {
+      "path": "results/p1_flatlands_independent_k128_validation_v2/seed20260902_independent/best.pt",
+      "role": "FlatLands F=16 independent-decoder K=128 validation best checkpoint, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 1499537,
+      "sha256": "55e55e67cf42d3edca076c41d303fa0c078327493517cf1d11b6b451cabb99f3"
+    },
+    {
+      "path": "results/p1_flatlands_independent_k128_validation_v2/seed20260902_independent/latest.pt",
+      "role": "FlatLands F=16 independent-decoder K=128 validation latest checkpoint, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 1500689,
+      "sha256": "7b9babd2418a33c19d614620fcee2fcff1677a2525e583b8675240741c1d2e65"
+    },
+    {
+      "path": "results/p1_flatlands_independent_k128_validation_v2/seed20260902_independent/predictions_validation.csv",
+      "role": "Label-free FlatLands independent-decoder K=128 validation predictions, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 89023,
+      "sha256": "35fa69065a1cb2634427f107f8125be8d67c9f9d18311265d9d668ded00c5803"
+    },
+    {
+      "path": "results/p1_flatlands_independent_k128_validation_v2/seed20260902_independent/evaluation_validation/report.json",
+      "role": "FlatLands independent-decoder K=128 exact validation event report, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 159833,
+      "sha256": "552a16478bcffce152658b42509888c9e8ea085db16e8798c00b92db9201904b"
+    },
+    {
+      "path": "results/p1_flatlands_independent_k128_validation_v2/seed20260902_independent/run.json",
+      "role": "FlatLands independent-decoder K=128 validation run metadata, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 184358,
+      "sha256": "6ed30daa5da01a0e606ab880c9b4e81abfc82615baa0a23c7f1e504fe431c965"
+    },
+    {
+      "path": "results/p1_flatlands_independent_k128_validation_v2/audit.json",
+      "role": "Read-only FlatLands independent-decoder K=128 validation/hash/replay/radius audit",
+      "required_for_resume": false,
+      "bytes": 3085,
+      "sha256": "255e3755a9ecca344719a09a4797896387d4cd3de1e2db32b05bf07dba75e9ca"
+    },
+    {
+      "path": "results/p1_flatlands_k128_paired_comparison/report.json",
+      "role": "Paired scene-cluster bootstrap comparison of FlatLands correlated/independent K=128 validation controls",
+      "required_for_resume": false,
+      "bytes": 67122,
+      "sha256": "79e4a1df12cfd76b9014a5545bff5e39a7533a430da9a783119e424ca527e767"
+    },
+    {
+      "path": "site/assets/flatlands_k128_clean_candidate.png",
+      "role": "Clean FlatLands K=128 checkpoint-derived validation candidate visual",
+      "required_for_resume": false,
+      "bytes": 182593,
+      "sha256": "23d0109c92e919236e43cf00cfa08dbcd086aef06a5970fc1ca56115cea30dfa"
+    },
+    {
+      "path": "site/data/flatlands_k128_clean_candidate.json",
+      "role": "Clean FlatLands K=128 candidate visual provenance and metrics",
+      "required_for_resume": false,
+      "bytes": 11962,
+      "sha256": "6a71fe8d784867c40d2ef2696a93e68f4662b10bc53a81e3fcc9d1dec3d70917"
+    },
+    {
+      "path": "site/data/flatlands_k128_support_clamped_paired_comparison.json",
+      "role": "Clean FlatLands K=128 paired scene-bootstrap comparison",
+      "required_for_resume": false,
+      "bytes": 69782,
+      "sha256": "eacd9475b774f730b8dcfa286f2c975f726c6fa8bf71465438d3c8bc62fefeb5"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/audit.json",
+      "role": "Clean FlatLands correlated K=128 strict support/checkpoint/replay audit",
+      "required_for_resume": false,
+      "bytes": 4726,
+      "sha256": "2f38b4cad334b6247dc34eafea3fd447235632ae601219754e89230047bb4896"
+    },
+    {
+      "path": "results/p1_flatlands_independent_k128_support_clamped_v1/audit.json",
+      "role": "Clean FlatLands independent K=128 strict support/checkpoint/replay audit",
+      "required_for_resume": false,
+      "bytes": 4750,
+      "sha256": "7e9c29457d4fb7221cf8141905b6605d3d1594a1f53a207ce06807d5ea5099eb"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260831_conpath/best.pt",
+      "role": "Clean FlatLands correlated K=128 selected checkpoint, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 1503621,
+      "sha256": "f7b42163fb2fd6127a19e2a967f44181814a263c699020a7a59f895d913b797c"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260901_conpath/best.pt",
+      "role": "Clean FlatLands correlated K=128 selected checkpoint, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 1503173,
+      "sha256": "9a39816f303fadc1ab28a60ac6e8cdc80c92a4953d0e309919da7ebd2ee90dbf"
+    },
+    {
+      "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260902_conpath/best.pt",
+      "role": "Clean FlatLands correlated K=128 selected checkpoint, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 1502021,
+      "sha256": "d1b5b9a1a85e36a68dce0fd929938522ad5944f8088d096a85ef7b12045f3322"
+    },
+    {
+      "path": "results/p1_flatlands_independent_k128_support_clamped_v1/seed20260831_independent/best.pt",
+      "role": "Clean FlatLands independent K=128 selected checkpoint, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 1498833,
+      "sha256": "87257f20d4e8282c2c318f70ee099b30cb5ec945bf34608200236096fea9ef23"
+    },
+    {
+      "path": "results/p1_flatlands_independent_k128_support_clamped_v1/seed20260901_independent/best.pt",
+      "role": "Clean FlatLands independent K=128 selected checkpoint, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 1500433,
+      "sha256": "c41cdbc3b178cc24a9f2479ec460572ad84b731e1727386fb4e03a375e1caa28"
+    },
+    {
+      "path": "results/p1_flatlands_independent_k128_support_clamped_v1/seed20260902_independent/best.pt",
+      "role": "Clean FlatLands independent K=128 selected checkpoint, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 1499537,
+      "sha256": "01044e316122d54300062a7d0c3553ccf073e9a51e0c6071826fab57c485aca1"
+    },
+    {
+      "path": "site/data/unscenes3d_clean_support_k128_candidate.json",
+      "role": "Clean UnScenes3D K=128 paired validation candidate provenance and metrics",
+      "required_for_resume": false,
+      "bytes": 16920,
+      "sha256": "af368cb4eff99f97575eb23dcccefd963df1dace5ca07cb959fcd73c335070a9"
+    },
+    {
+      "path": "site/data/unscenes3d_clean_candidate_qualitative.json",
+      "role": "Clean UnScenes3D ground-robot qualitative candidate provenance",
+      "required_for_resume": false,
+      "bytes": 3049,
+      "sha256": "af2c981cf4a72d1893c88ad4f2623ff0826c20d80b01d440263c49142b7358d6"
+    },
+    {
+      "path": "site/assets/unscenes3d_clean_candidate_positive.png",
+      "role": "Clean UnScenes3D true-positive validation candidate panel",
+      "required_for_resume": false,
+      "bytes": 385964,
+      "sha256": "c8b7c644383e3d84d7faa30d1ac03085559ff41a621424d20f655fd60f40e910"
+    },
+    {
+      "path": "site/assets/unscenes3d_clean_candidate_failure.png",
+      "role": "Clean UnScenes3D false-safe validation candidate panel",
+      "required_for_resume": false,
+      "bytes": 385416,
+      "sha256": "394c6d2e61565ad825f3df679b68b641f35bf493667ec2c230abb114b752242b"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_support_clamped_f16_v1/audit.json",
+      "role": "Clean UnScenes3D correlated training support/checkpoint audit",
+      "required_for_resume": false,
+      "bytes": 3847,
+      "sha256": "277c0baf810e4d5ba67fa6331da6e5517c64e4e306da9d7bb97d1f26dde86810"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_independent_support_clamped_f16_v1/audit.json",
+      "role": "Clean UnScenes3D independent training support/checkpoint audit",
+      "required_for_resume": false,
+      "bytes": 3896,
+      "sha256": "c154fc423314004c8b7585a2a694af0b5b3ad39936be5daade3d5427e6871b85"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_support_clamped_k128_comparison_v1/paired_comparison.json",
+      "role": "Clean UnScenes3D K=128 paired exact validation comparison",
+      "required_for_resume": false,
+      "bytes": 16920,
+      "sha256": "af368cb4eff99f97575eb23dcccefd963df1dace5ca07cb959fcd73c335070a9"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_support_clamped_qualitative_v1/seed20260901/report.json",
+      "role": "Clean UnScenes3D qualitative renderer report",
+      "required_for_resume": false,
+      "bytes": 3049,
+      "sha256": "af2c981cf4a72d1893c88ad4f2623ff0826c20d80b01d440263c49142b7358d6"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_support_clamped_f16_v1/seed20260831/best.pt",
+      "role": "Clean UnScenes3D correlated selected checkpoint, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 1489869,
+      "sha256": "5091cbd47ef0da4090175e5c5a6624c5cbe884287f953a2983f4e31717679b08"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_support_clamped_f16_v1/seed20260901/best.pt",
+      "role": "Clean UnScenes3D correlated selected checkpoint, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 1489741,
+      "sha256": "f7993532e70447c6b56e6f403fb2ec9573e96c0de488c1623657faecc5d27638"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_support_clamped_f16_v1/seed20260902/best.pt",
+      "role": "Clean UnScenes3D correlated selected checkpoint, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 1489677,
+      "sha256": "3a8d083c0b1917da4beaad8e293eecbef08cd9c6cd5c60f5f8d5830e8333ac4d"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_independent_support_clamped_f16_v1/seed20260831/best.pt",
+      "role": "Clean UnScenes3D independent selected checkpoint, seed 20260831",
+      "required_for_resume": false,
+      "bytes": 1487129,
+      "sha256": "5f964d05854c1f0631dfc528ec351e5ae97b9f49050adfc801170df75a9b3637"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_independent_support_clamped_f16_v1/seed20260901/best.pt",
+      "role": "Clean UnScenes3D independent selected checkpoint, seed 20260901",
+      "required_for_resume": false,
+      "bytes": 1487001,
+      "sha256": "e3e9aa464ca79154e872ba87b5c57b6c0c35fabcbee35a1c8da04bdde695add7"
+    },
+    {
+      "path": "results/unscenes3d_ground_valid_independent_support_clamped_f16_v1/seed20260902/best.pt",
+      "role": "Clean UnScenes3D independent selected checkpoint, seed 20260902",
+      "required_for_resume": false,
+      "bytes": 1486873,
+      "sha256": "f8aa8df214f7d4f57b1a2217df97335d7da22008eadb9751e791ab70823a9d64"
     }
   ],
   "last_verification": {
-    "command": "PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -q && python3 -m compileall -q src scripts && PYTHONPATH=src .venv/bin/python scripts/verify_recovery_state.py",
-    "result": "Ran 71 tests in 1.319s; OK; all source/scripts compile; 256x256 B=2 K=8 merge-tree output remained finite; full recovery verification passed with every registered artifact hash (including the 2.05 GB archive)",
-    "implementation_commit": "097b11d"
+    "command": "PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 -m unittest discover -s tests -q; four explicit clean-support audits; Python AST parse; static HTML/JSON/link audit; Chrome CDP desktop/mobile smoke; git diff --check; full recovery SHA verifier",
+    "result": "September 6 publication checks: 80 tests passed; 61 Python files parse; both FlatLands and both UnScenes3D three-seed clean audits have zero failures; Chrome 1440/390px has no broken images or page overflow and renders current metrics plus four baseline rows. Static-site counts are recorded in results/maintenance_20260906/site_audit.json. Full recovery hashes are checked immediately before commit. September 4 paired replay and archived control audit results remain recorded in CONTINUATION.md.",
+    "implementation_commit": "Publication working tree based on 61d617e; resolve the new revision with git log -1 -- WORK_PLAN.md"
   },
   "recovery_commands": [
     "git status --short --branch",
-    "PYTHONPATH=src .venv/bin/python scripts/verify_recovery_state.py --quick",
-    "PYTHONPATH=src .venv/bin/python scripts/verify_recovery_state.py",
-    "sed -n '1,320p' CONTINUATION.md"
+    "PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/verify_recovery_state.py --quick",
+    "PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/verify_recovery_state.py",
+    "PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/audit_flatlands_conpath_k128.py --root results/p1_flatlands_conpath_k128_support_clamped_v1 --output /tmp/conpath_clean_audit.json",
+    "PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/audit_flatlands_conpath_k128.py --root results/p1_flatlands_independent_k128_support_clamped_v1 --run-suffix independent --decoder-variant independent --method independent_k128_audit --output /tmp/independent_clean_audit.json",
+    "PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/compare_flatlands_k128_paired.py --correlated-root results/p1_flatlands_conpath_k128_support_clamped_v1 --independent-root results/p1_flatlands_independent_k128_support_clamped_v1 --output /tmp/flatlands_clean_paired.json",
+    "cat WORK_PLAN.md",
+    "tail -n 70 CONTINUATION.md"
   ],
-  "next_command": "PYTHONPATH=src .venv/bin/python scripts/verify_recovery_state.py --quick",
+  "next_command": "cat WORK_PLAN.md",
   "next_actions": [
-    "SceneSense diffusion compatibility check is complete; keep its incompatible 3-D pointmap/ROS contract reference-only rather than fabricating a 2-D reproduction.",
-    "Run the full UnScenes3D ConPath train/validation adapter from the frozen 15,567-train/1,529-validation event manifest with multiple seeds; keep location-6 test labels locked.",
-    "Add capacity-matched independent, deterministic, and recent coordinate-query controls on the same UnScenes3D train/validation records, then render a ground-robot posterior/footprint/failure panel. ORFD remains a fallback semantics-only candidate.",
-    "Freeze final artifacts and write the ICRA/IROS paper package with explicit limitations and venue checks."
+    "Finish a normal Git publication and verify GitHub Pages plus the three clean checkpoint figures and their JSON provenance.",
+    "Complete clean-support same-query strong-control comparisons, calibration and equal-coverage false-safe analysis; preserve historical artifacts.",
+    "Evaluate clean-checkpoint K convergence and deterministic mean-map controls; retrain no-event/no-global ablations under the corrected support contract before using them as causal evidence.",
+    "Diagnose the two-scene UnScenes3D null result, complete scalable-operator evidence, and update the working paper without claiming successful transfer.",
+    "Keep FlatLands physical test and UnScenes3D location_6 locked until the final method/control protocol and explicit test decision are frozen."
   ]
 }

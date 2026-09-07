@@ -5,19 +5,25 @@ diagnostic, code change, or experiment; do not rely on chat history or ignored `
 
 ## Recovery snapshot
 
-- Updated: 2026-09-02 (America/New_York)
+- Updated: 2026-09-06 (America/New_York)
 - Repository: `/home/hairo/pathrel_transfer/pathrel_pro6000`
-- Durable checkpoint: `p1-flatlands-validation-baselines-v1` in tracked `RECOVERY_STATE.json`
+- Durable checkpoint: `clean-support-paper-continuation-20260906` in tracked `RECOVERY_STATE.json`
 - Recovery-state commit: resolve with `git log -1 --format='%h %s' -- RECOVERY_STATE.json`
-- Last durable implementation commit: `1b77b88` (S4C-inspired coordinate-query control and three-seed training entry point; pushed to GitHub)
-- Scientific gate: **P0 GO; FlatLands bounded data gate and first validation baselines GO on a
-  non-official provenance split; public-data model and paper claims not yet established**
-- Active task: replace the desk-surface pilot with a ground-robot/floor visual, then complete
-  second-domain checks on the frozen bounded manifests. The official ORFD semantics audit is now
-  complete, but its metric-BEV adapter and sequence-held-out split are not. Official FlatLands and
-  SceneSense artifact audits are complete and both remain reference-only. UnScenes3D is now the
-  priority second-domain candidate; its raw pose smoke package is present, but labels/maps and the
-  adapter gate are incomplete. Do not use the leaking official split or extract the FlatLands archive.
+- Implementation history: `61d617e` is the September 2 base. The September 6 publication packages the clean-support implementation, audits and figures; resolve its revision with `git log -1 -- WORK_PLAN.md`. Current execution order is in `WORK_PLAN.md`.
+- Scientific gate: **P0 GO; FlatLands K=128 clean-support validation candidate and bounded data gate
+  GO on a non-official provenance split; public-data test and paper claims remain gated**
+- Handoff status: the prior three-seed FlatLands K=128 candidate and matched independent control
+  are superseded by the support-boundary audit. Both new three-seed clean-support groups are now
+  complete and independently audited: ConPath Brier 0.06749 ± 0.00936, matched independent Brier
+  0.09521 ± 0.00703, paired delta +0.02772 ± 0.00993 with all per-seed intervals positive. The
+  checkpoint-derived clean visual and machine-readable provenance are ready for the local site.
+  UnScenes3D support-consistent map reruns are complete as a validation diagnostic: the exact K=128
+  paired delta is +0.00036 ± 0.00062 on two held-out scenes, with no measurable correlation gain.
+  Everything remains validation-only because the FlatLands provenance split is non-official and both physical test
+  sites are locked. Any follow-up test or cross-domain run requires an explicit go/no-go. The
+  official ORFD semantics audit is complete but remains a fallback; FlatLands and SceneSense remain
+  reference-only. Do not use the leaking official split, read the UnScenes3D `location_6` test site,
+  or extract the FlatLands archive.
 
 ### GPU visibility and publication status (2026-08-31)
 
@@ -460,7 +466,7 @@ domain; semantics audit complete, no local run**. The required download/hash, ca
 leakage, metric-BEV adapter, and label-validity gates are tracked in
 `ORFD_COMPATIBILITY_CHECK.md`.
 
-### UnScenes3D second-domain compatibility check and adapter (audit complete; score pending)
+### UnScenes3D second-domain compatibility check and adapter (validation controls complete; final/test score pending)
 
 The official [UnScenes3D repository](https://github.com/ruiqi-song/UnScenes3D), its [release page](https://github.com/ruiqi-song/UnScenes3D/releases),
 and the [Scientific Data article](https://www.nature.com/articles/s41597-025-05532-5) were checked on
@@ -478,27 +484,160 @@ package has 13 scenes and 1,336 synchronized image/cloud/calibration stems; the 
 629 files cover all 629 occupancy timestamps. The read-only mini audit passes zero missing raw
 stems, duplicate timestamps, occupancy shape/bound/class errors, and bad map floats; a 50-frame
 scene-spread nearest-neighbour smoke gives 0.804 LiDAR/map overlap within 0.3 m and 0.875 within
-1 m. These are parser/label/coordinate diagnostics, not experiments. The remaining work is to
-freeze the conservative support-surface mapping, scene/site/sequence split, and target-blind
-metric-BEV event adapter before training or test access. `UNSCENES3D_PROTOCOL.md` now freezes the
-location-held-out train/validation (`location_1/2/3` vs `location_4_5`) with `location_6` test locked,
-0.3 m grid radii 0/1/2, and a fixed 13/27/40-cell polar stencil. `src/pathrel/unscenes3d.py`
-implements the label-free LiDAR ray rasterizer, conservative class-11 support projection, and
-validity-only query geometry; four unit tests pass. The frozen train/validation-only manifest at
-`results/unscenes3d_contract_manifest/manifest.json` contains 17,096 exact event queries (15,567
-train and 1,529 validation) across four monotone event patterns; location-6 test labels were not
-read. This is the adapter gate, not a trained UnScenes3D result. A first map-only GPU adapter smoke
-also completed for a 32-frame train / 16-frame validation subset (one epoch, K=4): the map path
-ran end to end and wrote atomic checkpoints. Its validation map Brier was 0.14267; the event
-diagnostic was 0.92268 on one validation scene with 568 queries, so it is a pipeline check only,
-not a comparison or paper result.
+1 m. These are parser/label/coordinate diagnostics, not experiments. The coordinate audit now
+covers 55 train/validation frames with positive-depth camera projection for all 800,742 sampled
+returns, calibration rotation error at most `2.13e-6`, and direct LiDAR/local-map overlap of
+0.791 within 0.3 m and 0.863 within 1 m. Both forward and inverse `Tr_velo_to_imu` transforms
+had zero overlap at those thresholds, so the adapter uses the raw LiDAR frame directly for this
+local-map contract. `UNSCENES3D_PROTOCOL.md` v0.2 freezes the location-held-out train/validation
+(`location_1/2/3` vs `location_4_5`) with `location_6` test locked, 0.3 m grid radii 0/1/2, and
+a fixed 13/27/40-cell polar stencil. `src/pathrel/unscenes3d.py` implements the label-free LiDAR
+ray rasterizer, conservative class-11 support projection, and validity-only query geometry; six
+adapter tests pass. The canonical candidate uses a label-free ground-height endpoint policy
+(1.2 m bins, 20 m lateral limit, 0.15 quantile, 0.35 m margin) while retaining the fixed
+validity-only start. Its manifest at
+`results/unscenes3d_contract_manifest_ground_valid/manifest.json` contains the same 17,096 exact
+event queries (15,567 train and 1,529 validation) as the legacy manifest, and a 540-frame runtime
+replay found zero start/goal mismatches. The observed-free-start variant changed the query set and
+was rejected as the canonical contract.
 
-The first full capacity-matched map-only adapter run now covers all 478 train and 62 validation
-frames for seeds `20260831`, `20260901`, and `20260902`. The validation event summary is Brier
-`0.63165 ± 0.00083`, NLL `10.06875 ± 0.02700`, and ECE `0.73653 ± 0.00143` (false-safe@0.8
-`0.30367 ± 0.02584`). This is deliberately recorded as an underperforming diagnostic: the map
-loss alone does not calibrate long-range connectivity, so it is not a method win, comparison
-table, or final paper result. The next run must include event loss and the same-contract controls.
+The first full legacy capacity-matched map-only adapter run covered all 478 train and 62 validation
+frames for seeds `20260831`, `20260901`, and `20260902`; its validation event Brier was
+`0.63165 ± 0.00083`, with NLL `10.06875 ± 0.02700` and ECE `0.73653 ± 0.00143`. The bounded
+event-loss variant was `0.63704 ± 0.00317`, exposing a mismatch between the differentiable path
+used for optimization and the exact oracle used for reporting. On the canonical ground-valid
+contract, the three-seed map-only diagnostic improved to event Brier `0.56272 ± 0.00744` (NLL
+`9.06574 ± 0.04398`, ECE `0.67082 ± 0.00739`, false-safe@0.8 `0.27450 ± 0.01330`). The earlier
+five-epoch bounded event-loss number `0.59126 ± 0.00855` (NLL `9.19562 ± 0.06403`) is an
+observed-free-start ablation and is not a canonical-contract result. Both remain adapter
+diagnostics, not method wins or paper results.
+
+## UnScenes3D controls and ground-robot visual (2026-09-02)
+
+The validation-only deterministic mean-map evaluator is now in
+`scripts/evaluate_unscenes3d_conpath_mean_map.py`. It reads the manifest adapter, checks every
+replayed start/goal against the frozen query rows, averages Rao--Blackwellized posterior marginals,
+and runs the exact clearance oracle on one thresholded map; it never opens test records. The
+canonical correlated K=128 mean-map control across the three checkpoints is event Brier
+`0.62774 ± 0.00145`, hidden-cell map Brier `0.15025 ± 0.03856`, NLL `9.96833 ± 0.01217`,
+ECE `0.72153 ± 0.00088`, and false-safe@0.8 `0.39940 ± 0.00182`. K sensitivity for the fixed
+seed/checkpoint is hidden-map Brier `0.19399`/`0.19385`/`0.19391` at K=32/64/128, with the
+binary event Brier fixed at `0.62750`.
+
+The capacity-matched independent decoder (`--decoder-variant independent`) completed on the
+same contract: stochastic event Brier `0.56297 ± 0.00541`, NLL `9.08667 ± 0.04961`, ECE
+`0.67240 ± 0.00525`, false-safe@0.8 `0.27027 ± 0.01767`. Its K=128 mean-map event Brier is
+`0.62762 ± 0.00126`; the identical binary output to displayed precision is itself a useful
+warning that the current adapter/threshold dominates this control.
+
+The new `scripts/train_unscenes3d_coordinate.py` trains an explicitly labelled S4C-inspired
+coordinate-query control (not an S4C reproduction) with F=16, the same four-frame batches,
+AdamW budget, query rows, and site-held-out validation. After correcting the scene-weighting
+definition and rerunning from scratch, the three seeds in
+`results/unscenes3d_s4c_coordinate_f16_v2/` report event Brier `0.20379 ± 0.03485`, NLL
+`0.57289 ± 0.10572`, ECE `0.11107 ± 0.05312`, false-safe@0.8 `0.13342 ± 0.01875`, and zero
+radius-monotonicity violations. This direct event predictor is a control with a different
+predictive object; it is not evidence of ConPath superiority or inferiority.
+
+`scripts/render_unscenes3d_qualitative.py` scanned all 62 validation frames with K=128 and wrote
+the audited positive/false-safe pair under `results/unscenes3d_qualitative_validation/`:
+`scene_00427/1693304934.305044` is an all-radii true positive, while
+`scene_00427/1693304969.384475` is a deliberate all-radii false-safe case (predicted reachable,
+target blocked). The 1800×1280 PNGs are mirrored to `site/assets/` and the selection/hash report
+to `site/data/unscenes3d_qualitative_validation.json`; Pillow was used only for rendering, and
+the model scan used the CUDA environment. The site now has an UnScenes3D section with the contract,
+control table, K sensitivity, and both panels. `location_6` remains locked.
+
+### Overnight audit checkpoint (executed)
+
+The first control audit found stale report-envelope metadata rather than a metric or geometry
+failure: the original correlated JSONs carry a v0.1 protocol tag, while their checkpoint configs
+already use the frozen ground-valid adapter. I did not overwrite those raw reports. Instead, the
+current training script now emits a self-contained manifest hash/query envelope, and a fresh
+three-seed replay was written under `results/unscenes3d_ground_valid_f16_v2/`. The replay has the
+same adapter, seed/config, validation-only lock, and event metrics to within `1.51e-4` absolute
+(zero drift for two seeds); this is far below the displayed precision and is recorded by
+`scripts/compare_unscenes3d_replay.py` in `results/unscenes3d_replay_audit/report.json`.
+
+The read-only `scripts/audit_unscenes3d_controls.py` then recomputed every label-free prediction
+CSV against the frozen 4,587 validation rows, checked event Brier/NLL/ECE/false-safe values,
+radius ordering, checkpoint/prediction hashes, K reports, the radius prior, qualitative PNG
+dimensions, manifest-replay contract, published evidence copies, portable published paths, and all local website links: **599 checks passed, 0 failed**. Its only three warnings
+are the intentionally preserved v0.1 metadata tags on the original correlated reports; the v0.2
+replay is the metadata-stable cross-check. `scripts/compare_unscenes3d_manifest.py` independently
+rebuilt the ground-valid manifest from the explicit train/validation allow-list and matched every
+contract field; its normalized contract SHA is `017b368b0364ca518e1c0d744ed81d53d92f190b72ee66109417b29c5bee77d5`.
+The qualitative report now includes its 1,529-query
+count and the promoted site JSON was refreshed without changing either PNG byte hash.
+
+To close the selective-risk block, `scripts/evaluate_unscenes3d_calibration.py` joined the
+label-free mean-map and coordinate-query CSVs (plus a train-scene/frame-fitted radius prior) to the
+same validation keys and generated query-weighted reliability and false-safe curves. The snapshot
+is `site/data/unscenes3d_calibration_validation.json`, with SVGs
+`site/assets/unscenes3d_calibration_reliability.svg` and
+`site/assets/unscenes3d_calibration_false_safe.svg`. The scalar radius-prior check reproduces
+probabilities `0.87174096/0.81066486/0.75479295` and Brier/NLL/ECE/false-safe
+`0.23268/0.52509/0.03237/0.19359`; the chart caption explicitly distinguishes query-weighted
+risk from the table's equal-scene Brier. The stochastic controls remain scalar-only in this view,
+so no fabricated curve is shown for them. Both SVGs were rasterized in headless Chrome after a
+layout pass that separates the legend from the axis labels; the ground-robot PNGs were inspected
+at their native 1800×1280 dimensions.
+
+## Autonomous overnight plan (minimum 13 hours)
+
+This is the recorded long-running plan requested on 2026-09-02. Each block ends with a read-only
+audit and a durable state update; a failed gate causes a repair/re-run or a documented hold rather
+than silently advancing.
+
+| Window | Work | Exit evidence / branch rule |
+|---|---|---|
+| 0–1 h | Freeze the v0.2 manifest, adapter parameters, checkpoint list, environment versions, and test lock. | Manifest/runtime starts and goals match for every train/validation frame; if not, rebuild the manifest and invalidate dependent scores. |
+| 1–3 h | Re-run deterministic mean-map K=32/64/128 and independent K=128 controls from fixed seeds; compute scene/site-weighted Brier, NLL, ECE, false-safe risk, coverage, and radius monotonicity. | K curves stable and reports contain no test paths; otherwise fix evaluator semantics before any site update. |
+| 3–5 h | Audit the S4C-inspired coordinate-query runs, prediction row order, checkpoint hashes, and seed dispersion; compare against a radius prior and the correlated row without ranking unlike predictive objects as one winner. | Exact replay of all 4,587 validation rows per seed and zero geometry mismatches; high variance is reported, not hidden. |
+| 5–7 h | Inspect and, if needed, re-render the ground-robot positive and false-safe panels at native resolution; verify camera/LiDAR projection, BEV orientation, captions, and target-selection disclosure. | Two readable PNGs plus JSON selection/hash report; no target-derived image is presented as an input. |
+| 7–9 h | Build compact site snapshots and integrate the UnScenes3D section; run HTML asset/link checks and a local static-site smoke. | All linked assets exist, metrics match JSON to displayed precision, and the site says validation-only/location_6 locked. |
+| 9–11 h | Run the full test suite, compileall, `git diff --check`, protocol consistency checks, and quick recovery verification. | Zero failures; any mismatch is repaired before proceeding. |
+| 11–13 h | Run the full recovery/hash verifier if I/O budget permits, record artifact hashes and environment metadata, and prepare a reproducible morning hand-off. | `RECOVERY_STATE.json` and this file name exact commands, outputs, and unresolved holds. |
+| 13 h+ | Continue paper-package drafting, sensitivity/failure analysis, and optional non-test ablations (e.g. threshold/K checks) only if all prior gates pass. | Never read `location_6`; stop at the explicit test go/no-go boundary and leave a resumable state. |
+
+The table is a minimum 13-hour work window for an unattended session, not a claim that the checks
+consume 13 hours of wall time. In this run the bounded experiments and audits completed ahead of
+that schedule; the exact outputs, hashes, and the remaining explicit test boundary are recorded
+below so a later session can resume without inventing elapsed work.
+
+The standing invariants for every block are: no extraction or use of the FlatLands archive, no read of
+UnScenes3D `location_6`, no claim stronger than the recorded validation contract, atomic writes for
+checkpoints/reports, and an independent verification command before a result is promoted into the
+website or paper draft.
+
+Execution ledger for this hand-off: the manifest/geometry freeze, deterministic manifest replay,
+K controls, three-seed coordinate audit, GPU replay comparison, native-resolution panel check,
+compact site/static-link and calibration snapshot checks, published audit evidence copies,
+paper/site consistency check, unit tests, compileall, `git diff --check`, quick recovery
+verification, both FlatLands K=128 decoder audits, and the full SHA verifier have all passed. The
+full verifier now checks 344 state entries (including the large archives, both clean K=128
+and the paired reports/candidate panels) with zero failures. The
+only open note is the three intentionally preserved v0.1 metadata warnings on the legacy correlated
+JSONs; the v0.2 replay is the metadata-stable hand-off. No split, query, target, or test lock was
+changed to obtain these results. A later site-link refresh briefly made the published audit copy
+stale; regenerating the source report and then copying it restored byte equality and 599/599 checks.
+
+## Dataset readiness checkpoint (2026-09-03)
+
+The local-data readiness check confirms that the current paper package has its raw inputs: the
+FlatLands release archive is present with the frozen release hash; UnScenes3D has 13 scenes, 629
+joined timestamps, 629 local maps, and a passing basic-integrity audit; and the TUM RGB-D desk RGB/depth
+pilot is extracted. The full recovery verifier was rerun with hashes enabled and passed with zero
+failures. This verifies file availability, not scientific finality: FlatLands remains a non-official
+provenance split because the published split leaks scenes, and UnScenes3D `location_6` remains
+unopened. The recommended paper branch is therefore P0 synthetic + FlatLands primary, with
+UnScenes3D as a separately labelled secondary diagnostic; ORFD/WildOcc are not local and are
+optional future additions.
+
+The next training/test branch is deliberately held at the protocol boundary: preserve the primary
+dataset and hyperparameters, review the completed matched validation-only controls, and request an
+explicit go/no-go before reading a locked test site. No test labels were accessed during this
+readiness check.
 
 ## Validation qualitative panels and website state
 
@@ -610,22 +749,109 @@ The K=64 and K=128 predictions and exact reports remain ignored reproducibility 
 on the site. The adapter is still explicitly PaSCo-inspired, not an original PaSCo 3-D
 reproduction, and all numbers remain validation-only.
 
+## FlatLands K=128 ConPath validation candidate (completed 2026-09-03)
+
+To match the paper protocol's final posterior budget, the frozen F=16 ConPath contract was rerun
+for seeds 20260831, 20260901, and 20260902 with `validation_samples=128` accumulated as
+K=8 chunks. The run used the same 160 train / 160 validation provenance scenes, 8 training
+worlds, query limit 8, radii 0/10/20, exact NumPy disk-clearance plus batched Kruskal/LCA forward,
+and 2,000 scene-cluster bootstrap replicates. It never opened the physical archive split's test
+labels; every `run.json` records `paper_result=false` and `test_evaluated=false`.
+
+| Seed | Best epoch | Epochs | Selection Brier | Exact validation Brier | NLL | ECE | False-safe @0.8 |
+|---:|---:|---:|---:|---:|---:|---:|---:|
+| 20260831 | 4 | 12 | 0.08558 | 0.10465 | 0.49132 | 0.08680 | 0.04299 |
+| 20260901 | 16 | 24 | 0.07221 | 0.08285 | 0.40156 | 0.05628 | 0.05648 |
+| 20260902 | 8 | 16 | 0.08236 | 0.10000 | 0.39265 | 0.06794 | 0.06611 |
+| **mean ± sample SD** | — | — | — | **0.09583 ± 0.01148** | **0.42851 ± 0.05458** | **0.07034 ± 0.01540** | **0.05519 ± 0.01161** |
+
+High-confidence accepted-event coverage is `0.28974 ± 0.02783`. The K=32 F=16 matrix was
+`0.09607 ± 0.01222` Brier, `0.45814 ± 0.16071` NLL, and `0.06870 ± 0.01659` ECE, so the
+K=128 replay is protocol-stable within the three-seed dispersion (and modestly lowers the mean
+Brier/NLL), rather than a new unqualified claim. The selection score is stochastic because it
+uses posterior worlds; final comparisons therefore use the independently written exact
+validation manifests, not the lowest intermediate epoch log.
+
+All three runs wrote 4,224 finite `[0,1]` prediction probabilities over 1,408 endpoint groups;
+the recorded SHA-256 values match the files, the independent evaluator replay reproduces each
+report, and radius ordering `p(0) >= p(10) >= p(20)` has zero violations. The compact machine-
+readable hand-off is `site/data/flatlands_conpath_k128_validation.json`; the full ignored run
+directories are under `results/p1_flatlands_conpath_k128_validation_v2/`. This is a **validation
+candidate only**: the non-official FlatLands provenance caveat, locked test boundary, and explicit
+go/no-go requirement remain unchanged.
+
+The three selected `best.pt` files load cleanly into the current `PathRelNet` with no missing or
+unexpected state keys and `120,108` trainable parameters. The matched independent-decoder
+checkpoints have the same trainable count; their control difference is the decoder behavior
+(`local_kernel_size=1` and effective global factors disabled), not a hidden capacity change.
+
+## Matched FlatLands independent-decoder K=128 control (completed 2026-09-03)
+
+To complete the capacity- and sample-matched causal comparison, three independent-cell decoder
+runs were executed under `results/p1_flatlands_independent_k128_validation_v2/` for seeds
+`20260831`, `20260901`, and `20260902`. They use the identical F=16 encoder, 160/160 provenance
+train/validation scenes, eight training worlds, 128 validation worlds in K=8 chunks, query limit,
+radii, optimizer, exact-forward evaluator, and bootstrap budget as the ConPath candidate; only the
+correlated local/global posterior structure is removed (`decoder_variant=independent`, effective
+`local_kernel_size=1`). The explicit `--disable-global-factors` flag remains false because the
+decoder variant itself applies the ablation. This is a validation-only control and did not open the
+FlatLands physical test split.
+
+Training stopped by the fixed early-stopping rule (best epochs: seed 20260831 → 4 of 12, seeds
+20260901/02 → 10 of 18), followed by exact validation manifest generation. The final scene-weighted
+metrics are:
+
+| Seed | Exact Brier | NLL | ECE | False-safe @0.8 | Coverage @0.8 |
+|---:|---:|---:|---:|---:|---:|
+| 20260831 | 0.11476 | 0.86451 | 0.09921 | 0.07882 | 0.34011 |
+| 20260901 | 0.11032 | 0.85464 | 0.08716 | 0.07130 | 0.35626 |
+| 20260902 | 0.11673 | 0.91047 | 0.10507 | 0.08560 | 0.34424 |
+| **mean ± sample SD** | **0.11394 ± 0.00328** | **0.87654 ± 0.02979** | **0.09715 ± 0.00913** | **0.07857 ± 0.00715** | **0.34687 ± 0.00839** |
+
+All three manifests contain 4,224 finite rows over 1,408 endpoint groups, with zero radius-order
+violations. The independent evaluator replay reproduces every report and the audit passes all
+hash/config/flag checks (`results/p1_flatlands_independent_k128_validation_v2/audit.json`, 3 seeds,
+0 failures). The compact portable hand-off is `site/data/flatlands_independent_k128_validation.json`;
+per-seed prediction hashes are `b3a1e8d7…0958`, `b5c4f0d7…2030a`, and `35fa6906…5803` (full values
+are in the snapshot and recovery ledger). Relative to the correlated K=128 candidate
+(`0.09583 ± 0.01148` Brier), this is a matched spatial-correlation control only; both rows remain
+validation-only and the non-official provenance/test-lock caveat is unchanged.
+
+All three independent `best.pt` files were also restored with the current `PathRelNet` loader
+(zero missing/unexpected state keys, `120,108` trainable parameters). The older `119,921`
+parameter figure in the baseline table refers to the separate `MarginalCompletionBaseline`, not
+to this matched independent decoder.
+
+## Paired FlatLands K=128 effect-size check (completed 2026-09-03)
+
+The two K=128 prediction matrices cover identical validation keys, so a paired cluster bootstrap
+was computed rather than treating the 4,224 rows as independent. For each seed, complete
+`(source_dataset, scene_id)` clusters were resampled 2,000 times and the delta was defined as
+independent minus correlated (positive means worse for lower-is-better metrics). Brier deltas and
+95% intervals are `+0.01011 [0.00286, 0.01839]`, `+0.02747 [0.01661, 0.03770]`, and
+`+0.01673 [0.00816, 0.02585]` for seeds 20260831, 20260901, and 20260902 respectively;
+the three-seed mean ± sample SD is `+0.01810 ± 0.00876`. The paired report also contains
+NLL/ECE/false-safe and radius/source strata. This is an effect-size diagnostic, not a significance
+claim or safety guarantee; the validation-only/non-official split and test lock remain in force.
+The portable report is `site/data/flatlands_k128_paired_comparison.json`, generated by
+`scripts/compare_flatlands_k128_paired.py`.
+
 ## Exact next actions
 
-1. Replace the desk-surface pilot with a clear ground-robot/floor visual showing posterior updates,
-   footprint erosion, and a failure case; retain the TUM asset only as a labelled geometry appendix.
-2. Extend the completed reliability/selective-risk analysis with symmetry/radius-monotonicity checks,
-   an explicit ARKitScenes saturation analysis, and a failure-case visual for the recent controls.
-3. Audit and freeze one second domain, prioritizing UnScenes3D support surfaces, with
-   scene/site/sequence-held-out split and no adjacent-frame leakage. Its raw and label packages are
-   acquired and timestamp-joined; both local-map parts cover every label timestamp, and the
-   remaining work is the full adapter, capacity-matched controls, coordinate/voxel validation,
-   conservative support mapping, and the metric-BEV ground-robot visual. ORFD remains a fallback
-   semantics-only candidate.
-4. Only after the above, unlock the test split once, regenerate final JSON/CSV/SVG and qualitative
-   figures, freeze environment/data/checkpoint hashes, and update the website.
-6. Draft and internally review the ICRA/IROS paper: problem/claims, method, related work, main table/
-   figures, limitations, appendix, anonymization, and venue-format/compliance checks.
+1. Preserve the completed FlatLands independent/correlated K=128 audits, compact snapshots, and
+   paired report as validation-only artifacts; after any edit, regenerate only from passing audits
+   and require exact replay, frozen hashes, 4,224 rows per seed, and zero radius violations.
+2. The final regression gate has now passed: 80 tests, source/script compileall, `git diff --check`,
+   26 JSON files/90 local site references, headless Chrome DOM smoke, full recovery SHA verification
+   (344/344), FlatLands audits, and the UnScenes3D manifest/GPU/control checks (599/0/3).
+3. Review the ground-robot panels at native resolution and keep the TUM desk asset only as a
+   labelled geometry appendix; no target-derived panel may be presented as an input.
+4. Keep the verified UnScenes3D control matrix and explicit replay/audit limitation in the paper
+   hand-off. Do not pool unlike predictive objects or turn the coordinate control into a method
+   claim.
+5. Do not unlock `location_6` during this autonomous run. A separate explicit go/no-go review is
+   required before any test labels are read; if it is approved later, unlock once and freeze all
+   controls first.
 
 ## Recovery commands
 
@@ -652,3 +878,218 @@ PYTHONPATH=src .venv/bin/python scripts/build_demo_site.py
 `results/` and checkpoints are intentionally ignored. Any result used to make a research decision
 must therefore be summarized here (and in the appropriate tracked research document) before a
 session ends.
+
+## Latest override: FlatLands valid-support correction and clean rerun (2026-09-03)
+
+This section supersedes the earlier FlatLands model-number hand-off above. While building a real
+checkpoint-derived website visual, the model path was audited against the frozen label geometry.
+The label oracle treats `~epistemic_mask` as invalid/blocked, but the earlier neural forward left
+those all-zero input cells stochastic. In a concrete validation query (`obs_156142`, candidate 3,
+r=10), the fixed visual replay changed from ConPath/independent probabilities `0.727/0.797` without
+the support clamp to `0/0` with it. The old K=32/K=128 map-derived numbers and qualitative panels are
+therefore not eligible as current paper evidence. No FlatLands test label was read.
+
+Implemented correction:
+
+- `PathRelNet.forward` and `forward_features` accept `valid_support_mask` and clamp its complement
+  to `BLOCKED` before posterior sampling;
+- `collate_flatlands_replay` exports `valid_support_mask`, and the FlatLands trainer passes it in
+  every train/validation forward;
+- the trainer protocol is now `P1_BASELINE_PROTOCOL.md v1 + ConPath valid-support v2` and records
+  the support policy plus implementation hashes;
+- two model regression tests cover the clamp and mask-shape rejection, and a fixed-completion test
+  proves probabilities outside explicit unknown support cannot create a path; the full suite passes
+  **80/80**;
+- `scripts/evaluate_flatlands_support_clamped.py` is validation-only and rejects test access. Its
+  accelerated discrete-disk/four-neighbour implementation self-checks against the canonical NumPy
+  clearance/merge-tree oracle before loading a checkpoint.
+
+All six old K=128 checkpoints were then re-evaluated with K=128, the corrected support boundary,
+the same three seeds, 4,224 validation rows per seed, and no test access:
+
+| Decoder | Brier | NLL | ECE | False-safe @0.8 | Coverage @0.8 |
+|---|---:|---:|---:|---:|---:|
+| Correlated ConPath | **0.08467 ± 0.01350** | **0.40035 ± 0.06452** | **0.08979 ± 0.01627** | **0.03391 ± 0.00722** | 0.28150 ± 0.02290 |
+| Independent | 0.10352 ± 0.00388 | 0.84715 ± 0.01366 | 0.09964 ± 0.01038 | 0.05468 ± 0.00678 | 0.33801 ± 0.00779 |
+
+The independent-minus-correlated paired Brier delta is `+0.01886 ± 0.00963`; the three per-seed
+2,000-draw scene-bootstrap intervals are `[0.00127, 0.01851]`, `[0.01888, 0.03833]`, and
+`[0.00963, 0.02725]`. Thus the directional correlation advantage survives the correction, but this
+is still a **post-hoc evaluation of checkpoints trained under the faulty forward**. Its ignored
+artifacts are under `results/p1_flatlands_support_clamped_posthoc_k128_validation/`.
+
+The homepage now uses
+`site/assets/flatlands_k128_support_clamped_advantage.png` instead of the TUM desk video as its main
+visual. It is rendered only from real checkpoints and the frozen validation replay by
+`scripts/render_flatlands_k128_advantage.py`; the companion
+`site/data/flatlands_k128_support_clamped_advantage.json` records prediction/checkpoint hashes,
+fixed visual seeds, aggregate values, and label-derived case-selection rules. The TUM video was
+moved to the geometry-pilot section. A 1440×1200 headless-Chrome screenshot confirmed that the hero
+loads and is legible.
+
+The execution-log paragraphs below are historical snapshots from the overnight run; the latest
+2026-09-04 update at the end of this file is authoritative for process state. Clean formal training
+completed in new directories and did not overwrite the old audit trail:
+
+- correlated: `results/p1_flatlands_conpath_k128_support_clamped_v1/seed{seed}_conpath/`;
+- independent: `results/p1_flatlands_independent_k128_support_clamped_v1/seed{seed}_independent/`;
+- controller logs: `results/p1_flatlands_support_clamped_training_logs/`.
+
+The three correlated seeds were launched concurrently first; the controller launches the three
+independent seeds only after that group exits successfully. Each uses F=16, latent dimension 4,
+eight train worlds, K=128 validation worlds in K=8 chunks, 40-epoch maximum, patience 8, the same
+frozen queries/radii, and the corrected support mask. After completion, audit all six manifests,
+rebuild the paired report/hero from the clean checkpoints, rerun site/recovery checks, and only then
+decide whether the validation package is paper-candidate quality. Do not open the FlatLands physical
+test split or UnScenes3D `location_6`.
+
+### Live audit update (2026-09-03 22:57 EDT)
+
+The three correlated clean runs completed two epochs without OOM. Epoch time is approximately
+483 seconds per concurrent run. Validation Brier trajectories are `0.22797 -> 0.17264` (seed
+20260831), `0.22749 -> 0.23764` (seed 20260901), and `0.23661 -> 0.24186` (seed 20260902); the latter
+two have used one of eight patience steps. Atomic `best.pt`, `latest.pt`, and `progress.jsonl`
+artifacts exist for every seed. These are early training values, not final comparisons.
+
+The same boundary review was applied to UnScenes3D without reading `location_6`. Its exact oracle
+uses `target_valid` as the support domain, while the older map-model forwards did not clamp the
+complement before sampling. Therefore all historical UnScenes3D ConPath, independent-decoder,
+mean-map, calibration-map, and qualitative posterior artifacts are now explicitly superseded for
+paper/cross-domain claims; the coordinate-query and train-fitted radius-prior controls are not map
+samplers and remain unaffected. `scripts/train_unscenes3d_conpath.py`,
+`scripts/evaluate_unscenes3d_conpath_mean_map.py`, and
+`scripts/render_unscenes3d_qualitative.py` now pass the validity mask into `PathRelNet` and record
+the support contract. A synthetic forward smoke confirmed zero sampled safe cells outside support.
+`UNSCENES3D_PROTOCOL.md`, the paper draft, README, and site now expose the reopened gate. A clean
+UnScenes3D rerun must follow the FlatLands publication gate; do not promote the archived numbers.
+
+`scripts/wait_and_finalize_flatlands_valid_support.sh` is also active as a fail-closed supervisor.
+It waits for all six `run.json` files, aborts if trainers disappear for three consecutive checks,
+then runs strict support/checkpoint/prediction/replay audits, builds compact snapshots and the clean
+paired report, and invokes the figure renderer only if the aggregate Brier delta and all three
+per-seed lower bootstrap bounds are positive. It writes a separate
+`site/assets/flatlands_k128_clean_candidate.png`; it does not silently promote that candidate into
+the homepage, so the final numbers/image still require visual and document review.
+
+A validation-only UnScenes3D post-hoc diagnostic was also run on the three old correlated
+ground-valid checkpoints with K=128 posterior means and `target_valid` clamped. It produced 4,587
+event rows per seed, zero radius-order violations, and deterministic mean-map event Brier
+`0.54740 ± 0.00251`, versus the archived unmasked value `0.62774 ± 0.00145`. Mean hidden-map Brier
+is approximately `0.15017`, nearly unchanged, so the event shift is specifically attributable to
+the invalid-support route. Outputs are under
+`results/unscenes3d_support_clamped_posthoc_mean_map_k128/`; every report says
+`posthoc_checkpoint_evaluation=true`, `retraining_required=true`, and `test_evaluated=false`.
+This result prioritizes the clean second-domain rerun but is not paper evidence.
+
+### Automated second-domain continuation (2026-09-03 23:39 EDT)
+
+The clean FlatLands correlated runs have completed seven epochs. Current best validation Brier is
+`0.06517` (seed 20260831, epoch 6), `0.10604` (seed 20260901, epoch 6), and `0.07624`
+(seed 20260902, epoch 7). All three processes remain healthy; the last epoch improved seed
+20260902 substantially while the other two used one patience step. These are live selection values,
+not final paired results.
+
+`scripts/wait_train_and_finalize_unscenes3d_valid_support.sh` ran behind the FlatLands
+controller/finalizer and did not share its GPU lane. It completed the following steps after both
+FlatLands groups exited:
+
+1. train three correlated and three matched independent F=16 UnScenes3D adapters from scratch with
+   the `target_valid` clamp on the 478/62 train/validation frames;
+2. restore and audit all six selected checkpoints without loading frames or labels;
+3. run K=128 support-consistent mean-map evaluation for all six checkpoints, replay all 4,587
+   validation rows per seed, compare identical keys with whole-scene bootstrap intervals, and keep
+   `location_6` locked;
+4. render a clean qualitative candidate from the best correlated validation seed and copy only
+   candidate-named artifacts into the site tree; homepage promotion remains manual; and
+5. rerun the unit, compile, and diff-integrity gates.
+
+The new reusable audit/comparison tools are `scripts/audit_unscenes3d_conpath_clean.py` and
+`scripts/compare_unscenes3d_k128_paired.py`. The comparison independently reproduces all five
+published event metrics exactly on the existing post-hoc K=128 CSV as a preflight check. Clean
+outputs will use new versioned directories and will not overwrite the superseded historical runs.
+
+A full PathRelNet call-site scan also found two legacy FlatLands utilities that predated the
+amendment. `scripts/evaluate_flatlands_conpath_mean_map.py` and
+`scripts/render_flatlands_qualitative.py` now pass `epistemic_mask` explicitly, distinguish clean
+from post-hoc checkpoints in their JSON, reject test rendering before dataset/checkpoint I/O, and
+fail early on invalid posterior chunk sizes. A one-scene validation-only CPU replay passed after
+the correction; no test archive member was opened.
+
+The live checkpoints are written by Python 3.13, whose concrete `Path` pickle class is
+`pathlib._local.PosixPath`; Python 3.11 cannot deserialize that configuration object. Both
+finalizers now use the same Python 3.13 environment as training. All three epoch-9 `latest.pt`
+files restored successfully there with the valid-support v2 protocol and finite model tensors, and
+the 80-test suite passed in that exact environment. The training processes were not restarted.
+
+### Live audit update (2026-09-04 03:12 EDT)
+
+The clean FlatLands correlated group has now completed all three exact validation runs. Each
+directory contains a finite strict-restorable `best.pt`, a 4,224-row label-free prediction CSV,
+an exact validation report, and `run.json` with the valid-support-v2 implementation hashes;
+all three reports remain `paper_result=false` and `test_evaluated=false`. Scene-weighted Brier is
+`0.05948` (seed 20260831), `0.06522` (20260901), and `0.07778` (20260902), mean
+`0.06749 ± 0.00936`; this is still validation-only on the non-official provenance split. The
+matched independent group was launched automatically at 03:05 EDT in its separate versioned
+directory and is currently caching the same frozen train/validation packets. No test labels or
+UnScenes3D `location_6` data have been opened.
+
+### Live audit update (2026-09-04 07:28 EDT)
+
+The clean FlatLands matched-independent group has now produced all three checkpoints and is in the
+finalizer's report/audit hand-off. The clean paired package is complete: ConPath scene-weighted
+Brier `0.06749 ± 0.00936`, independent `0.09521 ± 0.00703`, paired delta `+0.02772 ± 0.00993`,
+and all three per-seed bootstrap intervals are positive. The checkpoint-derived visual is
+`site/assets/flatlands_k128_clean_candidate.png`; it is explicitly validation-only/non-official and
+does not open the physical test split.
+
+The UnScenes3D supervisor has released the FlatLands GPU lane. Its three correlated and three matched
+independent `target_valid`-clamped adapters completed in their separate versioned directories. The
+supervisor then ran strict checkpoint audits, K=128 mean-map replay, a paired comparison, and
+candidate-only qualitative rendering. `location_6` remains locked; no test artifact was loaded.
+
+### Live audit update (2026-09-04 07:50 EDT)
+
+The UnScenes3D clean-support supervisor has now completed all six F=16 validation runs. The
+correlated and matched-independent checkpoints restored strictly, passed finite-tensor and
+support-policy audits, and reproduced the deterministic K=128 mean-map comparison byte-for-byte.
+The clean event Brier is `0.54704 ± 0.00218` for correlated ConPath and `0.54740 ± 0.00251`
+for the independent decoder (paired delta `+0.00036 ± 0.00062`), so this two-scene adapter is a
+transfer/support diagnostic with no measurable correlation advantage. Real-checkpoint positive and
+false-safe panels are published as validation diagnostics in `site/assets/`; `location_6`, test
+labels, and all official test artifacts remain locked. Final work is documentation/site/recovery
+consistency review only; no training process is active.
+
+### Final hand-off update (2026-09-04 08:21 EDT)
+
+The clean UnScenes3D table was widened for desktop readability and its artifact links now wrap
+without stray separators. The final regression pass used the Python 3.13 checkpoint environment:
+80 unit tests passed, source/scripts compile and `git diff --check` passed, the static site audit
+found 26 JSON files, 90 local references, 20 images, no missing alt text, no duplicate IDs, and no
+missing local targets. Both clean FlatLands audits and both clean UnScenes3D audits report three
+seeds/zero failures; the paired reports reproduce byte-for-byte. The UnScenes3D control audit is
+599 checks/0 failures/3 intentional legacy warnings, and the full recovery verifier is 344/344
+with SHA-256 enabled. The refreshed published control-audit copy matches its source. No training
+process is active and no locked test artifact was opened.
+
+## Plan reconciliation and website publication preparation (2026-09-06)
+
+The runtime goal lookup returned no active goal. The seven-stage roadmap remains a research
+objective, while the September 2 overnight plan is historical and its bounded audits are complete.
+`WORK_PLAN.md` now separates version/site publication, clean analysis, missing clean ablations,
+second-domain diagnosis, scalable-operator evidence, and the still-locked final test decision.
+Recovery commands now use the Python 3.13.13 checkpoint interpreter and explicit clean-support
+roots instead of the superseded directories and the local Python 3.11.15 venv.
+
+The three real-checkpoint PNGs were visually inspected and are linked from the site, including
+full-resolution UnScenes3D positive and false-safe panels. The page's method description now
+describes the learned BEV model; old calibration traces are explicitly historical, stale ConPath
+comparisons were corrected, and the 0.8 false-safe claim now also discloses unequal coverage.
+A mobile overflow caused by the reproduction code card was fixed, and the narrow navigation wraps.
+
+The Python 3.13 suite passes all 80 tests; all 61 Python source/script files parse, both three-seed
+FlatLands clean audits pass, and both three-seed UnScenes3D clean audits pass. Chrome verified
+1440- and 390-pixel layouts with zero broken images, no page overflow, current model numbers and
+four dynamically rendered fixed-baseline rows. The final site audit and Git publication are
+recorded under `results/maintenance_20260906/`. The earlier 599-check control audit remains an
+archived structural audit of the historical control package, not new scientific evidence.
+No new training or locked test read was performed for this publication step.

@@ -1,0 +1,96 @@
+{
+  "adapter": {
+    "endpoint_policy": "ground",
+    "ground_bin_size_m": 1.2,
+    "ground_lateral_limit_m": 20.0,
+    "ground_margin_m": 0.35,
+    "ground_quantile": 0.15,
+    "start_selection": "valid"
+  },
+  "checkpoint": {
+    "path": "results/unscenes3d_ground_valid_f16/seed20260831/best.pt",
+    "sha256": "77c1165680f365d8125c3016a5d142cc4e3ff52aeb927c3bbfdfca83d3877cff"
+  },
+  "claim_boundary": "Archived pre-correction qualitative diagnostic. The source checkpoint and renderer did not hard-block the complement of target_valid; this artifact is superseded pending a clean support-consistent rerun. location_6 remains locked.",
+  "decoder": {
+    "disable_global_factors": false,
+    "feature_channels": 16,
+    "latent_dim": 4,
+    "local_kernel_size": 5,
+    "variant": "correlated"
+  },
+  "kind": "unscenes3d_qualitative_validation_panel",
+  "manifest": {
+    "path": "results/unscenes3d_contract_manifest_ground_valid/manifest.json",
+    "sha256": "d866be0b25ba6635d5ad934bac9c822c55be8034fabd8f4627803bb9efa972d5",
+    "test_locked_sites": [
+      "location_6"
+    ],
+    "validation_queries": 1529,
+    "validation_records": 62
+  },
+  "panels": {
+    "failure": {
+      "candidate_index": 0,
+      "label": "false-safe failure",
+      "max_clearance_cells": 16,
+      "path": "results/unscenes3d_qualitative_validation/qualitative_failure.png",
+      "point_count": 13177,
+      "prediction": [
+        true,
+        true,
+        true
+      ],
+      "projected_points": 13177,
+      "scene_id": "scene_00427",
+      "target": [
+        false,
+        false,
+        false
+      ],
+      "timestamp": "1693304969.384475"
+    },
+    "positive": {
+      "candidate_index": 0,
+      "label": "true-positive",
+      "max_clearance_cells": 15,
+      "path": "results/unscenes3d_qualitative_validation/qualitative_positive.png",
+      "point_count": 14826,
+      "prediction": [
+        true,
+        true,
+        true
+      ],
+      "projected_points": 14826,
+      "scene_id": "scene_00427",
+      "target": [
+        true,
+        true,
+        true
+      ],
+      "timestamp": "1693304934.305044"
+    }
+  },
+  "paper_result": false,
+  "posthoc_checkpoint_evaluation": false,
+  "retraining_required": true,
+  "superseded": true,
+  "superseded_reason": "The historical posterior worlds did not clamp the target_valid complement to blocked.",
+  "protocol_version": "UNSCENES3D_PROTOCOL.md v0.2",
+  "runtime": {
+    "device": "cuda",
+    "gpu": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+    "peak_gpu_memory_bytes": 350782464,
+    "wall_seconds": 15.936548313000458
+  },
+  "schema_version": 1,
+  "selection": {
+    "frames_scanned": 62,
+    "posterior_samples": 128,
+    "rule": "highest deterministic max-clearance false-safe radius-2 query and highest max-clearance all-radii true-positive query",
+    "sample_chunk": 32,
+    "seed": 20260910
+  },
+  "test_evaluated": false,
+  "validation_result": true
+}

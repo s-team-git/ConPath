@@ -1,10 +1,11 @@
 # UnScenes3D compatibility check
 
-Status: **priority second-domain candidate; raw and label mini packages acquired, local-map/metric adapter pending**
-Checked: 2026-09-02 (America/New_York)
+Status: **coordinate/manifest-audited candidate; clean target-valid-support validation diagnostic complete; test locked**
+Checked: 2026-09-04 (America/New_York)
 
-UnScenes3D is currently the strongest candidate for the second-domain experiment and for replacing
-the desk-surface hero visual. Unlike ORFD's image-plane-only target, its release is organized around
+UnScenes3D is currently the strongest candidate for the second-domain experiment and for a later
+ground-robot visual. The site hero is now a checkpoint-derived FlatLands comparison, and the clean
+UnScenes3D panels are retained as a transfer diagnostic. Unlike ORFD's image-plane-only target, its release is organized around
 3D occupancy and road-surface geometry with an explicit vehicle/world coordinate chain.
 
 ## Official release evidence
@@ -56,17 +57,21 @@ This is sufficient in principle to build a metric support raster in a vehicle/wo
 make a ground-vehicle visual with camera, observed support, posterior occupancy, footprint erosion,
 and path probability. The downloaded raw/label join is complete for all 629 label timestamps. The
 raw tree itself has no `pose_odom` or local-map directory, but the separate local-map parts now
-join all 629 labels; a metric world-frame pose/coordinate audit is still required. It is also
-necessary to verify coordinate handedness, voxel bounds, temporal leakage, and the exact meaning of
-occupancy/elevation values.
+join all 629 labels. The read-only coordinate audit sampled 55 train/validation frames and found
+direct LiDAR/local-map nearest-neighbour overlap of 0.791 within 0.3 m and 0.863 within 1 m;
+both forward and inverse `Tr_velo_to_imu` alternatives had zero overlap at those thresholds. Camera
+projection had positive depth for all 800,742 sampled returns, and calibration rotations stayed
+near orthonormal (maximum error `2.13e-6`, minimum determinant `0.9999986`). This supports using
+the raw LiDAR frame directly for the local-map comparison; it does not establish a world-pose
+claim.
 
 ## Contract comparison and adapter gates
 
 | Dimension | ConPath/FlatLands | UnScenes3D | Decision |
 |---|---|---|---|
-| Input | Partial three-channel support raster | RGB, LiDAR, calibration, synchronized frames; can be reduced to the same three channels | Adapter required, but sensor geometry is available |
+| Input | Partial three-channel support raster | RGB, LiDAR, calibration, synchronized frames; reduced to the same three channels | Coordinate-audited sensor adapter; ground-endpoint candidate |
 | Truth | Hidden metric support grid and two-terminal footprint event | 3D semantic occupancy plus road elevation/local map | Map official `driveable_surface` (class 11) to traversable and all obstacle/terrain classes conservatively to blocked; keep elevation/occupancy validity masks |
-| World reference | Full support map with provenance | Local dense map and pose/odometry files | Promising; verify map-to-pose transform and bounds on labels |
+| World reference | Full support map with provenance | Local dense map and pose/odometry files | Direct LiDAR/local-map frame agrees in audit; world-pose use remains out of scope |
 | Splits | Scene/site/sequence held out, no adjacent-frame leakage | `scene_info.json` plus six-region generalization description; mini raw smoke currently one scene | Freeze an explicit scene/site split before reading test labels |
 | Scale | 256x256 FlatLands raster | Release is multi-archive; raw mini is ~104.5 MB, labels/maps are larger | Download only after archive hashes and disk budget are recorded |
 | Visual fit | Desk pilot currently semantically weak | Ground vehicle, off-road support surface, occupancy/elevation | Preferred source for the replacement visual |
@@ -82,8 +87,46 @@ Before training, all of the following must pass:
    observation/label-validity mask; and
 6. a target-blind query manifest and exact event evaluator before any test labels are read.
 
-No UnScenes3D score is reported yet. The acquired raw and label packages are parser/label-join
-artifacts, not results and not evidence of ConPath superiority.
+The coordinate-audit gate is now recorded as passed for train/validation. The canonical candidate
+uses `endpoint_policy=ground` (1.2 m longitudinal bins, 20 m lateral limit, 0.15 height quantile,
+0.35 m margin) and retains the fixed validity-only start. Its manifest is
+`results/unscenes3d_contract_manifest_ground_valid/manifest.json`, with 15,567 train and 1,529
+validation queries. A later support audit found that the old PathRelNet map worlds did not hard-block
+the complement of `target_valid`, although the exact oracle treats it as invalid support. Therefore
+the historical three-seed F=16 map-only event Brier `0.56272 ± 0.00744` is superseded, not a method
+win or paper result.
+The earlier bounded event-loss number `0.59126 ± 0.00855` belongs to the rejected
+observed-free-start ablation and is not a canonical-contract result. On the canonical contract,
+the historical capacity-matched independent decoder is `0.56297 ± 0.00541`; the deterministic K=128
+posterior-mean-map control is `0.62774 ± 0.00145` (hidden-cell map Brier `0.15025` on average).
+Both are likewise superseded. The trainer, mean-map evaluator, and qualitative renderer now pass
+`target_valid` as a hard support mask and record whether the source checkpoint used the same policy;
+Six fresh F=16 map adapters were then trained under the corrected contract. Their exact K=128
+mean-map replay gives event Brier `0.54704 ± 0.00218` for correlated ConPath and
+`0.54740 ± 0.00251` for the independent control (paired delta `+0.00036 ± 0.00062`). With only
+two held-out validation scenes, this is a reproducible support/transfer diagnostic with no measurable
+correlation advantage, not a cross-domain method claim. The unaffected S4C-inspired coordinate-query control is
+`0.20379 ± 0.03485` with NLL
+`0.57289 ± 0.10572`. These rows are deliberately reported as controls: they use different
+predictive objects and do not establish a cross-domain method win. The archived validation-only
+ground-robot posterior/footprint/failure panel is stored under
+`results/unscenes3d_qualitative_validation/` and mirrored in the project site; `location_6`
+remains locked. Before the support issue was discovered, the read-only `scripts/audit_unscenes3d_controls.py` replayed the frozen
+manifest, all 15 control reports/CSV contracts, K=32/64/128 sensitivity, calibration snapshot,
+site links, published audit evidence, manifest replay, portable paths, and PNG dimensions in 599 checks with zero failures. A fresh v0.2 GPU replay of the three correlated
+checkpoints differed from the earlier metadata-only reports by at most `1.51e-4` on any displayed
+metric; the three older reports retain a v0.1 protocol tag and are treated as legacy metadata,
+not silently rewritten. That audit remains a structural history, not current model evidence. The compact archived snapshot is
+`site/data/unscenes3d_controls_validation.json`.
+
+The clean candidate JSON and panels are under
+`site/data/unscenes3d_clean_support_k128_candidate.json`,
+`site/data/unscenes3d_clean_candidate_qualitative.json`, and
+`site/assets/unscenes3d_clean_candidate_{positive,failure}.png`; all record
+`paper_result=false` and `test_evaluated=false`.
+
+No UnScenes3D score is reported as a final or cross-domain result. The acquired raw and label
+packages and the runs above remain validation diagnostics, not evidence of ConPath superiority.
 
 ## Local acquisition record
 

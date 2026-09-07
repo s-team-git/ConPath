@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#ffffff" />
-    <meta name="description" content="ConPath: connectivity-calibrated path reliability under partial observation, with a reproducible TUM RGB-D pilot and a bounded FlatLands data audit." />
+    <meta name="description" content="ConPath: connectivity-calibrated path reliability under partial observation, with a checkpoint-derived FlatLands comparison, auditable validation artifacts, and a reproducible TUM RGB-D geometry pilot." />
     <title>ConPath · Connectivity-Calibrated Path Reliability</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
@@ -20,6 +20,7 @@
           <a href="#results">Results</a>
           <a href="#flatlands-audit">Data audit</a>
           <a href="#flatlands-baselines">Baselines</a>
+          <a href="#unscenes3d">UnScenes3D</a>
           <a href="https://github.com/s-team-git/ConPath" rel="noreferrer">Code <span aria-hidden="true">↗</span></a>
         </div>
       </div>
@@ -28,16 +29,22 @@
     <main id="top">
       <section class="hero section">
         <div class="container narrow">
-          <div class="pilot-banner"><strong>Current media status.</strong> This large video is a TUM RGB-D geometry pilot on a desk surface, not a mobile-robot navigation result. It is retained only to make the coordinate-frame hand-off reproducible; the paper-grade hero will use a ground robot/floor scene.</div>
+          <div class="pilot-banner evidence-banner"><strong>Clean checkpoint evidence.</strong> The primary visual compares real K=128 ConPath and matched independent-decoder checkpoints trained with the valid-support clamp on the frozen FlatLands provenance validation split. Across three seeds, ConPath reaches Brier <strong>0.06749 ± 0.00936</strong> versus <strong>0.09521 ± 0.00703</strong> for the independent control, with every paired Brier bootstrap interval above zero. The physical test remains locked, so this is a validation candidate rather than a final paper number.</div>
           <div class="hero-media media-frame">
-            <video autoplay muted loop playsinline controls preload="metadata" poster="assets/tum_freiburg1_desk_demo_poster.jpg">
-              <source src="assets/tum_freiburg1_desk_demo.mp4" type="video/mp4" />
-              Your browser does not support embedded video. <a href="assets/tum_freiburg1_desk_demo.mp4">Download the real-data pilot video.</a>
-            </video>
+            <a class="hero-image-link" href="assets/flatlands_k128_clean_candidate.png" title="Open the full-resolution clean checkpoint comparison">
+              <img src="assets/flatlands_k128_clean_candidate.png" width="1800" height="1330" fetchpriority="high" alt="Clean-support FlatLands validation comparison of correlated ConPath and a matched independent decoder. It reports lower three-seed Brier and false-safe rate for ConPath and shows one recovered-path case and one avoided-false-safe case with observed maps, posterior maps, samples, and references." />
+            </a>
           </div>
-          <p class="media-caption"><strong>Pipeline pilot only:</strong> RGB observation → registered depth → world-frame raster. The black trajectory is the official motion-capture pose; no robot traversability label is claimed.</p>
+          <p class="media-caption"><strong>Clean validation candidate, not a final paper result:</strong> 4,224 events per seed, K=128 posterior worlds, identical query keys, and a locked physical test split. <a href="assets/flatlands_k128_clean_candidate.png">Open full resolution ↗</a> · <a href="data/flatlands_k128_clean_candidate.json">Open provenance, metrics, and checkpoint hashes ↗</a></p>
+          <div class="hero-takeaways" aria-label="Checkpoint comparison takeaways">
+            <div><strong>29.1% lower</strong><span>event Brier after clean support training</span></div>
+            <div><strong>20.0% lower</strong><span>false-safe rate at confidence ≥ 0.8</span></div>
+            <div><strong>3 / 3 seeds</strong><span>paired Brier bootstrap intervals above zero</span></div>
+          </div>
 
-          <p class="eyebrow">REAL-DATA PILOT · TUM RGB-D</p>
+          <p class="small-note">Results updated <time datetime="2026-09-06">September 6, 2026</time>. At the 0.8 threshold, accepted-event coverage is 33.6% for ConPath and 36.6% for the independent control; the false-safe comparison uses different coverage.</p>
+
+          <p class="eyebrow">MODEL COMPARISON · FLATLANDS VALIDATION · TEST LOCKED</p>
           <h1>ConPath: Connectivity-Calibrated Path Reliability</h1>
           <p class="subtitle">Event-level calibration of footprint-conditioned connectivity under partial observation</p>
           <p class="authors">A reproducible research prototype for uncertainty-aware geometric planning</p>
@@ -47,22 +54,22 @@
             <a class="button light" href="https://cvg.cit.tum.de/data/datasets/rgbd-dataset" rel="noreferrer"><span aria-hidden="true">↗</span> TUM RGB-D</a>
             <a class="button light" href="#results"><span aria-hidden="true">↓</span> Results</a>
           </div>
-          <div class="scope-note"><strong>Scope.</strong> This page reports a real RGB-D geometric reference-map pilot. TUM supplies RGB/depth and camera motion, not traversability or collision labels; the numbers below are not a public navigation benchmark or a validated neural P0 result.</div>
+          <div class="scope-note"><strong>Scope.</strong> The hero is generated from trained neural checkpoints, not illustrative or synthetic media. Under the corrected valid-support training contract, scene-weighted Brier is <strong>0.06749 ± 0.00936</strong> for ConPath versus <strong>0.09521 ± 0.00703</strong> for the independent control; independent-minus-ConPath is <strong>+0.02772 ± 0.00993</strong>, with positive paired bootstrap intervals for all three seeds. This remains validation-only on a non-official provenance split: the physical test and cross-domain publication gates are still closed. The TUM RGB-D geometry video is retained below as a separate pipeline pilot.</div>
         </div>
       </section>
 
       <section id="abstract" class="section section-tint">
         <div class="container text-block">
           <h2>Abstract</h2>
-          <p>Occupancy marginals do not answer the question a robot asks at planning time: is there a support-valid path from a start to a goal for my footprint? ConPath treats that question as a calibrated event. A stochastic posterior produces spatially coherent support-map hypotheses, and a footprint-aware connectivity operator evaluates the event on each hypothesis rather than multiplying independent cell probabilities. This project page makes the data path inspectable with a real RGB-D sequence: sampled depth pixels are lifted with the official Freiburg-1 intrinsics and motion-capture poses, fused into a horizontal world-frame reference raster, and evaluated on future-frame queries.</p>
-          <p class="small-note">The current real-data result is intentionally a pilot. It validates the RGB-D → world geometry → event-audit path, while a paper-grade navigation claim still requires auditable traversability labels, a trained neural checkpoint, and sequence/site-held-out public benchmarks.</p>
+          <p>Occupancy marginals do not answer the question a robot asks at planning time: is there a support-valid path from a start to a goal for my footprint? ConPath treats that question as a calibrated event. A stochastic posterior produces spatially coherent support-map hypotheses, and a footprint-aware connectivity operator evaluates the event on each hypothesis rather than multiplying independent cell probabilities. The primary visual now exposes that model-level comparison on a frozen, scene-disjoint FlatLands validation protocol; a separate TUM RGB-D sequence keeps the RGB-D → world-geometry hand-off inspectable.</p>
+          <p class="small-note">An audit found that invalid cells outside the epistemic support were not hard-blocked in an earlier forward. The old checkpoints and their post-hoc correction are retained as an audit trail; the primary visual now uses the independently audited clean-support rerun. No FlatLands test labels have been opened, and the non-official provenance split still limits the claim to validation.</p>
         </div>
       </section>
 
       <section id="method" class="section">
         <div class="container">
           <h2 class="center-title">Method</h2>
-          <p class="section-lede">From partial RGB-D evidence to a task-level connectivity probability.</p>
+          <p class="section-lede">From a partial bird's-eye-view observation to the probability that a vehicle-sized path exists.</p>
           <figure class="figure figure-wide">
             <img src="assets/conpath_pipeline.svg" alt="ConPath pipeline: RGB-D evidence is lifted into a world-frame support map, sampled into correlated worlds, and evaluated with footprint-conditioned connectivity." loading="lazy" />
             <figcaption>Figure 1. Read left to right: partial sensor evidence, spatially coherent map hypotheses, footprint erosion, and the final probability that start <code>s</code> reaches goal <code>g</code> for radius <code>r</code>. The real-data adapter supplies geometry; ConPath's research object is the event posterior <code>q(s, g, r | X)</code>.</figcaption>
@@ -76,13 +83,13 @@
           <div class="method-grid">
             <article>
               <span class="step">01</span>
-              <h3>Lift and fuse</h3>
-              <p>Registered depth is back-projected with the TUM Freiburg-1 camera model and transformed by the official MoCap pose. Repeated support-height returns form a geometric reference raster.</p>
+              <h3>Encode partial observations</h3>
+              <p>The model reads observed free, blocked, and unknown cells in a bird's-eye-view grid. Cells outside the valid support domain remain blocked throughout training and prediction.</p>
             </article>
             <article>
               <span class="step">02</span>
               <h3>Sample joint worlds</h3>
-              <p>Unknown cells retain uncertainty. The pilot compares independent-cell completion with a spatially correlated temporal random field clamped by observed evidence.</p>
+              <p>A learned mean map, global latent factors, and locally correlated noise produce complete map hypotheses. The independent control uses the same encoder, parameter budget, observations, and queries.</p>
             </article>
             <article>
               <span class="step">03</span>
@@ -96,7 +103,14 @@
       <section id="real-data" class="section section-tint">
         <div class="container">
           <h2 class="center-title">Real-data pilot</h2>
-          <p class="section-lede">One sequence, one transparent protocol, and no synthetic media in the primary presentation.</p>
+          <p class="section-lede">A transparent RGB-D geometry hand-off retained as a pipeline appendix, separate from the trained-model comparison above.</p>
+          <div class="pilot-media media-frame">
+            <video autoplay muted loop playsinline controls preload="metadata" poster="assets/tum_freiburg1_desk_demo_poster.jpg">
+              <source src="assets/tum_freiburg1_desk_demo.mp4" type="video/mp4" />
+              Your browser does not support embedded video. <a href="assets/tum_freiburg1_desk_demo.mp4">Download the real-data pilot video.</a>
+            </video>
+          </div>
+          <p class="media-caption"><strong>Geometry pilot only:</strong> RGB observation → registered depth → world-frame raster. The black trajectory is the official motion-capture pose; no robot traversability label is claimed.</p>
           <figure class="figure figure-wide">
             <img src="assets/tum_freiburg1_desk_teaser.jpg" alt="Real TUM RGB-D frame, colorized depth, and world-frame BEV reference map with camera trajectory." loading="lazy" />
             <figcaption>Figure 2. Geometry-only pilot: every panel is derived from TUM RGB-D Freiburg1/desk. Green marks the fused support surface, blue marks elevated returns, and the black line is the supplied camera trajectory. This is not evidence of a floor robot driving on the desk.</figcaption>
@@ -184,28 +198,29 @@
 
       <section id="flatlands-baselines" class="section section-tint">
         <div class="container">
-          <p class="eyebrow baseline-eyebrow">VALIDATION BASELINES · PROVENANCE SPLIT · TEST LOCKED · NOT FINAL PAPER RESULT</p>
+          <p class="eyebrow baseline-eyebrow">VALIDATION BASELINES · SUPPORT-BOUNDED · TEST LOCKED</p>
           <h2 class="center-title">FlatLands validation baseline slate</h2>
-          <p class="section-lede">Same FlatLands validation provenance split, same 4,653 frozen query events, and the same radii (0/10/20 cells) for every row. The first pass compares a radius-only control, a deterministic completion, an independent-cell event sampler, and a direct-query predictor.</p>
+          <p class="section-lede">Same FlatLands validation provenance split and radii (0/10/20 cells) for every row. These fixed baselines already constrain completion worlds to the released epistemic support.</p>
+          <div class="pilot-banner correction-banner"><strong>Correction notice · 2026-09-03.</strong> The model audit found that earlier PathRelNet stochastic worlds could treat cells outside <code>epistemic_mask</code> as traversable. Accordingly, the older unmasked ConPath/independent/mean-map tables and calibration figures farther below are superseded. The fixed slate immediately below is unaffected: its completion samplers explicitly use only the support-masked <code>unknown</code> cells, while the prior and direct-query controls do not sample maps. The corrected clean-support K=128 rerun is now complete: ConPath Brier <strong>0.06749 ± 0.00936</strong> versus <strong>0.09521 ± 0.00703</strong> for the matched independent control; its validation-only metadata and audit are linked below. The physical test remains locked.</div>
           <div id="flatlands-baseline-meta" class="meta-grid" aria-live="polite">
             <div class="meta-card"><span>Methods</span><strong id="flatlands-baseline-methods">—</strong><small>all use the same label-free CSV contract</small></div>
-            <div class="meta-card"><span>Best validation Brier</span><strong id="flatlands-baseline-best">—</strong><small>scene-weighted overall metric</small></div>
+            <div class="meta-card"><span>Best validation Brier</span><strong id="flatlands-baseline-best">—</strong><small>scene-weighted fixed baseline</small></div>
             <div class="meta-card"><span>Independent sampler</span><strong id="flatlands-baseline-independent">—</strong><small>K=32 event worlds; calibration stress test</small></div>
             <div class="meta-card"><span>Test status</span><strong id="flatlands-baseline-test">—</strong><small>no test labels were read</small></div>
           </div>
-          <div class="scope-note baseline-scope"><strong>Read the comparison.</strong> The green row is the best validation Brier among these fixed baselines; all methods consume the same label-free three-channel FlatLands input and query manifest. These are validation diagnostics, not the final paper table. The locked test split remains untouched until the multi-seed, scalability, calibration, and second-domain checks are complete.</div>
+          <div class="scope-note baseline-scope"><strong>Read the fixed comparison.</strong> The green row is the best validation Brier among these support-bounded baselines. Deterministic and independent completion worlds are formed only from observed free cells plus <code>unknown &amp; epistemic_mask</code>; the radius prior and direct-query model never create a path map. These remain validation diagnostics, and the physical test split stays locked.</div>
           <div class="results-layout baseline-results-layout">
             <div class="table-wrap">
               <table>
-                <caption>Table 4. Validation-only baseline comparison</caption>
+                <caption>Table 4. Support-bounded validation baseline comparison</caption>
                 <thead><tr><th>Method</th><th>Brier ↓</th><th>NLL ↓</th><th>ECE ↓</th><th>False-safe @ 0.8 ↓</th><th>Coverage @ 0.8</th></tr></thead>
                 <tbody id="flatlands-baseline-body"><tr><td colspan="6">Loading tracked validation baseline snapshot…</td></tr></tbody>
               </table>
             </div>
             <div class="result-callout baseline-callout">
-              <p class="eyebrow">P1 VALIDATION CHECKPOINT</p>
+              <p class="eyebrow">FIXED BASELINE SNAPSHOT</p>
               <div class="headline-metric"><span id="flatlands-baseline-headline">—</span><small>best scene-weighted Brier</small></div>
-              <p id="flatlands-baseline-claim">The validation baseline snapshot is generated from the frozen evaluator and is explicitly excluded from final paper claims.</p>
+              <p id="flatlands-baseline-claim">The fixed baseline worlds are support-bounded; this remains a validation-only comparison rather than a final test claim.</p>
               <a class="text-link" href="data/flatlands_baselines_validation.json">Download baseline JSON ↗</a>
             </div>
           </div>
@@ -227,15 +242,14 @@
               <tbody id="flatlands-baseline-source-body"><tr><td>Loading source-stratified baseline snapshot…</td></tr></tbody>
             </table>
           </div>
-          <div class="qualitative-note"><span class="qualitative-mark" aria-hidden="true">MAP</span><p><strong>Validation qualitative diagnostic (not a final paper claim).</strong> These panels use a real public-data ConPath checkpoint and the frozen validation replay. They show the observed BEV, the ConPath posterior, a deterministic completion control, and the reference map for the same query; the event probabilities are printed in the panel header. A positive case and an uncertainty/failure case are both shown so the visual does not imply an unconditional win.</p></div>
+          <div class="qualitative-note"><span class="qualitative-mark" aria-hidden="true">MAP</span><p><strong>Clean-support checkpoint comparison.</strong> This replacement figure uses real K=128 ConPath and matched independent checkpoints trained with the corrected support contract, and exposes all three seed probabilities. Case A is the highest mean Brier-gain reachable event among cases where ConPath improves in every seed; Case B is the highest-gain unreachable event where the independent model crosses the 0.8 false-safe threshold in every seed and ConPath does not. Because selection uses validation labels, the cases explain the aggregate result but do not estimate its effect size.</p></div>
           <div class="figure-grid qualitative-figure-grid">
-            <figure class="figure"><img src="assets/flatlands_qualitative_validation_positive.svg" alt="Validation positive case comparing observed BEV, ConPath posterior, deterministic completion, and reference map for one FlatLands query." loading="lazy" /><figcaption>Figure 9. Same-scene validation diagnostic: r=10 query with ConPath event probability 0.844, deterministic completion 1.000, and direct-query 0.981. The reference is shown only for diagnosis.</figcaption></figure>
-            <figure class="figure"><img src="assets/flatlands_qualitative_validation_uncertain.svg" alt="Validation uncertainty case comparing observed BEV, ConPath posterior, deterministic completion, and reference map for a disconnected FlatLands query." loading="lazy" /><figcaption>Figure 10. Uncertainty/failure diagnostic: a disconnected r=0 query where ConPath remains uncertain (0.563) instead of presenting a binary map as proof of superiority.</figcaption></figure>
+            <figure class="figure"><img src="assets/flatlands_k128_clean_candidate.png" alt="Clean-support FlatLands K=128 validation comparison between correlated ConPath and an independent decoder, with aggregate metrics and two all-seed qualitative cases." loading="lazy" /><figcaption>Figure 9. Clean-support model-level validation evidence from 4,224 matched events per seed. ConPath has lower Brier and false-safe rate under the corrected training contract; the physical test split remains locked and the non-official provenance split limits the claim to validation. <a href="data/flatlands_k128_clean_candidate.json">Machine-readable provenance ↗</a></figcaption></figure>
           </div>
           <div class="recent-baseline-panel">
             <p class="eyebrow">RECENT METHODS · CONTRACT CHECKED</p>
             <h3>Recent-paper bridge</h3>
-            <p>We are adding recent uncertainty/completion methods without mixing incompatible 3-D occupancy scores into this 2-D event task. The final same-dataset table will keep the frozen <strong>4,653 query events</strong>, radii <strong>0/10/20</strong>, three seeds, and a capacity-matched ConPath encoder (F=16, 120,108 parameters). Cross-task numbers remain references only.</p>
+            <p>We are adding recent uncertainty/completion methods without mixing incompatible 3-D occupancy scores into this 2-D event task. The bounded manifest retains <strong>4,653</strong> valid endpoints overall; the current validation slice has <strong>4,224 rows</strong>, radii <strong>0/10/20</strong>, three seeds, and a capacity-matched ConPath encoder (F=16, 120,108 parameters). Cross-task numbers remain references only.</p>
             <div class="table-wrap">
               <table>
                 <caption>Recent methods: status on the FlatLands contract</caption>
@@ -246,7 +260,7 @@
                   <tr><td><a href="https://ahayler.github.io/publications/s4c/" rel="noreferrer">S4C</a></td><td>2024</td><td>implicit field completion</td><td>same-contract coordinate-query control evaluated (validation-only; not an S4C reproduction)</td></tr>
                   <tr><td><a href="https://arxiv.org/abs/2409.10681" rel="noreferrer">SceneSense</a></td><td>2024</td><td>diffusion occupancy</td><td>reference-only (3-D pointmap/ROS contract)</td></tr>
                   <tr><td><a href="https://arxiv.org/abs/2206.09907" rel="noreferrer">ORFD</a></td><td>2022</td><td>ground-vehicle off-road freespace</td><td>candidate second domain; image-plane semantics audited, adapter pending</td></tr>
-                  <tr><td><a href="https://github.com/ruiqi-song/UnScenes3D" rel="noreferrer">UnScenes3D</a></td><td>2025</td><td>3-D occupancy/elevation + local map</td><td>priority second domain; manifest frozen, map-only adapter diagnostic complete, event-loss controls pending</td></tr>
+                  <tr><td><a href="https://github.com/ruiqi-song/UnScenes3D" rel="noreferrer">UnScenes3D</a></td><td>2025</td><td>3-D occupancy/elevation + local map</td><td>clean support-consistent validation diagnostic; no measurable correlation gain on two scenes</td></tr>
                   <tr><td><a href="https://arxiv.org/abs/2603.16016" rel="noreferrer">FlatLands</a></td><td>2026</td><td>same-task stochastic completion</td><td>official check: weights/code planned; reference-only</td></tr>
                 </tbody>
               </table>
@@ -254,18 +268,90 @@
             <p class="source-note">Full parameter table, fairness rules, and incompatibility notes: <a href="https://github.com/s-team-git/ConPath/blob/main/RECENT_BASELINES.md" rel="noreferrer">RECENT_BASELINES.md ↗</a></p>
             </div>
             <div class="scope-note baseline-scope"><strong>Recent-method budget check (validation-only).</strong> The PaSCo-inspired three-subnet adapter is stable as the total event sample budget increases: Brier is <strong>0.22898</strong> (K=32), <strong>0.22842</strong> (K=64), and <strong>0.22806</strong> (K=128); NLL changes from <strong>2.89817</strong> to <strong>2.84268</strong>. This is a same-contract uncertainty control, not a reproduction of PaSCo's 3-D model or a final leaderboard claim. <a class="text-link" href="data/flatlands_pasco_ensemble_validation.json">Download K-sensitivity snapshot ↗</a></div>
-            <div class="scope-note baseline-scope"><strong>S4C-inspired coordinate-query control (validation-only).</strong> Keeping the same three-channel input, query rows, footprint radii, and F=16 encoder, the coordinate-field adapter reaches scene-weighted event Brier <strong>0.09204 ± 0.00582</strong>, NLL <strong>0.33411 ± 0.01859</strong>, and ECE <strong>0.04302 ± 0.00803</strong> across three seeds. Its false-safe rate at 0.8 is <strong>0.09555 ± 0.00357</strong>, worse than ConPath's <strong>0.06004 ± 0.01367</strong>; this is a validation control, not an S4C reproduction or final paper claim. <a class="text-link" href="data/flatlands_s4c_coordinate_validation.json">Download coordinate-control snapshot ↗</a></div>
-            <div class="scope-note baseline-scope"><strong>New causal control (validation-only).</strong> A three-seed F=16 independent decoder with the same K=32 event contract scores Brier <strong>0.11214 ± 0.00306</strong>, compared with ConPath <strong>0.09607 ± 0.01222</strong>. Removing spatial correlation therefore degrades the connectivity event score; this is a diagnostic control, not a final paper claim. <a class="text-link" href="data/flatlands_independent_decoder_validation.json">Download the control snapshot ↗</a></div>
-            <div class="scope-note baseline-scope"><strong>Mean-map diagnostic (validation-only).</strong> Thresholding the ConPath posterior mean map gives event Brier <strong>0.07111 ± 0.00377</strong>, but hidden-map Brier rises to <strong>0.17842 ± 0.00512</strong> and the event becomes binary. This trade-off is why the final method retains stochastic posterior samples. <a class="text-link" href="data/flatlands_conpath_mean_map_validation.json">Download mean-map snapshot ↗</a></div>
+            <div class="scope-note baseline-scope"><strong>S4C-inspired coordinate-query control (validation-only).</strong> Keeping the same three-channel input, query rows, footprint radii, and F=16 encoder, the coordinate-field adapter reaches scene-weighted event Brier <strong>0.09204 ± 0.00582</strong>, NLL <strong>0.33411 ± 0.01859</strong>, and ECE <strong>0.04302 ± 0.00803</strong> across three seeds. Its false-safe rate at 0.8 is <strong>0.09555 ± 0.00357</strong> with coverage <strong>0.39193 ± 0.03865</strong>; the clean K=128 ConPath candidate reaches <strong>0.04552 ± 0.01429</strong> with coverage <strong>0.33644 ± 0.00579</strong>. These are different operating coverage levels. This is a validation control, not an S4C reproduction or final paper claim. <a class="text-link" href="data/flatlands_s4c_coordinate_validation.json">Download coordinate-control snapshot ↗</a></div>
+            <div class="scope-note baseline-scope"><strong>Clean K=128 support-consistent rerun.</strong> Three independently audited F=16 runs per decoder use the valid-support clamp during both training and validation. ConPath reaches scene-weighted Brier <strong>0.06749 ± 0.00936</strong>, NLL <strong>0.28854 ± 0.01662</strong>, ECE <strong>0.05715 ± 0.00683</strong>, and false-safe rate <strong>0.04552 ± 0.01429</strong>; the matched independent decoder reaches <strong>0.09521 ± 0.00703</strong>, <strong>0.78503 ± 0.04690</strong>, <strong>0.08720 ± 0.00741</strong>, and <strong>0.05689 ± 0.00832</strong>. Independent-minus-ConPath Brier is <strong>+0.02772 ± 0.00993</strong>, with per-seed 95% intervals <strong>[0.02416, 0.05480]</strong>, <strong>[0.01604, 0.02801]</strong>, and <strong>[0.01239, 0.03220]</strong>. This is a validation-only candidate on the non-official provenance split; no test labels were read. <a class="text-link" href="data/flatlands_k128_clean_candidate.json">Download clean figure provenance ↗</a> · <a class="text-link" href="data/flatlands_k128_support_clamped_paired_comparison.json">Download paired audit ↗</a></div>
+            <div class="scope-note baseline-scope"><strong>Legacy K=32 causal control · superseded.</strong> The earlier ConPath/independent comparison did not hard-block invalid support. Its archived values remain reproducible but must not be cited as current evidence; the clean-support rerun above is the current validation candidate.</div>
+            <div class="scope-note baseline-scope"><strong>K=128 ConPath support-clamped recovery check.</strong> Re-evaluating the three existing F=16 checkpoints with invalid support hard-blocked gives scene-weighted Brier <strong>0.08467 ± 0.01350</strong>, NLL <strong>0.40035 ± 0.06452</strong>, ECE <strong>0.08979 ± 0.01627</strong>, and false-safe rate at 0.8 <strong>0.03391 ± 0.00722</strong>. Each seed has 4,224 rows and K=128 worlds; test labels remain locked. This diagnoses the old checkpoints and does not replace clean retraining. <a class="text-link" href="data/flatlands_k128_support_clamped_advantage.json">Download corrected visual/report metadata ↗</a></div>
+            <div class="scope-note baseline-scope"><strong>Historical support-clamped recovery check.</strong> Re-evaluating the old independent checkpoints with the boundary correction gave Brier <strong>0.10352 ± 0.00388</strong>, NLL <strong>0.84715 ± 0.01366</strong>, ECE <strong>0.09964 ± 0.01038</strong>, and false-safe rate <strong>0.05468 ± 0.00678</strong>. This records the effect of correcting evaluation alone. The completed clean retraining above supplies the current validation evidence.</div>
+            <div class="scope-note baseline-scope"><strong>Corrected paired scene-bootstrap check.</strong> On identical validation keys, independent minus correlated Brier is <strong>+0.01886 ± 0.00963</strong> across training seeds. The 2,000-resample paired 95% interval is positive separately for all three seeds: <strong>[0.00127, 0.01851]</strong>, <strong>[0.01888, 0.03833]</strong>, and <strong>[0.00963, 0.02725]</strong>. This supports a recovery diagnosis, not a final-paper or significance claim.</div>
+            <div class="scope-note baseline-scope"><strong>Historical mean-map diagnostic (superseded).</strong> Before the support-boundary correction, thresholding the ConPath posterior mean map gave event Brier <strong>0.07111 ± 0.00377</strong> and hidden-map Brier <strong>0.17842 ± 0.00512</strong>. Those values are retained only as an audit trail and are not current evidence; the corrected evaluator now clamps support and labels old-checkpoint output as post-hoc/retraining-required. <a class="text-link" href="data/flatlands_conpath_mean_map_validation.json">Download archived snapshot ↗</a></div>
             <div class="scope-note baseline-scope"><strong>Official FlatLands artifact check.</strong> The public dataset and documentation are available, but the official repository currently marks model weights, construction code, and additional benchmark tooling as planned for release. No official checkpoint is imported into this table; it remains reference-only pending a future compatibility audit. <a class="text-link" href="https://github.com/1ssb/Flat_Lands/" rel="noreferrer">Official repository ↗</a> · <a class="text-link" href="https://github.com/s-team-git/ConPath/blob/main/OFFICIAL_FLATLANDS_CHECK.md" rel="noreferrer">Audit note ↗</a></div>
             <div class="scope-note baseline-scope"><strong>Diffusion reference check.</strong> SceneSense is an official 3-D point-cloud/voxel ROS system whose inputs and FID/KID/exploration metrics do not match this 2-D event benchmark. It is kept as reference-only; no incompatible score is copied and no fabricated diffusion “reproduction” is claimed. <a class="text-link" href="https://github.com/s-team-git/ConPath/blob/main/SCENESENSE_COMPATIBILITY_CHECK.md" rel="noreferrer">Compatibility note ↗</a></div>
-            <div class="scope-note baseline-scope"><strong>Second-domain audit (diagnostic only).</strong> ORFD is a ground-vehicle off-road RGB/LiDAR dataset and is a better semantic candidate for the replacement visual than the desk pilot. Its published target is image-plane traversability (`traversable`/`non-traversable`/`unreachable`), not the metric hidden-grid footprint event used here; a sequence-held-out split and metric-BEV adapter are still required. No ORFD checkpoint, test result, or cross-task IoU is copied. <a class="text-link" href="https://github.com/s-team-git/ConPath/blob/main/ORFD_COMPATIBILITY_CHECK.md" rel="noreferrer">ORFD note ↗</a> · <a class="text-link" href="https://github.com/chaytonmin/Off-Road-Freespace-Detection" rel="noreferrer">Official release ↗</a> UnScenes3D is now the priority alternative: its 13-scene raw package, 629-timestamp occupancy/elevation labels, and two-part local maps are acquired and fully joined; the train/validation-only manifest has 17,096 exact events (15,567/1,529). The first full three-seed map-only adapter diagnostic covers 478/62 frames and reports event Brier <strong>0.63165 ± 0.00083</strong>, NLL <strong>10.06875 ± 0.02700</strong>, and ECE <strong>0.73653 ± 0.00143</strong>. This underperforming map-only baseline is not a method win or final score; event-loss training and recent-model controls remain pending. <a class="text-link" href="https://github.com/s-team-git/ConPath/blob/main/UNSCENES3D_COMPATIBILITY_CHECK.md" rel="noreferrer">UnScenes3D note ↗</a> · <a class="text-link" href="https://github.com/s-team-git/ConPath/blob/main/UNSCENES3D_PROTOCOL.md" rel="noreferrer">Adapter protocol ↗</a></div>
-            <div class="scope-note baseline-scope"><strong>Uncertainty diagnostics (validation-only).</strong> The reliability and selective-risk curves below reuse the exact same three seeds and 4,653 frozen events. ConPath reaches false-safe rate <strong>0.060 ± 0.014</strong> at the 0.8 threshold with <strong>0.291 ± 0.016</strong> coverage; the independent decoder is higher-risk at <strong>0.074 ± 0.003</strong>, while the S4C-inspired coordinate control is <strong>0.096 ± 0.004</strong>. The binary mean-map control has larger false-safe rate (<strong>0.117 ± 0.006</strong>) despite its lower event Brier. All four controls preserve the required nested-radius ordering: zero upward-probability violations across 1,408 endpoint groups per seed (2,816 adjacent-radius checks). <a class="text-link" href="data/flatlands_calibration_validation.json">Download calibration snapshot ↗</a></div>
+            <div class="scope-note baseline-scope"><strong>Second-domain audit (diagnostic only).</strong> ORFD is a ground-vehicle off-road RGB/LiDAR dataset and is a better semantic candidate for the replacement visual than the desk pilot. Its published target is image-plane traversability (`traversable`/`non-traversable`/`unreachable`), not the metric hidden-grid footprint event used here; a sequence-held-out split and metric-BEV adapter are still required. No ORFD checkpoint, test result, or cross-task IoU is copied. <a class="text-link" href="https://github.com/s-team-git/ConPath/blob/main/ORFD_COMPATIBILITY_CHECK.md" rel="noreferrer">ORFD note ↗</a> · <a class="text-link" href="https://github.com/chaytonmin/Off-Road-Freespace-Detection" rel="noreferrer">Official release ↗</a> UnScenes3D is the current secondary-domain diagnostic: its 13-scene raw package, 629-timestamp occupancy/elevation labels, and two-part local maps are acquired and fully joined; the coordinate audit supports direct LiDAR/local-map alignment and leaves `location_6` locked. The canonical ground-valid manifest has 17,096 exact events (15,567/1,529), and the clean support-consistent K=128 mean-map rerun reports event Brier <strong>0.54704 ± 0.00218</strong> (correlated) versus <strong>0.54740 ± 0.00251</strong> (independent), paired delta <strong>+0.00036 ± 0.00062</strong>. The historical <strong>0.59126 ± 0.00855</strong> event-loss number belongs to the rejected observed-free-start ablation, not the canonical query contract. These remain adapter diagnostics, not method wins or final scores; the clean ground-robot panels are shown in the UnScenes3D section below. <a class="text-link" href="https://github.com/s-team-git/ConPath/blob/main/UNSCENES3D_COMPATIBILITY_CHECK.md" rel="noreferrer">UnScenes3D note ↗</a> · <a class="text-link" href="https://github.com/s-team-git/ConPath/blob/main/UNSCENES3D_PROTOCOL.md" rel="noreferrer">Adapter protocol ↗</a></div>
+            <div class="scope-note baseline-scope"><strong>Historical calibration curves (superseded map predictions).</strong> The curves below predate the support-boundary correction. Their ConPath, independent-decoder, and mean-map traces are archived diagnostics, not evidence for the current clean candidate. The S4C-inspired coordinate-query trace is unaffected. Updated calibration and equal-coverage comparisons must use the clean checkpoints and the same frozen validation events. <a class="text-link" href="data/flatlands_calibration_validation.json">Download archived calibration snapshot ↗</a></div>
           <div class="figure-grid calibration-figure-grid">
-            <figure class="figure"><img src="assets/flatlands_calibration_reliability.svg" alt="FlatLands validation reliability curves for ConPath, the independent decoder, the deterministic mean-map threshold, and the S4C-inspired coordinate control." loading="lazy" /><figcaption>Figure 11. Equal-scene reliability across four completed controls. The mean-map points collapse to 0/1, while the coordinate-query curve shows the calibration behavior of the recent-method adapter.</figcaption></figure>
-            <figure class="figure"><img src="assets/flatlands_calibration_false_safe.svg" alt="FlatLands validation false-safe rate versus accepted-event coverage as confidence thresholds increase for four controls." loading="lazy" /><figcaption>Figure 12. Selective-risk diagnostic: false-safe rate versus coverage for four controls. Each point is a confidence threshold (0.50–0.95); full threshold values and seed dispersion are in the JSON snapshot.</figcaption></figure>
+            <figure class="figure"><img src="assets/flatlands_calibration_reliability.svg" alt="Archived FlatLands reliability curves; the map-derived traces predate the support correction and are superseded." loading="lazy" /><figcaption>Figure 11. Historical equal-scene reliability. Map-derived traces are superseded; the coordinate-query trace remains a valid diagnostic.</figcaption></figure>
+            <figure class="figure"><img src="assets/flatlands_calibration_false_safe.svg" alt="Archived FlatLands selective-risk curves; the map-derived traces are superseded." loading="lazy" /><figcaption>Figure 12. Historical risk versus coverage at thresholds 0.50–0.95. These map-derived curves do not describe the clean retraining.</figcaption></figure>
           </div>
           <p class="source-note">Protocol: <a href="https://github.com/s-team-git/ConPath/blob/main/P1_BASELINE_PROTOCOL.md" rel="noreferrer">P1_BASELINE_PROTOCOL.md ↗</a>. Checkpoints, manifests, and exact reports remain in the reproducibility workspace; no test result is published here.</p>
+        </div>
+      </section>
+
+      <section id="unscenes3d" class="section">
+        <div class="container">
+          <p class="eyebrow audit-eyebrow">SECOND DOMAIN · CLEAN SUPPORT VALIDATION · LOCATION_6 LOCKED</p>
+          <h2 class="center-title">UnScenes3D ground-vehicle control</h2>
+          <p class="section-lede">A coordinate-audited LiDAR/occupancy adapter with a fixed ground-endpoint policy, site-held-out validation, and explicit architectural controls.</p>
+          <div class="pilot-banner correction-banner"><strong>Clean support-boundary rerun complete · 2026-09-04.</strong> Six fresh F=16 checkpoints were trained and audited with the <code>target_valid</code> complement deterministically blocked during both training and evaluation. The exact K=128 mean-map event Brier is <strong>0.54704 ± 0.00218</strong> for correlated ConPath and <strong>0.54740 ± 0.00251</strong> for the matched independent decoder (paired delta <strong>+0.00036 ± 0.00062</strong>). This second-domain adapter does not show a measurable correlation advantage on only two validation scenes; it is a support-consistency/transfer diagnostic, not a method win. <code>location_6</code> remains unopened.</div>
+          <div class="scope-note audit-scope"><strong>Contract.</strong> The canonical ground-valid manifest contains 15,567 train and 1,529 validation queries over 478/62 frames. Raw LiDAR is rasterized into observed-free/blocked/unknown channels; class-11 driveable support is used only for target labels and the exact footprint bottleneck oracle. The coordinate audit found mean same-frame LiDAR/local-map overlap of 0.791 within 0.3 m and 0.863 within 1 m. All numbers and images here are validation diagnostics; <code>location_6</code> remains unopened and its test labels remain locked.</div>
+          <div class="results-layout baseline-results-layout unscenes-clean-results-layout">
+            <div class="table-wrap">
+              <table>
+                <caption>Table 7. Clean-support UnScenes3D K=128 validation candidate</caption>
+                <thead><tr><th>Decoder</th><th>Brier ↓</th><th>NLL ↓</th><th>ECE ↓</th><th>False-safe @ 0.8 ↓</th><th>Coverage @ 0.8</th></tr></thead>
+                <tbody>
+                  <tr><td>Correlated ConPath (clean)</td><td>0.54704 ± 0.00218</td><td>9.29166 ± 0.01832</td><td>0.67255 ± 0.00133</td><td>0.27771 ± 0.00397</td><td>0.24177 ± 0.00133</td></tr>
+                  <tr><td>Independent decoder (clean)</td><td>0.54740 ± 0.00251</td><td>9.29467 ± 0.02108</td><td>0.67277 ± 0.00153</td><td>0.27836 ± 0.00457</td><td>0.24199 ± 0.00153</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="result-callout audit-callout">
+              <p class="eyebrow">TRANSFER DIAGNOSTIC</p>
+              <div class="headline-metric"><span>NO WIN</span><small>two validation scenes</small></div>
+              <p>The clean map-derived outputs are reproducible and support-consistent, but the paired effect is near zero and the sample has only two held-out scenes. Do not rank this adapter against the FlatLands result or treat it as a final cross-domain claim.</p>
+              <div class="artifact-links"><a class="text-link" href="data/unscenes3d_clean_support_k128_candidate.json">Download clean paired JSON ↗</a><a class="text-link" href="data/unscenes3d_clean_candidate_qualitative.json">Download clean qualitative JSON ↗</a><span class="small-note">training audit retained in the reproducibility workspace</span></div>
+            </div>
+          </div>
+          <div class="scope-note baseline-scope"><strong>Interpretation.</strong> The comparison uses identical 4,587 validation rows (1,529 queries × three radii, three seeds) and a deterministic K=128 mean-map evaluator. The paired scene-bootstrap intervals are descriptive because only <strong>two validation scenes</strong> are available. Every clean report records <code>paper_result=false</code>, <code>test_evaluated=false</code>, and <code>location_6</code> locked.</div>
+          <div class="qualitative-note"><span class="qualitative-mark" aria-hidden="true">BEV</span><p><strong>Clean-support ground-robot panels.</strong> These real UnScenes3D panels use the correlated clean checkpoint and show the camera/LiDAR projection, observed BEV, posterior mean, and footprint-conditioned reachability. The second panel is deliberately a false-safe validation failure: the visual makes the remaining calibration limitation visible instead of implying a win.</p></div>
+          <div class="figure-grid qualitative-figure-grid">
+            <figure class="figure"><a href="assets/unscenes3d_clean_candidate_positive.png" title="Open the full-resolution validation panel"><img src="assets/unscenes3d_clean_candidate_positive.png" alt="Clean-support UnScenes3D ground-robot true-positive validation panel with camera and LiDAR projection, observed BEV, posterior mean, and three footprint-radius reachability maps." width="1800" height="1280" loading="lazy" /></a><figcaption>Figure 13. Clean support-consistent true-positive diagnostic from a real validation frame. Colors encode observed free/endpoint cells, posterior free probability, and the exact footprint event; labels select the explanatory case. <a href="data/unscenes3d_clean_candidate_qualitative.json">Machine-readable provenance ↗</a></figcaption></figure>
+            <figure class="figure"><a href="assets/unscenes3d_clean_candidate_failure.png" title="Open the full-resolution validation panel"><img src="assets/unscenes3d_clean_candidate_failure.png" alt="Clean-support UnScenes3D ground-robot false-safe validation panel with camera and LiDAR projection, observed BEV, posterior mean, and footprint-radius reachability maps." width="1800" height="1280" loading="lazy" /></a><figcaption>Figure 14. Clean support-consistent false-safe diagnostic from the same validation scene. It records a model failure (predicted reachable at radius 2, exact target unreachable), so this panel is a limitation check rather than evidence of superiority.</figcaption></figure>
+          </div>
+          <div class="scope-note baseline-scope"><strong>Historical artifacts retained below.</strong> The pre-correction map-derived table, calibration curves, and qualitative panels remain available for audit continuity but are explicitly superseded. Coordinate-query and radius-prior controls do not sample posterior maps and remain unaffected.</div>
+          <div class="results-layout baseline-results-layout">
+            <div class="table-wrap">
+              <table>
+                <caption>Table 8. Historical mixed-contract UnScenes3D validation controls (superseded)</caption>
+                <thead><tr><th>Control</th><th>Brier</th><th>NLL</th><th>ECE</th><th>False-safe @ 0.8</th></tr></thead>
+                <tbody>
+                  <tr><td>Correlated ConPath (pre-correction; superseded)</td><td>0.56272 ± 0.00744</td><td>9.06574 ± 0.04398</td><td>0.67082 ± 0.00739</td><td>0.27450 ± 0.01330</td></tr>
+                  <tr><td>Independent decoder (pre-correction; superseded)</td><td>0.56297 ± 0.00541</td><td>9.08667 ± 0.04961</td><td>0.67240 ± 0.00525</td><td>0.27027 ± 0.01767</td></tr>
+                  <tr><td>S4C-inspired coordinate query</td><td>0.20379 ± 0.03485</td><td>0.57289 ± 0.10572</td><td>0.11107 ± 0.05312</td><td>0.13342 ± 0.01875</td></tr>
+                  <tr><td>Posterior mean-map (pre-correction; superseded)</td><td>0.62774 ± 0.00145</td><td>9.96833 ± 0.01217</td><td>0.72153 ± 0.00088</td><td>0.39940 ± 0.00182</td></tr>
+                  <tr><td>Train-fitted radius prior</td><td>0.23268</td><td>0.52509</td><td>0.03237</td><td>0.19359</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="result-callout audit-callout">
+              <p class="eyebrow">ARCHIVE ONLY</p>
+              <div class="headline-metric"><span>SUPERSEDED</span><small>pre-correction map metrics</small></div>
+              <p>The direct coordinate-query and radius-prior controls remain useful. Historical map-derived numbers and panels are retained only to document the support-boundary correction; the clean candidate above is the current validation artifact.</p>
+              <div class="artifact-links"><a class="text-link" href="data/unscenes3d_controls_validation.json">Download archived control snapshot ↗</a><a class="text-link" href="data/unscenes3d_qualitative_validation.json">Download archived qualitative JSON ↗</a><a class="text-link" href="data/unscenes3d_controls_audit.json">Archived structural audit ↗</a></div>
+            </div>
+          </div>
+          <div class="scope-note baseline-scope"><strong>Historical K sensitivity.</strong> The displayed K=32/64/128 mean-map diagnostic predates the valid-support correction and is superseded; it is retained only so the audit trail remains reproducible.</div>
+          <div class="scope-note baseline-scope"><strong>Mixed historical reliability view.</strong> The coordinate-query and radius-prior curves are unaffected, while the mean-map curve is superseded and must be rerun. <a class="text-link" href="data/unscenes3d_calibration_validation.json">Download archived calibration snapshot ↗</a></div>
+          <div class="figure-grid calibration-figure-grid">
+            <figure class="figure"><img src="assets/unscenes3d_calibration_reliability.svg" alt="UnScenes3D validation reliability curves for the radius prior, posterior mean-map threshold, and S4C-inspired coordinate query control." loading="lazy" /><figcaption>Figure 15. Query-weighted validation reliability. The mean-map threshold is binary by construction; the coordinate-query control supplies a continuous event probability.</figcaption></figure>
+            <figure class="figure"><img src="assets/unscenes3d_calibration_false_safe.svg" alt="UnScenes3D validation false-safe rate versus accepted-event coverage for the radius prior, posterior mean-map threshold, and S4C-inspired coordinate query control." loading="lazy" /><figcaption>Figure 16. Selective-risk diagnostic across confidence thresholds 0.50–0.95. It is a validation control view, not a safety guarantee.</figcaption></figure>
+          </div>
+          <div class="qualitative-note"><span class="qualitative-mark" aria-hidden="true">ARCHIVE</span><p><strong>Archived pre-correction qualitative diagnostic.</strong> These panels remain useful for inspecting the camera/LiDAR/BEV pipeline, but their posterior maps did not clamp the invalid support complement and therefore do not constitute current model evidence.</p></div>
+          <div class="figure-grid qualitative-figure-grid">
+            <figure class="figure"><img src="assets/unscenes3d_qualitative_positive.png" alt="Archived pre-correction UnScenes3D validation panel with camera, LiDAR, observed BEV, and posterior maps." loading="lazy" /><figcaption>Figure A1. Archived pipeline diagnostic; posterior interpretation is superseded by the clean-support panels above.</figcaption></figure>
+            <figure class="figure"><img src="assets/unscenes3d_qualitative_failure.png" alt="Archived pre-correction UnScenes3D validation failure panel with camera, LiDAR, observed BEV, and posterior maps." loading="lazy" /><figcaption>Figure A2. Archived failure diagnostic; posterior interpretation is superseded by the clean-support panels above.</figcaption></figure>
+          </div>
+          <p class="source-note">Protocol and coordinate audit: <a href="https://github.com/s-team-git/ConPath/blob/main/UNSCENES3D_PROTOCOL.md" rel="noreferrer">UNSCENES3D_PROTOCOL.md ↗</a> · <a href="https://github.com/s-team-git/ConPath/blob/main/UNSCENES3D_COMPATIBILITY_CHECK.md" rel="noreferrer">compatibility note ↗</a>. Clean checkpoint reports and candidate panels are validation-only; the manifest/coordinate audits remain valid because they do not sample posterior maps. <a href="data/unscenes3d_clean_support_k128_candidate.json">Clean paired report ↗</a> · <a href="data/unscenes3d_clean_candidate_qualitative.json">Clean qualitative report ↗</a> · <a href="data/unscenes3d_manifest_replay_audit.json">Manifest replay audit ↗</a> · <a href="data/unscenes3d_replay_audit.json">archived GPU replay ↗</a>. No test artifact is published.</p>
         </div>
       </section>
 

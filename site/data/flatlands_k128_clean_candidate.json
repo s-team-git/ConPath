@@ -1,0 +1,375 @@
+{
+  "schema_version": 1,
+  "kind": "flatlands_k128_support_clamped_model_advantage_figure",
+  "created_utc": "2026-09-04T11:18:51.886610+00:00",
+  "validation_only": true,
+  "paper_result": false,
+  "posthoc_checkpoint_evaluation": false,
+  "retraining_required": false,
+  "clean_support_training": true,
+  "test_evaluated": false,
+  "figure": {
+    "path": "site/assets/flatlands_k128_clean_candidate.png",
+    "sha256": "23d0109c92e919236e43cf00cfa08dbcd086aef06a5970fc1ca56115cea30dfa",
+    "width": 1800,
+    "height": 1330
+  },
+  "software": {
+    "renderer_path": "scripts/render_flatlands_k128_advantage.py",
+    "renderer_sha256": "9ec2b0721bd4c2e7ab569a8dc38d29063616dba3533833274d2a2204918aff8a",
+    "model_path": "src/pathrel/model.py",
+    "model_sha256": "397f7558362f389af3a419aec39db36f67184e8106c6b05643908001e4f81045",
+    "torch_version": "2.12.1+cu130",
+    "render_device": "cuda"
+  },
+  "protocol": {
+    "provenance_split": "validation",
+    "official_archive_split_used": false,
+    "posterior_samples": 128,
+    "sample_chunk": 32,
+    "seeds": [
+      20260831,
+      20260901,
+      20260902
+    ],
+    "canonical_map_seed": 20260831,
+    "support_policy": "epistemic_mask complement clamped to blocked",
+    "example_selection": "validation-label-derived diagnostic with predeclared all-seed rules",
+    "test_lock": "No test labels read; physical test remains locked"
+  },
+  "benchmark": {
+    "selection_path": "results/p1_flatlands_query_audit_bounded/selected_observations.csv",
+    "selection_sha256": "4e7ae4c992cf943ab81618e3826c4748fcaaa97c3c4d7cb187518ee3fe6a9409",
+    "queries_path": "results/p1_flatlands_query_audit_bounded/queries.csv",
+    "queries_sha256": "33e7f8a0343269b0dde47b428b3be622c80effdb0f80ae34b352ca282018d60d",
+    "prediction_rows_per_seed": 4224,
+    "scene_count": 142
+  },
+  "aggregate_scene_weighted": {
+    "correlated": {
+      "brier": {
+        "mean": 0.06749355699246365,
+        "sample_sd": 0.00936227024789587,
+        "seed_values": {
+          "20260831": 0.059479796640678484,
+          "20260901": 0.06521658182607205,
+          "20260902": 0.0777842925106404
+        }
+      },
+      "nll": {
+        "mean": 0.2885356406470848,
+        "sample_sd": 0.016620111099160235,
+        "seed_values": {
+          "20260831": 0.3039193041613506,
+          "20260901": 0.2709072468281362,
+          "20260902": 0.29078037095176756
+        }
+      },
+      "ece": {
+        "mean": 0.057151337634350194,
+        "sample_sd": 0.0068254430491237585,
+        "seed_values": {
+          "20260831": 0.04942857493605275,
+          "20260901": 0.06237502403236683,
+          "20260902": 0.059650413934631004
+        }
+      },
+      "false_safe_rate@0.8": {
+        "mean": 0.045524861178574495,
+        "sample_sd": 0.014290631191223698,
+        "seed_values": {
+          "20260831": 0.03720468250778245,
+          "20260901": 0.037343835896232434,
+          "20260902": 0.062026065131708594
+        }
+      },
+      "high_confidence_safe_coverage@0.8": {
+        "mean": 0.3364429890339606,
+        "sample_sd": 0.0057856976851654385,
+        "seed_values": {
+          "20260831": 0.3410483602592136,
+          "20260901": 0.3299489773051344,
+          "20260902": 0.3383316295375337
+        }
+      }
+    },
+    "independent": {
+      "brier": {
+        "mean": 0.09521006056164819,
+        "sample_sd": 0.007033913750637799,
+        "seed_values": {
+          "20260831": 0.09865829173037971,
+          "20260901": 0.0871174114720983,
+          "20260902": 0.09985447848246655
+        }
+      },
+      "nll": {
+        "mean": 0.7850291646796212,
+        "sample_sd": 0.04690114700977095,
+        "seed_values": {
+          "20260831": 0.7395806270429843,
+          "20260901": 0.782247739803187,
+          "20260902": 0.8332591271926924
+        }
+      },
+      "ece": {
+        "mean": 0.08720362998561186,
+        "sample_sd": 0.007412084222395084,
+        "seed_values": {
+          "20260831": 0.08359542265034925,
+          "20260901": 0.08228652673861869,
+          "20260902": 0.09572894056786765
+        }
+      },
+      "false_safe_rate@0.8": {
+        "mean": 0.056887526778396286,
+        "sample_sd": 0.008322149296850209,
+        "seed_values": {
+          "20260831": 0.06106708972494845,
+          "20260901": 0.04730397395146118,
+          "20260902": 0.06229151665877922
+        }
+      },
+      "high_confidence_safe_coverage@0.8": {
+        "mean": 0.3659210257490211,
+        "sample_sd": 0.016920167241918513,
+        "seed_values": {
+          "20260831": 0.3571660607989261,
+          "20260901": 0.3854248098552158,
+          "20260902": 0.35517220659292126
+        }
+      }
+    }
+  },
+  "paired_overall_brier_delta": {
+    "mean": 0.027716503569184522,
+    "sample_sd": 0.009926737006870346,
+    "seed_values": [
+      0.0391784950897012,
+      0.021900829646026243,
+      0.022070185971826126
+    ]
+  },
+  "paired_per_seed_overall": [
+    {
+      "seed": 20260831,
+      "brier": {
+        "independent_minus_correlated": 0.0391784950897012,
+        "bootstrap_95": [
+          0.024156064108949174,
+          0.05479859067270524
+        ],
+        "bootstrap_probability_positive": 1.0
+      }
+    },
+    {
+      "seed": 20260901,
+      "brier": {
+        "independent_minus_correlated": 0.021900829646026243,
+        "bootstrap_95": [
+          0.01603784980577996,
+          0.028007319612356016
+        ],
+        "bootstrap_probability_positive": 1.0
+      }
+    },
+    {
+      "seed": 20260902,
+      "brier": {
+        "independent_minus_correlated": 0.022070185971826126,
+        "bootstrap_95": [
+          0.012386892541666954,
+          0.03219748159348684
+        ],
+        "bootstrap_probability_positive": 1.0
+      }
+    }
+  ],
+  "cases": [
+    {
+      "case_id": "positive_recovery",
+      "key": [
+        "obs_266762",
+        23,
+        10
+      ],
+      "global_id": "obs_266762",
+      "candidate_index": 23,
+      "radius_cells": 10,
+      "target": 1,
+      "source_dataset": "ZInD",
+      "scene_id": "0743_floor_01_pano_21",
+      "title": "Recovers a real path",
+      "description": "The independent decoder nearly rules the path out in every seed.",
+      "selection_rule": "target=1, correlated probability exceeds independent probability in all three seeds; rank by mean per-event Brier gain",
+      "eligible_count": 301,
+      "rank": 1,
+      "mean_brier_gain": 0.820556640625,
+      "event_probability": {
+        "correlated": {
+          "20260831": 0.7890625,
+          "20260901": 0.71875,
+          "20260902": 0.5859375
+        },
+        "independent": {
+          "20260831": 0.015625,
+          "20260901": 0.0390625,
+          "20260902": 0.0703125
+        }
+      },
+      "mean_event_probability": {
+        "correlated": 0.6979166666666666,
+        "independent": 0.041666666666666664
+      },
+      "visual_sampling_seed": 20260903,
+      "displayed_sample_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "displayed_sample_events": {
+        "correlated": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "independent": [
+          false,
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "case_id": "false_safe_avoided",
+      "key": [
+        "obs_249512",
+        5,
+        20
+      ],
+      "global_id": "obs_249512",
+      "candidate_index": 5,
+      "radius_cells": 20,
+      "target": 0,
+      "source_dataset": "ZInD",
+      "scene_id": "1263_floor_01_pano_5",
+      "title": "Avoids a false-safe decision",
+      "description": "The independent decoder is confidently unsafe-to-trust in every seed.",
+      "selection_rule": "target=0, independent probability >=0.8 and correlated probability <0.8 in all three seeds; rank by mean per-event Brier gain",
+      "eligible_count": 2,
+      "rank": 1,
+      "mean_brier_gain": 0.16133626302083334,
+      "event_probability": {
+        "correlated": {
+          "20260831": 0.7578125,
+          "20260901": 0.7421875,
+          "20260902": 0.7734375
+        },
+        "independent": {
+          "20260831": 0.8046875,
+          "20260901": 0.90625,
+          "20260902": 0.859375
+        }
+      },
+      "mean_event_probability": {
+        "correlated": 0.7578125,
+        "independent": 0.8567708333333334
+      },
+      "visual_sampling_seed": 20260904,
+      "displayed_sample_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "displayed_sample_events": {
+        "correlated": [
+          true,
+          true,
+          false,
+          true
+        ],
+        "independent": [
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    }
+  ],
+  "canonical_checkpoints": {
+    "correlated": {
+      "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260831_conpath/best.pt",
+      "sha256": "f7b42163fb2fd6127a19e2a967f44181814a263c699020a7a59f895d913b797c",
+      "training_seed": 20260831,
+      "feature_channels": 16,
+      "latent_dim": 4,
+      "decoder_variant": "correlated",
+      "protocol_version": "P1_BASELINE_PROTOCOL.md v1 + ConPath valid-support v2"
+    },
+    "independent": {
+      "path": "results/p1_flatlands_independent_k128_support_clamped_v1/seed20260831_independent/best.pt",
+      "sha256": "87257f20d4e8282c2c318f70ee099b30cb5ec945bf34608200236096fea9ef23",
+      "training_seed": 20260831,
+      "feature_channels": 16,
+      "latent_dim": 4,
+      "decoder_variant": "independent",
+      "protocol_version": "P1_BASELINE_PROTOCOL.md v1 + ConPath valid-support v2"
+    }
+  },
+  "source_artifacts": {
+    "prediction_manifests": [
+      {
+        "variant": "correlated",
+        "seed": 20260831,
+        "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260831_conpath/predictions_validation.csv",
+        "sha256": "50c94f29c7461988ff4467cfca9d9ae5e604e4543ad60604d82337d6dc378a0d",
+        "rows": 4224
+      },
+      {
+        "variant": "correlated",
+        "seed": 20260901,
+        "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260901_conpath/predictions_validation.csv",
+        "sha256": "a0e20ff31c14b5b7ee34a3ba3b186e9feca4633b0a9195753c970f0e109d33bb",
+        "rows": 4224
+      },
+      {
+        "variant": "correlated",
+        "seed": 20260902,
+        "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260902_conpath/predictions_validation.csv",
+        "sha256": "812b11067c844793b15e25f77e29ca4339026f96f3b5a37d619b26360e5106c3",
+        "rows": 4224
+      },
+      {
+        "variant": "independent",
+        "seed": 20260831,
+        "path": "results/p1_flatlands_independent_k128_support_clamped_v1/seed20260831_independent/predictions_validation.csv",
+        "sha256": "e185ed3f06d3a3eaedac1be52426b4fa204f77064cbaf6138bb77e439f5a1759",
+        "rows": 4224
+      },
+      {
+        "variant": "independent",
+        "seed": 20260901,
+        "path": "results/p1_flatlands_independent_k128_support_clamped_v1/seed20260901_independent/predictions_validation.csv",
+        "sha256": "8d73eacb72f6697f26f4b9d4be0f32395ff544bd3d333e0a546a01734981cd43",
+        "rows": 4224
+      },
+      {
+        "variant": "independent",
+        "seed": 20260902,
+        "path": "results/p1_flatlands_independent_k128_support_clamped_v1/seed20260902_independent/predictions_validation.csv",
+        "sha256": "40faa371a2e55c5660be29066908ab3593f37b235f1c130ee2453fb055e1969a",
+        "rows": 4224
+      }
+    ],
+    "paired_comparison": {
+      "path": "results/p1_flatlands_support_clamped_clean_k128_comparison/paired_comparison.json",
+      "sha256": "eacd9475b774f730b8dcfa286f2c975f726c6fa8bf71465438d3c8bc62fefeb5"
+    }
+  },
+  "claim_boundary": "This visual demonstrates a clean support-consistent validation comparison. Every source run is independently audited and the physical test remains locked; remaining cross-domain and test gates still prohibit a final paper or leaderboard claim."
+}

@@ -1,9 +1,10 @@
 # ConPath P1 data and event-identifiability audit
 
 Status: **official split fails; non-official provenance split passes integrity, bounded mask/query,
-and streaming-replay gates; GO for fixed baselines, NO-GO for paper claims**
+streaming replay, and fixed-baseline gates; clean valid-support K=128 FlatLands and target-valid
+UnScenes3D validation diagnostics pass their audits; final paper/test claims remain gated**
 
-Updated: 2026-08-31 (America/New_York)
+Updated: 2026-09-04 (America/New_York)
 
 This is the durable gate between the passing synthetic P0 and any public-data training. P1 starts
 with read-only data and query auditing. A dataset is not accepted merely because it has occupancy
@@ -12,18 +13,18 @@ auditable.
 
 ## Local inventory
 
-The workspace contains about 830 MB of ignored TUM RGB-D `freiburg1/desk` data and the verified
-2.055 GB FlatLands ZIP. It has no ORFD, UnScenes3D, or WildOcc assets. TUM supplies RGB/depth and
-camera motion but no traversability or collision labels, so the existing geometric pilot cannot
-serve as P1.
+The workspace contains about 830 MB of ignored TUM RGB-D `freiburg1/desk` data, the verified
+2.055 GB FlatLands ZIP, and the acquired UnScenes3D mini raw/label/local-map packages. It has no
+ORFD or WildOcc assets. TUM supplies RGB/depth and camera motion but no traversability or collision
+labels, so the existing geometric pilot cannot serve as P1.
 
 ## Candidate decision
 
 | Candidate | Primary evidence available | P1 fit | Current decision |
 |---|---|---|---|
-| FlatLands | aligned observed floor, complete floor, unobserved mask, valid/epistemic mask, metric metadata, official train/validation/test | closest match to completion-to-path-event calibration | **bounded provenance-split audit passed; baseline pilot next** |
+| FlatLands | aligned observed floor, complete floor, unobserved mask, valid/epistemic mask, metric metadata, official train/validation/test | closest match to completion-to-path-event calibration | **bounded provenance-split/fixed-baseline audit passed; clean valid-support three-seed ConPath/control candidate audited; final paper/test gated** |
 | ORFD | RGB/LiDAR and traversable/non-traversable/unreachable annotations; about 30 GB | useful off-road label-semantics check, but not a multi-layout completion benchmark | secondary audit only |
-| UnScenes3D | 3D occupancy, elevation, poses, and a released 14-scene mini split | relevant to final support-surface experiment but adds 3D semantics before event identifiability is established | defer to P2 |
+| UnScenes3D | 3D occupancy, elevation, poses, and a released 14-scene mini split | relevant second-domain support-surface experiment, but only two held-out validation scenes in the frozen mini contract | **clean target-valid-support diagnostic audited; no measurable correlation gain; test/cross-domain claim gated** |
 | WildOcc | dense 3D occupancy labels derived from Rellis-3D; published label archive is about 18.08 GB plus source data | useful cross-dataset 3D occupancy test, not the cheapest first event audit | defer to P2 |
 
 Primary sources:
@@ -227,8 +228,9 @@ The direct-query model is the strongest NLL/ECE comparator in this pilot, while 
 completion has the lowest Brier. Independent cells are a deliberately important negative control:
 they have low false-safe coverage because fragmented samples destroy connectivity, but their event
 probabilities are badly miscalibrated. These four numbers are diagnostics for choosing the next
-experiment, not evidence of a ConPath public-data win. The current learned runs use seed `20260831`;
-multi-seed variance, stronger official/public completion baselines, scalable connectivity, and a
+experiment, not evidence of a ConPath public-data win. The first baseline rows use seed `20260831`,
+while the later F=16 K=128 ConPath/control matrices use all three fixed seeds and are summarized in
+the hand-off below. Stronger official/public completion baselines, scalable connectivity, and a
 second domain remain open.
 
 The direct-query run finished 62 epochs (best epoch 42, 63.3 s on an NVIDIA RTX PRO 6000) and the
@@ -236,6 +238,35 @@ marginal-completion run finished 27 epochs (best epoch 15, 397.6 s including 353
 sampling). Validation source/radius rows, reliability bins, monotonicity checks, manifests, and
 checkpoint hashes are preserved in `RECOVERY_STATE.json` and mirrored in the project-site baseline
 snapshot. The test split remains locked.
+
+## Superseded K=128 hand-off and support-clamped recovery (2026-09-03)
+
+The pre-correction F=16 ConPath candidate was evaluated with 128 posterior worlds (K=8 chunks) for seeds
+20260831/20260901/20260902, followed by a matched independent-decoder control with the effective
+local/global correlation factors removed. Both matrices use the same 160 provenance-train and 160
+provenance-validation scenes, 4,224 event rows per seed, exact NumPy disk-clearance plus batched
+Kruskal/LCA validation forward, and 2,000 scene-cluster bootstrap replicates. The correlated row is
+`0.09583 +/- 0.01148` scene-weighted Brier; the independent row is `0.11394 +/- 0.00328`. These
+values are now superseded because those forwards did not hard-block `~epistemic_mask`.
+
+The full per-seed metrics, artifact hashes, and protocol flags are in
+`site/data/flatlands_conpath_k128_validation.json` and
+`site/data/flatlands_independent_k128_validation.json`. A paired scene bootstrap on identical
+keys gave the now-superseded delta `+0.01810 +/- 0.00876`. A post-hoc K=128 replay of the same six
+checkpoints with invalid support clamped gives ConPath `0.08467 +/- 0.01350`, independent
+`0.10352 +/- 0.00388`, and independent-minus-correlated `+0.01886 +/- 0.00963`; every per-seed
+scene-bootstrap Brier interval remains positive. Because the checkpoints were trained under the old
+forward, this is recovery evidence only. The clean three-seed correlated/independent training now
+under `P1_BASELINE_PROTOCOL.md v1 + ConPath valid-support v2`: ConPath is `0.06749 +/- 0.00936`
+Brier and independent is `0.09521 +/- 0.00703`, with paired delta `+0.02772 +/- 0.00993` and
+positive per-seed intervals. The official directory split remains rejected, the provenance split is
+explicitly non-official, and no physical test label has been read.
+
+The analogous UnScenes3D target-valid-support rerun also completed six fresh adapters and strict
+checkpoint audits. Its exact K=128 mean-map event Brier is `0.54704 +/- 0.00218` (correlated) versus
+`0.54740 +/- 0.00251` (independent), a near-zero delta on only two held-out validation scenes. It is
+a reproducible transfer/support diagnostic, not evidence for a cross-domain method win; `location_6`
+remains locked.
 
 ## Acceptance gates
 
@@ -281,10 +312,12 @@ All gates are per split and per source dataset, not only pooled across observati
 ## Current decision and next command
 
 **NO-GO on the official split and on a final paper claim.** The bounded streaming loader, unified
-evaluator, and first validation baselines are complete on the explicitly non-official provenance
-split. The next experiment must use the already frozen selected-observation/query CSVs, keep
-ScanNet++ as OOD-only, and add multi-seed ConPath, ablations, scalable exact-forward connectivity,
-calibration/efficiency analysis, and a second domain before any test evaluation or public-data claim.
+evaluator, support-bounded fixed baselines, and the clean FlatLands candidate/control package are
+complete on the explicitly non-official provenance split. The UnScenes3D clean adapter is a
+validation-only diagnostic with two held-out scenes and no measurable correlation gain. Any next
+experiment must use the already frozen selected-observation/query CSVs, keep ScanNet++ as OOD-only,
+and pass the clean calibration/controls review before an explicit test go/no-go can even be
+requested.
 
 The exact command for reproducing the bounded query result is:
 
@@ -293,8 +326,7 @@ PYTHONPATH=src .venv/bin/python scripts/audit_flatlands_queries.py \
   --output-dir results/p1_flatlands_query_audit_bounded --overwrite
 ```
 
-The next implementation milestone is a unified evaluator plus deterministic completion,
-independent-cell, and direct-query baselines on this bounded manifest. Full extraction remains
-unnecessary, the published
-archive directories must never be described as scene-disjoint, and missing official model
-weights/tooling remains a blocker for a paper claim.
+The next implementation milestone is paper-package review and, only after an explicit decision,
+one locked test evaluation. Full extraction remains unnecessary, the published archive directories
+must never be described as scene-disjoint, and missing official model weights/tooling remains a
+blocker for a paper claim.

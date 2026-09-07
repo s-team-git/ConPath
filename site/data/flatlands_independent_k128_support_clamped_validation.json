@@ -1,0 +1,349 @@
+{
+  "schema_version": 1,
+  "kind": "flatlands_independent_k128_validation_snapshot",
+  "validation_only": true,
+  "paper_result": false,
+  "test_evaluated": false,
+  "posthoc_checkpoint_evaluation": false,
+  "retraining_required": false,
+  "decoder_variant": "independent",
+  "protocol": {
+    "name": "P1_BASELINE_PROTOCOL.md v1 + ConPath valid-support v2",
+    "split": "FlatLands provenance.original_split",
+    "official_archive_split_used": false,
+    "radii_cells": [
+      0,
+      10,
+      20
+    ],
+    "train_samples": 8,
+    "validation_samples": 128,
+    "validation_sample_chunk": 8,
+    "selection_query_limit": 8,
+    "primary_weighting": "equal scene, then equal event within scene",
+    "exact_forward": "NumPy disk-clearance + batched Kruskal merge-tree",
+    "support_policy": "FlatLands epistemic_mask complement is deterministically blocked before posterior sampling",
+    "bootstrap_samples": 2000,
+    "test_lock": "No test labels read; physical test remains locked"
+  },
+  "benchmark": {
+    "train_scenes": 160,
+    "validation_scenes": 160,
+    "report_scene_count": 142,
+    "prediction_rows_per_seed": 4224,
+    "endpoint_groups_per_seed": 1408,
+    "selection_sha256": "4e7ae4c992cf943ab81618e3826c4748fcaaa97c3c4d7cb187518ee3fe6a9409",
+    "queries_sha256": "33e7f8a0343269b0dde47b428b3be622c80effdb0f80ae34b352ca282018d60d",
+    "archive_bytes": 2054773316
+  },
+  "seeds": [
+    {
+      "seed": 20260831,
+      "best_epoch": 5,
+      "epochs_completed": 13,
+      "selection_brier": 0.06788747121358425,
+      "brier": 0.09865829173037971,
+      "nll": 0.7395806270429843,
+      "ece": 0.08359542265034925,
+      "false_safe_rate@0.8": 0.06106708972494845,
+      "coverage@0.8": 0.3571660607989261,
+      "prediction_rows": 4224,
+      "prediction_sha256": "e185ed3f06d3a3eaedac1be52426b4fa204f77064cbaf6138bb77e439f5a1759",
+      "report_scene_count": 142,
+      "replay_matches": true,
+      "radius_monotonicity_failures": 0,
+      "checkpoint": {
+        "best_epoch": 5,
+        "best_score": 0.06788747121358425,
+        "epoch": 5,
+        "finite_tensors": true,
+        "parameter_count": 120108,
+        "path": "results/p1_flatlands_independent_k128_support_clamped_v1/seed20260831_independent/best.pt",
+        "sha256": "87257f20d4e8282c2c318f70ee099b30cb5ec945bf34608200236096fea9ef23",
+        "strict_restore": true
+      }
+    },
+    {
+      "seed": 20260901,
+      "best_epoch": 16,
+      "epochs_completed": 24,
+      "selection_brier": 0.06461895275599482,
+      "brier": 0.0871174114720983,
+      "nll": 0.782247739803187,
+      "ece": 0.08228652673861869,
+      "false_safe_rate@0.8": 0.04730397395146118,
+      "coverage@0.8": 0.3854248098552158,
+      "prediction_rows": 4224,
+      "prediction_sha256": "8d73eacb72f6697f26f4b9d4be0f32395ff544bd3d333e0a546a01734981cd43",
+      "report_scene_count": 142,
+      "replay_matches": true,
+      "radius_monotonicity_failures": 0,
+      "checkpoint": {
+        "best_epoch": 16,
+        "best_score": 0.06461895275599482,
+        "epoch": 16,
+        "finite_tensors": true,
+        "parameter_count": 120108,
+        "path": "results/p1_flatlands_independent_k128_support_clamped_v1/seed20260901_independent/best.pt",
+        "sha256": "c41cdbc3b178cc24a9f2479ec460572ad84b731e1727386fb4e03a375e1caa28",
+        "strict_restore": true
+      }
+    },
+    {
+      "seed": 20260902,
+      "best_epoch": 10,
+      "epochs_completed": 18,
+      "selection_brier": 0.06868709827792475,
+      "brier": 0.09985447848246655,
+      "nll": 0.8332591271926924,
+      "ece": 0.09572894056786765,
+      "false_safe_rate@0.8": 0.06229151665877922,
+      "coverage@0.8": 0.35517220659292126,
+      "prediction_rows": 4224,
+      "prediction_sha256": "40faa371a2e55c5660be29066908ab3593f37b235f1c130ee2453fb055e1969a",
+      "report_scene_count": 142,
+      "replay_matches": true,
+      "radius_monotonicity_failures": 0,
+      "checkpoint": {
+        "best_epoch": 10,
+        "best_score": 0.06868709827792475,
+        "epoch": 10,
+        "finite_tensors": true,
+        "parameter_count": 120108,
+        "path": "results/p1_flatlands_independent_k128_support_clamped_v1/seed20260902_independent/best.pt",
+        "sha256": "01044e316122d54300062a7d0c3553ccf073e9a51e0c6071826fab57c485aca1",
+        "strict_restore": true
+      }
+    }
+  ],
+  "aggregate_scene_weighted": {
+    "brier": {
+      "mean": 0.09521006056164819,
+      "sample_sd": 0.007033913750637799,
+      "available_seed_count": 3,
+      "total_seed_count": 3
+    },
+    "nll": {
+      "mean": 0.7850291646796212,
+      "sample_sd": 0.04690114700977095,
+      "available_seed_count": 3,
+      "total_seed_count": 3
+    },
+    "ece": {
+      "mean": 0.08720362998561186,
+      "sample_sd": 0.007412084222395084,
+      "available_seed_count": 3,
+      "total_seed_count": 3
+    },
+    "false_safe_rate@0.8": {
+      "mean": 0.056887526778396286,
+      "sample_sd": 0.008322149296850209,
+      "available_seed_count": 3,
+      "total_seed_count": 3
+    },
+    "high_confidence_safe_coverage@0.8": {
+      "mean": 0.3659210257490211,
+      "sample_sd": 0.016920167241918513,
+      "available_seed_count": 3,
+      "total_seed_count": 3
+    }
+  },
+  "per_radius_scene_weighted": {
+    "0": {
+      "brier": {
+        "mean": 0.08391984129411482,
+        "sample_sd": 0.016556172964358313,
+        "available_seed_count": 3,
+        "total_seed_count": 3
+      },
+      "nll": {
+        "mean": 0.7104122580742471,
+        "sample_sd": 0.35940016562408234,
+        "available_seed_count": 3,
+        "total_seed_count": 3
+      },
+      "ece": {
+        "mean": 0.07502043559365904,
+        "sample_sd": 0.028400090198831635,
+        "available_seed_count": 3,
+        "total_seed_count": 3
+      },
+      "false_safe_rate@0.8": {
+        "mean": 0.03771062589262999,
+        "sample_sd": 0.013097830756216754,
+        "available_seed_count": 3,
+        "total_seed_count": 3
+      },
+      "high_confidence_safe_coverage@0.8": {
+        "mean": 0.8290579917332305,
+        "sample_sd": 0.040807901591351274,
+        "available_seed_count": 3,
+        "total_seed_count": 3
+      }
+    },
+    "10": {
+      "brier": {
+        "mean": 0.10971698468513257,
+        "sample_sd": 0.013850734765513366,
+        "available_seed_count": 3,
+        "total_seed_count": 3
+      },
+      "nll": {
+        "mean": 0.8324698500562941,
+        "sample_sd": 0.11554637036226627,
+        "available_seed_count": 3,
+        "total_seed_count": 3
+      },
+      "ece": {
+        "mean": 0.09822673713418076,
+        "sample_sd": 0.010644575556662495,
+        "available_seed_count": 3,
+        "total_seed_count": 3
+      },
+      "false_safe_rate@0.8": {
+        "mean": 0.11880895989554283,
+        "sample_sd": 0.01164108276204527,
+        "available_seed_count": 3,
+        "total_seed_count": 3
+      },
+      "high_confidence_safe_coverage@0.8": {
+        "mean": 0.20558351928784274,
+        "sample_sd": 0.029003740802747282,
+        "available_seed_count": 3,
+        "total_seed_count": 3
+      }
+    },
+    "20": {
+      "brier": {
+        "mean": 0.09199335570569715,
+        "sample_sd": 0.014511094879818234,
+        "available_seed_count": 3,
+        "total_seed_count": 3
+      },
+      "nll": {
+        "mean": 0.8122053859083223,
+        "sample_sd": 0.14913957553303595,
+        "available_seed_count": 3,
+        "total_seed_count": 3
+      },
+      "ece": {
+        "mean": 0.09803541986340578,
+        "sample_sd": 0.021934405879578955,
+        "available_seed_count": 3,
+        "total_seed_count": 3
+      },
+      "false_safe_rate@0.8": {
+        "mean": 0.12273907376490521,
+        "sample_sd": 0.04454568152112302,
+        "available_seed_count": 3,
+        "total_seed_count": 3
+      },
+      "high_confidence_safe_coverage@0.8": {
+        "mean": 0.06312156622598998,
+        "sample_sd": 0.05586882960831576,
+        "available_seed_count": 3,
+        "total_seed_count": 3
+      }
+    }
+  },
+  "artifacts": [
+    {
+      "seed": 20260831,
+      "role": "canonical best checkpoint",
+      "path": "results/p1_flatlands_independent_k128_support_clamped_v1/seed20260831_independent/best.pt",
+      "bytes": 1498833,
+      "sha256": "87257f20d4e8282c2c318f70ee099b30cb5ec945bf34608200236096fea9ef23"
+    },
+    {
+      "seed": 20260831,
+      "role": "run metadata",
+      "path": "results/p1_flatlands_independent_k128_support_clamped_v1/seed20260831_independent/run.json",
+      "bytes": 183480,
+      "sha256": "72d2c5a42a6943cc386926c9b3c89104be8683a06e1c4c5dd15de7bed489114d"
+    },
+    {
+      "seed": 20260831,
+      "role": "label-free validation predictions",
+      "path": "results/p1_flatlands_independent_k128_support_clamped_v1/seed20260831_independent/predictions_validation.csv",
+      "bytes": 88092,
+      "sha256": "e185ed3f06d3a3eaedac1be52426b4fa204f77064cbaf6138bb77e439f5a1759"
+    },
+    {
+      "seed": 20260831,
+      "role": "exact validation report",
+      "path": "results/p1_flatlands_independent_k128_support_clamped_v1/seed20260831_independent/evaluation_validation/report.json",
+      "bytes": 159373,
+      "sha256": "2996cc39dcc993220448e8a742bc811476bd0191a2cf13d90209660d88393ed9"
+    },
+    {
+      "seed": 20260901,
+      "role": "canonical best checkpoint",
+      "path": "results/p1_flatlands_independent_k128_support_clamped_v1/seed20260901_independent/best.pt",
+      "bytes": 1500433,
+      "sha256": "c41cdbc3b178cc24a9f2479ec460572ad84b731e1727386fb4e03a375e1caa28"
+    },
+    {
+      "seed": 20260901,
+      "role": "run metadata",
+      "path": "results/p1_flatlands_independent_k128_support_clamped_v1/seed20260901_independent/run.json",
+      "bytes": 188008,
+      "sha256": "ae62bf37d05cec0368cda4ce1b632f8b175d6cd1ab5490e6e73b80b3d0b6ada9"
+    },
+    {
+      "seed": 20260901,
+      "role": "label-free validation predictions",
+      "path": "results/p1_flatlands_independent_k128_support_clamped_v1/seed20260901_independent/predictions_validation.csv",
+      "bytes": 87801,
+      "sha256": "8d73eacb72f6697f26f4b9d4be0f32395ff544bd3d333e0a546a01734981cd43"
+    },
+    {
+      "seed": 20260901,
+      "role": "exact validation report",
+      "path": "results/p1_flatlands_independent_k128_support_clamped_v1/seed20260901_independent/evaluation_validation/report.json",
+      "bytes": 159281,
+      "sha256": "f144e8668c5c704f2c3ecb6b446d294698eb774696cd9a3f5c251edbf507c12f"
+    },
+    {
+      "seed": 20260902,
+      "role": "canonical best checkpoint",
+      "path": "results/p1_flatlands_independent_k128_support_clamped_v1/seed20260902_independent/best.pt",
+      "bytes": 1499537,
+      "sha256": "01044e316122d54300062a7d0c3553ccf073e9a51e0c6071826fab57c485aca1"
+    },
+    {
+      "seed": 20260902,
+      "role": "run metadata",
+      "path": "results/p1_flatlands_independent_k128_support_clamped_v1/seed20260902_independent/run.json",
+      "bytes": 185927,
+      "sha256": "6f21f11f908da66fc131175210c90432cbb11e9efcc139624f3e80bde188d05f"
+    },
+    {
+      "seed": 20260902,
+      "role": "label-free validation predictions",
+      "path": "results/p1_flatlands_independent_k128_support_clamped_v1/seed20260902_independent/predictions_validation.csv",
+      "bytes": 87941,
+      "sha256": "40faa371a2e55c5660be29066908ab3593f37b235f1c130ee2453fb055e1969a"
+    },
+    {
+      "seed": 20260902,
+      "role": "exact validation report",
+      "path": "results/p1_flatlands_independent_k128_support_clamped_v1/seed20260902_independent/evaluation_validation/report.json",
+      "bytes": 159711,
+      "sha256": "a1e4914a41f9881f60b526874e91d73cb9278818458de87d1ce5c5f8d0ea5e6e"
+    }
+  ],
+  "audit": {
+    "audit_report": "results/p1_flatlands_independent_k128_support_clamped_v1/audit.json",
+    "passed": true,
+    "all_processes_exit_code_0": true,
+    "flags_and_config_match": true,
+    "prediction_hashes_match": true,
+    "rows_finite_and_in_range": true,
+    "radius_monotonicity_violations": 0,
+    "independent_report_replay_matches": true,
+    "all_invalid_support_clamped": true,
+    "all_checkpoints_restore_strictly": true,
+    "all_checkpoint_tensors_finite": true,
+    "label_scope": "validation only"
+  }
+}

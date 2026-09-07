@@ -7,7 +7,8 @@ the clean source tree to the GPU machine and create a new environment there.
 > Current-machine continuation note (2026-08-31): transfer and P0 setup are complete. The trained
 > synthetic model passes P0 in two optimization seeds, the no-reach ablation fails, and the bounded
 > FlatLands data/query gate passes on a non-official provenance split. Read `CONTINUATION.md` first;
-> the active task is the streaming adapter and fixed baseline pilot, not repeating bootstrap.
+> the streaming adapter and fixed baseline pilot are now complete. For current tasks, read
+> `WORK_PLAN.md` and the latest entry at the end of `CONTINUATION.md`.
 
 ## 1. Verify the target machine
 
