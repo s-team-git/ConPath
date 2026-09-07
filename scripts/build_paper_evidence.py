@@ -153,6 +153,13 @@ def main():
     before,remainder=source.split(start)
     _,after=remainder.split(end)
     page.write_text(before+start+'\n                '+'\n                '.join(table_rows)+'\n                '+end+after)
+    # Matplotlib emits trailing spaces inside SVG path data. Normalize the five
+    # exported figures without changing their geometry or numeric content.
+    for name in ('flatlands_clean_equal_coverage', 'flatlands_clean_reliability',
+                 'flatlands_clean_k_convergence', 'flatlands_clean_marginal_shuffle',
+                 'unscenes3d_observation_ceiling'):
+        path = assets / f'{name}.svg'
+        path.write_text('\n'.join(line.rstrip() for line in path.read_text().splitlines()) + '\n')
     print(json.dumps({'evidence':'PAPER_EVIDENCE.md','controls':list(controls),'figures':5}))
 
 
