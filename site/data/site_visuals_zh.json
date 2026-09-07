@@ -1,0 +1,1107 @@
+{
+  "schema_version": 1,
+  "language": "zh-CN",
+  "training_started": false,
+  "test_evaluated": false,
+  "sources": {
+    "scripts/build_site_visuals.py": "46566fff0e7e242c2f0bcf45970af2a8cc59b78211d1ae2f5c41b97735b5b343",
+    "results/p1_flatlands_query_audit_bounded/selected_observations.csv": "4e7ae4c992cf943ab81618e3826c4748fcaaa97c3c4d7cb187518ee3fe6a9409",
+    "results/p1_flatlands_query_audit_bounded/queries.csv": "33e7f8a0343269b0dde47b428b3be622c80effdb0f80ae34b352ca282018d60d",
+    "results/unscenes3d_contract_manifest_ground_valid/manifest.json": "d866be0b25ba6635d5ad934bac9c822c55be8034fabd8f4627803bb9efa972d5",
+    "site/data/flatlands_clean_paper_analysis.json": "29ca7640437695dbb432c256dc6a0ab0f176ddfb108c17bd8723e17a223e9de3",
+    "site/data/flatlands_clean_checkpoint_controls.json": "735705b2766f6209eaa0237cf9880438bfe9769afb585eddafb0bdee75bdd715",
+    "site/data/flatlands_k128_clean_candidate.json": "6a71fe8d784867c40d2ef2696a93e68f4662b10bc53a81e3fcc9d1dec3d70917",
+    "src/pathrel/model.py": "397f7558362f389af3a419aec39db36f67184e8106c6b05643908001e4f81045",
+    "src/pathrel/flatlands_data.py": "a5cdd2598315367308336d6cd3f1180bd8d26fb4a5bc224f0c8c358060d2dfb8",
+    "src/pathrel/unscenes3d.py": "c089bf7acea5d30511d3724995cac0159d0a0f6084ec2332c2c56d6c56c4c27e"
+  },
+  "palette": {
+    "free": "#65b59d",
+    "blocked": "#364654",
+    "unknown": "#dce4ec",
+    "invalid": "light checker",
+    "probability_0": "#f1ecd4",
+    "probability_1": "#157f77",
+    "start": "blue circle S",
+    "goal": "brown diamond G",
+    "endpoint_connector": false
+  },
+  "gallery": {
+    "flatlands": [
+      {
+        "id": "obs_000468",
+        "source": "3RScan",
+        "scene": "c6707946-2ecb-2de2-8381-d5eae12243ee",
+        "split": "train",
+        "resolution_m": 0.01,
+        "observed": "assets/zh/flatlands_obs_000468_observed.svg",
+        "reference": "assets/zh/flatlands_obs_000468_reference.svg",
+        "raw_members": {
+          "observed_floor.png": "d5370e0f2e7f3fcfcb9b8fbc7f6ef9fd56793f9a2f65e97c6d8370c2e1178bb7",
+          "floor_map.png": "0555f22b67d02510fdbb48447f1f02ae8ba40d2accea2b3d42582d3c5270a083",
+          "unobserved.png": "6d213bce163954df632c6163ac3fb5872d2fa35f72520e386cb440863353ddab",
+          "epistemic_mask.png": "9e09379592c54c4ed04f3d1f874e051afde109c81830779071a15adc5dfb5441",
+          "metadata.json": "038f7b22a69788ca38930a66062bf0cceb3e9a10ae87186c35bb2eff856df3fe"
+        }
+      },
+      {
+        "id": "obs_026208",
+        "source": "ARKitScenes",
+        "scene": "42899357_3dod_mesh",
+        "split": "train",
+        "resolution_m": 0.01,
+        "observed": "assets/zh/flatlands_obs_026208_observed.svg",
+        "reference": "assets/zh/flatlands_obs_026208_reference.svg",
+        "raw_members": {
+          "observed_floor.png": "8b11e80b5102510d49ff9728ba8d442f32123093fd1bcd6be5d516e625057780",
+          "floor_map.png": "c52c87bf5abf0c5577c55eec36a9999ea909bdb704d5663a964af473f1859d69",
+          "unobserved.png": "3d361cbd0f6b885b7e3e1718b87d342bc57d0fd616a1f0417617f8aaf64c7182",
+          "epistemic_mask.png": "dbe5a34d4a2351242170d455a4bedd98ea42fb0fb52b9d4260ebda673a3c551a",
+          "metadata.json": "d6a2c08811a0bba87cd8ac8d9264ee65c4f9eb5937928fc03d0a24d84e269d2c"
+        }
+      },
+      {
+        "id": "obs_101176",
+        "source": "Matterport3D",
+        "scene": "vyrNrziPKCB_region_segmentations_region36.ply",
+        "split": "train",
+        "resolution_m": 0.01,
+        "observed": "assets/zh/flatlands_obs_101176_observed.svg",
+        "reference": "assets/zh/flatlands_obs_101176_reference.svg",
+        "raw_members": {
+          "observed_floor.png": "389d1c86a93870bfed513bff3a4b2439cd22092d65c4fd06edb957eb894a4386",
+          "floor_map.png": "6fa5f442ccd25a708f1e5a6d0d3dd5d2083cda2e6d6930db21869ff120c24ba5",
+          "unobserved.png": "cfb01f4cb76eb4526eaeb0eddeec2e3fd804d91006cff8dd890cae9763f10774",
+          "epistemic_mask.png": "b4ad808bde691580fd2c342aa0d26040ac1b054c867755bc5266aa2a311f8605",
+          "metadata.json": "99f3ed4e685f89fb2c694acda512a7d465824eba7d4e2ab4d9261ae4e1478201"
+        }
+      },
+      {
+        "id": "obs_143105",
+        "source": "ScanNet",
+        "scene": "scene0089_02",
+        "split": "train",
+        "resolution_m": 0.01,
+        "observed": "assets/zh/flatlands_obs_143105_observed.svg",
+        "reference": "assets/zh/flatlands_obs_143105_reference.svg",
+        "raw_members": {
+          "observed_floor.png": "f3edccaf51a878cb8f6e2cba80872552076eb5dbdc200e9631909dde12693800",
+          "floor_map.png": "20853d02fe51ea8fc95b055d3150a03bb031e49e13db516a881cc013b882caba",
+          "unobserved.png": "ddbffb06446d2d70c320ef353bc4abfbf1243b91ce6ba4baab033004e4bd7562",
+          "epistemic_mask.png": "c7fb67ddd9fc301a7608d4d75e18392ea7783140be2816b44f98fc394c95dac0",
+          "metadata.json": "191ddf82fbf55442fac74ee2c2c2fcc4530f78c6b461554d546a617b76b84f97"
+        }
+      },
+      {
+        "id": "obs_173739",
+        "source": "ZInD",
+        "scene": "0979_floor_00_pano_57",
+        "split": "train",
+        "resolution_m": 0.01,
+        "observed": "assets/zh/flatlands_obs_173739_observed.svg",
+        "reference": "assets/zh/flatlands_obs_173739_reference.svg",
+        "raw_members": {
+          "observed_floor.png": "45f46708debd1fab41ff918f7011fedacb2f0d5a12c8aeee6e97e761db3b4956",
+          "floor_map.png": "82c113abfc94784c717b0aa9820b46e1b9232b24b5b03c0fbbe4799141aed85c",
+          "unobserved.png": "e457ebc9ed3f0c0eb321ae8874f02e23a9e839440b17230bf24078ee6b4de244",
+          "epistemic_mask.png": "351bb2d61cbbcb9d21c33712464ef6dc2d8985435de8afcfb9b6426324dd6fbc",
+          "metadata.json": "0b94eec03052cf15c46fb96372e6cffbf6a3fa4af2cd826e109ef9d58d1da58f"
+        }
+      },
+      {
+        "id": "obs_174795",
+        "source": "ZInD",
+        "scene": "0508_floor_02_pano_31",
+        "split": "train",
+        "resolution_m": 0.01,
+        "observed": "assets/zh/flatlands_obs_174795_observed.svg",
+        "reference": "assets/zh/flatlands_obs_174795_reference.svg",
+        "raw_members": {
+          "observed_floor.png": "cfb7ae971229a49387dfe524947df833ee69349d4f18b79984b25ca3b6d49ac9",
+          "floor_map.png": "c9a3120c872a258b89f47a8e3a632edd61d6b6a2d74285599b941ea365cc7df7",
+          "unobserved.png": "10b6f313db3b660911325cc5ff7dac864ab9ae0c8da4c47012e07c8da5678f26",
+          "epistemic_mask.png": "ceb67ec50a1a42a59ea1cfc96e24ab5101012a524237b5a175341c3b1a6e5e02",
+          "metadata.json": "59534b2a7ca31e470eda4f3f42711d0042fd7ac10c19a2eee1fee3a1a17fd115"
+        }
+      }
+    ],
+    "unscenes3d": [
+      {
+        "id": "1635039312.556829",
+        "timestamp": "1635039312.556829",
+        "scene": "scene_00000",
+        "location": "location_1",
+        "split": "train",
+        "camera": "assets/zh/unscenes_1635039312_556829_camera.jpg",
+        "observed": "assets/zh/unscenes_1635039312_556829_observed.svg",
+        "reference": "assets/zh/unscenes_1635039312_556829_reference.svg",
+        "raw_sources": {
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/images/1635039312.556829.jpg": "f90116f3d1a809f0567e4ad88322388d6d0d73312eb8836176d152309b069e08",
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/clouds/1635039312.556829.bin": "a65ec7ddd6c0c8d6db174ce5bb5c7e4d04ba8f471aee54129a769be296d2f714",
+          "data/raw/unscenes3d/label_package/unscenes3d-mini_label/occ/1635039312.556829.npy": "bc4cd8f5b0b663de89eb2ff7c6a89a6341bf173971266aafafdddca4a05c0c98"
+        }
+      },
+      {
+        "id": "1635057839.128198",
+        "timestamp": "1635057839.128198",
+        "scene": "scene_00029",
+        "location": "location_1",
+        "split": "train",
+        "camera": "assets/zh/unscenes_1635057839_128198_camera.jpg",
+        "observed": "assets/zh/unscenes_1635057839_128198_observed.svg",
+        "reference": "assets/zh/unscenes_1635057839_128198_reference.svg",
+        "raw_sources": {
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/images/1635057839.128198.jpg": "6c9863cfa810ab2903d59a193cb2356b78f1de86ef28dbcc153820c396fad1e8",
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/clouds/1635057839.128198.bin": "d6b847ef0fb214395e36f991fc10c3211aa86852d75bcfc60ad63cc964310efd",
+          "data/raw/unscenes3d/label_package/unscenes3d-mini_label/occ/1635057839.128198.npy": "142241259860d4e0c78fd5c3e33f45b2310b4932eac428d1db83a5fefd1bec68"
+        }
+      },
+      {
+        "id": "1657515104.535141",
+        "timestamp": "1657515104.535141",
+        "scene": "scene_00225",
+        "location": "location_2",
+        "split": "train",
+        "camera": "assets/zh/unscenes_1657515104_535141_camera.jpg",
+        "observed": "assets/zh/unscenes_1657515104_535141_observed.svg",
+        "reference": "assets/zh/unscenes_1657515104_535141_reference.svg",
+        "raw_sources": {
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/images/1657515104.535141.jpg": "450d8be82d6ef4c4f7365c1216bb0e97aa7b1427790a05c53e43d831b2edfe11",
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/clouds/1657515104.535141.bin": "922e089b24f62fc19d7683cc5762a1ddf0ddfee2e38e1215850d5bb6076b0451",
+          "data/raw/unscenes3d/label_package/unscenes3d-mini_label/occ/1657515104.535141.npy": "ad3a776657b702f1d21778d832b075cc453c841ffc25038d8ec090668be734bf"
+        }
+      },
+      {
+        "id": "1657854165.355872",
+        "timestamp": "1657854165.355872",
+        "scene": "scene_00243",
+        "location": "location_2",
+        "split": "train",
+        "camera": "assets/zh/unscenes_1657854165_355872_camera.jpg",
+        "observed": "assets/zh/unscenes_1657854165_355872_observed.svg",
+        "reference": "assets/zh/unscenes_1657854165_355872_reference.svg",
+        "raw_sources": {
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/images/1657854165.355872.jpg": "99172cd9f0f6828e58a1edc53827f2ede6c67d071fe2500d5af3b8a442c64d16",
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/clouds/1657854165.355872.bin": "d3f8014551ce4426d0e6dc5949f55af0e3f8ae1a4edc1cd0f79358dc9c03409e",
+          "data/raw/unscenes3d/label_package/unscenes3d-mini_label/occ/1657854165.355872.npy": "b9392b3e120144cde04bcbe3827ced9d0be65f49b96d0016a5ddf498bd31b51f"
+        }
+      },
+      {
+        "id": "1655688912.063049",
+        "timestamp": "1655688912.063049",
+        "scene": "scene_00277",
+        "location": "location_3",
+        "split": "train",
+        "camera": "assets/zh/unscenes_1655688912_063049_camera.jpg",
+        "observed": "assets/zh/unscenes_1655688912_063049_observed.svg",
+        "reference": "assets/zh/unscenes_1655688912_063049_reference.svg",
+        "raw_sources": {
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/images/1655688912.063049.jpg": "23f365a3785cf7d24bdf9084bb2d3a2c70207ac372c879be19d5d155b9cc164c",
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/clouds/1655688912.063049.bin": "d618192c7c113653210a5c20d4e8333e47171fc172e1885d9e618d3ae9b79d53",
+          "data/raw/unscenes3d/label_package/unscenes3d-mini_label/occ/1655688912.063049.npy": "33c82c8d27b2f5007c37c0611a2774dfce2bcedbc63213f94ff369c7522b9aaa"
+        }
+      },
+      {
+        "id": "1655788197.391557",
+        "timestamp": "1655788197.391557",
+        "scene": "scene_00377",
+        "location": "location_3",
+        "split": "train",
+        "camera": "assets/zh/unscenes_1655788197_391557_camera.jpg",
+        "observed": "assets/zh/unscenes_1655788197_391557_observed.svg",
+        "reference": "assets/zh/unscenes_1655788197_391557_reference.svg",
+        "raw_sources": {
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/images/1655788197.391557.jpg": "71165a659f9cf04a14457361a7911a4dcaec76fb54bfc15d388ce1ccddc7e0f0",
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/clouds/1655788197.391557.bin": "4ec0c83a18f8a70b156e4a4e8ab7cc05ecb47243af23d4ee7d4bf3d30f811095",
+          "data/raw/unscenes3d/label_package/unscenes3d-mini_label/occ/1655788197.391557.npy": "17847e25c3a65bbac59c15c6fe30b9fb78d623a80cf67d45d5b4db9bff72c1a8"
+        }
+      }
+    ],
+    "sequence": [
+      {
+        "id": "1635039312.556829",
+        "timestamp": "1635039312.556829",
+        "scene": "scene_00000",
+        "location": "location_1",
+        "split": "train",
+        "camera": "assets/zh/unscenes_1635039312_556829_camera.jpg",
+        "observed": "assets/zh/unscenes_1635039312_556829_observed.svg",
+        "reference": "assets/zh/unscenes_1635039312_556829_reference.svg",
+        "raw_sources": {
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/images/1635039312.556829.jpg": "f90116f3d1a809f0567e4ad88322388d6d0d73312eb8836176d152309b069e08",
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/clouds/1635039312.556829.bin": "a65ec7ddd6c0c8d6db174ce5bb5c7e4d04ba8f471aee54129a769be296d2f714",
+          "data/raw/unscenes3d/label_package/unscenes3d-mini_label/occ/1635039312.556829.npy": "bc4cd8f5b0b663de89eb2ff7c6a89a6341bf173971266aafafdddca4a05c0c98"
+        }
+      },
+      {
+        "id": "1635039313.256630",
+        "timestamp": "1635039313.256630",
+        "scene": "scene_00000",
+        "location": "location_1",
+        "split": "train",
+        "camera": "assets/zh/unscenes_1635039313_256630_camera.jpg",
+        "observed": "assets/zh/unscenes_1635039313_256630_observed.svg",
+        "reference": "assets/zh/unscenes_1635039313_256630_reference.svg",
+        "raw_sources": {
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/images/1635039313.256630.jpg": "e23b19be974dbe171c4daa283623d71771f99ae6b0ba84f451a12e1e0462b7ae",
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/clouds/1635039313.256630.bin": "aff2b2b3a343d834f9ca51949a648a28bf7e10f25a52c8dcdf18565350c3c8ea",
+          "data/raw/unscenes3d/label_package/unscenes3d-mini_label/occ/1635039313.256630.npy": "6c54b5abb0df0c6e91d43d81c45cdbdb1e7085c1667c1d10ad0ad5016f1b48c0"
+        }
+      },
+      {
+        "id": "1635039313.856865",
+        "timestamp": "1635039313.856865",
+        "scene": "scene_00000",
+        "location": "location_1",
+        "split": "train",
+        "camera": "assets/zh/unscenes_1635039313_856865_camera.jpg",
+        "observed": "assets/zh/unscenes_1635039313_856865_observed.svg",
+        "reference": "assets/zh/unscenes_1635039313_856865_reference.svg",
+        "raw_sources": {
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/images/1635039313.856865.jpg": "1a76adc7d22c471b18b693949bec59fd5764a5de8d07c0690fe21abd5d832376",
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/clouds/1635039313.856865.bin": "8ce0163b5dc20cec59475822e346a74ca9c0b309920d53c6a1677160289aad48",
+          "data/raw/unscenes3d/label_package/unscenes3d-mini_label/occ/1635039313.856865.npy": "ce318bde44e6293c541236b8523d89e9c642d6a29873af18d68b4afbb99686bb"
+        }
+      },
+      {
+        "id": "1635039314.356981",
+        "timestamp": "1635039314.356981",
+        "scene": "scene_00000",
+        "location": "location_1",
+        "split": "train",
+        "camera": "assets/zh/unscenes_1635039314_356981_camera.jpg",
+        "observed": "assets/zh/unscenes_1635039314_356981_observed.svg",
+        "reference": "assets/zh/unscenes_1635039314_356981_reference.svg",
+        "raw_sources": {
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/images/1635039314.356981.jpg": "6846ece6cb23e7c5dc1467c3527736fc462f86e4b9fad0961335cbd7db0b542a",
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/clouds/1635039314.356981.bin": "36ebe03ff4af3191776d57df0987f0176e5f1f66569c7147fa7fbec0ae590690",
+          "data/raw/unscenes3d/label_package/unscenes3d-mini_label/occ/1635039314.356981.npy": "7af8f2761d98a7938a890e3c1e2a61a12061019fbae47e3793c00e84cf2beb25"
+        }
+      },
+      {
+        "id": "1635039314.856882",
+        "timestamp": "1635039314.856882",
+        "scene": "scene_00000",
+        "location": "location_1",
+        "split": "train",
+        "camera": "assets/zh/unscenes_1635039314_856882_camera.jpg",
+        "observed": "assets/zh/unscenes_1635039314_856882_observed.svg",
+        "reference": "assets/zh/unscenes_1635039314_856882_reference.svg",
+        "raw_sources": {
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/images/1635039314.856882.jpg": "1b78f1b2fa271c3e23ee540fc206ad61f0b1a46c276a14f6eed1ceeed54e75c8",
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/clouds/1635039314.856882.bin": "c5d834111b2e508f10594844474017a2778d4d9a0f1f5dd42f0183c3f41107ee",
+          "data/raw/unscenes3d/label_package/unscenes3d-mini_label/occ/1635039314.856882.npy": "e999b5a74cf350a7c6bea9eb28ab47a852f92bff55b560d24b8e4310df2d91fd"
+        }
+      },
+      {
+        "id": "1635039315.256714",
+        "timestamp": "1635039315.256714",
+        "scene": "scene_00000",
+        "location": "location_1",
+        "split": "train",
+        "camera": "assets/zh/unscenes_1635039315_256714_camera.jpg",
+        "observed": "assets/zh/unscenes_1635039315_256714_observed.svg",
+        "reference": "assets/zh/unscenes_1635039315_256714_reference.svg",
+        "raw_sources": {
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/images/1635039315.256714.jpg": "bdba494a80fc6ed00fa40b7894ee88e2760cb3677c546bf4baac1582bab96735",
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/clouds/1635039315.256714.bin": "e53efd9fd48c8f870a17644f39dc9c89aa920940b78a3766eafbb53a5147496c",
+          "data/raw/unscenes3d/label_package/unscenes3d-mini_label/occ/1635039315.256714.npy": "3ed55c9e436b90b8dd745309739c320391508b4d4918f7fd07d39972d9565881"
+        }
+      },
+      {
+        "id": "1635039315.956706",
+        "timestamp": "1635039315.956706",
+        "scene": "scene_00000",
+        "location": "location_1",
+        "split": "train",
+        "camera": "assets/zh/unscenes_1635039315_956706_camera.jpg",
+        "observed": "assets/zh/unscenes_1635039315_956706_observed.svg",
+        "reference": "assets/zh/unscenes_1635039315_956706_reference.svg",
+        "raw_sources": {
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/images/1635039315.956706.jpg": "7b4f515c7e884d87b4d6c682b66e8d6c9207314fbe0f6f5e3d645d919ed0573b",
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/clouds/1635039315.956706.bin": "6198072136418d04815f7c0e694fc166333313e5d6ca8a4929bd9209b07f751a",
+          "data/raw/unscenes3d/label_package/unscenes3d-mini_label/occ/1635039315.956706.npy": "ade06c7e781385b357c98be8207c566ce93173fd9059be32bab953c4a8dbfa3e"
+        }
+      },
+      {
+        "id": "1635039316.356890",
+        "timestamp": "1635039316.356890",
+        "scene": "scene_00000",
+        "location": "location_1",
+        "split": "train",
+        "camera": "assets/zh/unscenes_1635039316_356890_camera.jpg",
+        "observed": "assets/zh/unscenes_1635039316_356890_observed.svg",
+        "reference": "assets/zh/unscenes_1635039316_356890_reference.svg",
+        "raw_sources": {
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/images/1635039316.356890.jpg": "262a6102dcf5b966f58661556c84e1c057b282e08b2818011a6d7ef5abdc58a3",
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/clouds/1635039316.356890.bin": "db10c2cf50bb2b767a573a62af81240fa6eb35efe1c5a9aa430335471764e4ba",
+          "data/raw/unscenes3d/label_package/unscenes3d-mini_label/occ/1635039316.356890.npy": "0ba212fd51031352f4842c5e650306605d8d6de4428ef24f75d2798cebc7f9ae"
+        }
+      },
+      {
+        "id": "1635039316.856993",
+        "timestamp": "1635039316.856993",
+        "scene": "scene_00000",
+        "location": "location_1",
+        "split": "train",
+        "camera": "assets/zh/unscenes_1635039316_856993_camera.jpg",
+        "observed": "assets/zh/unscenes_1635039316_856993_observed.svg",
+        "reference": "assets/zh/unscenes_1635039316_856993_reference.svg",
+        "raw_sources": {
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/images/1635039316.856993.jpg": "f5e78a61a518c9660ee9f7d3919be7133589fd5ec84a9204ac6366aa73fca445",
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/clouds/1635039316.856993.bin": "54a505cfe6c9e296d3803cd8544861b8130c5dd59826ae15847b3febc86a90dd",
+          "data/raw/unscenes3d/label_package/unscenes3d-mini_label/occ/1635039316.856993.npy": "e30e7d959da3512f3eaa93decb688f5ef59b168e257aa905eeebff970503e458"
+        }
+      },
+      {
+        "id": "1635039317.556736",
+        "timestamp": "1635039317.556736",
+        "scene": "scene_00000",
+        "location": "location_1",
+        "split": "train",
+        "camera": "assets/zh/unscenes_1635039317_556736_camera.jpg",
+        "observed": "assets/zh/unscenes_1635039317_556736_observed.svg",
+        "reference": "assets/zh/unscenes_1635039317_556736_reference.svg",
+        "raw_sources": {
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/images/1635039317.556736.jpg": "3c0f67d1f2d3194327cd9dcf9504f7d8b32611a0d06b3fdd48891488c8f92374",
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/clouds/1635039317.556736.bin": "5a0d0f398b0d3376898fc643ae119be16bf1d444ab0718caf70d03f73b6e1812",
+          "data/raw/unscenes3d/label_package/unscenes3d-mini_label/occ/1635039317.556736.npy": "9a8f525149927a0219b17f0a5ba3735eee87181826771b9377cb1f5804b443a0"
+        }
+      },
+      {
+        "id": "1635039318.156960",
+        "timestamp": "1635039318.156960",
+        "scene": "scene_00000",
+        "location": "location_1",
+        "split": "train",
+        "camera": "assets/zh/unscenes_1635039318_156960_camera.jpg",
+        "observed": "assets/zh/unscenes_1635039318_156960_observed.svg",
+        "reference": "assets/zh/unscenes_1635039318_156960_reference.svg",
+        "raw_sources": {
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/images/1635039318.156960.jpg": "b8508eadbacf035c83d3109ad92a82d342d1d549dbfc94c3f5b143c9cbb8f3d0",
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/clouds/1635039318.156960.bin": "59cc49af691e4fdc761337761ca78eb00f1ddc12316d0552c7ce39f16e2300b7",
+          "data/raw/unscenes3d/label_package/unscenes3d-mini_label/occ/1635039318.156960.npy": "04bc2b35a7b89978c9021273fd9a6364e25bd10ebdb836ece40f468fdb97d9c6"
+        }
+      },
+      {
+        "id": "1635039318.556983",
+        "timestamp": "1635039318.556983",
+        "scene": "scene_00000",
+        "location": "location_1",
+        "split": "train",
+        "camera": "assets/zh/unscenes_1635039318_556983_camera.jpg",
+        "observed": "assets/zh/unscenes_1635039318_556983_observed.svg",
+        "reference": "assets/zh/unscenes_1635039318_556983_reference.svg",
+        "raw_sources": {
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/images/1635039318.556983.jpg": "0ca79d83746a29be6c3faa31b46f7551cb05d1426d85f4cae9bd6d4aa041dcbd",
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/clouds/1635039318.556983.bin": "fa8629b2e0894760cbb3e0cefb3f522cbbd4b8580142934d6821560576eaf7ad",
+          "data/raw/unscenes3d/label_package/unscenes3d-mini_label/occ/1635039318.556983.npy": "6049e7d57d821cde019d7744ceb29bef4b8c914f0d1339532ca85bec19e306e1"
+        }
+      },
+      {
+        "id": "1635039319.056978",
+        "timestamp": "1635039319.056978",
+        "scene": "scene_00000",
+        "location": "location_1",
+        "split": "train",
+        "camera": "assets/zh/unscenes_1635039319_056978_camera.jpg",
+        "observed": "assets/zh/unscenes_1635039319_056978_observed.svg",
+        "reference": "assets/zh/unscenes_1635039319_056978_reference.svg",
+        "raw_sources": {
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/images/1635039319.056978.jpg": "fee28ba47a8cd37c8864ed3d28ea67791e34ddabb10948fa5cf4bd764d7ef40e",
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/clouds/1635039319.056978.bin": "ad13a7cc5d12ea9d89811c4abd54a7de11efab79699d7973b69103598dff0a32",
+          "data/raw/unscenes3d/label_package/unscenes3d-mini_label/occ/1635039319.056978.npy": "6e6497f06cfb3654b4ed551bd29f7533b0d9ee51e603b332e921aa3a1a6254a4"
+        }
+      },
+      {
+        "id": "1635039319.657043",
+        "timestamp": "1635039319.657043",
+        "scene": "scene_00000",
+        "location": "location_1",
+        "split": "train",
+        "camera": "assets/zh/unscenes_1635039319_657043_camera.jpg",
+        "observed": "assets/zh/unscenes_1635039319_657043_observed.svg",
+        "reference": "assets/zh/unscenes_1635039319_657043_reference.svg",
+        "raw_sources": {
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/images/1635039319.657043.jpg": "ea09f52b5de8fee2d81691eaa1a4b46ab12924c8af81d90f3ab24e18b6d85ec5",
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/clouds/1635039319.657043.bin": "d59efbbb5b8cb5469fd1a2f1fbe6abf6dd3f74892cc852bd19db838a818e67d7",
+          "data/raw/unscenes3d/label_package/unscenes3d-mini_label/occ/1635039319.657043.npy": "2e5667a53eb85030fd18ce917d353d75469cf05912c5c0c55c8dfd217ffb2d80"
+        }
+      },
+      {
+        "id": "1635039320.157027",
+        "timestamp": "1635039320.157027",
+        "scene": "scene_00000",
+        "location": "location_1",
+        "split": "train",
+        "camera": "assets/zh/unscenes_1635039320_157027_camera.jpg",
+        "observed": "assets/zh/unscenes_1635039320_157027_observed.svg",
+        "reference": "assets/zh/unscenes_1635039320_157027_reference.svg",
+        "raw_sources": {
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/images/1635039320.157027.jpg": "f9fafbdfc4fdc560ebd8ec7e5013d8cfa0540c7fc06faf63b6b064bcdbd6c820",
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/clouds/1635039320.157027.bin": "11e21107ab7722df99a98d1864ea163d69760b25112b094c54c1f8114ee39023",
+          "data/raw/unscenes3d/label_package/unscenes3d-mini_label/occ/1635039320.157027.npy": "162b6795347d6c3cde74f63d4ef3e6d857ea3fc285151874cab283899a9cf92a"
+        }
+      },
+      {
+        "id": "1635039320.557007",
+        "timestamp": "1635039320.557007",
+        "scene": "scene_00000",
+        "location": "location_1",
+        "split": "train",
+        "camera": "assets/zh/unscenes_1635039320_557007_camera.jpg",
+        "observed": "assets/zh/unscenes_1635039320_557007_observed.svg",
+        "reference": "assets/zh/unscenes_1635039320_557007_reference.svg",
+        "raw_sources": {
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/images/1635039320.557007.jpg": "a3d45f6e97083cd9a6a05501e34984a7fb8cb9c1e9e476c999fd92c610d05696",
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/clouds/1635039320.557007.bin": "f236db00011e5d8b51d6c2d0214fe64c3af1d7d64af53ff6a7d9e480d31d9f01",
+          "data/raw/unscenes3d/label_package/unscenes3d-mini_label/occ/1635039320.557007.npy": "cd3ed5a5b093b1fd1822b2051589e7c6a99a583c58dff20db4adc047ac4aff90"
+        }
+      },
+      {
+        "id": "1635039321.057719",
+        "timestamp": "1635039321.057719",
+        "scene": "scene_00000",
+        "location": "location_1",
+        "split": "train",
+        "camera": "assets/zh/unscenes_1635039321_057719_camera.jpg",
+        "observed": "assets/zh/unscenes_1635039321_057719_observed.svg",
+        "reference": "assets/zh/unscenes_1635039321_057719_reference.svg",
+        "raw_sources": {
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/images/1635039321.057719.jpg": "8be11d76ae606b49785de162d86a998bdfffcfc2894b30df8157cf9b4deb6944",
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/clouds/1635039321.057719.bin": "b50ba50365815171820d78ee77bd3edb2b1c7c152b02a94e601323acbf66ed5e",
+          "data/raw/unscenes3d/label_package/unscenes3d-mini_label/occ/1635039321.057719.npy": "248b5db669e1e1274df6b485cfbc67f05dd2012981405b5da3e38fb6b624fe87"
+        }
+      },
+      {
+        "id": "1635039321.757031",
+        "timestamp": "1635039321.757031",
+        "scene": "scene_00000",
+        "location": "location_1",
+        "split": "train",
+        "camera": "assets/zh/unscenes_1635039321_757031_camera.jpg",
+        "observed": "assets/zh/unscenes_1635039321_757031_observed.svg",
+        "reference": "assets/zh/unscenes_1635039321_757031_reference.svg",
+        "raw_sources": {
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/images/1635039321.757031.jpg": "21a2a5f067ed3b649bd5e206f104afef3ece4df654f1801a236d5d40261a04b8",
+          "data/raw/unscenes3d/raw_package/unscenes3d-mini_raw/clouds/1635039321.757031.bin": "f6d681890f777a3e0afe7d6822d53474a4059c96cf11c992466c08d045c5afb8",
+          "data/raw/unscenes3d/label_package/unscenes3d-mini_label/occ/1635039321.757031.npy": "6c435d3207b568db2cbf083aa5f650012c24c9da102534f2122be91ad918dc2a"
+        }
+      }
+    ],
+    "selection": "FlatLands: first training observation per source plus the second ZInD observation. UnScenes3D: first two scene ids per training location, first timestamp per scene. Sequence: first 18 frozen training frames of the first scene. No outcome-based selection.",
+    "test_evaluated": false,
+    "camera_images_modified": false,
+    "sequence_has_paths": false
+  },
+  "examples": [
+    {
+      "id": "positive_recovery",
+      "global_id": "obs_266762",
+      "source": "ZInD",
+      "scene": "0743_floor_01_pano_21",
+      "split": "validation",
+      "candidate_index": 23,
+      "radius_cells": 10,
+      "radius_m": 0.1,
+      "target": 1,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        151,
+        197
+      ],
+      "selection_rule": "target=1, correlated probability exceeds independent probability in all three seeds; rank by mean per-event Brier gain",
+      "seed": 20260831,
+      "visual_sampling_seed": 20260903,
+      "checkpoints": {
+        "correlated": {
+          "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260831_conpath/best.pt",
+          "sha256": "f7b42163fb2fd6127a19e2a967f44181814a263c699020a7a59f895d913b797c"
+        },
+        "independent": {
+          "path": "results/p1_flatlands_independent_k128_support_clamped_v1/seed20260831_independent/best.pt",
+          "sha256": "87257f20d4e8282c2c318f70ee099b30cb5ec945bf34608200236096fea9ef23"
+        }
+      },
+      "event_probability": {
+        "correlated": 0.7890625,
+        "independent": 0.015625
+      },
+      "panels": {
+        "observed": "assets/zh/example_positive_recovery_observed.svg",
+        "reference": "assets/zh/example_positive_recovery_reference.svg",
+        "correlated": "assets/zh/example_positive_recovery_correlated.svg",
+        "correlated_sample": "assets/zh/example_positive_recovery_correlated_sample.svg",
+        "independent": "assets/zh/example_positive_recovery_independent.svg",
+        "independent_sample": "assets/zh/example_positive_recovery_independent_sample.svg"
+      },
+      "displayed_world_event": {
+        "correlated": true,
+        "independent": false
+      }
+    },
+    {
+      "id": "false_safe_avoided",
+      "global_id": "obs_249512",
+      "source": "ZInD",
+      "scene": "1263_floor_01_pano_5",
+      "split": "validation",
+      "candidate_index": 5,
+      "radius_cells": 20,
+      "radius_m": 0.2,
+      "target": 0,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        211,
+        93
+      ],
+      "selection_rule": "target=0, independent probability >=0.8 and correlated probability <0.8 in all three seeds; rank by mean per-event Brier gain",
+      "seed": 20260831,
+      "visual_sampling_seed": 20260904,
+      "checkpoints": {
+        "correlated": {
+          "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260831_conpath/best.pt",
+          "sha256": "f7b42163fb2fd6127a19e2a967f44181814a263c699020a7a59f895d913b797c"
+        },
+        "independent": {
+          "path": "results/p1_flatlands_independent_k128_support_clamped_v1/seed20260831_independent/best.pt",
+          "sha256": "87257f20d4e8282c2c318f70ee099b30cb5ec945bf34608200236096fea9ef23"
+        }
+      },
+      "event_probability": {
+        "correlated": 0.7578125,
+        "independent": 0.8046875
+      },
+      "panels": {
+        "observed": "assets/zh/example_false_safe_avoided_observed.svg",
+        "reference": "assets/zh/example_false_safe_avoided_reference.svg",
+        "correlated": "assets/zh/example_false_safe_avoided_correlated.svg",
+        "correlated_sample": "assets/zh/example_false_safe_avoided_correlated_sample.svg",
+        "independent": "assets/zh/example_false_safe_avoided_independent.svg",
+        "independent_sample": "assets/zh/example_false_safe_avoided_independent_sample.svg"
+      },
+      "displayed_world_event": {
+        "correlated": true,
+        "independent": true
+      }
+    }
+  ],
+  "charts": {
+    "brier": {
+      "title": "路径概率的预测误差：越低越好",
+      "note": "横线为三次训练的标准差；单种子与训练集先验不画误差线。",
+      "svg": "assets/zh/brier.svg",
+      "pdf": "assets/zh/brier.pdf",
+      "source": "flatlands_clean_paper_analysis.json",
+      "mobile_svg": "assets/zh/brier-mobile.svg",
+      "mobile_pdf": "assets/zh/brier-mobile.pdf"
+    },
+    "risk": {
+      "title": "同样愿意接受多少查询，再比较风险",
+      "note": "浅色带为训练种子标准差；30% 覆盖率下，两个模型的风险优势并不稳定。",
+      "svg": "assets/zh/risk.svg",
+      "pdf": "assets/zh/risk.pdf",
+      "source": "flatlands_clean_paper_analysis.json",
+      "mobile_svg": "assets/zh/risk-mobile.svg",
+      "mobile_pdf": "assets/zh/risk-mobile.pdf"
+    },
+    "reliability": {
+      "title": "模型说“有 80% 把握”，能信多少？",
+      "note": "折线越接近灰色对角线，预测概率越符合实际频率；十个概率分箱，按场景加权。",
+      "svg": "assets/zh/reliability.svg",
+      "pdf": "assets/zh/reliability.pdf",
+      "source": "flatlands_clean_paper_analysis.json",
+      "mobile_svg": "assets/zh/reliability-mobile.svg",
+      "mobile_pdf": "assets/zh/reliability-mobile.pdf"
+    },
+    "sampling": {
+      "title": "增加采样次数，结果改变多少？",
+      "note": "固定已训练模型，32 / 64 / 128 使用同一随机流的前缀；误差线为种子标准差。",
+      "svg": "assets/zh/sampling.svg",
+      "pdf": "assets/zh/sampling.pdf",
+      "source": "flatlands_clean_checkpoint_controls.json",
+      "mobile_svg": "assets/zh/sampling-mobile.svg",
+      "mobile_pdf": "assets/zh/sampling-mobile.pdf"
+    },
+    "dependence": {
+      "title": "每一格的概率不变，路径判断仍会变",
+      "note": "两组保留完全相同的单元格经验概率；只打散跨位置的共同变化。评估干预，未重新训练。",
+      "svg": "assets/zh/dependence.svg",
+      "pdf": "assets/zh/dependence.pdf",
+      "source": "flatlands_clean_paper_analysis.json",
+      "mobile_svg": "assets/zh/dependence-mobile.svg",
+      "mobile_pdf": "assets/zh/dependence-mobile.pdf"
+    }
+  },
+  "method_labels": {
+    "conpath": "ConPath（相关补全）",
+    "independent": "独立单元对照",
+    "mean_map": "ConPath 均值地图",
+    "independent_mean_map": "独立对照均值地图",
+    "completion": "确定性地图补全",
+    "coordinate": "坐标查询对照",
+    "direct_query": "直接预测对照（单种子）",
+    "radius_prior": "训练集半径先验",
+    "marginal_shuffle": "打散空间结构（评估干预）"
+  },
+  "assets": {
+    "assets/zh/brier-mobile.pdf": {
+      "bytes": 38815,
+      "sha256": "47a0f4110a3b121ccb144ddcf58ce98eeacc9c1ceceea881f344a50cdcc8ed53"
+    },
+    "assets/zh/brier-mobile.svg": {
+      "bytes": 11487,
+      "sha256": "94525a80b88a0e0a3585900d07f31a188a6b1389ffc9092bcbd5ae25a7edbef6"
+    },
+    "assets/zh/brier.pdf": {
+      "bytes": 43095,
+      "sha256": "c08b9465ded8dae79b73a6237d129c1e7acc2ae7e0b6facb7456ffff30a485e0"
+    },
+    "assets/zh/brier.svg": {
+      "bytes": 13817,
+      "sha256": "981bff4e6a7eb4aa8ce7cb689e81f768bba9714f420818278f3e79adf85777a4"
+    },
+    "assets/zh/dependence-mobile.pdf": {
+      "bytes": 36556,
+      "sha256": "321d5a4b56c44f24d5ef5ab64b4a98929bef1060ad091b9a02873f133661577d"
+    },
+    "assets/zh/dependence-mobile.svg": {
+      "bytes": 8889,
+      "sha256": "302e53d6b89da82b3f11e6037909ed064e7737aed7a513a78dd6e5c3a53b33cd"
+    },
+    "assets/zh/dependence.pdf": {
+      "bytes": 39865,
+      "sha256": "c55f1de71640f43f83ce1775e0116f20b53488de991c7af1d56b3057f40fd030"
+    },
+    "assets/zh/dependence.svg": {
+      "bytes": 8848,
+      "sha256": "c305ed955697a2b4fc591d55fcd5bcb4166e9a0dfd5d5eefbc0b5f3614c608ab"
+    },
+    "assets/zh/example_false_safe_avoided_correlated.svg": {
+      "bytes": 15509,
+      "sha256": "d57c1a49b9f0f2b0628c1a269096317d3629332545808f8564cf6d1bdedb306b"
+    },
+    "assets/zh/example_false_safe_avoided_correlated_sample.svg": {
+      "bytes": 6315,
+      "sha256": "4b49d80decced81767a1fa06261e86119d2446bd4cbb9caae979a5ecfc6a0c67"
+    },
+    "assets/zh/example_false_safe_avoided_independent.svg": {
+      "bytes": 13969,
+      "sha256": "45e929885588918909b29b5cb23fee82038454f2f6d54c37fc3b4155a94ec8b5"
+    },
+    "assets/zh/example_false_safe_avoided_independent_sample.svg": {
+      "bytes": 7311,
+      "sha256": "787e59293c2a9a594810d33258a2495829cb925033da40d3adabd3a1b319f62d"
+    },
+    "assets/zh/example_false_safe_avoided_observed.svg": {
+      "bytes": 5881,
+      "sha256": "9b217060d424c79dcedd8354240e352868b3b393dce39e2efca8d99c89aa0e0d"
+    },
+    "assets/zh/example_false_safe_avoided_reference.svg": {
+      "bytes": 5681,
+      "sha256": "81718f647140efbdabe7965088d7f6fca7020ad3794c706382859e9bd3090e8d"
+    },
+    "assets/zh/example_positive_recovery_correlated.svg": {
+      "bytes": 14017,
+      "sha256": "ea41c37a4b7905b41966d03a594dde4e1b1638a2a6ee66bbc5e3cce307b98ad4"
+    },
+    "assets/zh/example_positive_recovery_correlated_sample.svg": {
+      "bytes": 5339,
+      "sha256": "8fb912d3c4f0729c94cf39b4dc82f21f78c25b56b9ae9c635e6b0ed6f704262c"
+    },
+    "assets/zh/example_positive_recovery_independent.svg": {
+      "bytes": 18973,
+      "sha256": "5f8dc523cf7f25e677511bdf86e9f8288ca9043059649b9c6c916439220d01ba"
+    },
+    "assets/zh/example_positive_recovery_independent_sample.svg": {
+      "bytes": 8775,
+      "sha256": "e6c5dceacf82ef82aec17754cf2d21640b6d62922dcc1aa3f6e624209acd1304"
+    },
+    "assets/zh/example_positive_recovery_observed.svg": {
+      "bytes": 4825,
+      "sha256": "f4f6618f9d9da8dfc70065d516bcd7e965cea917a6c0bfb06f5e482acad747e8"
+    },
+    "assets/zh/example_positive_recovery_reference.svg": {
+      "bytes": 3933,
+      "sha256": "854e8dd35c2dc83feb7185fcaef68dbf1b04f048f4c8c47f20a35bc760bb4659"
+    },
+    "assets/zh/flatlands_obs_000468_observed.svg": {
+      "bytes": 7883,
+      "sha256": "d3307cb0a7774e8108f40b554b9b8b71ae67d741464765e881b2415af7c41a5d"
+    },
+    "assets/zh/flatlands_obs_000468_reference.svg": {
+      "bytes": 7503,
+      "sha256": "9a48f76658922ea5f39ed1f7c91e4c0b087ed30d43080831358f2b995c564b60"
+    },
+    "assets/zh/flatlands_obs_026208_observed.svg": {
+      "bytes": 11233,
+      "sha256": "68f490f4d45bbec1ab1e193f073fa2ad8375766efbd6128c59ea13303e8fd8fd"
+    },
+    "assets/zh/flatlands_obs_026208_reference.svg": {
+      "bytes": 11075,
+      "sha256": "fe39a128018c6620c3dfa2b1c041f29d3d24064bbdafd723e108f76243c8c321"
+    },
+    "assets/zh/flatlands_obs_101176_observed.svg": {
+      "bytes": 6563,
+      "sha256": "554cd0eef9cf53872f906ce106d0d5f678a38d0bdf0d94c864bded83c389d766"
+    },
+    "assets/zh/flatlands_obs_101176_reference.svg": {
+      "bytes": 6091,
+      "sha256": "f6e80d39b78678508855bd4d49fad778e20532134af084d54e7aded2857b3d8d"
+    },
+    "assets/zh/flatlands_obs_143105_observed.svg": {
+      "bytes": 8817,
+      "sha256": "dd1d5a5eb112480299246d2458a09f8724fbb3f3e33c0bf562a06dc53f0348e1"
+    },
+    "assets/zh/flatlands_obs_143105_reference.svg": {
+      "bytes": 7943,
+      "sha256": "9e26174a9cbb448648bfe09b5de0412dec7f3316989b80ce295d6651e23cd64a"
+    },
+    "assets/zh/flatlands_obs_173739_observed.svg": {
+      "bytes": 4603,
+      "sha256": "e1b27e22bd60acd7c82504c8fd4ee3f614d28d8a1521c414ea8fef4d5ef88f85"
+    },
+    "assets/zh/flatlands_obs_173739_reference.svg": {
+      "bytes": 4139,
+      "sha256": "0a5483a6e3ed7bddafcedf51f152102b997cf01ab63287537f39929c49101579"
+    },
+    "assets/zh/flatlands_obs_174795_observed.svg": {
+      "bytes": 4535,
+      "sha256": "3612328211fe3a6f621396d5d7b35e3b75ff4350e08b03b859b45ffd4d2226fa"
+    },
+    "assets/zh/flatlands_obs_174795_reference.svg": {
+      "bytes": 4099,
+      "sha256": "c686d48661dafe18c398df2350d5f4932c24ad47376680614e40377e880487d8"
+    },
+    "assets/zh/reliability-mobile.pdf": {
+      "bytes": 43950,
+      "sha256": "f6af6ce00acba937aca535eaee1c45692e5cefa865d839845619fd4f4e857409"
+    },
+    "assets/zh/reliability-mobile.svg": {
+      "bytes": 12392,
+      "sha256": "624264b73844928757f2a446dcb95a0a41d0ef7082dbc4a78df7b4000cf1d1c8"
+    },
+    "assets/zh/reliability.pdf": {
+      "bytes": 47039,
+      "sha256": "74546ef7827451f5b5ea8280c3b33ea62623b9a0f7b1e8ed66eeb7cacd205500"
+    },
+    "assets/zh/reliability.svg": {
+      "bytes": 12331,
+      "sha256": "e44971828ebddb501b09428116f326ba6c84f36b6b2fee7f085932537a587e57"
+    },
+    "assets/zh/risk-mobile.pdf": {
+      "bytes": 43447,
+      "sha256": "e9daf8f5eb1aaf6ef54cc3d0913f110a55859e7a9bc2190a993e20683492c7f9"
+    },
+    "assets/zh/risk-mobile.svg": {
+      "bytes": 15203,
+      "sha256": "3175163291162ccb00fccef1982248e3f8ed06a49339999682b816c96991c9db"
+    },
+    "assets/zh/risk.pdf": {
+      "bytes": 45291,
+      "sha256": "f64e53f59d525d13f31a7569fc93045896b043446a542a49efe5f9762659e484"
+    },
+    "assets/zh/risk.svg": {
+      "bytes": 15200,
+      "sha256": "aec75ec831e532b378ce16ce2f3d382563d50b881dcce924242d847cdd604c1c"
+    },
+    "assets/zh/sampling-mobile.pdf": {
+      "bytes": 39745,
+      "sha256": "81ebd9aa64ae82ab39371075bae75891c4a3d86894ef506f21f9ae5d914bee06"
+    },
+    "assets/zh/sampling-mobile.svg": {
+      "bytes": 13072,
+      "sha256": "72a03d511fae266d5d99b238158ce40a97cd8a457822e22d0cb466022f21e220"
+    },
+    "assets/zh/sampling.pdf": {
+      "bytes": 40652,
+      "sha256": "af604bdabf27d7123e540029faeda6db506ef4aece2bade9e3fc4cea1b9b612b"
+    },
+    "assets/zh/sampling.svg": {
+      "bytes": 13016,
+      "sha256": "3774f9ecaae9607b020353b6697b5b407cdcec334c71909e4e02c451270ef0e7"
+    },
+    "assets/zh/unscenes_1635039312_556829_camera.jpg": {
+      "bytes": 509917,
+      "sha256": "f90116f3d1a809f0567e4ad88322388d6d0d73312eb8836176d152309b069e08"
+    },
+    "assets/zh/unscenes_1635039312_556829_observed.svg": {
+      "bytes": 11535,
+      "sha256": "0f0abc76bdb679767e4e13eab637c6b110b50fc71d41af9f739eb71a7a9d92a2"
+    },
+    "assets/zh/unscenes_1635039312_556829_reference.svg": {
+      "bytes": 9127,
+      "sha256": "4b501329909a9d2ee7ec7a16cde3aef01369130c9ebd66ba4cb1bf4b663be6f7"
+    },
+    "assets/zh/unscenes_1635039313_256630_camera.jpg": {
+      "bytes": 512026,
+      "sha256": "e23b19be974dbe171c4daa283623d71771f99ae6b0ba84f451a12e1e0462b7ae"
+    },
+    "assets/zh/unscenes_1635039313_256630_observed.svg": {
+      "bytes": 12347,
+      "sha256": "71091ba2af6463e2b61923786cf565f533693f1c99d38901f3029945626d3e27"
+    },
+    "assets/zh/unscenes_1635039313_256630_reference.svg": {
+      "bytes": 9523,
+      "sha256": "e1972dd8f955722f4880515648f078edf1d658c6461b2a18b0a5ef0c04c2a6fc"
+    },
+    "assets/zh/unscenes_1635039313_856865_camera.jpg": {
+      "bytes": 494666,
+      "sha256": "1a76adc7d22c471b18b693949bec59fd5764a5de8d07c0690fe21abd5d832376"
+    },
+    "assets/zh/unscenes_1635039313_856865_observed.svg": {
+      "bytes": 12903,
+      "sha256": "c9a7ee3926e626f354430107abaf37dca2e9bd9e35fe96100c6c04b21c6208bf"
+    },
+    "assets/zh/unscenes_1635039313_856865_reference.svg": {
+      "bytes": 9871,
+      "sha256": "5f2281581b326dff74f1f986d54e956b7dcae17dee4f8bbaf7545fad1a9b64c5"
+    },
+    "assets/zh/unscenes_1635039314_356981_camera.jpg": {
+      "bytes": 519666,
+      "sha256": "6846ece6cb23e7c5dc1467c3527736fc462f86e4b9fad0961335cbd7db0b542a"
+    },
+    "assets/zh/unscenes_1635039314_356981_observed.svg": {
+      "bytes": 13219,
+      "sha256": "03c275a8f2dec564254c79bb7729291cf88ee2d5d2cb7bf05616b904d92819ab"
+    },
+    "assets/zh/unscenes_1635039314_356981_reference.svg": {
+      "bytes": 10191,
+      "sha256": "3495c3f26621be933093c42fa36eb1f428feba50fa02f88ba137df7bb041d3b4"
+    },
+    "assets/zh/unscenes_1635039314_856882_camera.jpg": {
+      "bytes": 527701,
+      "sha256": "1b78f1b2fa271c3e23ee540fc206ad61f0b1a46c276a14f6eed1ceeed54e75c8"
+    },
+    "assets/zh/unscenes_1635039314_856882_observed.svg": {
+      "bytes": 13607,
+      "sha256": "42daf5834fadc385a5c87f0afb44933617bfb6ee44d57c6a1786413811ae8022"
+    },
+    "assets/zh/unscenes_1635039314_856882_reference.svg": {
+      "bytes": 10343,
+      "sha256": "4f1155c87b3fb4d0f578bea48188492095c5f3b8d6035700e51b41a2cbd11721"
+    },
+    "assets/zh/unscenes_1635039315_256714_camera.jpg": {
+      "bytes": 530520,
+      "sha256": "bdba494a80fc6ed00fa40b7894ee88e2760cb3677c546bf4baac1582bab96735"
+    },
+    "assets/zh/unscenes_1635039315_256714_observed.svg": {
+      "bytes": 13975,
+      "sha256": "fcce016156f7d91f5cf43bfdf5a9509f82cbf178a401fcae1de67a8534b7ecec"
+    },
+    "assets/zh/unscenes_1635039315_256714_reference.svg": {
+      "bytes": 10655,
+      "sha256": "045767f5fa52fdf709e15b1dc14182e475e0bfa23653a36c5ca55ae20f6157eb"
+    },
+    "assets/zh/unscenes_1635039315_956706_camera.jpg": {
+      "bytes": 528850,
+      "sha256": "7b4f515c7e884d87b4d6c682b66e8d6c9207314fbe0f6f5e3d645d919ed0573b"
+    },
+    "assets/zh/unscenes_1635039315_956706_observed.svg": {
+      "bytes": 14127,
+      "sha256": "c25eb53926ab4262221205ae339c55fb01871ae9289cdc4b3d308522fbfccaf3"
+    },
+    "assets/zh/unscenes_1635039315_956706_reference.svg": {
+      "bytes": 10923,
+      "sha256": "3d52d8e8cdd59ab82d9e93a60b5ecafb0726ecb4d29afa77ca115080449bf1f3"
+    },
+    "assets/zh/unscenes_1635039316_356890_camera.jpg": {
+      "bytes": 468728,
+      "sha256": "262a6102dcf5b966f58661556c84e1c057b282e08b2818011a6d7ef5abdc58a3"
+    },
+    "assets/zh/unscenes_1635039316_356890_observed.svg": {
+      "bytes": 14347,
+      "sha256": "acc44cbf3087657b9ba17f188157634bac0ea0f298e7bc5c22587b20e4b73c64"
+    },
+    "assets/zh/unscenes_1635039316_356890_reference.svg": {
+      "bytes": 11051,
+      "sha256": "604526cdfe40071aa1e837e9aa5cfee820d03f3590fe6b1e8830e3020d0621ba"
+    },
+    "assets/zh/unscenes_1635039316_856993_camera.jpg": {
+      "bytes": 472090,
+      "sha256": "f5e78a61a518c9660ee9f7d3919be7133589fd5ec84a9204ac6366aa73fca445"
+    },
+    "assets/zh/unscenes_1635039316_856993_observed.svg": {
+      "bytes": 14235,
+      "sha256": "99c774cfdc60b75f34b25c92a2c02a21a30046aae15a53398486bf8d02602ca7"
+    },
+    "assets/zh/unscenes_1635039316_856993_reference.svg": {
+      "bytes": 11231,
+      "sha256": "64bb06ab00fb07049ad3e911890b9701d51564e46a22bf88c9eae599a1b10aa3"
+    },
+    "assets/zh/unscenes_1635039317_556736_camera.jpg": {
+      "bytes": 519030,
+      "sha256": "3c0f67d1f2d3194327cd9dcf9504f7d8b32611a0d06b3fdd48891488c8f92374"
+    },
+    "assets/zh/unscenes_1635039317_556736_observed.svg": {
+      "bytes": 14663,
+      "sha256": "67fa21ad71b248ad6480358a861daf7a45124797e7e873a1f4e09ae8973ebe7b"
+    },
+    "assets/zh/unscenes_1635039317_556736_reference.svg": {
+      "bytes": 11459,
+      "sha256": "6edacf5f52dff608513f9e362813de30433bc31332668f0759eb1174246c8dea"
+    },
+    "assets/zh/unscenes_1635039318_156960_camera.jpg": {
+      "bytes": 513574,
+      "sha256": "b8508eadbacf035c83d3109ad92a82d342d1d549dbfc94c3f5b143c9cbb8f3d0"
+    },
+    "assets/zh/unscenes_1635039318_156960_observed.svg": {
+      "bytes": 14251,
+      "sha256": "a0b783ed9af7b82b8dee1f7b0c744d9f7503202f9b327840fbc7cee8533d7519"
+    },
+    "assets/zh/unscenes_1635039318_156960_reference.svg": {
+      "bytes": 11759,
+      "sha256": "57878cef2862b84d9d473bd66f6f7dbebe171fa52b0efbb045b3811fe20b0a77"
+    },
+    "assets/zh/unscenes_1635039318_556983_camera.jpg": {
+      "bytes": 513830,
+      "sha256": "0ca79d83746a29be6c3faa31b46f7551cb05d1426d85f4cae9bd6d4aa041dcbd"
+    },
+    "assets/zh/unscenes_1635039318_556983_observed.svg": {
+      "bytes": 14935,
+      "sha256": "9fd8174d292fb7b98e0394743899e78460037685a17113fb4339eb9bcae8d94e"
+    },
+    "assets/zh/unscenes_1635039318_556983_reference.svg": {
+      "bytes": 11799,
+      "sha256": "553d2635671c42e683496721b7953fc1d969e1b1cb7895677e415047ccd0c5fd"
+    },
+    "assets/zh/unscenes_1635039319_056978_camera.jpg": {
+      "bytes": 486050,
+      "sha256": "fee28ba47a8cd37c8864ed3d28ea67791e34ddabb10948fa5cf4bd764d7ef40e"
+    },
+    "assets/zh/unscenes_1635039319_056978_observed.svg": {
+      "bytes": 14955,
+      "sha256": "57150e65904de0955aeb47d989da199f6b4408be4e5310e19cd5583aea141fdf"
+    },
+    "assets/zh/unscenes_1635039319_056978_reference.svg": {
+      "bytes": 11899,
+      "sha256": "287cb6692b56681edd5a0a69be3aa4d6ec77720842f714c831d81bc30f0c0fb6"
+    },
+    "assets/zh/unscenes_1635039319_657043_camera.jpg": {
+      "bytes": 485349,
+      "sha256": "ea09f52b5de8fee2d81691eaa1a4b46ab12924c8af81d90f3ab24e18b6d85ec5"
+    },
+    "assets/zh/unscenes_1635039319_657043_observed.svg": {
+      "bytes": 15219,
+      "sha256": "795a5dfb33e11593edda3d4a5eaca88098f57e5b451a5734a4b52a5272b1af7a"
+    },
+    "assets/zh/unscenes_1635039319_657043_reference.svg": {
+      "bytes": 12067,
+      "sha256": "8e81b632c15aa865523bba75238ce283376d466c24de86cfdcca57d9c90fd4d7"
+    },
+    "assets/zh/unscenes_1635039320_157027_camera.jpg": {
+      "bytes": 457585,
+      "sha256": "f9fafbdfc4fdc560ebd8ec7e5013d8cfa0540c7fc06faf63b6b064bcdbd6c820"
+    },
+    "assets/zh/unscenes_1635039320_157027_observed.svg": {
+      "bytes": 15371,
+      "sha256": "344a81af70ecbc47f39ed02866a58ff336ea45bc0609c133f9c380de020cc8ed"
+    },
+    "assets/zh/unscenes_1635039320_157027_reference.svg": {
+      "bytes": 12295,
+      "sha256": "3c6d2f799fd3f0802c9cb44d13f25ccea64c4b3e973642bea86f0c717a203c8c"
+    },
+    "assets/zh/unscenes_1635039320_557007_camera.jpg": {
+      "bytes": 496384,
+      "sha256": "a3d45f6e97083cd9a6a05501e34984a7fb8cb9c1e9e476c999fd92c610d05696"
+    },
+    "assets/zh/unscenes_1635039320_557007_observed.svg": {
+      "bytes": 15207,
+      "sha256": "7e1aaf96b542eb1ba90835bb18655bc16c1c39442e329d379a1fd6cdb0dc11a4"
+    },
+    "assets/zh/unscenes_1635039320_557007_reference.svg": {
+      "bytes": 12235,
+      "sha256": "cca474f0e86778155ee03f2de2c454ba4754b1718738a3f86898c496b85c183c"
+    },
+    "assets/zh/unscenes_1635039321_057719_camera.jpg": {
+      "bytes": 495238,
+      "sha256": "8be11d76ae606b49785de162d86a998bdfffcfc2894b30df8157cf9b4deb6944"
+    },
+    "assets/zh/unscenes_1635039321_057719_observed.svg": {
+      "bytes": 15719,
+      "sha256": "5ca3d3da163c10e64e2b6c2033cac75a917eb514c35cd2053368efca125595df"
+    },
+    "assets/zh/unscenes_1635039321_057719_reference.svg": {
+      "bytes": 12643,
+      "sha256": "dc3b536d91a2ba41e34205728711bb5644f693d4e74a6a8d65f388babadbd6ae"
+    },
+    "assets/zh/unscenes_1635039321_757031_camera.jpg": {
+      "bytes": 447362,
+      "sha256": "21a2a5f067ed3b649bd5e206f104afef3ece4df654f1801a236d5d40261a04b8"
+    },
+    "assets/zh/unscenes_1635039321_757031_observed.svg": {
+      "bytes": 16055,
+      "sha256": "34aed532454b574efe556c8f04f8ad611914228ea5316ea1990d42043e8113aa"
+    },
+    "assets/zh/unscenes_1635039321_757031_reference.svg": {
+      "bytes": 12651,
+      "sha256": "a8fcc201c063b861414ec3dde88d667ace2c281ff00e604fd1e381147181fef3"
+    },
+    "assets/zh/unscenes_1635057839_128198_camera.jpg": {
+      "bytes": 448411,
+      "sha256": "6c9863cfa810ab2903d59a193cb2356b78f1de86ef28dbcc153820c396fad1e8"
+    },
+    "assets/zh/unscenes_1635057839_128198_observed.svg": {
+      "bytes": 11503,
+      "sha256": "9728240eb6562a3ad56445b969d0428b436c2a323d6e7d6c5753603225d41671"
+    },
+    "assets/zh/unscenes_1635057839_128198_reference.svg": {
+      "bytes": 8703,
+      "sha256": "fec3282f066f4a9233279627fd6bcfcf8435a9580ebdebf61e01a8604d8b3d73"
+    },
+    "assets/zh/unscenes_1655688912_063049_camera.jpg": {
+      "bytes": 774447,
+      "sha256": "23f365a3785cf7d24bdf9084bb2d3a2c70207ac372c879be19d5d155b9cc164c"
+    },
+    "assets/zh/unscenes_1655688912_063049_observed.svg": {
+      "bytes": 9731,
+      "sha256": "e004163707ce7f9e2d8fa6c54e1d3636f540ffc2d53e295425cfd0b4e39cd06f"
+    },
+    "assets/zh/unscenes_1655688912_063049_reference.svg": {
+      "bytes": 8387,
+      "sha256": "63c786a8ffa6f628073f55819805b5019d81eead399201b7f134ade332a30f7b"
+    },
+    "assets/zh/unscenes_1655788197_391557_camera.jpg": {
+      "bytes": 602546,
+      "sha256": "71165a659f9cf04a14457361a7911a4dcaec76fb54bfc15d388ce1ccddc7e0f0"
+    },
+    "assets/zh/unscenes_1655788197_391557_observed.svg": {
+      "bytes": 11203,
+      "sha256": "f2f1cc234e89b034112c0a044dbcbc628a7b8da721d3d71beecf20cc2d4696cc"
+    },
+    "assets/zh/unscenes_1655788197_391557_reference.svg": {
+      "bytes": 8451,
+      "sha256": "979e79677766a828d0a809c1a9784aa3f39a4b81c110ef29699ef454039e1e25"
+    },
+    "assets/zh/unscenes_1657515104_535141_camera.jpg": {
+      "bytes": 522630,
+      "sha256": "450d8be82d6ef4c4f7365c1216bb0e97aa7b1427790a05c53e43d831b2edfe11"
+    },
+    "assets/zh/unscenes_1657515104_535141_observed.svg": {
+      "bytes": 7843,
+      "sha256": "23b66dbd1ac8650f350f805ce10a3784ab74fdee0e5f6371298cf298219f11ab"
+    },
+    "assets/zh/unscenes_1657515104_535141_reference.svg": {
+      "bytes": 6295,
+      "sha256": "df55369a9e5f3cf7465b6fb266033d5082bc12c977f3650b6c7a40fc23244a22"
+    },
+    "assets/zh/unscenes_1657854165_355872_camera.jpg": {
+      "bytes": 952524,
+      "sha256": "99172cd9f0f6828e58a1edc53827f2ede6c67d071fe2500d5af3b8a442c64d16"
+    },
+    "assets/zh/unscenes_1657854165_355872_observed.svg": {
+      "bytes": 13627,
+      "sha256": "d41373261c1d852a4f537877e16c068d3809c5b4dff2363bbf7e987aa87a2920"
+    },
+    "assets/zh/unscenes_1657854165_355872_reference.svg": {
+      "bytes": 9903,
+      "sha256": "2c3de7a585fb9f126e1beaae45203ca88965c96b12c326483344eaf759420ccb"
+    }
+  }
+}

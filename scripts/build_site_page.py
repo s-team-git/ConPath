@@ -1,4 +1,37 @@
-<!doctype html>
+#!/usr/bin/env python3
+"""Render a Chinese project page from the frozen numerical/visual snapshots."""
+import html
+import json
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+SITE = ROOT / 'site'
+
+
+def zoom(path, caption, eager=False):
+    return f'<a class="zoomable" href="{html.escape(path)}" data-zoom data-caption="{html.escape(caption)}"><img src="{html.escape(path)}" alt="{html.escape(caption)}" loading="{"eager" if eager else "lazy"}" decoding="async"><span class="zoom-hint" aria-hidden="true">点击放大 ↗</span></a>'
+
+
+def main():
+    data=json.loads((SITE/'data/site_visuals_zh.json').read_text())
+    analysis=json.loads((SITE/'data/flatlands_clean_paper_analysis.json').read_text())
+    case=data['examples'][0]
+    panels=''.join(zoom(case['panels'][key],caption,True) for key,caption in [('observed','① 已观测地图：绿色可通行，深灰阻挡，浅灰未知。S 为起点，G 为目标。'),('correlated','② ConPath 推测：米白至青绿表示单元格可通行概率从 0 到 1。'),('correlated_sample','③ 第一次随机补全的完整世界：绿色可通行，深灰阻挡。'),('reference','④ 数据集完整参考地图，用于核对通路是否存在。')])
+    first=data['gallery']['flatlands'][0]
+    gallery=zoom(first['observed'],'训练集中的已观测地图')+zoom(first['reference'],'同一场景的完整参考地图')
+    thumbs=''.join(f'<button class="thumbnail {"selected" if i==0 else ""}" type="button" data-gallery-index="{i}" aria-label="查看 {html.escape(row["source"])} 场景 {i+1}" aria-pressed="{"true" if i==0 else "false"}"><img src="{row["observed"]}" alt="" role="presentation" loading="lazy"><span>{html.escape(row["source"])}</span></button>' for i,row in enumerate(data['gallery']['flatlands']))
+    frame=data['gallery']['sequence'][0]
+    sequence=f'<figure><div class="camera-stage">{zoom(frame["camera"],"同一时刻的原始相机照片")}</div><figcaption>① 相机原始画面<span>帮助理解场景；当前模型输入来自激光雷达</span></figcaption></figure>'+''.join(f'<figure>{zoom(frame[key],label)}<figcaption>{label}</figcaption></figure>' for key,label in [('observed','② 激光雷达观测'),('reference','③ 数据集参考地图')])
+    rows=[]
+    for key,method in analysis['methods'].items():
+        cells=[html.escape(data['method_labels'][key]),str(method['seed_count'])]
+        for metric in ('brier','nll','ece'):
+            v=method['aggregate'][metric];cells.append(f'{v["mean"]:.5f}'+(f' ± {v["sample_sd"]:.5f}' if v['sample_sd'] is not None else ''))
+        cells.append(f'{method["equal_coverage"]["0.3"]["mean"]*100:.2f}%')
+        row='<tr'+(' class="ours"' if key=='conpath' else '')+f' data-method="{key}">'
+        row+='<th scope="row">'+cells[0]+'</th>'+''.join('<td>'+v+'</td>' for v in cells[1:])+'</tr>'
+        rows.append(row)
+    page='''<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#ffffff">
@@ -21,7 +54,7 @@
     <section id="method" class="section shell">
       <div class="section-heading"><p class="section-number">01 / 方法</p><h2>从一张不完整的地图，<br>到一个关于通路的概率。</h2><p>下面是已训练模型的真实验证示例。按 ① → ④ 阅读；每张图都可以放大。</p></div>
       <div class="toolbar"><div class="segmented" role="group" aria-label="选择读图示例"><button type="button" class="selected" data-example="0" aria-pressed="true">示例一：参考地图有路</button><button type="button" data-example="1" aria-pressed="false">示例二：参考地图无路</button></div><label class="model-select">查看模型 <select id="model-select"><option value="correlated">ConPath：相关补全</option><option value="independent">独立单元对照</option></select></label></div>
-      <div class="mobile-steps" role="group" aria-label="选择读图步骤"><button type="button" data-step="0" class="selected" aria-pressed="true">① 观测</button><button type="button" data-step="1" aria-pressed="false">② 推测</button><button type="button" data-step="2" aria-pressed="false">③ 补全</button><button type="button" data-step="3" aria-pressed="false">④ 参考</button></div><div id="example-panels" class="example-panels"><a class="zoomable" href="assets/zh/example_positive_recovery_observed.svg" data-zoom data-caption="① 已观测地图：绿色可通行，深灰阻挡，浅灰未知。S 为起点，G 为目标。"><img src="assets/zh/example_positive_recovery_observed.svg" alt="① 已观测地图：绿色可通行，深灰阻挡，浅灰未知。S 为起点，G 为目标。" loading="eager" decoding="async"><span class="zoom-hint" aria-hidden="true">点击放大 ↗</span></a><a class="zoomable" href="assets/zh/example_positive_recovery_correlated.svg" data-zoom data-caption="② ConPath 推测：米白至青绿表示单元格可通行概率从 0 到 1。"><img src="assets/zh/example_positive_recovery_correlated.svg" alt="② ConPath 推测：米白至青绿表示单元格可通行概率从 0 到 1。" loading="eager" decoding="async"><span class="zoom-hint" aria-hidden="true">点击放大 ↗</span></a><a class="zoomable" href="assets/zh/example_positive_recovery_correlated_sample.svg" data-zoom data-caption="③ 第一次随机补全的完整世界：绿色可通行，深灰阻挡。"><img src="assets/zh/example_positive_recovery_correlated_sample.svg" alt="③ 第一次随机补全的完整世界：绿色可通行，深灰阻挡。" loading="eager" decoding="async"><span class="zoom-hint" aria-hidden="true">点击放大 ↗</span></a><a class="zoomable" href="assets/zh/example_positive_recovery_reference.svg" data-zoom data-caption="④ 数据集完整参考地图，用于核对通路是否存在。"><img src="assets/zh/example_positive_recovery_reference.svg" alt="④ 数据集完整参考地图，用于核对通路是否存在。" loading="eager" decoding="async"><span class="zoom-hint" aria-hidden="true">点击放大 ↗</span></a></div>
+      <div class="mobile-steps" role="group" aria-label="选择读图步骤"><button type="button" data-step="0" class="selected" aria-pressed="true">① 观测</button><button type="button" data-step="1" aria-pressed="false">② 推测</button><button type="button" data-step="2" aria-pressed="false">③ 补全</button><button type="button" data-step="3" aria-pressed="false">④ 参考</button></div><div id="example-panels" class="example-panels">{{PANELS}}</div>
       <div class="map-legend" aria-label="地图颜色与标记说明"><span><i class="swatch free"></i>可通行</span><span><i class="swatch blocked"></i>阻挡</span><span><i class="swatch unknown"></i>尚未观测</span><span><i class="swatch outside"></i>有效范围外</span><span><b class="start-symbol">● S</b>起点</span><span><b class="goal-symbol">◆ G</b>目标</span></div>
       <p class="reading-note">概率图单独使用图内的 0–1 色条，颜色越深，单元格越可能可通行。<strong>S 和 G 只是查询的两个端点，图中没有把它们画成一条规划路线。</strong></p>
       <div class="example-summary" aria-live="polite"><div><span id="example-verdict">参考地图：存在通路</span><strong id="example-probability">ConPath 预测通路概率 78.9%</strong></div><p id="example-explanation">把可能的完整地图逐一检查后，模型给出“有路”的概率。中间的均值概率图描述每个位置，最终通路概率还取决于这些位置能否共同连通。</p></div>
@@ -33,12 +66,12 @@
       <div class="section-heading"><p class="section-number">02 / 数据</p><h2>先看清楚，模型到底看到了什么。</h2><p>6 个室内地图示例、6 个户外场景，以及一段 18 帧的真实数据浏览。<br>新增图库均取自训练集，场景按来源和编号选取，没有按模型表现挑图。</p></div>
       <div class="dataset-tabs segmented" role="group" aria-label="切换数据集"><button type="button" data-dataset="flatlands" class="selected" aria-pressed="true">FlatLands · 室内地图</button><button type="button" data-dataset="unscenes3d" aria-pressed="false">UnScenes3D · 户外实景</button></div>
       <div class="gallery-heading"><div><h3 id="gallery-title">FlatLands · 3RScan</h3><p id="gallery-description">左边是模型能够看到的部分，右边是用于核对的完整参考地图。这些是俯视栅格图，不是相机照片。</p></div><span id="gallery-count" class="counter">01 / 06</span></div>
-      <div id="gallery-stage" class="gallery-stage"><a class="zoomable" href="assets/zh/flatlands_obs_000468_observed.svg" data-zoom data-caption="训练集中的已观测地图"><img src="assets/zh/flatlands_obs_000468_observed.svg" alt="训练集中的已观测地图" loading="lazy" decoding="async"><span class="zoom-hint" aria-hidden="true">点击放大 ↗</span></a><a class="zoomable" href="assets/zh/flatlands_obs_000468_reference.svg" data-zoom data-caption="同一场景的完整参考地图"><img src="assets/zh/flatlands_obs_000468_reference.svg" alt="同一场景的完整参考地图" loading="lazy" decoding="async"><span class="zoom-hint" aria-hidden="true">点击放大 ↗</span></a></div>
+      <div id="gallery-stage" class="gallery-stage">{{GALLERY}}</div>
       <div class="map-legend"><span><i class="swatch free"></i>可通行</span><span><i class="swatch blocked"></i>阻挡</span><span><i class="swatch unknown"></i>未知</span><span><i class="swatch outside"></i>有效范围外</span></div>
-      <div id="gallery-thumbnails" class="thumbnails" aria-label="选择具体场景"><button class="thumbnail selected" type="button" data-gallery-index="0" aria-label="查看 3RScan 场景 1" aria-pressed="true"><img src="assets/zh/flatlands_obs_000468_observed.svg" alt="" role="presentation" loading="lazy"><span>3RScan</span></button><button class="thumbnail " type="button" data-gallery-index="1" aria-label="查看 ARKitScenes 场景 2" aria-pressed="false"><img src="assets/zh/flatlands_obs_026208_observed.svg" alt="" role="presentation" loading="lazy"><span>ARKitScenes</span></button><button class="thumbnail " type="button" data-gallery-index="2" aria-label="查看 Matterport3D 场景 3" aria-pressed="false"><img src="assets/zh/flatlands_obs_101176_observed.svg" alt="" role="presentation" loading="lazy"><span>Matterport3D</span></button><button class="thumbnail " type="button" data-gallery-index="3" aria-label="查看 ScanNet 场景 4" aria-pressed="false"><img src="assets/zh/flatlands_obs_143105_observed.svg" alt="" role="presentation" loading="lazy"><span>ScanNet</span></button><button class="thumbnail " type="button" data-gallery-index="4" aria-label="查看 ZInD 场景 5" aria-pressed="false"><img src="assets/zh/flatlands_obs_173739_observed.svg" alt="" role="presentation" loading="lazy"><span>ZInD</span></button><button class="thumbnail " type="button" data-gallery-index="5" aria-label="查看 ZInD 场景 6" aria-pressed="false"><img src="assets/zh/flatlands_obs_174795_observed.svg" alt="" role="presentation" loading="lazy"><span>ZInD</span></button></div>
+      <div id="gallery-thumbnails" class="thumbnails" aria-label="选择具体场景">{{THUMBNAILS}}</div>
       <p id="gallery-source" class="provenance">训练集 · 来源 3RScan · obs_015733。点击缩略图查看其他来源，点击大图查看标注。</p>
       <div class="sequence-intro"><h3>同一时刻：相机照片 → 观测地图 → 参考地图</h3><p>这是一段 UnScenes3D 原始数据的逐帧浏览。照片是前视图，地图是俯视图；当前模型读取激光雷达生成的观测地图，参考地图用于监督和评估。</p></div>
-      <div id="sequence-stage" class="sequence-stage"><figure><div class="camera-stage"><a class="zoomable" href="assets/zh/unscenes_1635039312_556829_camera.jpg" data-zoom data-caption="同一时刻的原始相机照片"><img src="assets/zh/unscenes_1635039312_556829_camera.jpg" alt="同一时刻的原始相机照片" loading="lazy" decoding="async"><span class="zoom-hint" aria-hidden="true">点击放大 ↗</span></a></div><figcaption>① 相机原始画面<span>帮助理解场景；当前模型输入来自激光雷达</span></figcaption></figure><figure><a class="zoomable" href="assets/zh/unscenes_1635039312_556829_observed.svg" data-zoom data-caption="② 激光雷达观测"><img src="assets/zh/unscenes_1635039312_556829_observed.svg" alt="② 激光雷达观测" loading="lazy" decoding="async"><span class="zoom-hint" aria-hidden="true">点击放大 ↗</span></a><figcaption>② 激光雷达观测</figcaption></figure><figure><a class="zoomable" href="assets/zh/unscenes_1635039312_556829_reference.svg" data-zoom data-caption="③ 数据集参考地图"><img src="assets/zh/unscenes_1635039312_556829_reference.svg" alt="③ 数据集参考地图" loading="lazy" decoding="async"><span class="zoom-hint" aria-hidden="true">点击放大 ↗</span></a><figcaption>③ 数据集参考地图</figcaption></figure></div>
+      <div id="sequence-stage" class="sequence-stage">{{SEQUENCE}}</div>
       <div class="sequence-controls"><button id="sequence-play" type="button" class="pill small" aria-pressed="false">播放浏览</button><label for="sequence-frame" class="sr-only">选择数据帧</label><input id="sequence-frame" type="range" min="0" max="17" value="0" step="1"><output id="sequence-counter" for="sequence-frame">01 / 18</output></div>
       <p class="reading-note">每秒切换一张采样帧，仅用于看数据，并非原始录像速度或模型实时运行速度。<strong>没有绘制查询直线或预测行驶路线。</strong></p>
       <p class="source-line">来源：<a href="https://1ssb.github.io/Flat_Lands/">FlatLands 官方项目</a> · <a href="https://github.com/ruiqi-song/UnScenes3D">UnScenes3D 官方数据</a> · <a href="data/site_visuals_zh.json">每张图的场景、时间戳与来源记录</a></p>
@@ -51,15 +84,7 @@
       <figure class="main-chart"><a href="assets/zh/brier.svg" id="chart-open" data-zoom data-caption="路径概率的预测误差：越低越好"><picture><source id="chart-mobile" media="(max-width: 600px)" srcset="assets/zh/brier-mobile.svg"><img id="chart-image" src="assets/zh/brier.svg" alt="中文横向柱状图：比较八种本地对照的路径事件 Brier 分数，越低越好，误差线为训练种子标准差。" loading="lazy"></picture></a><figcaption id="chart-caption"><strong>怎么看：</strong>Brier 衡量预测概率与实际结果的偏差，0 最好。横线表示三次训练的标准差；它不是置信区间。所有对照使用相同的验证查询。</figcaption></figure>
       <details id="paper-analysis" class="plain-details"><summary>展开完整数值表与指标解释</summary><div class="detail-body"><div class="table-scroll"><table class="metrics-table"><caption>相同验证查询的九种本地对照 · 均值 ± 训练种子标准差</caption><thead><tr><th scope="col">方法 / 对照</th><th scope="col">种子数</th><th scope="col">Brier ↓</th><th scope="col">NLL ↓</th><th scope="col">ECE ↓</th><th scope="col">30% 覆盖率误判 ↓</th></tr></thead><tbody>
 <!-- CLEAN_PAPER_ROWS_START -->
-<tr class="ours" data-method="conpath"><th scope="row">ConPath（相关补全）</th><td>3</td><td>0.06749 ± 0.00936</td><td>0.28854 ± 0.01662</td><td>0.05715 ± 0.00683</td><td>3.60%</td></tr>
-<tr data-method="independent"><th scope="row">独立单元对照</th><td>3</td><td>0.09521 ± 0.00703</td><td>0.78503 ± 0.04690</td><td>0.08720 ± 0.00741</td><td>3.90%</td></tr>
-<tr data-method="completion"><th scope="row">确定性地图补全</th><td>3</td><td>0.08857 ± 0.00323</td><td>1.22362 ± 0.04463</td><td>0.08857 ± 0.00323</td><td>7.29%</td></tr>
-<tr data-method="coordinate"><th scope="row">坐标查询对照</th><td>3</td><td>0.09204 ± 0.00582</td><td>0.33411 ± 0.01859</td><td>0.04302 ± 0.00803</td><td>6.97%</td></tr>
-<tr data-method="direct_query"><th scope="row">直接预测对照（单种子）</th><td>1</td><td>0.09119</td><td>0.29788</td><td>0.04076</td><td>5.02%</td></tr>
-<tr data-method="radius_prior"><th scope="row">训练集半径先验</th><td>1</td><td>0.15870</td><td>0.49283</td><td>0.01661</td><td>11.16%</td></tr>
-<tr data-method="mean_map"><th scope="row">ConPath 均值地图</th><td>3</td><td>0.06957 ± 0.00380</td><td>0.96118 ± 0.05253</td><td>0.06957 ± 0.00380</td><td>10.51%</td></tr>
-<tr data-method="independent_mean_map"><th scope="row">独立对照均值地图</th><td>3</td><td>0.07184 ± 0.00349</td><td>0.99248 ± 0.04822</td><td>0.07184 ± 0.00349</td><td>11.02%</td></tr>
-<tr data-method="marginal_shuffle"><th scope="row">打散空间结构（评估干预）</th><td>3</td><td>0.16139 ± 0.00677</td><td>1.53947 ± 0.18205</td><td>0.16433 ± 0.01252</td><td>3.91%</td></tr>
+{{ROWS}}
 <!-- CLEAN_PAPER_ROWS_END -->
       </tbody></table></div><p><strong>Brier：</strong>概率的平方误差。<strong>NLL：</strong>对错误且过度自信的判断惩罚更重。<strong>ECE：</strong>模型信心与实际频率的分箱差异。<strong>误判通路：</strong>接受的查询里，实际上没有通路的比例。种子数代表独立训练次数；半径先验只由训练集拟合一次。</p><p>均值地图等二元预测会出现同分查询，覆盖率边界按不使用标签的比例方式分配。<a href="data/flatlands_clean_paper_analysis.json">原始统计 JSON ↗</a> · <a href="https://github.com/s-team-git/ConPath/blob/main/PAPER_EVIDENCE.md">完整证据与复现说明 ↗</a></p></div></details>
       <div class="second-domain"><h3>换到户外数据后，当前还没有看到优势。</h3><p>UnScenes3D 的均值地图事件误差为 <strong>0.51142</strong>（ConPath）与 <strong>0.51130</strong>（独立对照），结果几乎相同。当前硬观测规则已经造成约 <strong>0.47574</strong> 的误差下界；只加训练时长难以解决，需要先检查观测模型。这里只有两个验证场景，尚不支持跨域成功的结论。</p><p class="provenance">这里比较的是均值地图事件，预测对象与上方随机路径概率不同。<a href="data/unscenes3d_clean_support_k128_candidate.json">修正后的验证报告</a> · <a href="data/unscenes3d_observation_ceiling.json">观测误差下界</a></p></div>
@@ -84,3 +109,11 @@
   <dialog id="image-dialog" aria-labelledby="dialog-caption"><div class="dialog-toolbar"><p id="dialog-caption"></p><button type="button" id="dialog-close" aria-label="关闭放大图片">关闭 ×</button></div><div class="dialog-image"><img id="dialog-image" alt="放大后的当前图片"></div><a id="dialog-source" href="#top">打开原始尺寸 ↗</a></dialog>
   <p id="interaction-error" class="interaction-error" hidden>交互数据暂时加载失败；已展示首个示例与完整静态结果，请刷新重试。</p>
 </body></html>
+'''
+    for key,value in [('PANELS',panels),('GALLERY',gallery),('THUMBNAILS',thumbs),('SEQUENCE',sequence),('ROWS','\n'.join(rows))]:page=page.replace('{{'+key+'}}',value)
+    assert '{{' not in page
+    (SITE/'index.html').write_text(page)
+    print('Chinese page built: 9 methods, 2 model examples, 12 gallery scenes, 18 frames.')
+
+
+if __name__=='__main__':main()

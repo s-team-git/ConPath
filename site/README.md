@@ -1,146 +1,52 @@
-# ConPath project page
+# ConPath 中文研究主页
 
-This directory is a static, GitHub Pages-ready academic project page. The primary visual is now a
-clean-support checkpoint-derived FlatLands K=128 comparison at
-`assets/flatlands_k128_clean_candidate.png`; its machine-readable provenance is
-`data/flatlands_k128_clean_candidate.json`. The TUM RGB-D Freiburg1/desk video is retained lower on
-the page as a geometry-only pipeline pilot. No synthetic video or fabricated model figure is
-referenced by `index.html`.
+主页按“方法读图 → 数据示例 → 当前结果 → 数据集与原论文对照”组织，以中文解释为主。
+参考用户提供的 [Lightweight-3DGS](https://s-team-git.github.io/Lightweight-3DGS/) 单栏论文主页，
+重新实现静态 HTML/CSS/JavaScript；无需前端框架、在线字体或第三方脚本。
 
-The 2026-09-03 model audit found that older FlatLands neural forwards did not explicitly hard-block
-cells outside `epistemic_mask`. The old checkpoints and their support-clamped post-hoc replay remain
-archived for recovery, while the hero now reports the independently audited clean-support rerun:
-ConPath Brier `0.06749 +/- 0.00936` versus independent-decoder `0.09521 +/- 0.00703` over three
-seeds. The paired independent-minus-ConPath Brier delta is `+0.02772 +/- 0.00993`, and every
-per-seed scene-bootstrap interval is positive. This is still validation-only on the non-official
-provenance split; physical test labels remain unopened.
+## 图片与交互
 
-The responsive page repeats the main comparison below the hero: 29.1% lower event Brier,
-3.60% versus 3.90% false-safe rate at equal 30% coverage, and positive paired Brier intervals
-for 3/3 seeds. The equal-coverage risk intervals all include zero; the caption discloses that
-the PNG's 20.0% fixed-threshold reduction uses unequal coverage. Mobile navigation wraps and
-reproduction cards do not force horizontal page scrolling.
+- 两个固定验证示例，可切换相关模型与独立对照；单元格概率和整体通路概率明确区分。
+- 蓝色圆点 S 是起点，棕色菱形 G 是目标；不把查询端点画成直连规划路线。
+- 所有地图附中文颜色图例，概率地图自带 0–1 色条。手机使用四步大图切换；图片可放大。
+- 6 个 FlatLands 训练样本覆盖本地 5 个来源；6 个 UnScenes3D 训练场景覆盖 3 个地点。
+- 18 个同场景采样帧同步显示相机、观测地图、参考地图，支持播放、暂停和拖动。
+  这是每秒一帧的数据浏览，不是实时推理或原始录像速度；相机照片保持原始发布字节。
+- 五组中文图表分别输出桌面版、手机版 SVG/PDF，复用已审计的数值，不改变指标。
+  详细九方法表默认折叠，失败和无优势的结果明确保留。
 
-## Clean paper analysis
+`index.html` 使用 `styles-zh.css` 与 `app-zh.js`。以前的页面在 `archive/index.html`，
+包括旧英文图表、审计过程和带查询连线的 TUM 几何演示。它们不再出现在当前主页。
 
-The `#paper-analysis` section contains a nine-control table generated from
-`data/flatlands_clean_paper_analysis.json`, plus clean reliability, equal-coverage risk,
-nested K=32/64/128 and fixed-marginal shuffle figures. The UnScenes3D section adds a rigorous
-observation-conditioned error-floor diagnostic. All five new figures include standalone PDFs.
-Generate the statistical report and figure/table package with the commands in
-[`PAPER_EVIDENCE.md`](../PAPER_EVIDENCE.md); `scripts/build_paper_evidence.py` updates the table
-between the `CLEAN_PAPER_ROWS` markers in `index.html`. It does not regenerate the original
-checkpoint PNGs or archived calibration snapshots.
-
-## Refresh the real-data page
-
-From the repository root, after downloading and extracting the TUM sequence:
+## 重建与检查
 
 ```bash
-/usr/bin/python3 scripts/run_tum_rgbd_pilot.py --publish-site
-/usr/bin/python3 scripts/build_demo_site.py
-# Optional torch-only integration smoke on the same real BEV hand-off:
-PYTHONPATH=src .venv/bin/python scripts/run_tum_rgbd_model_smoke.py --device cpu
+# 只回放已完成的模型与数据，不训练；默认 --device cpu，也可用 cuda 加速绘图。
+PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/build_site_visuals.py --device cuda
+/home/hairo/miniconda3/bin/python3.13 scripts/build_site_page.py
+PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/audit_site_visuals.py
+PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/audit_paper_evidence.py --output results/site_redesign_20260907/paper_evidence_audit.json
 ```
 
-The first command writes the reproducible pilot report under
-`results/tum_rgbd_freiburg1_desk_pilot/` and copies compact derived assets into `site/`. The second
-command rebuilds `data/tum_rgbd_pilot.json`, `data/flatlands_audit.json`, the validation-only
-`data/flatlands_baselines_validation.{json,js}`, their browser-local JS mirrors, and the FlatLands
-audit/baseline SVGs. The page renders pooled, radius-stratified, and source-stratified baseline
-tables from that snapshot. It expects the bounded query, provenance-audit, and first validation
-baseline reports under `results/`; use `--skip-flatlands` or `--skip-flatlands-baselines` only when
-intentionally rebuilding a partial page. Raw datasets and checkpoints remain under ignored paths
-and are never committed.
+最新绘图与逐图来源：`data/site_visuals_zh.json`。它保存源文件、检查点、原始相机图、
+统计快照和每个导出文件的哈希。原始数据与模型权重仍在忽略目录，没有加入 Git。
+相机照片共 23 张唯一原始帧：6 个图库场景和 18 帧时序中有 1 张重合。
+结果图的三次训练误差线为种子标准差，不是置信区间。
 
-The legacy synthetic P0 snapshot can still be regenerated for development with
-`scripts/build_demo_site.py --include-legacy`, but it is intentionally excluded from the public page.
+如果重新运行旧的 `build_paper_evidence.py` 更新统计表，应随后运行
+`build_site_page.py`，恢复当前中文模板和指标单位。
 
-The model comparison is generated with `scripts/render_flatlands_k128_advantage.py`. It records all
-six prediction hashes, both canonical checkpoint hashes, fixed visual sampling seeds, exact query
-keys, the support policy, and label-derived case-selection rules. One case recovers a real path; the
-other avoids an independent-decoder false-safe decision. Both show observed input, posterior mean,
-the first four deterministic sample worlds, and reference support. They explain the clean-support
-validation candidate and are not unbiased effect estimates or final paper claims.
+本地预览：`python3 -m http.server 8765 --bind 127.0.0.1 --directory site`。
+启动带 `--remote-debugging-port=9223` 的 Chrome 后，运行
+`node scripts/check_site_browser.mjs` 检查 1440/390 像素下的图片、图表、图库、播放、放大、
+手机步骤切换、键盘关闭与页面溢出。记录在 `results/site_redesign_20260907/`。
 
-The hero comparison and qualitative panels are deliberately large. The page adds a four-step visual key
-(`observe → imagine → account for size → decide`) and plain-language captions so a reader can map
-each color and panel to the planning event. The desk-surface pilot is explicitly marked as an
-appendix-style geometry demonstration; it must be replaced by a ground-robot/floor scene before a
-navigation claim is presented.
+## 发布与当前研究状态
 
-The FlatLands section retains the older three-seed independent-decoder causal-control snapshot for
-audit continuity, but its unmasked PathRelNet probabilities are superseded. The clean-support
-three-seed rerun and paired report are now the current validation evidence; the old post-hoc figure
-is retained under its original filename as an archive record.
+GitHub Pages 通过 `.github/workflows/deploy-pages.yml` 发布，每次推送 `main` 触发部署。
+主实验是 FlatLands 场景隔离的非官方验证划分，UnScenes3D 仍为两场景诊断；正式测试未评估。
+新增训练消融保持用户请求的暂停状态，绘图命令不恢复该训练。
 
-The earlier K=128 snapshots remain archived as reproducibility records, but their unmasked neural
-event values are superseded by the support-boundary audit and must not be cited as current evidence.
-The post-hoc corrected independent-minus-correlated Brier delta is `+0.01886 +/- 0.00963` across
-three seeds, and each per-seed 2,000-resample paired interval is positive. The JSON hero metadata
-links back to the full ignored validation manifests and paired comparison. This remains a recovery
-effect-size check, not a significance, test, leaderboard, or clean-training claim.
-
-The page also archives the deterministic PathRelNet posterior mean-map diagnostic. Its event and
-map metrics predate the support clamp and are explicitly superseded; it is not current comparative
-evidence.
-
-The FlatLands reliability/selective-risk curves generated by
-`scripts/evaluate_flatlands_calibration.py` are now a mixed historical view: their stochastic and
-mean-map PathRelNet traces are superseded, while the direct S4C-inspired coordinate-query trace is
-unaffected. The fixed baseline table above them remains valid because its completion samplers only
-populate the released support-masked unknown region. No test split was opened.
-
-The page also includes an UnScenes3D ground-vehicle validation section. A 2026-09-03 audit found the
-same support-boundary class of error in the older map-derived paths: the complement of
-`target_valid` was not hard-blocked before posterior sampling. Six fresh F=16 runs now use the
-corrected support contract. The exact K=128 mean-map event Brier is `0.51142 +/- 0.00198` for
-correlated ConPath and `0.51130 +/- 0.00218` for the matched independent decoder (paired delta
-`-0.00012 +/- 0.00021`), so this second-domain adapter does not show a measurable correlation win
-on its two held-out validation scenes. It is a support-consistency/transfer diagnostic, not a final
-cross-domain result. The clean ground-robot panels are
-`assets/unscenes3d_clean_candidate_positive.png` and
-`assets/unscenes3d_clean_candidate_failure.png`, with provenance in
-`data/unscenes3d_clean_support_k128_candidate.json` and
-`data/unscenes3d_clean_candidate_qualitative.json`. The historical pre-correction controls and
-panels remain labelled superseded; direct coordinate-query and train-fitted radius-prior controls
-are unaffected. `location_6` and its test labels remain locked, and published JSON paths stay
-repository-relative.
-
-The official FlatLands implementation/weights audit is recorded in
-[`OFFICIAL_FLATLANDS_CHECK.md`](../OFFICIAL_FLATLANDS_CHECK.md). The public dataset and documentation
-are available, but the official repository currently marks model weights, construction code, and
-additional benchmark tooling as planned; no official checkpoint is imported into the ConPath table.
-The SceneSense diffusion reference is likewise documented as a 3-D pointmap/ROS contract that is not
-directly comparable to the 2-D event protocol; see [`SCENESENSE_COMPATIBILITY_CHECK.md`](../SCENESENSE_COMPATIBILITY_CHECK.md).
-
-## Preview locally
-
-```bash
-python3 -m http.server 8000 --directory site
-```
-
-Open <http://127.0.0.1:8000>. A local HTTP server exercises the same relative asset paths used by
-GitHub Pages.
-
-## GitHub Pages
-
-`.github/workflows/deploy-pages.yml` publishes this directory on every push to `main`. Enable Pages
-once in repository settings and choose **GitHub Actions** as the source. The workflow uploads tracked
-files; it does not download datasets or run GPU experiments on the hosted runner.
-
-## Attribution and claim boundary
-
-The TUM RGB-D sequence is credited in the page and linked to the official source. Its RGB/depth and
-motion-capture trajectory support a geometric reference-map pilot, not traversability or collision
-ground truth. The FlatLands audit and baseline sections use only the scene-disjoint upstream
-provenance split because the physical archive split leaks scenes. The baseline numbers are
-validation-only diagnostics; they are not a public-data or final-paper claim. See
-[`REAL_DATA_PILOT.md`](../REAL_DATA_PILOT.md), [`P1_DATA_AUDIT.md`](../P1_DATA_AUDIT.md), and
-[`P1_BASELINE_PROTOCOL.md`](../P1_BASELINE_PROTOCOL.md) for exact protocols and limitations.
-
-The September 6 final-projection audit supersedes UnScenes3D mean-map/qualitative v1: restoring
-observed-free cells had reopened invalid support after sampling. Current candidate JSON and
-PNG files come from v2 replay of the same six clean checkpoints. All 27,522 corrected event
-predictions satisfy the pessimistic/optimistic bounds, and hidden-map metrics replay exactly.
-The old versions remain in Git history and their original results directories.
+数据集选择、原方法实际使用的数据及媒体署名见
+[DATASET_CHOICE_ZH.md](../DATASET_CHOICE_ZH.md)。FlatLands 的上游原始 RGB-D 等源素材未被重新发布，
+新图库显示发布包中的派生地图。UnScenes3D 相机图片来自数据集发布文件，未改编其论文插图。

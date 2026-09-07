@@ -10,9 +10,14 @@ runs have completed epoch 4; no_global has not started. The supervisor and worke
 have exited and released their GPU allocations. Do not restart training until the
 user requests it. State: `results/paper_clean_ablation_matrix_v1/progress.json`.
 
+Current website: Chinese, minimal academic layout based on the user's Lightweight-3DGS
+reference. `site/index.html` uses `styles-zh.css` / `app-zh.js`; English clutter and old
+query-line media are in `site/archive/`. See `DATASET_CHOICE_ZH.md` for the newly verified
+dataset/baseline rationale and `site/README.md` for the new build and browser commands.
+
 - Updated: 2026-09-07 (America/New_York)
 - Repository: `/home/hairo/pathrel_transfer/pathrel_pro6000`
-- Durable checkpoint: `clean-causal-ablations-paused-20260907` in tracked `RECOVERY_STATE.json`
+- Durable checkpoint: `chinese-readable-website-training-paused-20260907` in tracked `RECOVERY_STATE.json`
 - Recovery-state commit: resolve with `git log -1 --format='%h %s' -- RECOVERY_STATE.json`
 - Implementation history: `61d617e` is the September 2 base. The September 6 publication packages the clean-support implementation, audits and figures; resolve its revision with `git log -1 -- WORK_PLAN.md`. Current execution order is in `WORK_PLAN.md`.
 - Scientific gate: **P0 GO; FlatLands K=128 clean-support validation candidate and bounded data gate
@@ -1183,3 +1188,44 @@ resumption, use the existing runner and its `latest.pt` recovery to start epoch 
 The incomplete fifth epoch will be rerun. `interrupted.pt` includes partial-epoch
 state and must not replace the complete-epoch `latest.pt`. Do not resume merely
 because an older continuation section describes an active supervisor.
+
+## 2026-09-07 Chinese website redesign
+
+The user asked for a simpler website, understandable figure legends, better plots,
+more dataset pictures and an explanation of dataset/baseline choices. They supplied
+https://s-team-git.github.io/Lightweight-3DGS/ and its GitHub repository as the visual
+reference and requested Chinese wherever possible. The public HTML/CSS and repository
+file tree were inspected; the new implementation is framework-free and does not
+require external fonts or scripts.
+
+The home page now has four reading sections, two switchable checkpoint examples,
+labelled S/G endpoint markers without connecting lines, five Chinese chart tabs with
+separate mobile SVG/PDF exports, a folded nine-method numeric table, six FlatLands
+training examples, six UnScenes3D training scenes and an 18-frame synchronized camera /
+observation / reference browser. Twenty-three unique camera images preserve their
+released bytes. No training resumed; the four model/case visualization replays
+are the previously published validation cases. Their original event probabilities
+are retained, and the separate fixed visualization RNG is disclosed.
+
+The original white/yellow straight lines were query connectors, not planned paths.
+TUM's black lines were camera MoCap trajectory and its colored segments were changing
+query pairs. Old media remains archived with a visible historical-page banner. New
+maps use a consistent legend and distinguish unknown cells from invalid support.
+The no-path example explicitly retains the high-probability failure. New dataset
+examples use train-only scene IDs / timestamps, not outcome-based selection.
+
+Official sources confirm PaSCo and SGN use SemanticKITTI / SSCBench-KITTI360; S4C uses
+KITTI-360, and the online SceneSense work uses its own real-building occupancy data.
+The site and DATASET_CHOICE_ZH.md distinguish those original systems from our adapters.
+UnScenes3D's obsolete baseline-summary value was corrected to the existing v2 result.
+Main numerical evidence and the training/model/data implementations are unchanged.
+
+Build `scripts/build_site_visuals.py` then `scripts/build_site_page.py`; the latter is
+also required after the older English paper-table generator. Read-only audits are
+`scripts/audit_site_visuals.py` and `scripts/audit_paper_evidence.py --output
+results/site_redesign_20260907/paper_evidence_audit.json`. The output option preserves
+historical audit receipts. `scripts/check_site_browser.mjs` exercises real Chrome at
+1440/390 pixels, including all gallery/plot switches, image modal and Escape, frame
+seek/play/pause and mobile step navigation. Receipts/screenshots are under
+`results/site_redesign_20260907/`; deployment status is recorded there after push.
+Training remains paused until a subsequent user request.

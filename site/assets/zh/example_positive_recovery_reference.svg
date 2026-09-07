@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="380" height="452" viewBox="0 0 380 452" role="img" aria-labelledby="title desc">
+<title id="title">④ 数据集给出的完整地图</title>
+<desc id="desc">用于核对结果，不作为未知区域输入。绿色表示可通行，深灰表示阻挡，浅灰表示未知，棋盘格表示有效范围外。S 为起点，G 为目标，不画直连路径。</desc>
+<style>text{font-family:"Noto Sans CJK SC","Microsoft YaHei",sans-serif}</style>
+<rect width="380" height="452" fill="white"/>
+<text x="20" y="26" fill="#263544" font-size="20" font-weight="600">④ 数据集给出的完整地图</text>
+<text x="20" y="48" fill="#667582" font-size="11">用于核对结果，不作为未知区域输入</text>
+<image x="20" y="60" width="340" height="340" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAIAAADTED8xAAAFbElEQVR4nO3dsU4jVxiG4UmUCiFxKVtyAVTbpKGLRJe0u1eQiiswtVOt5C6NpYhqC8qUvhQkRJ3iWCOHhTVrz3jOme95KsRKKxfzzvw/x5if/vjnrw5S/Tz1C4ApCYBoAiCaAIgmAKIJgGgCIJoAiCYAogmAaAIgmgCIJgCiCYBoAiCaAIgmAKIJgGgCIJoAiCYAogmAaAIgmgCIJgCiCYBoAiCaAIgmAKIJgGgCIJoAiCYAogmAaAIgmgCIJgCiCYBoAiCaAIgmAKIJgGgCIJoAiCYAogmAaAIgmgCIJgCiCYBoAiCaAIgmAKIJgGgCIJoAiCYAogmAaAIgmgCIJgCiCYBoAiCaAIgmAKIJgGgCIJoAiCYAogmAaAIgmgCIJgCiCYBoAiCaAIgmAKIJgGi/TP0CYBqbxX3nCUCmcvV3AiBQf/V3AiDN7tXfCYBwAiDIi9t/JwCSrVdLARBqvVp2ngBkKld/5yCMQA/rVf+1JwBBPnz++OI7AiBLP/wUAiCaHYAUd1c35YvHp+f+m54AROiv/hcEwPzdXl6/9U8CYOa+c/V3dgBm7+L8rPv/3F++U3gCMGdvjf49ARBNAESzAzBn/ei/O/c7B4AtARBNAESzAzBn/ejvHABeIQCiCYDZ2nsM3NkBmKVy6b819zsHYM7ec+PvCYBZ+aGrvxMA4ewAzMfd1c175n7nALAlAKIJgGh2AObj8en5PXO/cwDYEgDRBEA0OwDzcXF+5hyAUD/6JojCE4DmHXbpF54AtO37H/25lycADXv/+/6dA8ArBECrjhn9ewIgmh2AVu393E/nALCHAIgmAKLZAWjV3s/9dA4AewiAaAIgmh2AVjkHgGMJgGgCIJodgFY5B4BjCYBoAiCaHYBWOQcg15EfBtETAO3ZLO6H+q8EQGM2i/uH9Wqo/80OQHsO+DsAzgGYgwGHn0IARBMAzRj89t/ZAWhO2YCPmfudA8CWAGjJgD8ALQRANDsALRnk/T/OAWjSerUc/P8UAG0Y42egnQBoxeDrb2EHoHbl3v94eT3U3L/7fQFQr5HGnl1GICq1e/WPsf4WAqBGJ7j3F0YgGlCm9qHm/t3vC4Dq7N7+R/rhT08A1Gi8of8FOwB12SzuT3b1d54A1Ga9Wo7x836/D0ADhvq0n/cTALU4/dXfCYBKTHL1d3YAKnHKud/vA1CXqW7/nQAIJwCi2QGY3sX52SnnfucAsCUAohmBmNLd1c20L0AATOb28nrwz/lxDkAbJr/3FwJgApVc/Z0ACGcH4NT60X+qud85AGwJgJOa8H1vrxIA0ewAnFQNc79zANgSANEEQDQ7ACdVw9zv7wMwgfL2h90LsQYCYHT1vPPnW3YAxlXbydcLngCM6Nuxp4a53zkAbAmAsdQ8+vcEQDQ7AGOZ/Pd9/T4A7CEAogmAsfz5799Tv4T97ACMaLy/7+scAAYgAKIJgGh2AEZUz+f/OAeAVwiAaAIgmh2AETkHINqnr1+mfgl7CIBoAmBclT8E7ACMrra53zkAbHkCMKLKPxOlEwAjqf/SLwTA8G4vr2uY750DMIFW7v2FAIgmAIbU1u2/swMwrH7UrmG+dw4AewiAaAIgmh2AIX36+qXswTXM984BYA8BEE0ARLMDMJjN4v5hvSpf1zDf+zvBnMhmcT/1SziQEYhj9Vd/f/tviAA4Srv3/sIIxGBqm++dAzCu1m//nQAIJwCi2QEYzK+//d7cOYAnANEEQDQBMJgWD8LsABzuw+ePuz8JrW2+dw7A6bR4++8EQDgBEM0OwADWq+Xj03Nt871zANhDAEQTAMdar5ZTv4TD2QE4VnOfB+ocALYEwOH8QgzpGj0A7v0H187m5Mgn5lsAAAAASUVORK5CYII=" style="image-rendering:pixelated"/>
+<circle cx="190.66" cy="314.34" r="7" fill="#326cbd" stroke="white" stroke-width="2"/>
+<text x="200.66" y="303.34" font-size="16" font-weight="700" stroke="white" stroke-width="4" paint-order="stroke" fill="#326cbd">S</text>
+<path d="M282.30,252.21 l9,9 l-9,9 l-9,-9 Z" fill="#a35328" stroke="white" stroke-width="2"/>
+<text x="292.30" y="250.21" font-size="16" font-weight="700" stroke="white" stroke-width="4" paint-order="stroke" fill="#a35328">G</text>
+<rect x="20" y="410" width="10" height="10" rx="2" fill="#65b59d"/><text x="35" y="420" font-size="11" fill="#667582">可通行</text>
+<rect x="102" y="410" width="10" height="10" rx="2" fill="#364654"/><text x="117" y="420" font-size="11" fill="#667582">阻挡</text>
+<rect x="172" y="410" width="10" height="10" rx="2" fill="#dce4ec"/><text x="187" y="420" font-size="11" fill="#667582">未知</text>
+<rect x="245" y="410" width="10" height="10" rx="2" fill="#e8ecf0"/><text x="260" y="420" font-size="11" fill="#667582">范围外</text>
+<text x="20" y="441" font-size="11" fill="#667582">蓝色圆点 S：起点 · 棕色菱形 G：目标 · 不表示规划路线</text>
+</svg>

@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import ast
 import hashlib
 from html.parser import HTMLParser
@@ -36,12 +37,16 @@ class Page(HTMLParser):
             if key in attrs:
                 self.links.append(attrs[key])
         if tag == 'img':
-            if not attrs.get('alt'):
+            if 'alt' not in attrs or (not attrs['alt'] and attrs.get('role') != 'presentation'):
                 raise ValueError('image missing alternative text')
-            self.images.append(attrs['src'])
+            if attrs.get('src'):
+                self.images.append(attrs['src'])
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--output', type=Path, default=ROOT / 'results/maintenance_20260906/paper_evidence_audit.json')
+    args = parser.parse_args()
     page = Page()
     page.feed((ROOT / 'site/index.html').read_text())
     assert len(page.ids) == len(set(page.ids)), 'duplicate HTML ids'
@@ -120,7 +125,7 @@ def main():
               'site_json_files': len(json_files), 'local_links': local_links, 'image_elements': len(page.images),
               'flatlands_prediction_files_replayed': predictions, 'flatlands_methods': len(analysis['methods']),
               'unscenes3d_bound_comparisons': audit['event_comparisons'], 'standalone_figure_pairs': len(figures)}
-    output = ROOT / 'results/maintenance_20260906/paper_evidence_audit.json'
+    output = args.output
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report, indent=2))
