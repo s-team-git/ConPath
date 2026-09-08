@@ -49,7 +49,7 @@ def main():
       <h1>ConPath<span>看不见的空间，<br class="mobile-break">还有路可走吗？</span></h1>
       <p class="hero-description">机器人只看到了地图的一部分。我们让模型补全多种可能的世界，<br class="desktop-break">再考虑机器人的尺寸，估计起点到目标之间<strong>存在通路的概率</strong>。</p>
       <div class="publication-links"><a class="pill primary" href="https://github.com/s-team-git/ConPath/blob/main/PAPER_DRAFT.md">论文草稿（英文）↗</a><a class="pill" href="https://github.com/s-team-git/ConPath">项目代码 ↗</a><a class="pill" href="#method">先看图，理解方法 ↓</a></div>
-      <p class="status-line"><span class="status-dot"></span>验证阶段 · 新消融实验已暂停 · 更新于 2026.09.07</p>
+      <p class="status-line"><span class="status-dot"></span>验证阶段 · 新消融评估已恢复 · 更新于 2026.09.08</p>
     </section>
 
     <section id="method" class="section shell">
@@ -105,10 +105,10 @@ def main():
         <tr><th scope="row"><a href="https://arxiv.org/html/2409.10681v1">在线 SceneSense · 2024 ↗</a></th><td>作者采集的真实建筑占用地图</td><td>三维占用生成与探索任务；不能直接把其分数放进路径概率表。</td></tr>
       </tbody></table></div>
       <p class="research-decision"><strong>当前方案：</strong>FlatLands 做主比较，CogniPlan 原生地图补充外部生成模块比较，KTH 作为后续泛化补充。KITTI-360 暂不列为必跑。先核对数据尺度、原生实现和计算预算，再安排训练；所有方法统一起终点、机器人尺寸与评价规则，实验数值由实际运行产生。</p>
-      <details class="plain-details"><summary>主实验具体比较什么？</summary><div class="detail-body"><p>第一张新表计划统一为 4 个完整地图输出，比较 ConPath、LaMa 集成、条件流匹配等；确定性方法保留单个输出。另一张表记录实际采样量、误差、耗时和显存。现有 128 次采样的数值不会直接混进这张新表。</p><p>实验方案已确认：补齐外部方法对比、三次独立训练、场景配对统计和失败案例，再写入论文。已知限制也会保留：均值地图结果很接近，外部强基线尚未运行，FlatLands 原文与本地元数据的尺度差异待核对。六组消融当前按要求暂停，没有新增的最终结果。</p></div></details>
+      <details class="plain-details"><summary>主实验具体比较什么？</summary><div class="detail-body"><p>第一张新表计划统一为 4 个完整地图输出，比较 ConPath、LaMa 集成、条件流匹配等；确定性方法保留单个输出。另一张表记录实际采样量、误差、耗时和显存。现有 128 次采样的数值不会直接混进这张新表。</p><p>实验方案已确认：补齐外部方法对比、三次独立训练、场景配对统计和失败案例，再写入论文。已知限制也会保留：均值地图结果很接近，外部强基线尚未运行，FlatLands 原文与本地元数据的尺度差异待核对。六组消融已按要求恢复，先完成精确评估，再接续后面的训练；当前没有新增的最终结果。</p></div></details>
       <p class="source-line"><a href="https://github.com/s-team-git/ConPath/blob/main/LITERATURE_REVIEW_ZH.md">八篇论文怎样做比较 ↗</a> · <a href="https://github.com/s-team-git/ConPath/blob/main/EXPERIMENT_DESIGN_ZH.md">具体对比实验方案 ↗</a> · <a href="https://github.com/s-team-git/ConPath/blob/main/DATASET_CHOICE_ZH.md">数据集选型分析 ↗</a></p>
     </div></section>
-    <section class="section shell closing"><h2>目前做到哪一步？</h2><p>主验证结果与图表已完成。9 月 7 日晚 23:47（纽约时间）按要求再次暂停实验：三组训练分别完成 12、9、17 轮，精确评估尚未完成；另外三组尚未开始。检查点已保存，等待恢复后完成评估。<br>论文仍是工作草稿；已确认的后续工作包括外部方法主对比、CogniPlan 原生地图实验、计算成本和统计分析。当前页面展示已完成的验证结果。</p><div class="resource-links"><a href="https://github.com/s-team-git/ConPath/blob/main/WORK_PLAN.md">中文工作计划 ↗</a><a href="https://github.com/s-team-git/ConPath/blob/main/EXPERIMENT_DESIGN_ZH.md">已确认的实验方案 ↗</a><a href="https://github.com/s-team-git/ConPath/blob/main/CLEAN_ABLATION_PLAN.md">消融方案 ↗</a><a href="archive/index.html">旧版页面与图表归档 ↗</a></div></section>
+    <section class="section shell closing"><h2>目前做到哪一步？</h2><p>主验证结果与图表已完成。实验已按要求恢复：三组训练分别完成 12、9、17 轮，现在重新进行未完成的精确评估；另外三组自动排队。全部完成并核验后更新表格与图片。<br>论文仍是工作草稿；已确认的后续工作包括外部方法主对比、CogniPlan 原生地图实验、计算成本和统计分析。当前页面展示已完成的验证结果。</p><div class="resource-links"><a href="https://github.com/s-team-git/ConPath/blob/main/WORK_PLAN.md">中文工作计划 ↗</a><a href="https://github.com/s-team-git/ConPath/blob/main/EXPERIMENT_DESIGN_ZH.md">已确认的实验方案 ↗</a><a href="https://github.com/s-team-git/ConPath/blob/main/CLEAN_ABLATION_PLAN.md">消融方案 ↗</a><a href="archive/index.html">旧版页面与图表归档 ↗</a></div></section>
   </main>
   <footer class="shell footer"><p>ConPath · 可复现研究记录</p><p>页面结构参考 <a href="https://s-team-git.github.io/Lightweight-3DGS/">Lightweight-3DGS</a>，重新实现中文排版与交互。<br>FlatLands 派生地图保留各上游来源条款；UnScenes3D 数据按其 CC BY 4.0 使用说明署名。<a href="https://github.com/s-team-git/ConPath/blob/main/DATASET_CHOICE_ZH.md">数据来源与使用说明</a>。</p></footer>
   <dialog id="image-dialog" aria-labelledby="dialog-caption"><div class="dialog-toolbar"><p id="dialog-caption"></p><button type="button" id="dialog-close" aria-label="关闭放大图片">关闭 ×</button></div><div class="dialog-image"><img id="dialog-image" alt="放大后的当前图片"></div><a id="dialog-source" href="#top">打开原始尺寸 ↗</a></dialog>

@@ -49,15 +49,16 @@ different questions and must both remain in the evidence.
 
 ## Execution and recovery
 
-Current status: paused again at the user's request on 2026-09-07 at 23:47 EDT.
-All workers and the supervisor exited. no_event seeds 20260831/20260901/20260902
+Current status: resumed again at the user's request on 2026-09-07 at 23:59 EDT
+(2026-09-08 03:59 UTC). Three final-evaluation workers are active. no_event seeds 20260831/20260901/20260902
 completed 12/9/17 epochs and reached patience=8; their selected best epochs are 4/1/9.
 Six latest/best checkpoints passed recovery checks and were backed up under
-`results/training_pause_20260908T034736Z/`. no_global has not started.
-Do not execute training or evaluation until a new explicit user resume request.
-On resumption, checkpoint_action is `finalize`: restart exact validation with the
-selected weights and saved RNG, without another training epoch. The interrupted
-evaluation wrote no prediction rows; its partial work must be recomputed.
+`results/training_pause_20260908T034736Z/`. no_global is queued and starts automatically
+as the current workers complete and pass their audits. The new explicit resume request
+is recorded in `results/training_resume_20260908_finalization/authorization.json`.
+checkpoint_action is `finalize`: exact validation has restarted with the selected
+weights and saved RNG, without another training epoch. The interrupted evaluation
+wrote no prediction rows; its partial work is being recomputed. Do not start duplicate workers.
 
 Historical resumption: resumed at the user's explicit request on 2026-09-07 at 21:42 EDT
 (2026-09-08 01:42 UTC). The earlier pause at 01:50 EDT is retained in the audit history.

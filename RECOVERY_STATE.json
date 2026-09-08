@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "checkpoint_id": "approved-plan-training-paused-after-early-stop-20260907",
-  "updated_local_date": "2026-09-07",
+  "checkpoint_id": "approved-plan-final-evaluation-resumed-20260908",
+  "updated_local_date": "2026-09-08",
   "timezone": "America/New_York",
   "branch": "main",
-  "remote_sync": "Previous resumption revision 313a4e3 is synchronized and deployed. Resolve this latest user-pause revision with git log -1 -- RECOVERY_STATE.json. Publication receipts are recorded in results/training_pause_20260908T034736Z/ after push.",
-  "latest_local_commit": "Resolve latest pause handoff with git log -1 -- RECOVERY_STATE.json; frozen training implementation remains e6f0910.",
+  "remote_sync": "Previous user-pause revision 9d1ccb3 is synchronized and deployed. Resolve this final-evaluation resumption revision with git log -1 -- RECOVERY_STATE.json. Publication receipts are recorded in results/training_resume_20260908_finalization/ after push.",
+  "latest_local_commit": "Resolve final-evaluation resumption handoff with git log -1 -- RECOVERY_STATE.json; frozen training implementation remains e6f0910.",
   "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence.",
   "scientific_status": "P0 passes in two seeds. Clean-support FlatLands K=128 gives event Brier 0.06749 +/- 0.00936 versus independent 0.09521 +/- 0.00703 on the scene-disjoint non-official validation split. The nine-method comparison includes same-checkpoint mean maps (0.06957 +/- 0.00380) and a fixed empirical marginal shuffle (0.16139 +/- 0.00677); spatial dependence has positive mechanism evidence, but the mean-map advantage and equal-30%-coverage risk advantage (3.60% versus 3.90%) are not stable across paired intervals. All six original K=128 predictions replay exactly. UnScenes3D mean-map/qualitative v1 reopened invalid support after sampling and is superseded by v2: Brier 0.51142 +/- 0.00198 versus independent 0.51130 +/- 0.00218. Training weights and hidden-map metrics replay exactly; all 27,522 model predictions obey the exact observation bounds. The frozen hard-observation validation Brier lower bound is 0.47574, and only 15.66% of events are mutable through unknown completion. The manuscript remains a working draft. Both physical tests remain locked; no successful transfer or final-paper claim is supported.",
-  "active_task": "User requested pause at 2026-09-07 23:47 EDT. Supervisor and all three workers exited and released GPU memory. no_event seeds completed 12/9/17 epochs and all reached patience=8; complete/latest and selected best checkpoints, optimizer and RNG are intact. Exact final validation was interrupted without saved predictions and must restart on a future explicit resume. no_global has not started. Approved experiment design remains saved; do not resume training/evaluation until a new explicit user request.",
+  "active_task": "Latest explicit user request resumed experiments at 2026-09-07 23:59 EDT. Three no_event workers are running exact final validation only, confirmed by --finalize-dir commands and increasing CPU time; checkpoints are unchanged, preserving completed training epochs 12/9/17 and best epochs 4/1/9. Interrupted validation restarted with selected weights and saved RNG state. No extra no_event training epoch is allowed. Three no_global runs are queued under the same supervisor and start after completed-run audits. Continue the accepted paper experiment design and keep formal tests isolated.",
   "completed_milestones": [
     "Interruption-safe P0 training with atomic checkpoints and exact resume",
     "Two-seed synthetic P0 pass and matched no-reach failure",
@@ -102,7 +102,8 @@
     "Explicit user acceptance of EXPERIMENT_DESIGN_ZH.md and training resumption on 2026-09-07 evening; accepted text/hash and authorization preserved, eight paper deliverables added to durable plan.",
     "Six-run frozen clean ablation matrix resumed from complete epoch-4 latest checkpoints; nine pause checkpoints backed up, all three no_event workers completed epoch 5 with unchanged training sources/configs and advancing finite weights/optimizer.",
     "CogniPlan official train asset SHA-256 and 32795 PNG data audit passed; full/partial encodings checked against official source, 396699786 observed cells agree with targets, three train asset archives downloaded, no test assets or external inference.",
-    "Latest explicit user pause on 2026-09-07 23:47 EDT: all experiment processes exited; three no_event seeds reached early stop at epochs 12/9/17, six latest/best checkpoints restored and backed up, no_global unstarted. Final exact evaluation was interrupted without saved predictions and must restart only on a new explicit resume request."
+    "Latest explicit user pause on 2026-09-07 23:47 EDT: all experiment processes exited; three no_event seeds reached early stop at epochs 12/9/17, six latest/best checkpoints restored and backed up, no_global unstarted. Final exact evaluation was interrupted without saved predictions and must restart only on a new explicit resume request.",
+    "Explicit user resumption at 2026-09-07 23:59 EDT: frozen supervisor and three --finalize-dir workers launched. Checkpoint SHA-256 values unchanged, no_event histories remain 12/9/17 epochs, active CPU computation verified, no_global queued. Approved experiment plan unchanged; final test remains locked."
   ],
   "tracked_files": [
     "CLEAN_ABLATION_PLAN.md",
@@ -2576,14 +2577,14 @@
     },
     {
       "path": "results/paper_clean_ablation_matrix_v1/seed20260831_no_event/best.pt",
-      "role": "Paused stopped-training checkpoint; frozen until explicit user resumption. New pause audit and immutable backup are retained.",
+      "role": "Stopped-training checkpoint, immutable during finalize-only evaluation; complete-epoch/latest and selected/best hashes remain checked. Pause backup is retained.",
       "required_for_resume": true,
       "bytes": 1501445,
       "sha256": "8fa4d46e18a8d976f3327e3cd8391e6cbd3206279041446bf289c0b903fc18b7"
     },
     {
       "path": "results/paper_clean_ablation_matrix_v1/seed20260831_no_event/latest.pt",
-      "role": "Paused stopped-training checkpoint; frozen until explicit user resumption. New pause audit and immutable backup are retained.",
+      "role": "Stopped-training checkpoint, immutable during finalize-only evaluation; complete-epoch/latest and selected/best hashes remain checked. Pause backup is retained.",
       "required_for_resume": true,
       "bytes": 1503237,
       "sha256": "8d9e898d8410a2e85cb669d8e38e7e0d48409f51013dbcb195ccee65e786f459"
@@ -2600,14 +2601,14 @@
     },
     {
       "path": "results/paper_clean_ablation_matrix_v1/seed20260901_no_event/best.pt",
-      "role": "Paused stopped-training checkpoint; frozen until explicit user resumption. New pause audit and immutable backup are retained.",
+      "role": "Stopped-training checkpoint, immutable during finalize-only evaluation; complete-epoch/latest and selected/best hashes remain checked. Pause backup is retained.",
       "required_for_resume": true,
       "bytes": 1500997,
       "sha256": "05af3c9e76a6dce1ceb59246cd313f43b8b409a9adf893fa77fd94f0167dff1a"
     },
     {
       "path": "results/paper_clean_ablation_matrix_v1/seed20260901_no_event/latest.pt",
-      "role": "Paused stopped-training checkpoint; frozen until explicit user resumption. New pause audit and immutable backup are retained.",
+      "role": "Stopped-training checkpoint, immutable during finalize-only evaluation; complete-epoch/latest and selected/best hashes remain checked. Pause backup is retained.",
       "required_for_resume": true,
       "bytes": 1502853,
       "sha256": "8b9777c124c95c4631dacb9a94ca8b9f7e75f6fef7597fa85016cef4d8a58230"
@@ -2624,14 +2625,14 @@
     },
     {
       "path": "results/paper_clean_ablation_matrix_v1/seed20260902_no_event/best.pt",
-      "role": "Paused stopped-training checkpoint; frozen until explicit user resumption. New pause audit and immutable backup are retained.",
+      "role": "Stopped-training checkpoint, immutable during finalize-only evaluation; complete-epoch/latest and selected/best hashes remain checked. Pause backup is retained.",
       "required_for_resume": true,
       "bytes": 1502853,
       "sha256": "f769420f5d8ef4accff81af933c7496e3bb99cac081e6afdc989d9c6fdec1b43"
     },
     {
       "path": "results/paper_clean_ablation_matrix_v1/seed20260902_no_event/latest.pt",
-      "role": "Paused stopped-training checkpoint; frozen until explicit user resumption. New pause audit and immutable backup are retained.",
+      "role": "Stopped-training checkpoint, immutable during finalize-only evaluation; complete-epoch/latest and selected/best hashes remain checked. Pause backup is retained.",
       "required_for_resume": true,
       "bytes": 1503941,
       "sha256": "cd322728af71ed1c958bafd67bb9b6c5cad90b4005b5cb13408a6d60bd26b3ac"
@@ -3030,17 +3031,66 @@
       "required_for_resume": true,
       "bytes": 203,
       "sha256": "bee5995bc05b591f3a73ce0eed01e3c76a439a4e1e02b62565ef3dbd7c1f15cb"
+    },
+    {
+      "path": "results/training_resume_20260908_finalization/authorization.json",
+      "role": "Latest explicit finalize-only resumption and recovery evidence",
+      "required_for_resume": true,
+      "bytes": 602,
+      "sha256": "999e875704922459f40ed4e737cdb7c83433885f04318c5a642ef7d5f2b501cb"
+    },
+    {
+      "path": "results/training_resume_20260908_finalization/paused_progress.json",
+      "role": "Latest explicit finalize-only resumption and recovery evidence",
+      "required_for_resume": true,
+      "bytes": 6933,
+      "sha256": "9a70223aa398d4de83e81bd8ad69a434d4b135fa2050100fb670288523288cd1"
+    },
+    {
+      "path": "results/training_resume_20260908_finalization/preflight.json",
+      "role": "Latest explicit finalize-only resumption and recovery evidence",
+      "required_for_resume": true,
+      "bytes": 1937,
+      "sha256": "4555c22778dc66035569aa4df790149e8d1c5bf3e8dfb8aca396943d44f5a7ed"
+    },
+    {
+      "path": "results/training_resume_20260908_finalization/launch.json",
+      "role": "Latest explicit finalize-only resumption and recovery evidence",
+      "required_for_resume": true,
+      "bytes": 583,
+      "sha256": "7ce573b3091e5a33dac4666e4f9bc75a735c3c0f8f3adefad57d6618e0b6559e"
+    },
+    {
+      "path": "results/training_resume_20260908_finalization/resume_verification.json",
+      "role": "Latest explicit finalize-only resumption and recovery evidence",
+      "required_for_resume": true,
+      "bytes": 1151,
+      "sha256": "338e6e340863daf8bc145a4d432ecd3871c492e6ec811d3bde9e7c38e18f790a"
+    },
+    {
+      "path": "results/training_resume_20260908_finalization/visual_audit.json",
+      "role": "Latest explicit finalize-only resumption and recovery evidence",
+      "required_for_resume": true,
+      "bytes": 286,
+      "sha256": "72e157bfec2607fb1e202a09c227ad7b4d7d8e650e62f0ddd2dc90e50cafb3f9"
+    },
+    {
+      "path": "results/training_resume_20260908_finalization/document_audit.json",
+      "role": "Latest explicit finalize-only resumption and recovery evidence",
+      "required_for_resume": true,
+      "bytes": 253,
+      "sha256": "51522a52114ac0db3228eac6f5f3601146e32e22c69227fcf0db3112297e6268"
     }
   ],
   "last_verification": {
-    "command": "Process identity/exit checks; CPU model/optimizer and RNG checkpoint audit; frozen-source hashes; visual/numeric-table audit; document/paused-state consistency; git diff --check; quick recovery check.",
-    "result": "All matrix processes exited and GPU allocations released. Six latest/best checkpoints restored on CPU and backed up; no_event completed epochs 12/9/17 and all require finalize-only on a future resume. No saved partial prediction output exists. 113 media assets, 23 raw photos and nine numeric rows unchanged. No experiment, inference or formal test was started after the pause.",
+    "command": "Quick recovery check; frozen prepare-only guard; paused checkpoint hashes and finalize-only action; active finalizer process/CPU and unchanged checkpoint verification; site visual/numeric table audit; document/phase consistency; git diff --check.",
+    "result": "All passed. Three exact validation workers active and advancing CPU time, six latest/best hashes unchanged, no additional no_event training epochs. Three no_global runs queued. 113 media assets, 23 raw images and nine result rows unchanged; website now reports resumed evaluation. External methods have no new results and no formal test was evaluated.",
     "implementation_commit": "e6f0910",
     "receipts": [
-      "results/training_pause_20260908T034736Z/request.json",
-      "results/training_pause_20260908T034736Z/checkpoint_audit.json",
-      "results/training_pause_20260908T034736Z/visual_audit.json",
-      "results/training_pause_20260908T034736Z/document_audit.json"
+      "results/training_resume_20260908_finalization/preflight.json",
+      "results/training_resume_20260908_finalization/resume_verification.json",
+      "results/training_resume_20260908_finalization/visual_audit.json",
+      "results/training_resume_20260908_finalization/document_audit.json"
     ]
   },
   "recovery_commands": [
@@ -3058,9 +3108,9 @@
   ],
   "next_command": "cat results/paper_clean_ablation_matrix_v1/progress.json",
   "next_actions": [
-    "Keep all experiment training/evaluation paused until a new explicit user resume request. The latest request overrides earlier continuation authorization. Read the current pause audit and preserve approved experiment design.",
-    "After a new explicit resumption request, continue external data/interface work under the accepted EXPERIMENT_DESIGN_ZH.md and EXTERNAL_DATA_AUDIT_ZH.md. The plan remains approved, but current training/evaluation execution is paused.",
-    "After a new explicit resume request, the existing launcher must finalize the three stopped no_event runs without another training epoch, restarting their interrupted exact validation, then run queued no_global. External native quality/profiling stages also wait for resumption.",
+    "Latest explicit user request authorizes continuing training/evaluation. Inspect live progress and existing PIDs; never launch duplicate workers. Three no_event runs require final evaluation only, and no_global is queued.",
+    "Continue the already approved experiment design through the remaining data/interface, native quality and resource-profile gates; keep exact data/analysis frozen and preserve all results.",
+    "Monitor current finalize-only workers; their training epochs must remain 12/9/17. When each run finishes and its audit passes, allow the existing supervisor to start queued no_global workers automatically.",
     "When all six clean ablations finish and pass audits, inspect analysis/report.json and PAPER_ABLATIONS.md, preserve null/reversed effects, add Chinese-labelled plots to paper/site and version/publish the reviewed evidence.",
     "Execute all approved required comparisons and statistical/cost/failure analyses in EXPERIMENT_DESIGN_ZH.md section 8. Expanded training data requires retraining all relevant models under one new version. Record failures and do not substitute local tiny controls for original external methods.",
     "Keep FlatLands physical test, UnScenes3D location_6 and new held-out assets isolated until method/data/analysis freeze. Final test and broad paper/system claims require the stated gates; training resumption does not waive them."
@@ -3072,31 +3122,38 @@
     "progress": "results/paper_clean_ablation_matrix_v1/progress.json",
     "log": "results/paper_clean_ablation_matrix_v1/supervisor.log",
     "implementation_commit": "e6f0910",
-    "live_files_are_mutable": false,
-    "status": "paused_by_user",
+    "live_files_are_mutable": true,
+    "status": "running_exact_evaluation",
     "paused_at_utc": "2026-09-08T03:47:37.352354+00:00",
-    "automatic_resume_allowed": false,
-    "supervisor_running": false,
-    "workers_running": 0,
+    "automatic_resume_allowed": true,
+    "supervisor_running": true,
+    "workers_running": 3,
     "no_event_completed_epochs": {
       "20260831": 12,
       "20260901": 9,
       "20260902": 17
     },
-    "no_global_status": "not_started",
+    "no_global_status": "queued",
     "pause_audit": "results/training_pause_20260908T034736Z/checkpoint_audit.json",
-    "resume_checkpoint": "no_event: finalize only from best.pt with latest.pt RNG; no additional training epoch",
+    "resume_checkpoint": "no_event finalize-only: selected best.pt and latest.pt RNG, without additional training epochs",
     "interrupted_checkpoint_note": "old partial-epoch artifact; do not use; interrupted final evaluation has no saved prediction rows",
-    "resumed_at_utc": "2026-09-08T01:42:23.683337+00:00",
-    "resume_supervisor_pid": 46939,
-    "resume_authorization": "results/training_resume_20260907/authorization.json",
-    "resume_launch": "results/training_resume_20260907/launch.json",
-    "worker_pids": [],
-    "snapshot_checked_utc": "2026-09-08T03:49:52.717527+00:00",
+    "resumed_at_utc": "2026-09-08T03:59:31.053776+00:00",
+    "resume_supervisor_pid": 3081128,
+    "resume_authorization": "results/training_resume_20260908_finalization/authorization.json",
+    "resume_launch": "results/training_resume_20260908_finalization/launch.json",
+    "worker_pids": [
+      3081403,
+      3081408,
+      3081410
+    ],
+    "snapshot_checked_utc": "2026-09-08T04:03:05.611479+00:00",
     "snapshot_is_not_live": true,
-    "resume_verification": "results/training_resume_20260907/resume_verification.json",
+    "resume_verification": "results/training_resume_20260908_finalization/resume_verification.json",
     "pause_requested_utc": "2026-09-08T03:47:36.629931+00:00",
-    "current_pause_receipt": "results/training_pause_20260908T034736Z/request.json"
+    "current_pause_receipt": "results/training_pause_20260908T034736Z/request.json",
+    "phase": "no_event_exact_validation_then_no_global_training",
+    "workers_finalizing": 3,
+    "workers_updating_parameters": 0
   },
   "accepted_experiment_plan": {
     "status": "approved_by_user",
@@ -3106,7 +3163,7 @@
     "accepted_snapshot": "results/training_resume_20260907/accepted_experiment_design.md",
     "accepted_snapshot_sha256": "c76120768c8f4a911881ee7249841b59e9d5a5a57312f4c565b519493b59356d",
     "paper_deliverables_section": "EXPERIMENT_DESIGN_ZH.md section 8",
-    "continue_without_reasking_after_session_restart": false,
+    "continue_without_reasking_after_session_restart": true,
     "required_external_comparisons": [
       "FlatLands: genuine LaMa BEV module and four-member ensemble",
       "FlatLands: documented conditional FM+XAttn literature reimplementation with quality gate",
@@ -3137,7 +3194,8 @@
     "unfrozen_parameters": "External training data scale, calibration/validation splits and per-method recipes must be fixed after interface and resource audits, before formal runs. Do not mix expanded-data runs with old frozen ablations.",
     "data_audit": "EXTERNAL_DATA_AUDIT_ZH.md",
     "test_evaluated": false,
-    "execution_paused_by_user": true,
-    "pause_requires_new_explicit_resume_request": true
+    "execution_paused_by_user": false,
+    "pause_requires_new_explicit_resume_request": false,
+    "latest_execution_authorization": "results/training_resume_20260908_finalization/authorization.json"
   }
 }

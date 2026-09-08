@@ -5,23 +5,25 @@ diagnostic, code change, or experiment; do not rely on chat history or ignored `
 
 ## Recovery snapshot
 
-最新指令（2026-09-07 23:47 EDT）：用户再次明确要求先暂停。调度器和三个实验进程已退出。
-本次暂停覆盖此前的续训授权；没有新的明确恢复请求，不启动训练、评估或新的 GPU 实验。
-已确认的论文实验方案继续保留，暂停不改变数据、方法和分析规则。
+最新指令（2026-09-07 23:59 EDT）：用户再次明确要求继续训练，已解除23:47的暂停。
+调度器与三个精确评估进程已经启动；先检查现有进程，不能重复启动。论文实验方案与冻结协议保持不变。
 先读 `EXPERIMENT_DESIGN_ZH.md` 的完整方案与第8节论文交付清单，再读 `WORK_PLAN.md`。
 必做主对比为 FlatLands 的 LaMa/4成员集成、FM+XAttn，以及 CogniPlan 原生地图生成模块；
 保留强简单方法、三次独立重复、成本曲线、场景配对统计和失败分析。KITTI-360 仍为条件扩展。
 外部实验先完成数据/接口、原生质量、测速和具体配置冻结；不能因恢复旧消融跳过这些步骤。
 
-Training resumed at 21:42 EDT and was paused again at 23:47 EDT (2026-09-08 03:47 UTC).
+Training resumed again at 23:59 EDT (2026-09-08 03:59 UTC), following the 23:47 pause.
 The three no_event seeds completed 12/9/17 epochs; all reached the frozen patience=8 stop.
 Their best epochs are 4/1/9. All six latest/best checkpoints passed model/optimizer restore,
 finite-value and RNG-presence checks. The three no_global runs have not started.
-Current receipts and checkpoint backups: `results/training_pause_20260908T034736Z/`.
-On a future explicit resume, the launcher must perform final evaluation only for no_event,
-without an extra training epoch. Interrupted exact evaluation saved no prediction rows and restarts
-from the beginning with best weights and the saved latest RNG state. Do not substitute old interrupted.pt.
-Use `results/paper_clean_ablation_matrix_v1/progress.json` for the current pause flag.
+Pause receipts and checkpoint backups: `results/training_pause_20260908T034736Z/`.
+Current resumption receipts: `results/training_resume_20260908_finalization/`.
+The launcher is performing final evaluation only for no_event, without an extra training epoch.
+Interrupted exact evaluation saved no prediction rows and has restarted from the beginning with
+best weights and the saved latest RNG state. Do not substitute old interrupted.pt.
+The existing supervisor automatically starts queued no_global workers after a completed run passes its audit.
+Use `results/paper_clean_ablation_matrix_v1/progress.json` and each command's --finalize-dir flag
+to distinguish the current evaluation phase from parameter training; epoch counts do not advance in evaluation.
 Earlier authorization and the accepted-design snapshot remain in `results/training_resume_20260907/`.
 
 Current website: Chinese, minimal academic layout based on the user's Lightweight-3DGS
@@ -29,9 +31,9 @@ reference. `site/index.html` uses `styles-zh.css` / `app-zh.js`; English clutter
 query-line media are in `site/archive/`. See `DATASET_CHOICE_ZH.md` for the newly verified
 dataset/baseline rationale and `site/README.md` for the new build and browser commands.
 
-- Updated: 2026-09-07 (America/New_York)
+- Updated: 2026-09-08 (America/New_York)
 - Repository: `/home/hairo/pathrel_transfer/pathrel_pro6000`
-- Durable checkpoint: `approved-plan-training-paused-after-early-stop-20260907` in tracked `RECOVERY_STATE.json`
+- Durable checkpoint: `approved-plan-final-evaluation-resumed-20260908` in tracked `RECOVERY_STATE.json`
 - Recovery-state commit: resolve with `git log -1 --format='%h %s' -- RECOVERY_STATE.json`
 - Implementation history: `61d617e` is the September 2 base. The September 6 publication packages the clean-support implementation, audits and figures; resolve its revision with `git log -1 -- WORK_PLAN.md`. Current execution order is in `WORK_PLAN.md`.
 - Scientific gate: **P0 GO; FlatLands K=128 clean-support validation candidate and bounded data gate
@@ -48,7 +50,7 @@ dataset/baseline rationale and `site/README.md` for the new build and browser co
   more training. PAPER_DRAFT.md and PAPER_EVIDENCE.md now reflect these positive and null results.
   All results remain validation-only. The physical test and UnScenes3D location_6 remain locked;
   do not extract the FlatLands archive. The next research gate is external-method/data compatibility
-  as specified in EXPERIMENT_DESIGN_ZH.md. The no-event/no-global training matrix is paused again;
+  as specified in EXPERIMENT_DESIGN_ZH.md. The no-event/no-global matrix is running again;
   its contract is not rewritten by the prospective design. Observation-model and scalable-operator evidence remain required.
 
 ### GPU visibility and publication status (2026-08-31)
