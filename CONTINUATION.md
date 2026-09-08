@@ -5,26 +5,30 @@ diagnostic, code change, or experiment; do not rely on chat history or ignored `
 
 ## Recovery snapshot
 
-最新指令（2026-09-07 23:59 EDT）：用户再次明确要求继续训练，已解除23:47的暂停。
-调度器与三个精确评估进程已经启动；先检查现有进程，不能重复启动。论文实验方案与冻结协议保持不变。
-先读 `EXPERIMENT_DESIGN_ZH.md` 的完整方案与第8节论文交付清单，再读 `WORK_PLAN.md`。
-必做主对比为 FlatLands 的 LaMa/4成员集成、FM+XAttn，以及 CogniPlan 原生地图生成模块；
-保留强简单方法、三次独立重复、成本曲线、场景配对统计和失败分析。KITTI-360 仍为条件扩展。
-外部实验先完成数据/接口、原生质量、测速和具体配置冻结；不能因恢复旧消融跳过这些步骤。
+最新工作（2026-09-08）：用户要求完成评估汇总并继续收尾。本轮六组消融已于
+08:56:19 UTC（04:56 EDT）完成精确评估、冻结审计与配对统计；调度器3081128和全部worker已退出。
+不要重复启动这套已完成矩阵。当前任务是完成中文汇总、论文、网站与Git发布，然后进入已确认的外部实验接口/尺度/测速阶段。
 
-Training resumed again at 23:59 EDT (2026-09-08 03:59 UTC), following the 23:47 pause.
-The three no_event seeds completed 12/9/17 epochs; all reached the frozen patience=8 stop.
-Their best epochs are 4/1/9. All six latest/best checkpoints passed model/optimizer restore,
-finite-value and RNG-presence checks. The three no_global runs have not started.
-Pause receipts and checkpoint backups: `results/training_pause_20260908T034736Z/`.
-Current resumption receipts: `results/training_resume_20260908_finalization/`.
-The launcher is performing final evaluation only for no_event, without an extra training epoch.
-Interrupted exact evaluation saved no prediction rows and has restarted from the beginning with
-best weights and the saved latest RNG state. Do not substitute old interrupted.pt.
-The existing supervisor automatically starts queued no_global workers after a completed run passes its audit.
-Use `results/paper_clean_ablation_matrix_v1/progress.json` and each command's --finalize-dir flag
-to distinguish the current evaluation phase from parameter training; epoch counts do not advance in evaluation.
-Earlier authorization and the accepted-design snapshot remain in `results/training_resume_20260907/`.
+三种模型的三次训练 Brier：完整0.06749±0.00936、no_event 0.20425±0.00322、
+no_global 0.09499±0.00157。六个逐种子Brier区间均为正，支持完整模型；
+六个等30%覆盖率风险区间均包含零，不支持稳定安全收益。no_global的风险点估计在两个种子反向。
+no_event停在12/9/17轮，选择4/1/9；no_global停在12/18/18轮，选择4/10/10。
+半径20格的no_event全部预测为0，但场景等权有路率20.67%；该失败诊断不能扩大尚未核对的物理尺度主张。
+
+权威统计：`results/paper_clean_ablation_matrix_v1/analysis/report.json`。
+中文报告：`EVALUATION_SUMMARY_ZH.md`；论文新增5.5节；网站独立三模型表和中文区间图。
+两个此前固定的验证例子各三模型，输出6幅概率图和6幅首个真实采样按机器人尺寸收缩后的图，未按新结果挑例或挑样本。
+图片采用CPU新绘图随机流；标题事件概率来自原CUDA精确验证CSV，随机流不同，不能要求两者精确相等。
+有效绘图记录：`results/ablation_publication_20260908/cases_v2/report.json`（初版概率图记录在cases/，保留但不作当前来源）。
+像素12/12、首个世界连通性6/6、9个预测CSV主指标/分层/配对Brier重算通过；98项测试通过。
+最后桌面1440/手机390交互检查通过：`results/ablation_publication_20260908/browser_final/report.json`。
+本轮独立数值/网页/版本/部署收据统一在 `results/ablation_publication_20260908/`；以完成收据判断是否已推送与线上核验。
+
+已确认实验方案长期有效，见 `EXPERIMENT_DESIGN_ZH.md` 第8节；只将当前有界验证消融标记完成。
+必做主比较是FlatLands原生LaMa/4成员集成、FM+XAttn和CogniPlan原生地图生成模块，
+并保留强简单对照、三次独立重复、成本曲线、场景统计和失败分析。外部方法尚未运行。
+先做数据/接口、原生质量、固定训练样本测速与具体配置冻结；扩大数据时全部相关方法另开一致的新版本。
+正式测试仍锁定；不能因续训授权跳过这些科学门槛。没有注册runtime goal。
 
 Current website: Chinese, minimal academic layout based on the user's Lightweight-3DGS
 reference. `site/index.html` uses `styles-zh.css` / `app-zh.js`; English clutter and old
@@ -33,7 +37,7 @@ dataset/baseline rationale and `site/README.md` for the new build and browser co
 
 - Updated: 2026-09-08 (America/New_York)
 - Repository: `/home/hairo/pathrel_transfer/pathrel_pro6000`
-- Durable checkpoint: `approved-plan-final-evaluation-resumed-20260908` in tracked `RECOVERY_STATE.json`
+- Durable checkpoint: `clean-ablation-evaluation-publication-20260908` in tracked `RECOVERY_STATE.json`
 - Recovery-state commit: resolve with `git log -1 --format='%h %s' -- RECOVERY_STATE.json`
 - Implementation history: `61d617e` is the September 2 base. The September 6 publication packages the clean-support implementation, audits and figures; resolve its revision with `git log -1 -- WORK_PLAN.md`. Current execution order is in `WORK_PLAN.md`.
 - Scientific gate: **P0 GO; FlatLands K=128 clean-support validation candidate and bounded data gate
@@ -50,8 +54,8 @@ dataset/baseline rationale and `site/README.md` for the new build and browser co
   more training. PAPER_DRAFT.md and PAPER_EVIDENCE.md now reflect these positive and null results.
   All results remain validation-only. The physical test and UnScenes3D location_6 remain locked;
   do not extract the FlatLands archive. The next research gate is external-method/data compatibility
-  as specified in EXPERIMENT_DESIGN_ZH.md. The no-event/no-global matrix is running again;
-  its contract is not rewritten by the prospective design. Observation-model and scalable-operator evidence remain required.
+  as specified in EXPERIMENT_DESIGN_ZH.md. The no-event/no-global matrix is complete;
+  its results and unchanged contract are in EVALUATION_SUMMARY_ZH.md. Observation-model and scalable-operator evidence remain required.
 
 ### GPU visibility and publication status (2026-08-31)
 
@@ -1263,3 +1267,53 @@ different-content IDs across predictor/planner train assets. Namespace those IDs
 infer overlap from filenames. Released checkpoint batch size is 24, whereas repository default is 32.
 No external model inference or final test ran. Preserve official pixel conversion and distinguish
 public-checkpoint train sanity checks from validation of newly retrained models.
+
+## 2026-09-08 完成六组消融评估与中文汇总
+
+最新工作（2026-09-08）：用户要求完成评估汇总并继续收尾。本轮六组消融已于
+08:56:19 UTC（04:56 EDT）完成精确评估、冻结审计与配对统计；调度器3081128和全部worker已退出。
+不要重复启动这套已完成矩阵。当前任务是完成中文汇总、论文、网站与Git发布，然后进入已确认的外部实验接口/尺度/测速阶段。
+
+三种模型的三次训练 Brier：完整0.06749±0.00936、no_event 0.20425±0.00322、
+no_global 0.09499±0.00157。六个逐种子Brier区间均为正，支持完整模型；
+六个等30%覆盖率风险区间均包含零，不支持稳定安全收益。no_global的风险点估计在两个种子反向。
+no_event停在12/9/17轮，选择4/1/9；no_global停在12/18/18轮，选择4/10/10。
+半径20格的no_event全部预测为0，但场景等权有路率20.67%；该失败诊断不能扩大尚未核对的物理尺度主张。
+
+权威统计：`results/paper_clean_ablation_matrix_v1/analysis/report.json`。
+中文报告：`EVALUATION_SUMMARY_ZH.md`；论文新增5.5节；网站独立三模型表和中文区间图。
+两个此前固定的验证例子各三模型，输出6幅概率图和6幅首个真实采样按机器人尺寸收缩后的图，未按新结果挑例或挑样本。
+图片采用CPU新绘图随机流；标题事件概率来自原CUDA精确验证CSV，随机流不同，不能要求两者精确相等。
+有效绘图记录：`results/ablation_publication_20260908/cases_v2/report.json`（初版概率图记录在cases/，保留但不作当前来源）。
+像素12/12、首个世界连通性6/6、9个预测CSV主指标/分层/配对Brier重算通过；98项测试通过。
+最后桌面1440/手机390交互检查通过：`results/ablation_publication_20260908/browser_final/report.json`。
+本轮独立数值/网页/版本/部署收据统一在 `results/ablation_publication_20260908/`；以完成收据判断是否已推送与线上核验。
+
+已确认实验方案长期有效，见 `EXPERIMENT_DESIGN_ZH.md` 第8节；只将当前有界验证消融标记完成。
+必做主比较是FlatLands原生LaMa/4成员集成、FM+XAttn和CogniPlan原生地图生成模块，
+并保留强简单对照、三次独立重复、成本曲线、场景统计和失败分析。外部方法尚未运行。
+先做数据/接口、原生质量、固定训练样本测速与具体配置冻结；扩大数据时全部相关方法另开一致的新版本。
+正式测试仍锁定；不能因续训授权跳过这些科学门槛。没有注册runtime goal。
+
+### 保留的上一轮恢复快照（历史，已由完成状态取代）
+
+最新指令（2026-09-07 23:59 EDT）：用户再次明确要求继续训练，已解除23:47的暂停。
+调度器与三个精确评估进程已经启动；先检查现有进程，不能重复启动。论文实验方案与冻结协议保持不变。
+先读 `EXPERIMENT_DESIGN_ZH.md` 的完整方案与第8节论文交付清单，再读 `WORK_PLAN.md`。
+必做主对比为 FlatLands 的 LaMa/4成员集成、FM+XAttn，以及 CogniPlan 原生地图生成模块；
+保留强简单方法、三次独立重复、成本曲线、场景配对统计和失败分析。KITTI-360 仍为条件扩展。
+外部实验先完成数据/接口、原生质量、测速和具体配置冻结；不能因恢复旧消融跳过这些步骤。
+
+Training resumed again at 23:59 EDT (2026-09-08 03:59 UTC), following the 23:47 pause.
+The three no_event seeds completed 12/9/17 epochs; all reached the frozen patience=8 stop.
+Their best epochs are 4/1/9. All six latest/best checkpoints passed model/optimizer restore,
+finite-value and RNG-presence checks. The three no_global runs have not started.
+Pause receipts and checkpoint backups: `results/training_pause_20260908T034736Z/`.
+Current resumption receipts: `results/training_resume_20260908_finalization/`.
+The launcher is performing final evaluation only for no_event, without an extra training epoch.
+Interrupted exact evaluation saved no prediction rows and has restarted from the beginning with
+best weights and the saved latest RNG state. Do not substitute old interrupted.pt.
+The existing supervisor automatically starts queued no_global workers after a completed run passes its audit.
+Use `results/paper_clean_ablation_matrix_v1/progress.json` and each command's --finalize-dir flag
+to distinguish the current evaluation phase from parameter training; epoch counts do not advance in evaluation.
+Earlier authorization and the accepted-design snapshot remain in `results/training_resume_20260907/`.

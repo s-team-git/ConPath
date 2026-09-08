@@ -118,6 +118,14 @@ def main():
         assert sha(panel['path']) == sha(f'site/assets/unscenes3d_clean_candidate_{name}.png')
     figures = ['flatlands_clean_equal_coverage', 'flatlands_clean_reliability',
                'flatlands_clean_k_convergence', 'flatlands_clean_marginal_shuffle', 'unscenes3d_observation_ceiling']
+    if (ROOT / 'site/data/flatlands_clean_training_ablations.json').is_file():
+        ablations = json.loads((ROOT / 'site/data/flatlands_clean_training_ablations.json').read_text())
+        assert ablations['test_evaluated'] is False and len(ablations['audits']) == 6
+        assert all(row['passed'] for row in ablations['audits'])
+        assert sha('site/data/flatlands_clean_training_ablations.json') == sha('results/paper_clean_ablation_matrix_v1/analysis/report.json')
+        for suffix in ('svg', 'pdf'):
+            assert sha(f'site/assets/flatlands_clean_training_ablations.{suffix}') == sha(f'results/paper_clean_ablation_matrix_v1/analysis/figures/flatlands_clean_training_ablations.{suffix}')
+        figures.append('flatlands_clean_training_ablations')
     for name in figures:
         assert (ROOT / f'site/assets/{name}.pdf').read_bytes().startswith(b'%PDF-')
         assert '<svg' in (ROOT / f'site/assets/{name}.svg').read_text()

@@ -14,6 +14,9 @@
   这是每秒一帧的数据浏览，不是实时推理或原始录像速度；相机照片保持原始发布字节。
 - 五组中文图表分别输出桌面版、手机版 SVG/PDF，复用已审计的数值，不改变指标。
   详细九方法表默认折叠，失败和无优势的结果明确保留。
+- 六组训练消融已完成：新增三模型数值表、两组中文桌面/手机结果图和12幅真实模型图。
+  两个固定案例可切换每格概率图与首个采样按机器人半径收缩后的图，支持手机滑动和放大。
+  主图横线是训练种子标准差，差值图横线是逐种子95%场景配对区间；含义分别标注。
 
 `index.html` 使用 `styles-zh.css` 与 `app-zh.js`。以前的页面在 `archive/index.html`，
 包括旧英文图表、审计过程和带查询连线的 TUM 几何演示。它们不再出现在当前主页。
@@ -27,6 +30,18 @@ PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/build_site_visuals.
 PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/audit_site_visuals.py
 PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/audit_paper_evidence.py --output results/site_redesign_20260907/paper_evidence_audit.json
 ```
+
+只更新已完成的消融表图，不启动训练：
+
+```bash
+PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/build_ablation_summary_zh.py
+/home/hairo/miniconda3/bin/python3.13 scripts/build_site_page.py
+```
+
+本轮消融来源分别记录在 `data/flatlands_clean_training_ablations.json`、
+`data/training_ablation_visuals_zh.json` 与 `data/training_ablation_cases_zh.json`。
+像素、首个采样连通性、逐种子指标及主配对区间均回放通过。绘图脚本
+`scripts/render_ablation_cases_zh.py` 默认只在CPU上回放两个既定验证场景，不覆盖已完成的图片记录。
 
 最新绘图与逐图来源：`data/site_visuals_zh.json`。它保存源文件、检查点、原始相机图、
 统计快照和每个导出文件的哈希。原始数据与模型权重仍在忽略目录，没有加入 Git。
@@ -45,7 +60,9 @@ PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/audit_paper_evidenc
 
 GitHub Pages 通过 `.github/workflows/deploy-pages.yml` 发布，每次推送 `main` 触发部署。
 主实验是 FlatLands 场景隔离的非官方验证划分，UnScenes3D 仍为两场景诊断；正式测试未评估。
-新增训练消融在2026-09-07 23:47 EDT暂停后，23:59 EDT按用户要求恢复精确评估与后续队列；绘图与媒体审计命令本身不启动训练。
+新增训练消融已于2026-09-08 04:56 EDT完成全部精确评估与配对分析，相关进程已退出。
+本轮网页桌面1440和手机390像素检查记录在 `results/ablation_publication_20260908/browser_final/`。
+绘图与媒体审计命令本身不启动训练。外部方法主比较和正式测试仍未运行。
 媒体审计支持 `--output` 指定本轮独立收据，默认写入 `results/site_visuals_current_audit.json`，避免覆盖历史审计。
 
 数据集选择、原方法实际使用的数据及媒体署名见

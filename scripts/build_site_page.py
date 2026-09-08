@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Render a Chinese project page from the frozen numerical/visual snapshots."""
 import html
+import hashlib
 import json
 from pathlib import Path
 
@@ -12,9 +13,68 @@ def zoom(path, caption, eager=False):
     return f'<a class="zoomable" href="{html.escape(path)}" data-zoom data-caption="{html.escape(caption)}"><img src="{html.escape(path)}" alt="{html.escape(caption)}" loading="{"eager" if eager else "lazy"}" decoding="async"><span class="zoom-hint" aria-hidden="true">点击放大 ↗</span></a>'
 
 
+def training_ablations():
+    path = SITE / 'data/flatlands_clean_training_ablations.json'
+    if not path.is_file():
+        return ''
+    report = json.loads(path.read_text())
+    visuals = json.loads((SITE / 'data/training_ablation_visuals_zh.json').read_text())
+    if (not report['validation_only'] or report['test_evaluated'] is not False
+            or visuals['report_sha256'] != hashlib.sha256(path.read_bytes()).hexdigest()
+            or len(report['audits']) != 6 or not all(r['passed'] for r in report['audits'])):
+        raise ValueError('training ablations must have six successful audits and matching public sources')
+    rows = []
+    for key, method in report['methods'].items():
+        cells = []
+        for metric in ('brier', 'nll', 'ece'):
+            value = method['aggregate'][metric]
+            cells.append(f'{value["mean"]:.5f} ± {value["sample_sd"]:.5f}')
+        risk = method['risk_at_30_percent']
+        cells.append(f'{risk["mean"] * 100:.2f} ± {risk["sample_sd"] * 100:.2f}%')
+        rows.append(f'<tr data-ablation="{key}"' + (' class="ours"' if key == 'conpath' else '') +
+                    f'><th scope="row">{html.escape(visuals["labels"][key])}</th>' +
+                    ''.join(f'<td>{cell}</td>' for cell in cells) + '</tr>')
+    conclusions = ''.join(f'<article><h4>{html.escape(visuals["labels"][key])}</h4><p>{html.escape(visuals["summary"][key])}</p></article>' for key in ('no_event', 'no_global'))
+    risk_intervals = [row['equal_coverage_risk']['0.3']['bootstrap_95'] for comparison in report['paired'].values() for row in comparison['seeds']]
+    risk_note = '但相同 30% 覆盖率下，六个误判风险区间都包含零，尚不能宣称安全性稳定提升。' if all(lo <= 0 <= hi for lo, hi in risk_intervals) else '路径概率误差与误判风险分别评价；完整的逐种子风险区间见中文汇总。'
+    def chart(name, label, caption):
+        return f'''<figure class="main-chart ablation-chart"><a href="assets/zh/{name}.svg" data-zoom data-caption="{label}"><picture><source media="(max-width: 600px)" srcset="assets/zh/{name}-mobile.svg"><img src="assets/zh/{name}.svg" alt="{label}。{caption}" loading="lazy"></picture></a><figcaption>{caption} <a href="assets/zh/{name}.pdf">下载 PDF ↗</a></figcaption></figure>'''
+    overview = chart('training-ablation-brier', '完整模型、无事件训练损失、无全局因子的路径概率误差',
+                     '青绿为完整模型，橙色为去掉事件损失，紫色为去掉解码器全局因子。柱越短越好；横线表示三次训练的标准差。')
+    paired = chart('training-ablation-paired', '六次训练的 Brier 差值与 95% 场景配对区间',
+                   '圆点是“消融减完整模型”的误差差值，横线是 95% 场景重采样区间。整段在零右侧支持完整模型更好；跨零表示差异尚不明确。')
+    cases = json.loads((SITE / 'data/training_ablation_cases_zh.json').read_text())
+    if not cases['passed'] or cases['test_evaluated'] is not False or len(cases['cases']) != 2:
+        raise ValueError('two audited fixed visual cases are required')
+    examples = []
+    for case in cases['cases']:
+        panels = []
+        for key in visuals['labels']:
+            caption = f"{visuals['labels'][key]}：单元格可通行概率图，米白到青绿表示 0 到 1。"
+            footprint_caption = f"{visuals['labels'][key]}：第 1 次真实采样，按机器人半径 {case['radius_cells']} 格收缩。绿色允许机器人中心放置，深灰不允许；本次{'有路' if case['first_world_event'][key] else '无路'}。"
+            link = zoom(case['panels'][key], caption)
+            attributes = f' data-probability-map="{case["panels"][key]}" data-footprint-map="{case["footprint_panels"][key]}" data-probability-caption="{html.escape(caption)}" data-footprint-caption="{html.escape(footprint_caption)}"'
+            panels.append(link.replace(' data-zoom ', ' data-zoom' + attributes + ' '))
+        panels = ''.join(panels)
+        probabilities = '；'.join(f"{visuals['labels'][key]} {case['event_probability'][key]:.1%}" for key in visuals['labels'])
+        examples.append(f'''<article class="ablation-case"><h4>参考地图{'有路' if case['target'] else '无路'} · {case['global_id']} · 半径 {case['radius_cells']} 格</h4><p><a href="{case['observed']}" data-zoom data-caption="同一场景的已观测地图，浅灰区域为未知">查看模型输入 ↗</a> · <a href="{case['reference']}" data-zoom data-caption="同一场景的完整参考地图，只用于核对结果">查看完整参考 ↗</a></p><div class="ablation-map-panels">{panels}</div><p class="reading-note">该查询的原验证通路概率：{probabilities}。</p></article>''')
+    return f'''<div id="training-ablations" class="training-ablations">
+      <p class="small-label">新完成 / 六组训练消融</p><h3>每次去掉一个部分，看它是否有帮助。</h3>
+      <p class="ablation-intro">两种消融各独立训练三次，再与三个相同种子的完整模型配对。全部参数训练、精确评估和检查已完成；仍使用相同的验证集。</p>
+      {overview}<div class="ablation-conclusions">{conclusions}</div><p class="reading-note"><strong>{risk_note}</strong></p>
+      <details id="ablation-details" class="plain-details"><summary>展开消融数值表、差异区间和实验含义</summary><div class="detail-body">
+      <div class="table-scroll"><table class="ablation-table"><caption>每种模型三次训练 · 均值 ± 训练种子标准差 · 指标越低越好</caption><thead><tr><th scope="col">模型</th><th scope="col">Brier ↓</th><th scope="col">NLL ↓</th><th scope="col">ECE ↓</th><th scope="col">30% 覆盖率误判 ↓</th></tr></thead><tbody>{''.join(rows)}</tbody></table></div>
+      {paired}<p>去掉事件训练损失仍保留相同的验证事件选模型规则。去掉全局因子仅关闭解码器的全局随机因子，编码器上下文和局部相关性仍在，因此不能解释为“所有空间相关性都被去掉”。</p>
+      <p>每个种子内按整个场景重采样 2,000 次；训练波动和场景区间分开报告。验证集曾用于检查点选择，这些区间用于描述当前证据，尚不能替代正式测试。</p>
+      <p><a href="https://github.com/s-team-git/ConPath/blob/main/EVALUATION_SUMMARY_ZH.md">中文评估汇总与分层结果 ↗</a> · <a href="data/flatlands_clean_training_ablations.json">完整统计 JSON ↗</a> · <a href="data/training_ablation_metrics.csv">逐次训练 CSV ↗</a> · <a href="data/training_ablation_paired.csv">配对差值 CSV ↗</a></p>
+      </div></details>
+      <details id="ablation-examples" class="plain-details"><summary>展开真实地图：同一场景，三个模型怎样补全？</summary><div class="detail-body"><p>沿用此前固定的两个验证示例，未按本轮结果重新挑图。三组都展示种子 20260831；手机可左右滑动，点击图片放大。</p><div class="segmented ablation-view" role="group" aria-label="选择消融地图的含义"><button type="button" data-ablation-view="probability" class="selected" aria-pressed="true">每格的平均概率</button><button type="button" data-ablation-view="footprint" aria-pressed="false">一次采样 + 机器人尺寸</button></div><p id="ablation-view-note" class="reading-note">每幅图使用相同的 0–1 色条。颜色都很绿，也不保证整条通路能同时容纳机器人；切换右侧视图查看一次实际采样。</p>{''.join(examples)}<p class="provenance">图片来自真实检查点，以固定绘图种子采样 128 次、每批 8 张。“一次采样”固定展示第 1 张完整世界，经圆盘半径收缩后的机器人中心可放置区域，未按成败挑选。图中通路概率来自原精确验证 CSV，与绘图使用不同随机流；0% 表示 128 次中未采到有路，不是绝对不可能的证明。两个例子用于解释，不能代替整体统计。S 为起点、G 为目标，没有绘制规划路线。<a href="data/training_ablation_cases_zh.json">模型、图片与查询来源 ↗</a></p></div></details></div>'''
+
+
 def main():
     data=json.loads((SITE/'data/site_visuals_zh.json').read_text())
     analysis=json.loads((SITE/'data/flatlands_clean_paper_analysis.json').read_text())
+    ablations = training_ablations()
     case=data['examples'][0]
     panels=''.join(zoom(case['panels'][key],caption,True) for key,caption in [('observed','① 已观测地图：绿色可通行，深灰阻挡，浅灰未知。S 为起点，G 为目标。'),('correlated','② ConPath 推测：米白至青绿表示单元格可通行概率从 0 到 1。'),('correlated_sample','③ 第一次随机补全的完整世界：绿色可通行，深灰阻挡。'),('reference','④ 数据集完整参考地图，用于核对通路是否存在。')])
     first=data['gallery']['flatlands'][0]
@@ -88,6 +148,7 @@ def main():
 {{ROWS}}
 <!-- CLEAN_PAPER_ROWS_END -->
       </tbody></table></div><p><strong>Brier：</strong>概率的平方误差。<strong>NLL：</strong>对错误且过度自信的判断惩罚更重。<strong>ECE：</strong>模型信心与实际频率的分箱差异。<strong>误判通路：</strong>接受的查询里，实际上没有通路的比例。种子数代表独立训练次数；半径先验只由训练集拟合一次。</p><p>均值地图等二元预测会出现同分查询，覆盖率边界按不使用标签的比例方式分配。<a href="data/flatlands_clean_paper_analysis.json">原始统计 JSON ↗</a> · <a href="https://github.com/s-team-git/ConPath/blob/main/PAPER_EVIDENCE.md">完整证据与复现说明 ↗</a></p></div></details>
+      {{ABLATIONS}}
       <div class="second-domain"><h3>换到户外数据后，当前还没有看到优势。</h3><p>UnScenes3D 的均值地图事件误差为 <strong>0.51142</strong>（ConPath）与 <strong>0.51130</strong>（独立对照），结果几乎相同。当前硬观测规则已经造成约 <strong>0.47574</strong> 的误差下界；只加训练时长难以解决，需要先检查观测模型。这里只有两个验证场景，尚不支持跨域成功的结论。</p><p class="provenance">这里比较的是均值地图事件，预测对象与上方随机路径概率不同。<a href="data/unscenes3d_clean_support_k128_candidate.json">修正后的验证报告</a> · <a href="data/unscenes3d_observation_ceiling.json">观测误差下界</a></p></div>
     </section>
 
@@ -115,7 +176,12 @@ def main():
   <p id="interaction-error" class="interaction-error" hidden>交互数据暂时加载失败；已展示首个示例与完整静态结果，请刷新重试。</p>
 </body></html>
 '''
-    for key,value in [('PANELS',panels),('GALLERY',gallery),('GALLERY_SOURCE',gallery_source),('THUMBNAILS',thumbs),('SEQUENCE',sequence),('ROWS','\n'.join(rows))]:page=page.replace('{{'+key+'}}',value)
+    for key,value in [('PANELS',panels),('GALLERY',gallery),('GALLERY_SOURCE',gallery_source),('THUMBNAILS',thumbs),('SEQUENCE',sequence),('ROWS','\n'.join(rows)),('ABLATIONS',ablations)]:page=page.replace('{{'+key+'}}',value)
+    if ablations:
+        page = page.replace('新消融评估已恢复', '六组训练消融已完成')
+        page = page.replace('六组消融已按要求恢复，先完成精确评估，再接续后面的训练；当前没有新增的最终结果。', '六组内部训练消融及配对统计已完成，结果见上方新表。接下来补齐外部方法主比较；内部消融不能代替这些对比实验。')
+        page = page.replace('主验证结果与图表已完成。实验已按要求恢复：三组训练分别完成 12、9、17 轮，现在重新进行未完成的精确评估；另外三组自动排队。全部完成并核验后更新表格与图片。', '本轮六组参数训练与精确评估均已完成。中文汇总包含三次训练结果、场景配对区间和按来源/半径的分层表现，图表与论文同步更新。')
+        page = page.replace('<div class="publication-links">', '<div class="publication-links"><a class="pill" href="https://github.com/s-team-git/ConPath/blob/main/EVALUATION_SUMMARY_ZH.md">中文评估汇总 ↗</a>')
     assert '{{' not in page
     (SITE/'index.html').write_text(page)
     print('Chinese page built: 9 methods, 2 model examples, 12 gallery scenes, 18 frames.')

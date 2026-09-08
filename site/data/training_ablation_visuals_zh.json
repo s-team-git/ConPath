@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "validation_only": true,
+  "test_evaluated": false,
+  "report": "data/flatlands_clean_training_ablations.json",
+  "report_sha256": "d54ade10698106c1b36b11fd73fb3f90ac1da1c70b1b8ab780d0e6c687f2daab",
+  "builder_sha256": "55a9b7cf087878d96b390f34cdf3856511f0bb6191621f7241c76527fe28a04a",
+  "labels": {
+    "conpath": "完整 ConPath",
+    "no_event": "去掉事件训练损失",
+    "no_global": "去掉解码器全局因子"
+  },
+  "colors": {
+    "conpath": "#157f77",
+    "no_event": "#c78231",
+    "no_global": "#7862a3"
+  },
+  "assets": [
+    {
+      "path": "assets/zh/training-ablation-brier.svg",
+      "sha256": "ee8e3cf6eac37348f08c30606ec85c4f275f780d61e7a5b3cf53a777a8ac7f6e"
+    },
+    {
+      "path": "assets/zh/training-ablation-brier.pdf",
+      "sha256": "0a195bee8efc667188596552557ad1479859b9a3ddf01c6143f090d4e021b9fa"
+    },
+    {
+      "path": "assets/zh/training-ablation-paired.svg",
+      "sha256": "0813312fbe853e1d08c19e335d15f79bec4cb9b20c157af82facbe5eef982e7d"
+    },
+    {
+      "path": "assets/zh/training-ablation-paired.pdf",
+      "sha256": "a81e41bc14f87e2c841dc91c53b9d6f591e432f8717fae59115e60d73480a52f"
+    },
+    {
+      "path": "assets/zh/training-ablation-brier-mobile.svg",
+      "sha256": "978337397a0fd01865fae627f1f12d023dd8e7e89d495b50a0a845887a33a58c"
+    },
+    {
+      "path": "assets/zh/training-ablation-paired-mobile.svg",
+      "sha256": "9eef1d71c8abd68a3618c4a08c2f9b51b0914c4cda5303d031f91f4e64c4f330"
+    }
+  ],
+  "summary": {
+    "no_event": "三次训练的区间均高于零，支持完整模型在此验证设置下更好。",
+    "no_global": "三次训练的区间均高于零，支持完整模型在此验证设置下更好。"
+  }
+}

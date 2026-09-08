@@ -275,18 +275,19 @@ ConPath validation 入口已经在最终预测阶段使用该 exact-forward help
 2. **可扩展连通算子。** 将已验证的 merge-tree exact-forward 参考推进为批量实现，或采用
    exact-forward/soft-backward 算子；证明与离线 oracle 一致，报告显存、时间和 query 数扩展。
 3. **ConPath 正式训练与消融。** 三 seed K=128 完整模型 candidate 与 matched independent
-   K=128 control 均已完成；旧 no-event/no-global/K 敏感性/确定性均值图仅保留为历史记录，
-   需要在修正后边界下重新建立有效消融。所有方法共享
+   K=128 control 均已完成；修正边界后的 no-event/no-global 三种子训练、K 敏感性与确定性均值图
+   也已完成，见 `EVALUATION_SUMMARY_ZH.md`。旧版本仅保留为历史记录；若扩大训练集，所有方法共享
    encoder、数据与 query，且在 test 解锁前继续保持 validation-only。
 4. **校准与安全分析。** 做 source/radius reliability、false-safe 阈值曲线、K 收敛、scene
    bootstrap 置信区间、失败案例和饱和 stratum 报告；不得用 pooled 均值掩盖 ARKitScenes。
-5. **外部有效性。** 根据 P1 结果选择一个第二数据域；优先补足真实支撑/越野语义，而非再做一套
-   相似室内数据。冻结 scene/site/sequence split，并只复用已经定稿的方法与超参数规则。
+5. **外部有效性。** 按已确认的 `EXPERIMENT_DESIGN_ZH.md`，补齐 FlatLands 外部生成方法，
+   并在 CogniPlan 原生地图上比较官方生成模块；KTH 为后续泛化补充。UnScenes3D 保留观测模型诊断。
+   冻结 scene/site/sequence split，并只复用已经定稿的方法与超参数规则。
 6. **可复现冻结。** 固定环境、配置、checkpoint、数据哈希、运行命令和最终表格；从干净环境
    重跑关键结果，网站同步所有可公开 JSON/CSV/SVG 与定性图片，并逐项核对 license/attribution。
 7. **论文写作与投稿。** 先冻结研究问题、贡献与 claim boundary，再完成方法、实验、相关工作、
    局限和附录；制作主表/主图，完成内部反例审稿、统计审计、匿名化与 ICRA/IROS 格式检查。
 
-进入论文定稿的硬门槛是：强基线完整、完整模型多种子优势稳定、false-safe 有实质下降、关键消融
-支持因果解释、第二域不反转主要结论、所有数字可从冻结报告自动生成。未达到这些门槛时，只能写
-working draft，不能宣称已经具备投稿级证据。
+进入论文定稿的要求是：强基线完整、对比公平、全部结果及不确定性保留、主张与证据一致、所有数字
+可从冻结报告自动生成。若要主张性能领先或更安全，必须有相应的多种子与等覆盖率证据；未满足时应
+收窄主张，而非省略无优势或反向结果。当前外部比较和正式测试尚未完成，仍为 working draft。

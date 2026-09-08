@@ -22,6 +22,38 @@ def fmt(value):
     return f"{value['mean']:.5f} ± {value['sample_sd']:.5f}"
 
 
+def training_ablation_evidence():
+    path = ROOT / 'site/data/flatlands_clean_training_ablations.json'
+    if not path.is_file():
+        return []
+    report = json.loads(path.read_text())
+    if report['test_evaluated'] is not False or len(report['audits']) != 6 or not all(a['passed'] for a in report['audits']):
+        raise ValueError('six completed, audited validation ablations are required')
+    lines = ['<!-- TRAINING_ABLATIONS_START -->', '## Matched clean training ablations', '',
+             'Three seeds per model, on the same frozen 4,224 validation events. Only the named training flag changes. '
+             'No-event retains event-based validation checkpoint selection; no-global removes global decoder factors while retaining encoder context and local correlation.', '',
+             '| Model | Brier ↓ | NLL ↓ | ECE ↓ | False-safe at 30% coverage ↓ |', '|---|---:|---:|---:|---:|']
+    for method in report['methods'].values():
+        lines.append('| ' + method['label'] + ' | ' + ' | '.join([fmt(method['aggregate'][k]) for k in ('brier', 'nll', 'ece')] + [fmt(method['risk_at_30_percent'])]) + ' |')
+    lines += ['', 'Values above are mean ± sample SD across optimization seeds. The paired intervals below resample 142 whole scenes '
+              '2,000 times within each seed (bootstrap seed 20260907, frozen before outcomes). Positive deltas favor the full model. '
+              'Validation was reused for checkpoint selection; these are descriptive, non-multiplicity-adjusted intervals.', '',
+              '| Ablation | Seed | Brier delta (ablation − full) | Paired 95% scene interval | Risk delta at 30% coverage | Paired risk interval |',
+              '|---|---:|---:|---:|---:|---:|']
+    for variant, comparison in report['paired'].items():
+        for row in comparison['seeds']:
+            event=row['event_metrics']['brier'];risk=row['equal_coverage_risk']['0.3']
+            lo,hi=event['bootstrap_95'];rlo,rhi=risk['bootstrap_95']
+            lines.append(f"| {report['methods'][variant]['label']} | {row['seed']} | {event['independent_minus_correlated']:+.5f} | [{lo:+.5f}, {hi:+.5f}] | {risk['comparator_minus_conpath']:+.5f} | [{rlo:+.5f}, {rhi:+.5f}] |")
+    lines += ['', '![Clean training ablations](site/assets/flatlands_clean_training_ablations.svg)', '',
+              'All seeds, null intervals and reversals are retained. This bounded-data ablation does not replace external-method comparison, '
+              'larger matched training, or final testing. Source/radius tables and all seed values are in the '
+              '[Chinese evaluation summary](EVALUATION_SUMMARY_ZH.md); complete metrics and source hashes are in '
+              '[the statistical report](site/data/flatlands_clean_training_ablations.json).',
+              '<!-- TRAINING_ABLATIONS_END -->', '']
+    return lines
+
+
 def main():
     import matplotlib
     matplotlib.use('Agg')
@@ -140,6 +172,10 @@ def main():
               'PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/analyze_flatlands_clean_validation.py --controls-root results/paper_clean_checkpoint_controls_v1 --shuffle-root results/paper_clean_marginal_shuffle_v1 --publish-site',
               '/home/hairo/miniconda3/bin/python3.13 scripts/build_paper_evidence.py', '```','',
               'Completed checkpoint controls verify their manifests when resumed. The shuffle command refuses to overwrite completed outputs; reproduce it in a fresh checkout/result directory. Raw data and checkpoints remain ignored by Git. SVG and PDF figures are included under `site/assets/`.','']
+    ablations = training_ablation_evidence()
+    if ablations:
+        position = lines.index('## Reproduce')
+        lines[position:position] = ablations
     (ROOT/'PAPER_EVIDENCE.md').write_text('\n'.join(lines))
     page=ROOT/'site/index.html'
     source=page.read_text()

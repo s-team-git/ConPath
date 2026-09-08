@@ -71,6 +71,33 @@ The bound audit exposed a remaining mean-map postprocessing error: restoring obs
 
 ![Observation-conditioned error floor](site/assets/unscenes3d_observation_ceiling.svg)
 
+<!-- TRAINING_ABLATIONS_START -->
+## Matched clean training ablations
+
+Three seeds per model, on the same frozen 4,224 validation events. Only the named training flag changes. No-event retains event-based validation checkpoint selection; no-global removes global decoder factors while retaining encoder context and local correlation.
+
+| Model | Brier ↓ | NLL ↓ | ECE ↓ | False-safe at 30% coverage ↓ |
+|---|---:|---:|---:|---:|
+| Full ConPath | 0.06749 ± 0.00936 | 0.28854 ± 0.01662 | 0.05715 ± 0.00683 | 0.03600 ± 0.00986 |
+| Without event training loss | 0.20425 ± 0.00322 | 2.53067 ± 0.05699 | 0.21690 ± 0.01933 | 0.05655 ± 0.00582 |
+| Without global decoder factors | 0.09499 ± 0.00157 | 0.78486 ± 0.05495 | 0.08592 ± 0.00058 | 0.04288 ± 0.01245 |
+
+Values above are mean ± sample SD across optimization seeds. The paired intervals below resample 142 whole scenes 2,000 times within each seed (bootstrap seed 20260907, frozen before outcomes). Positive deltas favor the full model. Validation was reused for checkpoint selection; these are descriptive, non-multiplicity-adjusted intervals.
+
+| Ablation | Seed | Brier delta (ablation − full) | Paired 95% scene interval | Risk delta at 30% coverage | Paired risk interval |
+|---|---:|---:|---:|---:|---:|
+| Without event training loss | 20260831 | +0.14277 | [+0.11130, +0.17652] | +0.02661 | [-0.00135, +0.06126] |
+| Without event training loss | 20260901 | +0.14274 | [+0.11139, +0.17645] | +0.03006 | [-0.00307, +0.06894] |
+| Without event training loss | 20260902 | +0.12475 | [+0.09559, +0.15611] | +0.00498 | [-0.01611, +0.04532] |
+| Without global decoder factors | 20260831 | +0.03443 | [+0.01947, +0.04971] | +0.02535 | [-0.00081, +0.05151] |
+| Without global decoder factors | 20260901 | +0.03157 | [+0.02185, +0.04192] | -0.00394 | [-0.01384, +0.00388] |
+| Without global decoder factors | 20260902 | +0.01649 | [+0.00866, +0.02416] | -0.00077 | [-0.00780, +0.00954] |
+
+![Clean training ablations](site/assets/flatlands_clean_training_ablations.svg)
+
+All seeds, null intervals and reversals are retained. This bounded-data ablation does not replace external-method comparison, larger matched training, or final testing. Source/radius tables and all seed values are in the [Chinese evaluation summary](EVALUATION_SUMMARY_ZH.md); complete metrics and source hashes are in [the statistical report](site/data/flatlands_clean_training_ablations.json).
+<!-- TRAINING_ABLATIONS_END -->
+
 ## Reproduce
 
 ```bash

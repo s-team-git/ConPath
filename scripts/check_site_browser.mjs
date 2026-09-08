@@ -15,7 +15,7 @@ const command=(method,params={})=>new Promise((resolve,reject)=>{const id=++next
 const evaluate=async(expression)=>{const result=await command('Runtime.evaluate',{expression,returnByValue:true,awaitPromise:true});if(result.exceptionDetails)throw new Error(JSON.stringify(result.exceptionDetails));return result.result.value;};
 const delay=(ms)=>new Promise(resolve=>setTimeout(resolve,ms));
 const check=(value,message)=>{if(!value)throw new Error(message);};
-async function ready(){for(let i=0;i<80;i++){if(await evaluate('document.documentElement.dataset.interactiveReady === "true"'))return;await delay(100);}throw new Error('Interactive page did not initialize');}
+async function ready(){for(let i=0;i<80;i++){if(await evaluate('document.documentElement?.dataset?.interactiveReady === "true"'))return;await delay(100);}throw new Error('Interactive page did not initialize');}
 async function images(){await evaluate(`(async()=>{await Promise.all([...document.images].filter(i=>i.getAttribute('src') && i.getClientRects().length).map(async i=>{i.loading='eager';try{await i.decode()}catch{}}));})()`);}
 async function screenshot(name){await images();const shot=await command('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});await fs.writeFile(path.join(output,name+'.png'),Buffer.from(shot.data,'base64'));}
 async function status(){return await evaluate(`({lang:document.documentElement.lang,width:innerWidth,scrollWidth:document.documentElement.scrollWidth,rows:document.querySelectorAll('.metrics-table tbody tr').length,broken:[...document.images].filter(i=>i.getAttribute('src') && i.getClientRects().length && (!i.complete || !i.naturalWidth)).map(i=>i.src),errorBanner:!document.querySelector('#interaction-error').hidden})`);}
@@ -59,8 +59,27 @@ try{
       check((await status()).broken.length===0,'Broken chart');
     }
     await evaluate(`document.querySelector('button[data-chart="brier"]').click();document.querySelector('.chart-toolbar').scrollIntoView({behavior:'instant',block:'start'})`);await screenshot(`${width}-chart`);
+    check(await evaluate(`document.querySelectorAll('[data-ablation]').length===3`),'Missing completed ablation rows');
+    await evaluate(`document.querySelector('#training-ablations').scrollIntoView({behavior:'instant',block:'start'})`);await screenshot(`${width}-ablations`);
+    await evaluate(`document.querySelector('#ablation-details').open=true`);await images();
+    check(await evaluate(`[...document.querySelectorAll('.ablation-chart img')].every(i=>i.currentSrc.endsWith('${width<600?'-mobile':''}.svg'))`),'Ablation responsive chart source mismatch');
+    await evaluate(`document.querySelector('#ablation-details .ablation-chart').scrollIntoView({behavior:'instant',block:'start'})`);await screenshot(`${width}-ablation-intervals`);
+    await evaluate(`document.querySelector('#ablation-details .ablation-chart [data-zoom]').click()`);await images();
+    check(await evaluate(`document.querySelector('#image-dialog').open && document.querySelector('#dialog-image').src.endsWith('training-ablation-paired${width<600?'-mobile':''}.svg')`),'Ablation zoom source mismatch');
+    await evaluate(`document.querySelector('#dialog-close').click()`);
+    check((await status()).broken.length===0,'Broken ablation assets');
+    await evaluate(`document.querySelector('#ablation-details').open=false`);
+    await evaluate(`document.querySelector('#ablation-examples').open=true;document.querySelector('#ablation-examples').scrollIntoView({behavior:'instant',block:'start'})`);await images();
+    check(await evaluate(`document.querySelectorAll('.ablation-map-panels img').length===6`),'Missing actual ablation case images');
+    check((await status()).broken.length===0,'Broken ablation case image');await screenshot(`${width}-ablation-cases`);
+    await evaluate(`document.querySelector('[data-ablation-view="footprint"]').click()`);await images();
+    check(await evaluate(`[...document.querySelectorAll('.ablation-map-panels img')].every(i=>i.src.endsWith('-footprint.svg') && i.alt.includes('机器人'))`),'Footprint sample view mismatch');
+    check((await status()).broken.length===0,'Broken footprint sample image');await screenshot(`${width}-ablation-footprints`);
+    await evaluate(`document.querySelector('[data-ablation-view="probability"]').click()`);await images();
+    check(await evaluate(`[...document.querySelectorAll('.ablation-map-panels img')].every(i=>!i.src.endsWith('-footprint.svg'))`),'Probability map switch failed');
+    await evaluate(`document.querySelector('#ablation-examples').open=false`);
     const report=await status();check(report.lang==='zh-CN' && report.rows===9,'Language or result row count mismatch');check(report.scrollWidth<=report.width+1,'Page overflows viewport');check(!report.errorBanner && report.broken.length===0,'Runtime/image error');
-    reports.push({...report,interactions:['both examples','both models','dialog open/Escape','12 gallery scenes','frame seek/play/pause','five charts with PDF links']});
+    reports.push({...report,ablationRows:3,ablationCaseImages:6,interactions:['both examples','both models','dialog open/Escape','12 gallery scenes','frame seek/play/pause','five charts with PDF links','ablation table','two responsive ablation charts','ablation zoom','two fixed cases with three actual model maps each']});
   }
   check(errors.length===0,'JavaScript exceptions');
   await fs.writeFile(path.join(output,'report.json'),JSON.stringify({passed:true,url:base,viewports:reports,errors},null,2)+'\n');

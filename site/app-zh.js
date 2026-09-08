@@ -16,16 +16,27 @@
     if (!link || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
     if (typeof dialog.showModal !== 'function') return;
     event.preventDefault();focusBeforeDialog = link;
-    $('#dialog-image').src = link.href;
+    const imageSource = link.closest('.ablation-chart') ? link.querySelector('img').currentSrc : link.href;
+    $('#dialog-image').src = imageSource;
     $('#dialog-image').alt = link.dataset.caption || link.querySelector('img')?.alt || '放大图片';
-    $('#dialog-image').dataset.chart = String(link.id === 'chart-open');
+    $('#dialog-image').dataset.chart = String(link.id === 'chart-open' || Boolean(link.closest('.ablation-chart')));
     $('#dialog-caption').textContent = $('#dialog-image').alt;
-    $('#dialog-source').href = link.href;
+    $('#dialog-source').href = imageSource;
     dialog.showModal();
   });
   $('#dialog-close').addEventListener('click', () => dialog.close());
   dialog.addEventListener('click', (event) => {if (event.target === dialog) {const r=dialog.getBoundingClientRect();if(event.clientX<r.left || event.clientX>r.right || event.clientY<r.top || event.clientY>r.bottom) dialog.close();}});
   dialog.addEventListener('close', () => focusBeforeDialog?.focus());
+  all('[data-ablation-view]').forEach(button=>button.addEventListener('click',()=>{
+    const footprint=button.dataset.ablationView==='footprint';
+    all('[data-probability-map]').forEach(link=>{
+      const source=footprint?link.dataset.footprintMap:link.dataset.probabilityMap;
+      const caption=footprint?link.dataset.footprintCaption:link.dataset.probabilityCaption;
+      link.href=source;link.dataset.caption=caption;link.querySelector('img').src=source;link.querySelector('img').alt=caption;
+    });
+    choose('[data-ablation-view]',button.dataset.ablationView,'ablationView');
+    $('#ablation-view-note').textContent=footprint?'每列固定展示第 1 次真实采样，并按该查询的机器人半径收缩。绿色表示机器人中心可以放置的位置，深灰表示不能放置；这张图的有路/无路只对应一次采样，不是 128 次的平均概率。':'每幅图使用相同的 0–1 色条。颜色都很绿，也不保证整条通路能同时容纳机器人；切换右侧视图查看一次实际采样。';
+  }));
 
   fetch('data/site_visuals_zh.json').then((response) => {if (!response.ok) throw new Error('visual snapshot unavailable');return response.json();}).then((data) => {
     let exampleIndex=0, variant='correlated', dataset='flatlands', galleryIndex=0, frameIndex=0, timer;

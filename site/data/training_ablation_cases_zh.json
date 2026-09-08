@@ -1,0 +1,203 @@
+{
+  "passed": true,
+  "validation_only": true,
+  "test_evaluated": false,
+  "training_started": false,
+  "seed": 20260831,
+  "samples": 128,
+  "sample_chunk": 8,
+  "device": "cpu",
+  "labels": {
+    "conpath": "完整 ConPath",
+    "no_event": "去掉事件训练损失",
+    "no_global": "去掉解码器全局因子"
+  },
+  "checkpoints": {
+    "conpath": {
+      "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260831_conpath/best.pt",
+      "sha256": "f7b42163fb2fd6127a19e2a967f44181814a263c699020a7a59f895d913b797c",
+      "decoder_variant": "correlated",
+      "local_kernel_size": 5,
+      "disable_global_factors": false,
+      "event_loss_weight": 2.0
+    },
+    "no_event": {
+      "path": "results/paper_clean_ablation_matrix_v1/seed20260831_no_event/best.pt",
+      "sha256": "8fa4d46e18a8d976f3327e3cd8391e6cbd3206279041446bf289c0b903fc18b7",
+      "decoder_variant": "correlated",
+      "local_kernel_size": 5,
+      "disable_global_factors": false,
+      "event_loss_weight": 0.0
+    },
+    "no_global": {
+      "path": "results/paper_clean_ablation_matrix_v1/seed20260831_no_global/best.pt",
+      "sha256": "a77d9966228209a9f4de1689535890eef6bbae7d4c64b23c04c041cdce406d82",
+      "decoder_variant": "correlated",
+      "local_kernel_size": 5,
+      "disable_global_factors": true,
+      "event_loss_weight": 2.0
+    }
+  },
+  "sources": {
+    "site/data/site_visuals_zh.json": "3fe0c0270fa2db16eb17e3ac6d69415592740df22c113c0258716ed12de832f8",
+    "scripts/render_ablation_cases_zh.py": "9928ddffb127b29fc2a5c0eaff07cded76fbca8301bd25c12fb36a461ae4536f",
+    "scripts/build_site_visuals.py": "46566fff0e7e242c2f0bcf45970af2a8cc59b78211d1ae2f5c41b97735b5b343",
+    "scripts/render_flatlands_k128_advantage.py": "9ec2b0721bd4c2e7ab569a8dc38d29063616dba3533833274d2a2204918aff8a",
+    "site/assets/zh/example_positive_recovery_observed.svg": "f4f6618f9d9da8dfc70065d516bcd7e965cea917a6c0bfb06f5e482acad747e8",
+    "site/assets/zh/example_positive_recovery_reference.svg": "854e8dd35c2dc83feb7185fcaef68dbf1b04f048f4c8c47f20a35bc760bb4659",
+    "site/assets/zh/example_false_safe_avoided_observed.svg": "9b217060d424c79dcedd8354240e352868b3b393dce39e2efca8d99c89aa0e0d",
+    "site/assets/zh/example_false_safe_avoided_reference.svg": "81718f647140efbdabe7965088d7f6fca7020ad3794c706382859e9bd3090e8d",
+    "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260831_conpath/best.pt": "f7b42163fb2fd6127a19e2a967f44181814a263c699020a7a59f895d913b797c",
+    "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260831_conpath/predictions_validation.csv": "50c94f29c7461988ff4467cfca9d9ae5e604e4543ad60604d82337d6dc378a0d",
+    "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260831_conpath/run.json": "3395c4e85bd8fffc11cba0418af61bf898f6ac662eecbe06cd1f0ba31d78fdd3",
+    "results/paper_clean_ablation_matrix_v1/seed20260831_no_event/best.pt": "8fa4d46e18a8d976f3327e3cd8391e6cbd3206279041446bf289c0b903fc18b7",
+    "results/paper_clean_ablation_matrix_v1/seed20260831_no_event/predictions_validation.csv": "44a17544279cde1f1cfaecfc8d86c88390e972b6016e5ddcb4dc0d83f67a9258",
+    "results/paper_clean_ablation_matrix_v1/seed20260831_no_event/run.json": "79412fdd0ff86cc9b94138b9a9d5c0c6fb15c559c25d7a91f7a59c011983e6ff",
+    "results/paper_clean_ablation_matrix_v1/seed20260831_no_global/best.pt": "a77d9966228209a9f4de1689535890eef6bbae7d4c64b23c04c041cdce406d82",
+    "results/paper_clean_ablation_matrix_v1/seed20260831_no_global/predictions_validation.csv": "801196106d6b6b9b49fa88d298c61bc7c979f58b88459b1b254c4cde98005f3d",
+    "results/paper_clean_ablation_matrix_v1/seed20260831_no_global/run.json": "a524a4cf8a480c389cd4e4ceab990ac9b48e30e2ca3a5b1ac45b67f668cb1b19"
+  },
+  "assets": [
+    {
+      "path": "assets/zh/ablation-case-false_safe_avoided-conpath-footprint.svg",
+      "sha256": "94314847913353ede1b140543f10920e736aacc2d2133c5fdbd85b5af7fe25d5"
+    },
+    {
+      "path": "assets/zh/ablation-case-false_safe_avoided-conpath.svg",
+      "sha256": "196c183b887545de038c9e7625aae360e9d2611ca9aa761baa926342bf2edc65"
+    },
+    {
+      "path": "assets/zh/ablation-case-false_safe_avoided-no_event-footprint.svg",
+      "sha256": "e3662c246e06c408f65eeeb4b722b25498e71d3ef78bb6c7080cec6c31107875"
+    },
+    {
+      "path": "assets/zh/ablation-case-false_safe_avoided-no_event.svg",
+      "sha256": "fb11e07d83d06e25210e47d66ecd29d82d68632d3f5160abf99f4e264e8379ab"
+    },
+    {
+      "path": "assets/zh/ablation-case-false_safe_avoided-no_global-footprint.svg",
+      "sha256": "c65ff713194a34825cafc9e3b6e258d609e7891edd0587ba9df6075ec751bdf0"
+    },
+    {
+      "path": "assets/zh/ablation-case-false_safe_avoided-no_global.svg",
+      "sha256": "1822443b2b288447ea0f8aa3f9a07ccf1e2fcdd3be552e95847a559aeefb3986"
+    },
+    {
+      "path": "assets/zh/ablation-case-positive_recovery-conpath-footprint.svg",
+      "sha256": "f1e6b9b20e63525aed6e69e352d8da2fe01c73913a7ede3984a860d9f7da48dd"
+    },
+    {
+      "path": "assets/zh/ablation-case-positive_recovery-conpath.svg",
+      "sha256": "d127be0385460d5f111a0165cb005c9f216bcd27bb527bf32bb6d6eea28686df"
+    },
+    {
+      "path": "assets/zh/ablation-case-positive_recovery-no_event-footprint.svg",
+      "sha256": "d85e0b5183ac6f3f54370bbd3f5e3e9831dc9461782bce0bb0f03487ed9a5b11"
+    },
+    {
+      "path": "assets/zh/ablation-case-positive_recovery-no_event.svg",
+      "sha256": "07d42010bd1b7d8ba483f6bd4c40c0b62212f2e773ff303dd8eb0f4c96fb6c33"
+    },
+    {
+      "path": "assets/zh/ablation-case-positive_recovery-no_global-footprint.svg",
+      "sha256": "529fa52b9ba281c8193e1deb16e5021076606e9f81f50ab924bfe99b38163acf"
+    },
+    {
+      "path": "assets/zh/ablation-case-positive_recovery-no_global.svg",
+      "sha256": "f2e2d07d5f8f96b6c5931c457910bb9c57943404b0527085135c727eaa71769a"
+    }
+  ],
+  "cases": [
+    {
+      "id": "positive_recovery",
+      "global_id": "obs_266762",
+      "source": "ZInD",
+      "scene": "0743_floor_01_pano_21",
+      "candidate_index": 23,
+      "radius_cells": 10,
+      "target": 1,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        151,
+        197
+      ],
+      "seed": 20260831,
+      "visual_sampling_seed": 20260903,
+      "selection_rule": "target=1, correlated probability exceeds independent probability in all three seeds; rank by mean per-event Brier gain",
+      "panels": {
+        "conpath": "assets/zh/ablation-case-positive_recovery-conpath.svg",
+        "no_event": "assets/zh/ablation-case-positive_recovery-no_event.svg",
+        "no_global": "assets/zh/ablation-case-positive_recovery-no_global.svg"
+      },
+      "footprint_panels": {
+        "conpath": "assets/zh/ablation-case-positive_recovery-conpath-footprint.svg",
+        "no_event": "assets/zh/ablation-case-positive_recovery-no_event-footprint.svg",
+        "no_global": "assets/zh/ablation-case-positive_recovery-no_global-footprint.svg"
+      },
+      "first_world_event": {
+        "conpath": true,
+        "no_event": false,
+        "no_global": false
+      },
+      "event_probability": {
+        "conpath": 0.7890625,
+        "no_event": 0.0,
+        "no_global": 0.0
+      },
+      "observed": "assets/zh/example_positive_recovery_observed.svg",
+      "reference": "assets/zh/example_positive_recovery_reference.svg"
+    },
+    {
+      "id": "false_safe_avoided",
+      "global_id": "obs_249512",
+      "source": "ZInD",
+      "scene": "1263_floor_01_pano_5",
+      "candidate_index": 5,
+      "radius_cells": 20,
+      "target": 0,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        211,
+        93
+      ],
+      "seed": 20260831,
+      "visual_sampling_seed": 20260904,
+      "selection_rule": "target=0, independent probability >=0.8 and correlated probability <0.8 in all three seeds; rank by mean per-event Brier gain",
+      "panels": {
+        "conpath": "assets/zh/ablation-case-false_safe_avoided-conpath.svg",
+        "no_event": "assets/zh/ablation-case-false_safe_avoided-no_event.svg",
+        "no_global": "assets/zh/ablation-case-false_safe_avoided-no_global.svg"
+      },
+      "footprint_panels": {
+        "conpath": "assets/zh/ablation-case-false_safe_avoided-conpath-footprint.svg",
+        "no_event": "assets/zh/ablation-case-false_safe_avoided-no_event-footprint.svg",
+        "no_global": "assets/zh/ablation-case-false_safe_avoided-no_global-footprint.svg"
+      },
+      "first_world_event": {
+        "conpath": true,
+        "no_event": false,
+        "no_global": true
+      },
+      "event_probability": {
+        "conpath": 0.7578125,
+        "no_event": 0.0,
+        "no_global": 0.7421875
+      },
+      "observed": "assets/zh/example_false_safe_avoided_observed.svg",
+      "reference": "assets/zh/example_false_safe_avoided_reference.svg"
+    }
+  ],
+  "posterior_arrays": {
+    "path": "results/ablation_publication_20260908/cases_v2/posterior_means.npz",
+    "sha256": "eec025e3485a6377ae8bce4ad223b80ead130f356ec661ead9142c1c3ddd021c"
+  },
+  "selection": "Reuse both pre-existing, label-selected website cases without ranking new ablation outcomes. One optimization seed; explanatory, not aggregate evidence.",
+  "probability_note": "Map colors are cell probabilities from a fresh fixed visualization RNG shared by all three variants, K=128/chunks=8. Query probabilities are copied from the original exact validation CSVs; the streams differ. No inferred route is drawn.",
+  "footprint_note": "Display the first sampled world only, without outcome selection, after exact disk-clearance erosion at the fixed query radius. Green cells admit the robot center; dark cells do not. First-world connectivity is not the K=128 probability."
+}

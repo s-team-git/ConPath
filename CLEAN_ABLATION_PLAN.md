@@ -49,7 +49,17 @@ different questions and must both remain in the evidence.
 
 ## Execution and recovery
 
-Current status: resumed again at the user's request on 2026-09-07 at 23:59 EDT
+Current status: all six runs and the paired analysis completed on 2026-09-08 at
+08:56 UTC (04:56 EDT). no_event stopped at epochs 12/9/17, selecting 4/1/9;
+no_global stopped at 12/18/18, selecting 4/10/10. Every run passed its frozen audit.
+The supervisor and all workers have exited. Do not restart this completed matrix.
+The analysis is in `analysis/report.json`; reviewed Chinese results and fixed-case
+figures are in [EVALUATION_SUMMARY_ZH.md](EVALUATION_SUMMARY_ZH.md).
+Full/no_event/no_global Brier is 0.06749/0.20425/0.09499. All six paired Brier
+intervals are positive; all six equal-30%-coverage risk intervals include zero.
+The prospective questions, contract and statistical plan above remain unchanged.
+
+Historical execution: resumed again at the user's request on 2026-09-07 at 23:59 EDT
 (2026-09-08 03:59 UTC). Three final-evaluation workers are active. no_event seeds 20260831/20260901/20260902
 completed 12/9/17 epochs and reached patience=8; their selected best epochs are 4/1/9.
 Six latest/best checkpoints passed recovery checks and were backed up under

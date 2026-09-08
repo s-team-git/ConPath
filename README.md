@@ -107,6 +107,14 @@ independent decoder is not established. The UnScenes3D adapter imposes a validat
 bound `0.47574`; its observation model needs attention before further second-domain training.
 These findings refine the working paper, not the locked-test or final-publication gate.
 
+The clean three-seed training ablations are complete: removing event loss yields Brier
+`0.20425 +/- 0.00322`; removing decoder global factors yields `0.09499 +/- 0.00157`,
+versus full ConPath `0.06749 +/- 0.00936`. All six paired scene Brier intervals favor
+the full model, while every equal-30%-coverage risk interval includes zero. The
+[Chinese evaluation summary](EVALUATION_SUMMARY_ZH.md) includes all seeds, source/radius
+strata, and 12 labelled checkpoint-derived probability/footprint images. External
+LaMa/ensemble, flow and native CogniPlan comparisons are still required; tests stay locked.
+
 ## Environment
 
 The clean September 2026 checkpoints and the latest full regression were produced with
