@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "checkpoint_id": "literature-driven-comparison-design-training-paused-20260907",
+  "checkpoint_id": "approved-experiment-plan-training-resumed-20260907",
   "updated_local_date": "2026-09-07",
   "timezone": "America/New_York",
   "branch": "main",
-  "remote_sync": "Previous website revision 2b7bdd7 was synchronized and deployed. Resolve this literature/design revision with git log -1 -- EXPERIMENT_DESIGN_ZH.md. Publication receipts for the new update are results/literature_protocol_20260907/deployment.json and deployed_artifacts.json.",
-  "latest_local_commit": "Resolve the literature/design handoff revision with git log -1 -- RECOVERY_STATE.json; frozen training implementation remains e6f0910.",
+  "remote_sync": "Previous literature/design revision 434cd82 is synchronized and deployed. Resolve this approved-plan/resumption revision with git log -1 -- RECOVERY_STATE.json. Publication receipts for this update will be results/training_resume_20260907/deployment.json and deployed_artifacts.json.",
+  "latest_local_commit": "Resolve this resumption handoff revision with git log -1 -- RECOVERY_STATE.json; frozen training implementation remains e6f0910.",
   "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence.",
   "scientific_status": "P0 passes in two seeds. Clean-support FlatLands K=128 gives event Brier 0.06749 +/- 0.00936 versus independent 0.09521 +/- 0.00703 on the scene-disjoint non-official validation split. The nine-method comparison includes same-checkpoint mean maps (0.06957 +/- 0.00380) and a fixed empirical marginal shuffle (0.16139 +/- 0.00677); spatial dependence has positive mechanism evidence, but the mean-map advantage and equal-30%-coverage risk advantage (3.60% versus 3.90%) are not stable across paired intervals. All six original K=128 predictions replay exactly. UnScenes3D mean-map/qualitative v1 reopened invalid support after sampling and is superseded by v2: Brier 0.51142 +/- 0.00198 versus independent 0.51130 +/- 0.00218. Training weights and hidden-map metrics replay exactly; all 27,522 model predictions obey the exact observation bounds. The frozen hard-observation validation Brier lower bound is 0.47574, and only 15.66% of events are mutable through unknown completion. The manuscript remains a working draft. Both physical tests remain locked; no successful transfer or final-paper claim is supported.",
-  "active_task": "Eight-paper literature/code review and Chinese prospective experiment design completed. Prioritize LaMa/ensemble and conditional flow completion on FlatLands, then CogniPlan generator comparison on native maps; KITTI-360 is conditional. Next implementation gate: train-only data/interface audit, especially FlatLands metric resolution and CogniPlan layout labels. External experiments not run, no new experimental data/checkpoints downloaded, no test evaluated, training remains paused. Read EXPERIMENT_DESIGN_ZH.md and LITERATURE_REVIEW_ZH.md. Website now explains this as a plan, not new results.",
+  "active_task": "User explicitly approved the literature-grounded experiment design and requested training resumption. Six frozen clean ablations resumed under a detached three-worker supervisor; all three no_event workers completed a new epoch with original history/configuration preserved, optimizer advanced and finite changed weights. no_global is queued. CogniPlan train-only asset audit completed: 3000 full/23795 partial maps, zero observed/target conflicts, 3000 same-name but different-content IDs across predictor/planner train archives; released batch size 24 differs from repository default 32. No external inference or final test ran. Continue required external comparisons through data/interface, native quality and resource-profile gates; then complete paper deliverables in EXPERIMENT_DESIGN_ZH.md section 8.",
   "completed_milestones": [
     "Interruption-safe P0 training with atomic checkpoints and exact resume",
     "Two-seed synthetic P0 pass and matched no-reach failure",
@@ -98,7 +98,10 @@
     "Detached six-run clean ablation supervisor launched on the RTX PRO 6000, initially three no_event workers with no_global queued. The new audit exactly replays full-model seed 20260831 Brier 0.059479796640678484. This is a running experiment, not a completed ablation result.",
     "September 7 user-requested training pause completed at 05:50 UTC: supervisor and three workers exited, all three no_event runs preserve epoch-4 latest/best checkpoints, no_global unstarted. Nine checkpoint files restore models/optimizers with finite tensors and complete RNG states. Partial epoch 5 is excluded from the resume source; no final ablation result is available.",
     "Chinese website rebuilt from the user-supplied Lightweight-3DGS reference, with labelled S/G markers and no query connectors, separate phone/desktop scientific plots, 12 train-only dataset examples, 23 unchanged raw camera images, 18 synchronized frames, two fixed checkpoint diagnostic cases and nine exact numeric rows. Old English audit/media clutter is archived. Official dataset/baseline differences are explained in DATASET_CHOICE_ZH.md. Visual hash/provenance audit and Chrome 1440/390 interaction checks pass; training remains paused.",
-    "Read experiments/supplements of eight related papers and inspect four official repositories; record source PDF versions/hashes and code revisions. Write LITERATURE_REVIEW_ZH.md and EXPERIMENT_DESIGN_ZH.md. Update manuscript/work plan/site with prospective external baselines, K=4 and cost comparisons, native CogniPlan data and preserved training pause. No external method performance claimed."
+    "Read experiments/supplements of eight related papers and inspect four official repositories; record source PDF versions/hashes and code revisions. Write LITERATURE_REVIEW_ZH.md and EXPERIMENT_DESIGN_ZH.md. Update manuscript/work plan/site with prospective external baselines, K=4 and cost comparisons, native CogniPlan data and preserved training pause. No external method performance claimed.",
+    "Explicit user acceptance of EXPERIMENT_DESIGN_ZH.md and training resumption on 2026-09-07 evening; accepted text/hash and authorization preserved, eight paper deliverables added to durable plan.",
+    "Six-run frozen clean ablation matrix resumed from complete epoch-4 latest checkpoints; nine pause checkpoints backed up, all three no_event workers completed epoch 5 with unchanged training sources/configs and advancing finite weights/optimizer.",
+    "CogniPlan official train asset SHA-256 and 32795 PNG data audit passed; full/partial encodings checked against official source, 396699786 observed cells agree with targets, three train asset archives downloaded, no test assets or external inference."
   ],
   "tracked_files": [
     "CLEAN_ABLATION_PLAN.md",
@@ -357,7 +360,9 @@
     "tests/test_posterior_audits.py",
     "tests/test_reachability.py",
     "tests/test_selective_risk.py",
-    "tests/test_unscenes3d.py"
+    "tests/test_unscenes3d.py",
+    "EXTERNAL_DATA_AUDIT_ZH.md",
+    "scripts/audit_cogniplan_training_assets.py"
   ],
   "ignored_artifacts": [
     {
@@ -2570,12 +2575,12 @@
     },
     {
       "path": "results/paper_clean_ablation_matrix_v1/seed20260831_no_event/best.pt",
-      "role": "Paused clean ablation checkpoint required for resume; pause-time hashes are in pause_checkpoint_audit.json, file may change only after user-requested resumption.",
+      "role": "Live resumed clean ablation checkpoint; intentionally unhashed while training. Original pause hashes and separate immutable backup are retained.",
       "required_for_resume": true
     },
     {
       "path": "results/paper_clean_ablation_matrix_v1/seed20260831_no_event/latest.pt",
-      "role": "Paused clean ablation checkpoint required for resume; pause-time hashes are in pause_checkpoint_audit.json, file may change only after user-requested resumption.",
+      "role": "Live resumed clean ablation checkpoint; intentionally unhashed while training. Original pause hashes and separate immutable backup are retained.",
       "required_for_resume": true
     },
     {
@@ -2590,12 +2595,12 @@
     },
     {
       "path": "results/paper_clean_ablation_matrix_v1/seed20260901_no_event/best.pt",
-      "role": "Paused clean ablation checkpoint required for resume; pause-time hashes are in pause_checkpoint_audit.json, file may change only after user-requested resumption.",
+      "role": "Live resumed clean ablation checkpoint; intentionally unhashed while training. Original pause hashes and separate immutable backup are retained.",
       "required_for_resume": true
     },
     {
       "path": "results/paper_clean_ablation_matrix_v1/seed20260901_no_event/latest.pt",
-      "role": "Paused clean ablation checkpoint required for resume; pause-time hashes are in pause_checkpoint_audit.json, file may change only after user-requested resumption.",
+      "role": "Live resumed clean ablation checkpoint; intentionally unhashed while training. Original pause hashes and separate immutable backup are retained.",
       "required_for_resume": true
     },
     {
@@ -2610,12 +2615,12 @@
     },
     {
       "path": "results/paper_clean_ablation_matrix_v1/seed20260902_no_event/best.pt",
-      "role": "Paused clean ablation checkpoint required for resume; pause-time hashes are in pause_checkpoint_audit.json, file may change only after user-requested resumption.",
+      "role": "Live resumed clean ablation checkpoint; intentionally unhashed while training. Original pause hashes and separate immutable backup are retained.",
       "required_for_resume": true
     },
     {
       "path": "results/paper_clean_ablation_matrix_v1/seed20260902_no_event/latest.pt",
-      "role": "Paused clean ablation checkpoint required for resume; pause-time hashes are in pause_checkpoint_audit.json, file may change only after user-requested resumption.",
+      "role": "Live resumed clean ablation checkpoint; intentionally unhashed while training. Original pause hashes and separate immutable backup are retained.",
       "required_for_resume": true
     },
     {
@@ -2711,16 +2716,237 @@
       "required_for_resume": true,
       "bytes": 616,
       "sha256": "0406fe6f9c4f2a7358903c0bd98e81bc4153d8b716029f04f3749543c9709fb0"
+    },
+    {
+      "path": "results/training_resume_20260907/authorization.json",
+      "role": "Immutable training-resumption / approved-design / data-audit receipt",
+      "required_for_resume": true,
+      "bytes": 870,
+      "sha256": "83e38e6cfb232244fa9c895a6fca333a8304c6592efa91c751c45b0eb00cfb5a"
+    },
+    {
+      "path": "results/training_resume_20260907/accepted_experiment_design.md",
+      "role": "Immutable training-resumption / approved-design / data-audit receipt",
+      "required_for_resume": true,
+      "bytes": 13426,
+      "sha256": "c76120768c8f4a911881ee7249841b59e9d5a5a57312f4c565b519493b59356d"
+    },
+    {
+      "path": "results/training_resume_20260907/preflight.json",
+      "role": "Immutable training-resumption / approved-design / data-audit receipt",
+      "required_for_resume": true,
+      "bytes": 1249,
+      "sha256": "a0ae7417ea185f655292c36c6eb967db0c4a97adca84df8175ab7fe18ac205b0"
+    },
+    {
+      "path": "results/training_resume_20260907/launch.json",
+      "role": "Immutable training-resumption / approved-design / data-audit receipt",
+      "required_for_resume": true,
+      "bytes": 430,
+      "sha256": "baebfe7c2a6a5b8e711af2533535ce9db96f1c5462288e644c2b8f9379514de6"
+    },
+    {
+      "path": "results/training_resume_20260907/paused_progress.json",
+      "role": "Immutable training-resumption / approved-design / data-audit receipt",
+      "required_for_resume": true,
+      "bytes": 6807,
+      "sha256": "489b3e692786907bef5b2722762045cbec3a5708bd2ecdf962c401c2edfed5a0"
+    },
+    {
+      "path": "results/training_resume_20260907/resume_verification.json",
+      "role": "Immutable training-resumption / approved-design / data-audit receipt",
+      "required_for_resume": true,
+      "bytes": 1483,
+      "sha256": "cbbc8f7d2400b7cdb35d1aa64efcd87e3a93bffeb8e89c4ec50ccc0664c783ac"
+    },
+    {
+      "path": "results/training_resume_20260907/cogniplan_downloads.json",
+      "role": "Immutable training-resumption / approved-design / data-audit receipt",
+      "required_for_resume": true,
+      "bytes": 2381,
+      "sha256": "50ba9f1df638cd94542b9834972e1452d343e7ef028897e19d3fd910e3c3e718"
+    },
+    {
+      "path": "results/training_resume_20260907/cogniplan_tools.py",
+      "role": "Immutable training-resumption / approved-design / data-audit receipt",
+      "required_for_resume": true,
+      "bytes": 16829,
+      "sha256": "901b0d0d8bd7d4fb33ca825ec5994703ae30bfae469377017fccb9c6d6e6baaa"
+    },
+    {
+      "path": "results/training_resume_20260907/cogniplan_code_download.json",
+      "role": "Immutable training-resumption / approved-design / data-audit receipt",
+      "required_for_resume": true,
+      "bytes": 331,
+      "sha256": "805925d2974c3a590baa21a839281993db7e3896291581447ab03db453be7b9e"
+    },
+    {
+      "path": "results/training_resume_20260907/visual_audit.json",
+      "role": "Immutable training-resumption / approved-design / data-audit receipt",
+      "required_for_resume": true,
+      "bytes": 286,
+      "sha256": "72e157bfec2607fb1e202a09c227ad7b4d7d8e650e62f0ddd2dc90e50cafb3f9"
+    },
+    {
+      "path": "results/training_resume_20260907/paper_evidence_audit.json",
+      "role": "Immutable training-resumption / approved-design / data-audit receipt",
+      "required_for_resume": true,
+      "bytes": 284,
+      "sha256": "1eff60e20c77e2c9d28d16e1943fc0ca4660d4b23d6110aecb3bbbf98459b1b4"
+    },
+    {
+      "path": "results/training_resume_20260907/document_audit.json",
+      "role": "Immutable training-resumption / approved-design / data-audit receipt",
+      "required_for_resume": true,
+      "bytes": 128,
+      "sha256": "5be449f389e1a8f599a8e4aa5c0296ad3e9148ee656540b9a6b593e58f45a749"
+    },
+    {
+      "path": "results/training_resume_20260907/paused_checkpoints/seed20260831_no_event/best.pt",
+      "role": "Immutable backup of pause-time checkpoint before explicit user resumption",
+      "required_for_resume": true,
+      "bytes": 1501445,
+      "sha256": "8fa4d46e18a8d976f3327e3cd8391e6cbd3206279041446bf289c0b903fc18b7"
+    },
+    {
+      "path": "results/training_resume_20260907/paused_checkpoints/seed20260831_no_event/interrupted.pt",
+      "role": "Immutable backup of pause-time checkpoint before explicit user resumption",
+      "required_for_resume": true,
+      "bytes": 1501445,
+      "sha256": "95c68aa85e2fa6fbd96b47711f2d2565452880884b51b763ca74e739ad8ac71f"
+    },
+    {
+      "path": "results/training_resume_20260907/paused_checkpoints/seed20260831_no_event/latest.pt",
+      "role": "Immutable backup of pause-time checkpoint before explicit user resumption",
+      "required_for_resume": true,
+      "bytes": 1501445,
+      "sha256": "8fa4d46e18a8d976f3327e3cd8391e6cbd3206279041446bf289c0b903fc18b7"
+    },
+    {
+      "path": "results/training_resume_20260907/paused_checkpoints/seed20260901_no_event/best.pt",
+      "role": "Immutable backup of pause-time checkpoint before explicit user resumption",
+      "required_for_resume": true,
+      "bytes": 1500997,
+      "sha256": "05af3c9e76a6dce1ceb59246cd313f43b8b409a9adf893fa77fd94f0167dff1a"
+    },
+    {
+      "path": "results/training_resume_20260907/paused_checkpoints/seed20260901_no_event/interrupted.pt",
+      "role": "Immutable backup of pause-time checkpoint before explicit user resumption",
+      "required_for_resume": true,
+      "bytes": 1501445,
+      "sha256": "1ace401c03d116de7fc1bda1e70f67c515431212dc87ea8b62ada8c6fdc6e0dd"
+    },
+    {
+      "path": "results/training_resume_20260907/paused_checkpoints/seed20260901_no_event/latest.pt",
+      "role": "Immutable backup of pause-time checkpoint before explicit user resumption",
+      "required_for_resume": true,
+      "bytes": 1501445,
+      "sha256": "70adfa73b8a2a489685c60827230033a11c429e07f35ce6ebee4b06e87f68a9d"
+    },
+    {
+      "path": "results/training_resume_20260907/paused_checkpoints/seed20260902_no_event/best.pt",
+      "role": "Immutable backup of pause-time checkpoint before explicit user resumption",
+      "required_for_resume": true,
+      "bytes": 1501445,
+      "sha256": "bdcf9f9045d8766b8062969a329728dc4976dd2254d01038583a497fc6e489f4"
+    },
+    {
+      "path": "results/training_resume_20260907/paused_checkpoints/seed20260902_no_event/interrupted.pt",
+      "role": "Immutable backup of pause-time checkpoint before explicit user resumption",
+      "required_for_resume": true,
+      "bytes": 1501445,
+      "sha256": "4c2b24edd2eceaad1ce97e5995f189e911fb3c1ef21e5d3b9016af4ca96dac2e"
+    },
+    {
+      "path": "results/training_resume_20260907/paused_checkpoints/seed20260902_no_event/latest.pt",
+      "role": "Immutable backup of pause-time checkpoint before explicit user resumption",
+      "required_for_resume": true,
+      "bytes": 1501445,
+      "sha256": "bdcf9f9045d8766b8062969a329728dc4976dd2254d01038583a497fc6e489f4"
+    },
+    {
+      "path": "data/raw/cogniplan/paper_model_exploration/checkpoints_wgan_inpainting.tar.gz",
+      "role": "Pinned official CogniPlan training data or generator checkpoint; no test assets",
+      "required_for_resume": true,
+      "bytes": 1352198,
+      "sha256": "64f3d64cd2b524e756fe0c80fae6fe7b253ec3e26c4ad0abe3b1495ff5112e69"
+    },
+    {
+      "path": "data/raw/cogniplan/paper_model_exploration/maps_train.tar.gz",
+      "role": "Pinned official CogniPlan training data or generator checkpoint; no test assets",
+      "required_for_resume": true,
+      "bytes": 1509456,
+      "sha256": "28b7227320cfd7794bfe29d9be75a022e39f33ba98283aaac2f877fc5c1b49c5"
+    },
+    {
+      "path": "data/raw/cogniplan/paper_model_exploration/maps_train_inpaint.tar.gz",
+      "role": "Pinned official CogniPlan training data or generator checkpoint; no test assets",
+      "required_for_resume": true,
+      "bytes": 29486217,
+      "sha256": "cd4d05dbcce60c1412cca2af4de6d910754f8b8e8704e3d34f998e2f44045589"
+    },
+    {
+      "path": "results/cogniplan_training_asset_audit_v1/duplicate_targets.json",
+      "role": "Frozen CogniPlan train-only data/interface audit evidence; no model inference or test",
+      "required_for_resume": true,
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "results/cogniplan_training_asset_audit_v1/full_maps.csv",
+      "role": "Frozen CogniPlan train-only data/interface audit evidence; no model inference or test",
+      "required_for_resume": true,
+      "bytes": 560408,
+      "sha256": "5192f412c59a58a7bccf20c24f8d27f5b2f35773c72c3693e9f87f90f7cea173"
+    },
+    {
+      "path": "results/cogniplan_training_asset_audit_v1/partial_maps.csv",
+      "role": "Frozen CogniPlan train-only data/interface audit evidence; no model inference or test",
+      "required_for_resume": true,
+      "bytes": 3042535,
+      "sha256": "1bff01aa1d95da50a1656577a053f633a4048250e4a2ce80b491c297baa03f49"
+    },
+    {
+      "path": "results/cogniplan_training_asset_audit_v1/planner_train_maps.csv",
+      "role": "Frozen CogniPlan train-only data/interface audit evidence; no model inference or test",
+      "required_for_resume": true,
+      "bytes": 1089408,
+      "sha256": "1751393af41bfad319e6d6d1c812b5343b4e86de2cf168f2fbdab2fc7e614e47"
+    },
+    {
+      "path": "results/cogniplan_training_asset_audit_v1/released_config.yaml",
+      "role": "Frozen CogniPlan train-only data/interface audit evidence; no model inference or test",
+      "required_for_resume": true,
+      "bytes": 729,
+      "sha256": "153a2f0c966cb1dfa9a69c642b0e3eca164144011799a448532204c5b03a3913"
+    },
+    {
+      "path": "results/cogniplan_training_asset_audit_v1/report.json",
+      "role": "Frozen CogniPlan train-only data/interface audit evidence; no model inference or test",
+      "required_for_resume": true,
+      "bytes": 55429,
+      "sha256": "1c0a086fdfbd231edb1285631c8bf57086fb5cb845126a37916c7bfe19fcdaaa"
+    },
+    {
+      "path": "results/training_resume_20260907/browser/report.json",
+      "role": "Desktop/mobile browser audit after authorized training resumption status and approved plan updates",
+      "required_for_resume": true,
+      "bytes": 807,
+      "sha256": "4c0f8c9eb989c84159ecb5dc5f48b63e3290e1346bdc07b97cab2688e2aabf98"
     }
   ],
   "last_verification": {
-    "command": "audit_site_visuals.py; audit_paper_evidence.py with separate output; document/link and syntax checks; focused Chrome review at 1440/390; git diff --check; quick recovery verification",
-    "result": "Unchanged 113 media assets and 10 source hashes, 23 prediction-file replays, nine numerical rows and 27,522 UnScenes3D bounds pass. New literature/design documents link correctly; changed webpage section has seven literature rows, working document links, qualified metric scale, expandable plan and no viewport overflow or JS exceptions. No training, external inference or formal test ran.",
+    "command": "Frozen prepare-only and pause checkpoint hashes/config; resumed epoch history/optimizer/weight checks; full CogniPlan training data audit; visual/numerical/document audits; Chrome 1440/390; git diff --check; quick recovery validation.",
+    "result": "All passed. Three resumed workers completed epoch 5 with original history/configs, finite changed weights and advancing optimizer. CogniPlan train-only assets/encodings checked. 113 media assets and 23 photos unchanged; nine numerical rows, 23 prediction replays and 27522 observation bounds pass. Chrome desktop/mobile has no broken images, overflow or JS errors; all gallery/chart/frame/modal interactions work. No external inference or final test ran.",
     "implementation_commit": "e6f0910",
     "receipts": [
-      "results/literature_protocol_20260907/document_audit.json",
-      "results/literature_protocol_20260907/paper_evidence_audit.json",
-      "results/literature_protocol_20260907/browser/report.json"
+      "results/training_resume_20260907/preflight.json",
+      "results/training_resume_20260907/resume_verification.json",
+      "results/training_resume_20260907/visual_audit.json",
+      "results/training_resume_20260907/paper_evidence_audit.json",
+      "results/training_resume_20260907/document_audit.json",
+      "results/cogniplan_training_asset_audit_v1/report.json",
+      "results/training_resume_20260907/browser/report.json"
     ]
   },
   "recovery_commands": [
@@ -2736,14 +2962,14 @@
     "cat results/paper_clean_ablation_matrix_v1/progress.json",
     "PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/audit_site_visuals.py"
   ],
-  "next_command": "cat EXPERIMENT_DESIGN_ZH.md",
+  "next_command": "cat results/paper_clean_ablation_matrix_v1/progress.json",
   "next_actions": [
-    "Keep training paused until the user requests resumption. Read EXPERIMENT_DESIGN_ZH.md and LITERATURE_REVIEW_ZH.md; inspect publication receipts. Do not infer permission to train from literature or website work.",
-    "Next useful work: train-only external-method/data interface audit for LaMa/ensemble, conditional flow and the native CogniPlan generator; resolve FlatLands paper-versus-metadata scale, native map splits and layout-type labels before running experiments.",
-    "After resumption is requested, perform original-module sanity checks and small train-only resource measurements; freeze common data, calibration split, training recipes, seeds, K=4 comparison and cost budgets before large runs.",
-    "Keep the existing no_event/no_global ablation contract and paused checkpoints intact. Do not mix old runs with an expanded-dataset protocol. When all six old runs complete, inspect and audit their generated analysis including null/reversed effects before publication.",
-    "Preserve test isolation for FlatLands, UnScenes3D location_6 and any new held-out dataset. Native checkpoint checks must not consume the final test for method development.",
-    "Before claiming navigation or 3-D system superiority, design and run the corresponding system comparison; the proposed static event experiment supports only map/event claims."
+    "User explicitly authorized training and accepted the experiment plan. Inspect live progress and OS PIDs first; do not launch a duplicate supervisor. Preserve original matrix/source hashes and use latest.pt for recovery. New user instructions can supersede this authorization.",
+    "Continue train-only external interface work: resolve FlatLands scale, LaMa mask/core integration, FM+XAttn loss/backbone/sampler details; read EXTERNAL_DATA_AUDIT_ZH.md for CogniPlan asset namespaces, pixel conversion and released configuration.",
+    "Run original-module sanity checks on allowed training data, then predeclared small resource profiling. Public CogniPlan checkpoint checks on its training assets are not held-out validation. Freeze common data/calibration/validation, recipes, seeds, K=4 and costs before formal external training.",
+    "When all six clean ablations finish and pass audits, inspect analysis/report.json and PAPER_ABLATIONS.md, preserve null/reversed effects, add Chinese-labelled plots to paper/site and version/publish the reviewed evidence.",
+    "Execute all approved required comparisons and statistical/cost/failure analyses in EXPERIMENT_DESIGN_ZH.md section 8. Expanded training data requires retraining all relevant models under one new version. Record failures and do not substitute local tiny controls for original external methods.",
+    "Keep FlatLands physical test, UnScenes3D location_6 and new held-out assets isolated until method/data/analysis freeze. Final test and broad paper/system claims require the stated gates; training resumption does not waive them."
   ],
   "active_training": {
     "root": "results/paper_clean_ablation_matrix_v1",
@@ -2753,19 +2979,71 @@
     "log": "results/paper_clean_ablation_matrix_v1/supervisor.log",
     "implementation_commit": "e6f0910",
     "live_files_are_mutable": true,
-    "status": "paused_by_user",
+    "status": "training",
     "paused_at_utc": "2026-09-07T05:50:02.538327+00:00",
-    "automatic_resume_allowed": false,
-    "supervisor_running": false,
-    "workers_running": 0,
+    "automatic_resume_allowed": true,
+    "supervisor_running": true,
+    "workers_running": 3,
     "no_event_completed_epochs": {
-      "20260831": 4,
-      "20260901": 4,
-      "20260902": 4
+      "20260831": 5,
+      "20260901": 5,
+      "20260902": 5
     },
-    "no_global_status": "not_started",
+    "no_global_status": "queued",
     "pause_audit": "results/paper_clean_ablation_matrix_v1/pause_checkpoint_audit.json",
-    "resume_checkpoint": "latest.pt; completed epoch 4; next epoch 5",
-    "interrupted_checkpoint_note": "partial-epoch artifact; do not substitute for latest.pt"
+    "resume_checkpoint": "latest.pt from most recent complete epoch; resumption started at completed epoch 4",
+    "interrupted_checkpoint_note": "partial-epoch artifact; do not substitute for latest.pt",
+    "resumed_at_utc": "2026-09-08T01:42:23.683337+00:00",
+    "resume_supervisor_pid": 46939,
+    "resume_authorization": "results/training_resume_20260907/authorization.json",
+    "resume_launch": "results/training_resume_20260907/launch.json",
+    "worker_pids": [
+      47208,
+      47209,
+      47212
+    ],
+    "snapshot_checked_utc": "2026-09-08T01:53:14.170418+00:00",
+    "snapshot_is_not_live": true,
+    "resume_verification": "results/training_resume_20260907/resume_verification.json"
+  },
+  "accepted_experiment_plan": {
+    "status": "approved_by_user",
+    "recorded_utc": "2026-09-08T01:42:23.683337+00:00",
+    "authorization": "results/training_resume_20260907/authorization.json",
+    "document": "EXPERIMENT_DESIGN_ZH.md",
+    "accepted_snapshot": "results/training_resume_20260907/accepted_experiment_design.md",
+    "accepted_snapshot_sha256": "c76120768c8f4a911881ee7249841b59e9d5a5a57312f4c565b519493b59356d",
+    "paper_deliverables_section": "EXPERIMENT_DESIGN_ZH.md section 8",
+    "continue_without_reasking_after_session_restart": true,
+    "required_external_comparisons": [
+      "FlatLands: genuine LaMa BEV module and four-member ensemble",
+      "FlatLands: documented conditional FM+XAttn literature reimplementation with quality gate",
+      "CogniPlan native maps: official conditional generator core and four fixed hypotheses, retrained on common split"
+    ],
+    "required_controls": [
+      "independent-cell",
+      "deterministic completion",
+      "same-checkpoint mean map",
+      "direct-event predictor",
+      "no-event training",
+      "no-global training",
+      "fixed-marginal shuffle"
+    ],
+    "required_analysis": [
+      "three independent outer training repeats; ensemble members are not repeats",
+      "new matched K=4 output comparison plus measured cost curves",
+      "scene-weighted Brier, NLL, ECE and equal-coverage risk",
+      "2000 paired whole-scene bootstrap draws; distinguish seed SD from scene CI",
+      "labelled positive/failure figures and source/radius/observed-fraction strata",
+      "frozen final test, complete honest paper results and website figures"
+    ],
+    "extensions": {
+      "conditional_diffusion": "after required external implementations",
+      "KTH": "generalization supplement",
+      "KITTI360": "conditional on additional 3D/sensor system claim"
+    },
+    "unfrozen_parameters": "External training data scale, calibration/validation splits and per-method recipes must be fixed after interface and resource audits, before formal runs. Do not mix expanded-data runs with old frozen ablations.",
+    "data_audit": "EXTERNAL_DATA_AUDIT_ZH.md",
+    "test_evaluated": false
   }
 }

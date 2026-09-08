@@ -49,11 +49,14 @@ different questions and must both remain in the evidence.
 
 ## Execution and recovery
 
-Execution status: paused at the user's request on 2026-09-07 at 01:50 EDT. Three
-no_event runs completed epoch 4; no_global has not started. All workers and the
-supervisor have exited. Do not run the launch command below until the user requests
-resumption. Resume uses complete-epoch `latest.pt` and reruns epoch 5; the separately
-retained `interrupted.pt` is a partial-epoch artifact, not the resume source.
+Execution status: resumed at the user's explicit request on 2026-09-07 at 21:42 EDT
+(2026-09-08 01:42 UTC). The earlier pause at 01:50 EDT is retained in the audit history.
+Three no_event runs resume from complete-epoch `latest.pt` at epoch 4 and rerun
+epoch 5; three no_global runs are queued. The separately retained `interrupted.pt`
+is a partial-epoch artifact, not the resume source. All nine pause-time checkpoints
+were backed up under `results/training_resume_20260907/paused_checkpoints/` before
+resumption. The original configuration and training implementation are unchanged.
+Authorization and launch receipts are in `results/training_resume_20260907/`.
 
 ```bash
 PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/run_flatlands_clean_ablations.py --prepare-only

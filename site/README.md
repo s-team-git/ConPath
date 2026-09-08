@@ -45,7 +45,8 @@ PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/audit_paper_evidenc
 
 GitHub Pages 通过 `.github/workflows/deploy-pages.yml` 发布，每次推送 `main` 触发部署。
 主实验是 FlatLands 场景隔离的非官方验证划分，UnScenes3D 仍为两场景诊断；正式测试未评估。
-新增训练消融保持用户请求的暂停状态，绘图命令不恢复该训练。
+新增训练消融已于2026-09-07晚按用户要求恢复；绘图与媒体审计命令本身不启动训练。
+媒体审计支持 `--output` 指定本轮独立收据，默认写入 `results/site_visuals_current_audit.json`，避免覆盖历史审计。
 
 数据集选择、原方法实际使用的数据及媒体署名见
 [DATASET_CHOICE_ZH.md](../DATASET_CHOICE_ZH.md)。FlatLands 的上游原始 RGB-D 等源素材未被重新发布，
