@@ -212,6 +212,8 @@ def main():
         page = page.replace('外部强基线尚未运行，FlatLands 原文与本地元数据的尺度差异待核对。', '正式外部主比较尚未运行。FlatLands 的160份训练元数据均描述裁剪，但论文另有缩放描述；物理尺度仍未独立验证，半径继续按格报告。')
         page = page.replace('当前页面展示已完成的验证结果。', '当前页面分别展示已完成的验证结果和 CogniPlan 训练数据接口检查；下一项是 LaMa/流匹配接入及正式训练配方冻结。')
     assert '{{' not in page
+    css_version = hashlib.sha256((SITE / 'styles-zh.css').read_bytes()).hexdigest()[:12]
+    page = page.replace('href="styles-zh.css"', f'href="styles-zh.css?v={css_version}"')
     (SITE/'index.html').write_text(page)
     print('Chinese page built: 9 methods, 2 model examples, 12 gallery scenes, 18 frames.')
 
