@@ -1,0 +1,56 @@
+[
+  {
+    "name": "LICENSE",
+    "url": "https://raw.githubusercontent.com/marmotlab/CogniPlan/444fab8d5d3b8d2b004d83865088a9d707d2e3c8/LICENSE",
+    "sha256": "4e9da9350604bc92cb7cf585e22b731429ad42d5b9425bc16cedc3786dae39d8",
+    "bytes": 1076
+  },
+  {
+    "name": "mapinpaint/networks.py",
+    "url": "https://raw.githubusercontent.com/marmotlab/CogniPlan/444fab8d5d3b8d2b004d83865088a9d707d2e3c8/mapinpaint/networks.py",
+    "sha256": "c43a456a857094504da1297954c622099bab34ac627e11fb46fb81fcb385507d",
+    "bytes": 7795
+  },
+  {
+    "name": "mapinpaint/trainer.py",
+    "url": "https://raw.githubusercontent.com/marmotlab/CogniPlan/444fab8d5d3b8d2b004d83865088a9d707d2e3c8/mapinpaint/trainer.py",
+    "sha256": "35b722a40bc0ff77b4fce1e77cf7e2f25b9e4552846a1c589150bd0b5461c968",
+    "bytes": 5487
+  },
+  {
+    "name": "mapinpaint/tools.py",
+    "url": "https://raw.githubusercontent.com/marmotlab/CogniPlan/444fab8d5d3b8d2b004d83865088a9d707d2e3c8/mapinpaint/tools.py",
+    "sha256": "901b0d0d8bd7d4fb33ca825ec5994703ae30bfae469377017fccb9c6d6e6baaa",
+    "bytes": 16829
+  },
+  {
+    "name": "mapinpaint/logger.py",
+    "url": "https://raw.githubusercontent.com/marmotlab/CogniPlan/444fab8d5d3b8d2b004d83865088a9d707d2e3c8/mapinpaint/logger.py",
+    "sha256": "0d666377418f34fbbf818495ca2deb20784e99a84f7679c5632d26f06258a23e",
+    "bytes": 1088
+  },
+  {
+    "name": "mapinpaint/train.py",
+    "url": "https://raw.githubusercontent.com/marmotlab/CogniPlan/444fab8d5d3b8d2b004d83865088a9d707d2e3c8/mapinpaint/train.py",
+    "sha256": "5255d20b7dbf5a8093401ed1645d6f98add11db2d1a788d27c9aeabff5273e26",
+    "bytes": 9253
+  },
+  {
+    "name": "mapinpaint/evaluator.py",
+    "url": "https://raw.githubusercontent.com/marmotlab/CogniPlan/444fab8d5d3b8d2b004d83865088a9d707d2e3c8/mapinpaint/evaluator.py",
+    "sha256": "abe85ba3ac71625afa8c557d6fb8a0245a10a6de2a6cd92b1a9189c45e831914",
+    "bytes": 8572
+  },
+  {
+    "name": "mapinpaint/dataset.py",
+    "url": "https://raw.githubusercontent.com/marmotlab/CogniPlan/444fab8d5d3b8d2b004d83865088a9d707d2e3c8/mapinpaint/dataset.py",
+    "sha256": "532c5209c9a79cae125355829fa9f0f72b1f0002f2704c9024f26630f8a3bca2",
+    "bytes": 3693
+  },
+  {
+    "name": "mapinpaint/config.yaml",
+    "url": "https://raw.githubusercontent.com/marmotlab/CogniPlan/444fab8d5d3b8d2b004d83865088a9d707d2e3c8/mapinpaint/config.yaml",
+    "sha256": "adaa3fb62ea2c485a406c5b97dd29f0cfce913b15b54ca4bb8bc7bad262ca0dc",
+    "bytes": 734
+  }
+]

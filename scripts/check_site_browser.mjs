@@ -23,6 +23,7 @@ async function status(){return await evaluate(`({lang:document.documentElement.l
 const reports=[];
 try{
   await command('Page.enable');await command('Runtime.enable');
+  await command('Network.enable');await command('Network.setCacheDisabled',{cacheDisabled:true});
   for(const width of [1440,390]){
     await command('Emulation.setDeviceMetricsOverride',{width,height:width===1440?1100:844,deviceScaleFactor:1,mobile:width<600});
     await command('Page.navigate',{url:base});await ready();await images();
@@ -78,6 +79,23 @@ try{
     await evaluate(`document.querySelector('[data-ablation-view="probability"]').click()`);await images();
     check(await evaluate(`[...document.querySelectorAll('.ablation-map-panels img')].every(i=>!i.src.endsWith('-footprint.svg'))`),'Probability map switch failed');
     await evaluate(`document.querySelector('#ablation-examples').open=false`);
+    if(await evaluate(`Boolean(document.querySelector('#external-progress'))`)){
+      check(await evaluate(`document.querySelectorAll('.native-case').length===3 && document.querySelectorAll('.native-map-panels img').length===21`),'Missing native sanity cases');
+      for(let index=0;index<3;index++){
+        await evaluate(`{const c=document.querySelectorAll('.native-case')[${index}];c.open=true;c.querySelector('details').open=true;c.scrollIntoView({behavior:'instant',block:'start'});}`);await images();
+        check(await evaluate(`getComputedStyle(document.querySelectorAll('.native-case')[${index}].querySelector('.native-map-panels')).gridTemplateColumns.split(' ').length===${width<600?1:3}`),'Native responsive column count mismatch');
+        check((await status()).broken.length===0,'Broken native output image');
+        if(index===0){
+          await screenshot(`${width}-native-case`);
+          await evaluate(`document.querySelector('.native-case .native-map-panels a:nth-child(2)').click()`);await images();
+          check(await evaluate(`document.querySelector('#image-dialog').open && document.querySelector('#dialog-image').src.endsWith('room-vote.png')`),'Native vote zoom failed');
+          await screenshot(`${width}-native-vote`);
+          await evaluate(`document.querySelector('#dialog-close').click()`);
+        }
+        check((await status()).scrollWidth<=width+1,'Native gallery overflows viewport');
+        await evaluate(`document.querySelectorAll('.native-case')[${index}].open=false`);
+      }
+    }
     const report=await status();check(report.lang==='zh-CN' && report.rows===9,'Language or result row count mismatch');check(report.scrollWidth<=report.width+1,'Page overflows viewport');check(!report.errorBanner && report.broken.length===0,'Runtime/image error');
     reports.push({...report,ablationRows:3,ablationCaseImages:6,interactions:['both examples','both models','dialog open/Escape','12 gallery scenes','frame seek/play/pause','five charts with PDF links','ablation table','two responsive ablation charts','ablation zoom','two fixed cases with three actual model maps each']});
   }

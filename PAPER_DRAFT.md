@@ -77,6 +77,14 @@ Selective risk uses scene-weighted coverage. Every event tied at the boundary pr
 
 The frozen UnScenes3D LiDAR/ground-valid adapter uses nine training scenes and two validation scenes, with 478/62 frames and 15,567/1,529 queries. Three radii yield 46,701/4,587 events. The test site `location_6` remains unopened. Six fresh correlated/independent adapters pass support/checkpoint audits. Their deterministic K=128 mean-map events form a transfer diagnostic with a different predictive object from the primary stochastic event table.
 
+### 4.4 External baseline preparation (no comparative results yet)
+
+We have frozen a new, non-official split of CogniPlan's original inpainting training maps: 2,400 training, 300 calibration, and 300 validation mother maps, corresponding to 19,045, 2,369, and 2,381 partial observations. Grouping includes exact geometry matches under all eight square rotations/reflections; no such duplicate groups were found among the 3,000 mothers. Each layout contributes 800/100/100 mothers, and every partial observation inherits its mother's split. The public generator was trained using the original training asset, so its predictions on any of these subsets are training-domain interface checks, not held-out evidence. All formal methods must be retrained on the shared split.
+
+The pinned official CogniPlan generator, four fixed inference conditions, grayscale normalization, padding/cropping, threshold and morphology were exercised on 32 preselected training observations. All 128 hard maps exactly replay the native postprocessing with zero observed-cell conflicts. Reconstruction and adversarial phases each received 10 warmup and 100 measured updates; the adapted optimizer sequence also exactly matches the official loop in three update branches. These checks establish numerical compatibility, not convergence, comparative accuracy, or navigation performance. Example outputs, including incorrect hidden geometry, and resource estimates under concurrent GPU load are documented in [EXTERNAL_PROGRESS_ZH.md](EXTERNAL_PROGRESS_ZH.md). They are excluded from the validation result tables and isolated-device runtime claims. Common queries, final training recipes, and the LaMa/FM+XAttn implementations remain pending.
+
+The 160 inspected FlatLands training metadata records consistently specify a 512-to-256 crop retaining a 0.01 m/cell field. This agrees with the paper's crop description but does not resolve its separate 0.039 m/cell downsampling description. We retain cell-radius results without claiming independently verified physical scale.
+
 ## 5. Results
 
 The full nine-control table, per-seed paired intervals, source/radius results, and prediction hashes are in [PAPER_EVIDENCE.md](PAPER_EVIDENCE.md) and [the machine-readable analysis](site/data/flatlands_clean_paper_analysis.json).

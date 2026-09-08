@@ -71,6 +71,28 @@ def training_ablations():
       <details id="ablation-examples" class="plain-details"><summary>展开真实地图：同一场景，三个模型怎样补全？</summary><div class="detail-body"><p>沿用此前固定的两个验证示例，未按本轮结果重新挑图。三组都展示种子 20260831；手机可左右滑动，点击图片放大。</p><div class="segmented ablation-view" role="group" aria-label="选择消融地图的含义"><button type="button" data-ablation-view="probability" class="selected" aria-pressed="true">每格的平均概率</button><button type="button" data-ablation-view="footprint" aria-pressed="false">一次采样 + 机器人尺寸</button></div><p id="ablation-view-note" class="reading-note">每幅图使用相同的 0–1 色条。颜色都很绿，也不保证整条通路能同时容纳机器人；切换右侧视图查看一次实际采样。</p>{''.join(examples)}<p class="provenance">图片来自真实检查点，以固定绘图种子采样 128 次、每批 8 张。“一次采样”固定展示第 1 张完整世界，经圆盘半径收缩后的机器人中心可放置区域，未按成败挑选。图中通路概率来自原精确验证 CSV，与绘图使用不同随机流；0% 表示 128 次中未采到有路，不是绝对不可能的证明。两个例子用于解释，不能代替整体统计。S 为起点、G 为目标，没有绘制规划路线。<a href="data/training_ablation_cases_zh.json">模型、图片与查询来源 ↗</a></p></div></details></div>'''
 
 
+def cogniplan_native_sanity():
+    path = SITE / 'data/cogniplan_native_sanity_zh.json'
+    if not path.is_file():
+        return ''
+    data = json.loads(path.read_text())
+    if data['formal_comparison'] or data['test_evaluated'] or len(data['cases']) != 3:
+        raise ValueError('Native sanity must remain separate from formal comparisons')
+    for asset in data['assets']:
+        if hashlib.sha256((SITE / asset['path']).read_bytes()).hexdigest() != asset['sha256']:
+            raise ValueError(f'Native image hash mismatch: {asset["path"]}')
+    cases = []
+    for case in data['cases']:
+        panels = ''.join(zoom(case['panels'][key], caption) for key, caption in
+                         [('observed', '模型输入：浅绿可通行，深灰阻挡，浅灰未知。'),
+                          ('vote', '官方模型四张补全的可通行比例：米白到青绿对应 0 到 1；这不是经过校准的通路概率。'),
+                          ('reference', '完整参考地图，仅用于检查输出，不输入推理模型。')])
+        worlds = ''.join(zoom(case['panels'][f'world{k}'], f'固定条件{k+1}：{name}。四个条件均运行，未用真实布局选择。')
+                         for k, name in enumerate(['均衡', '房间', '隧道', '户外']))
+        cases.append(f'''<details class="plain-details native-case"><summary>{case['layout_zh']}地图 · {case['mother_id']} · 查看真实输出</summary><div class="detail-body"><div class="native-map-panels">{panels}</div><details class="plain-details"><summary>查看四张原生补全地图</summary><div class="native-map-panels">{worlds}</div></details></div></details>''')
+    return f'''<div id="external-progress" class="training-ablations"><p class="eyebrow">外部对比准备 · 2026.09.08</p><h3>CogniPlan 已接通，先核对真实输出。</h3><p>已在32个固定训练观测上生成128张地图，与官方后处理逐张一致，已观测区域零冲突。重建和对抗阶段各完成100次更新测速，未启动正式长训练。</p><p class="reading-note"><strong>这些是原训练数据上的接口检查，不是留出验证成绩。</strong>公开权重见过原训练地图；公平主表将按新的共同划分重新训练。四个输出来自预设条件，未用真实布局选取。以下每类首例在看结果前已经固定，输出不准确的部分也保留。</p>{''.join(cases)}<p>新划分：2,400张母地图用于训练、300张校准、300张验证；旋转和镜像后的重复几何也检查过。初步测速外推，原版50万步约需{data['training_hours_per_seed_extrapolation']:.1f}小时/次，三次串行约{data['training_hours_three_seeds_extrapolation']:.1f}小时，另加完整数据读取、评估与存档时间。当前有其他GPU负载，此处只用于估算排期。</p><p class="source-line"><a href="https://github.com/s-team-git/ConPath/blob/main/EXTERNAL_PROGRESS_ZH.md">接口、尺度与测速中文记录 ↗</a> · <a href="data/cogniplan_native_sanity_zh.json">图片与运行来源 ↗</a></p></div>'''
+
+
 def main():
     data=json.loads((SITE/'data/site_visuals_zh.json').read_text())
     analysis=json.loads((SITE/'data/flatlands_clean_paper_analysis.json').read_text())
@@ -182,6 +204,13 @@ def main():
         page = page.replace('六组消融已按要求恢复，先完成精确评估，再接续后面的训练；当前没有新增的最终结果。', '六组内部训练消融及配对统计已完成，结果见上方新表。接下来补齐外部方法主比较；内部消融不能代替这些对比实验。')
         page = page.replace('主验证结果与图表已完成。实验已按要求恢复：三组训练分别完成 12、9、17 轮，现在重新进行未完成的精确评估；另外三组自动排队。全部完成并核验后更新表格与图片。', '本轮六组参数训练与精确评估均已完成。中文汇总包含三次训练结果、场景配对区间和按来源/半径的分层表现，图表与论文同步更新。')
         page = page.replace('<div class="publication-links">', '<div class="publication-links"><a class="pill" href="https://github.com/s-team-git/ConPath/blob/main/EVALUATION_SUMMARY_ZH.md">中文评估汇总 ↗</a>')
+    external = cogniplan_native_sanity()
+    if external:
+        page = page.replace('下面的新增对照仍是计划，尚未运行。', '正式外部主比较尚未运行；CogniPlan 已完成原生接口检查和小规模测速，记录如下。')
+        page = page.replace('<p class="research-decision">', external + '<p class="research-decision">')
+        page = page.replace('六组训练消融已完成 · 更新于', '六组消融完成 · 外部模型接口已接通 · 更新于')
+        page = page.replace('外部强基线尚未运行，FlatLands 原文与本地元数据的尺度差异待核对。', '正式外部主比较尚未运行。FlatLands 的160份训练元数据均描述裁剪，但论文另有缩放描述；物理尺度仍未独立验证，半径继续按格报告。')
+        page = page.replace('当前页面展示已完成的验证结果。', '当前页面分别展示已完成的验证结果和 CogniPlan 训练数据接口检查；下一项是 LaMa/流匹配接入及正式训练配方冻结。')
     assert '{{' not in page
     (SITE/'index.html').write_text(page)
     print('Chinese page built: 9 methods, 2 model examples, 12 gallery scenes, 18 frames.')

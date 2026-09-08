@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "kind": "native_training_sanity_only",
+  "test_evaluated": false,
+  "formal_comparison": false,
+  "report_sha256": "a43a64abbe30e8620ac3a93fe6172a84834dde99dc13ea88fc6faf0c49bae5c4",
+  "raw_predictions_sha256": "445c2ab8f3e414b12ad57b593989cee96760cba6262df0caac4b115387062149",
+  "selection": "First frozen hash-ranked profile mother in each layout; chosen without inspecting predictions or scores.",
+  "cases": [
+    {
+      "layout": "room",
+      "layout_zh": "房间",
+      "member": "maps_train_inpaint/part/room_147_0.png",
+      "mother_id": "room_147",
+      "index": 0,
+      "panels": {
+        "observed": "assets/zh/cogniplan-native/room-observed.png",
+        "vote": "assets/zh/cogniplan-native/room-vote.png",
+        "reference": "assets/zh/cogniplan-native/room-reference.png",
+        "world0": "assets/zh/cogniplan-native/room-world0.png",
+        "world1": "assets/zh/cogniplan-native/room-world1.png",
+        "world2": "assets/zh/cogniplan-native/room-world2.png",
+        "world3": "assets/zh/cogniplan-native/room-world3.png"
+      }
+    },
+    {
+      "layout": "tunnel",
+      "layout_zh": "隧道",
+      "member": "maps_train_inpaint/part/tunnel_265_4.png",
+      "mother_id": "tunnel_265",
+      "index": 11,
+      "panels": {
+        "observed": "assets/zh/cogniplan-native/tunnel-observed.png",
+        "vote": "assets/zh/cogniplan-native/tunnel-vote.png",
+        "reference": "assets/zh/cogniplan-native/tunnel-reference.png",
+        "world0": "assets/zh/cogniplan-native/tunnel-world0.png",
+        "world1": "assets/zh/cogniplan-native/tunnel-world1.png",
+        "world2": "assets/zh/cogniplan-native/tunnel-world2.png",
+        "world3": "assets/zh/cogniplan-native/tunnel-world3.png"
+      }
+    },
+    {
+      "layout": "outdoor",
+      "layout_zh": "户外",
+      "member": "maps_train_inpaint/part/outdoor_56_0.png",
+      "mother_id": "outdoor_56",
+      "index": 22,
+      "panels": {
+        "observed": "assets/zh/cogniplan-native/outdoor-observed.png",
+        "vote": "assets/zh/cogniplan-native/outdoor-vote.png",
+        "reference": "assets/zh/cogniplan-native/outdoor-reference.png",
+        "world0": "assets/zh/cogniplan-native/outdoor-world0.png",
+        "world1": "assets/zh/cogniplan-native/outdoor-world1.png",
+        "world2": "assets/zh/cogniplan-native/outdoor-world2.png",
+        "world3": "assets/zh/cogniplan-native/outdoor-world3.png"
+      }
+    }
+  ],
+  "assets": [
+    {
+      "path": "assets/zh/cogniplan-native/room-observed.png",
+      "sha256": "d286874903461c0053e10fb5100d3156e77a6f9b5b07881278617f6f13f765c3",
+      "source_index": 0,
+      "source_array": "observed"
+    },
+    {
+      "path": "assets/zh/cogniplan-native/room-vote.png",
+      "sha256": "51684c2494a7fb270ffa56cad899fa3d33ed829f9cd35d2637684b27dd8cf910",
+      "source_index": 0,
+      "source_array": "vote"
+    },
+    {
+      "path": "assets/zh/cogniplan-native/room-reference.png",
+      "sha256": "37469d2e6f3dbdc647ae57c1c57a4eacf7838ff5a97c0006b3be52806a8a64b5",
+      "source_index": 0,
+      "source_array": "reference"
+    },
+    {
+      "path": "assets/zh/cogniplan-native/room-world0.png",
+      "sha256": "9474e5b3a076beb14c75e6348ab5238df013cdf250fe89c1e385e8f11e82995e",
+      "source_index": 0,
+      "source_array": "world0"
+    },
+    {
+      "path": "assets/zh/cogniplan-native/room-world1.png",
+      "sha256": "b31214e1120e065c3e4e8e3882d8c12806d519f52006e1a44a92ab0943cdeb9d",
+      "source_index": 0,
+      "source_array": "world1"
+    },
+    {
+      "path": "assets/zh/cogniplan-native/room-world2.png",
+      "sha256": "1dd397a5214dc069417e7dee7cf8712cdbb68e7aab8b588f861bd0b22b33fceb",
+      "source_index": 0,
+      "source_array": "world2"
+    },
+    {
+      "path": "assets/zh/cogniplan-native/room-world3.png",
+      "sha256": "a94ecf162ff606a145afdf2e16ab0c7f948d953577fcd7c063aaa2645cd311a6",
+      "source_index": 0,
+      "source_array": "world3"
+    },
+    {
+      "path": "assets/zh/cogniplan-native/tunnel-observed.png",
+      "sha256": "60bf933f8077e0336a792f39a7003f0aa1c66e47e7dba95aa44ce5fd2e96177b",
+      "source_index": 11,
+      "source_array": "observed"
+    },
+    {
+      "path": "assets/zh/cogniplan-native/tunnel-vote.png",
+      "sha256": "f5558e94288e03d3f7cf8176b9d9c2ea7b77ab7e45b93ea12e6ba2ab2d257b69",
+      "source_index": 11,
+      "source_array": "vote"
+    },
+    {
+      "path": "assets/zh/cogniplan-native/tunnel-reference.png",
+      "sha256": "94a8b464b89430a48b4045906ed2fb81c15891017585e400514921e2284c96ec",
+      "source_index": 11,
+      "source_array": "reference"
+    },
+    {
+      "path": "assets/zh/cogniplan-native/tunnel-world0.png",
+      "sha256": "1f8425406eb6a380cfdba55e65bdb01e3f099e506309b172cddab221a557b0c7",
+      "source_index": 11,
+      "source_array": "world0"
+    },
+    {
+      "path": "assets/zh/cogniplan-native/tunnel-world1.png",
+      "sha256": "a24e0df968266e73de336cfe459b89ba4a9d29892ea963ce36b95a238a34b93d",
+      "source_index": 11,
+      "source_array": "world1"
+    },
+    {
+      "path": "assets/zh/cogniplan-native/tunnel-world2.png",
+      "sha256": "3069d1bdc92c8f198e333b29ce1835097a3c13bfc316aa4839bde07cbe13433f",
+      "source_index": 11,
+      "source_array": "world2"
+    },
+    {
+      "path": "assets/zh/cogniplan-native/tunnel-world3.png",
+      "sha256": "55ac782350a091e824e12c370a879aa575c0cf39f5fff8a89958666dd6db5135",
+      "source_index": 11,
+      "source_array": "world3"
+    },
+    {
+      "path": "assets/zh/cogniplan-native/outdoor-observed.png",
+      "sha256": "8100475b908c5fca09e31d1d26604055cb5c58931ebbafebbae9921e6d900439",
+      "source_index": 22,
+      "source_array": "observed"
+    },
+    {
+      "path": "assets/zh/cogniplan-native/outdoor-vote.png",
+      "sha256": "c2c4d02c78f5d472919d13e7961379507219ef6d18ccc0b302a6b69fb60e69e3",
+      "source_index": 22,
+      "source_array": "vote"
+    },
+    {
+      "path": "assets/zh/cogniplan-native/outdoor-reference.png",
+      "sha256": "13672d3a0049fca8ec512cbbf5e2330f8f6b6c9063babb9ee85b684196a1b65e",
+      "source_index": 22,
+      "source_array": "reference"
+    },
+    {
+      "path": "assets/zh/cogniplan-native/outdoor-world0.png",
+      "sha256": "5d680402cf7d18eb4138dbcf01c8696b3a8e3103bbd766672ee4a447026c88aa",
+      "source_index": 22,
+      "source_array": "world0"
+    },
+    {
+      "path": "assets/zh/cogniplan-native/outdoor-world1.png",
+      "sha256": "efb7458441b919b5b5e6403b1ba9934442706954c2fc60cb5930c65757f00db8",
+      "source_index": 22,
+      "source_array": "world1"
+    },
+    {
+      "path": "assets/zh/cogniplan-native/outdoor-world2.png",
+      "sha256": "95077bcfef17abd3eaf47661b9c82d4f38be5a3032c67d0644cfe7c69265ae61",
+      "source_index": 22,
+      "source_array": "world2"
+    },
+    {
+      "path": "assets/zh/cogniplan-native/outdoor-world3.png",
+      "sha256": "f362220f14fc231c63eba469b9f16c52512340936e6414d8cfd74f0448ae4bbb",
+      "source_index": 22,
+      "source_array": "world3"
+    }
+  ],
+  "samples": 32,
+  "worlds": 128,
+  "training_phases": [
+    {
+      "phase": "reconstruction",
+      "warmup_iterations": 10,
+      "measured_iterations": 100,
+      "generator_updates_measured": 100,
+      "discriminator_updates_measured": 0,
+      "batch_size": 24,
+      "seconds_mean": 0.104997221390513,
+      "seconds_p50": 0.10498217449639924,
+      "seconds_p95": 0.10921438498917269,
+      "peak_allocated_bytes": 2643362304,
+      "peak_reserved_bytes": 4336910336,
+      "all_finite": true
+    },
+    {
+      "phase": "adversarial",
+      "warmup_iterations": 10,
+      "measured_iterations": 100,
+      "generator_updates_measured": 20,
+      "discriminator_updates_measured": 100,
+      "batch_size": 24,
+      "seconds_mean": 0.08929133720084792,
+      "seconds_p50": 0.07371585700457217,
+      "seconds_p95": 0.16165626204237923,
+      "peak_allocated_bytes": 2617713152,
+      "peak_reserved_bytes": 3634364416,
+      "all_finite": true
+    }
+  ],
+  "training_hours_per_seed_extrapolation": 12.44520206731128,
+  "training_hours_three_seeds_extrapolation": 37.33560620193384,
+  "renderer_sha256": "8009a2bab225761ac6e2e2fe1df537ea501b4f8082736fd456f144411fbb1fa1",
+  "provenance": "marmotlab/CogniPlan@444fab8d5d3b8d2b004d83865088a9d707d2e3c8; gen_00500000.pt"
+}

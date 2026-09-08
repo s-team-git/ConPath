@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "checkpoint_id": "clean-ablation-evaluation-publication-20260908",
+  "checkpoint_id": "cogniplan-native-interface-profile-v2-20260908",
   "updated_local_date": "2026-09-08",
   "timezone": "America/New_York",
   "branch": "main",
-  "remote_sync": "Previous revision 00a2b34 is synchronized. Resolve the reviewed ablation publication revision with git log -1 -- RECOVERY_STATE.json; publication and live-byte receipts are in results/ablation_publication_20260908/.",
-  "latest_local_commit": "Resolve current ablation evidence publication via git log -1 -- RECOVERY_STATE.json; frozen training implementation remains e6f0910.",
-  "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence.",
-  "scientific_status": "P0 passes in two seeds. Clean-support FlatLands K=128 gives event Brier 0.06749 +/- 0.00936 versus independent 0.09521 +/- 0.00703 on the scene-disjoint non-official validation split. The nine-method comparison includes same-checkpoint mean maps (0.06957 +/- 0.00380) and a fixed empirical marginal shuffle (0.16139 +/- 0.00677); spatial dependence has positive mechanism evidence, but the mean-map advantage and equal-30%-coverage risk advantage (3.60% versus 3.90%) are not stable across paired intervals. All six original K=128 predictions replay exactly. UnScenes3D mean-map/qualitative v1 reopened invalid support after sampling and is superseded by v2: Brier 0.51142 +/- 0.00198 versus independent 0.51130 +/- 0.00218. Training weights and hidden-map metrics replay exactly; all 27,522 model predictions obey the exact observation bounds. The frozen hard-observation validation Brier lower bound is 0.47574, and only 15.66% of events are mutable through unknown completion. The manuscript remains a working draft. Both physical tests remain locked; no successful transfer or final-paper claim is supported. Clean no-event/no-global three-seed training ablations are now complete: Brier 0.20425 +/- 0.00322 and 0.09499 +/- 0.00157 versus full 0.06749 +/- 0.00936. All six descriptive paired Brier scene intervals are positive; all six equal-30%-coverage risk intervals include zero. No-event radius-20 predictions are all zero despite positive prevalence 20.67%. This completes the bounded-validation internal ablation, not the planned external main comparisons or final test.",
-  "active_task": "All six clean ablation trainings, exact validation and paired analysis completed at 2026-09-08 08:56 UTC; experiment processes have exited. Chinese summary, paper section 5.5, numeric CSVs, paired figures and 12 fixed-case model images are complete and reviewed. Finish Git/Pages publication if deployment.json is absent; then continue the already approved external-method interface, physical-resolution and fixed-training-sample cost gates. Do not restart the completed matrix. Formal tests remain locked.",
+  "remote_sync": "Previous ablation publication 37de858 was synchronized and live-byte verified. Resolve this external interface publication with git log -1 -- RECOVERY_STATE.json; deployment and completion receipts are in results/external_publication_20260908/.",
+  "latest_local_commit": "Resolve current external native interface publication via git log -1 -- RECOVERY_STATE.json; frozen prior ablation training remains e6f0910.",
+  "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence. New external profiles on 2026-09-08 actually used Python 3.13 and torch 2.12.1+cu130; v2 explicitly disables TF32 and cudnn benchmarking and enables deterministic algorithms. GPU has unrelated concurrent load; no isolated-device latency claim.",
+  "scientific_status": "P0 passes in two seeds. Clean-support FlatLands K=128 gives event Brier 0.06749 +/- 0.00936 versus independent 0.09521 +/- 0.00703 on the scene-disjoint non-official validation split. The nine-method comparison includes same-checkpoint mean maps (0.06957 +/- 0.00380) and a fixed empirical marginal shuffle (0.16139 +/- 0.00677); spatial dependence has positive mechanism evidence, but the mean-map advantage and equal-30%-coverage risk advantage (3.60% versus 3.90%) are not stable across paired intervals. All six original K=128 predictions replay exactly. UnScenes3D mean-map/qualitative v1 reopened invalid support after sampling and is superseded by v2: Brier 0.51142 +/- 0.00198 versus independent 0.51130 +/- 0.00218. Training weights and hidden-map metrics replay exactly; all 27,522 model predictions obey the exact observation bounds. The frozen hard-observation validation Brier lower bound is 0.47574, and only 15.66% of events are mutable through unknown completion. The manuscript remains a working draft. Both physical tests remain locked; no successful transfer or final-paper claim is supported. Clean no-event/no-global three-seed training ablations are now complete: Brier 0.20425 +/- 0.00322 and 0.09499 +/- 0.00157 versus full 0.06749 +/- 0.00936. All six descriptive paired Brier scene intervals are positive; all six equal-30%-coverage risk intervals include zero. No-event radius-20 predictions are all zero despite positive prevalence 20.67%. This completes the bounded-validation internal ablation, not the planned external main comparisons or final test. CogniPlan public-weight training-domain sanity and resource profiling completed; this is not an external comparative result. Original 500000-step recipe extrapolates to 12.45 hours/seed or 37.34 hours for three serial seeds, excluding full-loader I/O and evaluation, under deterministic v2 execution and concurrent GPU load. Earlier roughly 6-hour native-autotuning v1 estimate is superseded. FlatLands train metadata consistently describes cropping, but independent physical scale verification remains unresolved.",
+  "active_task": "CogniPlan train-only interface preparation is complete: frozen 2400/300/300 mother-map split, 32 observations/128 public-weight hypotheses, native postprocessing compatibility, deterministic cross-process exact replay, and 100 measured updates each for reconstruction/adversarial phases. Short profiles have exited; formal training has not started. Finish this Git/Pages publication if results/external_publication_20260908/completion.json is absent, then implement genuine LaMa and FM+XAttn, freeze common CogniPlan queries/evaluator and per-method formal recipes. Do not restart the completed ablation matrix or the native profile.",
   "completed_milestones": [
     "Interruption-safe P0 training with atomic checkpoints and exact resume",
     "Two-seed synthetic P0 pass and matched no-reach failure",
@@ -106,7 +106,12 @@
     "Explicit user resumption at 2026-09-07 23:59 EDT: frozen supervisor and three --finalize-dir workers launched. Checkpoint SHA-256 values unchanged, no_event histories remain 12/9/17 epochs, active CPU computation verified, no_global queued. Approved experiment plan unchanged; final test remains locked.",
     "All six frozen clean-support no-event/no-global retrainings, exact K=128 validation and run audits completed; same 4224 events and 142 contributing scenes per run, no test evaluation. Paired Brier differences support both factors while all six equal-coverage risk intervals contain zero.",
     "Chinese evaluation summary and paper section 5.5 now contain all seeds, source/radius strata, Brier/NLL/ECE/risk, descriptive scene intervals and null findings. Website adds two Chinese responsive charts and 12 real checkpoint probability/first-world footprint maps for the same two pre-existing cases.",
-    "Independent metric, tie-handling, whole-scene Brier interval and source-hash replays pass across nine model CSVs; 12 raster and six first-world connectivity checks pass. 98 unit tests and final Chrome 1440/390 interactions pass. Existing 113 media assets and nine-method numeric evidence remain unchanged."
+    "Independent metric, tie-handling, whole-scene Brier interval and source-hash replays pass across nine model CSVs; 12 raster and six first-world connectivity checks pass. 98 unit tests and final Chrome 1440/390 interactions pass. Existing 113 media assets and nine-method numeric evidence remain unchanged.",
+    "Published six clean ablation evaluation package at 37de858 and verified all 143 website files plus five pinned documents online.",
+    "CogniPlan original train mother maps and D4 geometric groups split into 2400 train / 300 calibration / 300 validation; 32 target-blind fixed train views selected; 160 FlatLands train metadata crops audited.",
+    "Official pinned CogniPlan module connected; 128 native postprocessed worlds preserve observations. Native-autotuning v1 exposed cross-process drift and was superseded by deterministic FP32 v2, which independently replays all raw/hard outputs exactly.",
+    "Reconstruction and adversarial native resource profiles each completed 10 warmup plus 100 measured updates; all finite, no formal long training started. 103 unit tests and 116 native split/source/replay checks passed.",
+    "Three preselected CogniPlan layouts rendered as 21 Chinese-labelled real images, with explicit train-only sanity scope; paper preparation and Chinese progress report updated."
   ],
   "tracked_files": [
     "CLEAN_ABLATION_PLAN.md",
@@ -115,6 +120,7 @@
     "EVALUATION_SUMMARY_ZH.md",
     "EXPERIMENT_DESIGN_ZH.md",
     "EXTERNAL_DATA_AUDIT_ZH.md",
+    "EXTERNAL_PROGRESS_ZH.md",
     "LITERATURE_REVIEW_ZH.md",
     "OFFICIAL_FLATLANDS_CHECK.md",
     "ORFD_COMPATIBILITY_CHECK.md",
@@ -133,6 +139,7 @@
     "scripts/analyze_flatlands_clean_ablations.py",
     "scripts/analyze_flatlands_clean_validation.py",
     "scripts/audit_cogniplan_training_assets.py",
+    "scripts/audit_external_native.py",
     "scripts/audit_flatlands_archive.py",
     "scripts/audit_flatlands_conpath_k128.py",
     "scripts/audit_flatlands_queries.py",
@@ -164,7 +171,10 @@
     "scripts/evaluate_flatlands_support_clamped.py",
     "scripts/evaluate_unscenes3d_calibration.py",
     "scripts/evaluate_unscenes3d_conpath_mean_map.py",
+    "scripts/prepare_external_protocol.py",
+    "scripts/profile_cogniplan_native.py",
     "scripts/render_ablation_cases_zh.py",
+    "scripts/render_cogniplan_native_zh.py",
     "scripts/render_flatlands_k128_advantage.py",
     "scripts/render_flatlands_qualitative.py",
     "scripts/render_unscenes3d_qualitative.py",
@@ -223,6 +233,27 @@
     "site/assets/zh/brier-mobile.svg",
     "site/assets/zh/brier.pdf",
     "site/assets/zh/brier.svg",
+    "site/assets/zh/cogniplan-native/outdoor-observed.png",
+    "site/assets/zh/cogniplan-native/outdoor-reference.png",
+    "site/assets/zh/cogniplan-native/outdoor-vote.png",
+    "site/assets/zh/cogniplan-native/outdoor-world0.png",
+    "site/assets/zh/cogniplan-native/outdoor-world1.png",
+    "site/assets/zh/cogniplan-native/outdoor-world2.png",
+    "site/assets/zh/cogniplan-native/outdoor-world3.png",
+    "site/assets/zh/cogniplan-native/room-observed.png",
+    "site/assets/zh/cogniplan-native/room-reference.png",
+    "site/assets/zh/cogniplan-native/room-vote.png",
+    "site/assets/zh/cogniplan-native/room-world0.png",
+    "site/assets/zh/cogniplan-native/room-world1.png",
+    "site/assets/zh/cogniplan-native/room-world2.png",
+    "site/assets/zh/cogniplan-native/room-world3.png",
+    "site/assets/zh/cogniplan-native/tunnel-observed.png",
+    "site/assets/zh/cogniplan-native/tunnel-reference.png",
+    "site/assets/zh/cogniplan-native/tunnel-vote.png",
+    "site/assets/zh/cogniplan-native/tunnel-world0.png",
+    "site/assets/zh/cogniplan-native/tunnel-world1.png",
+    "site/assets/zh/cogniplan-native/tunnel-world2.png",
+    "site/assets/zh/cogniplan-native/tunnel-world3.png",
     "site/assets/zh/dependence-mobile.pdf",
     "site/assets/zh/dependence-mobile.svg",
     "site/assets/zh/dependence.pdf",
@@ -338,6 +369,7 @@
     "site/assets/zh/unscenes_1657854165_355872_camera.jpg",
     "site/assets/zh/unscenes_1657854165_355872_observed.svg",
     "site/assets/zh/unscenes_1657854165_355872_reference.svg",
+    "site/data/cogniplan_native_sanity_zh.json",
     "site/data/flatlands_audit.json",
     "site/data/flatlands_baselines_validation.json",
     "site/data/flatlands_calibration_validation.json",
@@ -370,6 +402,7 @@
     "site/styles-zh.css",
     "site/styles.css",
     "src/pathrel/ablation_protocol.py",
+    "src/pathrel/cogniplan.py",
     "src/pathrel/flatlands.py",
     "src/pathrel/flatlands_baselines.py",
     "src/pathrel/flatlands_data.py",
@@ -386,6 +419,7 @@
     "src/pathrel/unscenes3d.py",
     "tests/test_ablation_protocol.py",
     "tests/test_ablation_summary.py",
+    "tests/test_cogniplan.py",
     "tests/test_demo_site.py",
     "tests/test_flatlands_baselines.py",
     "tests/test_flatlands_conpath.py",
@@ -397,7 +431,18 @@
     "tests/test_posterior_audits.py",
     "tests/test_reachability.py",
     "tests/test_selective_risk.py",
-    "tests/test_unscenes3d.py"
+    "tests/test_unscenes3d.py",
+    "third_party/cogniplan/LICENSE",
+    "third_party/cogniplan/README.md",
+    "third_party/cogniplan/mapinpaint/config.yaml",
+    "third_party/cogniplan/mapinpaint/dataset.py",
+    "third_party/cogniplan/mapinpaint/evaluator.py",
+    "third_party/cogniplan/mapinpaint/logger.py",
+    "third_party/cogniplan/mapinpaint/networks.py",
+    "third_party/cogniplan/mapinpaint/tools.py",
+    "third_party/cogniplan/mapinpaint/train.py",
+    "third_party/cogniplan/mapinpaint/trainer.py",
+    "third_party/cogniplan/sources.json"
   ],
   "ignored_artifacts": [
     {
@@ -3633,24 +3678,334 @@
       "required_for_resume": true,
       "bytes": 438,
       "sha256": "b9c6fee92deecb82e5e8389e2127504a1d395ee2b01efed9a4cdaf168c98cc50"
+    },
+    {
+      "path": "results/external_protocol_v1/cogniplan_mothers.csv",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 863740,
+      "sha256": "80c376ed08559c6f64115874f59b45d93c2f6f509d97441fe2e73b9f60b8378f"
+    },
+    {
+      "path": "results/external_protocol_v1/report.json",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 2720,
+      "sha256": "b326bc37cf8688d1a4b8be77634af234d5e1ee0885575f1be8be0129f6d74ab8"
+    },
+    {
+      "path": "results/external_protocol_v1/flatlands_train_crop_audit.csv",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 16097,
+      "sha256": "d3b86ecac1d8b98b27b82e883db651b771c405433243a70915f138bfe54e2ff4"
+    },
+    {
+      "path": "results/external_protocol_v1/flatlands_profile32.csv",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 4687,
+      "sha256": "b44e9f43ee0f383a0a846e32d212db86c7e5f932f4b047b3f56a7f52afde52a0"
+    },
+    {
+      "path": "results/external_protocol_v1/cogniplan_profile32.csv",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 8845,
+      "sha256": "2a915f33aba161951848458550af7a4b6efcacb0cef550d2ed21365d7f05f9f8"
+    },
+    {
+      "path": "results/external_protocol_v1/cogniplan_observations.csv",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 6524021,
+      "sha256": "319e76ea25fbc642388b40c2c4b64b743668ca178542312563593a8b18593dd6"
+    },
+    {
+      "path": "results/cogniplan_native_profile_v2/contact_sheet_0.png",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 628281,
+      "sha256": "5aa83f746e85d336cc7867f3d95d718095e0a69da21b5fecca20f7344de88fe2"
+    },
+    {
+      "path": "results/cogniplan_native_profile_v2/report.json",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 4627,
+      "sha256": "a43a64abbe30e8620ac3a93fe6172a84834dde99dc13ea88fc6faf0c49bae5c4"
+    },
+    {
+      "path": "results/cogniplan_native_profile_v2/progress.json",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 90,
+      "sha256": "b8cd06cec3b64be475478714db3957fc44786a3f7aa7058955448afb39360909"
+    },
+    {
+      "path": "results/cogniplan_native_profile_v2/contact_sheet_1.png",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 649246,
+      "sha256": "d7515c2d6442429fbf16119acdd74dd4345ba401816804fe2a4bf048404eb13f"
+    },
+    {
+      "path": "results/cogniplan_native_profile_v2/training_trace.json",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 67509,
+      "sha256": "80ace146a184fc9d8d74b430f74d8046d336539c94ed416f342dadd5652351eb"
+    },
+    {
+      "path": "results/cogniplan_native_profile_v2/environment.json",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 592,
+      "sha256": "b2a4550574672666157996124f5763863357e87282c83ce2bf4feb963812f290"
+    },
+    {
+      "path": "results/cogniplan_native_profile_v2/contact_sheet_3.png",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 642184,
+      "sha256": "9eed459248d13d2962662d6ffbf41a8a57dd6c4872e243672e215724bbca30b3"
+    },
+    {
+      "path": "results/cogniplan_native_profile_v2/native_outputs.npz",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 755925,
+      "sha256": "445c2ab8f3e414b12ad57b593989cee96760cba6262df0caac4b115387062149"
+    },
+    {
+      "path": "results/cogniplan_native_profile_v2/native_samples.csv",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 6031,
+      "sha256": "029ffa7594b01c1649812a73ac9e5327c3fa4b24f91f45354c2aadb923893087"
+    },
+    {
+      "path": "results/cogniplan_native_profile_v2/released_config.json",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 840,
+      "sha256": "3fd18a6144d9e8ddf10efe0445bd94ac4c40eef077d2986b09081dceeb15d9d7"
+    },
+    {
+      "path": "results/cogniplan_native_profile_v2/engineering_endpoints.npy",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 2176,
+      "sha256": "7e73d0f8d87fb77f1673fe9b5f3e59aea1e8b414c59141b25b06d1d7c30c52a8"
+    },
+    {
+      "path": "results/cogniplan_native_profile_v2/contact_sheet_2.png",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 630939,
+      "sha256": "fb11c22e9ee898e42e96b0125d98a6c32fb290e2ba3047c34a45081fc2afaf62"
+    },
+    {
+      "path": "results/cogniplan_native_profile_v1/contact_sheet_0.png",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 628291,
+      "sha256": "4719f0db0a71dad4ac8a5b26b8ffe8a6ec7aaea4c058c58711ae4a79a7ea1bd0"
+    },
+    {
+      "path": "results/cogniplan_native_profile_v1/report.json",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 4312,
+      "sha256": "eba30c51f578df1b9ff7f79a6a2f872b142cb1e137dfe28c458626606f801550"
+    },
+    {
+      "path": "results/cogniplan_native_profile_v1/progress.json",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 90,
+      "sha256": "9259ba144df25f9dfaf7151a6ce80528674d245c3b34719e3faaacff355eb71b"
+    },
+    {
+      "path": "results/cogniplan_native_profile_v1/all32_contact_sheet.png",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 1983630,
+      "sha256": "26a3182d905f2338dfd7af4ede89cf48887687c5f27b94c899a423200cf621a0"
+    },
+    {
+      "path": "results/cogniplan_native_profile_v1/contact_sheet_1.png",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 649254,
+      "sha256": "cc913b4f545e47dbb129f8ef474c675261b9affe3c6e32ad89d7dcae4c6a97a0"
+    },
+    {
+      "path": "results/cogniplan_native_profile_v1/training_trace.json",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 67498,
+      "sha256": "6be6457e5e007eb644ab0e7436950e59e1207850b7387cd8863f20f80d6ab20c"
+    },
+    {
+      "path": "results/cogniplan_native_profile_v1/environment.json",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 286,
+      "sha256": "18c66f78c34b68ba506840500a8821f8234d6930ad8706ef47158608ee1a18f2"
+    },
+    {
+      "path": "results/cogniplan_native_profile_v1/contact_sheet_3.png",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 642186,
+      "sha256": "9c69d88decb86b89dc1ad1962aa61bb81f984c030d881a48bd743639b8d2b516"
+    },
+    {
+      "path": "results/cogniplan_native_profile_v1/native_outputs.npz",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 755803,
+      "sha256": "0dc5ffe3863fcc927bf386c7b71f58adf0c10d62c9133f7a7546f2f0f8e4f7cd"
+    },
+    {
+      "path": "results/cogniplan_native_profile_v1/native_samples.csv",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 6017,
+      "sha256": "3c3ef902628baddb272e39cf2bd66bca83e39090bd5ede9fd56a7b96cccbcadf"
+    },
+    {
+      "path": "results/cogniplan_native_profile_v1/released_config.json",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 840,
+      "sha256": "3fd18a6144d9e8ddf10efe0445bd94ac4c40eef077d2986b09081dceeb15d9d7"
+    },
+    {
+      "path": "results/cogniplan_native_profile_v1/engineering_endpoints.npy",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 2176,
+      "sha256": "7e73d0f8d87fb77f1673fe9b5f3e59aea1e8b414c59141b25b06d1d7c30c52a8"
+    },
+    {
+      "path": "results/cogniplan_native_profile_v1/contact_sheet_2.png",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 630989,
+      "sha256": "c82aee6af46a34d601ca6766657eb47643ce0e109dfce95449360eca5468be7f"
+    },
+    {
+      "path": "results/external_publication_20260908/native_v1_history/profile_cogniplan_native.py",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 14491,
+      "sha256": "9576b94ef6a0f97343d8dccbe4f8a4e0dbbd6e6db69d3948b4d432cb608f07a1"
+    },
+    {
+      "path": "results/external_publication_20260908/native_v1_history/render_cogniplan_native_zh.py",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 6139,
+      "sha256": "6edbc50dcbe9d488cdf366ec5d451dc4f22b8849db5768626981cadd9da47477"
+    },
+    {
+      "path": "results/external_publication_20260908/native_v1_history/cogniplan.py",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 6426,
+      "sha256": "2178818ccc6684d9c9a60c4ea8dc905d2b38f015e4486ca530f73e6582b77237"
+    },
+    {
+      "path": "results/external_publication_20260908/native_v1_history/supersession.json",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 484,
+      "sha256": "ea8a7f7a0b84ab1ef33af6a8f822cf5cd0a3ec2f1596bedc2ff2cdc1a91ac0d1"
+    },
+    {
+      "path": "results/external_publication_20260908/native_v1_history/audit_external_native.py",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 4365,
+      "sha256": "4fd08fa828e61df709dd0cd3a896f5741090fa777681f4f7c192857cdabce71a"
+    },
+    {
+      "path": "results/external_publication_20260908/native_replay_audit.json",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 11731,
+      "sha256": "d547fe9e8e6a7798b73e6f5c0dee70ccef6c6b0e1664d65b0a106897c2928009"
+    },
+    {
+      "path": "results/external_publication_20260908/visual_review.json",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 1245,
+      "sha256": "7558dd3fa0b8dbd1bcc0e4257969480480faf5c6d7256a137a8c3afa24ec4d33"
+    },
+    {
+      "path": "results/external_publication_20260908/unit_tests.txt",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 15997,
+      "sha256": "4fa83bf18a7817dcd1e867397d962bc80f8afae6b86751e3b17333a15ea0eed6"
+    },
+    {
+      "path": "results/external_publication_20260908/site_visual_audit.json",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 438,
+      "sha256": "b9c6fee92deecb82e5e8389e2127504a1d395ee2b01efed9a4cdaf168c98cc50"
+    },
+    {
+      "path": "results/external_publication_20260908/paper_evidence_audit.json",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 286,
+      "sha256": "fcbf82f91444de94010024a89c0693e26ef7c33d8df08bdb35d17b14f1974da0"
+    },
+    {
+      "path": "results/external_publication_20260908/profile_v1.log",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 6122,
+      "sha256": "e5b2b22416e1108510f55e2c2cbb2051972e5f8e08c28875062a1fbe9a221ad4"
+    },
+    {
+      "path": "results/external_publication_20260908/profile_v2.log",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 6437,
+      "sha256": "9e5ed90440a615b8b7a62dfd5d5b324a41c49016954e9d2d802a627b6e69ef59"
+    },
+    {
+      "path": "results/external_publication_20260908/browser_v3/report.json",
+      "role": "External native engineering protocol/evidence; v1 retained as superseded history; v2 is current. No formal comparative score.",
+      "required_for_resume": true,
+      "bytes": 1227,
+      "sha256": "6b3c6b0c096458cd9b9c85d9ef02932591bc4d7ea87a7d2baadde685ee72c319"
+    },
+    {
+      "path": "results/external_publication_20260908/recovery_verification.json",
+      "role": "Final quick recovery check; new external inputs/outputs independently hashed in native audit, historical completed training left untouched.",
+      "required_for_resume": true,
+      "bytes": 234189,
+      "sha256": "a8590ce889d20112496f88eae37bcea3a932997355b9a1b994d2ab24ccdf64b6"
     }
   ],
   "last_verification": {
-    "command": "98 unit tests; independent ablation CSV/stratum/aggregate/paired-Brier replay; fixed-case raster and connectivity replay; site visual/source/numeric audit; paper evidence audit; final Chrome desktop/mobile interactions; recovery verification and git diff --check.",
-    "result": "98 tests passed; all 746 recovery checks including hashes passed before the final three receipts were registered. Independent ablation statistics, 12 case pixels, six first-world events, existing media, paper source hashes and desktop/mobile browser interactions passed. No experiment process remains. Git/Pages publication receipt is recorded after push.",
-    "implementation_commit": "e6f0910",
+    "command": "103 unit tests; 116 native split/source/adapter cross-process exact replay checks; old visual and paper evidence audits; Chrome desktop1440/mobile390 with all 21 native images and zoom; recovery verifier.",
+    "result": "All listed tests and audits passed. v2 raw output max drift 0, all 128 binary worlds exact. Native v1 drift documented and superseded, not hidden. No profile or formal training process active. Publication receipt is written after push.",
     "receipts": [
-      "results/ablation_publication_20260908/numerical_replay_publication.json",
-      "results/ablation_publication_20260908/visual_audit_final.json",
-      "results/ablation_publication_20260908/paper_evidence_audit_final.json",
-      "results/ablation_publication_20260908/browser_final/report.json",
-      "results/ablation_publication_20260908/completed_matrix_snapshot.json",
-      "results/ablation_publication_20260908/unit_tests.txt",
-      "results/ablation_publication_20260908/document_audit.json",
-      "results/ablation_publication_20260908/recovery_verification.json",
-      "results/ablation_publication_20260908/unit_tests_final.txt",
-      "results/ablation_publication_20260908/numerical_replay_release.json",
-      "results/ablation_publication_20260908/visual_audit_release.json"
+      "results/external_publication_20260908/native_replay_audit.json",
+      "results/external_publication_20260908/visual_review.json",
+      "results/external_publication_20260908/unit_tests.txt",
+      "results/external_publication_20260908/site_visual_audit.json",
+      "results/external_publication_20260908/paper_evidence_audit.json",
+      "results/external_publication_20260908/browser_v3/report.json",
+      "results/external_publication_20260908/recovery_verification.json"
     ]
   },
   "recovery_commands": [
@@ -3664,15 +4019,17 @@
     "cat WORK_PLAN.md",
     "tail -n 65 CONTINUATION.md",
     "cat results/paper_clean_ablation_matrix_v1/progress.json",
-    "PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/audit_site_visuals.py"
+    "PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/audit_site_visuals.py",
+    "cat EXTERNAL_PROGRESS_ZH.md",
+    "cat results/cogniplan_native_profile_v2/report.json"
   ],
-  "next_command": "cat EVALUATION_SUMMARY_ZH.md",
+  "next_command": "cat EXTERNAL_PROGRESS_ZH.md",
   "next_actions": [
-    "Read EVALUATION_SUMMARY_ZH.md and the completed analysis; do not restart this six-run matrix. Check results/ablation_publication_20260908/deployment.json and completion.json for publication status.",
-    "Continue the approved EXPERIMENT_DESIGN_ZH.md: resolve FlatLands paper/release spatial scale, audit genuine LaMa/ensemble and FM+XAttn inputs, and validate the native CogniPlan generator interface.",
-    "Profile the predeclared 32 fixed training observations with warmup and 100 updates; freeze external per-method recipes, data scale and common K=4/cost protocol before formal runs. Resource profiling is not a convergence/winner-selection gate.",
-    "Run required external comparisons with three outer training repeats and the strong deterministic/direct/independent controls. Expanded data requires all relevant models to retrain under the same new version. Preserve source/radius/failure and equal-coverage risk findings.",
-    "Keep physical FlatLands test, UnScenes3D location_6 and new held-out test assets isolated until complete method/data/analysis freeze. No confirmed comparative safety, successful transfer or final-paper result is established."
+    "Check results/external_publication_20260908/completion.json for Git/Pages completion; do not redo completed ablations or native profiling.",
+    "Implement genuine LaMa Fourier-convolution backbone and documented FM+XAttn with masked velocity MSE using the frozen 32 FlatLands training observations; profile both without test access.",
+    "Freeze CogniPlan shared target-blind queries, radii and evaluation contract; use the frozen 2400/300/300 mother split. Public weights remain training-only sanity, formal methods must retrain.",
+    "Freeze per-method formal data scale, recipes, three outer repeats and common K=4/cost protocol after quality/convergence/resource checks. Do not force all models into an arbitrary equal epoch cap.",
+    "Proceed with approved external comparisons, strong controls and honest statistical/visual paper analysis. Keep all final tests locked until the protocol and analysis freeze. FlatLands physical scale is unresolved; retain cell units."
   ],
   "active_training": {
     "root": "results/paper_clean_ablation_matrix_v1",
@@ -3771,5 +4128,29 @@
     "pause_requires_new_explicit_resume_request": false,
     "latest_execution_authorization": "results/training_resume_20260908_finalization/authorization.json",
     "bounded_training_ablation_completion": "EVALUATION_SUMMARY_ZH.md; all six completed 2026-09-08, larger-data and external experiments remain required"
+  },
+  "external_baseline_preparation": {
+    "status": "cogniplan_native_engineering_complete_formal_training_pending",
+    "protocol": "results/external_protocol_v1/report.json",
+    "profile": "results/cogniplan_native_profile_v2/report.json",
+    "superseded_profile": "results/cogniplan_native_profile_v1/report.json",
+    "supersession": "results/external_publication_20260908/native_v1_history/supersession.json",
+    "audit": "results/external_publication_20260908/native_replay_audit.json",
+    "visual_review": "results/external_publication_20260908/visual_review.json",
+    "report": "EXTERNAL_PROGRESS_ZH.md",
+    "formal_training_started": false,
+    "active_profile_processes": 0,
+    "test_evaluated": false,
+    "split_mothers": {
+      "train": 2400,
+      "calibration": 300,
+      "validation": 300
+    },
+    "physical_scale_verified": false,
+    "native_public_checkpoint_is_held_out": false,
+    "next_methods": [
+      "castacks/lama@b61dcb33e063fe9586b50e2dc7b70f97d5046c1d",
+      "conditional FM+XAttn masked velocity MSE, Heun sampling with actual NFE accounting"
+    ]
   }
 }
