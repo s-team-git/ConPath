@@ -107,7 +107,7 @@ def predict(model, method, sample, seed, k):
     assert not np.any(worlds[:, ~sample.hidden] != sample.observation[0, ~sample.hidden])
     events = _accelerated_events(worlds, sample.starts, sample.goals, RADII)
     y, pv = sample.target[sample.hidden], np.clip(raw_p[sample.hidden], 1e-6, 1-1e-6)
-    nll = float(np.mean(-y*np.log(pv) - (~y)*np.log1p(-pv)))
+    nll = float(np.mean(np.where(y, -np.log(pv), -np.log1p(-pv))))
     return worlds, events, p, nll
 
 
