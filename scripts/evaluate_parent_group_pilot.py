@@ -78,11 +78,13 @@ def rule_world(sample, method):
     return (world & sample.valid)[None]
 
 
-def save_method(method, seed, samples, worlds, events, source, prior=None):
+def save_method(method, seed, samples, worlds, events, source, prior=None, mean_maps=None):
     folder = OUT / 'evaluation' / method / str(seed)
     folder.mkdir(parents=True, exist_ok=False)
     budgets = (4, 32) if method in ('correlated', 'independent') else (1,)
     report = {'method': method, 'seed': seed, 'source': source, 'budgets': {}}
+    if mean_maps is not None:
+        np.savez_compressed(folder / 'conditional_mean_maps.npz', probabilities=np.stack(mean_maps), global_ids=np.array([s.row['global_id'] for s in samples]))
     if worlds:
         np.savez_compressed(folder / 'worlds.npz', worlds=np.stack(worlds), global_ids=np.array([s.row['global_id'] for s in samples]))
     for k in budgets:
@@ -156,12 +158,12 @@ def main():
             folder = OUT / 'runs' / method / str(seed)
             state = torch.load(folder / 'best.pt', map_location='cpu', weights_only=False)
             model = model_for(method); model.load_state_dict(state['model']); model.eval()
-            worlds, events = [], []
+            worlds, events, mean_maps = [], [], []
             for sample in samples:
-                w, e, _, _ = predict(model, method, sample, seed + 4000000, 32)
-                worlds.append(w); events.append(e)
+                w, e, p, _ = predict(model, method, sample, seed + 4000000, 32)
+                worlds.append(w); events.append(e); mean_maps.append(p)
             reports.append(save_method(method, seed, samples, worlds, events,
-                           {'checkpoint': str((folder / 'best.pt').relative_to(ROOT)), 'sha256': sha(folder / 'best.pt'), 'best_epoch': state['best_epoch']}))
+                           {'checkpoint': str((folder / 'best.pt').relative_to(ROOT)), 'sha256': sha(folder / 'best.pt'), 'best_epoch': state['best_epoch']}, mean_maps=mean_maps))
             del model, state
     for method in ('all_floor', 'all_blocked', 'nearest_observed'):
         worlds = [rule_world(s, method) for s in samples]
