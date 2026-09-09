@@ -8,6 +8,7 @@ import torch
 from pathrel.parent_pilot_data import PilotSample, canonical_d4_digest, choose_parent_subset, validate_partition
 from scripts.evaluate_flatlands_support_clamped import _accelerated_events
 from scripts.train_parent_group_pilot import tensor_batch
+from scripts.evaluate_parent_group_pilot import paired_interval, risk_at_coverage, rule_world
 
 
 class ParentPilotTests(unittest.TestCase):
@@ -64,6 +65,29 @@ class ParentPilotTests(unittest.TestCase):
         self.assertEqual(batch['starts'][1].tolist(), [[3, 4], [3, 4]])
         self.assertEqual(batch['query_mask'].tolist(), [[True, True], [True, False]])
         self.assertEqual(tensors['query_mask'].device.type, 'cpu')
+
+    def test_risk_ties_are_fractional_and_label_order_invariant(self):
+        self.assertAlmostEqual(risk_at_coverage([.7, .7], [1, 0], [.1, .9]), .9)
+        self.assertAlmostEqual(risk_at_coverage([.7, .7], [0, 1], [.9, .1]), .9)
+        self.assertAlmostEqual(risk_at_coverage([1, .5, 0], [1, 0, 0], [1, 1, 1]), 0.)
+
+    def test_paired_bootstrap_preserves_parent_pairing(self):
+        a = np.linspace(0, .7, 40)
+        result = paired_interval(a, a+.08, ['a']*8+['b']*8+['c']*8+['d']*8+['e']*8, np.random.default_rng(3), 200)
+        self.assertAlmostEqual(result['other_minus_conpath'], .08)
+        np.testing.assert_allclose(result['ci95'], [.08, .08])
+
+    def test_rules_preserve_known_evidence_and_invalid_support(self):
+        valid = np.ones((8, 8), dtype=bool); valid[0] = False
+        free = np.zeros_like(valid); free[2, 2] = True
+        blocked = np.zeros_like(valid); blocked[3, 2] = True
+        hidden = valid & ~free & ~blocked
+        s = PilotSample({}, np.stack((free, blocked, hidden)).astype(np.float32), valid, free, hidden,
+                        np.empty((0, 2), dtype=np.int64), np.empty((0, 2), dtype=np.int64), np.empty((0, 3), dtype=bool), np.array([], dtype=np.int64))
+        for method in ('all_floor', 'all_blocked', 'nearest_observed'):
+            w = rule_world(s, method)
+            self.assertFalse(w[:, ~valid].any())
+            np.testing.assert_array_equal(w[0, ~hidden], free[~hidden])
 
 
 if __name__ == '__main__':
