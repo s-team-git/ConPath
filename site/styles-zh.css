@@ -18,3 +18,10 @@ dialog{border:0;border-radius:12px;padding:22px;max-width:min(1280px,96vw);width
 .native-map-panels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 18px 0; }
 .native-map-panels img { width: 100%; height: auto; display: block; }
 @media (max-width: 600px) { .native-map-panels { grid-template-columns: 1fr; gap: 12px; } }
+.external-map-panels { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 18px 0; }
+.external-map-panels img { width: 100%; height: auto; display: block; }
+.external-cost-table { font-variant-numeric: tabular-nums; }
+@media (max-width: 600px) { .external-map-panels { grid-template-columns: 1fr; gap: 12px; } }
+
+.external-training-curves { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 18px 0; }
+@media (max-width: 600px) { .external-training-curves { grid-template-columns: 1fr; } }

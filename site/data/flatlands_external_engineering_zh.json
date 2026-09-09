@@ -1,0 +1,443 @@
+{
+  "schema_version": 1,
+  "engineering_only": true,
+  "formal_comparison": false,
+  "test_evaluated": false,
+  "profiles": {
+    "lama": {
+      "created_utc": "2026-09-09T01:58:51.731995+00:00",
+      "status": "complete",
+      "method": "lama",
+      "engineering_only": true,
+      "formal_training_started": false,
+      "test_assets_opened": false,
+      "convergence_established": false,
+      "native_pretrained_quality_gate": "Not run: no pretrained weights; full backbone fresh training engineering only.",
+      "generator_parameters": 50966465,
+      "training_updates_measured": 100,
+      "training_batch_size": 2,
+      "training_seconds_mean": 0.128642692809226,
+      "training_seconds_p50": 0.1287860485026613,
+      "training_seconds_p95": 0.13187306393956533,
+      "training_peak_allocated_bytes": 2199958528,
+      "inference_peak_allocated_bytes": 576353792,
+      "inference_observations": 32,
+      "inference_actual_cost_per_observation": {
+        "samples_per_observation": 1,
+        "batched_model_calls": 1,
+        "sample_equivalent_forwards": 1
+      },
+      "inference_mean_seconds_excluding_first": {
+        "generation_seconds": 0.030056310449576667,
+        "transfer_seconds": 0.00025189632076709983,
+        "connectivity_seconds": 0.002307531323411592,
+        "total_seconds": 0.032615738093755356
+      },
+      "timing_scope": "Train includes CPU sample indexing and H2D. Generation includes solver/clamps/threshold, excludes encoding/H2D; D2H and connectivity separate. First inference excluded from means. Concurrent GPU workload, not isolated paper latency.",
+      "budget_limit": "Batch size is an engineering microbatch, not paper effective batch64. No linear microbatch-to-batch64 ETA asserted; accumulation would change LaMa BN behavior. Full-scale/recipe quality gates remain.",
+      "gpu_after": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition, 21651 MiB, 97887 MiB, 85 %",
+      "all_finite": true,
+      "known_support_conflicts": 0,
+      "source_hashes": {
+        "src/pathrel/external_completion.py": "b7ae528bf6a90828ca2b2370c769632da669346b72ae8978f9a13706e1a859ec",
+        "src/pathrel/lama.py": "016c20e563931ef76bf30924bcf2d9c4754812e3a8f8146fa23fe7a837159b6f",
+        "src/pathrel/flow_matching.py": "bd48d15d4322bcf19ed327cedb3c70e8928ee89c6fec7404bea95d92451c690b",
+        "src/pathrel/cogniplan.py": "e79893b1bede944ba6db31f0bd31a171048f1a62f8b37da470a9b2e0856eada9",
+        "scripts/profile_flatlands_external.py": "77a0edc1ee594dbce3b49b9054b8ea7727880a5e3cab7aa78ff60e42b046ac39",
+        "third_party/lama/sources.json": "87364f6eda57169d747c824d71f8bcb080479ee9efaf5e34ff3cad0a39f3acfa",
+        "results/external_protocol_v1/flatlands_profile32.csv": "b44e9f43ee0f383a0a846e32d212db86c7e5f932f4b047b3f56a7f52afde52a0"
+      },
+      "outputs": {
+        "fixed_train_inputs.npz": {
+          "sha256": "8ce778f26b79d673d0e9206727eb4aad760c2aaf1c6cb3d3c6e0385b14830387",
+          "bytes": 190907
+        },
+        "inference_rows.json": {
+          "sha256": "e266c8bed485e10da310b1adb2368b2f03cb9d0a3cbcaaba5c5cc0eaeb179d7d",
+          "bytes": 17968
+        },
+        "profile_checkpoint.pt": {
+          "sha256": "528d6d80a7831e0687398539e505f49393530345948c9403cdc749ad632ea7fa",
+          "bytes": 696366257
+        },
+        "config.json": {
+          "sha256": "fe27735c6b5eada74b5c8353b073cc8d188602a2172773126dbc2ef3e335466d",
+          "bytes": 2848
+        },
+        "training_trace.json": {
+          "sha256": "2c0bdd7c656c7f8c7a4a45ca79acdce97032f28b7041dfe9085782b983b070f6",
+          "bytes": 40788
+        },
+        "predictions.npz": {
+          "sha256": "28388a4404c69ae322d8a5e7c36bfdc1a3230649d77d967bda201027065a3a5d",
+          "bytes": 2046548
+        },
+        "fixed_train_observations.csv": {
+          "sha256": "b44e9f43ee0f383a0a846e32d212db86c7e5f932f4b047b3f56a7f52afde52a0",
+          "bytes": 4687
+        },
+        "engineering_endpoints.npy": {
+          "sha256": "2b41672415e90a18999a503817125655dfcbfb3ffa1e5e0b2317aab845b76f3b",
+          "bytes": 2176
+        },
+        "source_packets.json": {
+          "sha256": "fb25d7f2be087de5aa989dca0b46883a1d8d87e7cbaf6f44a60a8da910261d8f",
+          "bytes": 13631
+        }
+      }
+    },
+    "flow": {
+      "created_utc": "2026-09-09T02:02:19.673776+00:00",
+      "status": "complete",
+      "method": "flow",
+      "engineering_only": true,
+      "formal_training_started": false,
+      "test_assets_opened": false,
+      "convergence_established": false,
+      "native_pretrained_quality_gate": "Not run: no pretrained weights; full backbone fresh training engineering only.",
+      "generator_parameters": 21202753,
+      "training_updates_measured": 100,
+      "training_batch_size": 2,
+      "training_seconds_mean": 0.12778563043975738,
+      "training_seconds_p50": 0.12772295300965197,
+      "training_seconds_p95": 0.13004223249445204,
+      "training_peak_allocated_bytes": 2950861312,
+      "inference_peak_allocated_bytes": 5754073600,
+      "inference_observations": 32,
+      "inference_actual_cost_per_observation": {
+        "solver": "Heun",
+        "steps_per_sample": 25,
+        "samples_per_observation": 4,
+        "cfg_scale_s": 2.0,
+        "cfg_branches": 2,
+        "batched_model_calls": 50,
+        "velocity_evaluations_per_sample": 50,
+        "sample_equivalent_forwards": 400,
+        "condition_cache_used": false
+      },
+      "inference_mean_seconds_excluding_first": {
+        "generation_seconds": 4.711008726514034,
+        "transfer_seconds": 0.0003406581930786131,
+        "connectivity_seconds": 0.00863950022575145,
+        "total_seconds": 4.719988884932865
+      },
+      "timing_scope": "Train includes CPU sample indexing and H2D. Generation includes solver/clamps/threshold, excludes encoding/H2D; D2H and connectivity separate. First inference excluded from means. Concurrent GPU workload, not isolated paper latency.",
+      "budget_limit": "Batch size is an engineering microbatch, not paper effective batch64. No linear microbatch-to-batch64 ETA asserted; accumulation would change LaMa BN behavior. Full-scale/recipe quality gates remain.",
+      "gpu_after": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition, 26162 MiB, 97887 MiB, 8 %",
+      "all_finite": true,
+      "known_support_conflicts": 0,
+      "source_hashes": {
+        "src/pathrel/external_completion.py": "b7ae528bf6a90828ca2b2370c769632da669346b72ae8978f9a13706e1a859ec",
+        "src/pathrel/lama.py": "016c20e563931ef76bf30924bcf2d9c4754812e3a8f8146fa23fe7a837159b6f",
+        "src/pathrel/flow_matching.py": "bd48d15d4322bcf19ed327cedb3c70e8928ee89c6fec7404bea95d92451c690b",
+        "src/pathrel/cogniplan.py": "e79893b1bede944ba6db31f0bd31a171048f1a62f8b37da470a9b2e0856eada9",
+        "scripts/profile_flatlands_external.py": "77a0edc1ee594dbce3b49b9054b8ea7727880a5e3cab7aa78ff60e42b046ac39",
+        "third_party/lama/sources.json": "87364f6eda57169d747c824d71f8bcb080479ee9efaf5e34ff3cad0a39f3acfa",
+        "results/external_protocol_v1/flatlands_profile32.csv": "b44e9f43ee0f383a0a846e32d212db86c7e5f932f4b047b3f56a7f52afde52a0"
+      },
+      "outputs": {
+        "fixed_train_inputs.npz": {
+          "sha256": "8ce778f26b79d673d0e9206727eb4aad760c2aaf1c6cb3d3c6e0385b14830387",
+          "bytes": 190907
+        },
+        "inference_rows.json": {
+          "sha256": "2aad8505a2755db42b968f056aaf4dfc999bbd7c7d5a34a0e50222568ff9314c",
+          "bytes": 37970
+        },
+        "profile_checkpoint.pt": {
+          "sha256": "240e27a346eeaa7c96818de97b5fd425ff400064abd4838dc3fcf93b4393ee18",
+          "bytes": 254786193
+        },
+        "config.json": {
+          "sha256": "cdf93626cef2ae35d937cb9769672661b6b1335691e11a9f7b38dc0cd9fe046b",
+          "bytes": 2848
+        },
+        "training_trace.json": {
+          "sha256": "b2b4375fa8dc7353ed7275cc74756e7da419b43bd115d797dd57d418ede1d963",
+          "bytes": 21907
+        },
+        "predictions.npz": {
+          "sha256": "d0150cdcd8a65ea64ff68bbe05d703f2051b5fa1152f7bd13a5619e05208bb59",
+          "bytes": 3874792
+        },
+        "fixed_train_observations.csv": {
+          "sha256": "b44e9f43ee0f383a0a846e32d212db86c7e5f932f4b047b3f56a7f52afde52a0",
+          "bytes": 4687
+        },
+        "engineering_endpoints.npy": {
+          "sha256": "2b41672415e90a18999a503817125655dfcbfb3ffa1e5e0b2317aab845b76f3b",
+          "bytes": 2176
+        },
+        "source_packets.json": {
+          "sha256": "fb25d7f2be087de5aa989dca0b46883a1d8d87e7cbaf6f44a60a8da910261d8f",
+          "bytes": 13631
+        }
+      }
+    }
+  },
+  "batch64": {
+    "lama": {
+      "created_utc": "2026-09-09T02:05:13.299154+00:00",
+      "status": "complete",
+      "method": "lama",
+      "test_assets_opened": false,
+      "formal_training": false,
+      "convergence_established": false,
+      "effective_batch": 64,
+      "microbatch": 16,
+      "accumulation": 4,
+      "optimizer_updates_measured": 100,
+      "microbatches_per_optimizer_update": 4,
+      "seconds_mean": 1.353677149719151,
+      "seconds_p50": 1.3513927169988165,
+      "seconds_p95": 1.3896366874920205,
+      "peak_allocated_bytes": 12685882368,
+      "peak_reserved_bytes": 13962838016,
+      "paper_300000_update_training_only_hours_extrapolation": 112.80642914326259,
+      "budget_scope": "Measured actual accumulated effective batch64; fixed cached32 duplicated for workload only. Full data I/O, validation, checkpoints and convergence not included; not a committed formal recipe or ETA.",
+      "generator_parameters": 50966465,
+      "discriminator_parameters": 6960321,
+      "all_finite": true,
+      "gpu_after": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition, 33446 MiB, 97887 MiB, 96 %",
+      "inputs": {
+        "scripts/profile_external_batch64.py": "3f67e1e93bbb0b7b54929a32f2d1972e3e49c17b6e4fa4dc635f874cdb2bf471",
+        "scripts/profile_flatlands_external.py": "77a0edc1ee594dbce3b49b9054b8ea7727880a5e3cab7aa78ff60e42b046ac39",
+        "src/pathrel/external_training.py": "58a7069dab1cf7b78b7c7eb3a9a0e8de15f7c508a18afeaa20e0a444ca64b02c",
+        "src/pathrel/lama.py": "016c20e563931ef76bf30924bcf2d9c4754812e3a8f8146fa23fe7a837159b6f",
+        "src/pathrel/flow_matching.py": "bd48d15d4322bcf19ed327cedb3c70e8928ee89c6fec7404bea95d92451c690b",
+        "src/pathrel/external_completion.py": "b7ae528bf6a90828ca2b2370c769632da669346b72ae8978f9a13706e1a859ec",
+        "src/pathrel/cogniplan.py": "e79893b1bede944ba6db31f0bd31a171048f1a62f8b37da470a9b2e0856eada9",
+        "results/external_protocol_v1/flatlands_profile32.csv": "b44e9f43ee0f383a0a846e32d212db86c7e5f932f4b047b3f56a7f52afde52a0"
+      },
+      "outputs": {
+        "profile_checkpoint.pt": {
+          "bytes": 696365105,
+          "sha256": "3d876580f30681e8d1e0c447be59a3c6401c218af785e727fad56e3b8b700064"
+        },
+        "config.json": {
+          "bytes": 1748,
+          "sha256": "862f8a707a2f3ae278bf8df6b043c8b58aa7b15dd6357b0063656a3fec7e1dfc"
+        },
+        "training_trace.json": {
+          "bytes": 92680,
+          "sha256": "2198eff084262b743e1171eedf62aec4090ed8525d9f6f4f21c3da46535ab4e7"
+        }
+      }
+    },
+    "flow": {
+      "created_utc": "2026-09-09T02:11:36.296457+00:00",
+      "status": "complete",
+      "method": "flow",
+      "test_assets_opened": false,
+      "formal_training": false,
+      "convergence_established": false,
+      "effective_batch": 64,
+      "microbatch": 4,
+      "accumulation": 16,
+      "optimizer_updates_measured": 100,
+      "microbatches_per_optimizer_update": 16,
+      "seconds_mean": 3.422190588119847,
+      "seconds_p50": 3.378798667996307,
+      "seconds_p95": 3.551393463287968,
+      "peak_allocated_bytes": 5703033344,
+      "peak_reserved_bytes": 7864320000,
+      "paper_300000_update_training_only_hours_extrapolation": 285.18254900998727,
+      "budget_scope": "Measured actual accumulated effective batch64; fixed cached32 duplicated for workload only. Full data I/O, validation, checkpoints and convergence not included; not a committed formal recipe or ETA.",
+      "generator_parameters": 21202753,
+      "discriminator_parameters": 0,
+      "all_finite": true,
+      "gpu_after": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition, 27559 MiB, 97887 MiB, 98 %",
+      "inputs": {
+        "scripts/profile_external_batch64.py": "3f67e1e93bbb0b7b54929a32f2d1972e3e49c17b6e4fa4dc635f874cdb2bf471",
+        "scripts/profile_flatlands_external.py": "77a0edc1ee594dbce3b49b9054b8ea7727880a5e3cab7aa78ff60e42b046ac39",
+        "src/pathrel/external_training.py": "58a7069dab1cf7b78b7c7eb3a9a0e8de15f7c508a18afeaa20e0a444ca64b02c",
+        "src/pathrel/lama.py": "016c20e563931ef76bf30924bcf2d9c4754812e3a8f8146fa23fe7a837159b6f",
+        "src/pathrel/flow_matching.py": "bd48d15d4322bcf19ed327cedb3c70e8928ee89c6fec7404bea95d92451c690b",
+        "src/pathrel/external_completion.py": "b7ae528bf6a90828ca2b2370c769632da669346b72ae8978f9a13706e1a859ec",
+        "src/pathrel/cogniplan.py": "e79893b1bede944ba6db31f0bd31a171048f1a62f8b37da470a9b2e0856eada9",
+        "results/external_protocol_v1/flatlands_profile32.csv": "b44e9f43ee0f383a0a846e32d212db86c7e5f932f4b047b3f56a7f52afde52a0"
+      },
+      "outputs": {
+        "profile_checkpoint.pt": {
+          "bytes": 254785105,
+          "sha256": "a450053fc00a32ade1a81a3d3cd2820c22f216ce299b2973eea4a5e2a390c82b"
+        },
+        "config.json": {
+          "bytes": 1748,
+          "sha256": "25334121908e4f5a085f057a7dd17f764818d77e27b8eed5032d72b85282ae54"
+        },
+        "training_trace.json": {
+          "bytes": 83884,
+          "sha256": "ef1674206a121de5abaf2e01afd425ce595340ede984c640606605a77c3ee4d7"
+        }
+      }
+    }
+  },
+  "selection": "Literal first two rows of the previously frozen32 train list, without target/score filtering.",
+  "cases": [
+    {
+      "index": 0,
+      "global_id": "obs_259234",
+      "source": "ZInD",
+      "panels": {
+        "observed": "assets/zh/flatlands-external/case0-observed.png",
+        "lama": "assets/zh/flatlands-external/case0-lama.png",
+        "flow": "assets/zh/flatlands-external/case0-flow.png",
+        "reference": "assets/zh/flatlands-external/case0-reference.png",
+        "flow_world0": "assets/zh/flatlands-external/case0-flow_world0.png",
+        "flow_world1": "assets/zh/flatlands-external/case0-flow_world1.png",
+        "flow_world2": "assets/zh/flatlands-external/case0-flow_world2.png",
+        "flow_world3": "assets/zh/flatlands-external/case0-flow_world3.png"
+      },
+      "profile_batch": 2,
+      "training_updates_including_warmup": 110
+    },
+    {
+      "index": 1,
+      "global_id": "obs_148845",
+      "source": "ScanNet",
+      "panels": {
+        "observed": "assets/zh/flatlands-external/case1-observed.png",
+        "lama": "assets/zh/flatlands-external/case1-lama.png",
+        "flow": "assets/zh/flatlands-external/case1-flow.png",
+        "reference": "assets/zh/flatlands-external/case1-reference.png",
+        "flow_world0": "assets/zh/flatlands-external/case1-flow_world0.png",
+        "flow_world1": "assets/zh/flatlands-external/case1-flow_world1.png",
+        "flow_world2": "assets/zh/flatlands-external/case1-flow_world2.png",
+        "flow_world3": "assets/zh/flatlands-external/case1-flow_world3.png"
+      },
+      "profile_batch": 2,
+      "training_updates_including_warmup": 110
+    }
+  ],
+  "assets": [
+    {
+      "path": "assets/zh/flatlands-external/case0-observed.png",
+      "sha256": "932488af30b0cf70ab6c0d91b5392b9c18bf96857d648fd5a0acd50b10f365bd",
+      "source_index": 0,
+      "panel": "observed"
+    },
+    {
+      "path": "assets/zh/flatlands-external/case0-lama.png",
+      "sha256": "f27581d8433db9ae7a2d9605169fe7000a9f5cb25f5b5447096838898f012aaf",
+      "source_index": 0,
+      "panel": "lama"
+    },
+    {
+      "path": "assets/zh/flatlands-external/case0-flow.png",
+      "sha256": "f7bf76f4605368cf26244303ae4beed6cc9fc58aae92d566d071b9687655c0e0",
+      "source_index": 0,
+      "panel": "flow"
+    },
+    {
+      "path": "assets/zh/flatlands-external/case0-reference.png",
+      "sha256": "13cc0f866ef5da5964425856ab6adbe9e6ef850fb544b56a151507bea8c7d697",
+      "source_index": 0,
+      "panel": "reference"
+    },
+    {
+      "path": "assets/zh/flatlands-external/case0-flow_world0.png",
+      "sha256": "51b6d3b75f7ffd840ffe31eca6f8b9b48e7c3e5e22847af6afab7e46e2d3c992",
+      "source_index": 0,
+      "panel": "flow_world0"
+    },
+    {
+      "path": "assets/zh/flatlands-external/case0-flow_world1.png",
+      "sha256": "8bbfdab933c35ead13c70c9ef08f1b9214492e35b630228f1934464162cfcdc0",
+      "source_index": 0,
+      "panel": "flow_world1"
+    },
+    {
+      "path": "assets/zh/flatlands-external/case0-flow_world2.png",
+      "sha256": "3f83654617c09ee91f8aa3509832fad6797b26e4bdbc1a0944b9c8322e5d283c",
+      "source_index": 0,
+      "panel": "flow_world2"
+    },
+    {
+      "path": "assets/zh/flatlands-external/case0-flow_world3.png",
+      "sha256": "4482ac347e7c8d2876080734af821e231b6072259e7c0e405297af4acb971e50",
+      "source_index": 0,
+      "panel": "flow_world3"
+    },
+    {
+      "path": "assets/zh/flatlands-external/case1-observed.png",
+      "sha256": "2da2d88baad91837c7aae7808684243d2275bfd9a2bf5f370a3127c62a435c59",
+      "source_index": 1,
+      "panel": "observed"
+    },
+    {
+      "path": "assets/zh/flatlands-external/case1-lama.png",
+      "sha256": "57f62a9295cce389c7852f3bb3235efe5a008d6c9277a12ca78e515082d3554f",
+      "source_index": 1,
+      "panel": "lama"
+    },
+    {
+      "path": "assets/zh/flatlands-external/case1-flow.png",
+      "sha256": "3b1e677720e4105066ed73557ab94e9a640413cc9c2993f0d0edbc28c63f8926",
+      "source_index": 1,
+      "panel": "flow"
+    },
+    {
+      "path": "assets/zh/flatlands-external/case1-reference.png",
+      "sha256": "cc44b52d6705ed4d8da3e4613c4711381227d26727113e006fabed46a71b68fc",
+      "source_index": 1,
+      "panel": "reference"
+    },
+    {
+      "path": "assets/zh/flatlands-external/case1-flow_world0.png",
+      "sha256": "c49a9b3b778c3bd55736e4dabb7456a332e2ab54f2ccd633526ada544969536c",
+      "source_index": 1,
+      "panel": "flow_world0"
+    },
+    {
+      "path": "assets/zh/flatlands-external/case1-flow_world1.png",
+      "sha256": "0de3d3fbd4c6aa9445659b952813803ab81ae6129b8391447ceac242766eaac7",
+      "source_index": 1,
+      "panel": "flow_world1"
+    },
+    {
+      "path": "assets/zh/flatlands-external/case1-flow_world2.png",
+      "sha256": "e5cc0ecf3b86f0fe62899f4016a74cec75a4a672c639b0a3e743870a58758a23",
+      "source_index": 1,
+      "panel": "flow_world2"
+    },
+    {
+      "path": "assets/zh/flatlands-external/case1-flow_world3.png",
+      "sha256": "5a5dc66d24309a9f54b54a225950acd73a56608e59036150985a01cdaccf2df5",
+      "source_index": 1,
+      "panel": "flow_world3"
+    },
+    {
+      "path": "assets/zh/flatlands-external/lama-training-loss.svg",
+      "sha256": "66ae90342795057095804ad7a5739be7c77c89cc6848d158b23a355df2a48de6",
+      "kind": "batch64_training_loss"
+    },
+    {
+      "path": "assets/zh/flatlands-external/lama-training-loss.pdf",
+      "sha256": "089c2cbad75bf232fa760a7c8d56e6b0218c5833c1bac1c6b58d0a114203a2b9",
+      "kind": "batch64_training_loss"
+    },
+    {
+      "path": "assets/zh/flatlands-external/flow-training-loss.svg",
+      "sha256": "66ed0d9724875b074917a9b61e7d94a7c5a6685e70bf63211a67b466909e60c1",
+      "kind": "batch64_training_loss"
+    },
+    {
+      "path": "assets/zh/flatlands-external/flow-training-loss.pdf",
+      "sha256": "14dc72f4fc35159482973241302b2b2b3b8bd4819ed83289e90eb2da08927183",
+      "kind": "batch64_training_loss"
+    }
+  ],
+  "source_hashes": {
+    "results/flatlands_lama_profile_v1/report.json": "d6a4671df8818554e0d7a532fb54e50d7aba9e990c0d202181f2941d1a26fd54",
+    "results/flatlands_lama_profile_v1/predictions.npz": "28388a4404c69ae322d8a5e7c36bfdc1a3230649d77d967bda201027065a3a5d",
+    "results/flatlands_lama_batch64_v1/report.json": "dc3060c6b93e8fcd57b7703656af41440221ccab5ca5a7ebdf9d2fb1b2737bfc",
+    "results/flatlands_lama_batch64_v1/training_trace.json": "2198eff084262b743e1171eedf62aec4090ed8525d9f6f4f21c3da46535ab4e7",
+    "results/flatlands_flow_profile_v1/report.json": "52581a9ed510485fb626015282cb536557d883eda0a026efcbfa0f61c32568ab",
+    "results/flatlands_flow_profile_v1/predictions.npz": "d0150cdcd8a65ea64ff68bbe05d703f2051b5fa1152f7bd13a5619e05208bb59",
+    "results/flatlands_flow_batch64_v1/report.json": "76a282054cdeb06063f950113be3e7aa7d82258eb2749781e7cf87cd0eeef172",
+    "results/flatlands_flow_batch64_v1/training_trace.json": "ef1674206a121de5abaf2e01afd425ce595340ede984c640606605a77c3ee4d7"
+  },
+  "renderer_sha256": "9569b587f98edc9df99ba587ebecb38d589aa804b1e0443b2804177d2bbf3083",
+  "readme": "Images from 110 updates at batch2; curves/cost from separate 105-update effective-batch64 profiles. Neither is a formal trained baseline or held-out result."
+}

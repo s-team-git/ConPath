@@ -93,6 +93,34 @@ def cogniplan_native_sanity():
     return f'''<div id="external-progress" class="training-ablations"><p class="eyebrow">外部对比准备 · 2026.09.08</p><h3>CogniPlan 已接通，先核对真实输出。</h3><p>已在32个固定训练观测上生成128张地图，与官方后处理逐张一致，已观测区域零冲突。重建和对抗阶段各完成100次更新测速，未启动正式长训练。</p><p class="reading-note"><strong>这些是原训练数据上的接口检查，不是留出验证成绩。</strong>公开权重见过原训练地图；公平主表将按新的共同划分重新训练。四个输出来自预设条件，未用真实布局选取。以下每类首例在看结果前已经固定，输出不准确的部分也保留。</p>{''.join(cases)}<p>新划分：2,400张母地图用于训练、300张校准、300张验证；旋转和镜像后的重复几何也检查过。初步测速外推，原版50万步约需{data['training_hours_per_seed_extrapolation']:.1f}小时/次，三次串行约{data['training_hours_three_seeds_extrapolation']:.1f}小时，另加完整数据读取、评估与存档时间。当前有其他GPU负载，此处只用于估算排期。</p><p class="source-line"><a href="https://github.com/s-team-git/ConPath/blob/main/EXTERNAL_PROGRESS_ZH.md">接口、尺度与测速中文记录 ↗</a> · <a href="data/cogniplan_native_sanity_zh.json">图片与运行来源 ↗</a></p></div>'''
 
 
+def flatlands_external_engineering():
+    path = SITE / 'data/flatlands_external_engineering_zh.json'
+    if not path.is_file():
+        return ''
+    data = json.loads(path.read_text())
+    if data['formal_comparison'] or data['test_evaluated'] or not data['engineering_only']:
+        raise ValueError('External engineering snapshots must not become formal results')
+    for asset in data['assets']:
+        if hashlib.sha256((SITE / asset['path']).read_bytes()).hexdigest() != asset['sha256']:
+            raise ValueError(f'External image hash mismatch: {asset["path"]}')
+    rows = []
+    for key, name in [('lama', 'LaMa：Fourier卷积补全'), ('flow', '条件流匹配＋交叉注意力')]:
+        p, b = data['profiles'][key], data['batch64'][key]
+        if p['status'] != 'complete' or b['optimizer_updates_measured'] != 100:
+            raise ValueError('Both completed native-size profiles are required')
+        rows.append(f'<tr><th scope="row">{name}</th><td>{p["generator_parameters"]/1e6:.2f} 百万</td><td>{p["inference_actual_cost_per_observation"]["samples_per_observation"]}张</td><td>{b["seconds_mean"]:.2f}秒</td><td>{b["peak_allocated_bytes"]/2**30:.2f} GiB</td></tr>')
+    cases = []
+    for case in data['cases']:
+        panels = ''.join(zoom(case['panels'][key], caption) for key, caption in
+                        [('observed', '模型输入：浅绿可通行，深灰阻挡，浅灰未知，灰米色为有效范围外。'),
+                         ('lama', 'LaMa短训练输出值，0到1使用米白至青绿；尚未收敛，不是通路概率。'),
+                         ('flow', '流匹配四张图的可通行比例，0到1使用米白至青绿；尚未收敛，不是通路概率。'),
+                         ('reference', '完整参考地图，仅用于核对，推理模型不会读取。')])
+        worlds = ''.join(zoom(case['panels'][f'flow_world{k}'], f'流匹配第{k+1}张完整采样；未按答案选择，短训练尚未收敛。') for k in range(4))
+        cases.append(f'<details class="plain-details external-case"><summary>{case["source"]} · {case["global_id"]} · 查看短训练输出</summary><div class="detail-body"><div class="external-map-panels">{panels}</div><details class="plain-details"><summary>四张实际生成的完整地图</summary><div class="external-map-panels">{worlds}</div></details></div></details>')
+    return f'''<div id="flatlands-external-progress" class="training-ablations"><p class="eyebrow">外部方法接入 · 2026.09.08</p><h3>LaMa 与条件流匹配已完成首轮实测。</h3><p>保留LaMa的官方Fourier骨干，流匹配按论文方程重实现；两者均完成100次有效批量64的更新测速。所有模型接收相同观测与有效范围，输出恢复已观测区域并封闭范围外。</p><div class="table-scroll"><table class="literature-table external-cost-table"><thead><tr><th>方法</th><th>生成器参数量</th><th>每次输出</th><th>批量64每次更新</th><th>训练峰值显存</th></tr></thead><tbody>{''.join(rows)}</tbody></table></div><p class="reading-note">当前GPU存在其他任务，这张表用于排期。更新次数不等于轮数；梯度累积、原始耗时和输入传输范围见中文记录。LaMa这一行只跑了单模型，四成员集成尚未训练。流匹配用25步Heun生成四张图，实测50次批量前向，计入条件引导相当于400次单图前向。</p><p><strong>以下是固定训练样本上的接口检查，模型尚未收敛。</strong>观测、模型输出、完整参考分别标注；错误和不合理的补全也保留。没有把这些短训练分数放入正式对比表。</p>{''.join(cases)}<details class="plain-details"><summary>查看本轮训练过程与限制</summary><div class="detail-body"><p>图片来自首轮小批量短训练；以下曲线来自另一次有效批量64的测速。32个训练观测被反复使用，损失下降不证明验证有效，也不能据此判断哪个方法更好。</p><div class="external-training-curves">{zoom('assets/zh/flatlands-external/lama-training-loss.svg', 'LaMa有效批量64的重建损失，仅训练数据。')}{zoom('assets/zh/flatlands-external/flow-training-loss.svg', '条件流匹配有效批量64的速度MSE，仅训练数据。')}</div><p class="source-line">下载训练曲线：<a href="assets/zh/flatlands-external/lama-training-loss.pdf">LaMa PDF ↗</a> · <a href="assets/zh/flatlands-external/flow-training-loss.pdf">流匹配 PDF ↗</a></p></div></details><p class="source-line"><a href="https://github.com/s-team-git/ConPath/blob/main/FLATLANDS_EXTERNAL_PROGRESS_ZH.md">本轮实现、成本与下一步 ↗</a> · <a href="data/flatlands_external_engineering_zh.json">配置、图片与来源 ↗</a></p></div>'''
+
+
 def main():
     data=json.loads((SITE/'data/site_visuals_zh.json').read_text())
     analysis=json.loads((SITE/'data/flatlands_clean_paper_analysis.json').read_text())
@@ -211,6 +239,11 @@ def main():
         page = page.replace('六组训练消融已完成 · 更新于', '六组消融完成 · 外部模型接口已接通 · 更新于')
         page = page.replace('外部强基线尚未运行，FlatLands 原文与本地元数据的尺度差异待核对。', '正式外部主比较尚未运行。FlatLands 的160份训练元数据均描述裁剪，但论文另有缩放描述；物理尺度仍未独立验证，半径继续按格报告。')
         page = page.replace('当前页面展示已完成的验证结果。', '当前页面分别展示已完成的验证结果和 CogniPlan 训练数据接口检查；下一项是 LaMa/流匹配接入及正式训练配方冻结。')
+    external_flatlands = flatlands_external_engineering()
+    if external_flatlands:
+        page = page.replace('<p class="research-decision">', external_flatlands + '<p class="research-decision">')
+        page = page.replace('下一项是 LaMa/流匹配接入及正式训练配方冻结。', 'LaMa与流匹配已完成接入和测速，下一项是统一正式数据规模、查询规则与收敛诊断。')
+        page = page.replace('CogniPlan 已完成原生接口检查和小规模测速，记录如下。', 'CogniPlan、LaMa和流匹配已完成接口检查和小规模测速，记录如下。')
     assert '{{' not in page
     css_version = hashlib.sha256((SITE / 'styles-zh.css').read_bytes()).hexdigest()[:12]
     page = page.replace('href="styles-zh.css"', f'href="styles-zh.css?v={css_version}"')

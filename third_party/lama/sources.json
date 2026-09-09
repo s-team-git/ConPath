@@ -1,0 +1,56 @@
+[
+  {
+    "name": "LICENSE",
+    "url": "https://raw.githubusercontent.com/castacks/lama/b61dcb33e063fe9586b50e2dc7b70f97d5046c1d/LICENSE",
+    "bytes": 11348,
+    "sha256": "4ceeeac5a802e86c413c22b16cce8e9a22027b0250c97e6f8ac97c14cf0542c0"
+  },
+  {
+    "name": "configs/training/big-lama.yaml",
+    "url": "https://raw.githubusercontent.com/castacks/lama/b61dcb33e063fe9586b50e2dc7b70f97d5046c1d/configs/training/big-lama.yaml",
+    "bytes": 1189,
+    "sha256": "04dffbf7b347b4a68c09fefeb4c8d3b3bf3ea7521c54968292777e166d446596"
+  },
+  {
+    "name": "configs/training/discriminator/pix2pixhd_nlayer.yaml",
+    "url": "https://raw.githubusercontent.com/castacks/lama/b61dcb33e063fe9586b50e2dc7b70f97d5046c1d/configs/training/discriminator/pix2pixhd_nlayer.yaml",
+    "bytes": 74,
+    "sha256": "4b6038f57816946c61b9c712ac0a495f7504222ae848270a7c7c15077035150a"
+  },
+  {
+    "name": "saicinpainting/training/modules/ffc.py",
+    "url": "https://raw.githubusercontent.com/castacks/lama/b61dcb33e063fe9586b50e2dc7b70f97d5046c1d/saicinpainting/training/modules/ffc.py",
+    "bytes": 17753,
+    "sha256": "1647ce037032e533c777fd1d486c61d3ecc0eee7603b8cb96b23d0deffcaf308"
+  },
+  {
+    "name": "saicinpainting/training/modules/base.py",
+    "url": "https://raw.githubusercontent.com/castacks/lama/b61dcb33e063fe9586b50e2dc7b70f97d5046c1d/saicinpainting/training/modules/base.py",
+    "bytes": 2684,
+    "sha256": "526016ea45cd40b17b1bfa812c3be1ae227b735de684cd77382a5788eb5ac4aa"
+  },
+  {
+    "name": "saicinpainting/training/losses/feature_matching.py",
+    "url": "https://raw.githubusercontent.com/castacks/lama/b61dcb33e063fe9586b50e2dc7b70f97d5046c1d/saicinpainting/training/losses/feature_matching.py",
+    "bytes": 1313,
+    "sha256": "e6a684971d889e41d5b3b9b5c2ded64d2aebe4b69334a2a477aca36882938915"
+  },
+  {
+    "name": "configs/training/generator/ffc_resnet_075.yaml",
+    "url": "https://raw.githubusercontent.com/castacks/lama/b61dcb33e063fe9586b50e2dc7b70f97d5046c1d/configs/training/generator/ffc_resnet_075.yaml",
+    "bytes": 464,
+    "sha256": "87ecc2e4ad7e63f8a78e0a2aa38f495c33ea461fb0f0d59ffbe2d76e228d947d"
+  },
+  {
+    "name": "saicinpainting/training/modules/pix2pixhd.py",
+    "url": "https://raw.githubusercontent.com/castacks/lama/b61dcb33e063fe9586b50e2dc7b70f97d5046c1d/saicinpainting/training/modules/pix2pixhd.py",
+    "bytes": 27964,
+    "sha256": "c064a8c257a3674786b6e99e202b9cfc68033c840300a7c082502e3d599d8111"
+  },
+  {
+    "name": "saicinpainting/training/modules/squeeze_excitation.py",
+    "url": "https://raw.githubusercontent.com/castacks/lama/b61dcb33e063fe9586b50e2dc7b70f97d5046c1d/saicinpainting/training/modules/squeeze_excitation.py",
+    "bytes": 609,
+    "sha256": "933c53adb2477b99c58ab325b26b124507a06b8c097ed2dd213c28f5841839fe"
+  }
+]

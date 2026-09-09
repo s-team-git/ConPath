@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "checkpoint_id": "cogniplan-native-interface-profile-v2-20260908",
+  "checkpoint_id": "flatlands-external-interface-batch64-20260909",
   "updated_local_date": "2026-09-08",
   "timezone": "America/New_York",
   "branch": "main",
-  "remote_sync": "Previous ablation publication 37de858 was synchronized and live-byte verified. Resolve this external interface publication with git log -1 -- RECOVERY_STATE.json; deployment and completion receipts are in results/external_publication_20260908/.",
-  "latest_local_commit": "Resolve current external native interface publication via git log -1 -- RECOVERY_STATE.json; frozen prior ablation training remains e6f0910.",
+  "remote_sync": "Previous CogniPlan publication 60d401c was synchronized and live verified. Resolve this FlatLands external interface publication with git log -1 -- RECOVERY_STATE.json; deployment/completion receipts are in results/flatlands_external_publication_20260909/.",
+  "latest_local_commit": "Resolve current interface implementation publication via git log -1 -- RECOVERY_STATE.json; frozen old ablation training remains e6f0910.",
   "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence. New external profiles on 2026-09-08 actually used Python 3.13 and torch 2.12.1+cu130; v2 explicitly disables TF32 and cudnn benchmarking and enables deterministic algorithms. GPU has unrelated concurrent load; no isolated-device latency claim.",
-  "scientific_status": "P0 passes in two seeds. Clean-support FlatLands K=128 gives event Brier 0.06749 +/- 0.00936 versus independent 0.09521 +/- 0.00703 on the scene-disjoint non-official validation split. The nine-method comparison includes same-checkpoint mean maps (0.06957 +/- 0.00380) and a fixed empirical marginal shuffle (0.16139 +/- 0.00677); spatial dependence has positive mechanism evidence, but the mean-map advantage and equal-30%-coverage risk advantage (3.60% versus 3.90%) are not stable across paired intervals. All six original K=128 predictions replay exactly. UnScenes3D mean-map/qualitative v1 reopened invalid support after sampling and is superseded by v2: Brier 0.51142 +/- 0.00198 versus independent 0.51130 +/- 0.00218. Training weights and hidden-map metrics replay exactly; all 27,522 model predictions obey the exact observation bounds. The frozen hard-observation validation Brier lower bound is 0.47574, and only 15.66% of events are mutable through unknown completion. The manuscript remains a working draft. Both physical tests remain locked; no successful transfer or final-paper claim is supported. Clean no-event/no-global three-seed training ablations are now complete: Brier 0.20425 +/- 0.00322 and 0.09499 +/- 0.00157 versus full 0.06749 +/- 0.00936. All six descriptive paired Brier scene intervals are positive; all six equal-30%-coverage risk intervals include zero. No-event radius-20 predictions are all zero despite positive prevalence 20.67%. This completes the bounded-validation internal ablation, not the planned external main comparisons or final test. CogniPlan public-weight training-domain sanity and resource profiling completed; this is not an external comparative result. Original 500000-step recipe extrapolates to 12.45 hours/seed or 37.34 hours for three serial seeds, excluding full-loader I/O and evaluation, under deterministic v2 execution and concurrent GPU load. Earlier roughly 6-hour native-autotuning v1 estimate is superseded. FlatLands train metadata consistently describes cropping, but independent physical scale verification remains unresolved.",
-  "active_task": "CogniPlan train-only interface preparation is complete: frozen 2400/300/300 mother-map split, 32 observations/128 public-weight hypotheses, native postprocessing compatibility, deterministic cross-process exact replay, and 100 measured updates each for reconstruction/adversarial phases. Short profiles have exited; formal training has not started. Finish this Git/Pages publication if results/external_publication_20260908/completion.json is absent, then implement genuine LaMa and FM+XAttn, freeze common CogniPlan queries/evaluator and per-method formal recipes. Do not restart the completed ablation matrix or the native profile.",
+  "scientific_status": "P0 passes in two seeds. Clean-support FlatLands K=128 gives event Brier 0.06749 +/- 0.00936 versus independent 0.09521 +/- 0.00703 on the scene-disjoint non-official validation split. The nine-method comparison includes same-checkpoint mean maps (0.06957 +/- 0.00380) and a fixed empirical marginal shuffle (0.16139 +/- 0.00677); spatial dependence has positive mechanism evidence, but the mean-map advantage and equal-30%-coverage risk advantage (3.60% versus 3.90%) are not stable across paired intervals. All six original K=128 predictions replay exactly. UnScenes3D mean-map/qualitative v1 reopened invalid support after sampling and is superseded by v2: Brier 0.51142 +/- 0.00198 versus independent 0.51130 +/- 0.00218. Training weights and hidden-map metrics replay exactly; all 27,522 model predictions obey the exact observation bounds. The frozen hard-observation validation Brier lower bound is 0.47574, and only 15.66% of events are mutable through unknown completion. The manuscript remains a working draft. Both physical tests remain locked; no successful transfer or final-paper claim is supported. Clean no-event/no-global three-seed training ablations are now complete: Brier 0.20425 +/- 0.00322 and 0.09499 +/- 0.00157 versus full 0.06749 +/- 0.00936. All six descriptive paired Brier scene intervals are positive; all six equal-30%-coverage risk intervals include zero. No-event radius-20 predictions are all zero despite positive prevalence 20.67%. This completes the bounded-validation internal ablation, not the planned external main comparisons or final test. CogniPlan public-weight training-domain sanity and resource profiling completed; this is not an external comparative result. Original 500000-step recipe extrapolates to 12.45 hours/seed or 37.34 hours for three serial seeds, excluding full-loader I/O and evaluation, under deterministic v2 execution and concurrent GPU load. Earlier roughly 6-hour native-autotuning v1 estimate is superseded. FlatLands train metadata consistently describes cropping, but independent physical scale verification remains unresolved. LaMa BEV with pinned native Big-LaMa Fourier backbone and FM+XAttn literature reimplementation completed training-only short profiles and actual effective-batch64 measurements. New-process raw/hard replay is exact for 32/128 maps; 321 checks and 111 tests passed. Outputs remain visibly undertrained and are not external comparative evidence. Effective batch64 updates average 1.353677 and 3.422191 seconds; original300000-step training-only extrapolation112.81 and285.18 hours per model is not a launched or committed formal run.",
+  "active_task": "All three external interfaces are connected and short profiles have exited. LaMa/FM engineering publication: results/flatlands_external_publication_20260909/completion.json. Once published, freeze shared formal data scale and target-blind query contracts, predeclare staged convergence diagnostics, implement audited interruption/resume for formal external trainers, then freeze adequate per-method recipes and run three outer repeats. Do not rerun completed profiles/ablations or use undertrained outputs as formal scores. Final test assets remain locked.",
   "completed_milestones": [
     "Interruption-safe P0 training with atomic checkpoints and exact resume",
     "Two-seed synthetic P0 pass and matched no-reach failure",
@@ -111,7 +111,11 @@
     "CogniPlan original train mother maps and D4 geometric groups split into 2400 train / 300 calibration / 300 validation; 32 target-blind fixed train views selected; 160 FlatLands train metadata crops audited.",
     "Official pinned CogniPlan module connected; 128 native postprocessed worlds preserve observations. Native-autotuning v1 exposed cross-process drift and was superseded by deterministic FP32 v2, which independently replays all raw/hard outputs exactly.",
     "Reconstruction and adversarial native resource profiles each completed 10 warmup plus 100 measured updates; all finite, no formal long training started. 103 unit tests and 116 native split/source/replay checks passed.",
-    "Three preselected CogniPlan layouts rendered as 21 Chinese-labelled real images, with explicit train-only sanity scope; paper preparation and Chinese progress report updated."
+    "Three preselected CogniPlan layouts rendered as 21 Chinese-labelled real images, with explicit train-only sanity scope; paper preparation and Chinese progress report updated.",
+    "Pinned Apache-2.0 MapEx LaMa backbone and transparent FM+XAttn literature reimplementation; shared evidence/support interface, masked BEV losses, gradient and analytic Heun tests.",
+    "Each method completed 100 measured batch2 updates and 100 actual effective-batch64 updates; all checkpoints retain optimizer and RNG state. These are short profiles, not formal training.",
+    "Independent new-process replay of all32 LaMa and128 Flow hard maps and raw outputs is exact; 321 source/output/numerical/budget checks and111 unit tests passed.",
+    "All32 training diagnostic cases visually reviewed; first two frozen rows published as16 labelled images with separate batch64 curves. Native quality remains inadequate for a converged-baseline claim. Chrome1440/390 audit passed; corrected local horizontal table scrolling."
   ],
   "tracked_files": [
     "CLEAN_ABLATION_PLAN.md",
@@ -121,6 +125,7 @@
     "EXPERIMENT_DESIGN_ZH.md",
     "EXTERNAL_DATA_AUDIT_ZH.md",
     "EXTERNAL_PROGRESS_ZH.md",
+    "FLATLANDS_EXTERNAL_PROGRESS_ZH.md",
     "LITERATURE_REVIEW_ZH.md",
     "OFFICIAL_FLATLANDS_CHECK.md",
     "ORFD_COMPATIBILITY_CHECK.md",
@@ -142,6 +147,7 @@
     "scripts/audit_external_native.py",
     "scripts/audit_flatlands_archive.py",
     "scripts/audit_flatlands_conpath_k128.py",
+    "scripts/audit_flatlands_external.py",
     "scripts/audit_flatlands_queries.py",
     "scripts/audit_paper_evidence.py",
     "scripts/audit_site_visuals.py",
@@ -173,8 +179,11 @@
     "scripts/evaluate_unscenes3d_conpath_mean_map.py",
     "scripts/prepare_external_protocol.py",
     "scripts/profile_cogniplan_native.py",
+    "scripts/profile_external_batch64.py",
+    "scripts/profile_flatlands_external.py",
     "scripts/render_ablation_cases_zh.py",
     "scripts/render_cogniplan_native_zh.py",
+    "scripts/render_flatlands_external_zh.py",
     "scripts/render_flatlands_k128_advantage.py",
     "scripts/render_flatlands_qualitative.py",
     "scripts/render_unscenes3d_qualitative.py",
@@ -270,6 +279,26 @@
     "site/assets/zh/example_positive_recovery_independent_sample.svg",
     "site/assets/zh/example_positive_recovery_observed.svg",
     "site/assets/zh/example_positive_recovery_reference.svg",
+    "site/assets/zh/flatlands-external/case0-flow.png",
+    "site/assets/zh/flatlands-external/case0-flow_world0.png",
+    "site/assets/zh/flatlands-external/case0-flow_world1.png",
+    "site/assets/zh/flatlands-external/case0-flow_world2.png",
+    "site/assets/zh/flatlands-external/case0-flow_world3.png",
+    "site/assets/zh/flatlands-external/case0-lama.png",
+    "site/assets/zh/flatlands-external/case0-observed.png",
+    "site/assets/zh/flatlands-external/case0-reference.png",
+    "site/assets/zh/flatlands-external/case1-flow.png",
+    "site/assets/zh/flatlands-external/case1-flow_world0.png",
+    "site/assets/zh/flatlands-external/case1-flow_world1.png",
+    "site/assets/zh/flatlands-external/case1-flow_world2.png",
+    "site/assets/zh/flatlands-external/case1-flow_world3.png",
+    "site/assets/zh/flatlands-external/case1-lama.png",
+    "site/assets/zh/flatlands-external/case1-observed.png",
+    "site/assets/zh/flatlands-external/case1-reference.png",
+    "site/assets/zh/flatlands-external/flow-training-loss.pdf",
+    "site/assets/zh/flatlands-external/flow-training-loss.svg",
+    "site/assets/zh/flatlands-external/lama-training-loss.pdf",
+    "site/assets/zh/flatlands-external/lama-training-loss.svg",
     "site/assets/zh/flatlands_obs_000468_observed.svg",
     "site/assets/zh/flatlands_obs_000468_reference.svg",
     "site/assets/zh/flatlands_obs_026208_observed.svg",
@@ -378,6 +407,7 @@
     "site/data/flatlands_clean_training_ablations.json",
     "site/data/flatlands_conpath_k128_validation.json",
     "site/data/flatlands_conpath_mean_map_validation.json",
+    "site/data/flatlands_external_engineering_zh.json",
     "site/data/flatlands_independent_decoder_validation.json",
     "site/data/flatlands_independent_k128_validation.json",
     "site/data/flatlands_k128_paired_comparison.json",
@@ -403,14 +433,18 @@
     "site/styles.css",
     "src/pathrel/ablation_protocol.py",
     "src/pathrel/cogniplan.py",
+    "src/pathrel/external_completion.py",
+    "src/pathrel/external_training.py",
     "src/pathrel/flatlands.py",
     "src/pathrel/flatlands_baselines.py",
     "src/pathrel/flatlands_data.py",
     "src/pathrel/flatlands_eval.py",
     "src/pathrel/flatlands_query.py",
     "src/pathrel/flatlands_sampling.py",
+    "src/pathrel/flow_matching.py",
     "src/pathrel/gpu_diagnostics.py",
     "src/pathrel/labels.py",
+    "src/pathrel/lama.py",
     "src/pathrel/model.py",
     "src/pathrel/posterior_audits.py",
     "src/pathrel/reachability.py",
@@ -421,6 +455,7 @@
     "tests/test_ablation_summary.py",
     "tests/test_cogniplan.py",
     "tests/test_demo_site.py",
+    "tests/test_external_completion.py",
     "tests/test_flatlands_baselines.py",
     "tests/test_flatlands_conpath.py",
     "tests/test_flatlands_data.py",
@@ -442,7 +477,18 @@
     "third_party/cogniplan/mapinpaint/tools.py",
     "third_party/cogniplan/mapinpaint/train.py",
     "third_party/cogniplan/mapinpaint/trainer.py",
-    "third_party/cogniplan/sources.json"
+    "third_party/cogniplan/sources.json",
+    "third_party/lama/LICENSE",
+    "third_party/lama/README.md",
+    "third_party/lama/configs/training/big-lama.yaml",
+    "third_party/lama/configs/training/discriminator/pix2pixhd_nlayer.yaml",
+    "third_party/lama/configs/training/generator/ffc_resnet_075.yaml",
+    "third_party/lama/saicinpainting/training/losses/feature_matching.py",
+    "third_party/lama/saicinpainting/training/modules/base.py",
+    "third_party/lama/saicinpainting/training/modules/ffc.py",
+    "third_party/lama/saicinpainting/training/modules/pix2pixhd.py",
+    "third_party/lama/saicinpainting/training/modules/squeeze_excitation.py",
+    "third_party/lama/sources.json"
   ],
   "ignored_artifacts": [
     {
@@ -3993,19 +4039,424 @@
       "required_for_resume": true,
       "bytes": 234189,
       "sha256": "a8590ce889d20112496f88eae37bcea3a932997355b9a1b994d2ab24ccdf64b6"
+    },
+    {
+      "path": "results/flatlands_external_publication_20260909/browser_v2/report.json",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 1571,
+      "sha256": "b25404fde78081323d2989d7616c90c549064e48ffd21b71e450a942ddc0879b"
+    },
+    {
+      "path": "results/flatlands_external_publication_20260909/paper_evidence_final_audit.json",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 286,
+      "sha256": "dbc13788e0cd20b6aa5ed5556f2dcf69b0bdb156f1d6a65e3036072901c10f45"
+    },
+    {
+      "path": "results/flatlands_external_publication_20260909/replay_audit.json",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 28100,
+      "sha256": "2e096f427b1375495048894492438315924a05707908b2417c5f4a19d41fa4f6"
+    },
+    {
+      "path": "results/flatlands_external_publication_20260909/site_visuals_audit.json",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 438,
+      "sha256": "b9c6fee92deecb82e5e8389e2127504a1d395ee2b01efed9a4cdaf168c98cc50"
+    },
+    {
+      "path": "results/flatlands_external_publication_20260909/unit_tests.txt",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 17275,
+      "sha256": "f1af0f7f97d2fd80553b5681bfa6ef9caac4adf89a682311808a64a75a361bee"
+    },
+    {
+      "path": "results/flatlands_external_publication_20260909/visual_review.json",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 2116,
+      "sha256": "9627fea3ffcb7d89adb816aa7141060b262692efbad35a049db73eabdc3134a5"
+    },
+    {
+      "path": "results/flatlands_flow_batch64_v1/config.json",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 1748,
+      "sha256": "25334121908e4f5a085f057a7dd17f764818d77e27b8eed5032d72b85282ae54"
+    },
+    {
+      "path": "results/flatlands_flow_batch64_v1/profile_checkpoint.pt",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 254785105,
+      "sha256": "a450053fc00a32ade1a81a3d3cd2820c22f216ce299b2973eea4a5e2a390c82b"
+    },
+    {
+      "path": "results/flatlands_flow_batch64_v1/progress.json",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 23,
+      "sha256": "c0c359bd44f6f8aacd20700abf844c9c05ee1c7140b17d270ef93d8bde6764df"
+    },
+    {
+      "path": "results/flatlands_flow_batch64_v1/report.json",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 2337,
+      "sha256": "76a282054cdeb06063f950113be3e7aa7d82258eb2749781e7cf87cd0eeef172"
+    },
+    {
+      "path": "results/flatlands_flow_batch64_v1/training_trace.json",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 83884,
+      "sha256": "ef1674206a121de5abaf2e01afd425ce595340ede984c640606605a77c3ee4d7"
+    },
+    {
+      "path": "results/flatlands_flow_profile_v1/config.json",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 2848,
+      "sha256": "cdf93626cef2ae35d937cb9769672661b6b1335691e11a9f7b38dc0cd9fe046b"
+    },
+    {
+      "path": "results/flatlands_flow_profile_v1/engineering_endpoints.npy",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 2176,
+      "sha256": "2b41672415e90a18999a503817125655dfcbfb3ffa1e5e0b2317aab845b76f3b"
+    },
+    {
+      "path": "results/flatlands_flow_profile_v1/fixed_train_inputs.npz",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 190907,
+      "sha256": "8ce778f26b79d673d0e9206727eb4aad760c2aaf1c6cb3d3c6e0385b14830387"
+    },
+    {
+      "path": "results/flatlands_flow_profile_v1/fixed_train_observations.csv",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 4687,
+      "sha256": "b44e9f43ee0f383a0a846e32d212db86c7e5f932f4b047b3f56a7f52afde52a0"
+    },
+    {
+      "path": "results/flatlands_flow_profile_v1/inference_rows.json",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 37970,
+      "sha256": "2aad8505a2755db42b968f056aaf4dfc999bbd7c7d5a34a0e50222568ff9314c"
+    },
+    {
+      "path": "results/flatlands_flow_profile_v1/predictions.npz",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 3874792,
+      "sha256": "d0150cdcd8a65ea64ff68bbe05d703f2051b5fa1152f7bd13a5619e05208bb59"
+    },
+    {
+      "path": "results/flatlands_flow_profile_v1/profile_checkpoint.pt",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 254786193,
+      "sha256": "240e27a346eeaa7c96818de97b5fd425ff400064abd4838dc3fcf93b4393ee18"
+    },
+    {
+      "path": "results/flatlands_flow_profile_v1/progress.json",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 82,
+      "sha256": "6354db89780164f4155673f9c862898dec8fbd065615c7f6488d352bb895c66c"
+    },
+    {
+      "path": "results/flatlands_flow_profile_v1/report.json",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 3981,
+      "sha256": "52581a9ed510485fb626015282cb536557d883eda0a026efcbfa0f61c32568ab"
+    },
+    {
+      "path": "results/flatlands_flow_profile_v1/source_packets.json",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 13631,
+      "sha256": "fb25d7f2be087de5aa989dca0b46883a1d8d87e7cbaf6f44a60a8da910261d8f"
+    },
+    {
+      "path": "results/flatlands_flow_profile_v1/training_trace.json",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 21907,
+      "sha256": "b2b4375fa8dc7353ed7275cc74756e7da419b43bd115d797dd57d418ede1d963"
+    },
+    {
+      "path": "results/flatlands_lama_batch64_v1/config.json",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 1748,
+      "sha256": "862f8a707a2f3ae278bf8df6b043c8b58aa7b15dd6357b0063656a3fec7e1dfc"
+    },
+    {
+      "path": "results/flatlands_lama_batch64_v1/profile_checkpoint.pt",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 696365105,
+      "sha256": "3d876580f30681e8d1e0c447be59a3c6401c218af785e727fad56e3b8b700064"
+    },
+    {
+      "path": "results/flatlands_lama_batch64_v1/progress.json",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 23,
+      "sha256": "c0c359bd44f6f8aacd20700abf844c9c05ee1c7140b17d270ef93d8bde6764df"
+    },
+    {
+      "path": "results/flatlands_lama_batch64_v1/report.json",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 2346,
+      "sha256": "dc3060c6b93e8fcd57b7703656af41440221ccab5ca5a7ebdf9d2fb1b2737bfc"
+    },
+    {
+      "path": "results/flatlands_lama_batch64_v1/training_trace.json",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 92680,
+      "sha256": "2198eff084262b743e1171eedf62aec4090ed8525d9f6f4f21c3da46535ab4e7"
+    },
+    {
+      "path": "results/flatlands_lama_profile_v1/config.json",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 2848,
+      "sha256": "fe27735c6b5eada74b5c8353b073cc8d188602a2172773126dbc2ef3e335466d"
+    },
+    {
+      "path": "results/flatlands_lama_profile_v1/engineering_endpoints.npy",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 2176,
+      "sha256": "2b41672415e90a18999a503817125655dfcbfb3ffa1e5e0b2317aab845b76f3b"
+    },
+    {
+      "path": "results/flatlands_lama_profile_v1/fixed_train_inputs.npz",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 190907,
+      "sha256": "8ce778f26b79d673d0e9206727eb4aad760c2aaf1c6cb3d3c6e0385b14830387"
+    },
+    {
+      "path": "results/flatlands_lama_profile_v1/fixed_train_observations.csv",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 4687,
+      "sha256": "b44e9f43ee0f383a0a846e32d212db86c7e5f932f4b047b3f56a7f52afde52a0"
+    },
+    {
+      "path": "results/flatlands_lama_profile_v1/inference_rows.json",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 17968,
+      "sha256": "e266c8bed485e10da310b1adb2368b2f03cb9d0a3cbcaaba5c5cc0eaeb179d7d"
+    },
+    {
+      "path": "results/flatlands_lama_profile_v1/predictions.npz",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 2046548,
+      "sha256": "28388a4404c69ae322d8a5e7c36bfdc1a3230649d77d967bda201027065a3a5d"
+    },
+    {
+      "path": "results/flatlands_lama_profile_v1/profile_checkpoint.pt",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 696366257,
+      "sha256": "528d6d80a7831e0687398539e505f49393530345948c9403cdc749ad632ea7fa"
+    },
+    {
+      "path": "results/flatlands_lama_profile_v1/progress.json",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 82,
+      "sha256": "b7b2e187de99a8af430eb33c6fa635ac1aa490f2c621cb91e09c355a857bf9f5"
+    },
+    {
+      "path": "results/flatlands_lama_profile_v1/report.json",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 3808,
+      "sha256": "d6a4671df8818554e0d7a532fb54e50d7aba9e990c0d202181f2941d1a26fd54"
+    },
+    {
+      "path": "results/flatlands_lama_profile_v1/source_packets.json",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 13631,
+      "sha256": "fb25d7f2be087de5aa989dca0b46883a1d8d87e7cbaf6f44a60a8da910261d8f"
+    },
+    {
+      "path": "results/flatlands_lama_profile_v1/training_trace.json",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 40788,
+      "sha256": "2c0bdd7c656c7f8c7a4a45ca79acdce97032f28b7041dfe9085782b983b070f6"
+    },
+    {
+      "path": "results/lama_source_audit_20260909/LICENSE",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 11348,
+      "sha256": "4ceeeac5a802e86c413c22b16cce8e9a22027b0250c97e6f8ac97c14cf0542c0"
+    },
+    {
+      "path": "results/lama_source_audit_20260909/README.md",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 745,
+      "sha256": "4de7206edd30193f592db212640a0115fb1aab7aee7e2df1c0ee736df0a23322"
+    },
+    {
+      "path": "results/lama_source_audit_20260909/configs/training/big-lama.yaml",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 1189,
+      "sha256": "04dffbf7b347b4a68c09fefeb4c8d3b3bf3ea7521c54968292777e166d446596"
+    },
+    {
+      "path": "results/lama_source_audit_20260909/configs/training/discriminator/pix2pixhd_nlayer.yaml",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 74,
+      "sha256": "4b6038f57816946c61b9c712ac0a495f7504222ae848270a7c7c15077035150a"
+    },
+    {
+      "path": "results/lama_source_audit_20260909/configs/training/generator/ffc_resnet_075.yaml",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 464,
+      "sha256": "87ecc2e4ad7e63f8a78e0a2aa38f495c33ea461fb0f0d59ffbe2d76e228d947d"
+    },
+    {
+      "path": "results/lama_source_audit_20260909/configs/training/lama-fourier.yaml",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 719,
+      "sha256": "dc9e86f7459791831c111e577bf7331547eb64a72e78524fef2aadb75830f965"
+    },
+    {
+      "path": "results/lama_source_audit_20260909/saicinpainting/training/losses/adversarial.py",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 8593,
+      "sha256": "813364230c4a91af29a4cc866f57b75a10da5240bfadfa49ade2bbecb77178ca"
+    },
+    {
+      "path": "results/lama_source_audit_20260909/saicinpainting/training/losses/feature_matching.py",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 1313,
+      "sha256": "e6a684971d889e41d5b3b9b5c2ded64d2aebe4b69334a2a477aca36882938915"
+    },
+    {
+      "path": "results/lama_source_audit_20260909/saicinpainting/training/modules/base.py",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 2684,
+      "sha256": "526016ea45cd40b17b1bfa812c3be1ae227b735de684cd77382a5788eb5ac4aa"
+    },
+    {
+      "path": "results/lama_source_audit_20260909/saicinpainting/training/modules/depthwise_sep_conv.py",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 557,
+      "sha256": "9aa49550f3d34f1682cabbcc92f89d5f131ff0e89ebeefbfde396a85153c5b22"
+    },
+    {
+      "path": "results/lama_source_audit_20260909/saicinpainting/training/modules/ffc.py",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 17753,
+      "sha256": "1647ce037032e533c777fd1d486c61d3ecc0eee7603b8cb96b23d0deffcaf308"
+    },
+    {
+      "path": "results/lama_source_audit_20260909/saicinpainting/training/modules/multidilated_conv.py",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 4060,
+      "sha256": "26929410919ebe0e024bd65d318978d14bdefcfeef94d079ae9c4d20189f2780"
+    },
+    {
+      "path": "results/lama_source_audit_20260909/saicinpainting/training/modules/pix2pixhd.py",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 27964,
+      "sha256": "c064a8c257a3674786b6e99e202b9cfc68033c840300a7c082502e3d599d8111"
+    },
+    {
+      "path": "results/lama_source_audit_20260909/saicinpainting/training/modules/spatial_transform.py",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 1976,
+      "sha256": "4f479a0c9ba94bd46b197507e8e8cdcc570e84ec29f5a577ade63e542adb43b5"
+    },
+    {
+      "path": "results/lama_source_audit_20260909/saicinpainting/training/modules/squeeze_excitation.py",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 609,
+      "sha256": "933c53adb2477b99c58ab325b26b124507a06b8c097ed2dd213c28f5841839fe"
+    },
+    {
+      "path": "results/lama_source_audit_20260909/saicinpainting/training/trainers/base.py",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 14304,
+      "sha256": "32b95276113c941d6da47290268eaf9b6a885cf43817171fd3b5db06be426dd1"
+    },
+    {
+      "path": "results/lama_source_audit_20260909/saicinpainting/training/trainers/default.py",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 9406,
+      "sha256": "85e4a9ffaf21d725a48cf6dc066de3224c2168cea51c19696197e2a2f33f24ef"
+    },
+    {
+      "path": "results/lama_source_audit_20260909/saicinpainting/utils.py",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 5350,
+      "sha256": "0a399137ac692a8c0eac6b8f1befacdd9d8f3443397d8a0b000845010c2b0cfc"
+    },
+    {
+      "path": "results/lama_source_audit_20260909/source_manifest.json",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 5650,
+      "sha256": "115221d400e7e1ae8cf9ab4676400b0b452a8409e6c3da332c3b972063147c03"
+    },
+    {
+      "path": "results/lama_source_audit_20260909/tree.json",
+      "role": "Frozen LaMa/FM training-only engineering evidence; short runs not converged external scores.",
+      "required_for_resume": true,
+      "bytes": 79110,
+      "sha256": "8b4e162f3b00061eff99ca2a777be155826723a3f3a98bdc0dee0fa50f5507cd"
     }
   ],
   "last_verification": {
-    "command": "103 unit tests; 116 native split/source/adapter cross-process exact replay checks; old visual and paper evidence audits; Chrome desktop1440/mobile390 with all 21 native images and zoom; recovery verifier.",
-    "result": "All listed tests and audits passed. v2 raw output max drift 0, all 128 binary worlds exact. Native v1 drift documented and superseded, not hidden. No profile or formal training process active. Publication receipt is written after push.",
+    "command": "111 unit tests;321 independent source/output/raw/hard replay and actual forward-budget checks; old site/paper numerical audits; all32 visual review; Chrome desktop1440/mobile390 including16 new labelled maps, curves and zoom.",
+    "result": "All listed checks passed. No formal training or profile processes active. Final quick recovery check and deployment receipts are written after these frozen artifacts.",
     "receipts": [
-      "results/external_publication_20260908/native_replay_audit.json",
-      "results/external_publication_20260908/visual_review.json",
-      "results/external_publication_20260908/unit_tests.txt",
-      "results/external_publication_20260908/site_visual_audit.json",
-      "results/external_publication_20260908/paper_evidence_audit.json",
-      "results/external_publication_20260908/browser_v3/report.json",
-      "results/external_publication_20260908/recovery_verification.json"
+      "results/flatlands_external_publication_20260909/replay_audit.json",
+      "results/flatlands_external_publication_20260909/visual_review.json",
+      "results/flatlands_external_publication_20260909/unit_tests.txt",
+      "results/flatlands_external_publication_20260909/site_visuals_audit.json",
+      "results/flatlands_external_publication_20260909/paper_evidence_final_audit.json",
+      "results/flatlands_external_publication_20260909/browser_v2/report.json"
     ]
   },
   "recovery_commands": [
@@ -4021,15 +4472,17 @@
     "cat results/paper_clean_ablation_matrix_v1/progress.json",
     "PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/audit_site_visuals.py",
     "cat EXTERNAL_PROGRESS_ZH.md",
-    "cat results/cogniplan_native_profile_v2/report.json"
+    "cat results/cogniplan_native_profile_v2/report.json",
+    "cat FLATLANDS_EXTERNAL_PROGRESS_ZH.md",
+    "cat results/flatlands_external_publication_20260909/completion.json"
   ],
-  "next_command": "cat EXTERNAL_PROGRESS_ZH.md",
+  "next_command": "cat FLATLANDS_EXTERNAL_PROGRESS_ZH.md",
   "next_actions": [
-    "Check results/external_publication_20260908/completion.json for Git/Pages completion; do not redo completed ablations or native profiling.",
-    "Implement genuine LaMa Fourier-convolution backbone and documented FM+XAttn with masked velocity MSE using the frozen 32 FlatLands training observations; profile both without test access.",
-    "Freeze CogniPlan shared target-blind queries, radii and evaluation contract; use the frozen 2400/300/300 mother split. Public weights remain training-only sanity, formal methods must retrain.",
-    "Freeze per-method formal data scale, recipes, three outer repeats and common K=4/cost protocol after quality/convergence/resource checks. Do not force all models into an arbitrary equal epoch cap.",
-    "Proceed with approved external comparisons, strong controls and honest statistical/visual paper analysis. Keep all final tests locked until the protocol and analysis freeze. FlatLands physical scale is unresolved; retain cell units."
+    "Check results/flatlands_external_publication_20260909/completion.json; if publication is complete proceed directly, do not repeat profiles or old ablations.",
+    "Freeze new shared FlatLands formal data scale, training/calibration/validation groups and target-blind queries; expanding data requires retraining ConPath and simple controls under the same new protocol.",
+    "Freeze CogniPlan shared target-blind queries and geometry with the existing2400/300/300 mother split; released public weights are training-domain sanity only.",
+    "Predeclare staged budgets and held-out convergence checks for each method; implement audited formal interruption/resume and sufficient per-method training recipes, then three outer repeats and K4/cost comparisons.",
+    "Proceed with accepted external comparisons and strong controls, honest scene statistics and failure analysis. Final tests remain locked until protocol/analysis freeze; physical scale is unresolved, retain cell units."
   ],
   "active_training": {
     "root": "results/paper_clean_ablation_matrix_v1",
@@ -4130,7 +4583,7 @@
     "bounded_training_ablation_completion": "EVALUATION_SUMMARY_ZH.md; all six completed 2026-09-08, larger-data and external experiments remain required"
   },
   "external_baseline_preparation": {
-    "status": "cogniplan_native_engineering_complete_formal_training_pending",
+    "status": "all_three_interfaces_and_resource_checks_complete_formal_data_and_convergence_pending",
     "protocol": "results/external_protocol_v1/report.json",
     "profile": "results/cogniplan_native_profile_v2/report.json",
     "superseded_profile": "results/cogniplan_native_profile_v1/report.json",
@@ -4148,9 +4601,25 @@
     },
     "physical_scale_verified": false,
     "native_public_checkpoint_is_held_out": false,
-    "next_methods": [
-      "castacks/lama@b61dcb33e063fe9586b50e2dc7b70f97d5046c1d",
-      "conditional FM+XAttn masked velocity MSE, Heun sampling with actual NFE accounting"
-    ]
+    "next_methods": [],
+    "flatlands": {
+      "report": "FLATLANDS_EXTERNAL_PROGRESS_ZH.md",
+      "profiles": {
+        "lama": "results/flatlands_lama_profile_v1/report.json",
+        "flow": "results/flatlands_flow_profile_v1/report.json"
+      },
+      "effective_batch64": {
+        "lama": "results/flatlands_lama_batch64_v1/report.json",
+        "flow": "results/flatlands_flow_batch64_v1/report.json"
+      },
+      "replay_audit": "results/flatlands_external_publication_20260909/replay_audit.json",
+      "publication_directory": "results/flatlands_external_publication_20260909",
+      "formal_training_started": false,
+      "convergence_established": false,
+      "test_assets_opened": false,
+      "all_profile_processes_exited": true,
+      "native_lama_source": "castacks/lama@b61dcb33e063fe9586b50e2dc7b70f97d5046c1d",
+      "flow_implementation": "Documented FlatLands literature reimplementation; architecture choices explicit; no public author checkpoint."
+    }
   }
 }

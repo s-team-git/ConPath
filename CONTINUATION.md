@@ -5,6 +5,33 @@ diagnostic, code change, or experiment; do not rely on chat history or ignored `
 
 ## Recovery snapshot
 
+**最新续接（2026-09-08）：LaMa与FM+XAttn接入、短训练和有效批量64实测均完成。**
+本轮响应“下一步”执行新模块工程阶段；此前CogniPlan与六组消融已完成，不重复运行。
+`FLATLANDS_EXTERNAL_PROGRESS_ZH.md`记录固定源码、损失/骨干适配、生成次数、原始耗时与局限。
+LaMa保留固定MapEx子模块Big-LaMa的18个FFC块（50,966,465生成器参数），FM+XAttn为文献重实现（21,202,753参数）。
+两者共用`已观测可通行/未知/有效范围`输入，边界与证据投影一致；均为随机初始化短训练，无新预训练权重。
+固定32个训练观测，第一套batch2为10次预热+100次记录，保存LaMa32张/Flow128张真实输出；
+第二套实际有效batch64为5次预热+100次完整优化更新，LaMa微批16×4、Flow微批4×16。
+完整更新平均1.353677/3.422191秒，显存11.81/5.31GiB；原版30万步仅训练外推112.81/285.18小时每模型。
+这不是正式配方或已启动任务；其他GPU负载、全量数据I/O、验证和存档影响实际排期。
+LaMa微批BatchNorm不能声称等同全批64/SyncBN；四成员集成尚未训练。
+Flow的25步Heun、K4、CFG实际50次批量前向/400次单图等价前向，不沿用“步数×样本数”的漏计。
+新进程回放连续/二值结果完全一致，321项审计与111项测试通过；已查看全部32例，隐藏区域仍有明显错误。
+训练损失下降和短训练地图仅作接口诊断，不作为充分收敛的外部基线或正式比较分数。
+网站新增固定名单前两例共16张中文标注PNG、两组SVG/PDF训练曲线；图片batch2和曲线batch64来自不同检查点，均披露。
+桌面1440/手机390浏览器检查通过，修正新增表格手机横向溢出，保留图片放大和逐图图例。
+原始记录：`results/flatlands_{lama,flow}_{profile,batch64}_v1/`；发布/回放/图像/浏览器：
+`results/flatlands_external_publication_20260909/`（浏览器最终为`browser_v2/report.json`）。
+所有短训练与回放已退出，没有正式长训练；不要重复这些profiles。三种外部方法接口现在都已接通。
+**下一项：冻结共同正式数据规模与查询，预先约定阶段预算和留出收敛检查；补齐正式训练中断恢复，之后执行三次独立重复。**
+扩大数据须同时重训ConPath和强简单对照；不把集成成员当独立重复，不能用欠收敛对手支持论文优势。
+CogniPlan母地图2400/300/300划分不变，FlatLands物理尺度仍未核实，半径保留格单位。
+FlatLands物理test、UnScenes location6及CogniPlan测试资产仍锁定，没有注册runtime goal。
+本轮Git/网站是否完成以`results/flatlands_external_publication_20260909/completion.json`为准；
+若收据存在且已核验，下一轮直接推进共同数据和收敛阶段，不重做发布。
+
+以下为此前已完成阶段的历史记录：
+
 **最新续接（2026-09-08）：已响应“开始下一步”，外部比较的CogniPlan工程阶段完成。**
 六组消融已发布并线上核验，提交37de858；不要重复旧发布或重跑旧矩阵。
 新代码 `src/pathrel/cogniplan.py` 复用 `third_party/cogniplan/` 固定官方源码，保留MIT许可证；

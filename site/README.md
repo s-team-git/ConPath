@@ -68,3 +68,10 @@ GitHub Pages 通过 `.github/workflows/deploy-pages.yml` 发布，每次推送 `
 数据集选择、原方法实际使用的数据及媒体署名见
 [DATASET_CHOICE_ZH.md](../DATASET_CHOICE_ZH.md)。FlatLands 的上游原始 RGB-D 等源素材未被重新发布，
 新图库显示发布包中的派生地图。UnScenes3D 相机图片来自数据集发布文件，未改编其论文插图。
+
+
+2026-09-08新增LaMa/流匹配诊断区：`scripts/render_flatlands_external_zh.py`从冻结32例短训练产物
+生成两例16张中文标注PNG及两组SVG/PDF训练曲线，数值来源为`data/flatlands_external_engineering_zh.json`。
+图片来自batch2的110次更新，曲线/成本来自独立的有效batch64测速，均不进入正式比较表。
+更新时先核验`results/flatlands_external_publication_20260909/replay_audit.json`，再运行页面生成器；
+浏览器检查覆盖桌面四列/手机单列、成本表局部横向滚动、图片放大与训练曲线。

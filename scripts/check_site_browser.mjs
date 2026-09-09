@@ -96,8 +96,31 @@ try{
         await evaluate(`document.querySelectorAll('.native-case')[${index}].open=false`);
       }
     }
+    if(await evaluate(`Boolean(document.querySelector('#flatlands-external-progress'))`)){
+      check(await evaluate(`document.querySelectorAll('.external-case').length===2 && document.querySelectorAll('.external-map-panels img').length===16`),'Missing FlatLands external diagnostic images');
+      await evaluate(`document.querySelector('#flatlands-external-progress').scrollIntoView({behavior:'instant',block:'start'})`);await screenshot(`${width}-external-cost`);
+      for(let index=0;index<2;index++){
+        await evaluate(`{const c=document.querySelectorAll('.external-case')[${index}];c.open=true;c.querySelector('details').open=true;c.scrollIntoView({behavior:'instant',block:'start'});}`);await images();
+        check(await evaluate(`getComputedStyle(document.querySelectorAll('.external-case')[${index}].querySelector('.external-map-panels')).gridTemplateColumns.split(' ').length===${width<600?1:4}`),'External responsive column count mismatch');
+        check((await status()).broken.length===0,'Broken external diagnostic image');
+        if(index===0){
+          await screenshot(`${width}-external-case`);
+          await evaluate(`document.querySelector('.external-case .external-map-panels a:nth-child(3)').click()`);await images();
+          check(await evaluate(`document.querySelector('#image-dialog').open && document.querySelector('#dialog-image').src.endsWith('case0-flow.png')`),'External vote zoom failed');
+          await screenshot(`${width}-external-vote`);await evaluate(`document.querySelector('#dialog-close').click()`);
+          await evaluate(`document.querySelector('.external-case details .external-map-panels a').click()`);await images();
+          check(await evaluate(`document.querySelector('#image-dialog').open && document.querySelector('#dialog-image').src.endsWith('case0-flow_world0.png')`),'External full-map sample zoom failed');
+          await evaluate(`document.querySelector('#dialog-close').click()`);
+        }
+        check((await status()).scrollWidth<=width+1,'External gallery overflows viewport');
+        await evaluate(`document.querySelectorAll('.external-case')[${index}].open=false`);
+      }
+      await evaluate(`{const d=document.querySelector('#flatlands-external-progress > details:last-of-type');d.open=true;d.scrollIntoView({behavior:'instant',block:'start'});}`);await images();
+      check((await status()).broken.length===0,'Broken external training curves');await screenshot(`${width}-external-curves`);
+      await evaluate(`document.querySelector('#flatlands-external-progress > details:last-of-type').open=false`);
+    }
     const report=await status();check(report.lang==='zh-CN' && report.rows===9,'Language or result row count mismatch');check(report.scrollWidth<=report.width+1,'Page overflows viewport');check(!report.errorBanner && report.broken.length===0,'Runtime/image error');
-    reports.push({...report,ablationRows:3,ablationCaseImages:6,interactions:['both examples','both models','dialog open/Escape','12 gallery scenes','frame seek/play/pause','five charts with PDF links','ablation table','two responsive ablation charts','ablation zoom','two fixed cases with three actual model maps each']});
+    reports.push({...report,ablationRows:3,ablationCaseImages:6,interactions:['both examples','both models','dialog open/Escape','12 gallery scenes','frame seek/play/pause','five charts with PDF links','ablation table','two responsive ablation charts','ablation zoom','two fixed cases with three actual model maps each','three native CogniPlan cases and zoom','two external cases, 16 labelled images, vote/sample zoom','external cost table and two training curves']});
   }
   check(errors.length===0,'JavaScript exceptions');
   await fs.writeFile(path.join(output,'report.json'),JSON.stringify({passed:true,url:base,viewports:reports,errors},null,2)+'\n');
