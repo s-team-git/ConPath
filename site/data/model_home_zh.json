@@ -1699,13 +1699,101 @@
       "selection": "historical_label_selected"
     }
   ],
+  "baseline_training_snapshot": {
+    "stage": "training",
+    "timestamp_utc": "2026-09-09T09:06:02.657157+00:00",
+    "jobs": [
+      {
+        "method": "correlated",
+        "seed": 20260910,
+        "epochs": 8,
+        "complete": false,
+        "latest_epoch_seconds": 33.359883564990014,
+        "best_calibration_brier": 0.17968650263583022
+      },
+      {
+        "method": "independent",
+        "seed": 20260910,
+        "epochs": 8,
+        "complete": false,
+        "latest_epoch_seconds": 33.39236814700416,
+        "best_calibration_brier": 0.17755488466945996
+      },
+      {
+        "method": "deterministic",
+        "seed": 20260910,
+        "epochs": 0,
+        "complete": false,
+        "latest_epoch_seconds": null,
+        "best_calibration_brier": null
+      },
+      {
+        "method": "correlated",
+        "seed": 20260911,
+        "epochs": 0,
+        "complete": false,
+        "latest_epoch_seconds": null,
+        "best_calibration_brier": null
+      },
+      {
+        "method": "independent",
+        "seed": 20260911,
+        "epochs": 0,
+        "complete": false,
+        "latest_epoch_seconds": null,
+        "best_calibration_brier": null
+      },
+      {
+        "method": "deterministic",
+        "seed": 20260911,
+        "epochs": 0,
+        "complete": false,
+        "latest_epoch_seconds": null,
+        "best_calibration_brier": null
+      },
+      {
+        "method": "correlated",
+        "seed": 20260912,
+        "epochs": 0,
+        "complete": false,
+        "latest_epoch_seconds": null,
+        "best_calibration_brier": null
+      },
+      {
+        "method": "independent",
+        "seed": 20260912,
+        "epochs": 0,
+        "complete": false,
+        "latest_epoch_seconds": null,
+        "best_calibration_brier": null
+      },
+      {
+        "method": "deterministic",
+        "seed": 20260912,
+        "epochs": 0,
+        "complete": false,
+        "latest_epoch_seconds": null,
+        "best_calibration_brier": null
+      }
+    ],
+    "completed": 0,
+    "total": 9,
+    "max_epochs": 24,
+    "train_parents": 100,
+    "calibration_parents": 25,
+    "validation_parents": 40,
+    "snapshot_not_live": true,
+    "gallery_uses_previous_checkpoints": true,
+    "final_test": false,
+    "new_physical_test_packets_opened": 0
+  },
   "model_training_samples": 160,
   "example_samples": [
     32,
     128
   ],
   "latest_evaluation_samples": 4,
-  "new_training_performed": false,
+  "new_training_for_gallery": false,
   "new_dataset_images_opened": true,
   "new_physical_test_images_opened": 0,
   "new_cases": 28,
@@ -2410,6 +2498,6 @@
     "site/data/site_visuals_zh.json": "3fe0c0270fa2db16eb17e3ac6d69415592740df22c113c0258716ed12de832f8",
     "site/data/expanded_model_gallery_zh.json": "e9e5f9314c538765a448b0ce7280a73818eab69c5b7e40a66c77eb58cb37284d",
     "site/data/current_baseline_k4_analysis.json": "41c70d9158733cc608f19c28f9bb55b7edfccd64354c05490cc001b00b7581c2",
-    "scripts/build_model_home.py": "0b6dc71f8d321f9af55f5f479dd4d0c82dfabc02c0de8ef4a9e9fc382966edca"
+    "scripts/build_model_home.py": "96d91a8663d449fe96d5564407dda1d71d8393a801f37f66524084f2adefb6d1"
   }
 }

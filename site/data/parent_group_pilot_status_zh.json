@@ -1,0 +1,88 @@
+{
+  "stage": "training",
+  "timestamp_utc": "2026-09-09T09:06:02.657157+00:00",
+  "jobs": [
+    {
+      "method": "correlated",
+      "seed": 20260910,
+      "epochs": 8,
+      "complete": false,
+      "latest_epoch_seconds": 33.359883564990014,
+      "best_calibration_brier": 0.17968650263583022
+    },
+    {
+      "method": "independent",
+      "seed": 20260910,
+      "epochs": 8,
+      "complete": false,
+      "latest_epoch_seconds": 33.39236814700416,
+      "best_calibration_brier": 0.17755488466945996
+    },
+    {
+      "method": "deterministic",
+      "seed": 20260910,
+      "epochs": 0,
+      "complete": false,
+      "latest_epoch_seconds": null,
+      "best_calibration_brier": null
+    },
+    {
+      "method": "correlated",
+      "seed": 20260911,
+      "epochs": 0,
+      "complete": false,
+      "latest_epoch_seconds": null,
+      "best_calibration_brier": null
+    },
+    {
+      "method": "independent",
+      "seed": 20260911,
+      "epochs": 0,
+      "complete": false,
+      "latest_epoch_seconds": null,
+      "best_calibration_brier": null
+    },
+    {
+      "method": "deterministic",
+      "seed": 20260911,
+      "epochs": 0,
+      "complete": false,
+      "latest_epoch_seconds": null,
+      "best_calibration_brier": null
+    },
+    {
+      "method": "correlated",
+      "seed": 20260912,
+      "epochs": 0,
+      "complete": false,
+      "latest_epoch_seconds": null,
+      "best_calibration_brier": null
+    },
+    {
+      "method": "independent",
+      "seed": 20260912,
+      "epochs": 0,
+      "complete": false,
+      "latest_epoch_seconds": null,
+      "best_calibration_brier": null
+    },
+    {
+      "method": "deterministic",
+      "seed": 20260912,
+      "epochs": 0,
+      "complete": false,
+      "latest_epoch_seconds": null,
+      "best_calibration_brier": null
+    }
+  ],
+  "completed": 0,
+  "total": 9,
+  "max_epochs": 24,
+  "train_parents": 100,
+  "calibration_parents": 25,
+  "validation_parents": 40,
+  "snapshot_not_live": true,
+  "gallery_uses_previous_checkpoints": true,
+  "final_test": false,
+  "new_physical_test_packets_opened": 0
+}

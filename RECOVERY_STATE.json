@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "checkpoint_id": "extended-model-gallery-20260909",
+  "checkpoint_id": "parent-group-pilot-training-20260909",
   "updated_local_date": "2026-09-09",
   "timezone": "America/New_York",
   "branch": "main",
@@ -8,7 +8,7 @@
   "latest_local_commit": "Resolve with git log -1 -- RECOVERY_STATE.json; old ablation implementation e6f0910 remains immutable.",
   "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence. New external profiles on 2026-09-08 actually used Python 3.13 and torch 2.12.1+cu130; v2 explicitly disables TF32 and cudnn benchmarking and enables deterministic algorithms. GPU has unrelated concurrent load; no isolated-device latency claim.",
   "scientific_status": "Parent-place isolation FAIL: 27/160 old FlatLands validation observations share training parents. Old numerical/ablation replays remain correct cohort diagnostics, not unseen-building evidence; subscene CIs are not parent-population intervals. K4 ConPath Brier0.080069 vs untrained all-floor0.072373; risk30 0.048931 vs0.134261. No universal local or published-paper superiority. Ninety published map reference scores cannot directly rank our different path/data protocol. Metadata-only development candidate215289 observations/4479 parent groups has zero internal split overlap;53 unresolved train observations quarantined, formal quality/scale/query/final-test gates open. Original physical ID test also overlaps parents. UnScenes hard-observation error floor0.475736 vs actual0.51142;train36-frame audit conflict22.75%, causal27-pair pose evidence mixed. No new training, no future-frame input, all test images locked. IMPORTANT ACCESS ERRATUM: old provenance train/validation contains8/5 physical-test observations;current K4 replay and independent numeric verification read those5. Historical512 query audit read53 physical-test observations including32ScanNet++. Withdraw physical-test-never-read claim. Further physical-test PNG reads stopped; final untouched holdout eligibility unresolved. Old test_evaluated=false flags are not proof of physical-test isolation.",
-  "active_task": "Publish 28 new actual model cases (30 total), then execute clean parent-group baseline from scratch and improve according to measured results; user authorizes autonomous continuation.",
+  "active_task": "Execute all nine fixed parent-group pilot baseline runs, evaluate together, then advance a measured model improvement. Expanded gallery is published at 0640f7e.",
   "completed_milestones": [
     "Interruption-safe P0 training with atomic checkpoints and exact resume",
     "Two-seed synthetic P0 pass and matched no-reach failure",
@@ -4589,13 +4589,22 @@
     "cat FLATLANDS_EXTERNAL_PROGRESS_ZH.md",
     "cat results/flatlands_external_publication_20260909/completion.json"
   ],
-  "next_command": "cat WORK_PLAN.md",
+  "next_command": "Inspect results/parent_group_pilot_v1/status.json and per-run history.json; do not launch a duplicate supervisor. It scores holdout only after all nine runs are complete.",
   "next_actions": [
-    "Complete new parent-group pilot data/query gates and freeze protocol",
-    "Run three-seed matched internal pilot from scratch, including negative obstacle-goal queries",
-    "Evaluate paired parent-group results then execute justified improvement"
+    "Finish all nine active baseline training runs; preserve source pins and data seal",
+    "Independently verify saved worlds, paired parent metrics and gate decision",
+    "Freeze and execute one justified improvement if baseline screen passes; retain negative outcomes"
   ],
-  "active_training": false,
+  "active_training": {
+    "root": "results/parent_group_pilot_v1",
+    "supervisor": "scripts/run_parent_group_pilot.py",
+    "status": "results/parent_group_pilot_v1/status.json",
+    "process_receipt": "results/parent_group_pilot_v1/supervisor_process.json",
+    "jobs": 9,
+    "workers": 2,
+    "max_epochs": 24,
+    "protocol": "PARENT_GROUP_PILOT_ZH.md"
+  },
   "accepted_experiment_plan": {
     "status": "approved_by_user",
     "recorded_utc": "2026-09-08T01:42:23.683337+00:00",
@@ -4735,5 +4744,28 @@
     "checks": "results/model_gallery_publication_20260909",
     "new_physical_test_packet_images": 0,
     "training_launched": false
+  },
+  "parent_group_pilot": {
+    "data_gate_passed": true,
+    "parent_counts": [
+      100,
+      25,
+      40
+    ],
+    "parent_overlap": 0,
+    "cross_split_d4_duplicates": 0,
+    "queries": [
+      1327,
+      340,
+      515
+    ],
+    "obstacle_goals_kept": [
+      415,
+      116,
+      186
+    ],
+    "training_validation_access": "Calibration only during training. Holdout labels were opened earlier for fixed data audit, but no holdout model scores yet.",
+    "failed_attempt": "results/parent_group_pilot_v1/attempts/initial_calibration_dtype_bug",
+    "fixed_prediction_preflight": "results/parent_group_pilot_v1/prediction_preflight.json"
   }
 }
