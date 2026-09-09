@@ -32,14 +32,19 @@ def image_card(key, label, path, caption):
 def verified_pilot():
     """Read only published metadata and map assets; incomplete reports stay off home."""
     paths = [SITE/'data/parent_pilot_gallery_zh.json', SITE/'data/parent_group_pilot_zh.json',
-             SITE/'data/parent_group_pilot_verification.json', SITE/'pilot.html']
+             SITE/'data/parent_group_pilot_verification.json', SITE/'pilot.html',
+             SITE/'data/parent_pilot_gallery_verification.json']
     if not all(path.is_file() for path in paths):
         return None, 'awaiting_complete_published_report'
     try:
         gallery, result, verification = [json.loads(path.read_text()) for path in paths[:3]]
+        gallery_verification = json.loads(paths[4].read_text())
         checksum = sha(paths[1])
         assert verification['passed'] is True
         assert verification['analysis_sha256'] == gallery['source_analysis_sha256'] == checksum
+        assert gallery_verification['passed'] is True
+        assert gallery_verification['analysis_sha256'] == checksum
+        assert gallery_verification['gallery_sha256'] == sha(paths[0])
         assert result['id'] == 'parent_group_pilot_v1'
         assert result['implementation_checks_passed'] is True and result['training_runs_completed'] == 9
         assert result['final_test'] is False and result['direct_comparison_to_published_scores'] is False
@@ -75,12 +80,27 @@ def verified_pilot():
         return None, 'published_report_validation_failed'
 
 
-def training_copy(status, pilot_ready):
+def training_copy(status, pilot_ready, candidate=None):
     """Describe the recorded state without turning a dated snapshot into live status."""
     if pilot_ready:
         note = '父级地点隔离的小规模基线已完成并通过结果核验；新案例与本轮评估已更新，仍属于开发验证，非最终测试。'
         heading = '三种模型的基线训练与核验已完成'
         description = '三种模型各三个随机种子；本轮结果已单独报告，下一项改进依据这批开发验证的具体差距确定。'
+        if candidate:
+            snapshot = candidate['timestamp_utc'][:16].replace('T', ' ') + ' UTC快照'
+            if candidate['stage'] == 'training':
+                heading = '两个种子的连续采样改进正在训练'
+                description = '只改变最后一层随机采样的空间相关性，训练预算保持不变；两个种子完成后，与原模型的相同两个种子比较。'
+            elif candidate['stage'] == 'paused_by_user':
+                heading = '改进试验已按用户要求暂停'
+                description = '已有基线和效果图保留；改进试验从已保存的完整轮次恢复。'
+            elif candidate['stage'] in ('complete', 'evaluating'):
+                heading = '两种子改进训练已结束，正在整理比较'
+                description = '新结果通过核验并完整发布后报告；不提前用选优集成绩判断改进成功。'
+            else:
+                heading = '两种子改进试验等待检查'
+                description = '以已发布的结果和状态为准；不自动扩大规模。'
+            note += f' 改进试验已完成{candidate["completed"]}/2次训练（{snapshot}，非实时监控）。'
     elif status:
         progress = f'{status["completed"]}/{status["total"]}次训练完成'
         snapshot = f'（{status["timestamp_utc"][:16].replace("T", " ")} UTC快照，非实时监控）'
@@ -165,13 +185,16 @@ def main():
         cases = pilot['gallery']['examples'] + cases
         copied += pilot['gallery']['assets']
     pilot_status = json.loads((SITE/'data/parent_group_pilot_status_zh.json').read_text()) if (SITE/'data/parent_group_pilot_status_zh.json').exists() else None
+    candidate_status = json.loads((SITE/'data/coherent_pilot_status_zh.json').read_text()) if (SITE/'data/coherent_pilot_status_zh.json').exists() else None
     source_paths = [SITE/'data/site_visuals_zh.json', SITE/'data/expanded_model_gallery_zh.json', SITE/'data/current_baseline_k4_analysis.json', Path(__file__)]
     if pilot:
         source_paths += pilot['source_paths']
     if pilot_status:
         source_paths.append(SITE/'data/parent_group_pilot_status_zh.json')
+    if candidate_status:
+        source_paths.append(SITE/'data/coherent_pilot_status_zh.json')
     result_methods = list(PILOT_METHODS) if pilot else ['correlated', 'independent', 'tiny_deterministic', 'all_floor']
-    home_data = {'examples': cases, 'baseline_training_snapshot': pilot_status, 'historical_model_training_samples': 160,
+    home_data = {'examples': cases, 'baseline_training_snapshot': pilot_status, 'candidate_training_snapshot': candidate_status, 'historical_model_training_samples': 160,
                  'example_samples': sorted({row['samples'] for row in cases}),
                  'latest_evaluation_samples': 32 if pilot else 4, 'new_training_for_gallery': bool(pilot),
                  'new_dataset_images_opened': True, 'new_physical_test_images_opened': 0, 'new_cases': expanded['new_cases'] + new_count, 'historical_model_pixels_changed': False,
@@ -182,7 +205,7 @@ def main():
                  'source_hashes': {str(p.relative_to(ROOT)): sha(p) for p in source_paths}}
     data_path = SITE/'data/model_home_zh.json'
     data_path.write_text(json.dumps(home_data, ensure_ascii=False, indent=2)+'\n')
-    pilot_note, training_heading, training_description, resource_note = [html.escape(value) for value in training_copy(pilot_status, bool(pilot))]
+    pilot_note, training_heading, training_description, resource_note = [html.escape(value) for value in training_copy(pilot_status, bool(pilot), candidate_status)]
     resource_paragraph = f'<p class="caption" id="training-resource-policy">{resource_note}</p>' if resource_note else ''
     count = len(cases)
     gallery_intro = (f'新增{new_count}组本轮独立地点验证案例，排在原{old_count}组之前；共{count}组真实输出可切换查看。' if pilot else

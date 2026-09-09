@@ -156,3 +156,10 @@ Upstream house/space/home/visit/reference-rescan grouping finds 19 Matterport3D,
 A train-only UnScenes3D audit of 36 frames from nine scenes finds 22.75% observed-valid cell conflict. Of 307 observation-forced false-negative events, 207 have a directly blocked endpoint. On 27 strictly causal historical pairs, a calibration-derived pose candidate increases mean 0.3-m overlap from 39.38% to 45.59%, but improves median distance in only 11 pairs; independent ego-pose files validate only four sampled frames. Neither temporal prediction quality nor a Transformer benefit has been measured. Proposed work prioritizes observation likelihood and terrain representation, then confidence-gated geometric fusion, followed by a matched single/history-frame by convolution/attention factorial design. Future frames and accumulated complete maps are excluded. Data-scale experiments distinguish independent places from repeated views.
 
 The physical-test access claim is also withdrawn: the old development manifest included eight original archive-test observations in training and five in validation; the current replay read those five. Earlier bounded query auditing inspected 53 original archive-test observations, including 32 ScanNet++ scenes. Historical false test-access flags do not establish an untouched holdout. No further physical-test PNG access is allowed, and final holdout eligibility requires a complete access audit and exclusion of already-inspected parent groups.
+
+
+## 9. 父级地点隔离的最新开发实验（2026-09-09）
+
+九次从头训练已完成；使用100/25/40个父级地点的训练/选优/开发验证，父级交叉为零，保留目标为障碍的输入选择查询。ConPath K32 Brier为0.10380±0.00350，独立对照0.11201±0.00366，确定性网络0.11152±0.00256；30%覆盖风险分别23.95%、24.43%、25.16%。相对独立对照的父级配对区间为[0.00439,0.01251]，相对确定性网络区间跨零；区间条件于三个训练种子的均值。地图可通行类IoU仍低于确定性网络。
+
+完整中文实验正文、七方法表、误差诊断和限制见[PARENT_PILOT_RESULTS_ZH.md](PARENT_PILOT_RESULTS_ZH.md)，原始公开数字见[本轮JSON](site/data/parent_group_pilot_zh.json)。本节替代旧队列作为最新开发证据，但不是正式最终测试或外部论文排名。两个种子的固定空间采样改进已开始，结果未出，不在论文中预先宣称改进成功；协议见[COHERENT_PILOT_ZH.md](COHERENT_PILOT_ZH.md)。

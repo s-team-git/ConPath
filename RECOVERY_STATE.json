@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "checkpoint_id": "parent-pilot-resumed-two-workers-60gb",
+  "checkpoint_id": "parent-pilot-complete-coherent-two-seed-training-20260909",
   "updated_local_date": "2026-09-09",
   "timezone": "America/New_York",
   "branch": "main",
@@ -8,7 +8,7 @@
   "latest_local_commit": "Resolve with git log -1 -- RECOVERY_STATE.json; old ablation implementation e6f0910 remains immutable.",
   "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence. New external profiles on 2026-09-08 actually used Python 3.13 and torch 2.12.1+cu130; v2 explicitly disables TF32 and cudnn benchmarking and enables deterministic algorithms. GPU has unrelated concurrent load; no isolated-device latency claim.",
   "scientific_status": "Parent-place isolation FAIL: 27/160 old FlatLands validation observations share training parents. Old numerical/ablation replays remain correct cohort diagnostics, not unseen-building evidence; subscene CIs are not parent-population intervals. K4 ConPath Brier0.080069 vs untrained all-floor0.072373; risk30 0.048931 vs0.134261. No universal local or published-paper superiority. Ninety published map reference scores cannot directly rank our different path/data protocol. Metadata-only development candidate215289 observations/4479 parent groups has zero internal split overlap;53 unresolved train observations quarantined, formal quality/scale/query/final-test gates open. Original physical ID test also overlaps parents. UnScenes hard-observation error floor0.475736 vs actual0.51142;train36-frame audit conflict22.75%, causal27-pair pose evidence mixed. No new training, no future-frame input, all test images locked. IMPORTANT ACCESS ERRATUM: old provenance train/validation contains8/5 physical-test observations;current K4 replay and independent numeric verification read those5. Historical512 query audit read53 physical-test observations including32ScanNet++. Withdraw physical-test-never-read claim. Further physical-test PNG reads stopped; final untouched holdout eligibility unresolved. Old test_evaluated=false flags are not proof of physical-test isolation.",
-  "active_task": "Resume remaining pilot seeds 20260911/20260912 with at most two concurrent training processes, project GPU usage about 60 GiB. Complete all baselines, verify evaluation, then continue justified improvement under the same resource limit.",
+  "active_task": "Baseline nine-run evaluation and 40-case gallery complete. Monitor exactly two coherent-categorical candidate seeds 20260910/20260911, about 60 GiB project GPU budget; evaluate after both complete, then publish verified follow-up.",
   "completed_milestones": [
     "Interruption-safe P0 training with atomic checkpoints and exact resume",
     "Two-seed synthetic P0 pass and matched no-reach failure",
@@ -4563,14 +4563,11 @@
     }
   ],
   "last_verification": {
-    "command": "Homepage and research-page real-browser interaction checks at1440/390; two-page local-link check;12 SVG embedded bitmaps and endpoint geometry identical; retained research visual audit.",
-    "result": "All listed website checks passed. No new model training, inference or raw-image decoding for rendering; existing training media bytes were rehashed. Historical physical-test access erratum remains in force.",
-    "receipts": [
-      "results/model_home_publication_20260909/home_browser/report.json",
-      "results/model_home_publication_20260909/research_browser/report.json",
-      "results/model_home_publication_20260909/static_and_asset_check.json",
-      "results/model_home_publication_20260909/research_visual_audit.json"
-    ]
+    "baseline": "results/parent_group_pilot_v1/verification.json",
+    "gallery": "results/parent_group_pilot_v1/gallery_verification.json",
+    "browser": "results/parent_group_pilot_v1/publication/final_home_browser/report.json",
+    "tests": "171 unittest checks passed",
+    "publication": "results/parent_group_pilot_v1/publication/deployment.json (created after push)"
   },
   "recovery_commands": [
     "git status --short --branch",
@@ -4589,23 +4586,21 @@
     "cat FLATLANDS_EXTERNAL_PROGRESS_ZH.md",
     "cat results/flatlands_external_publication_20260909/completion.json"
   ],
-  "next_command": "Inspect status.json first; do not start duplicate supervisors. Active supervisor resumes frozen checkpoints with --workers 2 --worker-memory-gib 28. User authorizes this resumption; STOP removed.",
+  "next_command": "cat results/coherent_parent_pilot_v1/status.json",
   "next_actions": [
-    "Keep at most two training processes and about 60 GiB project GPU usage; other tasks remain untouched",
-    "Finish remaining six runs and verify all nine before held-out model scoring",
-    "Audit paired results and continue a bounded justified improvement under the same process/memory limits"
+    "Monitor existing two-seed candidate, never duplicate the supervisor.",
+    "After automatic evaluation, review its verified comparison against exactly the same two baseline seeds.",
+    "Preserve negative outcomes; publish reviewed follow-up and continue formal-data/external-baseline work only with justified bounded scope."
   ],
   "active_training": {
-    "root": "results/parent_group_pilot_v1",
-    "supervisor": "scripts/run_parent_group_pilot.py",
-    "worker_wrapper": "scripts/run_pilot_worker.py",
-    "process_receipt": "results/parent_group_pilot_v1/supervisor_process.json",
-    "status": "results/parent_group_pilot_v1/status.json",
-    "workers": 2,
-    "allocator_gib_per_worker": 28,
-    "project_gpu_budget_gib": 60,
-    "other_gpu_processes_excluded": true,
-    "user_authorized_resume": true
+    "status": "running",
+    "project": "coherent_parent_pilot_v1",
+    "seeds": [
+      20260910,
+      20260911
+    ],
+    "max_processes": 2,
+    "project_gpu_gib_last_measured": 53.10546875
   },
   "accepted_experiment_plan": {
     "status": "approved_by_user",
@@ -4715,18 +4710,7 @@
     "physical_test_observations_opened_in_current_replay": 5,
     "read_scope_erratum": "results/baseline_review_20260909_v1/read_scope_erratum.json"
   },
-  "last_scientific_verification": {
-    "command": "121 unittest checks (PYTHONPATH=src); 4800 saved maps independently rescored with13440 metric checks;9 canonical event CSVs zero drift;164 file hashes; parent candidate215289 rows4479 groups zero split conflicts; old site/paper audits; desktop/mobile browser.",
-    "result": "Numerical and data checks passed. Browser and publication final receipt paths below; numerical correctness does not cure old parent-place overlap. Access flag correction: original numeric verifier opened5 physical-test observations; its false flag is superseded by read_scope_erratum. Numeric checks passed; old image replay now fails closed.",
-    "receipts": [
-      "results/baseline_review_20260909_v1/verification.json",
-      "results/baseline_review_publication_20260909/unit_tests.txt",
-      "results/baseline_review_publication_20260909/site_visuals_audit.json",
-      "results/baseline_review_publication_20260909/paper_evidence_audit.json",
-      "results/baseline_review_publication_20260909/browser_release/report.json",
-      "results/baseline_review_20260909_v1/read_scope_erratum.json"
-    ]
-  },
+  "last_scientific_verification": "results/parent_group_pilot_v1/verification.json",
   "model_home_publication": {
     "completion": "results/model_home_publication_20260909/completion.json",
     "effects_url": "https://s-team-git.github.io/ConPath/#effects",
@@ -4745,7 +4729,10 @@
     "raw_worlds": "results/model_gallery_20260909_v1",
     "checks": "results/model_gallery_publication_20260909",
     "new_physical_test_packet_images": 0,
-    "training_launched": false
+    "training_launched": false,
+    "home_cases": 40,
+    "new_pilot_cases": 10,
+    "scope": "Historical gallery metadata; current home additionally includes 10 verified new baseline cases, 40 total."
   },
   "parent_group_pilot": {
     "data_gate_passed": true,
@@ -4766,18 +4753,46 @@
       116,
       186
     ],
-    "training_validation_access": "Calibration only during training. Holdout labels were opened earlier for fixed data audit, but no holdout model scores yet.",
+    "training_validation_access": "Train/calibration only during training; all nine checkpoints selected before model validation scoring. Preparation had already read development labels for fixed quality audit. No new physical-test access.",
     "failed_attempt": "results/parent_group_pilot_v1/attempts/initial_calibration_dtype_bug",
     "fixed_prediction_preflight": "results/parent_group_pilot_v1/prediction_preflight.json",
-    "status": "training_with_user_resource_limit",
-    "completed_training_runs": 3,
+    "status": "baseline_complete_verified",
+    "completed_training_runs": 9,
     "paused_runs": {
       "correlated/20260911": 12,
       "independent/20260911": 11
     },
-    "holdout_model_scoring_started": false
+    "holdout_model_scoring_started": true,
+    "analysis": "results/parent_group_pilot_v1/analysis.json",
+    "verification": "results/parent_group_pilot_v1/verification.json",
+    "research_screen_passed": true
   },
-  "paused_training": {
+  "pause_receipt": "results/parent_group_pilot_v1/pause_completion.json",
+  "resource_preference": {
+    "max_training_processes": 2,
+    "project_gpu_target_gib": 60,
+    "applies_to_future_training": true
+  },
+  "coherent_parent_pilot": {
+    "status": "training",
+    "seeds": [
+      20260910,
+      20260911
+    ],
+    "resource_policy": {
+      "max_training_processes": 2,
+      "allocator_gib_per_worker": 28,
+      "project_gpu_usage_target_gib": 60,
+      "other_processes_are_separate": true
+    },
+    "supervisor_receipt": "results/coherent_parent_pilot_v1/supervisor_process.json",
+    "protocol": "results/coherent_parent_pilot_v1/protocol.json",
+    "comparison": "same two original baseline seeds",
+    "model_change": "fixed 9x9 sigma3 spatially correlated Gumbel categorical noise",
+    "validation_reused_for_development": true,
+    "final_test": false
+  },
+  "previously_paused_training": {
     "root": "results/parent_group_pilot_v1",
     "supervisor": "scripts/run_parent_group_pilot.py",
     "status": "results/parent_group_pilot_v1/status.json",
@@ -4786,11 +4801,5 @@
     "workers": 2,
     "max_epochs": 24,
     "protocol": "PARENT_GROUP_PILOT_ZH.md"
-  },
-  "pause_receipt": "results/parent_group_pilot_v1/pause_completion.json",
-  "resource_preference": {
-    "max_training_processes": 2,
-    "project_gpu_target_gib": 60,
-    "applies_to_future_training": true
   }
 }

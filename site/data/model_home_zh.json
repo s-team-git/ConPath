@@ -1,6 +1,446 @@
 {
   "examples": [
     {
+      "id": "pilot-obs_014028",
+      "global_id": "obs_014028",
+      "source": "3RScan",
+      "scene": "7747a508-9431-24e8-863c-c53906506d8b",
+      "parent_group": "3RScan:7747a50a-9431-24e8-85c6-3488c128ac26",
+      "domain": "indoor",
+      "cohort": "new_pilot",
+      "panels": {
+        "observed": "assets/zh/parent-pilot/obs_014028-observed.svg",
+        "reference": "assets/zh/parent-pilot/obs_014028-reference.svg",
+        "correlated_sample": "assets/zh/parent-pilot/obs_014028-correlated_sample.svg",
+        "correlated": "assets/zh/parent-pilot/obs_014028-correlated.svg",
+        "independent_sample": "assets/zh/parent-pilot/obs_014028-independent_sample.svg",
+        "independent": "assets/zh/parent-pilot/obs_014028-independent.svg"
+      },
+      "split_zh": "新基线 · 独立地点验证",
+      "checkpoint_scope_zh": "本轮从头训练；此地点未参与训练或检查点选优，属于开发验证",
+      "radius_cells": 10,
+      "seed": 20260910,
+      "sampling_seed": 24274938,
+      "candidate_index": 24,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        191,
+        248
+      ],
+      "samples": 32,
+      "target": false,
+      "event_probability": {
+        "correlated": 0.0,
+        "independent": 0.0
+      },
+      "displayed_world_event": {
+        "correlated": false,
+        "independent": false
+      },
+      "final_test": false,
+      "selection": "two hash-ranked observations/source, first input-hash-ordered query; first sampled world",
+      "checkpoint_selected_on_this_cohort": false
+    },
+    {
+      "id": "pilot-obs_013470",
+      "global_id": "obs_013470",
+      "source": "3RScan",
+      "scene": "d63767be-3205-226c-9a89-3a27969053a7",
+      "parent_group": "3RScan:d63767be-3205-226c-9a89-3a27969053a7",
+      "domain": "indoor",
+      "cohort": "new_pilot",
+      "panels": {
+        "observed": "assets/zh/parent-pilot/obs_013470-observed.svg",
+        "reference": "assets/zh/parent-pilot/obs_013470-reference.svg",
+        "correlated_sample": "assets/zh/parent-pilot/obs_013470-correlated_sample.svg",
+        "correlated": "assets/zh/parent-pilot/obs_013470-correlated.svg",
+        "independent_sample": "assets/zh/parent-pilot/obs_013470-independent_sample.svg",
+        "independent": "assets/zh/parent-pilot/obs_013470-independent.svg"
+      },
+      "split_zh": "新基线 · 独立地点验证",
+      "checkpoint_scope_zh": "本轮从头训练；此地点未参与训练或检查点选优，属于开发验证",
+      "radius_cells": 10,
+      "seed": 20260910,
+      "sampling_seed": 24274380,
+      "candidate_index": 12,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        191,
+        208
+      ],
+      "samples": 32,
+      "target": false,
+      "event_probability": {
+        "correlated": 0.0,
+        "independent": 0.0
+      },
+      "displayed_world_event": {
+        "correlated": false,
+        "independent": false
+      },
+      "final_test": false,
+      "selection": "two hash-ranked observations/source, first input-hash-ordered query; first sampled world",
+      "checkpoint_selected_on_this_cohort": false
+    },
+    {
+      "id": "pilot-obs_082481",
+      "global_id": "obs_082481",
+      "source": "ARKitScenes",
+      "scene": "42444501_3dod_mesh",
+      "parent_group": "ARKitScenes:421065",
+      "domain": "indoor",
+      "cohort": "new_pilot",
+      "panels": {
+        "observed": "assets/zh/parent-pilot/obs_082481-observed.svg",
+        "reference": "assets/zh/parent-pilot/obs_082481-reference.svg",
+        "correlated_sample": "assets/zh/parent-pilot/obs_082481-correlated_sample.svg",
+        "correlated": "assets/zh/parent-pilot/obs_082481-correlated.svg",
+        "independent_sample": "assets/zh/parent-pilot/obs_082481-independent_sample.svg",
+        "independent": "assets/zh/parent-pilot/obs_082481-independent.svg"
+      },
+      "split_zh": "新基线 · 独立地点验证",
+      "checkpoint_scope_zh": "本轮从头训练；此地点未参与训练或检查点选优，属于开发验证",
+      "radius_cells": 10,
+      "seed": 20260910,
+      "sampling_seed": 24343391,
+      "candidate_index": 30,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        191,
+        8
+      ],
+      "samples": 32,
+      "target": false,
+      "event_probability": {
+        "correlated": 0.0,
+        "independent": 0.0
+      },
+      "displayed_world_event": {
+        "correlated": false,
+        "independent": false
+      },
+      "final_test": false,
+      "selection": "two hash-ranked observations/source, first input-hash-ordered query; first sampled world",
+      "checkpoint_selected_on_this_cohort": false
+    },
+    {
+      "id": "pilot-obs_065777",
+      "global_id": "obs_065777",
+      "source": "ARKitScenes",
+      "scene": "42897583_3dod_mesh",
+      "parent_group": "ARKitScenes:422385",
+      "domain": "indoor",
+      "cohort": "new_pilot",
+      "panels": {
+        "observed": "assets/zh/parent-pilot/obs_065777-observed.svg",
+        "reference": "assets/zh/parent-pilot/obs_065777-reference.svg",
+        "correlated_sample": "assets/zh/parent-pilot/obs_065777-correlated_sample.svg",
+        "correlated": "assets/zh/parent-pilot/obs_065777-correlated.svg",
+        "independent_sample": "assets/zh/parent-pilot/obs_065777-independent_sample.svg",
+        "independent": "assets/zh/parent-pilot/obs_065777-independent.svg"
+      },
+      "split_zh": "新基线 · 独立地点验证",
+      "checkpoint_scope_zh": "本轮从头训练；此地点未参与训练或检查点选优，属于开发验证",
+      "radius_cells": 10,
+      "seed": 20260910,
+      "sampling_seed": 24326687,
+      "candidate_index": 2,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        226,
+        148
+      ],
+      "samples": 32,
+      "target": false,
+      "event_probability": {
+        "correlated": 0.0,
+        "independent": 0.0
+      },
+      "displayed_world_event": {
+        "correlated": false,
+        "independent": false
+      },
+      "final_test": false,
+      "selection": "two hash-ranked observations/source, first input-hash-ordered query; first sampled world",
+      "checkpoint_selected_on_this_cohort": false
+    },
+    {
+      "id": "pilot-obs_114561",
+      "global_id": "obs_114561",
+      "source": "Matterport3D",
+      "scene": "EDJbREhghzL_region_segmentations_region8.ply",
+      "parent_group": "Matterport3D:EDJbREhghzL",
+      "domain": "indoor",
+      "cohort": "new_pilot",
+      "panels": {
+        "observed": "assets/zh/parent-pilot/obs_114561-observed.svg",
+        "reference": "assets/zh/parent-pilot/obs_114561-reference.svg",
+        "correlated_sample": "assets/zh/parent-pilot/obs_114561-correlated_sample.svg",
+        "correlated": "assets/zh/parent-pilot/obs_114561-correlated.svg",
+        "independent_sample": "assets/zh/parent-pilot/obs_114561-independent_sample.svg",
+        "independent": "assets/zh/parent-pilot/obs_114561-independent.svg"
+      },
+      "split_zh": "新基线 · 独立地点验证",
+      "checkpoint_scope_zh": "本轮从头训练；此地点未参与训练或检查点选优，属于开发验证",
+      "radius_cells": 10,
+      "seed": 20260910,
+      "sampling_seed": 24375471,
+      "candidate_index": 2,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        226,
+        148
+      ],
+      "samples": 32,
+      "target": true,
+      "event_probability": {
+        "correlated": 0.75,
+        "independent": 0.71875
+      },
+      "displayed_world_event": {
+        "correlated": false,
+        "independent": true
+      },
+      "final_test": false,
+      "selection": "two hash-ranked observations/source, first input-hash-ordered query; first sampled world",
+      "checkpoint_selected_on_this_cohort": false
+    },
+    {
+      "id": "pilot-obs_101106",
+      "global_id": "obs_101106",
+      "source": "Matterport3D",
+      "scene": "HxpKQynjfin_region_segmentations_region1.ply",
+      "parent_group": "Matterport3D:HxpKQynjfin",
+      "domain": "indoor",
+      "cohort": "new_pilot",
+      "panels": {
+        "observed": "assets/zh/parent-pilot/obs_101106-observed.svg",
+        "reference": "assets/zh/parent-pilot/obs_101106-reference.svg",
+        "correlated_sample": "assets/zh/parent-pilot/obs_101106-correlated_sample.svg",
+        "correlated": "assets/zh/parent-pilot/obs_101106-correlated.svg",
+        "independent_sample": "assets/zh/parent-pilot/obs_101106-independent_sample.svg",
+        "independent": "assets/zh/parent-pilot/obs_101106-independent.svg"
+      },
+      "split_zh": "新基线 · 独立地点验证",
+      "checkpoint_scope_zh": "本轮从头训练；此地点未参与训练或检查点选优，属于开发验证",
+      "radius_cells": 10,
+      "seed": 20260910,
+      "sampling_seed": 24362016,
+      "candidate_index": 11,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        171,
+        163
+      ],
+      "samples": 32,
+      "target": false,
+      "event_probability": {
+        "correlated": 0.5625,
+        "independent": 0.78125
+      },
+      "displayed_world_event": {
+        "correlated": true,
+        "independent": true
+      },
+      "final_test": false,
+      "selection": "two hash-ranked observations/source, first input-hash-ordered query; first sampled world",
+      "checkpoint_selected_on_this_cohort": false
+    },
+    {
+      "id": "pilot-obs_166408",
+      "global_id": "obs_166408",
+      "source": "ScanNet",
+      "scene": "scene0489_00",
+      "parent_group": "ScanNet:scene0489",
+      "domain": "indoor",
+      "cohort": "new_pilot",
+      "panels": {
+        "observed": "assets/zh/parent-pilot/obs_166408-observed.svg",
+        "reference": "assets/zh/parent-pilot/obs_166408-reference.svg",
+        "correlated_sample": "assets/zh/parent-pilot/obs_166408-correlated_sample.svg",
+        "correlated": "assets/zh/parent-pilot/obs_166408-correlated.svg",
+        "independent_sample": "assets/zh/parent-pilot/obs_166408-independent_sample.svg",
+        "independent": "assets/zh/parent-pilot/obs_166408-independent.svg"
+      },
+      "split_zh": "新基线 · 独立地点验证",
+      "checkpoint_scope_zh": "本轮从头训练；此地点未参与训练或检查点选优，属于开发验证",
+      "radius_cells": 10,
+      "seed": 20260910,
+      "sampling_seed": 24427318,
+      "candidate_index": 19,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        151,
+        59
+      ],
+      "samples": 32,
+      "target": false,
+      "event_probability": {
+        "correlated": 0.0,
+        "independent": 0.0
+      },
+      "displayed_world_event": {
+        "correlated": false,
+        "independent": false
+      },
+      "final_test": false,
+      "selection": "two hash-ranked observations/source, first input-hash-ordered query; first sampled world",
+      "checkpoint_selected_on_this_cohort": false
+    },
+    {
+      "id": "pilot-obs_157856",
+      "global_id": "obs_157856",
+      "source": "ScanNet",
+      "scene": "scene0355_00",
+      "parent_group": "ScanNet:scene0355",
+      "domain": "indoor",
+      "cohort": "new_pilot",
+      "panels": {
+        "observed": "assets/zh/parent-pilot/obs_157856-observed.svg",
+        "reference": "assets/zh/parent-pilot/obs_157856-reference.svg",
+        "correlated_sample": "assets/zh/parent-pilot/obs_157856-correlated_sample.svg",
+        "correlated": "assets/zh/parent-pilot/obs_157856-correlated.svg",
+        "independent_sample": "assets/zh/parent-pilot/obs_157856-independent_sample.svg",
+        "independent": "assets/zh/parent-pilot/obs_157856-independent.svg"
+      },
+      "split_zh": "新基线 · 独立地点验证",
+      "checkpoint_scope_zh": "本轮从头训练；此地点未参与训练或检查点选优，属于开发验证",
+      "radius_cells": 10,
+      "seed": 20260910,
+      "sampling_seed": 24418766,
+      "candidate_index": 19,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        151,
+        59
+      ],
+      "samples": 32,
+      "target": false,
+      "event_probability": {
+        "correlated": 0.0,
+        "independent": 0.0
+      },
+      "displayed_world_event": {
+        "correlated": false,
+        "independent": false
+      },
+      "final_test": false,
+      "selection": "two hash-ranked observations/source, first input-hash-ordered query; first sampled world",
+      "checkpoint_selected_on_this_cohort": false
+    },
+    {
+      "id": "pilot-obs_203894",
+      "global_id": "obs_203894",
+      "source": "ZInD",
+      "scene": "1288_floor_01_pano_9",
+      "parent_group": "ZInD:1288",
+      "domain": "indoor",
+      "cohort": "new_pilot",
+      "panels": {
+        "observed": "assets/zh/parent-pilot/obs_203894-observed.svg",
+        "reference": "assets/zh/parent-pilot/obs_203894-reference.svg",
+        "correlated_sample": "assets/zh/parent-pilot/obs_203894-correlated_sample.svg",
+        "correlated": "assets/zh/parent-pilot/obs_203894-correlated.svg",
+        "independent_sample": "assets/zh/parent-pilot/obs_203894-independent_sample.svg",
+        "independent": "assets/zh/parent-pilot/obs_203894-independent.svg"
+      },
+      "split_zh": "新基线 · 独立地点验证",
+      "checkpoint_scope_zh": "本轮从头训练；此地点未参与训练或检查点选优，属于开发验证",
+      "radius_cells": 10,
+      "seed": 20260910,
+      "sampling_seed": 24464804,
+      "candidate_index": 2,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        226,
+        148
+      ],
+      "samples": 32,
+      "target": true,
+      "event_probability": {
+        "correlated": 0.03125,
+        "independent": 0.0
+      },
+      "displayed_world_event": {
+        "correlated": false,
+        "independent": false
+      },
+      "final_test": false,
+      "selection": "two hash-ranked observations/source, first input-hash-ordered query; first sampled world",
+      "checkpoint_selected_on_this_cohort": false
+    },
+    {
+      "id": "pilot-obs_173909",
+      "global_id": "obs_173909",
+      "source": "ZInD",
+      "scene": "1246_floor_02_pano_54",
+      "parent_group": "ZInD:1246",
+      "domain": "indoor",
+      "cohort": "new_pilot",
+      "panels": {
+        "observed": "assets/zh/parent-pilot/obs_173909-observed.svg",
+        "reference": "assets/zh/parent-pilot/obs_173909-reference.svg",
+        "correlated_sample": "assets/zh/parent-pilot/obs_173909-correlated_sample.svg",
+        "correlated": "assets/zh/parent-pilot/obs_173909-correlated.svg",
+        "independent_sample": "assets/zh/parent-pilot/obs_173909-independent_sample.svg",
+        "independent": "assets/zh/parent-pilot/obs_173909-independent.svg"
+      },
+      "split_zh": "新基线 · 独立地点验证",
+      "checkpoint_scope_zh": "本轮从头训练；此地点未参与训练或检查点选优，属于开发验证",
+      "radius_cells": 10,
+      "seed": 20260910,
+      "sampling_seed": 24434819,
+      "candidate_index": 7,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        171,
+        93
+      ],
+      "samples": 32,
+      "target": false,
+      "event_probability": {
+        "correlated": 0.0,
+        "independent": 0.0
+      },
+      "displayed_world_event": {
+        "correlated": false,
+        "independent": false
+      },
+      "final_test": false,
+      "selection": "two hash-ranked observations/source, first input-hash-ordered query; first sampled world",
+      "checkpoint_selected_on_this_cohort": false
+    },
+    {
       "id": "indoor-obs_006301",
       "global_id": "obs_006301",
       "source": "3RScan",
@@ -1730,8 +2170,8 @@
     }
   ],
   "baseline_training_snapshot": {
-    "stage": "training",
-    "timestamp_utc": "2026-09-09T10:03:35.506819+00:00",
+    "stage": "baseline_complete",
+    "timestamp_utc": "2026-09-09T10:14:06.503017+00:00",
     "jobs": [
       {
         "method": "correlated",
@@ -1784,29 +2224,29 @@
       {
         "method": "correlated",
         "seed": 20260912,
-        "epochs": 14,
-        "complete": false,
-        "latest_epoch_seconds": 28.873708333005197,
-        "best_calibration_brier": 0.12671483707515538
+        "epochs": 24,
+        "complete": true,
+        "latest_epoch_seconds": 30.507186859991634,
+        "best_calibration_brier": 0.08382094750382771
       },
       {
         "method": "independent",
         "seed": 20260912,
-        "epochs": 14,
-        "complete": false,
-        "latest_epoch_seconds": 28.904478579002898,
-        "best_calibration_brier": 0.12852364674633324
+        "epochs": 24,
+        "complete": true,
+        "latest_epoch_seconds": 30.533351332996972,
+        "best_calibration_brier": 0.09929235800641567
       },
       {
         "method": "deterministic",
         "seed": 20260912,
-        "epochs": 0,
-        "complete": false,
-        "latest_epoch_seconds": null,
-        "best_calibration_brier": null
+        "epochs": 24,
+        "complete": true,
+        "latest_epoch_seconds": 0.39543353900080547,
+        "best_calibration_brier": 0.07343842787186441
       }
     ],
-    "completed": 6,
+    "completed": 9,
     "total": 9,
     "max_epochs": 24,
     "train_parents": 100,
@@ -1835,19 +2275,49 @@
       "other_processes_excluded": true
     }
   },
+  "candidate_training_snapshot": {
+    "stage": "training",
+    "jobs": [
+      {
+        "seed": 20260910,
+        "epochs": 5,
+        "complete": false,
+        "best_calibration_brier": 0.14869324004061812
+      },
+      {
+        "seed": 20260911,
+        "epochs": 5,
+        "complete": false,
+        "best_calibration_brier": 0.10971117078754221
+      }
+    ],
+    "total": 2,
+    "completed": 0,
+    "timestamp_utc": "2026-09-09T10:19:38.213805+00:00",
+    "snapshot_not_live": true,
+    "resource_policy": {
+      "max_training_processes": 2,
+      "allocator_gib_per_worker": 28,
+      "project_gpu_usage_target_gib": 60,
+      "other_processes_are_separate": true
+    },
+    "model_change_zh": "固定9×9空间相关类别采样",
+    "final_test": false,
+    "validation_reused_for_model_development": true
+  },
   "historical_model_training_samples": 160,
   "example_samples": [
     32,
     128
   ],
-  "latest_evaluation_samples": 4,
-  "new_training_for_gallery": false,
+  "latest_evaluation_samples": 32,
+  "new_training_for_gallery": true,
   "new_dataset_images_opened": true,
   "new_physical_test_images_opened": 0,
-  "new_cases": 28,
+  "new_cases": 38,
   "historical_model_pixels_changed": false,
-  "selection_note": "0 verified independent-place pilot cases precede 28 metadata-selected old-checkpoint cases and 2 preserved historical label-selected examples. Each shows the first actual world; none is best-of-K.",
-  "examples_are_old_cohort_diagnostics": true,
+  "selection_note": "10 verified independent-place pilot cases precede 28 metadata-selected old-checkpoint cases and 2 preserved historical label-selected examples. Each shows the first actual world; none is best-of-K.",
+  "examples_are_old_cohort_diagnostics": false,
   "assets": [
     {
       "path": "assets/zh/model-examples/positive_recovery-observed.svg",
@@ -2540,23 +3010,270 @@
     {
       "path": "assets/zh/expanded-models/outdoor-1693304973-296874-correlated.svg",
       "sha256": "91cc43f10b86e7066ec7b8d3392a5251ebc2cc9e4930f2e8654730d84d3ccf75"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_014028-observed.svg",
+      "sha256": "c99b982d963640070b71644550f04771d28d0102610cf177ef522ce83658d748"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_014028-reference.svg",
+      "sha256": "0e60f78250aaaf40857fde57ef78a92b31f909dfda637074b645bbdc69cb05c1"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_014028-correlated_sample.svg",
+      "sha256": "6053307068ece2848d2c5f0c958352acf4a416fabb666182cae9981688653be6"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_014028-correlated.svg",
+      "sha256": "c92e4c1ea9656f1e097f20c6173c74a24bd32b4d289bc6cce672c9bd9c72157c"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_014028-independent_sample.svg",
+      "sha256": "37066d5ed4cf5acc655a591726c243c102c9b0ebecb72bd5e4b04a7ce5d2b796"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_014028-independent.svg",
+      "sha256": "bc6ae6fb2751b134e06a71d44d8936b4938fbd519d7dc172ba4aaf3394b416b1"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_013470-observed.svg",
+      "sha256": "5a8ec47cb3aca246d4989f21d6c3d9944401411af0ada68e09bc01e122ac0849"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_013470-reference.svg",
+      "sha256": "93daeba1ed244a7c6f98c90e3d06a78f8467ed474ac56e76295e7eda3555cc76"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_013470-correlated_sample.svg",
+      "sha256": "3b7333a57a671ed76e8950286b80769851620445e98203e0a15a12d12b157e18"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_013470-correlated.svg",
+      "sha256": "50bdc75c3a52251a22c3e419dd0b9c2273969973f49b85a8297b994dbfdb77a7"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_013470-independent_sample.svg",
+      "sha256": "819e3d5280100d96ccd18e088e9415c2bf284e27a38b4f01aab0c31d4254e3d5"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_013470-independent.svg",
+      "sha256": "4234a40a9c84ea15f597f5049c656328b8eb6b5e14864788d7426d579695d9c6"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_082481-observed.svg",
+      "sha256": "8ef8e2bd97ff4b82134a7bb911d7cc19a133555ea949083e85e2d815e238a1b1"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_082481-reference.svg",
+      "sha256": "641240d8f43be253110c936e40df2063e06cbfea5028efb53f8c0f66d2b7972b"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_082481-correlated_sample.svg",
+      "sha256": "d3fcd704fc0f9a577908e57c569bcb8e445a36584fd883cf6ce51c94fa32b780"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_082481-correlated.svg",
+      "sha256": "5faaf7f9d22da3c3e2fea3f57dd71bdbd9a099a5beea440a229bcdb54d0692e4"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_082481-independent_sample.svg",
+      "sha256": "252b811ddd2ae0ae7991e99a36f5a659d4633ac9c0d6bacaff2822c77d2d337e"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_082481-independent.svg",
+      "sha256": "7d42a1bc94ad88ce14f629a969fc458d32b40bc1b16b5e51e1a4f223d909c639"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_065777-observed.svg",
+      "sha256": "43fc4ff54657dad4c741225e829843ea81f62a5617b6b4c6e1bb312ac0adbbec"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_065777-reference.svg",
+      "sha256": "3ec6b641943566b7425166191af855774cf034525a7d58163d6477ab4969942e"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_065777-correlated_sample.svg",
+      "sha256": "f5233d92cede3a5d52b13934a63bfe686c9c396d70c3d34b057ed1930e197bab"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_065777-correlated.svg",
+      "sha256": "016c4371f2294e49b9abd2125ccaa6c8112eb58f7a54a8745b677d9cbc2e67a6"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_065777-independent_sample.svg",
+      "sha256": "4cb8e0516e997d7f7af694421349fe7beb9152aaa5936931b690b4ccc9584d89"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_065777-independent.svg",
+      "sha256": "18eb8a695c6158b46fd89790a6ff82dce36144a022e8d62f9f0b40ab98655e8e"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_114561-observed.svg",
+      "sha256": "d873034dee127c240d014f69c3ea56ab5e3d4dfff9407de48b1da3f09e377825"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_114561-reference.svg",
+      "sha256": "7f848aa201af34ca8125fa97807d6b71bb888b0bb90d35edf886bb5d9be609ac"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_114561-correlated_sample.svg",
+      "sha256": "57b8963bba7bfbceb9109ab117d1f2efa9848a51bcfe85766c187fa0d65b3fae"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_114561-correlated.svg",
+      "sha256": "de652d80f23459d72c1210fc07c649115eccfb320bd12d270d27536eb5e4b10c"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_114561-independent_sample.svg",
+      "sha256": "cc1b6434bbb4a455b5700468950ab06e47f160c5750c151fa4486ceb845b2319"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_114561-independent.svg",
+      "sha256": "3816a66eb4c0e3edf3a3df41ff97512678a4ba25ab3cd454f2279b88f70c03d1"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_101106-observed.svg",
+      "sha256": "8b8a795525a1bd69e8c3b1c67b3b3d0c7b5d7dace2f29eecec7f5eba772b1a8e"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_101106-reference.svg",
+      "sha256": "f31bcb5b457916fe1e2b421340924422c424e8243502ddefd90022b5ca5cc748"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_101106-correlated_sample.svg",
+      "sha256": "7611f25db00e68a94b200819da2d85a219662c96598e484790aa9a5c2cd2403d"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_101106-correlated.svg",
+      "sha256": "0df6437e5f3aaf750dd578d1724c548a33768d12e38f3e399d0ba7a61bc53a40"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_101106-independent_sample.svg",
+      "sha256": "7bf5187f575948c7210630d481e4aeccbc26f64915621086c17be01f1db0d080"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_101106-independent.svg",
+      "sha256": "cd482714fcdd3156eca30d2210edb1e045cf74c339f553ee58f738f1412c89a0"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_166408-observed.svg",
+      "sha256": "183f8b9e47a906cc639a0d09c15fbb62d4a1e4452b284c3c100216be8373cbac"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_166408-reference.svg",
+      "sha256": "7d9bc34f1a7ab01882331515c0922cc55cacf243eade775956bdd29dec421208"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_166408-correlated_sample.svg",
+      "sha256": "404b9d74ef6385726c77382c42bec463c18dc038ff26a5a911869c6d41f1adc6"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_166408-correlated.svg",
+      "sha256": "ecf30533457a9c27917cbee4d9f906af8e3403c3e992c9d11d59df920f3c33da"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_166408-independent_sample.svg",
+      "sha256": "1918a73be49f5a7844874d0ab19830e6f7593edda280d0e20ae31212948fb5cc"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_166408-independent.svg",
+      "sha256": "54b949c4843911f7ab9b4aba98e90915691a56dc484bf501f80e786806cf45c7"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_157856-observed.svg",
+      "sha256": "4fb9b830e0d9ed51c6ae45170ab81f76f10f6100ab0f10506f0bd8b600f3d456"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_157856-reference.svg",
+      "sha256": "cef1f6ba1db61e79c2a8d9ebd1ee3b40e0a9ef40562a7ea184b1700a6420b8de"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_157856-correlated_sample.svg",
+      "sha256": "e9545f57d784313a6482f89e8d211f42c36088ed774ec2f9700210c991d495de"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_157856-correlated.svg",
+      "sha256": "ba1630b12308dc10f88293053a594eb0fe0297cb6c49deebaab216cc4c37d99f"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_157856-independent_sample.svg",
+      "sha256": "1056ad51882c271bbaff8ca2bde4c9f6d2630d41253f988c829d579070e6ffb6"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_157856-independent.svg",
+      "sha256": "dd03b74b5e26f2a7ac4730384b2d06e00e3e97c11cb10d0706e0ac957254ffb1"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_203894-observed.svg",
+      "sha256": "6cf0633dad53aa4e360f6095b4b1b816c376dbc1eed26869b3da46245d79fb1a"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_203894-reference.svg",
+      "sha256": "cbdeea012e641b92640c2b541ad374f81796d353f6862326129290b20a4f47c5"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_203894-correlated_sample.svg",
+      "sha256": "a8e17e29c680568925cde7ed4287ad2e53db739f7c2292e2f7efd58a34b70ddc"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_203894-correlated.svg",
+      "sha256": "b1c77408868f70e921b77c6694c01d77423645c6ac188eb22709a96fa8d8e5a4"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_203894-independent_sample.svg",
+      "sha256": "d7376f510dae23264ebc13c58d5bb14e92b38ef6b8835944aba04e6adbbfb48e"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_203894-independent.svg",
+      "sha256": "c5c53be18f2749e1ab544e9e3aca38f609fe7381132febc19a5c4522999733a5"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_173909-observed.svg",
+      "sha256": "6414633405123b8a635d60e49804fbc0e8a0b16ae76b0ca5695b00361a5e04ca"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_173909-reference.svg",
+      "sha256": "898ed55f310213b9c563bc2934bf7d6980a9fdafd645129cab81e6ae763e6599"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_173909-correlated_sample.svg",
+      "sha256": "ccf5133e757801ac762548d70e55004f22be578b6d054e1fa94068d5d79a8393"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_173909-correlated.svg",
+      "sha256": "74d9123f5ff404ec7b7e2b332924ecc930ec23f6b2ee810d7323a7e03d6799b9"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_173909-independent_sample.svg",
+      "sha256": "7b577bbb389654a55ce73c3fcab34b0ed6cbde004403aeced3515e13bd56221c"
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_173909-independent.svg",
+      "sha256": "16509b7a6334137ea1eca2b0516a1f51affdcbd94976d5b07ab993e9e35e4472"
     }
   ],
-  "pilot_publication_state": "awaiting_complete_published_report",
-  "pilot_cases": 0,
+  "pilot_publication_state": "verified",
+  "pilot_cases": 10,
   "historical_cases": 30,
-  "results_cohort": "historical",
+  "results_cohort": "new_pilot",
   "result_methods": [
     "correlated",
     "independent",
-    "tiny_deterministic",
-    "all_floor"
+    "deterministic",
+    "all_floor",
+    "train_radius_prior"
   ],
   "source_hashes": {
     "site/data/site_visuals_zh.json": "3fe0c0270fa2db16eb17e3ac6d69415592740df22c113c0258716ed12de832f8",
     "site/data/expanded_model_gallery_zh.json": "e9e5f9314c538765a448b0ce7280a73818eab69c5b7e40a66c77eb58cb37284d",
     "site/data/current_baseline_k4_analysis.json": "41c70d9158733cc608f19c28f9bb55b7edfccd64354c05490cc001b00b7581c2",
-    "scripts/build_model_home.py": "94bac6158f56eca2bea53fa43f1d8cadd833ebddd917a4895e48ee4ff2243086",
-    "site/data/parent_group_pilot_status_zh.json": "31417408288d4d520950bb58a4d2d7c39014c239ce16e7c4da6ce6d24da8c747"
+    "scripts/build_model_home.py": "425541f82413dea78dfcd2b2015e2acddf0c80c012d15ac8be65f57d929116e8",
+    "site/data/parent_pilot_gallery_zh.json": "313839fcdc5130a2bdafa003e6f3f5d4fe77740a96999265fd781ed6b5539e5b",
+    "site/data/parent_group_pilot_zh.json": "0875640afd84a7d5a1446943328ae90e40f3b4cdc8cbe02af04d01d428ee8cc5",
+    "site/data/parent_group_pilot_verification.json": "b64fd22bce079357883d8eb6f289c44e29d639c53af8b6acadcda41cd16c3f86",
+    "site/pilot.html": "edb1d7b9a3cb7deb4973b3cd2cdb0c38cf72e547f25d3184e05aa1c00dab569d",
+    "site/data/parent_pilot_gallery_verification.json": "cd9e8a08b2132e69b758f796b373de32a81d1010ecfd3d3ddae216d3ead541af",
+    "site/data/parent_group_pilot_status_zh.json": "d7e04cf37c4f34b45036380a5d98374be4c9b7996911d85a73bbd4ea6917ef6c",
+    "site/data/coherent_pilot_status_zh.json": "4cf9659d654e7531c585ee8461e47e2cd5b5f993b13f148ebd6e96de4667a32a"
   }
 }

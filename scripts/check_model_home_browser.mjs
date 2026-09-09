@@ -108,6 +108,18 @@ try {
     }
     await images();const report=await status();check(report.scrollWidth<=width+1 && report.rows===methods.length && !report.errorBanner && !report.broken.length,'Homepage viewport or runtime failure: '+JSON.stringify(report));
     reports.push({...report,cases:cases.length,modelViewStates,panels:3,sources:sources.length,resultsCohort:data.results_cohort||'historical',firstActualWorldAlwaysShown:true});
+    if (data.results_cohort === 'new_pilot') {
+      await command('Page.navigate',{url:new URL('pilot.html',base).href});
+      for(let i=0;i<80;i++){if(await evaluate(`document.querySelectorAll('#scores tbody tr').length===7`))break;await delay(100);}
+      check(await evaluate(`document.querySelectorAll('#scores tbody tr').length===7 && document.documentElement.lang==='zh-CN'`),'Detailed pilot report is missing');
+      await images();
+      await evaluate(`document.querySelector('#scores').scrollIntoView({behavior:'instant',block:'start'})`);
+      await screenshot(`${width}-pilot-report`);
+      await evaluate(`document.querySelector('details').open=true`);await images();
+      const pilot = await evaluate(`({width:innerWidth,scrollWidth:document.documentElement.scrollWidth,broken:[...document.images].filter(i=>!i.complete || !i.naturalWidth).map(i=>i.src),pdfLinks:document.querySelectorAll('a[href$=".pdf"]').length})`);
+      check(pilot.scrollWidth<=width+1 && !pilot.broken.length && pilot.pdfLinks===2,'Detailed pilot report layout or images failed: '+JSON.stringify(pilot));
+      reports.at(-1).detailedPilotReport = pilot;
+    }
   }
   await command('Page.navigate',{url:base+'#baseline-review'});
   for(let i=0;i<80;i++){if(await evaluate(`location.pathname.endsWith('/research.html') && location.hash==='#baseline-review'`))break;await delay(100);}

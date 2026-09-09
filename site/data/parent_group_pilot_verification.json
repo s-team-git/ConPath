@@ -1,0 +1,145 @@
+{
+  "passed": true,
+  "worlds_checked": 7920,
+  "explicit_erosion_connectivity_worlds": 720,
+  "independent_target_query_labels_checked": 40,
+  "prediction_vote_checks": 27810,
+  "map_aggregate_checks": 72,
+  "method_seed_budget_reports": [
+    {
+      "method": "all_blocked",
+      "seed": "rule",
+      "K": 1,
+      "passed": true
+    },
+    {
+      "method": "all_floor",
+      "seed": "rule",
+      "K": 1,
+      "passed": true
+    },
+    {
+      "method": "correlated",
+      "seed": 20260910,
+      "K": 4,
+      "passed": true
+    },
+    {
+      "method": "correlated",
+      "seed": 20260910,
+      "K": 32,
+      "passed": true
+    },
+    {
+      "method": "correlated",
+      "seed": 20260911,
+      "K": 4,
+      "passed": true
+    },
+    {
+      "method": "correlated",
+      "seed": 20260911,
+      "K": 32,
+      "passed": true
+    },
+    {
+      "method": "correlated",
+      "seed": 20260912,
+      "K": 4,
+      "passed": true
+    },
+    {
+      "method": "correlated",
+      "seed": 20260912,
+      "K": 32,
+      "passed": true
+    },
+    {
+      "method": "deterministic",
+      "seed": 20260910,
+      "K": 1,
+      "passed": true
+    },
+    {
+      "method": "deterministic",
+      "seed": 20260911,
+      "K": 1,
+      "passed": true
+    },
+    {
+      "method": "deterministic",
+      "seed": 20260912,
+      "K": 1,
+      "passed": true
+    },
+    {
+      "method": "independent",
+      "seed": 20260910,
+      "K": 4,
+      "passed": true
+    },
+    {
+      "method": "independent",
+      "seed": 20260910,
+      "K": 32,
+      "passed": true
+    },
+    {
+      "method": "independent",
+      "seed": 20260911,
+      "K": 4,
+      "passed": true
+    },
+    {
+      "method": "independent",
+      "seed": 20260911,
+      "K": 32,
+      "passed": true
+    },
+    {
+      "method": "independent",
+      "seed": 20260912,
+      "K": 4,
+      "passed": true
+    },
+    {
+      "method": "independent",
+      "seed": 20260912,
+      "K": 32,
+      "passed": true
+    },
+    {
+      "method": "nearest_observed",
+      "seed": "rule",
+      "K": 1,
+      "passed": true
+    },
+    {
+      "method": "train_radius_prior",
+      "seed": "rule",
+      "K": 1,
+      "passed": true
+    }
+  ],
+  "analysis_sha256": "0875640afd84a7d5a1446943328ae90e40f3b4cdc8cbe02af04d01d428ee8cc5",
+  "validation_events_per_report": 1545,
+  "cached_development_packets_only": true,
+  "new_archive_images_read_by_this_audit": 0,
+  "analysis_aggregate_audit": {
+    "passed": true,
+    "method_seed_reports": 13,
+    "method_budget_aggregates": 9,
+    "parent_order_checked_per_report_budget": true,
+    "paired_parent_intervals": 6,
+    "bootstrap_seed": 20260909,
+    "bootstrap_repetitions": 4000,
+    "recomputed_screen_conditions": {
+      "brier_better_than_independent": true,
+      "brier_better_than_deterministic": true,
+      "brier_better_than_all_floor": true,
+      "risk30_not_worse_than_deterministic": true
+    },
+    "recomputed_research_screen_passed": true
+  },
+  "audit_source_sha256": "61c49c21f69e190accb44103f1e1dde10cc7156af0d66cd26be6f760d1f76efc"
+}

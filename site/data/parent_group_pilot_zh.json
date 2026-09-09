@@ -1,0 +1,596 @@
+{
+  "id": "parent_group_pilot_v1",
+  "created_utc": "2026-09-09T10:09:08.454656+00:00",
+  "methods": {
+    "correlated": {
+      "repeats": 3,
+      "budgets": {
+        "4": {
+          "brier": {
+            "mean": 0.11063797103935939,
+            "sd": 0.006659879658095151,
+            "values": [
+              0.10331136139330799,
+              0.11632478528442876,
+              0.11227776644034142
+            ]
+          },
+          "risk30": {
+            "mean": 0.2411746496522846,
+            "sd": 0.009714398375888455,
+            "values": [
+              0.2302914693083851,
+              0.24426319392432422,
+              0.24896928572414448
+            ]
+          },
+          "map": {
+            "mean_iou": 0.6219298181095715,
+            "mean_blocked_iou": 0.2970989642558026,
+            "sample_vote_cell_brier": 0.17047566472503048,
+            "masked_energy_score": 0.2294464826389604
+          }
+        },
+        "32": {
+          "brier": {
+            "mean": 0.1037990099389618,
+            "sd": 0.0034979706444203816,
+            "values": [
+              0.09988516979120872,
+              0.10662033159925746,
+              0.10489152842641918
+            ]
+          },
+          "risk30": {
+            "mean": 0.2395186044924451,
+            "sd": 0.005779009059432345,
+            "values": [
+              0.23890881434628758,
+              0.23406867005525708,
+              0.24557832907579075
+            ]
+          },
+          "map": {
+            "mean_iou": 0.6223785770186246,
+            "mean_blocked_iou": 0.29585287366191954,
+            "sample_vote_cell_brier": 0.15388084081051537,
+            "masked_energy_score": 0.2301414408693462
+          }
+        }
+      }
+    },
+    "independent": {
+      "repeats": 3,
+      "budgets": {
+        "4": {
+          "brier": {
+            "mean": 0.12028129643559532,
+            "sd": 0.008441328424059716,
+            "values": [
+              0.11225981361859602,
+              0.11949642676465189,
+              0.12908764892353805
+            ]
+          },
+          "risk30": {
+            "mean": 0.2536264738997038,
+            "sd": 0.01309235478153941,
+            "values": [
+              0.25025667077540525,
+              0.24254841836315139,
+              0.2680743325605547
+            ]
+          },
+          "map": {
+            "mean_iou": 0.620824465833867,
+            "mean_blocked_iou": 0.2988569050825114,
+            "sample_vote_cell_brier": 0.1712074188176933,
+            "masked_energy_score": 0.22990124084361885
+          }
+        },
+        "32": {
+          "brier": {
+            "mean": 0.11201093264981389,
+            "sd": 0.0036562173334554774,
+            "values": [
+              0.10844725764745711,
+              0.11183238994612302,
+              0.11575315035586156
+            ]
+          },
+          "risk30": {
+            "mean": 0.24432207563864594,
+            "sd": 0.00928132052768654,
+            "values": [
+              0.25401247045100905,
+              0.24344110539838848,
+              0.23551265106654035
+            ]
+          },
+          "map": {
+            "mean_iou": 0.6212020536167194,
+            "mean_blocked_iou": 0.2989267562682694,
+            "sample_vote_cell_brier": 0.1540211404890021,
+            "masked_energy_score": 0.2296880907990457
+          }
+        }
+      }
+    },
+    "deterministic": {
+      "repeats": 3,
+      "budgets": {
+        "1": {
+          "brier": {
+            "mean": 0.11151571103809237,
+            "sd": 0.002560344480389599,
+            "values": [
+              0.10878135531192808,
+              0.11385645858556075,
+              0.11190931921678826
+            ]
+          },
+          "risk30": {
+            "mean": 0.25164089995763006,
+            "sd": 0.01023744465138031,
+            "values": [
+              0.2404332513308556,
+              0.2604999865007226,
+              0.25398946204131195
+            ]
+          },
+          "map": {
+            "mean_iou": 0.6622824626658812,
+            "mean_blocked_iou": 0.38799882205488156,
+            "sample_vote_cell_brier": 0.1898769455692837,
+            "masked_energy_score": null
+          }
+        }
+      }
+    },
+    "all_floor": {
+      "repeats": 1,
+      "budgets": {
+        "1": {
+          "brier": {
+            "mean": 0.18047901291032095,
+            "sd": null,
+            "values": [
+              0.18047901291032095
+            ]
+          },
+          "risk30": {
+            "mean": 0.39086616851401823,
+            "sd": null,
+            "values": [
+              0.39086616851401823
+            ]
+          },
+          "map": {
+            "mean_iou": 0.6317522508209924,
+            "mean_blocked_iou": 0.0,
+            "sample_vote_cell_brier": 0.3682477491790076,
+            "masked_energy_score": null
+          }
+        }
+      }
+    },
+    "all_blocked": {
+      "repeats": 1,
+      "budgets": {
+        "1": {
+          "brier": {
+            "mean": 0.28126218509732437,
+            "sd": null,
+            "values": [
+              0.28126218509732437
+            ]
+          },
+          "risk30": {
+            "mean": 0.7187378149026756,
+            "sd": null,
+            "values": [
+              0.7187378149026756
+            ]
+          },
+          "map": {
+            "mean_iou": 0.0,
+            "mean_blocked_iou": 0.3682477491790076,
+            "sample_vote_cell_brier": 0.6317522508209924,
+            "masked_energy_score": null
+          }
+        }
+      }
+    },
+    "nearest_observed": {
+      "repeats": 1,
+      "budgets": {
+        "1": {
+          "brier": {
+            "mean": 0.13833505052738798,
+            "sd": null,
+            "values": [
+              0.13833505052738798
+            ]
+          },
+          "risk30": {
+            "mean": 0.3045988751675424,
+            "sd": null,
+            "values": [
+              0.3045988751675424
+            ]
+          },
+          "map": {
+            "mean_iou": 0.5870743989904872,
+            "mean_blocked_iou": 0.3076429694693183,
+            "sample_vote_cell_brier": 0.2702790483013,
+            "masked_energy_score": null
+          }
+        }
+      }
+    },
+    "train_radius_prior": {
+      "repeats": 1,
+      "budgets": {
+        "1": {
+          "brier": {
+            "mean": 0.15606418204128067,
+            "sd": null,
+            "values": [
+              0.15606418204128067
+            ]
+          },
+          "risk30": {
+            "mean": 0.40410844261947204,
+            "sd": null,
+            "values": [
+              0.40410844261947204
+            ]
+          },
+          "map": null
+        }
+      }
+    }
+  },
+  "paired_brier": {
+    "independent": {
+      "other_minus_conpath": 0.00821192271085211,
+      "ci95": [
+        0.004390616254632626,
+        0.012508436835436077
+      ],
+      "unit": "parent place, source stratified; conditional on the displayed seed average"
+    },
+    "deterministic": {
+      "other_minus_conpath": 0.007716701099130566,
+      "ci95": [
+        -0.01616140495686517,
+        0.033765673376866354
+      ],
+      "unit": "parent place, source stratified; conditional on the displayed seed average"
+    },
+    "all_floor": {
+      "other_minus_conpath": 0.07668000297135917,
+      "ci95": [
+        0.036011799542329984,
+        0.11830690798963359
+      ],
+      "unit": "parent place, source stratified; conditional on the displayed seed average"
+    },
+    "all_blocked": {
+      "other_minus_conpath": 0.17746317515836263,
+      "ci95": [
+        0.13325380359718472,
+        0.2240908520401615
+      ],
+      "unit": "parent place, source stratified; conditional on the displayed seed average"
+    },
+    "nearest_observed": {
+      "other_minus_conpath": 0.0345360405884262,
+      "ci95": [
+        0.0008720583795163249,
+        0.067675471401705
+      ],
+      "unit": "parent place, source stratified; conditional on the displayed seed average"
+    },
+    "train_radius_prior": {
+      "other_minus_conpath": 0.05226517210231889,
+      "ci95": [
+        0.028116344449173117,
+        0.07554154905797095
+      ],
+      "unit": "parent place, source stratified; conditional on the displayed seed average"
+    }
+  },
+  "screen_conditions": {
+    "brier_better_than_independent": true,
+    "brier_better_than_deterministic": true,
+    "brier_better_than_all_floor": true,
+    "risk30_not_worse_than_deterministic": true
+  },
+  "research_screen_passed": true,
+  "implementation_checks_passed": true,
+  "training_runs_completed": 9,
+  "validation_parents": 40,
+  "validation_events": 1545,
+  "protocol": {
+    "id": "parent_group_pilot_v1",
+    "created_utc": "2026-09-09T08:51:50.051192+00:00",
+    "scope": "Small development pilot, not a final test or a replication of published leaderboard values",
+    "physical_archive_split": "train",
+    "provenance_split_is_metadata_not_partition": true,
+    "partition": {
+      "train": 100,
+      "calibration": 25,
+      "validation": 40,
+      "observations_per_parent": 1,
+      "source_balanced": true
+    },
+    "selection": "Source and candidate-partition stratified parent hash; one hash-ranked view/parent; no outcome-based replacements",
+    "candidate_sha256": "ccc86a4ca7016515e1f2c0371ccf1bb21a9ee3d8a1b9f92a63bef432360741e2",
+    "selected_sha256_before_image_access": "102f27e8f4186920035c87dcf70b113a4208a079afed257401fca4c8706fbb2c",
+    "query": {
+      "distances_cells": [
+        40,
+        80,
+        120
+      ],
+      "angles_deg": [
+        0,
+        30,
+        60,
+        90,
+        120,
+        150,
+        180,
+        210,
+        240,
+        270,
+        300,
+        330
+      ],
+      "radii_cells": [
+        0,
+        10,
+        20
+      ],
+      "construction": "observed free start; unknown and supplied-support valid goals; frozen before target PNG",
+      "blocked_target_goal": "keep as negative, never drop based on target endpoint class",
+      "training_queries_per_observation": 8,
+      "training_query_order": "hash of global_id and candidate index",
+      "evaluation_queries": "all input-eligible queries",
+      "connectivity": "four-neighbor with exact integer disk clearance"
+    },
+    "scale": "Raster-cell geometry only; release resolution=0.01 is used to reproduce the cell stencil, not verified physical-metre claims",
+    "input": "3 observed free/blocked/unknown channels and supplied epistemic valid support; target map used only for loss/scoring",
+    "methods": [
+      "correlated",
+      "independent",
+      "deterministic",
+      "all_floor",
+      "all_blocked",
+      "nearest_observed",
+      "train_radius_prior"
+    ],
+    "seeds": [
+      20260910,
+      20260911,
+      20260912
+    ],
+    "training": {
+      "from_scratch": true,
+      "feature_channels": 16,
+      "latent_dim": 4,
+      "batch_size": 4,
+      "train_samples": 4,
+      "max_epochs": 24,
+      "minimum_epochs": 12,
+      "patience": 6,
+      "learning_rate": 0.0003,
+      "weight_decay": 0.0001,
+      "gradient_clip": 5.0,
+      "map_weight": 1.0,
+      "variogram_weight": 0.1,
+      "event_weight": 2.0,
+      "max_reachability_steps": 256,
+      "deterministic_loss": "unknown-valid binary map NLL",
+      "selection": "lowest equal-parent calibration event Brier, tie within 1e-5 broken by map NLL",
+      "calibration_K": 16,
+      "calibration_rng": "fixed per-case stream reset each epoch, independent of training stream",
+      "validation_access": "only after all nine baseline runs have selected checkpoints",
+      "precision": "float32, no AMP; shared GPU timing is not isolated latency"
+    },
+    "evaluation": {
+      "K_primary": 32,
+      "K_common_small": 4,
+      "deterministic_K": 1,
+      "no_oracle_selection": true,
+      "aggregation": "equal parent; one view per parent and equal source counts",
+      "metrics": [
+        "event Brier",
+        "risk at 30% coverage with fractional probability ties",
+        "unknown-valid map IoU",
+        "MES for K>1"
+      ],
+      "confidence": "source-stratified paired bootstrap over parent places; seed means shown separately"
+    },
+    "decision": {
+      "implementation_pass": "checksums, splits, source identities, exact query oracle, finite learning and all 9 complete runs",
+      "research_screen": "mean K32 Brier lower than independent and deterministic, lower than all-floor; risk30 not worse than deterministic",
+      "after_screen_pass": "freeze one bounded model improvement using training/calibration diagnostics, compare with original under the same budget; validation becomes iterated development",
+      "after_screen_fail": "retain negative result; analyze protocol/input/underfitting before extending architecture; no automatic long Transformer run",
+      "strong_claim": "pilot screen is not statistical proof, final-test result, or external-method superiority"
+    },
+    "source_hashes": {
+      "scripts/prepare_parent_group_pilot.py": "8dca9e1a2157796d8e9544b1e819fd7b74489ab2146686d415b02cbc1b80e887",
+      "src/pathrel/parent_pilot_data.py": "119037a5924fecb2fcfb17b7fc86316b58e4b4d3b872e142a251e31ce1ec4475",
+      "src/pathrel/data_access.py": "62c7c127527e2c181a1446a896869e2e89f5a4588a18ae77bdf80373a44927fe"
+    }
+  },
+  "training": [
+    {
+      "method": "correlated",
+      "seed": 20260910,
+      "epochs": 24,
+      "best_epoch": 21,
+      "best_calibration": [
+        0.0934745305890575,
+        0.4955665408074856
+      ],
+      "checkpoint_sha256": "a1cc966191aa5d5526738dce648a3d42c57aedddf3218b979f3f5266fc69bc73",
+      "recipe_sha256": "a7b897680e28b006f451b27af8f57b1ee68bf28bc712266f6c080fc40a9f28a8",
+      "wall_seconds_this_process": 762.5190491510148,
+      "validation_evaluated": false
+    },
+    {
+      "method": "correlated",
+      "seed": 20260911,
+      "epochs": 23,
+      "best_epoch": 17,
+      "best_calibration": [
+        0.10113411209654316,
+        0.49830228120088577
+      ],
+      "checkpoint_sha256": "d4dc1e0becf492e037c723548c9c7e3a3098cd7c894552a02fd0f1cb64740618",
+      "recipe_sha256": "64e7221a63ae5dfe3694124c1d7c65d9555de63bff2c306569257401b31d38f7",
+      "wall_seconds_this_process": 367.6215889059822,
+      "validation_evaluated": false
+    },
+    {
+      "method": "correlated",
+      "seed": 20260912,
+      "epochs": 24,
+      "best_epoch": 22,
+      "best_calibration": [
+        0.08382094750382771,
+        0.456699593514204
+      ],
+      "checkpoint_sha256": "284584c5dfbaac6a335759d6eb46a6480aae77508443171b4ff2e640e4456ab0",
+      "recipe_sha256": "cbb0217b59934a98c1833e763bf79ad4c66d972c3ba3818031fbc911d6fd7e02",
+      "wall_seconds_this_process": 714.2323066630051,
+      "validation_evaluated": false
+    },
+    {
+      "method": "independent",
+      "seed": 20260910,
+      "epochs": 24,
+      "best_epoch": 21,
+      "best_calibration": [
+        0.09980546113852036,
+        0.5480285882949829
+      ],
+      "checkpoint_sha256": "09c4a74cf19ad41a71b002734d27c11db8c1e62b617396f9e5d396879712692d",
+      "recipe_sha256": "2eb57c54387accfa8d53c6f5ccf51b2686d9f8c64f1c3045eb633a5f13ff8ccd",
+      "wall_seconds_this_process": 762.2632025819912,
+      "validation_evaluated": false
+    },
+    {
+      "method": "independent",
+      "seed": 20260911,
+      "epochs": 21,
+      "best_epoch": 15,
+      "best_calibration": [
+        0.10652403921149084,
+        0.49051683343946934
+      ],
+      "checkpoint_sha256": "8d260723f4b9b6330ffb66086337144dca46b8f39d65d18861917b900014fee1",
+      "recipe_sha256": "a7bede180640e16166f465a1ef07c8799fdc9c364bdef261b271428e235ce496",
+      "wall_seconds_this_process": 346.67934732401045,
+      "validation_evaluated": false
+    },
+    {
+      "method": "independent",
+      "seed": 20260912,
+      "epochs": 24,
+      "best_epoch": 22,
+      "best_calibration": [
+        0.09929235800641567,
+        0.46789189636707307
+      ],
+      "checkpoint_sha256": "a5db0af9991af7ae45df63c81f2dd487015cf6be43833e472ee64d7a25a91a50",
+      "recipe_sha256": "257161fbf8427e3974c750e95ac514660bbf87fbd73d4c702acbbf2ef874f005",
+      "wall_seconds_this_process": 713.6354137680028,
+      "validation_evaluated": false
+    },
+    {
+      "method": "deterministic",
+      "seed": 20260910,
+      "epochs": 24,
+      "best_epoch": 19,
+      "best_calibration": [
+        0.07530564585053749,
+        0.33263850554823876
+      ],
+      "checkpoint_sha256": "e1c359971d171466f756c8f8477cb7bf12671cb4181e0d491ac5d1e8dc510eb8",
+      "recipe_sha256": "a21137aecc911533c546899ab4b12dfbaa84c54b64f4699b8b52b6b1e11cb8f9",
+      "wall_seconds_this_process": 21.309386437002104,
+      "validation_evaluated": false
+    },
+    {
+      "method": "deterministic",
+      "seed": 20260911,
+      "epochs": 22,
+      "best_epoch": 16,
+      "best_calibration": [
+        0.07910254153597807,
+        0.34075945913791655
+      ],
+      "checkpoint_sha256": "1d64165d9a6cc5a0104e17962236c75c56e03b976c1d94ce85d8a883d1fbc57d",
+      "recipe_sha256": "3a798f489f74434bfde0dbc551bb8d2df4876590eeb087baadc4756028bcbdb2",
+      "wall_seconds_this_process": 16.826552241022,
+      "validation_evaluated": false
+    },
+    {
+      "method": "deterministic",
+      "seed": 20260912,
+      "epochs": 24,
+      "best_epoch": 20,
+      "best_calibration": [
+        0.07343842787186441,
+        0.3501237404346466
+      ],
+      "checkpoint_sha256": "1997d665a97f87700361b74436bc653c28cf76d82686460099c10c06b1fa970c",
+      "recipe_sha256": "8fa10a72b65c543e129f06a968ac7a2f181cff56708951020f91968ebee4dffb",
+      "wall_seconds_this_process": 10.098863654973684,
+      "validation_evaluated": false
+    }
+  ],
+  "data_audit_summary": {
+    "train": {
+      "parents": 100,
+      "queries": 1327,
+      "parents_with_queries": 98,
+      "positive_events_per_radius": [
+        878,
+        397,
+        248
+      ],
+      "blocked_target_goals_kept": 415
+    },
+    "calibration": {
+      "parents": 25,
+      "queries": 340,
+      "parents_with_queries": 25,
+      "positive_events_per_radius": [
+        219,
+        101,
+        78
+      ],
+      "blocked_target_goals_kept": 116
+    },
+    "validation": {
+      "parents": 40,
+      "queries": 515,
+      "parents_with_queries": 40,
+      "positive_events_per_radius": [
+        317,
+        107,
+        62
+      ],
+      "blocked_target_goals_kept": 186
+    }
+  },
+  "new_physical_test_images_opened": 0,
+  "final_test": false,
+  "direct_comparison_to_published_scores": false,
+  "claim": "Small-budget independent-place development comparison; CIs condition on 3 seed means. External common-protocol baselines and fresh final holdout remain pending."
+}

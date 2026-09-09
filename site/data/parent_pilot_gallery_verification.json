@@ -1,0 +1,1315 @@
+{
+  "passed": true,
+  "created_utc": "2026-09-09T10:11:47.384519+00:00",
+  "analysis_sha256": "0875640afd84a7d5a1446943328ae90e40f3b4cdc8cbe02af04d01d428ee8cc5",
+  "gallery_sha256": "313839fcdc5130a2bdafa003e6f3f5d4fe77740a96999265fd781ed6b5539e5b",
+  "script_sha256": "89f78cd2448f29743520c9f4e3d5aa50313202f9486bc96f1229916c39dfb75c",
+  "cases_checked": 10,
+  "svg_bitmaps_checked": 60,
+  "rgb_pixels_checked": 3932160,
+  "world_event_checks": 640,
+  "reference_event_checks": 10,
+  "selection_reconstructed_without_targets": true,
+  "first_input_hash_query": true,
+  "first_actual_world": true,
+  "independent_pixel_oracle": true,
+  "explicit_disk_four_neighbor_oracle": true,
+  "cached_development_packets_only": true,
+  "cached_packets_read": 10,
+  "new_archive_images_read": 0,
+  "model_inference_run": false,
+  "gpu_used": false,
+  "final_test": false,
+  "source_hashes": {
+    "results/parent_group_pilot_v1/analysis.json": "0875640afd84a7d5a1446943328ae90e40f3b4cdc8cbe02af04d01d428ee8cc5",
+    "results/parent_group_pilot_v1/verification.json": "b64fd22bce079357883d8eb6f289c44e29d639c53af8b6acadcda41cd16c3f86",
+    "site/data/parent_group_pilot_zh.json": "0875640afd84a7d5a1446943328ae90e40f3b4cdc8cbe02af04d01d428ee8cc5",
+    "site/data/parent_pilot_gallery_zh.json": "313839fcdc5130a2bdafa003e6f3f5d4fe77740a96999265fd781ed6b5539e5b",
+    "results/parent_group_pilot_v1/data/seal.json": "5b8a927d56f0c4961963b7e091c0dc0bd34924ea4e2bbf86e9214c57810fcf2c",
+    "results/parent_group_pilot_v1/evaluation/evaluation_frozen_before_scoring.json": "9914f5f0de6b9a01b4352af66312431b416fa9f52bc5b08b3b6fd0f793082e63",
+    "results/parent_group_pilot_v1/data/protocol.json": "175d555c6da4dabf268b13a6cf0ca8bbbca97e91fcc0cebe7d4aadf9092222f3",
+    "results/parent_group_pilot_v1/data/data_audit.json": "c9cc43c6cfb0f570342beed808afe40f81d7688d7cf7da036c8505cc41a7e523",
+    "results/parent_group_pilot_v1/data/selected.csv": "102f27e8f4186920035c87dcf70b113a4208a079afed257401fca4c8706fbb2c",
+    "results/parent_group_pilot_v1/data/input_queries_before_target.jsonl": "8bcded74e95f8182cfdfa45195ce9dabae44bfeace07df195104d8247ad1657a",
+    "results/parent_group_pilot_v1/data/packets/obs_014028.npz": "9faeac61af1a1c15548e58000f5a273fc5fb0ed975c26d048b226e1139928e93",
+    "results/parent_group_pilot_v1/data/packets/obs_013470.npz": "26415f158bbce3e2ca480dcb71ef65b0851a839f537ac0b9b5922b29e4248898",
+    "results/parent_group_pilot_v1/data/packets/obs_082481.npz": "a43a179757d2c8ea365a73bd74fde0366d7fcbdab1b400f6249d07f1d0d189c7",
+    "results/parent_group_pilot_v1/data/packets/obs_065777.npz": "e5516726f2862fdf8ce469445fb5d3e0b492af1163453eeb893a8249cc69af7f",
+    "results/parent_group_pilot_v1/data/packets/obs_114561.npz": "0b557d454d5f42fc463451c540a92cb26fe21b85163ba82bdb65801431082b96",
+    "results/parent_group_pilot_v1/data/packets/obs_101106.npz": "c37eb9f7c92d6438ac6d7986fce6edeccbbaaad33c978ed8e3bec376b3b2fa1d",
+    "results/parent_group_pilot_v1/data/packets/obs_166408.npz": "839f700bd17c6b26963f146f8047c08012fe551a898c58af2642c5fa8cd7d4f8",
+    "results/parent_group_pilot_v1/data/packets/obs_157856.npz": "f5217277ec8754c92dfb837bbc450009a51ba41e204b9bc5539e9b75b7ec3137",
+    "results/parent_group_pilot_v1/data/packets/obs_203894.npz": "1c26373c95e093b4565e8c231e83afd04b545ede738150c2185fdbaea667cc59",
+    "results/parent_group_pilot_v1/data/packets/obs_173909.npz": "4df817d94639faef9790ca56e3fe3c8d8a3bb82219ded9e38474d7a7ec47c38a",
+    "results/parent_group_pilot_v1/evaluation/correlated/20260910/report.json": "d1a775e8649b112446006da156e0fd5f385a569371100202ce155a859250246f",
+    "results/parent_group_pilot_v1/evaluation/correlated/20260910/worlds.npz": "134f65fd6fcfbb134c7a05ff5c14a6371cf5ee4fc91d3ced5d0f2fe53b4d91c9",
+    "results/parent_group_pilot_v1/evaluation/correlated/20260910/predictions_k32.csv": "b98ff3a43afb8c86866d48849b9acc83f1280a952ea3719c564a2e7941110ccc",
+    "results/parent_group_pilot_v1/evaluation/independent/20260910/report.json": "0a9240b7cfdc2fbb1876008592df2f15553a8e98cb16dd210597556aab038e0a",
+    "results/parent_group_pilot_v1/evaluation/independent/20260910/worlds.npz": "139622921e6326bb672b864d9c3aba4e6f6d4d2a58511a84247e77ac2342d355",
+    "results/parent_group_pilot_v1/evaluation/independent/20260910/predictions_k32.csv": "07d7dc4ecd91907957a0ace223f6a5fe5fafafa1d75d0cc20b4fd13260c364f1",
+    "site/assets/zh/parent-pilot/obs_014028-observed.svg": "c99b982d963640070b71644550f04771d28d0102610cf177ef522ce83658d748",
+    "site/assets/zh/parent-pilot/obs_014028-reference.svg": "0e60f78250aaaf40857fde57ef78a92b31f909dfda637074b645bbdc69cb05c1",
+    "site/assets/zh/parent-pilot/obs_014028-correlated_sample.svg": "6053307068ece2848d2c5f0c958352acf4a416fabb666182cae9981688653be6",
+    "site/assets/zh/parent-pilot/obs_014028-correlated.svg": "c92e4c1ea9656f1e097f20c6173c74a24bd32b4d289bc6cce672c9bd9c72157c",
+    "site/assets/zh/parent-pilot/obs_014028-independent_sample.svg": "37066d5ed4cf5acc655a591726c243c102c9b0ebecb72bd5e4b04a7ce5d2b796",
+    "site/assets/zh/parent-pilot/obs_014028-independent.svg": "bc6ae6fb2751b134e06a71d44d8936b4938fbd519d7dc172ba4aaf3394b416b1",
+    "site/assets/zh/parent-pilot/obs_013470-observed.svg": "5a8ec47cb3aca246d4989f21d6c3d9944401411af0ada68e09bc01e122ac0849",
+    "site/assets/zh/parent-pilot/obs_013470-reference.svg": "93daeba1ed244a7c6f98c90e3d06a78f8467ed474ac56e76295e7eda3555cc76",
+    "site/assets/zh/parent-pilot/obs_013470-correlated_sample.svg": "3b7333a57a671ed76e8950286b80769851620445e98203e0a15a12d12b157e18",
+    "site/assets/zh/parent-pilot/obs_013470-correlated.svg": "50bdc75c3a52251a22c3e419dd0b9c2273969973f49b85a8297b994dbfdb77a7",
+    "site/assets/zh/parent-pilot/obs_013470-independent_sample.svg": "819e3d5280100d96ccd18e088e9415c2bf284e27a38b4f01aab0c31d4254e3d5",
+    "site/assets/zh/parent-pilot/obs_013470-independent.svg": "4234a40a9c84ea15f597f5049c656328b8eb6b5e14864788d7426d579695d9c6",
+    "site/assets/zh/parent-pilot/obs_082481-observed.svg": "8ef8e2bd97ff4b82134a7bb911d7cc19a133555ea949083e85e2d815e238a1b1",
+    "site/assets/zh/parent-pilot/obs_082481-reference.svg": "641240d8f43be253110c936e40df2063e06cbfea5028efb53f8c0f66d2b7972b",
+    "site/assets/zh/parent-pilot/obs_082481-correlated_sample.svg": "d3fcd704fc0f9a577908e57c569bcb8e445a36584fd883cf6ce51c94fa32b780",
+    "site/assets/zh/parent-pilot/obs_082481-correlated.svg": "5faaf7f9d22da3c3e2fea3f57dd71bdbd9a099a5beea440a229bcdb54d0692e4",
+    "site/assets/zh/parent-pilot/obs_082481-independent_sample.svg": "252b811ddd2ae0ae7991e99a36f5a659d4633ac9c0d6bacaff2822c77d2d337e",
+    "site/assets/zh/parent-pilot/obs_082481-independent.svg": "7d42a1bc94ad88ce14f629a969fc458d32b40bc1b16b5e51e1a4f223d909c639",
+    "site/assets/zh/parent-pilot/obs_065777-observed.svg": "43fc4ff54657dad4c741225e829843ea81f62a5617b6b4c6e1bb312ac0adbbec",
+    "site/assets/zh/parent-pilot/obs_065777-reference.svg": "3ec6b641943566b7425166191af855774cf034525a7d58163d6477ab4969942e",
+    "site/assets/zh/parent-pilot/obs_065777-correlated_sample.svg": "f5233d92cede3a5d52b13934a63bfe686c9c396d70c3d34b057ed1930e197bab",
+    "site/assets/zh/parent-pilot/obs_065777-correlated.svg": "016c4371f2294e49b9abd2125ccaa6c8112eb58f7a54a8745b677d9cbc2e67a6",
+    "site/assets/zh/parent-pilot/obs_065777-independent_sample.svg": "4cb8e0516e997d7f7af694421349fe7beb9152aaa5936931b690b4ccc9584d89",
+    "site/assets/zh/parent-pilot/obs_065777-independent.svg": "18eb8a695c6158b46fd89790a6ff82dce36144a022e8d62f9f0b40ab98655e8e",
+    "site/assets/zh/parent-pilot/obs_114561-observed.svg": "d873034dee127c240d014f69c3ea56ab5e3d4dfff9407de48b1da3f09e377825",
+    "site/assets/zh/parent-pilot/obs_114561-reference.svg": "7f848aa201af34ca8125fa97807d6b71bb888b0bb90d35edf886bb5d9be609ac",
+    "site/assets/zh/parent-pilot/obs_114561-correlated_sample.svg": "57b8963bba7bfbceb9109ab117d1f2efa9848a51bcfe85766c187fa0d65b3fae",
+    "site/assets/zh/parent-pilot/obs_114561-correlated.svg": "de652d80f23459d72c1210fc07c649115eccfb320bd12d270d27536eb5e4b10c",
+    "site/assets/zh/parent-pilot/obs_114561-independent_sample.svg": "cc1b6434bbb4a455b5700468950ab06e47f160c5750c151fa4486ceb845b2319",
+    "site/assets/zh/parent-pilot/obs_114561-independent.svg": "3816a66eb4c0e3edf3a3df41ff97512678a4ba25ab3cd454f2279b88f70c03d1",
+    "site/assets/zh/parent-pilot/obs_101106-observed.svg": "8b8a795525a1bd69e8c3b1c67b3b3d0c7b5d7dace2f29eecec7f5eba772b1a8e",
+    "site/assets/zh/parent-pilot/obs_101106-reference.svg": "f31bcb5b457916fe1e2b421340924422c424e8243502ddefd90022b5ca5cc748",
+    "site/assets/zh/parent-pilot/obs_101106-correlated_sample.svg": "7611f25db00e68a94b200819da2d85a219662c96598e484790aa9a5c2cd2403d",
+    "site/assets/zh/parent-pilot/obs_101106-correlated.svg": "0df6437e5f3aaf750dd578d1724c548a33768d12e38f3e399d0ba7a61bc53a40",
+    "site/assets/zh/parent-pilot/obs_101106-independent_sample.svg": "7bf5187f575948c7210630d481e4aeccbc26f64915621086c17be01f1db0d080",
+    "site/assets/zh/parent-pilot/obs_101106-independent.svg": "cd482714fcdd3156eca30d2210edb1e045cf74c339f553ee58f738f1412c89a0",
+    "site/assets/zh/parent-pilot/obs_166408-observed.svg": "183f8b9e47a906cc639a0d09c15fbb62d4a1e4452b284c3c100216be8373cbac",
+    "site/assets/zh/parent-pilot/obs_166408-reference.svg": "7d9bc34f1a7ab01882331515c0922cc55cacf243eade775956bdd29dec421208",
+    "site/assets/zh/parent-pilot/obs_166408-correlated_sample.svg": "404b9d74ef6385726c77382c42bec463c18dc038ff26a5a911869c6d41f1adc6",
+    "site/assets/zh/parent-pilot/obs_166408-correlated.svg": "ecf30533457a9c27917cbee4d9f906af8e3403c3e992c9d11d59df920f3c33da",
+    "site/assets/zh/parent-pilot/obs_166408-independent_sample.svg": "1918a73be49f5a7844874d0ab19830e6f7593edda280d0e20ae31212948fb5cc",
+    "site/assets/zh/parent-pilot/obs_166408-independent.svg": "54b949c4843911f7ab9b4aba98e90915691a56dc484bf501f80e786806cf45c7",
+    "site/assets/zh/parent-pilot/obs_157856-observed.svg": "4fb9b830e0d9ed51c6ae45170ab81f76f10f6100ab0f10506f0bd8b600f3d456",
+    "site/assets/zh/parent-pilot/obs_157856-reference.svg": "cef1f6ba1db61e79c2a8d9ebd1ee3b40e0a9ef40562a7ea184b1700a6420b8de",
+    "site/assets/zh/parent-pilot/obs_157856-correlated_sample.svg": "e9545f57d784313a6482f89e8d211f42c36088ed774ec2f9700210c991d495de",
+    "site/assets/zh/parent-pilot/obs_157856-correlated.svg": "ba1630b12308dc10f88293053a594eb0fe0297cb6c49deebaab216cc4c37d99f",
+    "site/assets/zh/parent-pilot/obs_157856-independent_sample.svg": "1056ad51882c271bbaff8ca2bde4c9f6d2630d41253f988c829d579070e6ffb6",
+    "site/assets/zh/parent-pilot/obs_157856-independent.svg": "dd03b74b5e26f2a7ac4730384b2d06e00e3e97c11cb10d0706e0ac957254ffb1",
+    "site/assets/zh/parent-pilot/obs_203894-observed.svg": "6cf0633dad53aa4e360f6095b4b1b816c376dbc1eed26869b3da46245d79fb1a",
+    "site/assets/zh/parent-pilot/obs_203894-reference.svg": "cbdeea012e641b92640c2b541ad374f81796d353f6862326129290b20a4f47c5",
+    "site/assets/zh/parent-pilot/obs_203894-correlated_sample.svg": "a8e17e29c680568925cde7ed4287ad2e53db739f7c2292e2f7efd58a34b70ddc",
+    "site/assets/zh/parent-pilot/obs_203894-correlated.svg": "b1c77408868f70e921b77c6694c01d77423645c6ac188eb22709a96fa8d8e5a4",
+    "site/assets/zh/parent-pilot/obs_203894-independent_sample.svg": "d7376f510dae23264ebc13c58d5bb14e92b38ef6b8835944aba04e6adbbfb48e",
+    "site/assets/zh/parent-pilot/obs_203894-independent.svg": "c5c53be18f2749e1ab544e9e3aca38f609fe7381132febc19a5c4522999733a5",
+    "site/assets/zh/parent-pilot/obs_173909-observed.svg": "6414633405123b8a635d60e49804fbc0e8a0b16ae76b0ca5695b00361a5e04ca",
+    "site/assets/zh/parent-pilot/obs_173909-reference.svg": "898ed55f310213b9c563bc2934bf7d6980a9fdafd645129cab81e6ae763e6599",
+    "site/assets/zh/parent-pilot/obs_173909-correlated_sample.svg": "ccf5133e757801ac762548d70e55004f22be578b6d054e1fa94068d5d79a8393",
+    "site/assets/zh/parent-pilot/obs_173909-correlated.svg": "74d9123f5ff404ec7b7e2b332924ecc930ec23f6b2ee810d7323a7e03d6799b9",
+    "site/assets/zh/parent-pilot/obs_173909-independent_sample.svg": "7b577bbb389654a55ce73c3fcab34b0ed6cbde004403aeced3515e13bd56221c",
+    "site/assets/zh/parent-pilot/obs_173909-independent.svg": "16509b7a6334137ea1eca2b0516a1f51affdcbd94976d5b07ab993e9e35e4472"
+  },
+  "cases": [
+    {
+      "global_id": "obs_014028",
+      "source": "3RScan",
+      "parent_group": "3RScan:7747a50a-9431-24e8-85c6-3488c128ac26",
+      "candidate_index": 24,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        191,
+        248
+      ],
+      "radius_cells": 10,
+      "reference_event": false,
+      "votes": {
+        "correlated": {
+          "positive_worlds": 0,
+          "worlds": 32,
+          "probability": 0.0,
+          "first_world_event": false
+        },
+        "independent": {
+          "positive_worlds": 0,
+          "worlds": 32,
+          "probability": 0.0,
+          "first_world_event": false
+        }
+      }
+    },
+    {
+      "global_id": "obs_013470",
+      "source": "3RScan",
+      "parent_group": "3RScan:d63767be-3205-226c-9a89-3a27969053a7",
+      "candidate_index": 12,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        191,
+        208
+      ],
+      "radius_cells": 10,
+      "reference_event": false,
+      "votes": {
+        "correlated": {
+          "positive_worlds": 0,
+          "worlds": 32,
+          "probability": 0.0,
+          "first_world_event": false
+        },
+        "independent": {
+          "positive_worlds": 0,
+          "worlds": 32,
+          "probability": 0.0,
+          "first_world_event": false
+        }
+      }
+    },
+    {
+      "global_id": "obs_082481",
+      "source": "ARKitScenes",
+      "parent_group": "ARKitScenes:421065",
+      "candidate_index": 30,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        191,
+        8
+      ],
+      "radius_cells": 10,
+      "reference_event": false,
+      "votes": {
+        "correlated": {
+          "positive_worlds": 0,
+          "worlds": 32,
+          "probability": 0.0,
+          "first_world_event": false
+        },
+        "independent": {
+          "positive_worlds": 0,
+          "worlds": 32,
+          "probability": 0.0,
+          "first_world_event": false
+        }
+      }
+    },
+    {
+      "global_id": "obs_065777",
+      "source": "ARKitScenes",
+      "parent_group": "ARKitScenes:422385",
+      "candidate_index": 2,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        226,
+        148
+      ],
+      "radius_cells": 10,
+      "reference_event": false,
+      "votes": {
+        "correlated": {
+          "positive_worlds": 0,
+          "worlds": 32,
+          "probability": 0.0,
+          "first_world_event": false
+        },
+        "independent": {
+          "positive_worlds": 0,
+          "worlds": 32,
+          "probability": 0.0,
+          "first_world_event": false
+        }
+      }
+    },
+    {
+      "global_id": "obs_114561",
+      "source": "Matterport3D",
+      "parent_group": "Matterport3D:EDJbREhghzL",
+      "candidate_index": 2,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        226,
+        148
+      ],
+      "radius_cells": 10,
+      "reference_event": true,
+      "votes": {
+        "correlated": {
+          "positive_worlds": 24,
+          "worlds": 32,
+          "probability": 0.75,
+          "first_world_event": false
+        },
+        "independent": {
+          "positive_worlds": 23,
+          "worlds": 32,
+          "probability": 0.71875,
+          "first_world_event": true
+        }
+      }
+    },
+    {
+      "global_id": "obs_101106",
+      "source": "Matterport3D",
+      "parent_group": "Matterport3D:HxpKQynjfin",
+      "candidate_index": 11,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        171,
+        163
+      ],
+      "radius_cells": 10,
+      "reference_event": false,
+      "votes": {
+        "correlated": {
+          "positive_worlds": 18,
+          "worlds": 32,
+          "probability": 0.5625,
+          "first_world_event": true
+        },
+        "independent": {
+          "positive_worlds": 25,
+          "worlds": 32,
+          "probability": 0.78125,
+          "first_world_event": true
+        }
+      }
+    },
+    {
+      "global_id": "obs_166408",
+      "source": "ScanNet",
+      "parent_group": "ScanNet:scene0489",
+      "candidate_index": 19,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        151,
+        59
+      ],
+      "radius_cells": 10,
+      "reference_event": false,
+      "votes": {
+        "correlated": {
+          "positive_worlds": 0,
+          "worlds": 32,
+          "probability": 0.0,
+          "first_world_event": false
+        },
+        "independent": {
+          "positive_worlds": 0,
+          "worlds": 32,
+          "probability": 0.0,
+          "first_world_event": false
+        }
+      }
+    },
+    {
+      "global_id": "obs_157856",
+      "source": "ScanNet",
+      "parent_group": "ScanNet:scene0355",
+      "candidate_index": 19,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        151,
+        59
+      ],
+      "radius_cells": 10,
+      "reference_event": false,
+      "votes": {
+        "correlated": {
+          "positive_worlds": 0,
+          "worlds": 32,
+          "probability": 0.0,
+          "first_world_event": false
+        },
+        "independent": {
+          "positive_worlds": 0,
+          "worlds": 32,
+          "probability": 0.0,
+          "first_world_event": false
+        }
+      }
+    },
+    {
+      "global_id": "obs_203894",
+      "source": "ZInD",
+      "parent_group": "ZInD:1288",
+      "candidate_index": 2,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        226,
+        148
+      ],
+      "radius_cells": 10,
+      "reference_event": true,
+      "votes": {
+        "correlated": {
+          "positive_worlds": 1,
+          "worlds": 32,
+          "probability": 0.03125,
+          "first_world_event": false
+        },
+        "independent": {
+          "positive_worlds": 0,
+          "worlds": 32,
+          "probability": 0.0,
+          "first_world_event": false
+        }
+      }
+    },
+    {
+      "global_id": "obs_173909",
+      "source": "ZInD",
+      "parent_group": "ZInD:1246",
+      "candidate_index": 7,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        171,
+        93
+      ],
+      "radius_cells": 10,
+      "reference_event": false,
+      "votes": {
+        "correlated": {
+          "positive_worlds": 0,
+          "worlds": 32,
+          "probability": 0.0,
+          "first_world_event": false
+        },
+        "independent": {
+          "positive_worlds": 0,
+          "worlds": 32,
+          "probability": 0.0,
+          "first_world_event": false
+        }
+      }
+    }
+  ],
+  "panels": [
+    {
+      "path": "assets/zh/parent-pilot/obs_014028-observed.svg",
+      "case": "obs_014028",
+      "panel": "observed",
+      "svg_sha256": "c99b982d963640070b71644550f04771d28d0102610cf177ef522ce83658d748",
+      "embedded_png_sha256": "e0b5e441d1cf5f2fd5db75c7b67ec7b3f8615c4fab4c7e1ef03535d30ad856c5",
+      "rgb_sha256": "00ff3286f585f85b2e32a94be1f9d6411b10d2218848f4e27cc799a0801b6b99",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_014028-reference.svg",
+      "case": "obs_014028",
+      "panel": "reference",
+      "svg_sha256": "0e60f78250aaaf40857fde57ef78a92b31f909dfda637074b645bbdc69cb05c1",
+      "embedded_png_sha256": "aaf5acc66c0f95a61c9abde38f636dde995577eb1ff8283e206acc27b0c7cfef",
+      "rgb_sha256": "df7917a9e40bf5f1fe2e90975953874753e4f0e957662f4454ab089b251e823c",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_014028-correlated_sample.svg",
+      "case": "obs_014028",
+      "panel": "correlated_sample",
+      "svg_sha256": "6053307068ece2848d2c5f0c958352acf4a416fabb666182cae9981688653be6",
+      "embedded_png_sha256": "cdb6d68dc5c7592e57f23965bca6ce46b72ec50813b3b3b2067f44aba829dc60",
+      "rgb_sha256": "674ad8bebf624419fb100de0ce593768882c3e82f0afd05c47aaff2182806c87",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_014028-correlated.svg",
+      "case": "obs_014028",
+      "panel": "correlated",
+      "svg_sha256": "c92e4c1ea9656f1e097f20c6173c74a24bd32b4d289bc6cce672c9bd9c72157c",
+      "embedded_png_sha256": "51c1cc2807ea772cfd77b1d0a9ad652f066acab738dc5745d9791fffa7b311c6",
+      "rgb_sha256": "c84cf58b42994937e6a91aa610a9509868e2af6287d6b66183d7636ccf24e3a3",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_014028-independent_sample.svg",
+      "case": "obs_014028",
+      "panel": "independent_sample",
+      "svg_sha256": "37066d5ed4cf5acc655a591726c243c102c9b0ebecb72bd5e4b04a7ce5d2b796",
+      "embedded_png_sha256": "7db22f6270ca1948101012cb62215d7728d7f505141d631c890c5de5eaa54a29",
+      "rgb_sha256": "695ef755c27e4409741dd5191e73a1cd97c262f63480c86ff58d072d0f300b2a",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_014028-independent.svg",
+      "case": "obs_014028",
+      "panel": "independent",
+      "svg_sha256": "bc6ae6fb2751b134e06a71d44d8936b4938fbd519d7dc172ba4aaf3394b416b1",
+      "embedded_png_sha256": "84c0e5c62db26a5ecbde3ee51a6c7deb8e180acf1534544d578c4033e8966374",
+      "rgb_sha256": "381c639c43f7878920e8af182819fccef4b52bdc3ced94171a877c2c3f25d337",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_013470-observed.svg",
+      "case": "obs_013470",
+      "panel": "observed",
+      "svg_sha256": "5a8ec47cb3aca246d4989f21d6c3d9944401411af0ada68e09bc01e122ac0849",
+      "embedded_png_sha256": "879b444bcd7bd651b70ef98586df3ca73998b6515a3b43514e8807b6550f2eb9",
+      "rgb_sha256": "e0da73d847487c4716608a2a5f1028187fe634d5c69fa8b663d6b1fb66703018",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_013470-reference.svg",
+      "case": "obs_013470",
+      "panel": "reference",
+      "svg_sha256": "93daeba1ed244a7c6f98c90e3d06a78f8467ed474ac56e76295e7eda3555cc76",
+      "embedded_png_sha256": "ac228212c6141677c0421a7ab52ad38a9d7e2b1bdf375686f3eade92c55dfbd7",
+      "rgb_sha256": "80dba5089ab62b8726d05ccacae8cc235b38f74b436bc5f5e7cfbf9645129b2b",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_013470-correlated_sample.svg",
+      "case": "obs_013470",
+      "panel": "correlated_sample",
+      "svg_sha256": "3b7333a57a671ed76e8950286b80769851620445e98203e0a15a12d12b157e18",
+      "embedded_png_sha256": "e5bc71c239213c933ce3453eb9fb8992164bad475c8b72c8a90d158f69edc5a4",
+      "rgb_sha256": "1200c93a89d210c4c94d2809147723ec4b0c56d6e2cd769f88bf4226c7754337",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_013470-correlated.svg",
+      "case": "obs_013470",
+      "panel": "correlated",
+      "svg_sha256": "50bdc75c3a52251a22c3e419dd0b9c2273969973f49b85a8297b994dbfdb77a7",
+      "embedded_png_sha256": "3dbf7884bb776743c1500f747edb274b780c047e378eddb38c394823053f3a38",
+      "rgb_sha256": "9432e2ac774b8f98f3cc95f81393050d10f6941ad78f36bb46c5b65e2afee406",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_013470-independent_sample.svg",
+      "case": "obs_013470",
+      "panel": "independent_sample",
+      "svg_sha256": "819e3d5280100d96ccd18e088e9415c2bf284e27a38b4f01aab0c31d4254e3d5",
+      "embedded_png_sha256": "39f4e6b1a777839c7de79240c77049664c0e62e5201e60c42b91223b9bd36a3c",
+      "rgb_sha256": "baf9fade2c61a377a160abe5d5bb0ee671439b3311c1850e83ab6571715f3cc9",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_013470-independent.svg",
+      "case": "obs_013470",
+      "panel": "independent",
+      "svg_sha256": "4234a40a9c84ea15f597f5049c656328b8eb6b5e14864788d7426d579695d9c6",
+      "embedded_png_sha256": "44a74731d9efe2468944f86e110dd36519b2357731d30351f4152b14832712d1",
+      "rgb_sha256": "d963d5af5466534966a550d697718825fc07311e7440fe27b14216b81a1c36c8",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_082481-observed.svg",
+      "case": "obs_082481",
+      "panel": "observed",
+      "svg_sha256": "8ef8e2bd97ff4b82134a7bb911d7cc19a133555ea949083e85e2d815e238a1b1",
+      "embedded_png_sha256": "bf613d940e72ce0519adae546974d831244ba634710829b91bda5ab5ce9cef4d",
+      "rgb_sha256": "3d08bd594829ad87a6ed48c22eb2374f3ea21b4366ff1c8c691a7da267f37c6b",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_082481-reference.svg",
+      "case": "obs_082481",
+      "panel": "reference",
+      "svg_sha256": "641240d8f43be253110c936e40df2063e06cbfea5028efb53f8c0f66d2b7972b",
+      "embedded_png_sha256": "197cc242eb0a2f19a72a8e34a5410a099e80dca7fc12bbd9756f057576abbcee",
+      "rgb_sha256": "32ea5bae45ceb044fd722b1c0d5b26109abc877d463f948372933a5feb55f328",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_082481-correlated_sample.svg",
+      "case": "obs_082481",
+      "panel": "correlated_sample",
+      "svg_sha256": "d3fcd704fc0f9a577908e57c569bcb8e445a36584fd883cf6ce51c94fa32b780",
+      "embedded_png_sha256": "007acef1aeffdc47aee9afbb36d669d11a9e6228370375f9a0464f0f8f96db81",
+      "rgb_sha256": "ccee6c5b5e7085b7355893e471aabd2523131acb0210e00d6ba81c52ec9b6ca0",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_082481-correlated.svg",
+      "case": "obs_082481",
+      "panel": "correlated",
+      "svg_sha256": "5faaf7f9d22da3c3e2fea3f57dd71bdbd9a099a5beea440a229bcdb54d0692e4",
+      "embedded_png_sha256": "8436c2c8ba69717d00c6380c02ffe48955eb528f13c072c165c75f178011c334",
+      "rgb_sha256": "4bdc55ee7f4791db37f1cb7c989f4cc15741ce413b0da69a4a5ea6c6571c4367",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_082481-independent_sample.svg",
+      "case": "obs_082481",
+      "panel": "independent_sample",
+      "svg_sha256": "252b811ddd2ae0ae7991e99a36f5a659d4633ac9c0d6bacaff2822c77d2d337e",
+      "embedded_png_sha256": "c75681fdedcb132dad84f82c21cb09101f71ee00e091f9b11ba9100741069866",
+      "rgb_sha256": "fe1fb150663ae4193f8e2fcb43e130ec3470912ab9503b75a2bd110a51033cbb",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_082481-independent.svg",
+      "case": "obs_082481",
+      "panel": "independent",
+      "svg_sha256": "7d42a1bc94ad88ce14f629a969fc458d32b40bc1b16b5e51e1a4f223d909c639",
+      "embedded_png_sha256": "b83f38111776763de45342f1098c2602a19068d27eed54dca98cffffab223ce1",
+      "rgb_sha256": "8d84311396783ca008fc55850395e48b52aa5b69ba6e6122eff6945b19a35fe5",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_065777-observed.svg",
+      "case": "obs_065777",
+      "panel": "observed",
+      "svg_sha256": "43fc4ff54657dad4c741225e829843ea81f62a5617b6b4c6e1bb312ac0adbbec",
+      "embedded_png_sha256": "ee6311e29efefa02a90ae60a6ecbd66825608fefdc14da1b11d0fbca06915962",
+      "rgb_sha256": "f14a4c8da0e89f3fea9bf2bc4bb06cb66348361735086e8564dbc7802f215e46",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_065777-reference.svg",
+      "case": "obs_065777",
+      "panel": "reference",
+      "svg_sha256": "3ec6b641943566b7425166191af855774cf034525a7d58163d6477ab4969942e",
+      "embedded_png_sha256": "e7185f7d9d3abe368694113e7c8ea0cafb1bffe3b47e9706e350c2dbed31965c",
+      "rgb_sha256": "8512d2659129197aac57eabede9d3c07e8c7db2249c8865be6edbd8e2fddb100",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_065777-correlated_sample.svg",
+      "case": "obs_065777",
+      "panel": "correlated_sample",
+      "svg_sha256": "f5233d92cede3a5d52b13934a63bfe686c9c396d70c3d34b057ed1930e197bab",
+      "embedded_png_sha256": "0de614448dc7e53a5e5ae34fa017bfedd76d0bf8d024cc2546e412bbaee811f0",
+      "rgb_sha256": "199175d1da35cbdd1691f0f2afbb6011e15c52f9b19db2566e74f0769add3c4f",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_065777-correlated.svg",
+      "case": "obs_065777",
+      "panel": "correlated",
+      "svg_sha256": "016c4371f2294e49b9abd2125ccaa6c8112eb58f7a54a8745b677d9cbc2e67a6",
+      "embedded_png_sha256": "2dc12b89c3ea06ac41c1ccbb82d671b9a0f5a3658c075fe0fcdc53135c02d2eb",
+      "rgb_sha256": "ab01a328db6dc176476c352611633f08da1fd812928667b6a83a0171e1aeb704",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_065777-independent_sample.svg",
+      "case": "obs_065777",
+      "panel": "independent_sample",
+      "svg_sha256": "4cb8e0516e997d7f7af694421349fe7beb9152aaa5936931b690b4ccc9584d89",
+      "embedded_png_sha256": "7223ae6b745a600586788edce43ab12c38929532e9ade0b537a865c5334e5704",
+      "rgb_sha256": "71e47a60a577d9213e822f1521e9824281675779228b63d4d526bdbded1d5e12",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_065777-independent.svg",
+      "case": "obs_065777",
+      "panel": "independent",
+      "svg_sha256": "18eb8a695c6158b46fd89790a6ff82dce36144a022e8d62f9f0b40ab98655e8e",
+      "embedded_png_sha256": "32d4ffc70c12e0a39ea0640a736825be93978f734e1e51ab41982189906d56e0",
+      "rgb_sha256": "3c7a6fea263e79e7877dd4bbe5c86651cdf7999f99c2a338c71c0c8f49fde965",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_114561-observed.svg",
+      "case": "obs_114561",
+      "panel": "observed",
+      "svg_sha256": "d873034dee127c240d014f69c3ea56ab5e3d4dfff9407de48b1da3f09e377825",
+      "embedded_png_sha256": "736ca38bfbc361c47d85b0a00bd49fc5cf71da5d7bfa1803e157e65ead8e29e0",
+      "rgb_sha256": "e64d6ba40291b90117acc1e8057a4abe0325858a3f93946693af6d6428106100",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_114561-reference.svg",
+      "case": "obs_114561",
+      "panel": "reference",
+      "svg_sha256": "7f848aa201af34ca8125fa97807d6b71bb888b0bb90d35edf886bb5d9be609ac",
+      "embedded_png_sha256": "1ba48f321a62d800dc86ec8e956997cb829ff2dfa930019973506dee1f00ba0e",
+      "rgb_sha256": "555a42db3b24e2098accb742113d51a09c1069ee71c2558fece5e890271fbb80",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_114561-correlated_sample.svg",
+      "case": "obs_114561",
+      "panel": "correlated_sample",
+      "svg_sha256": "57b8963bba7bfbceb9109ab117d1f2efa9848a51bcfe85766c187fa0d65b3fae",
+      "embedded_png_sha256": "eb052022d0a9f279ab78dc9551b4bdf1a578e6b9276a8c573a3be5eff918e217",
+      "rgb_sha256": "a6100183909a791bd036cb081cdb75b636b2f35f9f8b156ff827311cb7f9519f",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_114561-correlated.svg",
+      "case": "obs_114561",
+      "panel": "correlated",
+      "svg_sha256": "de652d80f23459d72c1210fc07c649115eccfb320bd12d270d27536eb5e4b10c",
+      "embedded_png_sha256": "db053347f017b5f96a3d8d630d9cb5866f961f6ba948a21ebc000ec3add9587c",
+      "rgb_sha256": "b45f774163d4ecdd8dab1fc6a1ddfcf23475b46d9b22975e3c64e4c252d766c4",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_114561-independent_sample.svg",
+      "case": "obs_114561",
+      "panel": "independent_sample",
+      "svg_sha256": "cc1b6434bbb4a455b5700468950ab06e47f160c5750c151fa4486ceb845b2319",
+      "embedded_png_sha256": "0f26c7cb20568e93a5c6cfcb7f062006c464725e364f62ba756b1aaf2ff69ac9",
+      "rgb_sha256": "160f868cc3d78bfc55b8f49453d3ed9cc38a604ad035f57295e4b0fae50d2a68",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_114561-independent.svg",
+      "case": "obs_114561",
+      "panel": "independent",
+      "svg_sha256": "3816a66eb4c0e3edf3a3df41ff97512678a4ba25ab3cd454f2279b88f70c03d1",
+      "embedded_png_sha256": "f5b016e805d5211676a42d69232384c2a2166303c4587dbe159b515b4ca61e27",
+      "rgb_sha256": "09a3c8de88f6e49b4d9a8569194ed31424c3693739583533a275c7502aa5a0c6",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_101106-observed.svg",
+      "case": "obs_101106",
+      "panel": "observed",
+      "svg_sha256": "8b8a795525a1bd69e8c3b1c67b3b3d0c7b5d7dace2f29eecec7f5eba772b1a8e",
+      "embedded_png_sha256": "accbcb18b380efb6c0f21f161440d73f4d6dfd3aef89e2b8032334fd8e76b367",
+      "rgb_sha256": "09d5a6209dfe79bcf05b131127e530e3d92b91f33574c699881be78213797e59",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_101106-reference.svg",
+      "case": "obs_101106",
+      "panel": "reference",
+      "svg_sha256": "f31bcb5b457916fe1e2b421340924422c424e8243502ddefd90022b5ca5cc748",
+      "embedded_png_sha256": "8ca43ed0530f172dfa18fbfa34e52872e320bb576f7d0c9bb1c2d1a847b4e0d6",
+      "rgb_sha256": "179d71fa0cc2b058c20db7f42ec8a796e14adde5874e4d42494f3ed3c288e8e0",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_101106-correlated_sample.svg",
+      "case": "obs_101106",
+      "panel": "correlated_sample",
+      "svg_sha256": "7611f25db00e68a94b200819da2d85a219662c96598e484790aa9a5c2cd2403d",
+      "embedded_png_sha256": "3f7d1df565d5f5d7296233cdd8a411748f821fbb7883c4e2dc4ac5a49bc83c0b",
+      "rgb_sha256": "03894d7a45d585637e2437c05735d3005557db0cd005055993f0de5e7d2d871c",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_101106-correlated.svg",
+      "case": "obs_101106",
+      "panel": "correlated",
+      "svg_sha256": "0df6437e5f3aaf750dd578d1724c548a33768d12e38f3e399d0ba7a61bc53a40",
+      "embedded_png_sha256": "0f2d1bd07d590e9afdf68573edb594dc0e8d3da1df7fec52ad34b354d2ae7853",
+      "rgb_sha256": "ec97003cd4a387e1ab81d79b9c3634c035ccbbf8543bdebad4c31bea2f99c828",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_101106-independent_sample.svg",
+      "case": "obs_101106",
+      "panel": "independent_sample",
+      "svg_sha256": "7bf5187f575948c7210630d481e4aeccbc26f64915621086c17be01f1db0d080",
+      "embedded_png_sha256": "6b5a638dc8a41e94c2f196115fb61ed0407491554a035fe4b7798d74796daf36",
+      "rgb_sha256": "c22fed3fc4729ee776cd71fb28f46e918dc07b96ca88b92ec6e084eb175f046e",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_101106-independent.svg",
+      "case": "obs_101106",
+      "panel": "independent",
+      "svg_sha256": "cd482714fcdd3156eca30d2210edb1e045cf74c339f553ee58f738f1412c89a0",
+      "embedded_png_sha256": "a9fdebbb2bdeb3e307533c7435f55f83d4030862d9158e77a7b29d721b6ec1b5",
+      "rgb_sha256": "f8f8b6eebfd93ce1714d462ffbce9bee52f97f5c1a3335d37b0d9dd86485ee5b",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_166408-observed.svg",
+      "case": "obs_166408",
+      "panel": "observed",
+      "svg_sha256": "183f8b9e47a906cc639a0d09c15fbb62d4a1e4452b284c3c100216be8373cbac",
+      "embedded_png_sha256": "fb40efe822b0d3b5aa16d76a3197fceac268cbfe2eb25e23fef1412c861e816d",
+      "rgb_sha256": "4fa919b3ad906d9a66f72d100b63f7ddbb061f199de2e791644845d3a45ba095",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_166408-reference.svg",
+      "case": "obs_166408",
+      "panel": "reference",
+      "svg_sha256": "7d9bc34f1a7ab01882331515c0922cc55cacf243eade775956bdd29dec421208",
+      "embedded_png_sha256": "b41ca8d6bcfc71c8ec7efec6a0aa8bd97d5e80d0e10d5b3fbf505807061e6a40",
+      "rgb_sha256": "eac3f8b7b9ba9f1ffb6b73765399c0fe9f2205730ccd57920c5a9345aaff85e1",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_166408-correlated_sample.svg",
+      "case": "obs_166408",
+      "panel": "correlated_sample",
+      "svg_sha256": "404b9d74ef6385726c77382c42bec463c18dc038ff26a5a911869c6d41f1adc6",
+      "embedded_png_sha256": "019afbebf9fc4c3946395f91a3b57f2056ee8c61d2081bf0fd77415ca0da6360",
+      "rgb_sha256": "a67de3517c27f079d748f672b94ecd84ef477fd673eb74039577f26c4315cfd9",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_166408-correlated.svg",
+      "case": "obs_166408",
+      "panel": "correlated",
+      "svg_sha256": "ecf30533457a9c27917cbee4d9f906af8e3403c3e992c9d11d59df920f3c33da",
+      "embedded_png_sha256": "e10674adffbdfca0e0e6351e2f0c0b6d57dfea4ce8eea9286679ab9bba9cf5ef",
+      "rgb_sha256": "9e58234f139d85176c94dc10ce44a016d54385dec16ffc59b45d76d75ad3be20",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_166408-independent_sample.svg",
+      "case": "obs_166408",
+      "panel": "independent_sample",
+      "svg_sha256": "1918a73be49f5a7844874d0ab19830e6f7593edda280d0e20ae31212948fb5cc",
+      "embedded_png_sha256": "97b657a33a46c976d9a319a55ec92b5fa19ddb74929ad935da2ecfc42735000a",
+      "rgb_sha256": "d5ef8e71f203354c52718734dea8db322c393de8d0aedf01eb76a5c55b02238d",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_166408-independent.svg",
+      "case": "obs_166408",
+      "panel": "independent",
+      "svg_sha256": "54b949c4843911f7ab9b4aba98e90915691a56dc484bf501f80e786806cf45c7",
+      "embedded_png_sha256": "b23a62d760b102ac277d17cc294176078eca2e7c549c11f5e0a8c76c24a26df9",
+      "rgb_sha256": "3c3089118560e2af891c60950c8882b862f2750e76761e83c585cd2f8238ffc5",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_157856-observed.svg",
+      "case": "obs_157856",
+      "panel": "observed",
+      "svg_sha256": "4fb9b830e0d9ed51c6ae45170ab81f76f10f6100ab0f10506f0bd8b600f3d456",
+      "embedded_png_sha256": "c38d8e60b0f99024aee6fdd204a689858326b66ade73581565743f451a400937",
+      "rgb_sha256": "a5327b5c7b3e2ae9ea7f729dcc10e37dbe6595de62d522abbf54e0d2343e5a2d",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_157856-reference.svg",
+      "case": "obs_157856",
+      "panel": "reference",
+      "svg_sha256": "cef1f6ba1db61e79c2a8d9ebd1ee3b40e0a9ef40562a7ea184b1700a6420b8de",
+      "embedded_png_sha256": "76e71af2dbff7b766c485eb0e3d5063d513dab17b44db3a30f8c762631855671",
+      "rgb_sha256": "45193f56d431df4d04294fbef5dfb6e6e6b61c5e152e01de2282368c99d345a4",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_157856-correlated_sample.svg",
+      "case": "obs_157856",
+      "panel": "correlated_sample",
+      "svg_sha256": "e9545f57d784313a6482f89e8d211f42c36088ed774ec2f9700210c991d495de",
+      "embedded_png_sha256": "b6ec2edf71c10ab4e525c0268723fcaa078bc0fb502abe4eeb63126c738ce1e4",
+      "rgb_sha256": "e261bc3c7301d12689ba0c0530c3dd72cd367123a79c87a18c32cea90254c53c",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_157856-correlated.svg",
+      "case": "obs_157856",
+      "panel": "correlated",
+      "svg_sha256": "ba1630b12308dc10f88293053a594eb0fe0297cb6c49deebaab216cc4c37d99f",
+      "embedded_png_sha256": "aca5d255845b4258f8864671d78579e0c34bffb056b3b2a4a24f2c38dea33594",
+      "rgb_sha256": "dd55efce700bac334183b424e30782884963cd95eae7479943a606f14f521396",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_157856-independent_sample.svg",
+      "case": "obs_157856",
+      "panel": "independent_sample",
+      "svg_sha256": "1056ad51882c271bbaff8ca2bde4c9f6d2630d41253f988c829d579070e6ffb6",
+      "embedded_png_sha256": "b33ee6ab211a34c2d8108be739f4633f3645f3eeb323c2e0ad25009c127c76d5",
+      "rgb_sha256": "c5ef7ba6fffcadb32b6852989187cc4c4b3e9f9e5605f5ddf3c70109eae08b5d",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_157856-independent.svg",
+      "case": "obs_157856",
+      "panel": "independent",
+      "svg_sha256": "dd03b74b5e26f2a7ac4730384b2d06e00e3e97c11cb10d0706e0ac957254ffb1",
+      "embedded_png_sha256": "fe4a8bfdd62adf70e8b9523a80dfac049578f7ca3c3eef8275c933c1f4a056e7",
+      "rgb_sha256": "832a2c27c918f59a867dc147d35226920610cef7386e99ef7809cceb3c09bb0f",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_203894-observed.svg",
+      "case": "obs_203894",
+      "panel": "observed",
+      "svg_sha256": "6cf0633dad53aa4e360f6095b4b1b816c376dbc1eed26869b3da46245d79fb1a",
+      "embedded_png_sha256": "0c341db5f3b0759e0ed9fa278cc0339472002ec26f61b22f0aff5255795423a9",
+      "rgb_sha256": "6fb8a74240e7c415a55344ffe783a3063eae3814907538c02152843abcc3aa4f",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_203894-reference.svg",
+      "case": "obs_203894",
+      "panel": "reference",
+      "svg_sha256": "cbdeea012e641b92640c2b541ad374f81796d353f6862326129290b20a4f47c5",
+      "embedded_png_sha256": "e9885e1c1f045fed1bb49b8e7d6edfbd0c86e2153dd9501e8de26e937bb4f160",
+      "rgb_sha256": "09ffecc4c030bebd3cc980639608b342b526799a72b89e1f90a5beba0889896f",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_203894-correlated_sample.svg",
+      "case": "obs_203894",
+      "panel": "correlated_sample",
+      "svg_sha256": "a8e17e29c680568925cde7ed4287ad2e53db739f7c2292e2f7efd58a34b70ddc",
+      "embedded_png_sha256": "a18b0b8557e83ffaa7f489e6aac35688e1c909fc0d2eef184e6d17845a0e2c6d",
+      "rgb_sha256": "14bff2bc0127e2119b4262807d5fcb0938c6d7cb8d62b0ad339b2281460bdaaf",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_203894-correlated.svg",
+      "case": "obs_203894",
+      "panel": "correlated",
+      "svg_sha256": "b1c77408868f70e921b77c6694c01d77423645c6ac188eb22709a96fa8d8e5a4",
+      "embedded_png_sha256": "a708cecacf94a998c18db1563604125082c4befc724c642118e0759f195e816a",
+      "rgb_sha256": "f6c18ff5a796565786499adff042245b62dcfccfa86a82d68282361152a1e62d",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_203894-independent_sample.svg",
+      "case": "obs_203894",
+      "panel": "independent_sample",
+      "svg_sha256": "d7376f510dae23264ebc13c58d5bb14e92b38ef6b8835944aba04e6adbbfb48e",
+      "embedded_png_sha256": "7d84cdda60ebd7ba56ef94c25642fbd43d0b1e331e42bfbe92c62a8e3b2b1880",
+      "rgb_sha256": "8ea927e0c151d3ae17125e7626c8726a1eb25e1d1050823465a1965bac401b7b",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_203894-independent.svg",
+      "case": "obs_203894",
+      "panel": "independent",
+      "svg_sha256": "c5c53be18f2749e1ab544e9e3aca38f609fe7381132febc19a5c4522999733a5",
+      "embedded_png_sha256": "884838a5a5ac0359a1d08e3cd1de01d785ad2a79ddec441e33c1ba891b5a1653",
+      "rgb_sha256": "adedc19100870af5d68e3c8b0ccef0eeae4aaf0b904ec2f09cc6f5bf9f6493b9",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_173909-observed.svg",
+      "case": "obs_173909",
+      "panel": "observed",
+      "svg_sha256": "6414633405123b8a635d60e49804fbc0e8a0b16ae76b0ca5695b00361a5e04ca",
+      "embedded_png_sha256": "650cc43bc40c756c0e120e6d95d7aab511fb8036387df9576b07020798fbd6e5",
+      "rgb_sha256": "78ca00c426d87f0ec4da6454c62fe6ecd06bc09323e9d68cb57e5acf3a32e603",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_173909-reference.svg",
+      "case": "obs_173909",
+      "panel": "reference",
+      "svg_sha256": "898ed55f310213b9c563bc2934bf7d6980a9fdafd645129cab81e6ae763e6599",
+      "embedded_png_sha256": "5173520fa4889909d3f1bc1794947dfd71f4dd276a9c664a43f5c01e6a88bd3f",
+      "rgb_sha256": "f680861d1bc9b577b89a27b96639eab6ec0234753abaedfbfdadcd739844d34d",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_173909-correlated_sample.svg",
+      "case": "obs_173909",
+      "panel": "correlated_sample",
+      "svg_sha256": "ccf5133e757801ac762548d70e55004f22be578b6d054e1fa94068d5d79a8393",
+      "embedded_png_sha256": "dade28807d15f00988f4cbf826ae76abcc8d79ebdf48eb76166381f28d541030",
+      "rgb_sha256": "b5c3caa61c55075ec78de55fc1772786adc59521cb8ac00ad8eb280d2d5365c0",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_173909-correlated.svg",
+      "case": "obs_173909",
+      "panel": "correlated",
+      "svg_sha256": "74d9123f5ff404ec7b7e2b332924ecc930ec23f6b2ee810d7323a7e03d6799b9",
+      "embedded_png_sha256": "c8bff98325fc214b9f7870630c21b83330419c46e2395094bf113d7bb7eaac95",
+      "rgb_sha256": "c81b4d925fb127f501b851b56a8d8a5de61b983eb504e8d17086562bf389b68e",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_173909-independent_sample.svg",
+      "case": "obs_173909",
+      "panel": "independent_sample",
+      "svg_sha256": "7b577bbb389654a55ce73c3fcab34b0ed6cbde004403aeced3515e13bd56221c",
+      "embedded_png_sha256": "1de89ffe762d228cb622da444cd3dc00bbbf0e4866a410235e99fbf6a52fbcf5",
+      "rgb_sha256": "c767c6ef9937cdb2ef29d1c1e07677d69836402e20218991d9dc964293b8b63a",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    },
+    {
+      "path": "assets/zh/parent-pilot/obs_173909-independent.svg",
+      "case": "obs_173909",
+      "panel": "independent",
+      "svg_sha256": "16509b7a6334137ea1eca2b0516a1f51affdcbd94976d5b07ab993e9e35e4472",
+      "embedded_png_sha256": "41decf5b79180a29ea3ab6ee1ea2233ed03cc24ff83047a8de9700013368428b",
+      "rgb_sha256": "539b055f59785a6abe024dd000c69169b579d685420ff6ed570cd9b41fb31501",
+      "bitmap_shape": [
+        256,
+        256,
+        3
+      ],
+      "all_pixels_match": true,
+      "endpoints_and_legend_match": true
+    }
+  ]
+}

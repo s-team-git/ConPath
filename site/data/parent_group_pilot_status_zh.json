@@ -1,6 +1,6 @@
 {
-  "stage": "training",
-  "timestamp_utc": "2026-09-09T10:03:35.506819+00:00",
+  "stage": "baseline_complete",
+  "timestamp_utc": "2026-09-09T10:14:06.503017+00:00",
   "jobs": [
     {
       "method": "correlated",
@@ -53,29 +53,29 @@
     {
       "method": "correlated",
       "seed": 20260912,
-      "epochs": 14,
-      "complete": false,
-      "latest_epoch_seconds": 28.873708333005197,
-      "best_calibration_brier": 0.12671483707515538
+      "epochs": 24,
+      "complete": true,
+      "latest_epoch_seconds": 30.507186859991634,
+      "best_calibration_brier": 0.08382094750382771
     },
     {
       "method": "independent",
       "seed": 20260912,
-      "epochs": 14,
-      "complete": false,
-      "latest_epoch_seconds": 28.904478579002898,
-      "best_calibration_brier": 0.12852364674633324
+      "epochs": 24,
+      "complete": true,
+      "latest_epoch_seconds": 30.533351332996972,
+      "best_calibration_brier": 0.09929235800641567
     },
     {
       "method": "deterministic",
       "seed": 20260912,
-      "epochs": 0,
-      "complete": false,
-      "latest_epoch_seconds": null,
-      "best_calibration_brier": null
+      "epochs": 24,
+      "complete": true,
+      "latest_epoch_seconds": 0.39543353900080547,
+      "best_calibration_brier": 0.07343842787186441
     }
   ],
-  "completed": 6,
+  "completed": 9,
   "total": 9,
   "max_epochs": 24,
   "train_parents": 100,

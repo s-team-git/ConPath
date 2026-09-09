@@ -1,0 +1,30 @@
+{
+  "stage": "training",
+  "jobs": [
+    {
+      "seed": 20260910,
+      "epochs": 5,
+      "complete": false,
+      "best_calibration_brier": 0.14869324004061812
+    },
+    {
+      "seed": 20260911,
+      "epochs": 5,
+      "complete": false,
+      "best_calibration_brier": 0.10971117078754221
+    }
+  ],
+  "total": 2,
+  "completed": 0,
+  "timestamp_utc": "2026-09-09T10:19:38.213805+00:00",
+  "snapshot_not_live": true,
+  "resource_policy": {
+    "max_training_processes": 2,
+    "allocator_gib_per_worker": 28,
+    "project_gpu_usage_target_gib": 60,
+    "other_processes_are_separate": true
+  },
+  "model_change_zh": "固定9×9空间相关类别采样",
+  "final_test": false,
+  "validation_reused_for_model_development": true
+}
