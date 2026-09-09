@@ -1,0 +1,513 @@
+{
+  "created_utc": "2026-09-09T06:28:11.591142+00:00",
+  "validation_only": true,
+  "external_paper_superiority_established": false,
+  "methods": {
+    "correlated": {
+      "repeat_count": 3,
+      "samples": 4,
+      "brier": {
+        "mean": 0.08006904778747619,
+        "seed_sd": 0.012506744915635882,
+        "values": [
+          0.0678126078060636,
+          0.07958263040177953,
+          0.09281190515458546
+        ]
+      },
+      "risk30": {
+        "mean": 0.04893099723798417,
+        "seed_sd": 0.02348462509372958,
+        "values": [
+          0.032232289169844545,
+          0.03877650093126493,
+          0.07578420161284305
+        ]
+      },
+      "mean_iou": {
+        "mean": 0.6360666968347574,
+        "seed_sd": 0.006988520419307704,
+        "values": [
+          0.6438530626869385,
+          0.6340089424044331,
+          0.6303380854129005
+        ]
+      },
+      "mes": {
+        "mean": 0.23908104708642283,
+        "seed_sd": 0.02088184185070878,
+        "values": [
+          0.2273122927895681,
+          0.22673979294802749,
+          0.2631910555216729
+        ]
+      }
+    },
+    "independent": {
+      "repeat_count": 3,
+      "samples": 4,
+      "brier": {
+        "mean": 0.1021873714095576,
+        "seed_sd": 0.007805401093622304,
+        "values": [
+          0.10745752907176606,
+          0.09322036041726281,
+          0.10588422473964393
+        ]
+      },
+      "risk30": {
+        "mean": 0.04944223693952212,
+        "seed_sd": 0.0052539292856685115,
+        "values": [
+          0.05522385012681551,
+          0.044959737959391274,
+          0.048143122732359565
+        ]
+      },
+      "mean_iou": {
+        "mean": 0.634859966294923,
+        "seed_sd": 0.008194232711585153,
+        "values": [
+          0.6268962012601994,
+          0.6432666973504155,
+          0.6344170002741543
+        ]
+      },
+      "mes": {
+        "mean": 0.25124762596488615,
+        "seed_sd": 0.029433894933900643,
+        "values": [
+          0.2848219384761029,
+          0.229885721024457,
+          0.2390352183940986
+        ]
+      }
+    },
+    "tiny_deterministic": {
+      "repeat_count": 3,
+      "samples": 1,
+      "brier": {
+        "mean": 0.0885682308290195,
+        "seed_sd": 0.003230732689137263,
+        "values": [
+          0.08556390714661546,
+          0.08815514774667524,
+          0.0919856375937678
+        ]
+      },
+      "risk30": {
+        "mean": 0.07292608265340426,
+        "seed_sd": 0.0068187115823784145,
+        "values": [
+          0.0807344591615516,
+          0.06814624043004752,
+          0.06989754836861369
+        ]
+      },
+      "mean_iou": {
+        "mean": 0.6873522155660434,
+        "seed_sd": 0.00385636279921486,
+        "values": [
+          0.6909265716912374,
+          0.6878649326655971,
+          0.6832651423412957
+        ]
+      },
+      "mes": null
+    },
+    "all_floor": {
+      "repeat_count": 1,
+      "samples": 1,
+      "brier": {
+        "mean": 0.07237296354207573,
+        "seed_sd": null,
+        "values": [
+          0.07237296354207573
+        ]
+      },
+      "risk30": {
+        "mean": 0.13426085783089442,
+        "seed_sd": null,
+        "values": [
+          0.13426085783089442
+        ]
+      },
+      "mean_iou": {
+        "mean": 0.6338158004946497,
+        "seed_sd": null,
+        "values": [
+          0.6338158004946497
+        ]
+      },
+      "mes": null
+    },
+    "all_blocked": {
+      "repeat_count": 1,
+      "samples": 1,
+      "brier": {
+        "mean": 0.46667441565187173,
+        "seed_sd": null,
+        "values": [
+          0.46667441565187173
+        ]
+      },
+      "risk30": {
+        "mean": 0.5333255843481213,
+        "seed_sd": null,
+        "values": [
+          0.5333255843481213
+        ]
+      },
+      "mean_iou": {
+        "mean": 0.0,
+        "seed_sd": null,
+        "values": [
+          0.0
+        ]
+      },
+      "mes": null
+    },
+    "nearest_observed": {
+      "repeat_count": 1,
+      "samples": 1,
+      "brier": {
+        "mean": 0.08893528364678019,
+        "seed_sd": null,
+        "values": [
+          0.08893528364678019
+        ]
+      },
+      "risk30": {
+        "mean": 0.1016017798002595,
+        "seed_sd": null,
+        "values": [
+          0.1016017798002595
+        ]
+      },
+      "mean_iou": {
+        "mean": 0.5989419766506646,
+        "seed_sd": null,
+        "values": [
+          0.5989419766506646
+        ]
+      },
+      "mes": null
+    }
+  },
+  "paired": [
+    {
+      "reference": "correlated",
+      "comparator": "independent",
+      "seeds": [
+        {
+          "seed": 20260831,
+          "brier_comparator_minus_conpath": 0.039644921265702446,
+          "brier_scene_ci95": [
+            0.022920421618923954,
+            0.05569240779880835
+          ],
+          "risk30_comparator_minus_conpath": 0.022991560956971087,
+          "risk30_scene_ci95": [
+            0.0007507843920313928,
+            0.05010662263392817
+          ]
+        },
+        {
+          "seed": 20260901,
+          "brier_comparator_minus_conpath": 0.01363773001548331,
+          "brier_scene_ci95": [
+            0.005003666869532786,
+            0.023503180226277096
+          ],
+          "risk30_comparator_minus_conpath": 0.006183237028125364,
+          "risk30_scene_ci95": [
+            -0.010387817022083768,
+            0.019603323672018617
+          ]
+        },
+        {
+          "seed": 20260902,
+          "brier_comparator_minus_conpath": 0.013072319585058487,
+          "brier_scene_ci95": [
+            0.00037107232906461194,
+            0.024413542686707396
+          ],
+          "risk30_comparator_minus_conpath": -0.027641078880483755,
+          "risk30_scene_ci95": [
+            -0.05323598835635823,
+            -0.006846322303403526
+          ]
+        }
+      ],
+      "fixed_three_repeat_average": {
+        "brier_delta": 0.022118323622081413,
+        "brier_scene_ci95": [
+          0.014472423643249438,
+          0.029441511178327124
+        ],
+        "risk30_delta": 0.0005112397015375655,
+        "risk30_scene_ci95": [
+          -0.010973114467901729,
+          0.010489161924658616
+        ]
+      }
+    },
+    {
+      "reference": "correlated",
+      "comparator": "tiny_deterministic",
+      "seeds": [
+        {
+          "seed": 20260831,
+          "brier_comparator_minus_conpath": 0.01775129934055185,
+          "brier_scene_ci95": [
+            0.0032292265329025645,
+            0.03241084199011697
+          ],
+          "risk30_comparator_minus_conpath": 0.0485021699917079,
+          "risk30_scene_ci95": [
+            0.027156752381508907,
+            0.0696857915640846
+          ]
+        },
+        {
+          "seed": 20260901,
+          "brier_comparator_minus_conpath": 0.008572517344895739,
+          "brier_scene_ci95": [
+            -0.006083230951378622,
+            0.024586500776170066
+          ],
+          "risk30_comparator_minus_conpath": 0.029369739498782445,
+          "risk30_scene_ci95": [
+            0.011214648480394994,
+            0.04583619961756643
+          ]
+        },
+        {
+          "seed": 20260902,
+          "brier_comparator_minus_conpath": -0.0008262675608176756,
+          "brier_scene_ci95": [
+            -0.01950497504508526,
+            0.018997370105115926
+          ],
+          "risk30_comparator_minus_conpath": -0.005886653244228851,
+          "risk30_scene_ci95": [
+            -0.03720959467773539,
+            0.02067333210276266
+          ]
+        }
+      ],
+      "fixed_three_repeat_average": {
+        "brier_delta": 0.008499183041543304,
+        "brier_scene_ci95": [
+          -0.004645066787298487,
+          0.022493056323630262
+        ],
+        "risk30_delta": 0.0239950854154205,
+        "risk30_scene_ci95": [
+          0.006542082470383032,
+          0.03989287199413577
+        ]
+      }
+    },
+    {
+      "reference": "correlated",
+      "comparator": "all_floor",
+      "seeds": [
+        {
+          "seed": 20260831,
+          "brier_comparator_minus_conpath": 0.004560355736012128,
+          "brier_scene_ci95": [
+            -0.01755996482183654,
+            0.027270835945473748
+          ],
+          "risk30_comparator_minus_conpath": 0.10202856866105106,
+          "risk30_scene_ci95": [
+            0.06931434242585073,
+            0.13668441967766237
+          ]
+        },
+        {
+          "seed": 20260901,
+          "brier_comparator_minus_conpath": -0.00720966685970377,
+          "brier_scene_ci95": [
+            -0.02876146617865913,
+            0.016069817898580932
+          ],
+          "risk30_comparator_minus_conpath": 0.09548435689962964,
+          "risk30_scene_ci95": [
+            0.06182088559391878,
+            0.12827857965923098
+          ]
+        },
+        {
+          "seed": 20260902,
+          "brier_comparator_minus_conpath": -0.020438941612509712,
+          "brier_scene_ci95": [
+            -0.04098166388109084,
+            -0.0003486974660240584
+          ],
+          "risk30_comparator_minus_conpath": 0.0584766562180522,
+          "risk30_scene_ci95": [
+            0.03194751653115031,
+            0.0875686407570793
+          ]
+        }
+      ],
+      "fixed_three_repeat_average": {
+        "brier_delta": -0.007696084245400451,
+        "brier_scene_ci95": [
+          -0.028114885898051837,
+          0.013103752252300562
+        ],
+        "risk30_delta": 0.08532986059291096,
+        "risk30_scene_ci95": [
+          0.057986874976922585,
+          0.11394849215075098
+        ]
+      }
+    },
+    {
+      "reference": "correlated",
+      "comparator": "nearest_observed",
+      "seeds": [
+        {
+          "seed": 20260831,
+          "brier_comparator_minus_conpath": 0.021122675840716545,
+          "brier_scene_ci95": [
+            0.0019776918698577936,
+            0.04034132141082831
+          ],
+          "risk30_comparator_minus_conpath": 0.069369490630416,
+          "risk30_scene_ci95": [
+            0.04209160920258915,
+            0.09706958952592334
+          ]
+        },
+        {
+          "seed": 20260901,
+          "brier_comparator_minus_conpath": 0.009352653245000647,
+          "brier_scene_ci95": [
+            -0.010132479763580312,
+            0.028055902013782517
+          ],
+          "risk30_comparator_minus_conpath": 0.06282527886899461,
+          "risk30_scene_ci95": [
+            0.03643324107985642,
+            0.08867694137009378
+          ]
+        },
+        {
+          "seed": 20260902,
+          "brier_comparator_minus_conpath": -0.0038766215078052946,
+          "brier_scene_ci95": [
+            -0.02428989534388109,
+            0.015913414005654252
+          ],
+          "risk30_comparator_minus_conpath": 0.02581757818741716,
+          "risk30_scene_ci95": [
+            -0.004516474099687409,
+            0.053255597376256555
+          ]
+        }
+      ],
+      "fixed_three_repeat_average": {
+        "brier_delta": 0.008866235859303967,
+        "brier_scene_ci95": [
+          -0.009992993003952415,
+          0.026993588133741836
+        ],
+        "risk30_delta": 0.05267078256227592,
+        "risk30_scene_ci95": [
+          0.02983582965471395,
+          0.07588232508353006
+        ]
+      }
+    },
+    {
+      "reference": "correlated_k128",
+      "comparator": "all_floor",
+      "seeds": [
+        {
+          "seed": 20260831,
+          "brier_comparator_minus_conpath": 0.01289316690139726,
+          "brier_scene_ci95": [
+            -0.008052345009490425,
+            0.034110908342984275
+          ],
+          "risk30_comparator_minus_conpath": 0.10630770326618201,
+          "risk30_scene_ci95": [
+            0.07243247289201364,
+            0.1381936513498303
+          ]
+        },
+        {
+          "seed": 20260901,
+          "brier_comparator_minus_conpath": 0.00715638171600369,
+          "brier_scene_ci95": [
+            -0.014087141717723737,
+            0.02906228095643865
+          ],
+          "risk30_comparator_minus_conpath": 0.10122514143768176,
+          "risk30_scene_ci95": [
+            0.06770523580404224,
+            0.13518970434816
+          ]
+        },
+        {
+          "seed": 20260902,
+          "brier_comparator_minus_conpath": -0.005411328968564666,
+          "brier_scene_ci95": [
+            -0.02283166948458035,
+            0.013045031681055648
+          ],
+          "risk30_comparator_minus_conpath": 0.08725872623607267,
+          "risk30_scene_ci95": [
+            0.05938201707363054,
+            0.11663420022684841
+          ]
+        }
+      ],
+      "fixed_three_repeat_average": {
+        "brier_delta": 0.004879406549612095,
+        "brier_scene_ci95": [
+          -0.014278384192365509,
+          0.025027649399717508
+        ],
+        "risk30_delta": 0.09826385697997882,
+        "risk30_scene_ci95": [
+          0.06814366787421863,
+          0.12783062581416826
+        ]
+      }
+    }
+  ],
+  "scene_count": 142,
+  "map_scene_count": 160,
+  "event_count": 4224,
+  "bootstrap_draws": 2000,
+  "bootstrap_scope": "Whole scenes paired, conditional on three fixed checkpoints; not a population CI over training seeds. Positive delta favors ConPath. No multiple-comparison adjustment; descriptive diagnostics. Parent-place isolation failed in27/160 observations. These are subscene-conditional diagnostics, not building-population intervals.",
+  "source_hashes": {
+    "results/current_baseline_k4_v1/report.json": "7ea30e7959c7b092bbde5316f8f4621dd9fd7ab85c1e86ce4a328b406f30a5ad",
+    "/home/hairo/pathrel_transfer/pathrel_pro6000/scripts/analyze_current_baselines.py": "873451ea11b0fc078361327585667ad27523f9c481a817b246a316b5cd7e5291",
+    "results/current_baseline_k4_v1/correlated/20260831/predictions.csv": "b5c3043c0f65f3c9f66b01f1e26fa1a6b3cea37431c262e17b8310193adc96e4",
+    "results/current_baseline_k4_v1/correlated/20260901/predictions.csv": "ced49a8c0f9a47edb91a071952ca463f8eaf66f59dafff709c657d59a898789b",
+    "results/current_baseline_k4_v1/correlated/20260902/predictions.csv": "9de96278c54058d313e23cbc7acc9597e153dd720f16e541e2d29605c4014a22",
+    "results/current_baseline_k4_v1/independent/20260831/predictions.csv": "f353d7fa86b4b1652ddf36d96572845ddacfb4f604b586a0204c3bcdbaa42718",
+    "results/current_baseline_k4_v1/independent/20260901/predictions.csv": "d4348845a68c2b655e7f3ec95bcddc704dc5b2653dac4ab9f75fd7c3fb5e7830",
+    "results/current_baseline_k4_v1/independent/20260902/predictions.csv": "4a94c08d6b187740a27e44adb612948e1d79295dab22bd7f19e09b44c4114caf",
+    "results/current_baseline_k4_v1/tiny_deterministic/20260831/predictions.csv": "3513c30e69e0c5b37c75476542c986148f5ad94b2adcb558381f9ff6422f7d68",
+    "results/current_baseline_k4_v1/tiny_deterministic/20260901/predictions.csv": "767300d0b85f9340ac469af723b119f7f98654745c4eb20dcd69926d847667bd",
+    "results/current_baseline_k4_v1/tiny_deterministic/20260902/predictions.csv": "1a14cc23ea5bbe0de798f777ad969b5198c02b178aa99c5cd572ffac142de310",
+    "results/current_baseline_k4_v1/all_floor/rule/predictions.csv": "a4a3c6c86318d5c8ef62f9920f4241ca6ce0e03e57d7be44abd6e3685f43be80",
+    "results/current_baseline_k4_v1/all_blocked/rule/predictions.csv": "81e1c8a81520cca36e879e5a6056ca1256a91ca03e83b53bb3462fe4f63a028c",
+    "results/current_baseline_k4_v1/nearest_observed/rule/predictions.csv": "717fb92653d294ff272d419cf807bd688d903e2b1193b3edb0671e6d2ee1a62b",
+    "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260831_conpath/predictions_validation.csv": "50c94f29c7461988ff4467cfca9d9ae5e604e4543ad60604d82337d6dc378a0d",
+    "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260901_conpath/predictions_validation.csv": "a0e20ff31c14b5b7ee34a3ba3b186e9feca4633b0a9195753c970f0e109d33bb",
+    "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260902_conpath/predictions_validation.csv": "812b11067c844793b15e25f77e29ca4339026f96f3b5a37d619b26360e5106c3"
+  },
+  "current_run_report_sha256": "7ea30e7959c7b092bbde5316f8f4621dd9fd7ab85c1e86ce4a328b406f30a5ad",
+  "physical_test_access_erratum": "data/flatlands_read_scope_erratum.json",
+  "test_evaluated_original_flag": false,
+  "provenance_test_model_evaluation_performed": false,
+  "physical_test_observations_opened": 5
+}

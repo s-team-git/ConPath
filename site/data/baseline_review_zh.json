@@ -1,0 +1,77 @@
+{
+  "created_for": "2026-09-09 baseline and parent audit",
+  "validation_only": true,
+  "physical_test_observations_opened_in_current_replay": 5,
+  "provenance_test_model_evaluation_performed": false,
+  "formal_test_completed": false,
+  "physical_test_untouched_claim_withdrawn": true,
+  "read_scope_erratum": "data/flatlands_read_scope_erratum.json",
+  "training_performed": false,
+  "external_superiority_established": false,
+  "old_parent_isolation_passed": false,
+  "old_affected_observations": 27,
+  "old_bootstrap_scope_correction": "Subscene-conditional diagnostics only; old validation used for checkpoint selection and parent places overlap training. Not independent-building confidence intervals.",
+  "labels": {
+    "correlated": "ConPath",
+    "independent": "独立单元模型",
+    "tiny_deterministic": "确定性补全网络",
+    "all_floor": "未知全部可通行",
+    "nearest_observed": "最近观测填充",
+    "all_blocked": "未知全部阻挡"
+  },
+  "assets": [
+    {
+      "path": "assets/zh/baseline-review/current-controls.svg",
+      "sha256": "576a4ba0c78fe3bc359ade8ade37a7fdfa0cec8ec1bc60f99e49d31a55012643"
+    },
+    {
+      "path": "assets/zh/baseline-review/current-controls.pdf",
+      "sha256": "61f66c88c0da0c8d81de8f16235aa3cf2c9c1661ed966f92d2d8a2115d7e5fe0"
+    },
+    {
+      "path": "assets/zh/baseline-review/current-controls-mobile.svg",
+      "sha256": "d1f2c255d59778189dd909b0706b62590268bd16ed026bf039efe96fe55d6a8a"
+    },
+    {
+      "path": "assets/zh/baseline-review/current-controls-mobile.pdf",
+      "sha256": "f3a6f620303ba4e1899488b616a7224bbf67d954ebc4624dd0507279887a6db7"
+    }
+  ],
+  "history_train_summary": {
+    "training_scenes_available": 9,
+    "training_frames_available": 478,
+    "audited_frames": 36,
+    "audited_history_pairs": 27,
+    "raw_ego_pose_matches": 4,
+    "scene_weighted_observation_conflict_fraction": 0.22746023381152114,
+    "scene_weighted_observed_fraction": 0.6241554192318116,
+    "forced_fn": 307,
+    "forced_fp": 131,
+    "forced_fn_with_directly_blocked_endpoint": 207,
+    "pose_improves_pair_median_count": 11,
+    "mean_pair_overlap_0_3m": {
+      "unaligned": 0.39384021304263833,
+      "pose_candidate": 0.45589429218158073,
+      "inverse_direction_control": 0.1960920999812953
+    }
+  },
+  "verification": {
+    "passed": true,
+    "saved_maps_checked": 4800,
+    "independent_map_metric_checks": 13440,
+    "canonical_event_replays_zero_drift": 9,
+    "file_hashes_checked": 164,
+    "candidate_observations": 215289,
+    "candidate_parent_groups": 4479,
+    "candidate_group_split_conflicts": 0,
+    "test_images_opened": true,
+    "limits": "Numerical replay does not cure the old physical-place leakage or establish external-paper superiority.",
+    "access_flag_corrected_by": "data/flatlands_read_scope_erratum.json"
+  },
+  "source_hashes": {
+    "site/data/current_baseline_k4_analysis.json": "41c70d9158733cc608f19c28f9bb55b7edfccd64354c05490cc001b00b7581c2",
+    "site/data/flatlands_parent_group_audit.json": "e5ceef15180c10d36d8cd38c6b321b9d0cce01836f6f80b4faab1358609c08ec",
+    "results/unscenes_history_feasibility_v1/report.json": "5ed8512f84e07b63fbe1830ae3bbe52ff5559011468b759b9966e620e7c381b0",
+    "scripts/build_baseline_review_visuals.py": "a3c6fcc484a8d2e10f53c7d700a05f00fb5ff499e937b1e4200df3c1c01bc4cf"
+  }
+}

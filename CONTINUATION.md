@@ -1,9 +1,27 @@
 # ConPath continuation state
 
+**读取范围更正：旧训练／验证包含原发布test中的8／5条观测，本轮回放也读取了这5条验证观测。更早的512观测查询审计检查过53条物理test观测（含32条ScanNet++）。因此撤回“物理test从未读取”的说法；旧 `test_evaluated=false` 等标志不能证明物理测试未触碰。详见[读取范围更正记录](site/data/flatlands_read_scope_erratum.json)。已停止进一步读取物理test图片，最终留出集需要审核全部历史访问并排除已检查的父级地点。**
+
 This file is the durable hand-off for interrupted Codex sessions. Update it after every material
 diagnostic, code change, or experiment; do not rely on chat history or ignored `results/` alone.
 
-## Recovery snapshot
+## 最新续接：2026-09-09
+
+**2026-09-09 更正：旧 FlatLands 队列仅隔离子场景 ID，27/160个验证观测与训练共享建筑／地点。旧数值保留为队列诊断，不能证明新建筑泛化；旧子场景配对区间也不是独立建筑总体区间。数据隔离门槛重新打开。当前统一K=4对照、90条论文公开成绩、分组修正和历史帧分析见 [最新中文评估](BASELINE_REVIEW_ZH.md)。**
+
+用户授权开始分析和改进，同时要求优先论文公开成绩、避免不必要复现。本轮已完成：
+
+- `current_baseline_k4_v1`：12组现有模型/无训练规则，4,800张地图、50,688条事件预测；9份旧CSV回放零差异。K4 ConPath Brier0.08007，全可通行0.07237，风险30%为4.89%/13.43%；不能宣布全面胜出。
+- `baseline_review_20260909_v1`：90条论文成绩、旧子场景配对统计、数值独立检查。论文MES不是通路Brier，所有原论文数字reference-only。
+- `flatlands_parent_groups_v2`：官方父级分组确认Matterport19、3RScan5、ZInD2、ScanNet1、ARKit0条旧验证重叠；53条未知visit隔离。新候选215,289条、4,479组，仅元数据，不是正式训练准备完成。v1过严地下楼层规则已被v2取代。
+- `unscenes_history_feasibility_v1`：9训练场景36帧27历史对；观测冲突22.75%，位姿候选提高平均重合但仅11/27中位距离改善，独立ego-pose仅4帧可核。没有未来输入、模型训练或测试图访问。
+- 本輪论文、工作计划、恢复状态与网页同步更正；发布凭据在 `results/baseline_review_publication_20260909/completion.json`。存在通过收据时不要重复本轮回放或发布。
+
+**下一项**：核查父级候选的训练侧输入/目标质量和盲查询，确认物理尺度、跨来源重复与独立最终测试设计；之后冻结共同正式规模，按公开成绩→作者预测/权重→必要同协议适配的顺序补强基线。室外先审计软观测与2.5D地面表达、历史位姿质量并做无训练因果融合，再启动预设的2×2注意力实验。不沿用旧检查点作新分组主表，不追加旧错误硬约束下的长训练。所有封存测试继续锁定；没有runtime goal或当前训练进程。
+
+## 历史 Recovery snapshot（以下旧“下一项”受上述状态替代）
+
+
 
 **最新续接（2026-09-08）：LaMa与FM+XAttn接入、短训练和有效批量64实测均完成。**
 本轮响应“下一步”执行新模块工程阶段；此前CogniPlan与六组消融已完成，不重复运行。
@@ -88,7 +106,7 @@ dataset/baseline rationale and `site/README.md` for the new build and browser co
 - Recovery-state commit: resolve with `git log -1 --format='%h %s' -- RECOVERY_STATE.json`
 - Implementation history: `61d617e` is the September 2 base. The September 6 publication packages the clean-support implementation, audits and figures; resolve its revision with `git log -1 -- WORK_PLAN.md`. Current execution order is in `WORK_PLAN.md`.
 - Scientific gate: **P0 GO; FlatLands K=128 clean-support validation candidate and bounded data gate
-  GO on a non-official provenance split; public-data test and paper claims remain gated**
+  historical numerical pass only; parent-place isolation failed on 2026-09-09; public-data test and paper claims remain gated**
 - Handoff status: the clean FlatLands three-seed validation result is 0.06749 ± 0.00936
   versus independent 0.09521 ± 0.00703. The new nine-method paper table includes a strong
   same-checkpoint mean-map control (0.06957), exact fixed-marginal shuffle (0.16139), and

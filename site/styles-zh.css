@@ -25,3 +25,19 @@ dialog{border:0;border-radius:12px;padding:22px;max-width:min(1280px,96vw);width
 
 .external-training-curves { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 18px 0; }
 @media (max-width: 600px) { .external-training-curves { grid-template-columns: 1fr; } }
+/* Current scientific status and compact, explicitly separated reference tables. */
+.hero-audit-note{max-width:760px;margin:24px auto 0;padding:14px 18px;border:1px solid #e5d5b9;border-radius:10px;background:#fcf8ef;font-size:14px;line-height:1.8;color:#655036}
+.hero-audit-note a{display:inline-block;margin-left:8px;font-weight:600;color:#096c77}
+.baseline-review{margin:20px 0 56px;padding-bottom:36px;border-bottom:1px solid #dfe6e5}
+.baseline-review h3{font-size:clamp(24px,3vw,34px);line-height:1.4;letter-spacing:-.025em;max-width:850px}
+.baseline-review>p{max-width:880px;line-height:1.85}
+.audit-notice{padding:20px 24px;background:#fcf8ef;border-left:3px solid #a87a33;border-radius:0 10px 10px 0;margin:24px 0;color:#55472f}
+.audit-notice p{margin:8px 0 0;line-height:1.85}
+.current-baseline-table,.published-reference-table{width:100%;border-collapse:collapse;font-size:14px}
+.current-baseline-table th,.current-baseline-table td,.published-reference-table th,.published-reference-table td{padding:13px 14px;border-bottom:1px solid #e2e8e7;text-align:left;white-space:nowrap;font-variant-numeric:tabular-nums}
+.current-baseline-table caption,.published-reference-table caption{text-align:left;padding:10px 0 18px;line-height:1.8;color:#586b6e;white-space:normal}
+.historical-results-heading{margin:20px 0 28px}
+.historical-results-heading h3{font-size:26px}
+.historical-results-heading p{line-height:1.85;color:#647472}
+.baseline-chart{margin:26px 0}
+@media(max-width:600px){.audit-notice{padding:16px}.hero-audit-note{margin-top:20px;text-align:left}.baseline-review{margin-bottom:36px}.current-baseline-table,.published-reference-table{font-size:12px}}

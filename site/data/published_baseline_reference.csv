@@ -1,0 +1,91 @@
+paper,version,table,method,split,samples,metric,mean,reported_std,sample_selection,direct_conpath_ranking_allowed,source_url,dispersion_scope
+FlatLands,2603.16016v3,3,All-Obstacle,ID,1,UMR,0.661,0.229,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,All-Obstacle,ID,1,IoU,0.0,0.0,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,All-Obstacle,ID,1,F1,0.0,0.0,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,All-Obstacle,OOD_ScanNetPP,1,UMR,0.854,0.155,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,All-Obstacle,OOD_ScanNetPP,1,IoU,0.0,0.0,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,All-Obstacle,OOD_ScanNetPP,1,F1,0.0,0.0,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,All-Floor,ID,1,UMR,0.339,0.229,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,All-Floor,ID,1,IoU,0.661,0.229,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,All-Floor,ID,1,F1,0.737,0.21,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,All-Floor,OOD_ScanNetPP,1,UMR,0.146,0.155,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,All-Floor,OOD_ScanNetPP,1,IoU,0.854,0.155,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,All-Floor,OOD_ScanNetPP,1,F1,0.912,0.116,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,NN Prop.,ID,1,UMR,0.243,0.078,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,NN Prop.,ID,1,IoU,0.62,0.219,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,NN Prop.,ID,1,F1,0.708,0.202,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,NN Prop.,OOD_ScanNetPP,1,UMR,0.198,0.156,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,NN Prop.,OOD_ScanNetPP,1,IoU,0.779,0.186,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,NN Prop.,OOD_ScanNetPP,1,F1,0.861,0.143,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,Uniform Rand.,ID,1,UMR,0.501,0.002,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,Uniform Rand.,ID,1,IoU,0.367,0.104,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,Uniform Rand.,ID,1,F1,0.516,0.128,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,Uniform Rand.,OOD_ScanNetPP,1,UMR,0.502,0.003,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,Uniform Rand.,OOD_ScanNetPP,1,IoU,0.453,0.057,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,Uniform Rand.,OOD_ScanNetPP,1,F1,0.621,0.064,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,U-Net,ID,1,UMR,0.122,0.03,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,U-Net,ID,1,IoU,0.763,0.132,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,U-Net,ID,1,F1,0.843,0.098,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,U-Net,OOD_ScanNetPP,1,UMR,0.114,0.111,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,U-Net,OOD_ScanNetPP,1,IoU,0.87,0.136,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,U-Net,OOD_ScanNetPP,1,F1,0.924,0.094,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,PConv-UNet,ID,1,UMR,0.126,0.033,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,PConv-UNet,ID,1,IoU,0.758,0.132,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,PConv-UNet,ID,1,F1,0.838,0.098,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,PConv-UNet,OOD_ScanNetPP,1,UMR,0.114,0.113,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,PConv-UNet,OOD_ScanNetPP,1,IoU,0.87,0.139,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,PConv-UNet,OOD_ScanNetPP,1,F1,0.924,0.097,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,LaMa,ID,1,UMR,0.209,0.059,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,LaMa,ID,1,IoU,0.623,0.161,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,LaMa,ID,1,F1,0.734,0.131,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,LaMa,OOD_ScanNetPP,1,UMR,0.283,0.159,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,LaMa,OOD_ScanNetPP,1,IoU,0.672,0.19,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,LaMa,OOD_ScanNetPP,1,F1,0.787,0.153,single_output,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,LaMa-Ens.,ID,4,UMR,0.105,0.099,oracle_best_of_K,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,LaMa-Ens.,ID,4,IoU,0.817,0.205,oracle_best_of_K,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,LaMa-Ens.,ID,4,F1,0.882,0.154,oracle_best_of_K,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,LaMa-Ens.,OOD_ScanNetPP,4,UMR,0.107,0.094,oracle_best_of_K,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,LaMa-Ens.,OOD_ScanNetPP,4,IoU,0.874,0.126,oracle_best_of_K,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,LaMa-Ens.,OOD_ScanNetPP,4,F1,0.927,0.083,oracle_best_of_K,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,Diffusion,ID,4,UMR,0.099,0.097,oracle_best_of_K,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,Diffusion,ID,4,IoU,0.83,0.196,oracle_best_of_K,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,Diffusion,ID,4,F1,0.892,0.143,oracle_best_of_K,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,Diffusion,OOD_ScanNetPP,4,UMR,0.094,0.092,oracle_best_of_K,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,Diffusion,OOD_ScanNetPP,4,IoU,0.89,0.122,oracle_best_of_K,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,Diffusion,OOD_ScanNetPP,4,F1,0.936,0.082,oracle_best_of_K,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,Flow Match.,ID,4,UMR,0.1,0.095,oracle_best_of_K,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,Flow Match.,ID,4,IoU,0.829,0.192,oracle_best_of_K,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,Flow Match.,ID,4,F1,0.892,0.139,oracle_best_of_K,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,Flow Match.,OOD_ScanNetPP,4,UMR,0.102,0.099,oracle_best_of_K,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,Flow Match.,OOD_ScanNetPP,4,IoU,0.88,0.129,oracle_best_of_K,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,Flow Match.,OOD_ScanNetPP,4,F1,0.93,0.088,oracle_best_of_K,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,FM+XAttn,ID,4,UMR,0.1,0.094,oracle_best_of_K,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,FM+XAttn,ID,4,IoU,0.83,0.192,oracle_best_of_K,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,FM+XAttn,ID,4,F1,0.892,0.139,oracle_best_of_K,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,FM+XAttn,OOD_ScanNetPP,4,UMR,0.109,0.092,oracle_best_of_K,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,FM+XAttn,OOD_ScanNetPP,4,IoU,0.873,0.124,oracle_best_of_K,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,3,FM+XAttn,OOD_ScanNetPP,4,F1,0.927,0.084,oracle_best_of_K,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,4,LaMa-Ens.,ID,4,MES,0.158,0.139,set_statistic,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,4,LaMa-Ens.,ID,4,mean_of_K_IoU,0.713,0.246,set_statistic,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,4,LaMa-Ens.,ID,4,pixel_variance,0.076,0.062,set_statistic,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,4,LaMa-Ens.,OOD_ScanNetPP,4,MES,0.149,0.093,set_statistic,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,4,LaMa-Ens.,OOD_ScanNetPP,4,mean_of_K_IoU,0.72,0.155,set_statistic,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,4,LaMa-Ens.,OOD_ScanNetPP,4,pixel_variance,0.084,0.043,set_statistic,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,4,Diffusion,ID,4,MES,0.143,0.152,set_statistic,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,4,Diffusion,ID,4,mean_of_K_IoU,0.763,0.222,set_statistic,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,4,Diffusion,ID,4,pixel_variance,0.044,0.029,set_statistic,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,4,Diffusion,OOD_ScanNetPP,4,MES,0.097,0.102,set_statistic,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,4,Diffusion,OOD_ScanNetPP,4,mean_of_K_IoU,0.832,0.124,set_statistic,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,4,Diffusion,OOD_ScanNetPP,4,pixel_variance,0.048,0.026,set_statistic,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,4,Flow Match.,ID,4,MES,0.143,0.148,set_statistic,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,4,Flow Match.,ID,4,mean_of_K_IoU,0.766,0.226,set_statistic,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,4,Flow Match.,ID,4,pixel_variance,0.037,0.029,set_statistic,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,4,Flow Match.,OOD_ScanNetPP,4,MES,0.101,0.103,set_statistic,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,4,Flow Match.,OOD_ScanNetPP,4,mean_of_K_IoU,0.832,0.135,set_statistic,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,4,Flow Match.,OOD_ScanNetPP,4,pixel_variance,0.043,0.028,set_statistic,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,4,FM+XAttn,ID,4,MES,0.133,0.138,set_statistic,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,4,FM+XAttn,ID,4,mean_of_K_IoU,0.766,0.218,set_statistic,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,4,FM+XAttn,ID,4,pixel_variance,0.044,0.032,set_statistic,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,4,FM+XAttn,OOD_ScanNetPP,4,MES,0.095,0.093,set_statistic,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,4,FM+XAttn,OOD_ScanNetPP,4,mean_of_K_IoU,0.813,0.123,set_statistic,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.
+FlatLands,2603.16016v3,4,FM+XAttn,OOD_ScanNetPP,4,pixel_variance,0.061,0.028,set_statistic,False,https://arxiv.org/html/2603.16016v3,Paper-reported mean/std; not assumed to be3 independent training repeats.

@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "checkpoint_id": "flatlands-external-interface-batch64-20260909",
-  "updated_local_date": "2026-09-08",
+  "checkpoint_id": "baseline-reference-parent-audit-20260909",
+  "updated_local_date": "2026-09-09",
   "timezone": "America/New_York",
   "branch": "main",
-  "remote_sync": "Previous CogniPlan publication 60d401c was synchronized and live verified. Resolve this FlatLands external interface publication with git log -1 -- RECOVERY_STATE.json; deployment/completion receipts are in results/flatlands_external_publication_20260909/.",
-  "latest_local_commit": "Resolve current interface implementation publication via git log -1 -- RECOVERY_STATE.json; frozen old ablation training remains e6f0910.",
+  "remote_sync": "Resolve current publication via git log -1 -- RECOVERY_STATE.json; verification receipt results/baseline_review_publication_20260909/completion.json. Prior 465f21b publication remains archived.",
+  "latest_local_commit": "Resolve with git log -1 -- RECOVERY_STATE.json; old ablation implementation e6f0910 remains immutable.",
   "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence. New external profiles on 2026-09-08 actually used Python 3.13 and torch 2.12.1+cu130; v2 explicitly disables TF32 and cudnn benchmarking and enables deterministic algorithms. GPU has unrelated concurrent load; no isolated-device latency claim.",
-  "scientific_status": "P0 passes in two seeds. Clean-support FlatLands K=128 gives event Brier 0.06749 +/- 0.00936 versus independent 0.09521 +/- 0.00703 on the scene-disjoint non-official validation split. The nine-method comparison includes same-checkpoint mean maps (0.06957 +/- 0.00380) and a fixed empirical marginal shuffle (0.16139 +/- 0.00677); spatial dependence has positive mechanism evidence, but the mean-map advantage and equal-30%-coverage risk advantage (3.60% versus 3.90%) are not stable across paired intervals. All six original K=128 predictions replay exactly. UnScenes3D mean-map/qualitative v1 reopened invalid support after sampling and is superseded by v2: Brier 0.51142 +/- 0.00198 versus independent 0.51130 +/- 0.00218. Training weights and hidden-map metrics replay exactly; all 27,522 model predictions obey the exact observation bounds. The frozen hard-observation validation Brier lower bound is 0.47574, and only 15.66% of events are mutable through unknown completion. The manuscript remains a working draft. Both physical tests remain locked; no successful transfer or final-paper claim is supported. Clean no-event/no-global three-seed training ablations are now complete: Brier 0.20425 +/- 0.00322 and 0.09499 +/- 0.00157 versus full 0.06749 +/- 0.00936. All six descriptive paired Brier scene intervals are positive; all six equal-30%-coverage risk intervals include zero. No-event radius-20 predictions are all zero despite positive prevalence 20.67%. This completes the bounded-validation internal ablation, not the planned external main comparisons or final test. CogniPlan public-weight training-domain sanity and resource profiling completed; this is not an external comparative result. Original 500000-step recipe extrapolates to 12.45 hours/seed or 37.34 hours for three serial seeds, excluding full-loader I/O and evaluation, under deterministic v2 execution and concurrent GPU load. Earlier roughly 6-hour native-autotuning v1 estimate is superseded. FlatLands train metadata consistently describes cropping, but independent physical scale verification remains unresolved. LaMa BEV with pinned native Big-LaMa Fourier backbone and FM+XAttn literature reimplementation completed training-only short profiles and actual effective-batch64 measurements. New-process raw/hard replay is exact for 32/128 maps; 321 checks and 111 tests passed. Outputs remain visibly undertrained and are not external comparative evidence. Effective batch64 updates average 1.353677 and 3.422191 seconds; original300000-step training-only extrapolation112.81 and285.18 hours per model is not a launched or committed formal run.",
-  "active_task": "All three external interfaces are connected and short profiles have exited. LaMa/FM engineering publication: results/flatlands_external_publication_20260909/completion.json. Once published, freeze shared formal data scale and target-blind query contracts, predeclare staged convergence diagnostics, implement audited interruption/resume for formal external trainers, then freeze adequate per-method recipes and run three outer repeats. Do not rerun completed profiles/ablations or use undertrained outputs as formal scores. Final test assets remain locked.",
+  "scientific_status": "Parent-place isolation FAIL: 27/160 old FlatLands validation observations share training parents. Old numerical/ablation replays remain correct cohort diagnostics, not unseen-building evidence; subscene CIs are not parent-population intervals. K4 ConPath Brier0.080069 vs untrained all-floor0.072373; risk30 0.048931 vs0.134261. No universal local or published-paper superiority. Ninety published map reference scores cannot directly rank our different path/data protocol. Metadata-only development candidate215289 observations/4479 parent groups has zero internal split overlap;53 unresolved train observations quarantined, formal quality/scale/query/final-test gates open. Original physical ID test also overlaps parents. UnScenes hard-observation error floor0.475736 vs actual0.51142;train36-frame audit conflict22.75%, causal27-pair pose evidence mixed. No new training, no future-frame input, all test images locked. IMPORTANT ACCESS ERRATUM: old provenance train/validation contains8/5 physical-test observations;current K4 replay and independent numeric verification read those5. Historical512 query audit read53 physical-test observations including32ScanNet++. Withdraw physical-test-never-read claim. Further physical-test PNG reads stopped; final untouched holdout eligibility unresolved. Old test_evaluated=false flags are not proof of physical-test isolation.",
+  "active_task": "Current analysis/publication complete when receipt passes. FIRST NEXT: audit all historical image access and final holdout eligibility; then parent-group candidate quality/blind queries/scale. Do not rerun old validation PNG replay: physical-test rows are present.",
   "completed_milestones": [
     "Interruption-safe P0 training with atomic checkpoints and exact resume",
     "Two-seed synthetic P0 pass and matched no-reach failure",
@@ -115,7 +115,10 @@
     "Pinned Apache-2.0 MapEx LaMa backbone and transparent FM+XAttn literature reimplementation; shared evidence/support interface, masked BEV losses, gradient and analytic Heun tests.",
     "Each method completed 100 measured batch2 updates and 100 actual effective-batch64 updates; all checkpoints retain optimizer and RNG state. These are short profiles, not formal training.",
     "Independent new-process replay of all32 LaMa and128 Flow hard maps and raw outputs is exact; 321 source/output/numerical/budget checks and111 unit tests passed.",
-    "All32 training diagnostic cases visually reviewed; first two frozen rows published as16 labelled images with separate batch64 curves. Native quality remains inadequate for a converged-baseline claim. Chrome1440/390 audit passed; corrected local horizontal table scrolling."
+    "All32 training diagnostic cases visually reviewed; first two frozen rows published as16 labelled images with separate batch64 curves. Native quality remains inadequate for a converged-baseline claim. Chrome1440/390 audit passed; corrected local horizontal table scrolling.",
+    "Current K4/rule comparison and90 published references catalogued; no direct paper ranking.",
+    "Parent-place leakage found in27 old validation observations;strict grouped development metadata candidate created, formal data gate reopened.",
+    "Train-only history36frames27pairs and observation conflict audited; temporal/attention benefit unestablished."
   ],
   "tracked_files": [
     "CLEAN_ABLATION_PLAN.md",
@@ -488,7 +491,29 @@
     "third_party/lama/saicinpainting/training/modules/ffc.py",
     "third_party/lama/saicinpainting/training/modules/pix2pixhd.py",
     "third_party/lama/saicinpainting/training/modules/squeeze_excitation.py",
-    "third_party/lama/sources.json"
+    "third_party/lama/sources.json",
+    "BASELINE_REVIEW_ZH.md",
+    "scripts/analyze_current_baselines.py",
+    "scripts/audit_flatlands_parent_groups.py",
+    "scripts/audit_unscenes_history_feasibility.py",
+    "scripts/baseline_review_page.py",
+    "scripts/build_baseline_reference_catalog.py",
+    "scripts/build_baseline_review_visuals.py",
+    "scripts/evaluate_flatlands_current_baselines.py",
+    "scripts/verify_baseline_review.py",
+    "src/pathrel/benchmark_metrics.py",
+    "src/pathrel/parent_groups.py",
+    "tests/test_benchmark_metrics.py",
+    "tests/test_parent_groups.py",
+    "site/data/baseline_review_zh.json",
+    "site/data/current_baseline_k4_analysis.json",
+    "site/data/flatlands_parent_group_audit.json",
+    "site/data/published_baseline_reference.csv",
+    "site/data/published_baseline_reference.json",
+    "src/pathrel/data_access.py",
+    "tests/test_data_access.py",
+    "scripts/audit_flatlands_read_scope.py",
+    "site/data/flatlands_read_scope_erratum.json"
   ],
   "ignored_artifacts": [
     {
@@ -4445,18 +4470,102 @@
       "required_for_resume": true,
       "bytes": 79110,
       "sha256": "8b4e162f3b00061eff99ca2a777be155826723a3f3a98bdc0dee0fa50f5507cd"
+    },
+    {
+      "path": "results/current_baseline_k4_v1/report.json",
+      "bytes": 84903,
+      "sha256": "7ea30e7959c7b092bbde5316f8f4621dd9fd7ab85c1e86ce4a328b406f30a5ad",
+      "required_for_resume": true,
+      "role": "2026-09-09 baseline/parent/history audit evidence; diagnostic, no final test."
+    },
+    {
+      "path": "results/baseline_review_20260909_v1/analysis.json",
+      "bytes": 15786,
+      "sha256": "d5a2888d5d59d77cd2436189858514b6db86836d193299debb436a8a7115cb59",
+      "required_for_resume": true,
+      "role": "2026-09-09 baseline/parent/history audit evidence; diagnostic, no final test."
+    },
+    {
+      "path": "results/baseline_review_20260909_v1/verification.json",
+      "bytes": 426,
+      "sha256": "690b21bbb5de724ca812072099bf50c976af5767e23a617019bd4fec27c7de1f",
+      "required_for_resume": true,
+      "role": "2026-09-09 baseline/parent/history audit evidence; diagnostic, no final test."
+    },
+    {
+      "path": "results/baseline_review_20260909_v1/reference_catalog_receipt.json",
+      "bytes": 189,
+      "sha256": "02e1d7fe81b94a88953b11ed64af54466974c13f8f979faf2205e8163fece83b",
+      "required_for_resume": true,
+      "role": "2026-09-09 baseline/parent/history audit evidence; diagnostic, no final test."
+    },
+    {
+      "path": "results/flatlands_parent_groups_v2/report.json",
+      "bytes": 1031736,
+      "sha256": "ab37bddf2f9d050831615ef17f3e5d98d1653498569ba20e6e797c371eea0026",
+      "required_for_resume": true,
+      "role": "2026-09-09 baseline/parent/history audit evidence; diagnostic, no final test."
+    },
+    {
+      "path": "results/flatlands_parent_groups_v2/development_candidate.csv",
+      "bytes": 35849024,
+      "sha256": "ccc86a4ca7016515e1f2c0371ccf1bb21a9ee3d8a1b9f92a63bef432360741e2",
+      "required_for_resume": true,
+      "role": "2026-09-09 baseline/parent/history audit evidence; diagnostic, no final test."
+    },
+    {
+      "path": "results/flatlands_parent_groups_v2/old_train_validation_parents.csv",
+      "bytes": 53501,
+      "sha256": "f8e9994b6c63bc0bc3a07c513a704d405795e01acb28e3cb24800042c6b5d85a",
+      "required_for_resume": true,
+      "role": "2026-09-09 baseline/parent/history audit evidence; diagnostic, no final test."
+    },
+    {
+      "path": "results/flatlands_parent_groups_v2/unresolved_train_quarantine.csv",
+      "bytes": 7516,
+      "sha256": "b75ac6d5d5d67aa78abfb1653578bf3577ce0bdbd0e7a0a6d3f1d41f4e67880f",
+      "required_for_resume": true,
+      "role": "2026-09-09 baseline/parent/history audit evidence; diagnostic, no final test."
+    },
+    {
+      "path": "results/unscenes_history_feasibility_v1/report.json",
+      "bytes": 62718,
+      "sha256": "5ed8512f84e07b63fbe1830ae3bbe52ff5559011468b759b9966e620e7c381b0",
+      "required_for_resume": true,
+      "role": "2026-09-09 baseline/parent/history audit evidence; diagnostic, no final test."
+    },
+    {
+      "path": "results/baseline_review_20260909_v1/parent_sources/3RScan.json",
+      "bytes": 3155995,
+      "sha256": "674a00f50f76b198b9de44efd86c390fea3da37ba8f12cf8ccd00045e265fa64",
+      "required_for_resume": true,
+      "role": "2026-09-09 baseline/parent/history audit evidence; diagnostic, no final test."
+    },
+    {
+      "path": "results/baseline_review_20260909_v1/parent_sources/arkit_splits.csv",
+      "bytes": 127263,
+      "sha256": "06a0686866f186764ed0b92de1a943529cebd78b4af5b671907c40bb2dcd13e1",
+      "required_for_resume": true,
+      "role": "2026-09-09 baseline/parent/history audit evidence; diagnostic, no final test."
+    },
+    {
+      "path": "results/baseline_review_20260909_v1/read_scope_erratum.json",
+      "bytes": 9630,
+      "sha256": "9a925babdb1246c73c51bf2d01c861608975b69bc7ad4bbc7678470c40a9400a",
+      "required_for_resume": true,
+      "role": "Authoritative correction to historical physical-test untouched flags."
     }
   ],
   "last_verification": {
-    "command": "111 unit tests;321 independent source/output/raw/hard replay and actual forward-budget checks; old site/paper numerical audits; all32 visual review; Chrome desktop1440/mobile390 including16 new labelled maps, curves and zoom.",
-    "result": "All listed checks passed. No formal training or profile processes active. Final quick recovery check and deployment receipts are written after these frozen artifacts.",
+    "command": "121 unittest checks (PYTHONPATH=src); 4800 saved maps independently rescored with13440 metric checks;9 canonical event CSVs zero drift;164 file hashes; parent candidate215289 rows4479 groups zero split conflicts; old site/paper audits; desktop/mobile browser.",
+    "result": "Numerical and data checks passed. Browser and publication final receipt paths below; numerical correctness does not cure old parent-place overlap. Access flag correction: original numeric verifier opened5 physical-test observations; its false flag is superseded by read_scope_erratum. Numeric checks passed; old image replay now fails closed.",
     "receipts": [
-      "results/flatlands_external_publication_20260909/replay_audit.json",
-      "results/flatlands_external_publication_20260909/visual_review.json",
-      "results/flatlands_external_publication_20260909/unit_tests.txt",
-      "results/flatlands_external_publication_20260909/site_visuals_audit.json",
-      "results/flatlands_external_publication_20260909/paper_evidence_final_audit.json",
-      "results/flatlands_external_publication_20260909/browser_v2/report.json"
+      "results/baseline_review_20260909_v1/verification.json",
+      "results/baseline_review_publication_20260909/unit_tests.txt",
+      "results/baseline_review_publication_20260909/site_visuals_audit.json",
+      "results/baseline_review_publication_20260909/paper_evidence_audit.json",
+      "results/baseline_review_publication_20260909/browser_release/report.json",
+      "results/baseline_review_20260909_v1/read_scope_erratum.json"
     ]
   },
   "recovery_commands": [
@@ -4476,13 +4585,14 @@
     "cat FLATLANDS_EXTERNAL_PROGRESS_ZH.md",
     "cat results/flatlands_external_publication_20260909/completion.json"
   ],
-  "next_command": "cat FLATLANDS_EXTERNAL_PROGRESS_ZH.md",
+  "next_command": "cat BASELINE_REVIEW_ZH.md",
   "next_actions": [
-    "Check results/flatlands_external_publication_20260909/completion.json; if publication is complete proceed directly, do not repeat profiles or old ablations.",
-    "Freeze new shared FlatLands formal data scale, training/calibration/validation groups and target-blind queries; expanding data requires retraining ConPath and simple controls under the same new protocol.",
-    "Freeze CogniPlan shared target-blind queries and geometry with the existing2400/300/300 mother split; released public weights are training-domain sanity only.",
-    "Predeclare staged budgets and held-out convergence checks for each method; implement audited formal interruption/resume and sufficient per-method training recipes, then three outer repeats and K4/cost comparisons.",
-    "Proceed with accepted external comparisons and strong controls, honest scene statistics and failure analysis. Final tests remain locked until protocol/analysis freeze; physical scale is unresolved, retain cell units."
+    "Read site/data/flatlands_read_scope_erratum.json. Old train/validation had8/5 originalphysicaltest observations;historicalqueryaudit included32ScanNet++. Final holdout requires access audit and parent exclusion; further physicaltest PNG reads remain prohibited. verify_baseline_review.py now fails closed before image access.",
+    "Read current completion receipt; do not repeat completed evaluation or external engineering profiles.",
+    "Finish flatlands_parent_groups_v2 candidate quality, blind query, physical-scale, cross-source duplication and final-test design; no old-checkpoint reuse for fresh groups.",
+    "Prefer published compatible results, then author predictions/weights, only then necessary common-protocol adaptation. Strong baselines include all-floor, all-blocked and nearest-observed; internal ablations do not replace external evidence.",
+    "Outdoor train-only: confidence-aware observation and terrain representation, pose quality and causal nonlearned fusion; then predeclared2x2 single/history x convolution/attention and nested place/view scaling.",
+    "Freeze adequate matched training recipes and three repeats only after data gates. Test images remain locked; no blanket external long-run commitment."
   ],
   "active_training": {
     "root": "results/paper_clean_ablation_matrix_v1",
@@ -4547,11 +4657,6 @@
     "accepted_snapshot_sha256": "c76120768c8f4a911881ee7249841b59e9d5a5a57312f4c565b519493b59356d",
     "paper_deliverables_section": "EXPERIMENT_DESIGN_ZH.md section 8",
     "continue_without_reasking_after_session_restart": true,
-    "required_external_comparisons": [
-      "FlatLands: genuine LaMa BEV module and four-member ensemble",
-      "FlatLands: documented conditional FM+XAttn literature reimplementation with quality gate",
-      "CogniPlan native maps: official conditional generator core and four fixed hypotheses, retrained on common split"
-    ],
     "required_controls": [
       "independent-cell",
       "deterministic completion",
@@ -4559,13 +4664,16 @@
       "direct-event predictor",
       "no-event training",
       "no-global training",
-      "fixed-marginal shuffle"
+      "fixed-marginal shuffle",
+      "all-floor",
+      "all-blocked",
+      "nearest-observed"
     ],
     "required_analysis": [
       "three independent outer training repeats; ensemble members are not repeats",
       "new matched K=4 output comparison plus measured cost curves",
-      "scene-weighted Brier, NLL, ECE and equal-coverage risk",
-      "2000 paired whole-scene bootstrap draws; distinguish seed SD from scene CI",
+      "parent-place-aware Brier, NLL, ECE and equal-coverage risk",
+      "2000 paired whole-parent-place bootstrap draws; distinguish seed SD from scene CI",
       "labelled positive/failure figures and source/radius/observed-fraction strata",
       "frozen final test, complete honest paper results and website figures"
     ],
@@ -4580,7 +4688,19 @@
     "execution_paused_by_user": false,
     "pause_requires_new_explicit_resume_request": false,
     "latest_execution_authorization": "results/training_resume_20260908_finalization/authorization.json",
-    "bounded_training_ablation_completion": "EVALUATION_SUMMARY_ZH.md; all six completed 2026-09-08, larger-data and external experiments remain required"
+    "bounded_training_ablation_completion": "EVALUATION_SUMMARY_ZH.md; all six completed 2026-09-08, larger-data and external experiments remain required",
+    "latest_user_revision": "2026-09-09: prioritize finishing current data and published paper numbers; avoid unnecessary reproductions. History/Transformer/data-size are hypotheses to test, not assumed solutions.",
+    "previous_external_training_candidates": [
+      "FlatLands: genuine LaMa BEV module and four-member ensemble",
+      "FlatLands: documented conditional FM+XAttn literature reimplementation with quality gate",
+      "CogniPlan native maps: official conditional generator core and four fixed hypotheses, retrained on common split"
+    ],
+    "required_external_comparisons": [
+      "Compatible published reference scores first; author per-example outputs or checkpoints for shared path metrics when available.",
+      "At least one credible strong external common-protocol evaluation is needed for an external path-superiority claim; absent author outputs, necessary adaptation or narrowing the claim is required, not automatic full retraining of every candidate."
+    ],
+    "parent_isolation_reopened": true,
+    "test_evaluated_scope": "No final provenance-test model evaluation; original physical-test assets were accessed historically and in development. See read_scope_erratum; do not infer untouched physical test."
   },
   "external_baseline_preparation": {
     "status": "all_three_interfaces_and_resource_checks_complete_formal_data_and_convergence_pending",
@@ -4621,5 +4741,19 @@
       "native_lama_source": "castacks/lama@b61dcb33e063fe9586b50e2dc7b70f97d5046c1d",
       "flow_implementation": "Documented FlatLands literature reimplementation; architecture choices explicit; no public author checkpoint."
     }
+  },
+  "scientific_status_history_before_parent_audit": "P0 passes in two seeds. Clean-support FlatLands K=128 gives event Brier 0.06749 +/- 0.00936 versus independent 0.09521 +/- 0.00703 on the scene-disjoint non-official validation split. The nine-method comparison includes same-checkpoint mean maps (0.06957 +/- 0.00380) and a fixed empirical marginal shuffle (0.16139 +/- 0.00677); spatial dependence has positive mechanism evidence, but the mean-map advantage and equal-30%-coverage risk advantage (3.60% versus 3.90%) are not stable across paired intervals. All six original K=128 predictions replay exactly. UnScenes3D mean-map/qualitative v1 reopened invalid support after sampling and is superseded by v2: Brier 0.51142 +/- 0.00198 versus independent 0.51130 +/- 0.00218. Training weights and hidden-map metrics replay exactly; all 27,522 model predictions obey the exact observation bounds. The frozen hard-observation validation Brier lower bound is 0.47574, and only 15.66% of events are mutable through unknown completion. The manuscript remains a working draft. Both physical tests remain locked; no successful transfer or final-paper claim is supported. Clean no-event/no-global three-seed training ablations are now complete: Brier 0.20425 +/- 0.00322 and 0.09499 +/- 0.00157 versus full 0.06749 +/- 0.00936. All six descriptive paired Brier scene intervals are positive; all six equal-30%-coverage risk intervals include zero. No-event radius-20 predictions are all zero despite positive prevalence 20.67%. This completes the bounded-validation internal ablation, not the planned external main comparisons or final test. CogniPlan public-weight training-domain sanity and resource profiling completed; this is not an external comparative result. Original 500000-step recipe extrapolates to 12.45 hours/seed or 37.34 hours for three serial seeds, excluding full-loader I/O and evaluation, under deterministic v2 execution and concurrent GPU load. Earlier roughly 6-hour native-autotuning v1 estimate is superseded. FlatLands train metadata consistently describes cropping, but independent physical scale verification remains unresolved. LaMa BEV with pinned native Big-LaMa Fourier backbone and FM+XAttn literature reimplementation completed training-only short profiles and actual effective-batch64 measurements. New-process raw/hard replay is exact for 32/128 maps; 321 checks and 111 tests passed. Outputs remain visibly undertrained and are not external comparative evidence. Effective batch64 updates average 1.353677 and 3.422191 seconds; original300000-step training-only extrapolation112.81 and285.18 hours per model is not a launched or committed formal run.",
+  "baseline_review": {
+    "report": "BASELINE_REVIEW_ZH.md",
+    "current_evaluation": "results/current_baseline_k4_v1/report.json",
+    "analysis": "results/baseline_review_20260909_v1/analysis.json",
+    "parent_audit": "results/flatlands_parent_groups_v2/report.json",
+    "history_audit": "results/unscenes_history_feasibility_v1/report.json",
+    "verification": "results/baseline_review_20260909_v1/verification.json",
+    "publication": "results/baseline_review_publication_20260909/completion.json",
+    "training_performed": false,
+    "test_images_opened": true,
+    "physical_test_observations_opened_in_current_replay": 5,
+    "read_scope_erratum": "results/baseline_review_20260909_v1/read_scope_erratum.json"
   }
 }

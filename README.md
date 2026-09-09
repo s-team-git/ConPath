@@ -1,5 +1,9 @@
 # ConPath: Connectivity-Calibrated Path Reliability
 
+**读取范围更正：旧训练／验证包含原发布test中的8／5条观测，本轮回放也读取了这5条验证观测。更早的512观测查询审计检查过53条物理test观测（含32条ScanNet++）。因此撤回“物理test从未读取”的说法；旧 `test_evaluated=false` 等标志不能证明物理测试未触碰。详见[读取范围更正记录](site/data/flatlands_read_scope_erratum.json)。已停止进一步读取物理test图片，最终留出集需要审核全部历史访问并排除已检查的父级地点。**
+
+**2026-09-09 最新更正：旧 FlatLands 验证中27/160个观测与训练共享父级建筑／地点，不能据此主张新建筑泛化或超过其它论文。** 本轮已完成现有模型K=4与简单规则比较、90条论文公开成绩整理和新父级分组候选。详见[最新中文评估与改进方案](BASELINE_REVIEW_ZH.md)；[网站最新评估](https://s-team-git.github.io/ConPath/#baseline-review)提供标注图表。当前没有新增长训练，正式测试仍封存。
+
 ConPath (the research code formerly named PathRel) is an isolated prototype for
 **connectivity-calibrated stochastic occupancy**.
 It does not publish ROS messages, control a robot, or depend on the imported `vi/` code.

@@ -16,10 +16,11 @@
     if (!link || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
     if (typeof dialog.showModal !== 'function') return;
     event.preventDefault();focusBeforeDialog = link;
-    const imageSource = link.closest('.ablation-chart') ? link.querySelector('img').currentSrc : link.href;
+    const responsiveChart = link.closest('.ablation-chart, .baseline-chart');
+    const imageSource = responsiveChart ? link.querySelector('img').currentSrc : link.href;
     $('#dialog-image').src = imageSource;
     $('#dialog-image').alt = link.dataset.caption || link.querySelector('img')?.alt || '放大图片';
-    $('#dialog-image').dataset.chart = String(link.id === 'chart-open' || Boolean(link.closest('.ablation-chart')));
+    $('#dialog-image').dataset.chart = String(link.id === 'chart-open' || Boolean(responsiveChart));
     $('#dialog-caption').textContent = $('#dialog-image').alt;
     $('#dialog-source').href = imageSource;
     dialog.showModal();

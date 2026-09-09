@@ -54,6 +54,19 @@ try{
     await evaluate(`document.querySelector('#sequence-play').click()`);
     check(await evaluate(`document.querySelector('#sequence-play').getAttribute('aria-pressed')==='false'`),'Sequence pause failed');
     await evaluate(`document.querySelector('#results').scrollIntoView({behavior:'instant',block:'start'})`);
+    check(await evaluate(`document.querySelector('.hero-audit-note').textContent.includes('27') && document.querySelector('#baseline-review .audit-notice').textContent.includes('27 / 160')`),'Missing parent-place correction');
+    check(await evaluate(`document.querySelectorAll('[data-current-baseline]').length===6 && document.querySelectorAll('[data-published-reference]').length===4`),'Current/published baseline table row counts');
+    await evaluate(`document.querySelector('#baseline-review').scrollIntoView({behavior:'instant',block:'start'})`);await screenshot(`${width}-baseline-review`);
+    check(await evaluate(`document.querySelector('.baseline-chart img').currentSrc.endsWith('current-controls${width<600?'-mobile':''}.svg')`),'Current baseline responsive chart mismatch');
+    await evaluate(`document.querySelector('.baseline-chart [data-zoom]').click()`);await images();
+    check(await evaluate(`document.querySelector('#image-dialog').open && document.querySelector('#dialog-image').src.endsWith('current-controls${width<600?'-mobile':''}.svg')`),'Current baseline zoom source mismatch');
+    await evaluate(`document.querySelector('#dialog-close').click()`);
+    for(const id of ['current-baseline-details','paper-reference-details','data-repair-details']){
+      await evaluate(`document.querySelector('#${id}').open=true;document.querySelector('#${id}').scrollIntoView({behavior:'instant',block:'start'})`);await images();
+      check((await status()).scrollWidth<=width+1,'New baseline details overflow viewport');
+      await screenshot(`${width}-${id}`);
+      await evaluate(`document.querySelector('#${id}').open=false`);
+    }
     for(const chart of ['brier','risk','reliability','sampling','dependence']){
       await evaluate(`document.querySelector('button[data-chart="${chart}"]').click()`);await images();
       check(await evaluate(`document.querySelector('#chart-image').getAttribute('src').endsWith('/${chart}.svg') && document.querySelector('#chart-pdf').getAttribute('href').endsWith('/${chart}.pdf')`),'Chart/PDF switch mismatch');

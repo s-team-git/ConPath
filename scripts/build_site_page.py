@@ -244,9 +244,28 @@ def main():
         page = page.replace('<p class="research-decision">', external_flatlands + '<p class="research-decision">')
         page = page.replace('下一项是 LaMa/流匹配接入及正式训练配方冻结。', 'LaMa与流匹配已完成接入和测速，下一项是统一正式数据规模、查询规则与收敛诊断。')
         page = page.replace('CogniPlan 已完成原生接口检查和小规模测速，记录如下。', 'CogniPlan、LaMa和流匹配已完成接口检查和小规模测速，记录如下。')
+    from baseline_review_page import baseline_review
+    page = page.replace('<div class="findings">', baseline_review() +
+                        '<div class="historical-results-heading"><h3>此前的K=128诊断与内部消融</h3><p>以下数值保持原始记录；建筑隔离审计未通过，不能据此主张新地点泛化。图中的场景区间以子场景为单位，不是独立建筑总体区间。</p></div><div class="findings">', 1)
+    page = page.replace('当前主要证据来自 FlatLands：142 个验证场景，每次训练评估相同的 4,224 个路径事件。<br>场景之间等权，正式测试集尚未评估。',
+                        '最新工作补齐了简单基线，并发现旧验证队列存在建筑重叠。<br>先阅读下方更正与新评估，再查看历史结果。')
+    page = page.replace('验证阶段 · 六组消融完成 · 外部模型接口已接通 · 更新于 2026.09.08',
+                        '基线评估与数据审计完成 · 更新于 2026.09.09')
+    page = page.replace('<p class="status-line">', '<p class="hero-audit-note">最新更正：旧队列有27条验证观测与训练共享地点，尚不能宣称新建筑泛化或超过其它论文。<a href="#baseline-review">查看本轮评估 ↓</a></p><p class="status-line">', 1)
+    page = page.replace('<div class="publication-links">', '<div class="publication-links"><a class="pill primary" href="https://github.com/s-team-git/ConPath/blob/main/BASELINE_REVIEW_ZH.md">最新中文分析 ↗</a>', 1)
+    page = page.replace('<a class="pill primary" href="https://github.com/s-team-git/ConPath/blob/main/PAPER_DRAFT.md">', '<a class="pill" href="https://github.com/s-team-git/ConPath/blob/main/PAPER_DRAFT.md">')
+    page = page.replace('公开权重见过原训练地图；公平主表将按新的共同划分重新训练。', '公开权重见过原训练地图；正式比较须核对训练重叠，是否需要重训按最新方案决定。')
+    page = page.replace('先核对数据尺度、原生实现和计算预算，再安排训练；所有方法统一起终点、机器人尺寸与评价规则，实验数值由实际运行产生。',
+                        '按最新要求优先引用协议一致的论文成绩，再寻找作者预测或兼容权重，只安排必要的同协议训练。自定义通路比较统一起终点、机器人尺寸与评价规则；父级地点隔离、尺度和最终测试设计先通过检查。')
+    page = page.replace('LaMa与流匹配已完成接入和测速，下一项是统一正式数据规模、查询规则与收敛诊断。',
+                        '本轮现有模型K=4评估、公开论文参考和父级分组候选已完成。下一项是新分组的数据质量与盲查询检查、尺度和最终测试设计；通过后再决定必要训练。')
+    page = page.replace('六组内部训练消融及配对统计已完成，结果见上方新表。接下来补齐外部方法主比较；内部消融不能代替这些对比实验。',
+                        '六组内部消融已完成，现已降为旧队列诊断。统一K=4评估和论文参考已补齐；严格分组后的外部共同任务比较仍是缺口。')
     assert '{{' not in page
     css_version = hashlib.sha256((SITE / 'styles-zh.css').read_bytes()).hexdigest()[:12]
     page = page.replace('href="styles-zh.css"', f'href="styles-zh.css?v={css_version}"')
+    js_version = hashlib.sha256((SITE / 'app-zh.js').read_bytes()).hexdigest()[:12]
+    page = page.replace('src="app-zh.js"', f'src="app-zh.js?v={js_version}"')
     (SITE/'index.html').write_text(page)
     print('Chinese page built: 9 methods, 2 model examples, 12 gallery scenes, 18 frames.')
 
