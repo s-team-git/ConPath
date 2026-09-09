@@ -1,5 +1,16 @@
 # ConPath continuation state
 
+## 当前交付：模型效果首页重排（2026-09-09）
+
+用户反馈效果图难找、网站混乱，并询问下一步。本轮只完成网站信息结构调整与建议记录：
+`index.html`提供三栏输入/预测/参考、两个固定旧案例、实际补全/概率切换、四行概览和下一步；
+`research.html`保留原全部图表、数据浏览、消融、外部工程与更正。旧深链可跳转，研究页顶部可返回首页。
+`build_model_home.py`从已发布SVG复制12张图，只更换文字标题，嵌入位图和起终点几何逐项相同；
+没有重新解码原始数据用于渲染、重跑推理或新训练；资产审计会读取既有训练素材字节核对哈希。模型示例仍是原K=128解释性案例；新K=4统计单独说明。
+首页与研究页桌面/手机真实浏览器通过；凭据见 `results/model_home_publication_20260909/completion.json`。
+恢复时若发布收据已通过，不重做网站或旧评估。科研下一项仍先审查测试访问与父级划分，然后做干净小规模基线验证；
+不能把本轮前端完成当成数据问题已解决。以下历史更正仍有效。
+
 **读取范围更正：旧训练／验证包含原发布test中的8／5条观测，本轮回放也读取了这5条验证观测。更早的512观测查询审计检查过53条物理test观测（含32条ScanNet++）。因此撤回“物理test从未读取”的说法；旧 `test_evaluated=false` 等标志不能证明物理测试未触碰。详见[读取范围更正记录](site/data/flatlands_read_scope_erratum.json)。已停止进一步读取物理test图片，最终留出集需要审核全部历史访问并排除已检查的父级地点。**
 
 This file is the durable hand-off for interrupted Codex sessions. Update it after every material

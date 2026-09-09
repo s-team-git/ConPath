@@ -1,0 +1,199 @@
+{
+  "examples": [
+    {
+      "id": "positive_recovery",
+      "global_id": "obs_266762",
+      "source": "ZInD",
+      "scene": "0743_floor_01_pano_21",
+      "split": "validation",
+      "candidate_index": 23,
+      "radius_cells": 10,
+      "radius_m": 0.1,
+      "target": 1,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        151,
+        197
+      ],
+      "selection_rule": "target=1, correlated probability exceeds independent probability in all three seeds; rank by mean per-event Brier gain",
+      "seed": 20260831,
+      "visual_sampling_seed": 20260903,
+      "checkpoints": {
+        "correlated": {
+          "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260831_conpath/best.pt",
+          "sha256": "f7b42163fb2fd6127a19e2a967f44181814a263c699020a7a59f895d913b797c"
+        },
+        "independent": {
+          "path": "results/p1_flatlands_independent_k128_support_clamped_v1/seed20260831_independent/best.pt",
+          "sha256": "87257f20d4e8282c2c318f70ee099b30cb5ec945bf34608200236096fea9ef23"
+        }
+      },
+      "event_probability": {
+        "correlated": 0.7890625,
+        "independent": 0.015625
+      },
+      "panels": {
+        "observed": "assets/zh/model-examples/positive_recovery-observed.svg",
+        "reference": "assets/zh/model-examples/positive_recovery-reference.svg",
+        "correlated": "assets/zh/model-examples/positive_recovery-correlated.svg",
+        "correlated_sample": "assets/zh/model-examples/positive_recovery-correlated_sample.svg",
+        "independent": "assets/zh/model-examples/positive_recovery-independent.svg",
+        "independent_sample": "assets/zh/model-examples/positive_recovery-independent_sample.svg"
+      },
+      "displayed_world_event": {
+        "correlated": true,
+        "independent": false
+      }
+    },
+    {
+      "id": "false_safe_avoided",
+      "global_id": "obs_249512",
+      "source": "ZInD",
+      "scene": "1263_floor_01_pano_5",
+      "split": "validation",
+      "candidate_index": 5,
+      "radius_cells": 20,
+      "radius_m": 0.2,
+      "target": 0,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        211,
+        93
+      ],
+      "selection_rule": "target=0, independent probability >=0.8 and correlated probability <0.8 in all three seeds; rank by mean per-event Brier gain",
+      "seed": 20260831,
+      "visual_sampling_seed": 20260904,
+      "checkpoints": {
+        "correlated": {
+          "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260831_conpath/best.pt",
+          "sha256": "f7b42163fb2fd6127a19e2a967f44181814a263c699020a7a59f895d913b797c"
+        },
+        "independent": {
+          "path": "results/p1_flatlands_independent_k128_support_clamped_v1/seed20260831_independent/best.pt",
+          "sha256": "87257f20d4e8282c2c318f70ee099b30cb5ec945bf34608200236096fea9ef23"
+        }
+      },
+      "event_probability": {
+        "correlated": 0.7578125,
+        "independent": 0.8046875
+      },
+      "panels": {
+        "observed": "assets/zh/model-examples/false_safe_avoided-observed.svg",
+        "reference": "assets/zh/model-examples/false_safe_avoided-reference.svg",
+        "correlated": "assets/zh/model-examples/false_safe_avoided-correlated.svg",
+        "correlated_sample": "assets/zh/model-examples/false_safe_avoided-correlated_sample.svg",
+        "independent": "assets/zh/model-examples/false_safe_avoided-independent.svg",
+        "independent_sample": "assets/zh/model-examples/false_safe_avoided-independent_sample.svg"
+      },
+      "displayed_world_event": {
+        "correlated": true,
+        "independent": true
+      }
+    }
+  ],
+  "model_training_samples": 160,
+  "example_samples": 128,
+  "latest_evaluation_samples": 4,
+  "new_training_performed": false,
+  "new_dataset_images_opened": false,
+  "model_pixels_changed": false,
+  "selection_note": "Reuse the two previously published, label-selected explanatory cases; do not choose again based on current outcomes.",
+  "examples_are_old_cohort_diagnostics": true,
+  "assets": [
+    {
+      "path": "assets/zh/model-examples/positive_recovery-observed.svg",
+      "sha256": "ce8249a1e225a7f51539506831a351b50d4ddf36d27d6e33f0c5801514ad8ccf",
+      "source": "assets/zh/example_positive_recovery_observed.svg",
+      "source_sha256": "f4f6618f9d9da8dfc70065d516bcd7e965cea917a6c0bfb06f5e482acad747e8",
+      "embedded_map_and_endpoint_geometry_unchanged": true
+    },
+    {
+      "path": "assets/zh/model-examples/positive_recovery-reference.svg",
+      "sha256": "f3ee9e4b326585619c18f78d8c90ee66f4c40a7d9f8cc6a5b6d18fd77ee0edb7",
+      "source": "assets/zh/example_positive_recovery_reference.svg",
+      "source_sha256": "854e8dd35c2dc83feb7185fcaef68dbf1b04f048f4c8c47f20a35bc760bb4659",
+      "embedded_map_and_endpoint_geometry_unchanged": true
+    },
+    {
+      "path": "assets/zh/model-examples/positive_recovery-correlated.svg",
+      "sha256": "6995f14fba604953d3527a05e6b862ca2d9c3f1cda26c164ef57189e91d4b1fc",
+      "source": "assets/zh/example_positive_recovery_correlated.svg",
+      "source_sha256": "ea41c37a4b7905b41966d03a594dde4e1b1638a2a6ee66bbc5e3cce307b98ad4",
+      "embedded_map_and_endpoint_geometry_unchanged": true
+    },
+    {
+      "path": "assets/zh/model-examples/positive_recovery-correlated_sample.svg",
+      "sha256": "d758cfb6c836b3dabcff5971f81369e9e71a1c0caa57ab398c36005744da9f73",
+      "source": "assets/zh/example_positive_recovery_correlated_sample.svg",
+      "source_sha256": "8fb912d3c4f0729c94cf39b4dc82f21f78c25b56b9ae9c635e6b0ed6f704262c",
+      "embedded_map_and_endpoint_geometry_unchanged": true
+    },
+    {
+      "path": "assets/zh/model-examples/positive_recovery-independent.svg",
+      "sha256": "76fc746b25a4c4524b660dbf55fa201e7eb895d272c367e18eb59ad3d598276c",
+      "source": "assets/zh/example_positive_recovery_independent.svg",
+      "source_sha256": "5f8dc523cf7f25e677511bdf86e9f8288ca9043059649b9c6c916439220d01ba",
+      "embedded_map_and_endpoint_geometry_unchanged": true
+    },
+    {
+      "path": "assets/zh/model-examples/positive_recovery-independent_sample.svg",
+      "sha256": "3882f66ecf844b3f566b4dcbd86e39d86c8dc6d6d91c1b7e95b8cf7dee3a8b1f",
+      "source": "assets/zh/example_positive_recovery_independent_sample.svg",
+      "source_sha256": "e6c5dceacf82ef82aec17754cf2d21640b6d62922dcc1aa3f6e624209acd1304",
+      "embedded_map_and_endpoint_geometry_unchanged": true
+    },
+    {
+      "path": "assets/zh/model-examples/false_safe_avoided-observed.svg",
+      "sha256": "fbfe8861fc620423f77eaa72218accb4c9dec704ab759f767265776f9ad54fed",
+      "source": "assets/zh/example_false_safe_avoided_observed.svg",
+      "source_sha256": "9b217060d424c79dcedd8354240e352868b3b393dce39e2efca8d99c89aa0e0d",
+      "embedded_map_and_endpoint_geometry_unchanged": true
+    },
+    {
+      "path": "assets/zh/model-examples/false_safe_avoided-reference.svg",
+      "sha256": "42c9f0cbaac7abbe40005e0515f4b752e88800d637b1bf1c751511708052cd33",
+      "source": "assets/zh/example_false_safe_avoided_reference.svg",
+      "source_sha256": "81718f647140efbdabe7965088d7f6fca7020ad3794c706382859e9bd3090e8d",
+      "embedded_map_and_endpoint_geometry_unchanged": true
+    },
+    {
+      "path": "assets/zh/model-examples/false_safe_avoided-correlated.svg",
+      "sha256": "63c86dd11b042b82884fb8f5d7da7ff7da77f40ae2b03c59c4efc75eec2f8b3c",
+      "source": "assets/zh/example_false_safe_avoided_correlated.svg",
+      "source_sha256": "d57c1a49b9f0f2b0628c1a269096317d3629332545808f8564cf6d1bdedb306b",
+      "embedded_map_and_endpoint_geometry_unchanged": true
+    },
+    {
+      "path": "assets/zh/model-examples/false_safe_avoided-correlated_sample.svg",
+      "sha256": "6013edb98b1c02b0513eaee1da6a23844282da0049ada28a9694585ab60120cf",
+      "source": "assets/zh/example_false_safe_avoided_correlated_sample.svg",
+      "source_sha256": "4b49d80decced81767a1fa06261e86119d2446bd4cbb9caae979a5ecfc6a0c67",
+      "embedded_map_and_endpoint_geometry_unchanged": true
+    },
+    {
+      "path": "assets/zh/model-examples/false_safe_avoided-independent.svg",
+      "sha256": "26efdbf4b2827754057f1c223504398987bb9b400495b0f0c693436948088592",
+      "source": "assets/zh/example_false_safe_avoided_independent.svg",
+      "source_sha256": "45e929885588918909b29b5cb23fee82038454f2f6d54c37fc3b4155a94ec8b5",
+      "embedded_map_and_endpoint_geometry_unchanged": true
+    },
+    {
+      "path": "assets/zh/model-examples/false_safe_avoided-independent_sample.svg",
+      "sha256": "a93f87a7ddec0a8f21501d0ac737ad5d9dd0f427e6dc63140bf44ce86028ca68",
+      "source": "assets/zh/example_false_safe_avoided_independent_sample.svg",
+      "source_sha256": "787e59293c2a9a594810d33258a2495829cb925033da40d3adabd3a1b319f62d",
+      "embedded_map_and_endpoint_geometry_unchanged": true
+    }
+  ],
+  "source_hashes": {
+    "site/data/site_visuals_zh.json": "3fe0c0270fa2db16eb17e3ac6d69415592740df22c113c0258716ed12de832f8",
+    "site/data/current_baseline_k4_analysis.json": "41c70d9158733cc608f19c28f9bb55b7edfccd64354c05490cc001b00b7581c2",
+    "scripts/build_model_home.py": "59d7bffe08b44d4cd20dfb7a778dee571f61f9f549cda574d3b2c0035ba173a1"
+  }
+}

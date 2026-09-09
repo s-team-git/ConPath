@@ -67,7 +67,8 @@ def main():
         for variant,checkpoint in row['checkpoints'].items():
             assert sha(ROOT/checkpoint['path'])==checkpoint['sha256']
             assert row['event_probability'][variant]==original['event_probability'][variant]['20260831']
-    table=Table();table.feed((ROOT/'site/index.html').read_text())
+    evidence_page = ROOT/'site/research.html'
+    table=Table();table.feed(evidence_page.read_text())
     methods=read(ROOT/'site/data/flatlands_clean_paper_analysis.json')['methods']
     assert set(table.rows)==set(methods)
     for key,method in methods.items():
@@ -100,7 +101,7 @@ def main():
                 assert ('标准差' in text if 'brier' in path.name else '95%' in text)
             else:
                 assert path.read_bytes().startswith(b'%PDF-')
-        ablation_table=Table('data-ablation');ablation_table.feed((ROOT/'site/index.html').read_text())
+        ablation_table=Table('data-ablation');ablation_table.feed(evidence_page.read_text())
         assert set(ablation_table.rows)==set(ablations['methods'])
         for variant,method in ablations['methods'].items():
             row=ablation_table.rows[variant]

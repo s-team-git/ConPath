@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "checkpoint_id": "baseline-reference-parent-audit-20260909",
+  "checkpoint_id": "model-effects-home-20260909",
   "updated_local_date": "2026-09-09",
   "timezone": "America/New_York",
   "branch": "main",
-  "remote_sync": "Resolve current publication via git log -1 -- RECOVERY_STATE.json; verification receipt results/baseline_review_publication_20260909/completion.json. Prior 465f21b publication remains archived.",
+  "remote_sync": "Resolve current homepage publication via git log -1 -- RECOVERY_STATE.json; results/model_home_publication_20260909/completion.json verifies deployment. Prior dbebf3c baseline/access audit remains authoritative.",
   "latest_local_commit": "Resolve with git log -1 -- RECOVERY_STATE.json; old ablation implementation e6f0910 remains immutable.",
   "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence. New external profiles on 2026-09-08 actually used Python 3.13 and torch 2.12.1+cu130; v2 explicitly disables TF32 and cudnn benchmarking and enables deterministic algorithms. GPU has unrelated concurrent load; no isolated-device latency claim.",
   "scientific_status": "Parent-place isolation FAIL: 27/160 old FlatLands validation observations share training parents. Old numerical/ablation replays remain correct cohort diagnostics, not unseen-building evidence; subscene CIs are not parent-population intervals. K4 ConPath Brier0.080069 vs untrained all-floor0.072373; risk30 0.048931 vs0.134261. No universal local or published-paper superiority. Ninety published map reference scores cannot directly rank our different path/data protocol. Metadata-only development candidate215289 observations/4479 parent groups has zero internal split overlap;53 unresolved train observations quarantined, formal quality/scale/query/final-test gates open. Original physical ID test also overlaps parents. UnScenes hard-observation error floor0.475736 vs actual0.51142;train36-frame audit conflict22.75%, causal27-pair pose evidence mixed. No new training, no future-frame input, all test images locked. IMPORTANT ACCESS ERRATUM: old provenance train/validation contains8/5 physical-test observations;current K4 replay and independent numeric verification read those5. Historical512 query audit read53 physical-test observations including32ScanNet++. Withdraw physical-test-never-read claim. Further physical-test PNG reads stopped; final untouched holdout eligibility unresolved. Old test_evaluated=false flags are not proof of physical-test isolation.",
-  "active_task": "Current analysis/publication complete when receipt passes. FIRST NEXT: audit all historical image access and final holdout eligibility; then parent-group candidate quality/blind queries/scale. Do not rerun old validation PNG replay: physical-test rows are present.",
+  "active_task": "Effects-first homepage and separate research page completed. No training/inference or raw-image decoding for rendering this turn; existing allowed training media bytes were rehashed during the retained visual audit. Next research: historical access and parent-group quality/final-holdout gates, then a matched small clean-data ConPath/independent/deterministic/rule pilot before scale or attention.",
   "completed_milestones": [
     "Interruption-safe P0 training with atomic checkpoints and exact resume",
     "Two-seed synthetic P0 pass and matched no-reach failure",
@@ -513,7 +513,13 @@
     "src/pathrel/data_access.py",
     "tests/test_data_access.py",
     "scripts/audit_flatlands_read_scope.py",
-    "site/data/flatlands_read_scope_erratum.json"
+    "site/data/flatlands_read_scope_erratum.json",
+    "scripts/build_model_home.py",
+    "scripts/check_model_home_browser.mjs",
+    "site/home.css",
+    "site/home.js",
+    "site/research.html",
+    "site/data/model_home_zh.json"
   ],
   "ignored_artifacts": [
     {
@@ -4557,15 +4563,13 @@
     }
   ],
   "last_verification": {
-    "command": "121 unittest checks (PYTHONPATH=src); 4800 saved maps independently rescored with13440 metric checks;9 canonical event CSVs zero drift;164 file hashes; parent candidate215289 rows4479 groups zero split conflicts; old site/paper audits; desktop/mobile browser.",
-    "result": "Numerical and data checks passed. Browser and publication final receipt paths below; numerical correctness does not cure old parent-place overlap. Access flag correction: original numeric verifier opened5 physical-test observations; its false flag is superseded by read_scope_erratum. Numeric checks passed; old image replay now fails closed.",
+    "command": "Homepage and research-page real-browser interaction checks at1440/390; two-page local-link check;12 SVG embedded bitmaps and endpoint geometry identical; retained research visual audit.",
+    "result": "All listed website checks passed. No new model training, inference or raw-image decoding for rendering; existing training media bytes were rehashed. Historical physical-test access erratum remains in force.",
     "receipts": [
-      "results/baseline_review_20260909_v1/verification.json",
-      "results/baseline_review_publication_20260909/unit_tests.txt",
-      "results/baseline_review_publication_20260909/site_visuals_audit.json",
-      "results/baseline_review_publication_20260909/paper_evidence_audit.json",
-      "results/baseline_review_publication_20260909/browser_release/report.json",
-      "results/baseline_review_20260909_v1/read_scope_erratum.json"
+      "results/model_home_publication_20260909/home_browser/report.json",
+      "results/model_home_publication_20260909/research_browser/report.json",
+      "results/model_home_publication_20260909/static_and_asset_check.json",
+      "results/model_home_publication_20260909/research_visual_audit.json"
     ]
   },
   "recovery_commands": [
@@ -4585,8 +4589,9 @@
     "cat FLATLANDS_EXTERNAL_PROGRESS_ZH.md",
     "cat results/flatlands_external_publication_20260909/completion.json"
   ],
-  "next_command": "cat BASELINE_REVIEW_ZH.md",
+  "next_command": "cat WORK_PLAN.md",
   "next_actions": [
+    "Homepage publication receipt: results/model_home_publication_20260909/completion.json. If passed, do not repeat website work. index.html#effects is model output; research.html preserves detailed evidence. No change to underlying scientific scores or access restrictions.",
     "Read site/data/flatlands_read_scope_erratum.json. Old train/validation had8/5 originalphysicaltest observations;historicalqueryaudit included32ScanNet++. Final holdout requires access audit and parent exclusion; further physicaltest PNG reads remain prohibited. verify_baseline_review.py now fails closed before image access.",
     "Read current completion receipt; do not repeat completed evaluation or external engineering profiles.",
     "Finish flatlands_parent_groups_v2 candidate quality, blind query, physical-scale, cross-source duplication and final-test design; no old-checkpoint reuse for fresh groups.",
@@ -4755,5 +4760,27 @@
     "test_images_opened": true,
     "physical_test_observations_opened_in_current_replay": 5,
     "read_scope_erratum": "results/baseline_review_20260909_v1/read_scope_erratum.json"
+  },
+  "last_scientific_verification": {
+    "command": "121 unittest checks (PYTHONPATH=src); 4800 saved maps independently rescored with13440 metric checks;9 canonical event CSVs zero drift;164 file hashes; parent candidate215289 rows4479 groups zero split conflicts; old site/paper audits; desktop/mobile browser.",
+    "result": "Numerical and data checks passed. Browser and publication final receipt paths below; numerical correctness does not cure old parent-place overlap. Access flag correction: original numeric verifier opened5 physical-test observations; its false flag is superseded by read_scope_erratum. Numeric checks passed; old image replay now fails closed.",
+    "receipts": [
+      "results/baseline_review_20260909_v1/verification.json",
+      "results/baseline_review_publication_20260909/unit_tests.txt",
+      "results/baseline_review_publication_20260909/site_visuals_audit.json",
+      "results/baseline_review_publication_20260909/paper_evidence_audit.json",
+      "results/baseline_review_publication_20260909/browser_release/report.json",
+      "results/baseline_review_20260909_v1/read_scope_erratum.json"
+    ]
+  },
+  "model_home_publication": {
+    "completion": "results/model_home_publication_20260909/completion.json",
+    "effects_url": "https://s-team-git.github.io/ConPath/#effects",
+    "detailed_research_url": "https://s-team-git.github.io/ConPath/research.html",
+    "new_training": false,
+    "changed_model_pixels": false,
+    "examples": 2,
+    "raw_images_decoded_for_rendering": false,
+    "existing_training_photo_bytes_rehashed": 23
   }
 }

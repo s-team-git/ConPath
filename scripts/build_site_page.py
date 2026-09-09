@@ -266,8 +266,14 @@ def main():
     page = page.replace('href="styles-zh.css"', f'href="styles-zh.css?v={css_version}"')
     js_version = hashlib.sha256((SITE / 'app-zh.js').read_bytes()).hexdigest()[:12]
     page = page.replace('src="app-zh.js"', f'src="app-zh.js?v={js_version}"')
-    (SITE/'index.html').write_text(page)
-    print('Chinese page built: 9 methods, 2 model examples, 12 gallery scenes, 18 frames.')
+    page = page.replace('<title>ConPath · 看懂未知空间中的路径概率</title>', '<title>ConPath · 详细研究记录</title>')
+    page = page.replace('<a href="#top" class="wordmark">ConPath<span>研究笔记</span></a>', '<a href="index.html#effects" class="wordmark">ConPath<span>返回模型效果 ↗</span></a>')
+    page = page.replace('<p class="eyebrow">部分观测 · 地图不确定性 · 路径概率</p>', '<p class="eyebrow">详细研究记录 · <a href="index.html#effects">返回简洁首页与模型效果 ↗</a></p>')
+    page = page.replace('当前使用场景隔离的自建来源划分，不是官方排行榜划分。', '旧自建划分仅隔离子场景ID，父级地点存在重叠，当前结果仅作诊断。')
+    (SITE/'research.html').write_text(page)
+    from build_model_home import main as build_home
+    build_home()
+    print('Research page retained: 9 methods, 2 model examples, 12 gallery scenes, 18 frames.')
 
 
 if __name__=='__main__':main()
