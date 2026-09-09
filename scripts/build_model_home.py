@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """An effects-first homepage from published, unchanged model-output bitmaps.
 
-No dataset/archive/checkpoint is opened. SVG text labels are simplified; the
+This page builder opens no dataset/archive/checkpoint; it includes separately audited new inference. SVG text labels are simplified; the
 embedded map bitmap and every S/G coordinate remain exactly as published.
 """
 import copy
@@ -54,12 +54,17 @@ def main():
             case['panels'][key] = str(destination.relative_to(SITE))
             copied.append({'path': case['panels'][key], 'sha256': sha(destination), 'source': relative,
                            'source_sha256': sha(source), 'embedded_map_and_endpoint_geometry_unchanged': True})
-    home_data = {'examples': cases, 'model_training_samples': 160, 'example_samples': 128,
+    expanded = json.loads((SITE/'data/expanded_model_gallery_zh.json').read_text())
+    for case in cases:
+        case.update(domain='indoor', samples=128, split_zh='旧解释性案例', checkpoint_scope_zh='室内训练检查点；此前按标签选定', selection='historical_label_selected')
+    cases = expanded['examples'] + cases
+    copied += expanded['assets']
+    home_data = {'examples': cases, 'model_training_samples': 160, 'example_samples': [32, 128],
                  'latest_evaluation_samples': 4, 'new_training_performed': False,
-                 'new_dataset_images_opened': False, 'model_pixels_changed': False,
-                 'selection_note': 'Reuse the two previously published, label-selected explanatory cases; do not choose again based on current outcomes.',
+                 'new_dataset_images_opened': True, 'new_physical_test_images_opened': 0, 'new_cases': expanded['new_cases'], 'historical_model_pixels_changed': False,
+                 'selection_note': '28 new metadata-selected development cases, plus 2 preserved historical label-selected examples. Each shows the first actual world; none is best-of-K.',
                  'examples_are_old_cohort_diagnostics': True, 'assets': copied,
-                 'source_hashes': {str(p.relative_to(ROOT)): sha(p) for p in [SITE/'data/site_visuals_zh.json', SITE/'data/current_baseline_k4_analysis.json', Path(__file__)]}}
+                 'source_hashes': {str(p.relative_to(ROOT)): sha(p) for p in [SITE/'data/site_visuals_zh.json', SITE/'data/expanded_model_gallery_zh.json', SITE/'data/current_baseline_k4_analysis.json', Path(__file__)]}}
     data_path = SITE/'data/model_home_zh.json'
     data_path.write_text(json.dumps(home_data, ensure_ascii=False, indent=2)+'\n')
     case = cases[0]
@@ -67,6 +72,8 @@ def main():
         ('input', '① 模型输入', 'observed', '只有已经观测到的部分；浅灰区域未知。'),
         ('prediction', '② 模型预测', 'correlated_sample', '一次实际采样的完整地图。'),
         ('reference', '③ 真实参考', 'reference', '完整地图，用于核对；不输入推理模型。')])
+    thumbnails = ''.join(f'<button data-case="{i}" aria-pressed="{str(i == 0).lower()}" class="case-thumb{" selected" if i == 0 else ""}"><img src="{row["panels"]["correlated_sample"]}" alt="ConPath补全预览 {i+1}：{row["source"]}" loading="lazy"><span>{row["source"]} · {i+1:02d}</span></button>' for i, row in enumerate(cases))
+    sources = ''.join(f'<option value="{name}">{name}（{sum(c["source"] == name for c in cases)}组）</option>' for name in sorted({c['source'] for c in cases}))
     labels = {'correlated':'ConPath', 'independent':'独立单元模型', 'tiny_deterministic':'确定性补全网络', 'all_floor':'未知全部可通行'}
     rows = []
     for key, name in labels.items():
@@ -77,17 +84,17 @@ def main():
     page = f'''<!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f8faf9"><title>ConPath · 模型效果与实验结果</title><meta name="description" content="直接查看ConPath真实模型输出：输入、预测与参考地图并排比较，保留失败例子。"><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="home.css?v={css}"><script src="home.js?v={js}" defer></script></head>
 <body><a class="skip" href="#effects">跳到模型效果</a><header class="header"><nav class="wrap navigation" aria-label="主导航"><a class="brand" href="index.html">ConPath<span>研究项目</span></a><div><a href="#effects">模型效果</a><a href="#results">实验结果</a><a href="#next">下一步</a><a href="research.html">研究记录 ↗</a></div></nav></header>
-<main class="wrap"><section class="intro"><p class="eyebrow">部分地图 → 完整世界 → 通路概率</p><h1>模型补全得怎么样？<br><span>把预测和真实地图放在一起看。</span></h1><p>ConPath根据已观测区域推测完整地图，再结合机器人尺寸估计两个点之间是否有路。</p><p class="status">当前展示已有训练模型。最近完成指标复核，尚未训练新模型。</p></section>
-<section id="effects" class="section effects"><span id="method" class="anchor-alias"></span><div class="section-heading"><div><p class="eyebrow">01 / 真实模型输出</p><h2>输入、预测、参考</h2></div><span class="badge">室内 · 已训练模型</span></div>
-<div class="controls"><div class="segmented" aria-label="选择真实案例"><button data-case="0" class="selected" aria-pressed="true">示例一：真实有路</button><button data-case="1" aria-pressed="false">示例二：真实无路</button></div><label class="model-select">模型<select id="home-model"><option value="correlated">ConPath</option><option value="independent">独立单元对照</option></select></label></div>
-<div class="view-row"><div class="segmented light" aria-label="模型输出显示方式"><button data-view="sample" class="selected" aria-pressed="true">一次实际补全</button><button data-view="probability" aria-pressed="false">每格概率图</button></div><p id="view-explanation">绿色表示可通行，深灰表示阻挡。</p></div>
+<main class="wrap"><section class="intro"><p class="eyebrow">部分地图 → 完整世界 → 通路概率</p><h1>模型补全得怎么样？<br><span>把预测和真实地图放在一起看。</span></h1><p>ConPath根据已观测区域推测完整地图，再结合机器人尺寸估计两个点之间是否有路。</p><p class="status">新增28组真实输出：20组室内、8组室外；加上原有2组，共30组可切换查看。</p></section>
+<section id="effects" class="section effects"><span id="method" class="anchor-alias"></span><div class="section-heading"><div><p class="eyebrow">01 / 真实模型输出</p><h2>输入、预测、参考</h2></div><span id="case-badge" class="badge">开发验证 · 30组案例</span></div>
+<div class="controls"><label class="model-select">数据来源<select id="home-source"><option value="all">全部（30组）</option>{sources}</select></label><div class="case-paging"><button id="case-prev" aria-label="上一个案例">←</button><span id="case-counter">1 / 30</span><button id="case-next" aria-label="下一个案例">→</button></div><label class="model-select">模型<select id="home-model"><option value="correlated">ConPath</option><option value="independent">独立单元对照</option></select></label></div>
+<div class="case-strip" aria-label="选择ConPath效果案例">{thumbnails}</div><div class="view-row"><div class="segmented light" aria-label="模型输出显示方式"><button data-view="sample" class="selected" aria-pressed="true">一次实际补全</button><button data-view="probability" aria-pressed="false">每格概率图</button></div><p id="view-explanation">绿色表示可通行，深灰表示阻挡。</p></div>
 <div class="mobile-panels" aria-label="切换对照图片"><button data-jump="0" class="selected" aria-pressed="true">① 输入</button><button data-jump="1" aria-pressed="false">② 预测</button><button data-jump="2" aria-pressed="false">③ 参考</button></div>
 <div id="output-gallery" class="output-gallery">{cards}</div>
 <div class="legend" aria-label="地图图例"><span><i class="free"></i>可通行</span><span><i class="blocked"></i>阻挡</span><span><i class="unknown"></i>未知</span><span><i class="outside"></i>有效范围外</span><span><b class="start">● S</b> 起点</span><span><b class="goal">◆ G</b> 目标</span></div>
-<div id="case-reading" class="case-reading" aria-live="polite"><div><span>模型估计有路概率</span><strong id="case-probability">78.9%</strong></div><p id="case-explanation">参考地图有路；ConPath给出了较高的通路概率。本张实际补全也存在通路。</p></div>
-<p id="case-source" class="caption">示例 obs_266762 · 模型种子20260831 · 机器人半径10格。展示固定的第一次采样，通路概率来自原128次采样评估。</p>
-<p class="caption">S、G只是查询端点，图中没有绘制规划路线。两组是此前按标签选定的解释性示例，不能代替整体统计。<a href="research.html#method">查看完整来源与原示例 ↗</a></p>
-<aside class="evidence-note"><strong>结果适用范围</strong><p>旧数据划分存在地点重叠与测试访问问题，当前图片和数值只作诊断，尚不能证明新地点泛化或超过其它论文。<a href="research.html#baseline-review">查看审计与更正 ↗</a></p></aside>
+<div id="case-reading" class="case-reading" aria-live="polite"><div><span>模型估计有路概率</span><strong id="case-probability">{case["event_probability"]["correlated"]*100:.1f}%</strong></div><p id="case-explanation">固定显示第一次实际补全；请对照右侧真实参考查看差异。</p></div>
+<p id="case-source" class="caption">{case["source"]} · {case["global_id"]} · 机器人半径10格 · 通路概率来自同一批32次实际采样。</p>
+<p class="caption">S、G只是查询端点，图中没有绘制规划路线。新增28组按来源、编号和时间固定选择，未按模型效果筛选；最后两组保留此前按标签选定的解释性案例。所有案例都来自开发阶段，不能代替独立最终测试统计。<a href="research.html#method">查看完整来源与原示例 ↗</a></p>
+<aside class="evidence-note"><strong>结果适用范围</strong><p>新增室内案例排除了与旧训练共享地点的观测，但仍曾参与旧模型选优；室外使用单独训练的模型，并依赖数据集提供的有效区域。图片和旧表格用于诊断，尚不能证明最终测试泛化或超过其它论文。<a href="research.html#baseline-review">查看审计与更正 ↗</a></p></aside>
 </section>
 <section id="results" class="section"><div class="section-heading"><div><p class="eyebrow">02 / 最新整体评估</p><h2>有改善，也有明显的不足。</h2></div></div><p class="section-description">下表使用同一批查询。随机方法输出4张地图，确定性方法输出1张；这与上方128次采样的解释性示例分开报告。</p>
 <div class="table-scroll"><table><caption>三次训练的均值；无训练规则仅一次结果。两项指标均越低越好。</caption><thead><tr><th scope="col">方法</th><th scope="col">输出数</th><th scope="col">概率误差 ↓</th><th scope="col">30%覆盖率误判 ↓</th></tr></thead><tbody>{''.join(rows)}</tbody></table></div>
@@ -98,7 +105,7 @@ def main():
 <dialog id="model-dialog" aria-labelledby="model-dialog-caption"><div class="dialog-toolbar"><p id="model-dialog-caption"></p><button id="model-dialog-close" aria-label="关闭放大图片">关闭 ×</button></div><img id="model-dialog-image" alt="当前模型图片的放大视图"><a id="model-dialog-source" href="#effects">打开原始图片 ↗</a></dialog><p id="home-error" hidden>交互加载失败，仍可查看当前静态示例；请刷新重试。</p>
 <script type="application/json" id="home-data">{embedded_data}</script></body></html>'''
     (SITE/'index.html').write_text(page+'\n')
-    print('Homepage: 2 existing model cases, 3 comparison panels, 4 summary rows; no new dataset image access.')
+    print(f'Homepage: {len(cases)} real model cases, 3 comparison panels, 4 summary rows.')
 
 
 if __name__ == '__main__':

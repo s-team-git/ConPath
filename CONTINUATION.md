@@ -1393,3 +1393,7 @@ The existing supervisor automatically starts queued no_global workers after a co
 Use `results/paper_clean_ablation_matrix_v1/progress.json` and each command's --finalize-dir flag
 to distinguish the current evaluation phase from parameter training; epoch counts do not advance in evaluation.
 Earlier authorization and the accepted-design snapshot remain in `results/training_resume_20260907/`.
+
+## 2026-09-09：新增模型图集，用户授权连续执行
+
+完成28组新的固定顺序开发验证案例（室内20/室外8），152张可溯源SVG；首页共30组。检查点与32次实际采样世界存于 results/model_gallery_20260909_v1；来源、种子、输入/参考与事件投票已审计。手机/桌面各104个模型与视图状态通过。未新增读取物理test图片。下一项是父级地点隔离的从头训练小规模基线，验证后直接依据结果改进；这是已授权执行工作，不应只给建议或再次询问。

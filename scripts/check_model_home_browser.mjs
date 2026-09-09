@@ -31,12 +31,13 @@ try {
     check(await evaluate(`document.querySelectorAll('#output-gallery figure').length===3 && document.querySelectorAll('[data-home-method]').length===4`),'Homepage structure mismatch');
     check(await evaluate(`!document.querySelector('#training-ablations') && !document.querySelector('#flatlands-external-progress')`),'Research detail leaked into homepage');
     await evaluate(`document.querySelector('#effects').scrollIntoView({behavior:'instant',block:'start'})`);await screenshot(`${width}-effects`);
-    for (let index=0;index<2;index++) for (const model of ['correlated','independent']) for (const view of ['sample','probability']) {
+    for (let index=0;index<30;index++) for (const model of ['correlated','independent']) for (const view of ['sample','probability']) {
+      if (index >= 20 && index < 28 && model === 'independent') continue;
       await evaluate(`document.querySelector('[data-case="${index}"]').click();document.querySelector('#home-model').value='${model}';document.querySelector('#home-model').dispatchEvent(new Event('change'));document.querySelector('[data-view="${view}"]').click()`);await images();
       check(await evaluate(`(()=>{const d=JSON.parse(document.querySelector('#home-data').textContent).examples[${index}];return document.querySelector('#image-prediction').getAttribute('src')===d.panels['${model}${view==='sample'?'_sample':''}'] && document.querySelector('#case-probability').textContent===(d.event_probability['${model}']*100).toFixed(1)+'%';})()`),'Rendered model or probability mismatches frozen source');
       check((await status()).broken.length===0,'Broken model map');
     }
-    await evaluate(`document.querySelector('#home-model').value='correlated';document.querySelector('#home-model').dispatchEvent(new Event('change'));document.querySelector('[data-view="sample"]').click()`);await images();
+    await evaluate(`document.querySelector('[data-case="29"]').click();document.querySelector('#home-model').value='correlated';document.querySelector('#home-model').dispatchEvent(new Event('change'));document.querySelector('[data-view="sample"]').click()`);await images();
     check(await evaluate(`document.querySelector('#case-reading').classList.contains('failure') && document.querySelector('#case-explanation').textContent.includes('失败')`),'Failure explanation absent');
     if(width<700){
       await evaluate(`document.querySelector('[data-jump="1"]').click()`);await delay(650);
@@ -51,8 +52,11 @@ try {
     check(await evaluate(`!document.querySelector('#model-dialog').open`),'Escape close failed');
     await evaluate(`document.querySelector('#results').scrollIntoView({behavior:'instant',block:'start'})`);await screenshot(`${width}-results`);
     await evaluate(`document.querySelector('#next').scrollIntoView({behavior:'instant',block:'start'})`);await screenshot(`${width}-next`);
-    const report=await status();check(report.scrollWidth<=width+1 && report.rows===4 && !report.errorBanner && !report.broken.length,'Homepage viewport or runtime failure');
-    reports.push({...report,cases:2,modelViewStates:8,panels:3,bitmapContentUnchanged:true});
+    await evaluate(`document.querySelector('#home-source').value='UnScenes3D';document.querySelector('#home-source').dispatchEvent(new Event('change'));document.querySelector('#case-next').click()`);await images();
+    check(await evaluate(`document.querySelector('#case-counter').textContent==='2 / 8' && document.querySelector('#home-model option[value=independent]').disabled && [...document.querySelectorAll('[data-case]')].filter(b=>!b.hidden).length===8`),'Dataset filter, paging or unavailable-model guard failed');
+    await evaluate(`document.querySelector('#home-source').value='all';document.querySelector('#home-source').dispatchEvent(new Event('change'))`);
+    await images();const report=await status();check(report.scrollWidth<=width+1 && report.rows===4 && !report.errorBanner && !report.broken.length,'Homepage viewport or runtime failure: '+JSON.stringify(report));
+    reports.push({...report,cases:30,modelViewStates:104,panels:3,firstActualWorldAlwaysShown:true});
   }
   await command('Page.navigate',{url:base+'#baseline-review'});
   for(let i=0;i<80;i++){if(await evaluate(`location.pathname.endsWith('/research.html') && location.hash==='#baseline-review'`))break;await delay(100);}

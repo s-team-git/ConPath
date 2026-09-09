@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "checkpoint_id": "model-effects-home-20260909",
+  "checkpoint_id": "extended-model-gallery-20260909",
   "updated_local_date": "2026-09-09",
   "timezone": "America/New_York",
   "branch": "main",
@@ -8,7 +8,7 @@
   "latest_local_commit": "Resolve with git log -1 -- RECOVERY_STATE.json; old ablation implementation e6f0910 remains immutable.",
   "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence. New external profiles on 2026-09-08 actually used Python 3.13 and torch 2.12.1+cu130; v2 explicitly disables TF32 and cudnn benchmarking and enables deterministic algorithms. GPU has unrelated concurrent load; no isolated-device latency claim.",
   "scientific_status": "Parent-place isolation FAIL: 27/160 old FlatLands validation observations share training parents. Old numerical/ablation replays remain correct cohort diagnostics, not unseen-building evidence; subscene CIs are not parent-population intervals. K4 ConPath Brier0.080069 vs untrained all-floor0.072373; risk30 0.048931 vs0.134261. No universal local or published-paper superiority. Ninety published map reference scores cannot directly rank our different path/data protocol. Metadata-only development candidate215289 observations/4479 parent groups has zero internal split overlap;53 unresolved train observations quarantined, formal quality/scale/query/final-test gates open. Original physical ID test also overlaps parents. UnScenes hard-observation error floor0.475736 vs actual0.51142;train36-frame audit conflict22.75%, causal27-pair pose evidence mixed. No new training, no future-frame input, all test images locked. IMPORTANT ACCESS ERRATUM: old provenance train/validation contains8/5 physical-test observations;current K4 replay and independent numeric verification read those5. Historical512 query audit read53 physical-test observations including32ScanNet++. Withdraw physical-test-never-read claim. Further physical-test PNG reads stopped; final untouched holdout eligibility unresolved. Old test_evaluated=false flags are not proof of physical-test isolation.",
-  "active_task": "Effects-first homepage and separate research page completed. No training/inference or raw-image decoding for rendering this turn; existing allowed training media bytes were rehashed during the retained visual audit. Next research: historical access and parent-group quality/final-holdout gates, then a matched small clean-data ConPath/independent/deterministic/rule pilot before scale or attention.",
+  "active_task": "Publish 28 new actual model cases (30 total), then execute clean parent-group baseline from scratch and improve according to measured results; user authorizes autonomous continuation.",
   "completed_milestones": [
     "Interruption-safe P0 training with atomic checkpoints and exact resume",
     "Two-seed synthetic P0 pass and matched no-reach failure",
@@ -4591,68 +4591,11 @@
   ],
   "next_command": "cat WORK_PLAN.md",
   "next_actions": [
-    "Homepage publication receipt: results/model_home_publication_20260909/completion.json. If passed, do not repeat website work. index.html#effects is model output; research.html preserves detailed evidence. No change to underlying scientific scores or access restrictions.",
-    "Read site/data/flatlands_read_scope_erratum.json. Old train/validation had8/5 originalphysicaltest observations;historicalqueryaudit included32ScanNet++. Final holdout requires access audit and parent exclusion; further physicaltest PNG reads remain prohibited. verify_baseline_review.py now fails closed before image access.",
-    "Read current completion receipt; do not repeat completed evaluation or external engineering profiles.",
-    "Finish flatlands_parent_groups_v2 candidate quality, blind query, physical-scale, cross-source duplication and final-test design; no old-checkpoint reuse for fresh groups.",
-    "Prefer published compatible results, then author predictions/weights, only then necessary common-protocol adaptation. Strong baselines include all-floor, all-blocked and nearest-observed; internal ablations do not replace external evidence.",
-    "Outdoor train-only: confidence-aware observation and terrain representation, pose quality and causal nonlearned fusion; then predeclared2x2 single/history x convolution/attention and nested place/view scaling.",
-    "Freeze adequate matched training recipes and three repeats only after data gates. Test images remain locked; no blanket external long-run commitment."
+    "Complete new parent-group pilot data/query gates and freeze protocol",
+    "Run three-seed matched internal pilot from scratch, including negative obstacle-goal queries",
+    "Evaluate paired parent-group results then execute justified improvement"
   ],
-  "active_training": {
-    "root": "results/paper_clean_ablation_matrix_v1",
-    "launch_utc": "2026-09-07T05:18:33Z",
-    "supervisor_pid_at_launch": 4078565,
-    "progress": "results/paper_clean_ablation_matrix_v1/progress.json",
-    "log": "results/paper_clean_ablation_matrix_v1/supervisor.log",
-    "implementation_commit": "e6f0910",
-    "live_files_are_mutable": false,
-    "status": "complete",
-    "paused_at_utc": "2026-09-08T03:47:37.352354+00:00",
-    "automatic_resume_allowed": true,
-    "supervisor_running": false,
-    "workers_running": 0,
-    "no_event_completed_epochs": {
-      "20260831": 12,
-      "20260901": 9,
-      "20260902": 17
-    },
-    "no_global_status": "complete",
-    "pause_audit": "results/training_pause_20260908T034736Z/checkpoint_audit.json",
-    "resume_checkpoint": "Completed matrix; do not restart. All latest/best weights, reports and CSVs are frozen.",
-    "interrupted_checkpoint_note": "Historical pause artifacts only; completed latest/best checkpoints and exact reports supersede them.",
-    "resumed_at_utc": "2026-09-08T03:59:31.053776+00:00",
-    "resume_supervisor_pid": 3081128,
-    "resume_authorization": "results/training_resume_20260908_finalization/authorization.json",
-    "resume_launch": "results/training_resume_20260908_finalization/launch.json",
-    "worker_pids": [],
-    "snapshot_checked_utc": "2026-09-08T09:41:59.263148+00:00",
-    "snapshot_is_not_live": true,
-    "resume_verification": "results/training_resume_20260908_finalization/resume_verification.json",
-    "pause_requested_utc": "2026-09-08T03:47:36.629931+00:00",
-    "current_pause_receipt": "results/training_pause_20260908T034736Z/request.json",
-    "phase": "all_six_audits_and_paired_analysis_complete",
-    "workers_finalizing": 0,
-    "workers_updating_parameters": 0,
-    "no_global_completed_epochs": {
-      "20260831": 12,
-      "20260901": 18,
-      "20260902": 18
-    },
-    "no_event_best_epochs": {
-      "20260831": 4,
-      "20260901": 1,
-      "20260902": 9
-    },
-    "no_global_best_epochs": {
-      "20260831": 4,
-      "20260901": 10,
-      "20260902": 10
-    },
-    "completed_utc": "2026-09-08T08:56:19.640146+00:00",
-    "analysis": "results/paper_clean_ablation_matrix_v1/analysis/report.json",
-    "completion_snapshot": "results/ablation_publication_20260908/completed_matrix_snapshot.json"
-  },
+  "active_training": false,
   "accepted_experiment_plan": {
     "status": "approved_by_user",
     "recorded_utc": "2026-09-08T01:42:23.683337+00:00",
@@ -4782,5 +4725,15 @@
     "examples": 2,
     "raw_images_decoded_for_rendering": false,
     "existing_training_photo_bytes_rehashed": 23
+  },
+  "model_gallery": {
+    "cases": 30,
+    "new_cases": 28,
+    "new_panels": 152,
+    "public_manifest": "site/data/expanded_model_gallery_zh.json",
+    "raw_worlds": "results/model_gallery_20260909_v1",
+    "checks": "results/model_gallery_publication_20260909",
+    "new_physical_test_packet_images": 0,
+    "training_launched": false
   }
 }

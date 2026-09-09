@@ -19,12 +19,19 @@
   });
   try {
     const data = JSON.parse($('#home-data').textContent);
-    let index = 0, model = 'correlated', view = 'sample';
+    let index = 0, model = 'correlated', view = 'sample', source = 'all';
+    const filtered = () => data.examples.map((r, i) => ({r, i})).filter(({r}) => source === 'all' || r.source === source).map(({i}) => i);
     const gallery = $('#output-gallery');
     const dialog = $('#model-dialog');
     let previousFocus;
     function render() {
       const row = data.examples[index];
+      const independent = Boolean(row.panels.independent_sample);
+      $('#home-model').querySelector('[value="independent"]').disabled = !independent;
+      if (!independent) model = 'correlated';
+      $('#home-model').value = model;
+      $('#case-badge').textContent = row.split_zh;
+      $('#case-counter').textContent = `${filtered().indexOf(index)+1} / ${filtered().length}`;
       const modelName = model === 'correlated' ? 'ConPath' : '独立单元对照';
       const predictionKey = model + (view === 'sample' ? '_sample' : '');
       const panels = [
@@ -39,15 +46,21 @@
       $('[data-panel="prediction"] figcaption p').textContent = view === 'sample' ? '一次实际采样的完整地图。' : '每格可通行的概率，米白0 → 青绿1。';
       $('#view-explanation').textContent = view === 'sample' ? '绿色表示可通行，深灰表示阻挡。' : '颜色表示单元格概率，不是整条通路的概率。';
       $('#case-probability').textContent = (row.event_probability[model] * 100).toFixed(1) + '%';
-      $('#case-reading').classList.toggle('failure', !row.target);
-      const outcome = row.target ? (model === 'correlated' ? '参考地图有路；ConPath给出了较高的通路概率。' : '参考地图有路，但独立模型低估了通路概率。') : '这是一个失败例子：参考地图无路，但模型仍给出较高的通路概率。';
+      const failure = (row.event_probability[model] >= .5) !== Boolean(row.target);
+      $('#case-reading').classList.toggle('failure', failure);
+      const outcome = `参考地图${row.target ? '有路' : '无路'}；${modelName}${row.event_probability[model] >= .5 ? '倾向判断有路' : '倾向判断无路'}。${failure ? '按50%阈值判断，这个查询预测失败。' : '按50%阈值判断，这个查询预测正确；不代表整张地图准确。'}`;
       $('#case-explanation').textContent = outcome + (view === 'sample' ? `本张实际补全${row.displayed_world_event[model] ? '存在' : '不存在'}通路。` : '概率图展示每格的信心，不能单凭颜色判断是否连通。');
-      $('#case-source').textContent = `示例 ${row.global_id} · ${row.source} · 模型种子${row.seed} · 机器人半径${row.radius_cells}格。通路概率来自原128次采样评估，示例图使用另一组固定随机流；均为同一检查点。`;
+      $('#case-source').textContent = `${row.source} · ${row.scene || row.global_id} · ${row.global_id} · 机器人半径${row.radius_cells}格。${row.checkpoint_scope_zh}。` + (row.samples === 32 ? '本图固定显示第1次采样，逐格概率和有路概率均来自同一批32次采样。' : '历史解释性案例：通路概率来自原128次评估，示例图使用另一组固定随机流。');
       choose('[data-case]', 'case', index); choose('[data-view]', 'view', view);
+      all('[data-case]').forEach(button => { button.hidden = !filtered().includes(Number(button.dataset.case)); });
     }
     all('[data-case]').forEach(button => button.addEventListener('click', () => { index = Number(button.dataset.case); render(); }));
     all('[data-view]').forEach(button => button.addEventListener('click', () => { view = button.dataset.view; render(); }));
     $('#home-model').addEventListener('change', event => { model = event.target.value; render(); });
+    $('#home-source').addEventListener('change', event => { source = event.target.value; index = filtered()[0]; render(); });
+    const step = direction => { const ids = filtered(); index = ids[(ids.indexOf(index)+direction+ids.length)%ids.length]; render(); $('[data-case="'+index+'"]').scrollIntoView({behavior:'instant',block:'nearest',inline:'nearest'}); };
+    $('#case-prev').addEventListener('click', () => step(-1));
+    $('#case-next').addEventListener('click', () => step(1));
     all('[data-jump]').forEach(button => button.addEventListener('click', () => {
       const i = Number(button.dataset.jump);
       gallery.scrollTo({left:gallery.children[i].offsetLeft-gallery.children[0].offsetLeft,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
