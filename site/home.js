@@ -26,11 +26,13 @@
     let previousFocus;
     function render() {
       const row = data.examples[index];
-      const independent = Boolean(row.panels.independent_sample);
-      $('#home-model').querySelector('[value="independent"]').disabled = !independent;
-      if (!independent) model = 'correlated';
+      const modelOptions = [...$('#home-model').options];
+      for (const option of modelOptions) {
+        option.disabled = !(row.panels[option.value + '_sample'] && row.panels[option.value] && Number.isFinite(row.event_probability[option.value]));
+      }
+      if (!modelOptions.some(option => option.value === model && !option.disabled)) model = modelOptions.find(option => !option.disabled).value;
       $('#home-model').value = model;
-      $('#case-badge').textContent = row.split_zh;
+      $('#case-badge').textContent = (row.cohort === 'new_pilot' ? '' : '旧模型 · ') + row.split_zh;
       $('#case-counter').textContent = `${filtered().indexOf(index)+1} / ${filtered().length}`;
       const modelName = model === 'correlated' ? 'ConPath' : '独立单元对照';
       const predictionKey = model + (view === 'sample' ? '_sample' : '');
@@ -50,7 +52,9 @@
       $('#case-reading').classList.toggle('failure', failure);
       const outcome = `参考地图${row.target ? '有路' : '无路'}；${modelName}${row.event_probability[model] >= .5 ? '倾向判断有路' : '倾向判断无路'}。${failure ? '按50%阈值判断，这个查询预测失败。' : '按50%阈值判断，这个查询预测正确；不代表整张地图准确。'}`;
       $('#case-explanation').textContent = outcome + (view === 'sample' ? `本张实际补全${row.displayed_world_event[model] ? '存在' : '不存在'}通路。` : '概率图展示每格的信心，不能单凭颜色判断是否连通。');
-      $('#case-source').textContent = `${row.source} · ${row.scene || row.global_id} · ${row.global_id} · 机器人半径${row.radius_cells}格。${row.checkpoint_scope_zh}。` + (row.samples === 32 ? '本图固定显示第1次采样，逐格概率和有路概率均来自同一批32次采样。' : '历史解释性案例：通路概率来自原128次评估，示例图使用另一组固定随机流。');
+      const identifiers = [row.source, row.scene, row.global_id].filter((value, i, values) => value && values.indexOf(value) === i);
+      const cohort = row.cohort === 'new_pilot' ? '本轮新基线 · 独立地点开发验证，非最终测试' : '旧模型开发诊断';
+      $('#case-source').textContent = `${identifiers.join(' · ')} · ${cohort} · 机器人半径${row.radius_cells}格。${row.checkpoint_scope_zh}。` + (row.selection === 'historical_label_selected' || row.samples === 128 ? `历史解释性案例：通路概率来自原${row.samples}次评估，示例图使用另一组固定随机流。` : `本图固定显示第1次采样，逐格概率和有路概率均来自同一批${row.samples}次采样。`);
       choose('[data-case]', 'case', index); choose('[data-view]', 'view', view);
       all('[data-case]').forEach(button => { button.hidden = !filtered().includes(Number(button.dataset.case)); });
     }

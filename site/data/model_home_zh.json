@@ -58,7 +58,8 @@
       },
       "selection": "fixed_metadata_order_and_input_only_query",
       "final_test": false,
-      "checkpoint_selected_on_this_cohort": true
+      "checkpoint_selected_on_this_cohort": true,
+      "cohort": "historical"
     },
     {
       "id": "indoor-obs_002879",
@@ -118,7 +119,8 @@
       },
       "selection": "fixed_metadata_order_and_input_only_query",
       "final_test": false,
-      "checkpoint_selected_on_this_cohort": true
+      "checkpoint_selected_on_this_cohort": true,
+      "cohort": "historical"
     },
     {
       "id": "indoor-obs_016075",
@@ -178,7 +180,8 @@
       },
       "selection": "fixed_metadata_order_and_input_only_query",
       "final_test": false,
-      "checkpoint_selected_on_this_cohort": true
+      "checkpoint_selected_on_this_cohort": true,
+      "cohort": "historical"
     },
     {
       "id": "indoor-obs_021198",
@@ -238,7 +241,8 @@
       },
       "selection": "fixed_metadata_order_and_input_only_query",
       "final_test": false,
-      "checkpoint_selected_on_this_cohort": true
+      "checkpoint_selected_on_this_cohort": true,
+      "cohort": "historical"
     },
     {
       "id": "indoor-obs_067726",
@@ -298,7 +302,8 @@
       },
       "selection": "fixed_metadata_order_and_input_only_query",
       "final_test": false,
-      "checkpoint_selected_on_this_cohort": true
+      "checkpoint_selected_on_this_cohort": true,
+      "cohort": "historical"
     },
     {
       "id": "indoor-obs_070581",
@@ -358,7 +363,8 @@
       },
       "selection": "fixed_metadata_order_and_input_only_query",
       "final_test": false,
-      "checkpoint_selected_on_this_cohort": true
+      "checkpoint_selected_on_this_cohort": true,
+      "cohort": "historical"
     },
     {
       "id": "indoor-obs_034400",
@@ -418,7 +424,8 @@
       },
       "selection": "fixed_metadata_order_and_input_only_query",
       "final_test": false,
-      "checkpoint_selected_on_this_cohort": true
+      "checkpoint_selected_on_this_cohort": true,
+      "cohort": "historical"
     },
     {
       "id": "indoor-obs_078724",
@@ -478,7 +485,8 @@
       },
       "selection": "fixed_metadata_order_and_input_only_query",
       "final_test": false,
-      "checkpoint_selected_on_this_cohort": true
+      "checkpoint_selected_on_this_cohort": true,
+      "cohort": "historical"
     },
     {
       "id": "indoor-obs_128102",
@@ -538,7 +546,8 @@
       },
       "selection": "fixed_metadata_order_and_input_only_query",
       "final_test": false,
-      "checkpoint_selected_on_this_cohort": true
+      "checkpoint_selected_on_this_cohort": true,
+      "cohort": "historical"
     },
     {
       "id": "indoor-obs_130279",
@@ -598,7 +607,8 @@
       },
       "selection": "fixed_metadata_order_and_input_only_query",
       "final_test": false,
-      "checkpoint_selected_on_this_cohort": true
+      "checkpoint_selected_on_this_cohort": true,
+      "cohort": "historical"
     },
     {
       "id": "indoor-obs_114571",
@@ -658,7 +668,8 @@
       },
       "selection": "fixed_metadata_order_and_input_only_query",
       "final_test": false,
-      "checkpoint_selected_on_this_cohort": true
+      "checkpoint_selected_on_this_cohort": true,
+      "cohort": "historical"
     },
     {
       "id": "indoor-obs_127760",
@@ -718,7 +729,8 @@
       },
       "selection": "fixed_metadata_order_and_input_only_query",
       "final_test": false,
-      "checkpoint_selected_on_this_cohort": true
+      "checkpoint_selected_on_this_cohort": true,
+      "cohort": "historical"
     },
     {
       "id": "indoor-obs_160850",
@@ -778,7 +790,8 @@
       },
       "selection": "fixed_metadata_order_and_input_only_query",
       "final_test": false,
-      "checkpoint_selected_on_this_cohort": true
+      "checkpoint_selected_on_this_cohort": true,
+      "cohort": "historical"
     },
     {
       "id": "indoor-obs_157915",
@@ -838,7 +851,8 @@
       },
       "selection": "fixed_metadata_order_and_input_only_query",
       "final_test": false,
-      "checkpoint_selected_on_this_cohort": true
+      "checkpoint_selected_on_this_cohort": true,
+      "cohort": "historical"
     },
     {
       "id": "indoor-obs_153182",
@@ -898,7 +912,8 @@
       },
       "selection": "fixed_metadata_order_and_input_only_query",
       "final_test": false,
-      "checkpoint_selected_on_this_cohort": true
+      "checkpoint_selected_on_this_cohort": true,
+      "cohort": "historical"
     },
     {
       "id": "indoor-obs_168764",
@@ -958,7 +973,8 @@
       },
       "selection": "fixed_metadata_order_and_input_only_query",
       "final_test": false,
-      "checkpoint_selected_on_this_cohort": true
+      "checkpoint_selected_on_this_cohort": true,
+      "cohort": "historical"
     },
     {
       "id": "indoor-obs_286918",
@@ -1018,7 +1034,8 @@
       },
       "selection": "fixed_metadata_order_and_input_only_query",
       "final_test": false,
-      "checkpoint_selected_on_this_cohort": true
+      "checkpoint_selected_on_this_cohort": true,
+      "cohort": "historical"
     },
     {
       "id": "indoor-obs_253644",
@@ -1078,7 +1095,8 @@
       },
       "selection": "fixed_metadata_order_and_input_only_query",
       "final_test": false,
-      "checkpoint_selected_on_this_cohort": true
+      "checkpoint_selected_on_this_cohort": true,
+      "cohort": "historical"
     },
     {
       "id": "indoor-obs_255950",
@@ -1138,7 +1156,8 @@
       },
       "selection": "fixed_metadata_order_and_input_only_query",
       "final_test": false,
-      "checkpoint_selected_on_this_cohort": true
+      "checkpoint_selected_on_this_cohort": true,
+      "cohort": "historical"
     },
     {
       "id": "indoor-obs_244001",
@@ -1198,7 +1217,8 @@
       },
       "selection": "fixed_metadata_order_and_input_only_query",
       "final_test": false,
-      "checkpoint_selected_on_this_cohort": true
+      "checkpoint_selected_on_this_cohort": true,
+      "cohort": "historical"
     },
     {
       "id": "outdoor-1693191326-259244",
@@ -1247,7 +1267,8 @@
       },
       "selection": "fixed_metadata_order_and_input_only_query",
       "final_test": false,
-      "checkpoint_selected_on_this_cohort": true
+      "checkpoint_selected_on_this_cohort": true,
+      "cohort": "historical"
     },
     {
       "id": "outdoor-1693191340-710595",
@@ -1296,7 +1317,8 @@
       },
       "selection": "fixed_metadata_order_and_input_only_query",
       "final_test": false,
-      "checkpoint_selected_on_this_cohort": true
+      "checkpoint_selected_on_this_cohort": true,
+      "cohort": "historical"
     },
     {
       "id": "outdoor-1693191351-325015",
@@ -1345,7 +1367,8 @@
       },
       "selection": "fixed_metadata_order_and_input_only_query",
       "final_test": false,
-      "checkpoint_selected_on_this_cohort": true
+      "checkpoint_selected_on_this_cohort": true,
+      "cohort": "historical"
     },
     {
       "id": "outdoor-1693191361-599799",
@@ -1394,7 +1417,8 @@
       },
       "selection": "fixed_metadata_order_and_input_only_query",
       "final_test": false,
-      "checkpoint_selected_on_this_cohort": true
+      "checkpoint_selected_on_this_cohort": true,
+      "cohort": "historical"
     },
     {
       "id": "outdoor-1693304934-305044",
@@ -1443,7 +1467,8 @@
       },
       "selection": "fixed_metadata_order_and_input_only_query",
       "final_test": false,
-      "checkpoint_selected_on_this_cohort": true
+      "checkpoint_selected_on_this_cohort": true,
+      "cohort": "historical"
     },
     {
       "id": "outdoor-1693304947-977672",
@@ -1492,7 +1517,8 @@
       },
       "selection": "fixed_metadata_order_and_input_only_query",
       "final_test": false,
-      "checkpoint_selected_on_this_cohort": true
+      "checkpoint_selected_on_this_cohort": true,
+      "cohort": "historical"
     },
     {
       "id": "outdoor-1693304960-572121",
@@ -1541,7 +1567,8 @@
       },
       "selection": "fixed_metadata_order_and_input_only_query",
       "final_test": false,
-      "checkpoint_selected_on_this_cohort": true
+      "checkpoint_selected_on_this_cohort": true,
+      "cohort": "historical"
     },
     {
       "id": "outdoor-1693304973-296874",
@@ -1590,7 +1617,8 @@
       },
       "selection": "fixed_metadata_order_and_input_only_query",
       "final_test": false,
-      "checkpoint_selected_on_this_cohort": true
+      "checkpoint_selected_on_this_cohort": true,
+      "cohort": "historical"
     },
     {
       "id": "positive_recovery",
@@ -1643,7 +1671,8 @@
       "samples": 128,
       "split_zh": "旧解释性案例",
       "checkpoint_scope_zh": "室内训练检查点；此前按标签选定",
-      "selection": "historical_label_selected"
+      "selection": "historical_label_selected",
+      "cohort": "historical"
     },
     {
       "id": "false_safe_avoided",
@@ -1696,12 +1725,13 @@
       "samples": 128,
       "split_zh": "旧解释性案例",
       "checkpoint_scope_zh": "室内训练检查点；此前按标签选定",
-      "selection": "historical_label_selected"
+      "selection": "historical_label_selected",
+      "cohort": "historical"
     }
   ],
   "baseline_training_snapshot": {
-    "stage": "paused_by_user",
-    "timestamp_utc": "2026-09-09T09:21:54.624255+00:00",
+    "stage": "training",
+    "timestamp_utc": "2026-09-09T10:03:35.506819+00:00",
     "jobs": [
       {
         "method": "correlated",
@@ -1730,42 +1760,42 @@
       {
         "method": "correlated",
         "seed": 20260911,
-        "epochs": 12,
-        "complete": false,
-        "latest_epoch_seconds": 30.331658150011208,
-        "best_calibration_brier": 0.1409782284816147
+        "epochs": 23,
+        "complete": true,
+        "latest_epoch_seconds": 21.164748170005623,
+        "best_calibration_brier": 0.10113411209654316
       },
       {
         "method": "independent",
         "seed": 20260911,
-        "epochs": 11,
-        "complete": false,
-        "latest_epoch_seconds": 30.050810928019928,
-        "best_calibration_brier": 0.12041527005219439
+        "epochs": 21,
+        "complete": true,
+        "latest_epoch_seconds": 30.068761659989832,
+        "best_calibration_brier": 0.10652403921149084
       },
       {
         "method": "deterministic",
         "seed": 20260911,
-        "epochs": 0,
-        "complete": false,
-        "latest_epoch_seconds": null,
-        "best_calibration_brier": null
+        "epochs": 22,
+        "complete": true,
+        "latest_epoch_seconds": 0.6313289800018538,
+        "best_calibration_brier": 0.07910254153597807
       },
       {
         "method": "correlated",
         "seed": 20260912,
-        "epochs": 0,
+        "epochs": 14,
         "complete": false,
-        "latest_epoch_seconds": null,
-        "best_calibration_brier": null
+        "latest_epoch_seconds": 28.873708333005197,
+        "best_calibration_brier": 0.12671483707515538
       },
       {
         "method": "independent",
         "seed": 20260912,
-        "epochs": 0,
+        "epochs": 14,
         "complete": false,
-        "latest_epoch_seconds": null,
-        "best_calibration_brier": null
+        "latest_epoch_seconds": 28.904478579002898,
+        "best_calibration_brier": 0.12852364674633324
       },
       {
         "method": "deterministic",
@@ -1776,7 +1806,7 @@
         "best_calibration_brier": null
       }
     ],
-    "completed": 3,
+    "completed": 6,
     "total": 9,
     "max_epochs": 24,
     "train_parents": 100,
@@ -1785,9 +1815,27 @@
     "snapshot_not_live": true,
     "gallery_uses_previous_checkpoints": true,
     "final_test": false,
-    "new_physical_test_packets_opened": 0
+    "new_physical_test_packets_opened": 0,
+    "resource_policy": {
+      "max_training_processes": 2,
+      "allocator_gib_per_worker": 28.0,
+      "project_gpu_usage_target_gib": 60.0,
+      "other_processes_are_separate": true,
+      "training_hyperparameters_unchanged": true,
+      "user_requested_two_workers_about_60gb": true,
+      "wrapper_sha256": "b08379d65751301432977656931963363c261a27282043d1e5ad46b3f3691cd7"
+    },
+    "resource_measurement": {
+      "verified_utc": "2026-09-09T09:53:36.618259+00:00",
+      "active_training_processes": 2,
+      "project_gpu_mib": 54334,
+      "project_gpu_gib": 53.060546875,
+      "project_target_gib": 60,
+      "allocator_gib_per_worker": 28,
+      "other_processes_excluded": true
+    }
   },
-  "model_training_samples": 160,
+  "historical_model_training_samples": 160,
   "example_samples": [
     32,
     128
@@ -1798,7 +1846,7 @@
   "new_physical_test_images_opened": 0,
   "new_cases": 28,
   "historical_model_pixels_changed": false,
-  "selection_note": "28 new metadata-selected development cases, plus 2 preserved historical label-selected examples. Each shows the first actual world; none is best-of-K.",
+  "selection_note": "0 verified independent-place pilot cases precede 28 metadata-selected old-checkpoint cases and 2 preserved historical label-selected examples. Each shows the first actual world; none is best-of-K.",
   "examples_are_old_cohort_diagnostics": true,
   "assets": [
     {
@@ -2494,10 +2542,21 @@
       "sha256": "91cc43f10b86e7066ec7b8d3392a5251ebc2cc9e4930f2e8654730d84d3ccf75"
     }
   ],
+  "pilot_publication_state": "awaiting_complete_published_report",
+  "pilot_cases": 0,
+  "historical_cases": 30,
+  "results_cohort": "historical",
+  "result_methods": [
+    "correlated",
+    "independent",
+    "tiny_deterministic",
+    "all_floor"
+  ],
   "source_hashes": {
     "site/data/site_visuals_zh.json": "3fe0c0270fa2db16eb17e3ac6d69415592740df22c113c0258716ed12de832f8",
     "site/data/expanded_model_gallery_zh.json": "e9e5f9314c538765a448b0ce7280a73818eab69c5b7e40a66c77eb58cb37284d",
     "site/data/current_baseline_k4_analysis.json": "41c70d9158733cc608f19c28f9bb55b7edfccd64354c05490cc001b00b7581c2",
-    "scripts/build_model_home.py": "95c037dbf5a4110ba7777c987f6ee323387c42c4c736a014efaca2d94db5d6da"
+    "scripts/build_model_home.py": "94bac6158f56eca2bea53fa43f1d8cadd833ebddd917a4895e48ee4ff2243086",
+    "site/data/parent_group_pilot_status_zh.json": "31417408288d4d520950bb58a4d2d7c39014c239ce16e7c4da6ce6d24da8c747"
   }
 }

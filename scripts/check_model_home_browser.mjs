@@ -1,7 +1,8 @@
 // Real-browser audit. Start a local HTTP server and headless Chrome on port 9223 first.
-// Usage: node scripts/check_site_browser.mjs [site-url] [output-directory]
+// Usage: node scripts/check_model_home_browser.mjs [site-url] [output-directory]
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import {createHash} from 'node:crypto';
 
 const base=process.argv[2] || 'http://127.0.0.1:8766/';
 const output=process.argv[3] || 'results/model_home_publication_20260909/home_browser';
@@ -19,6 +20,10 @@ async function ready(){for(let i=0;i<80;i++){if(await evaluate('document.documen
 async function images(){await evaluate(`(async()=>{await Promise.all([...document.images].filter(i=>i.getAttribute('src') && i.getClientRects().length).map(async i=>{i.loading='eager';try{await i.decode()}catch{}}));})()`);}
 async function screenshot(name){await images();const shot=await command('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});await fs.writeFile(path.join(output,name+'.png'),Buffer.from(shot.data,'base64'));}
 async function status(){return await evaluate(`({lang:document.documentElement.lang,width:innerWidth,scrollWidth:document.documentElement.scrollWidth,rows:document.querySelectorAll('[data-home-method]').length,broken:[...document.images].filter(i=>i.getAttribute('src') && i.getClientRects().length && (!i.complete || !i.naturalWidth)).map(i=>i.src),errorBanner:!document.querySelector('#home-error').hidden})`);}
+const selectCase = async (index, model, view) => {
+  await evaluate(`document.querySelector('[data-case="${index}"]').click();document.querySelector('#home-model').value=${JSON.stringify(model)};document.querySelector('#home-model').dispatchEvent(new Event('change'));document.querySelector('[data-view="${view}"]').click()`);
+  await images();
+};
 
 const reports=[];
 try {
@@ -27,21 +32,51 @@ try {
   for (const width of [1440,390]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:width===1440?1100:844,deviceScaleFactor:1,mobile:width<700});
     await command('Page.navigate',{url:base});await ready();await images();
+    const data = await evaluate(`JSON.parse(document.querySelector('#home-data').textContent)`);
+    const options = await evaluate(`[...document.querySelector('#home-model').options].map(option=>option.value)`);
+    const methods = data.result_methods || ['correlated','independent','tiny_deterministic','all_floor'];
+    const cases = data.examples;
+    check(cases.length > 0, 'No published model cases');
+    const expectedModels = [...new Set(cases.flatMap(row=>Object.keys(row.event_probability).filter(model=>row.panels[model+'_sample'] && row.panels[model])))].sort();
+    check(JSON.stringify([...options].sort())===JSON.stringify(expectedModels),'Model selector omitted an available model');
+    const availableModels = row => options.filter(model => row.panels[model+'_sample'] && row.panels[model] && Number.isFinite(row.event_probability[model]));
+    const modelViewStates = cases.reduce((count,row)=>count+availableModels(row).length*2,0);
+    const resultSource = data.results_cohort === 'new_pilot' ? 'data/parent_group_pilot_zh.json' : 'data/current_baseline_k4_analysis.json';
+    const scoreText = await fetch(new URL(resultSource, base)).then(response=>{check(response.ok,'Published results unavailable');return response.text();});
+    const scores = JSON.parse(scoreText);
     await screenshot(`${width}-home`);
-    check(await evaluate(`document.querySelectorAll('#output-gallery figure').length===3 && document.querySelectorAll('[data-home-method]').length===4`),'Homepage structure mismatch');
+    check(await evaluate(`document.querySelectorAll('#output-gallery figure').length===3 && document.querySelectorAll('[data-case]').length===${cases.length} && JSON.stringify([...document.querySelectorAll('[data-home-method]')].map(row=>row.dataset.homeMethod))===${JSON.stringify(JSON.stringify(methods))}`),'Homepage structure mismatch');
+    const resultRows = await evaluate(`[...document.querySelectorAll('[data-home-method]')].map(row=>({method:row.dataset.homeMethod,values:[...row.querySelectorAll('td')].map(cell=>cell.textContent)}))`);
+    for (const row of resultRows) {
+      const budget = ['correlated','independent'].includes(row.method) ? '32' : '1';
+      const score = data.results_cohort === 'new_pilot' ? scores.methods[row.method].budgets[budget] : scores.methods[row.method];
+      const samples = data.results_cohort === 'new_pilot' ? (row.method === 'train_radius_prior' ? '—' : budget) : String(score.samples);
+      check(JSON.stringify(row.values)===JSON.stringify([samples,score.brier.mean.toFixed(4),(score.risk30.mean*100).toFixed(2)+'%']),'Summary table mixed cohorts or mismatched published metrics: '+row.method);
+    }
+    if (data.results_cohort === 'new_pilot') {
+      const verification = await fetch(new URL('data/parent_group_pilot_verification.json',base)).then(response=>response.json());
+      check(verification.passed===true && verification.analysis_sha256===createHash('sha256').update(scoreText).digest('hex') && data.pilot_publication_state==='verified','Pilot appeared before verification or result checksum changed');
+      const pilotCount = cases.filter(row=>row.cohort==='new_pilot').length;
+      check(pilotCount===data.pilot_cases && cases.slice(0,pilotCount).every(row=>row.cohort==='new_pilot') && cases.slice(pilotCount).every(row=>row.cohort!=='new_pilot'),'Pilot cases are not placed before historical cases');
+      check(await evaluate(`document.querySelector('#results a[href="pilot.html#scores"]') && document.querySelector('#results').textContent.includes('非最终测试')`),'Pilot scope or report link absent');
+    }
     check(await evaluate(`!document.querySelector('#training-ablations') && !document.querySelector('#flatlands-external-progress')`),'Research detail leaked into homepage');
     await evaluate(`document.querySelector('#effects').scrollIntoView({behavior:'instant',block:'start'})`);await screenshot(`${width}-effects`);
-    for (let index=0;index<30;index++) for (const model of ['correlated','independent']) for (const view of ['sample','probability']) {
-      if (index >= 20 && index < 28 && model === 'independent') continue;
-      await evaluate(`document.querySelector('[data-case="${index}"]').click();document.querySelector('#home-model').value='${model}';document.querySelector('#home-model').dispatchEvent(new Event('change'));document.querySelector('[data-view="${view}"]').click()`);await images();
-      check(await evaluate(`(()=>{const d=JSON.parse(document.querySelector('#home-data').textContent).examples[${index}];return document.querySelector('#image-prediction').getAttribute('src')===d.panels['${model}${view==='sample'?'_sample':''}'] && document.querySelector('#case-probability').textContent===(d.event_probability['${model}']*100).toFixed(1)+'%';})()`),'Rendered model or probability mismatches frozen source');
+    for (const [index,row] of cases.entries()) for (const model of availableModels(row)) for (const view of ['sample','probability']) {
+      await selectCase(index,model,view);
+      const predictionKey = model+(view==='sample'?'_sample':'');
+      const failure = (row.event_probability[model]>=.5)!==Boolean(row.target);
+      check(await evaluate(`(()=>{const d=JSON.parse(document.querySelector('#home-data').textContent).examples[${index}];return document.querySelector('#image-prediction').getAttribute('src')===d.panels[${JSON.stringify(predictionKey)}] && document.querySelector('#image-input').getAttribute('src')===d.panels.observed && document.querySelector('#image-reference').getAttribute('src')===d.panels.reference && document.querySelector('#case-probability').textContent===(d.event_probability[${JSON.stringify(model)}]*100).toFixed(1)+'%';})()`),'Rendered model or probability mismatches frozen source');
+      check(await evaluate(`document.querySelector('#case-reading').classList.contains('failure')===${failure} && document.querySelector('#case-explanation').textContent.includes(${JSON.stringify(failure?'预测失败':'预测正确')})`),'Chinese outcome explanation disagrees with reference target');
       check((await status()).broken.length===0,'Broken model map');
     }
-    await evaluate(`document.querySelector('[data-case="29"]').click();document.querySelector('#home-model').value='correlated';document.querySelector('#home-model').dispatchEvent(new Event('change'));document.querySelector('[data-view="sample"]').click()`);await images();
+    const failureCase = cases.flatMap((row,index)=>availableModels(row).map(model=>({row,index,model}))).find(({row,model})=>(row.event_probability[model]>=.5)!==Boolean(row.target));
+    check(failureCase,'Published cases contain no auditable failure');
+    await selectCase(failureCase.index,failureCase.model,'sample');
     check(await evaluate(`document.querySelector('#case-reading').classList.contains('failure') && document.querySelector('#case-explanation').textContent.includes('失败')`),'Failure explanation absent');
     if(width<700){
       await evaluate(`document.querySelector('[data-jump="1"]').click()`);await delay(650);
-      check(await evaluate(`document.querySelector('#output-gallery').scrollLeft>300 && document.querySelector('[data-jump="1"]').getAttribute('aria-pressed')==='true'`),'Mobile prediction navigation failed');
+      check(await evaluate(`(()=>{const gallery=document.querySelector('#output-gallery');const expected=gallery.children[1].offsetLeft-gallery.children[0].offsetLeft;return Math.abs(gallery.scrollLeft-expected)<5 && document.querySelector('[data-jump="1"]').getAttribute('aria-pressed')==='true';})()`),'Mobile prediction navigation failed');
     }
     await evaluate(`document.querySelector('#output-gallery').scrollIntoView({behavior:'instant',block:'center'})`);await screenshot(`${width}-failure`);
     await evaluate(`document.querySelector('#image-prediction').closest('a').click()`);await images();
@@ -52,11 +87,27 @@ try {
     check(await evaluate(`!document.querySelector('#model-dialog').open`),'Escape close failed');
     await evaluate(`document.querySelector('#results').scrollIntoView({behavior:'instant',block:'start'})`);await screenshot(`${width}-results`);
     await evaluate(`document.querySelector('#next').scrollIntoView({behavior:'instant',block:'start'})`);await screenshot(`${width}-next`);
-    await evaluate(`document.querySelector('#home-source').value='UnScenes3D';document.querySelector('#home-source').dispatchEvent(new Event('change'));document.querySelector('#case-next').click()`);await images();
-    check(await evaluate(`document.querySelector('#case-counter').textContent==='2 / 8' && document.querySelector('#home-model option[value=independent]').disabled && [...document.querySelectorAll('[data-case]')].filter(b=>!b.hidden).length===8`),'Dataset filter, paging or unavailable-model guard failed');
+    const sources = [...new Set(cases.map(row=>row.source))].sort();
+    check(await evaluate(`JSON.stringify([...document.querySelector('#home-source').options].map(option=>option.value).filter(value=>value!=='all').sort())===${JSON.stringify(JSON.stringify(sources))}`),'Source choices do not match published data');
+    for (const source of sources) {
+      const ids = cases.map((row,index)=>({row,index})).filter(({row})=>row.source===source).map(({index})=>index);
+      await evaluate(`document.querySelector('#home-source').value=${JSON.stringify(source)};document.querySelector('#home-source').dispatchEvent(new Event('change'))`);
+      check(await evaluate(`document.querySelector('#case-counter').textContent===${JSON.stringify('1 / '+ids.length)} && JSON.stringify([...document.querySelectorAll('[data-case]')].filter(button=>!button.hidden).map(button=>Number(button.dataset.case)))===${JSON.stringify(JSON.stringify(ids))}`),'Source filter or count mismatch: '+source);
+      for (const [button,expectedIndex] of [['case-prev',ids.at(-1)],['case-next',ids[0]],['case-next',ids[1%ids.length]]]) {
+        await evaluate(`document.querySelector('#${button}').click()`);await images();
+        check(await evaluate(`document.querySelector('[data-case="${expectedIndex}"]').getAttribute('aria-pressed')==='true'`),'Filtered paging or wraparound failed: '+source);
+      }
+    }
     await evaluate(`document.querySelector('#home-source').value='all';document.querySelector('#home-source').dispatchEvent(new Event('change'))`);
-    await images();const report=await status();check(report.scrollWidth<=width+1 && report.rows===4 && !report.errorBanner && !report.broken.length,'Homepage viewport or runtime failure: '+JSON.stringify(report));
-    reports.push({...report,cases:30,modelViewStates:104,panels:3,firstActualWorldAlwaysShown:true});
+    for (const [index,row] of cases.entries()) {
+      const available = availableModels(row);
+      for (const model of options.filter(value=>!available.includes(value))) {
+        await selectCase(index,model,'sample');
+        check(await evaluate(`document.querySelector('#home-model').selectedOptions[0].disabled===false && document.querySelector('#home-model option[value="${model}"]').disabled`),'Unavailable model did not fall back to an available model');
+      }
+    }
+    await images();const report=await status();check(report.scrollWidth<=width+1 && report.rows===methods.length && !report.errorBanner && !report.broken.length,'Homepage viewport or runtime failure: '+JSON.stringify(report));
+    reports.push({...report,cases:cases.length,modelViewStates,panels:3,sources:sources.length,resultsCohort:data.results_cohort||'historical',firstActualWorldAlwaysShown:true});
   }
   await command('Page.navigate',{url:base+'#baseline-review'});
   for(let i=0;i<80;i++){if(await evaluate(`location.pathname.endsWith('/research.html') && location.hash==='#baseline-review'`))break;await delay(100);}

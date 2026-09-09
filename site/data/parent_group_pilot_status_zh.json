@@ -1,6 +1,6 @@
 {
   "stage": "training",
-  "timestamp_utc": "2026-09-09T09:54:28.789570+00:00",
+  "timestamp_utc": "2026-09-09T10:03:35.506819+00:00",
   "jobs": [
     {
       "method": "correlated",
@@ -29,42 +29,42 @@
     {
       "method": "correlated",
       "seed": 20260911,
-      "epochs": 19,
-      "complete": false,
-      "latest_epoch_seconds": 30.703561528003775,
+      "epochs": 23,
+      "complete": true,
+      "latest_epoch_seconds": 21.164748170005623,
       "best_calibration_brier": 0.10113411209654316
     },
     {
       "method": "independent",
       "seed": 20260911,
-      "epochs": 18,
-      "complete": false,
-      "latest_epoch_seconds": 30.797221522021573,
+      "epochs": 21,
+      "complete": true,
+      "latest_epoch_seconds": 30.068761659989832,
       "best_calibration_brier": 0.10652403921149084
     },
     {
       "method": "deterministic",
       "seed": 20260911,
-      "epochs": 0,
-      "complete": false,
-      "latest_epoch_seconds": null,
-      "best_calibration_brier": null
+      "epochs": 22,
+      "complete": true,
+      "latest_epoch_seconds": 0.6313289800018538,
+      "best_calibration_brier": 0.07910254153597807
     },
     {
       "method": "correlated",
       "seed": 20260912,
-      "epochs": 0,
+      "epochs": 14,
       "complete": false,
-      "latest_epoch_seconds": null,
-      "best_calibration_brier": null
+      "latest_epoch_seconds": 28.873708333005197,
+      "best_calibration_brier": 0.12671483707515538
     },
     {
       "method": "independent",
       "seed": 20260912,
-      "epochs": 0,
+      "epochs": 14,
       "complete": false,
-      "latest_epoch_seconds": null,
-      "best_calibration_brier": null
+      "latest_epoch_seconds": 28.904478579002898,
+      "best_calibration_brier": 0.12852364674633324
     },
     {
       "method": "deterministic",
@@ -75,7 +75,7 @@
       "best_calibration_brier": null
     }
   ],
-  "completed": 3,
+  "completed": 6,
   "total": 9,
   "max_epochs": 24,
   "train_parents": 100,
