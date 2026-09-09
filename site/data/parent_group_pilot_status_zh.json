@@ -1,46 +1,46 @@
 {
-  "stage": "training",
-  "timestamp_utc": "2026-09-09T09:06:02.657157+00:00",
+  "stage": "paused_by_user",
+  "timestamp_utc": "2026-09-09T09:21:54.624255+00:00",
   "jobs": [
     {
       "method": "correlated",
       "seed": 20260910,
-      "epochs": 8,
-      "complete": false,
-      "latest_epoch_seconds": 33.359883564990014,
-      "best_calibration_brier": 0.17968650263583022
+      "epochs": 24,
+      "complete": true,
+      "latest_epoch_seconds": 30.73531428098795,
+      "best_calibration_brier": 0.0934745305890575
     },
     {
       "method": "independent",
       "seed": 20260910,
-      "epochs": 8,
-      "complete": false,
-      "latest_epoch_seconds": 33.39236814700416,
-      "best_calibration_brier": 0.17755488466945996
+      "epochs": 24,
+      "complete": true,
+      "latest_epoch_seconds": 30.74204278999241,
+      "best_calibration_brier": 0.09980546113852036
     },
     {
       "method": "deterministic",
       "seed": 20260910,
-      "epochs": 0,
-      "complete": false,
-      "latest_epoch_seconds": null,
-      "best_calibration_brier": null
+      "epochs": 24,
+      "complete": true,
+      "latest_epoch_seconds": 0.8584363190166187,
+      "best_calibration_brier": 0.07530564585053749
     },
     {
       "method": "correlated",
       "seed": 20260911,
-      "epochs": 0,
+      "epochs": 12,
       "complete": false,
-      "latest_epoch_seconds": null,
-      "best_calibration_brier": null
+      "latest_epoch_seconds": 30.331658150011208,
+      "best_calibration_brier": 0.1409782284816147
     },
     {
       "method": "independent",
       "seed": 20260911,
-      "epochs": 0,
+      "epochs": 11,
       "complete": false,
-      "latest_epoch_seconds": null,
-      "best_calibration_brier": null
+      "latest_epoch_seconds": 30.050810928019928,
+      "best_calibration_brier": 0.12041527005219439
     },
     {
       "method": "deterministic",
@@ -75,7 +75,7 @@
       "best_calibration_brier": null
     }
   ],
-  "completed": 0,
+  "completed": 3,
   "total": 9,
   "max_epochs": 24,
   "train_parents": 100,

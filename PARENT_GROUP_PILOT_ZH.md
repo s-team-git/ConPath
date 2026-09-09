@@ -69,3 +69,7 @@ PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/run_parent_group_pi
 每轮保存latest/best检查点、优化器和随机数状态。暂停只作用于本队列及自有子进程；
 创建 `results/parent_group_pilot_v1/STOP` 会停止继续提交作业，恢复前移除该标记。
 恢复从完整轮次边界重放，不把未提交的半轮更新算作已完成。
+
+## 当前暂停状态
+
+2026-09-09 09:20 UTC按用户明确要求暂停。第一个种子三种模型均完成；第二个种子ConPath/独立对照分别保存到12/11轮。进程已经退出，尚未统一验证评分。只有用户明确恢复后才移除STOP标记并续跑。
