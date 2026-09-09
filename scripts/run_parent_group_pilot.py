@@ -2,6 +2,7 @@
 """Durable owned-process queue: complete all nine training runs before scoring holdout."""
 import argparse
 from datetime import datetime, timezone
+import fcntl
 import json
 from pathlib import Path
 import signal
@@ -26,7 +27,20 @@ def stop(*_):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--workers', type=int, default=2, choices=[1, 2])
+    parser.add_argument('--worker-memory-gib', type=float, default=28.)
     args = parser.parse_args()
+    if not 0 < args.worker_memory_gib <= 28.:
+        raise ValueError('At most 28 GiB of PyTorch allocator memory per worker')
+    lock_handle = (OUT / '.supervisor.lock').open('a+')
+    try:
+        fcntl.flock(lock_handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except BlockingIOError:
+        raise SystemExit('An existing pilot supervisor holds the lock; do not launch a duplicate')
+    resource_policy = {'max_training_processes': args.workers, 'allocator_gib_per_worker': args.worker_memory_gib,
+                       'project_gpu_usage_target_gib': 60., 'other_processes_are_separate': True,
+                       'training_hyperparameters_unchanged': True, 'user_requested_two_workers_about_60gb': True,
+                       'wrapper_sha256': sha(ROOT / 'scripts/run_pilot_worker.py')}
+    _atomic_json(OUT / 'resource_policy.json', resource_policy)
     protocol = json.loads((OUT / 'data/protocol.json').read_text())
     jobs = [(m, s) for s in protocol['seeds'] for m in ('correlated', 'independent', 'deterministic')]
     paths = [ROOT / 'scripts/train_parent_group_pilot.py', OUT / 'data/seal.json']
@@ -61,13 +75,14 @@ def main():
                 folder = OUT / 'runs' / method / str(seed)
                 if (folder / 'complete.json').exists():
                     continue
-                cmd = [sys.executable, str(ROOT / 'scripts/train_parent_group_pilot.py'), '--method', method, '--seed', str(seed)]
+                cmd = [sys.executable, str(ROOT / 'scripts/run_pilot_worker.py'), '--memory-gib', str(args.worker_memory_gib),
+                       str(ROOT / 'scripts/train_parent_group_pilot.py'), '--method', method, '--seed', str(seed)]
                 if (folder / 'latest.pt').exists():
                     cmd.append('--resume')
                 handle = (OUT / f'{method}-{seed}.log').open('a')
                 p = subprocess.Popen(cmd, cwd=ROOT, stdout=handle, stderr=subprocess.STDOUT)
                 active[f'{method}/{seed}'] = p, handle, cmd
-            _atomic_json(OUT / 'status.json', {'stage': 'training', 'active': {k: {'pid': v[0].pid, 'command': v[2]} for k, v in active.items()},
+            _atomic_json(OUT / 'status.json', {'stage': 'training', 'resource_policy': resource_policy, 'active': {k: {'pid': v[0].pid, 'command': v[2]} for k, v in active.items()},
                          'pending': jobs, 'failed': failed, 'completed': [str(p.relative_to(OUT)) for p in sorted((OUT / 'runs').glob('*/*/complete.json'))],
                          'timestamp_utc': datetime.now(timezone.utc).isoformat()})
             if active:

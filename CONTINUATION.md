@@ -1401,3 +1401,7 @@ Earlier authorization and the accepted-design snapshot remain in `results/traini
 ## 2026-09-09 09:20 UTC：用户要求暂停，已执行
 
 本轮训练自有进程全部退出，GPU显存已释放，不影响其它任务。九次训练中第一个种子的三种方法均完成24轮；第二个种子ConPath保存到第12轮，独立模型第11轮，其余未开始。最新检查点、优化器、随机数状态和数据版本保留。尚未启动独立地点的模型统一评分或改进实验。暂停收据：results/parent_group_pilot_v1/pause_completion.json。STOP标记必须保留；用户明确说继续后才可移除并恢复一次监督进程。
+
+## 2026-09-09：按两个训练进程、约60GB恢复
+
+用户再次明确恢复，并指定资源限制：同时最多两个训练进程，本项目显存约60GB。STOP已移除，第二种子两个模型从12/11轮恢复；第三种子随后排队。使用新外层worker对每进程PyTorch分配器限制28GiB，保留训练器和数据哈希及原超参数。当前双进程实测约53GiB；其它程序占用不计入本项目预算。新增监督进程锁避免重复提交；运行收据及显存核验位于 results/parent_group_pilot_v1/。

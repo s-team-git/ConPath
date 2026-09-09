@@ -1,6 +1,6 @@
 {
-  "stage": "paused_by_user",
-  "timestamp_utc": "2026-09-09T09:21:54.624255+00:00",
+  "stage": "training",
+  "timestamp_utc": "2026-09-09T09:54:28.789570+00:00",
   "jobs": [
     {
       "method": "correlated",
@@ -29,18 +29,18 @@
     {
       "method": "correlated",
       "seed": 20260911,
-      "epochs": 12,
+      "epochs": 19,
       "complete": false,
-      "latest_epoch_seconds": 30.331658150011208,
-      "best_calibration_brier": 0.1409782284816147
+      "latest_epoch_seconds": 30.703561528003775,
+      "best_calibration_brier": 0.10113411209654316
     },
     {
       "method": "independent",
       "seed": 20260911,
-      "epochs": 11,
+      "epochs": 18,
       "complete": false,
-      "latest_epoch_seconds": 30.050810928019928,
-      "best_calibration_brier": 0.12041527005219439
+      "latest_epoch_seconds": 30.797221522021573,
+      "best_calibration_brier": 0.10652403921149084
     },
     {
       "method": "deterministic",
@@ -84,5 +84,23 @@
   "snapshot_not_live": true,
   "gallery_uses_previous_checkpoints": true,
   "final_test": false,
-  "new_physical_test_packets_opened": 0
+  "new_physical_test_packets_opened": 0,
+  "resource_policy": {
+    "max_training_processes": 2,
+    "allocator_gib_per_worker": 28.0,
+    "project_gpu_usage_target_gib": 60.0,
+    "other_processes_are_separate": true,
+    "training_hyperparameters_unchanged": true,
+    "user_requested_two_workers_about_60gb": true,
+    "wrapper_sha256": "b08379d65751301432977656931963363c261a27282043d1e5ad46b3f3691cd7"
+  },
+  "resource_measurement": {
+    "verified_utc": "2026-09-09T09:53:36.618259+00:00",
+    "active_training_processes": 2,
+    "project_gpu_mib": 54334,
+    "project_gpu_gib": 53.060546875,
+    "project_target_gib": 60,
+    "allocator_gib_per_worker": 28,
+    "other_processes_excluded": true
+  }
 }

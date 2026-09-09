@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "checkpoint_id": "parent-group-pilot-paused-by-user-20260909",
+  "checkpoint_id": "parent-pilot-resumed-two-workers-60gb",
   "updated_local_date": "2026-09-09",
   "timezone": "America/New_York",
   "branch": "main",
@@ -8,7 +8,7 @@
   "latest_local_commit": "Resolve with git log -1 -- RECOVERY_STATE.json; old ablation implementation e6f0910 remains immutable.",
   "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence. New external profiles on 2026-09-08 actually used Python 3.13 and torch 2.12.1+cu130; v2 explicitly disables TF32 and cudnn benchmarking and enables deterministic algorithms. GPU has unrelated concurrent load; no isolated-device latency claim.",
   "scientific_status": "Parent-place isolation FAIL: 27/160 old FlatLands validation observations share training parents. Old numerical/ablation replays remain correct cohort diagnostics, not unseen-building evidence; subscene CIs are not parent-population intervals. K4 ConPath Brier0.080069 vs untrained all-floor0.072373; risk30 0.048931 vs0.134261. No universal local or published-paper superiority. Ninety published map reference scores cannot directly rank our different path/data protocol. Metadata-only development candidate215289 observations/4479 parent groups has zero internal split overlap;53 unresolved train observations quarantined, formal quality/scale/query/final-test gates open. Original physical ID test also overlaps parents. UnScenes hard-observation error floor0.475736 vs actual0.51142;train36-frame audit conflict22.75%, causal27-pair pose evidence mixed. No new training, no future-frame input, all test images locked. IMPORTANT ACCESS ERRATUM: old provenance train/validation contains8/5 physical-test observations;current K4 replay and independent numeric verification read those5. Historical512 query audit read53 physical-test observations including32ScanNet++. Withdraw physical-test-never-read claim. Further physical-test PNG reads stopped; final untouched holdout eligibility unresolved. Old test_evaluated=false flags are not proof of physical-test isolation.",
-  "active_task": "PAUSED by explicit user request. No automatic training, evaluation or model-improvement continuation. Wait for a new resume instruction.",
+  "active_task": "Resume remaining pilot seeds 20260911/20260912 with at most two concurrent training processes, project GPU usage about 60 GiB. Complete all baselines, verify evaluation, then continue justified improvement under the same resource limit.",
   "completed_milestones": [
     "Interruption-safe P0 training with atomic checkpoints and exact resume",
     "Two-seed synthetic P0 pass and matched no-reach failure",
@@ -4589,13 +4589,24 @@
     "cat FLATLANDS_EXTERNAL_PROGRESS_ZH.md",
     "cat results/flatlands_external_publication_20260909/completion.json"
   ],
-  "next_command": "Do not launch training. User requested pause; results/parent_group_pilot_v1/STOP remains. Inspect pause_completion.json if needed. Only after explicit resume, remove STOP and restart the existing supervisor once.",
+  "next_command": "Inspect status.json first; do not start duplicate supervisors. Active supervisor resumes frozen checkpoints with --workers 2 --worker-memory-gib 28. User authorizes this resumption; STOP removed.",
   "next_actions": [
-    "Keep all training and downstream experiments paused until explicit user resumption",
-    "After authorization, verify no supervisor is running, remove STOP, resume saved epoch-boundary checkpoints",
-    "Complete remaining six runs before scoring validation; then inspect results and proceed with justified improvement"
+    "Keep at most two training processes and about 60 GiB project GPU usage; other tasks remain untouched",
+    "Finish remaining six runs and verify all nine before held-out model scoring",
+    "Audit paired results and continue a bounded justified improvement under the same process/memory limits"
   ],
-  "active_training": false,
+  "active_training": {
+    "root": "results/parent_group_pilot_v1",
+    "supervisor": "scripts/run_parent_group_pilot.py",
+    "worker_wrapper": "scripts/run_pilot_worker.py",
+    "process_receipt": "results/parent_group_pilot_v1/supervisor_process.json",
+    "status": "results/parent_group_pilot_v1/status.json",
+    "workers": 2,
+    "allocator_gib_per_worker": 28,
+    "project_gpu_budget_gib": 60,
+    "other_gpu_processes_excluded": true,
+    "user_authorized_resume": true
+  },
   "accepted_experiment_plan": {
     "status": "approved_by_user",
     "recorded_utc": "2026-09-08T01:42:23.683337+00:00",
@@ -4758,7 +4769,7 @@
     "training_validation_access": "Calibration only during training. Holdout labels were opened earlier for fixed data audit, but no holdout model scores yet.",
     "failed_attempt": "results/parent_group_pilot_v1/attempts/initial_calibration_dtype_bug",
     "fixed_prediction_preflight": "results/parent_group_pilot_v1/prediction_preflight.json",
-    "status": "paused_by_user",
+    "status": "training_with_user_resource_limit",
     "completed_training_runs": 3,
     "paused_runs": {
       "correlated/20260911": 12,
@@ -4776,5 +4787,10 @@
     "max_epochs": 24,
     "protocol": "PARENT_GROUP_PILOT_ZH.md"
   },
-  "pause_receipt": "results/parent_group_pilot_v1/pause_completion.json"
+  "pause_receipt": "results/parent_group_pilot_v1/pause_completion.json",
+  "resource_preference": {
+    "max_training_processes": 2,
+    "project_gpu_target_gib": 60,
+    "applies_to_future_training": true
+  }
 }
