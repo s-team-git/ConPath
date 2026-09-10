@@ -12,9 +12,9 @@ LaMa/FM真实中途SIGINT跨进程恢复已通过，loss/模型/optimizer/schedu
 
 最新报告快照为 `results/flatlands_external_formal_v1/reports/20260910T045321.733633Z`，同1000步的LaMa/FM已并排展示；27组真实图片由root及协作者逐图核对，81个文件hash通过。修复ECE点贴边裁切只调整绘图，未改数值或冻结源码。网站更新仅发布25组验证图，训练曲线另留在本地报告；旧40案例和244资产内容不变。
 
-`site/formal.html` 首次诊断版本6591fb3已经上线，84文件线上hash核验通过，凭据在 `results/flatlands_formal_site_publication_v1`。当前补入FM的新版已完成本地浏览器核验，发布凭据在 `results/flatlands_formal_site_publication_v2`；以该目录实际deployment receipt和远端Git为准。入口为 https://s-team-git.github.io/ConPath/formal.html 。网页完成不是正式三种子实验完成。
+`site/formal.html` 首次诊断版本6591fb3已经上线，84文件线上hash核验通过，凭据在 `results/flatlands_formal_site_publication_v1`。补入FM的新版提交17eb450也已推送并部署成功（Actions 34439514660），84个线上文件hash均匹配；发布凭据在 `results/flatlands_formal_site_publication_v2/deployment_verification.json`。入口为 https://s-team-git.github.io/ConPath/formal.html 。网页完成不是正式三种子实验完成。
 
-CPU后处理watcher已提交并启动，当前PID319162，每30秒检查新完成阶段、恰好一次审计并渲染报告，已有四项审计复用。旧PID186156仅为修复绘图而正常退出，没有停止GPU训练或创建训练STOP。状态见`postprocessing/status.json`，启动凭据`stage_postprocessing_launch_2.json`。它不批准视觉门槛、不启动完整训练、不自动发布网站；若修改它记录的源码会停止自己的CPU子进程，必须审查后显式重新启动。LaMa/FM的pilot审查分别等待真实完成+独立审计，只生成数字门槛和固定图片审查建议；目前没有passed视觉回执或full plan。
+CPU后处理watcher已提交并启动，当前PID319162，每30秒检查新完成阶段、恰好一次审计并渲染报告，已有四项审计复用。旧PID186156仅为修复绘图而正常退出，没有停止GPU训练或创建训练STOP。状态见`postprocessing/status.json`，启动凭据`stage_postprocessing_launch_2.json`。它不批准视觉门槛、不启动完整训练、不自动发布网站；若修改它记录的源码会停止自己的CPU子进程，必须审查后显式重新启动。LaMa/FM的pilot审查分别等待真实完成+独立审计，只生成数字门槛和固定图片审查建议；目前没有passed视觉回执或full plan。下一段执行已委派协调者在实际数字与视觉证据通过、旧队列正常释放后封存既定完整计划并启动现有fullrunner；严格排除失败方法，始终最多两个GPU模型进程。授权边界与审查路径见 `pilot_followthrough_v1/coordination.json`。用户暂停的STOP优先，不能自行清除。
 
 中文论文方法草案见 [PAPER_FORMAL_EXPERIMENTS_ZH.md](PAPER_FORMAL_EXPERIMENTS_ZH.md)，明确37个验证父地点有既往开发记录、K1/N/A对照、同边际归因限制以及共享GPU计时限制。旧论文数字保留历史，不进入本轮主表。
 

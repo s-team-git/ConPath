@@ -1,0 +1,41 @@
+{
+  "created_utc": "2026-09-10T05:09:20.291860+00:00",
+  "authorization": "Current user request authorizes continuation into full registered external training only after real staged numerical and visual gates; root delegates bounded execution coordination. No additional user confirmation is required for this existing scope.",
+  "research_scope_unchanged": true,
+  "protocol_sha256": "409c8bc4a9142d75a62e6c3d67204ef7d5045ad38f74b45b5411f8bfe899c0e2",
+  "review_agents": {
+    "lama": "/root/formal_data",
+    "flow": "/root/formal_eval"
+  },
+  "coordinator": "/root/formal_resume",
+  "current_stage_supervisor_pid": 1841989,
+  "CPU_postprocessing_pid": 319162,
+  "visual_reviews": {
+    "lama": "results/flatlands_external_formal_v1/pilot_reviews/lama/20260831/attempt_1/visual_review.json",
+    "flow": "results/flatlands_external_formal_v1/pilot_reviews/flow/20260831/attempt_1/visual_review.json"
+  },
+  "required_before_full": [
+    "All untrained/1000/5000 real calibration and validation complete and independently audited",
+    "Actual twenty convergence figures and fifty-four stage/category reviews, with bound hashes and no unexplained persistent pilot collapse",
+    "Coordinator independently checks data/source hashes, numeric gate, full visual schema and scientific evidence",
+    "Persistent STOP absent, current staged queue ended normally and shared queue lock released",
+    "Freeze method plan using the existing 10000/20000 decision rule and registered optimizer/schedule; exclude methods whose pilot failed"
+  ],
+  "allowed_launch": "scripts/run_flatlands_formal_full.py --methods <only methods whose real pilot gates passed>",
+  "maximum_GPU_model_workers": 2,
+  "allocator_limit_GiB_each": 28,
+  "outer_seeds": [
+    20260831,
+    20260901,
+    20260902
+  ],
+  "must_not": [
+    "Remove a user pause STOP marker",
+    "Start a duplicate live queue",
+    "Change frozen sources or overwrite old results",
+    "Infer visual pass from a numerical score or a layout review",
+    "Grant formal paper eligibility or invent unavailable results",
+    "Add any new model direction or publish unreviewed website results"
+  ],
+  "continuation_after_launch": "Verify actual process and logs; write immutable launch receipt; update CONTINUATION.md and RECOVERY_STATE.json with true live queue status. Full training launched is not full matrix complete. Registered controls still require this same dataset and three seeds."
+}

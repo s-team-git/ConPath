@@ -4,7 +4,7 @@
   "updated_local_date": "2026-09-10",
   "timezone": "America/New_York",
   "branch": "main",
-  "remote_sync": "Protocol 6694e86 and diagnostic website 6591fb3 pushed to origin/main; Actions run 34437742396 successful, all 84 published files match local audited bytes. See results/flatlands_formal_site_publication_v1/deployment_verification.json.",
+  "remote_sync": "Diagnostic website commit 17eb450 pushed; GitHub Actions 34439514660 succeeded and all 84 current published files match audited local bytes. Later documentation-only commits do not change the site.",
   "latest_local_commit": "Resolve with git rev-parse HEAD; frozen experiment source commit remains a1fa04d10039731d27e723e58e1cf7b51da36aba.",
   "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence. New external profiles on 2026-09-08 actually used Python 3.13 and torch 2.12.1+cu130; v2 explicitly disables TF32 and cudnn benchmarking and enables deterministic algorithms. GPU has unrelated concurrent load; no isolated-device latency claim.",
   "scientific_status": "No formal external superiority result. Old profiles remain engineering-only; current formal three-seed matrix has not completed. Final test and location_6 locked; historical access remains disclosed.",
@@ -4857,7 +4857,7 @@
     "protocol_commit": "6694e86",
     "protocol_sha256": "409c8bc4a9142d75a62e6c3d67204ef7d5045ad38f74b45b5411f8bfe899c0e2",
     "queue_pid": 1841989,
-    "updated_utc": "2026-09-10T05:02:04.786764+00:00",
+    "updated_utc": "2026-09-10T05:09:20.292891+00:00",
     "all_regression_tests": 258,
     "completed_independently_audited_stages": {
       "lama": [
@@ -4877,10 +4877,10 @@
       "local_browser_verified": true,
       "deployment_verified": true,
       "main_table_eligible": false,
-      "deployment_commit": "6591fb3b63d3134c6be950185eaa0fe2f1cbea59",
-      "deployment_receipt": "results/flatlands_formal_site_publication_v1/deployment_verification.json",
+      "deployment_commit": "17eb45008719046f364d738f77d1b3df4dc212f2",
+      "deployment_receipt": "results/flatlands_formal_site_publication_v2/deployment_verification.json",
       "url": "https://s-team-git.github.io/ConPath/formal.html",
-      "pending_local_update_receipt": "results/flatlands_formal_site_publication_v2/local_verification.json"
+      "local_receipt": "results/flatlands_formal_site_publication_v2/local_verification.json"
     },
     "full_runner": "scripts/run_flatlands_formal_full.py",
     "final_auditor": "scripts/audit_flatlands_formal_final.py",
@@ -4901,7 +4901,8 @@
       "flow": "results/flatlands_external_formal_v1/pilot_reviews/flow/20260831/attempt_1",
       "status": "waiting_for_real_pilot_completion_and_independent_audit",
       "no_passed_review_yet": true
-    }
+    },
+    "coordination": "results/flatlands_external_formal_v1/pilot_followthrough_v1/coordination.json"
   },
   "historical_recovery_commands_before_formal_v1": [
     "git status --short --branch",

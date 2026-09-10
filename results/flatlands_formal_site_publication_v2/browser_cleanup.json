@@ -1,0 +1,19 @@
+{
+  "created_utc": "2026-09-10T05:07:05.101905+00:00",
+  "scope": "Only own temporary CPU browser and HTTP server",
+  "processes": [
+    {
+      "pid": 457384,
+      "identity_checked": true,
+      "signal_sent": true,
+      "exited": true
+    },
+    {
+      "pid": 457385,
+      "identity_checked": true,
+      "signal_sent": true,
+      "exited": true
+    }
+  ],
+  "training_processes_signaled": []
+}
