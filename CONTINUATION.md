@@ -4,7 +4,7 @@
 
 用户要求先完成现有外部基线矩阵，禁止新增研究方向。执行说明见 [FLATLANDS_FORMAL_PROTOCOL_ZH.md](FLATLANDS_FORMAL_PROTOCOL_ZH.md)。新数据通过版为 `results/flatlands_external_formal_protocol_v1/data_eligible_v1`：985训练父场景×2观测、97校准、191验证；所有源图严格来自物理train，最终测试及location_6锁定。原候选去重失败结果保留不覆盖，19个输入模板重复父场景统一隔离、不补抽，开放空间范围限制随报告披露。
 
-LaMa/FM真实中途SIGINT跨进程恢复已通过，loss/模型/optimizer/scheduler/全部RNG逐位一致。正式K4使用LaMa真实4成员×3外部seed（20260831/20260901/20260902），不可复制地图。当前准备冻结源码/查询/图片清单与protocol.json；随后最多两个GPU worker运行未训练、1000、5000步阶段并评估完整固定校准/验证集。完整训练必须等待数值改善、固定图片审查与另行冻结full plan，不能盲跑300000步。
+LaMa/FM真实中途SIGINT跨进程恢复已通过，loss/模型/optimizer/scheduler/全部RNG逐位一致。正式K4使用LaMa真实4成员×3外部seed（20260831/20260901/20260902），不可复制地图。源码/查询/图片清单与protocol.json已冻结：实现提交a1fa04d、协议提交6694e86，协议SHA409c8bc4a9142d75a62e6c3d67204ef7d5045ad38f74b45b5411f8bfe899c0e2，258项回归通过。阶段队列PID1841989已启动，最多两个GPU worker运行未训练、1000、5000步阶段并评估完整固定校准/验证集。LaMa未训练K4参照已完成，随后成员0训练开始；FM参照评估中。此句是启动快照，最新步数以stage_status和实际进程为准。完整训练必须等待数值改善、固定图片审查与另行冻结full plan，不能盲跑300000步。
 
 恢复时先核对 `results/flatlands_external_formal_v1/queue.json`、`stage_status/`和实际进程；若已有完成receipt，直接复用并核验，不重复训练或旧profiles。源码/协议冻结后不得直接改写已登记文件；运行只能显式resume，非空结果目录拒绝覆盖。结果尚未完成三次充分训练，无正式优越性或投稿结论。以下内容按日期视为历史。
 

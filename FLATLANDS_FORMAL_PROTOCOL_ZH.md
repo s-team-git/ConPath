@@ -1,5 +1,7 @@
 # FlatLands 正式外部比较：执行记录
 
+本轮已于 UTC 2026-09-10 03:12 启动分阶段队列，尚未完成正式三次重复。源码提交 `a1fa04d`，协议提交与标签 `6694e86` / `flatlands-external-formal-protocol-v1` 已推送。258项回归通过。
+
 本轮只验证“联合空间随机地图后验 + footprint-aware reachability”相对于地图补全、独立采样和直接事件预测的作用。LaMa 使用 **LaMa BEV adaptation**，FM 使用 **FM+XAttn literature reimplementation**；均从头训练，不是作者官方 checkpoint，不导入不兼容的论文 3D 指标。没有新增研究方向。
 
 ## 数据和测试锁定
@@ -33,6 +35,8 @@
 ## 恢复和阶段门槛
 
 恢复工程测试已完成：完整默认 Big-LaMa 和 FlowUNet，256²、batch2，以真实 SIGINT 在优化器中途打断。跨进程恢复后，四个步骤的 loss、所有模型/优化器/调度器/RNG/采样器状态逐位一致。凭据为 `results/flatlands_external_resume_v1/verification.json`。这是恢复验证，不是收敛结果。
+
+两视图中的无查询观测不会被删除；事件训练使用 `2/该父场景带查询的视图数` 权重，并以完整 batch 的有效父级槽位作分母，保证事件项按父场景等权且不因微批划分改变。
 
 正式运行每个完整 update 写 `progress.jsonl`，每 100 步原子保存 `latest.pt`；安全暂停时在完整 update 边界立即保存，异常半步则回滚到最近完整状态并保留 `interrupted.pt`、归档多出的日志。非空目录禁止新运行覆盖，恢复必须核对配方。实际耗时按每进程独立回执累加，计入异常后的重放时间。
 

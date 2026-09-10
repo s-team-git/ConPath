@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "checkpoint_id": "flatlands-external-formal-protocol-preparation",
+  "checkpoint_id": "flatlands-external-formal-v1-stages-running",
   "updated_local_date": "2026-09-09",
   "timezone": "America/New_York",
   "branch": "main",
@@ -4594,11 +4594,14 @@
     "Retain at most two concurrent training tasks and about 60 GiB project GPU budget; no next-stage training is currently launched."
   ],
   "active_training": {
-    "status": "none",
-    "completed_project": "coherent_parent_pilot_v1",
-    "owned_training_processes": 0,
-    "project_gpu_gib": 0,
-    "completed_utc": "2026-09-09T10:28:51.770926+00:00"
+    "status": "staged_convergence_running",
+    "project": "flatlands_external_formal_v1",
+    "supervisor_pid": 1841989,
+    "maximum_gpu_workers": 2,
+    "project_gpu_budget_gib": 60,
+    "queue_receipt": "results/flatlands_external_formal_v1/queue.json",
+    "status_directory": "results/flatlands_external_formal_v1/stage_status",
+    "note": "Live worker/count/steps must be read from queue/status and ps; never blindly restart a live queue."
   },
   "accepted_experiment_plan": {
     "status": "approved_by_user",
@@ -4821,7 +4824,7 @@
     "protocol": "PARENT_GROUP_PILOT_ZH.md"
   },
   "external_formal_v1": {
-    "status": "preparing_protocol_before_training",
+    "status": "protocol_frozen_staged_queue_running",
     "protocol": "results/flatlands_external_formal_protocol_v1/protocol.json",
     "data": "results/flatlands_external_formal_protocol_v1/data_eligible_v1",
     "results": "results/flatlands_external_formal_v1",
@@ -4841,6 +4844,12 @@
       "validation": 191
     },
     "new_test_or_final_map_reads": 0,
-    "full_training_started": false
+    "full_training_started": false,
+    "code_commit": "a1fa04d10039731d27e723e58e1cf7b51da36aba",
+    "protocol_commit": "6694e86",
+    "protocol_sha256": "409c8bc4a9142d75a62e6c3d67204ef7d5045ad38f74b45b5411f8bfe899c0e2",
+    "queue_pid": 1841989,
+    "updated_utc": "2026-09-10T03:17:24.447762+00:00",
+    "all_regression_tests": 258
   }
 }

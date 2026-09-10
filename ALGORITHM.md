@@ -1,5 +1,7 @@
 # ConPath Algorithm Contract
 
+> 当前执行范围（UTC 2026-09-10）：先完成冻结的FlatLands LaMa/FM外部矩阵。现有空间一致采样ConPath候选与原版、去reachability loss和独立采样控制共同登记；本任务不新增架构或研究方向。下方历史P2/P3想法不是当前任务。详见[正式协议执行记录](FLATLANDS_FORMAL_PROTOCOL_ZH.md)。
+
 ## Research question
 
 Voxel-wise calibration does not determine path reliability. PathRel asks whether a learned joint
