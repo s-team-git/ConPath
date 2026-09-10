@@ -1,0 +1,126 @@
+{
+  "created_utc": "2026-09-10T09:53:39.926712+00:00",
+  "scope": {
+    "new_training_runs": 0,
+    "new_model_inference_runs": 0,
+    "prediction_rows_re_evaluated": 0,
+    "raw_or_saved_map_assets_opened": 0,
+    "checkpoint_files_opened": 0,
+    "final_test_assets_opened": 0,
+    "location_6_assets_opened": 0,
+    "new_holdout_created": false,
+    "test_unlocked": false,
+    "complete_189_source_audit_repeated": false
+  },
+  "audit_type": "metadata-only eligibility gap analysis",
+  "eligible_holdout_proven": false,
+  "eligible_holdout_count": null,
+  "meaning": "Not proven does not mean no eligible holdout exists. No candidate set is selected or opened.",
+  "current_selected_split": {
+    "counts": {
+      "train": 100,
+      "calibration": 25,
+      "validation": 40
+    },
+    "cross_split_parent_overlap": 0,
+    "physical_archive": "train",
+    "final_test_eligible": false,
+    "reason": "All selected parents are existing development data."
+  },
+  "known_historical_physical_test_access": {
+    "unique_observations": 53,
+    "old_training_observations": 8,
+    "old_validation_observations": 5,
+    "eight_and_five_are_subsets_of_fifty_three": true,
+    "known_scannetpp_scenes_inspected": 32
+  },
+  "archive_parent_identity_overlap": {
+    "3RScan": {
+      "left_groups": 465,
+      "right_groups": 370,
+      "overlap_group_count": 370,
+      "affected_right_observations": 879
+    },
+    "ARKitScenes": {
+      "left_groups": 1653,
+      "right_groups": 1098,
+      "overlap_group_count": 1098,
+      "affected_right_observations": 1928
+    },
+    "Matterport3D": {
+      "left_groups": 88,
+      "right_groups": 85,
+      "overlap_group_count": 85,
+      "affected_right_observations": 1769
+    },
+    "ScanNet": {
+      "left_groups": 704,
+      "right_groups": 538,
+      "overlap_group_count": 538,
+      "affected_right_observations": 1197
+    },
+    "ScanNet++": {
+      "left_groups": 0,
+      "right_groups": 923,
+      "overlap_group_count": 0,
+      "affected_right_observations": 0
+    },
+    "ZInD": {
+      "left_groups": 1569,
+      "right_groups": 1492,
+      "overlap_group_count": 1492,
+      "affected_right_observations": 6354
+    }
+  },
+  "archive_parent_overlap_interpretation": "Across the five indoor sources, all physical-test parent IDs also occur in the physical-train archive. This is archive identity overlap, not a claim that every such parent was actually used for model training.",
+  "newer_external_preparation_access": {
+    "ledger_entries": 11460,
+    "unique_observations": 2292,
+    "initial_parents": 1292,
+    "eligible_observations_after_quality_quarantine": 2258,
+    "eligible_parents_after_quality_quarantine": 1273,
+    "removed_but_already_inspected_observations": 34,
+    "removed_but_already_inspected_parents": 19,
+    "all_ledger_members_physical_train": true,
+    "cancellation_restores_untouched_status": false
+  },
+  "partial_parent_exposure_inventory": {
+    "parents_in_union": 1532,
+    "source_manifests": [
+      "historical_320_selected",
+      "current_165_selected",
+      "external_2292_access_logged"
+    ],
+    "complete": false,
+    "file": "results/paper_submission_v1/review/known_development_exposure_parents.csv",
+    "scope": "Union of three identified development exposure histories only. Not a final-test manifest or full exclusion certificate."
+  },
+  "missing_metadata": [
+    {
+      "id": "H1",
+      "item": "Complete session-spanning access inventory",
+      "why": "Old errata and one newer append-only ledger establish positive access, but no complete proof covers every earlier script, preview, cached target, website image and agent session."
+    },
+    {
+      "id": "H2",
+      "item": "Canonical parent identity for every accessed observation and every proposed holdout observation",
+      "why": "The older 512-observation query-audit manifest has no parent_group column; known corrected groups do not complete all access mappings. No candidate holdout manifest is certified here."
+    },
+    {
+      "id": "H3",
+      "item": "Cross-source identity / duplicate exclusion metadata with unresolved cases quarantined",
+      "why": "Current exact D4 checks certify only the selected development splits, not all unseen candidate assets; aggregate parent audit records unresolved identities."
+    },
+    {
+      "id": "H4",
+      "item": "Parent-level closure over train, selection, validation, model-development and quality-screen accesses",
+      "why": "Physical-test directory membership is insufficient; excluded quality-screened observations remain inspected and cannot be restored to untouched status."
+    },
+    {
+      "id": "H5",
+      "item": "A separately authorized, frozen final-evaluation manifest and evaluator decision",
+      "why": "No new final test, threshold, checkpoint selection, query or holdout is authorized by this writing step."
+    }
+  ],
+  "decision": "Keep test lock. Do not infer eligibility from old test_evaluated=false or from absent rows in this partial inventory."
+}

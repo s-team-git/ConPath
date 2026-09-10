@@ -1,0 +1,14 @@
+{
+  "method": "correlated",
+  "seed": 20260912,
+  "epochs": 24,
+  "best_epoch": 22,
+  "best_calibration": [
+    0.08382094750382771,
+    0.456699593514204
+  ],
+  "checkpoint_sha256": "284584c5dfbaac6a335759d6eb46a6480aae77508443171b4ff2e640e4456ab0",
+  "recipe_sha256": "cbb0217b59934a98c1833e763bf79ad4c66d972c3ba3818031fbc911d6fd7e02",
+  "wall_seconds_this_process": 714.2323066630051,
+  "validation_evaluated": false
+}

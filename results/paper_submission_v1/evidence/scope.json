@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-09-10T09:50:33.818872+00:00",
+  "source_git_commit": "7225410c4e6ce4b800a8a7df4cda5db50ac51ddf",
+  "snapshot_sha256": "8a3b81ef1f01dec72e57f92d7c02d39ed0e3697e12389143a755a836cc4bbc32",
+  "source_registry_entries": 189,
+  "included_original_files": 131,
+  "excluded_registry_files_without_opening": 65,
+  "included_original_bytes": 5490411,
+  "evidence_rows": 29,
+  "development_run_metrics": 23,
+  "numeric_index_entries": 24272,
+  "training_runs": 0,
+  "model_inference_runs": 0,
+  "final_test_assets_opened": 0,
+  "location_6_assets_opened": 0,
+  "raw_images_opened": 0,
+  "checkpoint_bytes_opened": 0,
+  "array_files_opened_by_archive_builder": 0,
+  "external_training_cancelled": true,
+  "scope": "Existing-evidence portability and exact saved-score arithmetic only. Original historical aggregate scope flags do not override the included later erratum. Current development split is reused and not final test."
+}

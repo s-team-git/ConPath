@@ -1,0 +1,14 @@
+{
+  "method": "independent",
+  "seed": 20260910,
+  "epochs": 24,
+  "best_epoch": 21,
+  "best_calibration": [
+    0.09980546113852036,
+    0.5480285882949829
+  ],
+  "checkpoint_sha256": "09c4a74cf19ad41a71b002734d27c11db8c1e62b617396f9e5d396879712692d",
+  "recipe_sha256": "2eb57c54387accfa8d53c6f5ccf51b2686d9f8c64f1c3045eb633a5f13ff8ccd",
+  "wall_seconds_this_process": 762.2632025819912,
+  "validation_evaluated": false
+}

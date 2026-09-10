@@ -1,0 +1,30 @@
+{
+  "method": "coherent_categorical",
+  "seed": 20260910,
+  "protocol_sha256": "e386002c572923be16be3b65deb720a0e49ab211bce40c0451b8e50fcd3a1d57",
+  "data_seal_sha256": "5b8a927d56f0c4961963b7e091c0dc0bd34924ea4e2bbf86e9214c57810fcf2c",
+  "source_sha256": {
+    "scripts/audit_parent_pilot_results.py": "61c49c21f69e190accb44103f1e1dde10cc7156af0d66cd26be6f760d1f76efc",
+    "scripts/evaluate_coherent_parent_pilot.py": "2b134b4ae4b7dddc7cfe422c10fa02acd933baa9180a3861d8001d08afdc9c2f",
+    "scripts/evaluate_flatlands_support_clamped.py": "3d9dac0555fbced0485c81694e73e1618b81d62870b4916495712e11566cf669",
+    "scripts/evaluate_parent_group_pilot.py": "78841c3148fcb65e7c2d897cc820dfbb4e389c33c199a1193d80c8330183ca4c",
+    "scripts/run_coherent_parent_pilot.py": "ab600b59dbc067d432cbcff0f43afc0a709d808c4cfd775576346449324442f8",
+    "scripts/train_coherent_parent_pilot.py": "393129db677190980c9f7ddb94348bb12532b11a4d6fba9e6358692a83e3fcb5",
+    "scripts/train_flatlands_conpath.py": "8e3eb712864119850381e0bd4e71f24b8a9a7e8edbbd2f15dee8438db6d9b00b",
+    "scripts/train_parent_group_pilot.py": "f902238f6fb242a5630fb6d6e0347812c46e34eb64e0737b469a019454bd1dc2",
+    "src/pathrel/benchmark_metrics.py": "8a14bd3ded960c37f6d47536315d8ccc8d4dddb5bd804b176566dd26a02d0a48",
+    "src/pathrel/coherent_categorical.py": "97a11fddbd59de27ea3e1ea4f200336df4d8f8cfa387622e795025d8c865b8c4",
+    "src/pathrel/flatlands_baselines.py": "1c4a966dbcb81d6bda32a8041f318bcbeb1ed6088f5665755474811d4608e024",
+    "src/pathrel/losses.py": "71b3d8d918a1671362c5de460c4ea7b6ac506ea4997bfbcca9526da0886d1baf",
+    "src/pathrel/model.py": "397f7558362f389af3a419aec39db36f67184e8106c6b05643908001e4f81045",
+    "src/pathrel/parent_pilot_data.py": "119037a5924fecb2fcfb17b7fc86316b58e4b4d3b872e142a251e31ce1ec4475",
+    "src/pathrel/reachability.py": "0b19178f5146d81abe604286e753e4904568e8ff1c0cb9e78c18a2e2bdaf7a30",
+    "src/pathrel/stochastic_decoder.py": "6ca1b9f22e45f8832212d0350054965bafa4fb654992417bdcdd71e50efb0b41"
+  },
+  "torch": "2.12.1+cu130",
+  "allocator_limit_gib": 28,
+  "validation_packets_loaded_by_trainer": false,
+  "effective_batch_size": 4,
+  "micro_batch_size": 2,
+  "zero_query_microbatch_limitation_shared_with_baseline": true
+}

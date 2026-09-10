@@ -1,0 +1,349 @@
+{
+  "created_utc": "2026-09-09T06:41:06.665020+00:00",
+  "metadata_only": true,
+  "test_images_opened": false,
+  "training_performed": false,
+  "old_physical_place_isolation_passed": false,
+  "old_validation_observations": 160,
+  "old_validation_observations_with_training_parent": 27,
+  "old_validation_affected_fraction": 0.16875,
+  "old_selected_unresolved": 0,
+  "per_source": {
+    "3RScan": {
+      "observations": 18216,
+      "unresolved_observations": 0,
+      "old_bounded": {
+        "left_groups": 31,
+        "right_groups": 30,
+        "overlap_group_count": 5,
+        "overlap_groups": [
+          "3RScan:0958224e-e2c2-2de1-943b-38e36345e2e7",
+          "3RScan:0f2f2711-b736-2f71-8c6a-245a9d820a8c",
+          "3RScan:10b17940-3938-2467-8a7a-958300ba83d3",
+          "3RScan:283ccfeb-107c-24d5-8bbf-05519a3c7c47",
+          "3RScan:4acaebcc-6c10-2a2a-858b-29c7e4fb410d"
+        ],
+        "affected_right_observations": 5,
+        "affected_right_global_ids": [
+          "obs_013692",
+          "obs_015829",
+          "obs_020429",
+          "obs_021527",
+          "obs_021533"
+        ]
+      },
+      "provenance_train_validation": {
+        "left_groups": 448,
+        "right_groups": 109,
+        "overlap_group_count": 96,
+        "affected_right_observations": 1693
+      },
+      "physical_train_test": {
+        "left_groups": 465,
+        "right_groups": 370,
+        "overlap_group_count": 370,
+        "affected_right_observations": 879
+      }
+    },
+    "ARKitScenes": {
+      "observations": 40282,
+      "unresolved_observations": 61,
+      "old_bounded": {
+        "left_groups": 32,
+        "right_groups": 31,
+        "overlap_group_count": 0,
+        "overlap_groups": [],
+        "affected_right_observations": 0,
+        "affected_right_global_ids": []
+      },
+      "provenance_train_validation": {
+        "left_groups": 1624,
+        "right_groups": 428,
+        "overlap_group_count": 404,
+        "affected_right_observations": 3738
+      },
+      "physical_train_test": {
+        "left_groups": 1653,
+        "right_groups": 1098,
+        "overlap_group_count": 1098,
+        "affected_right_observations": 1928
+      }
+    },
+    "Matterport3D": {
+      "observations": 38004,
+      "unresolved_observations": 0,
+      "old_bounded": {
+        "left_groups": 29,
+        "right_groups": 25,
+        "overlap_group_count": 14,
+        "overlap_groups": [
+          "Matterport3D:17DRP5sb8fy",
+          "Matterport3D:2azQ1b91cZZ",
+          "Matterport3D:E9uDoFAP3SH",
+          "Matterport3D:PX4nDJXEHrG",
+          "Matterport3D:QUCTc6BB5sX",
+          "Matterport3D:ULsKaCPVFJR",
+          "Matterport3D:Uxmj2M2itWa",
+          "Matterport3D:VFuaQ6m2Qom",
+          "Matterport3D:VVfe2KiqLaN",
+          "Matterport3D:YFuZgdQ5vWj",
+          "Matterport3D:fzynW3qQPVF",
+          "Matterport3D:r47D5H71a5s",
+          "Matterport3D:uNb9QFRL6hY",
+          "Matterport3D:vyrNrziPKCB"
+        ],
+        "affected_right_observations": 19,
+        "affected_right_global_ids": [
+          "obs_102257",
+          "obs_109184",
+          "obs_111959",
+          "obs_123638",
+          "obs_124543",
+          "obs_127112",
+          "obs_127228",
+          "obs_127854",
+          "obs_129043",
+          "obs_131739",
+          "obs_131969",
+          "obs_136244",
+          "obs_137668",
+          "obs_325501",
+          "obs_325863",
+          "obs_328129",
+          "obs_328311",
+          "obs_379736",
+          "obs_380448"
+        ]
+      },
+      "provenance_train_validation": {
+        "left_groups": 87,
+        "right_groups": 69,
+        "overlap_group_count": 69,
+        "affected_right_observations": 3757
+      },
+      "physical_train_test": {
+        "left_groups": 88,
+        "right_groups": 85,
+        "overlap_group_count": 85,
+        "affected_right_observations": 1769
+      }
+    },
+    "ScanNet": {
+      "observations": 24763,
+      "unresolved_observations": 0,
+      "old_bounded": {
+        "left_groups": 32,
+        "right_groups": 32,
+        "overlap_group_count": 1,
+        "overlap_groups": [
+          "ScanNet:scene0517"
+        ],
+        "affected_right_observations": 1,
+        "affected_right_global_ids": [
+          "obs_332996"
+        ]
+      },
+      "provenance_train_validation": {
+        "left_groups": 646,
+        "right_groups": 142,
+        "overlap_group_count": 113,
+        "affected_right_observations": 1930
+      },
+      "physical_train_test": {
+        "left_groups": 704,
+        "right_groups": 538,
+        "overlap_group_count": 538,
+        "affected_right_observations": 1197
+      }
+    },
+    "ScanNet++": {
+      "observations": 16214,
+      "unresolved_observations": 61,
+      "old_bounded": {
+        "left_groups": 0,
+        "right_groups": 0,
+        "overlap_group_count": 0,
+        "overlap_groups": [],
+        "affected_right_observations": 0,
+        "affected_right_global_ids": []
+      },
+      "provenance_train_validation": {
+        "left_groups": 0,
+        "right_groups": 0,
+        "overlap_group_count": 0,
+        "affected_right_observations": 0
+      },
+      "physical_train_test": {
+        "left_groups": 0,
+        "right_groups": 923,
+        "overlap_group_count": 0,
+        "affected_right_observations": 0
+      }
+    },
+    "ZInD": {
+      "observations": 133096,
+      "unresolved_observations": 0,
+      "old_bounded": {
+        "left_groups": 31,
+        "right_groups": 32,
+        "overlap_group_count": 2,
+        "overlap_groups": [
+          "ZInD:0359",
+          "ZInD:1487"
+        ],
+        "affected_right_observations": 2,
+        "affected_right_global_ids": [
+          "obs_208842",
+          "obs_236512"
+        ]
+      },
+      "provenance_train_validation": {
+        "left_groups": 1549,
+        "right_groups": 573,
+        "overlap_group_count": 562,
+        "affected_right_observations": 13026
+      },
+      "physical_train_test": {
+        "left_groups": 1569,
+        "right_groups": 1492,
+        "overlap_group_count": 1492,
+        "affected_right_observations": 6354
+      }
+    }
+  },
+  "candidate": {
+    "status": "development_metadata_candidate_only",
+    "formal_training_ready": false,
+    "uses_physical_train_assets_only": true,
+    "uses_old_checkpoints": false,
+    "parent_overlap_across_candidate_splits": 0,
+    "observation_count": 215289,
+    "quarantined_train_observations": 53,
+    "split_counts": {
+      "train": {
+        "observations": 173580,
+        "parent_groups": 3589,
+        "per_source_observations": {
+          "3RScan": 12458,
+          "ARKitScenes": 27505,
+          "Matterport3D": 26040,
+          "ScanNet": 16687,
+          "ZInD": 90890
+        }
+      },
+      "calibration": {
+        "observations": 20224,
+        "parent_groups": 445,
+        "per_source_observations": {
+          "3RScan": 1524,
+          "ARKitScenes": 3240,
+          "Matterport3D": 2661,
+          "ScanNet": 2221,
+          "ZInD": 10578
+        }
+      },
+      "validation": {
+        "observations": 21485,
+        "parent_groups": 445,
+        "per_source_observations": {
+          "3RScan": 1443,
+          "ARKitScenes": 3353,
+          "Matterport3D": 3495,
+          "ScanNet": 2049,
+          "ZInD": 11145
+        }
+      }
+    },
+    "training_parents_present_in_original_locked_physical_test": 2886,
+    "final_test_warning": "Original physical ID test shares parents with development data. Earlier audits inspected32 ScanNet++ scenes and53 physical-test observations. No wholly-untouched-test claim; final eligibility requires full historical access audit and parent exclusions. Current parent audit itself is metadata-only.",
+    "remaining_gates": [
+      "target-blind queries and support/quality audit",
+      "physical scale clarification",
+      "independent final-test design and cross-source duplication audit",
+      "matched training recipes and data scale frozen before fresh training"
+    ]
+  },
+  "interpretation": "Old numerics remain cohort diagnostics, not unseen-building evidence. Existing scene bootstrap uses subscene IDs, not independent parent clusters. Do not discard overlapping old validation rows and reuse selected checkpoints as a fresh holdout.",
+  "source_hashes": {
+    "results/p1_flatlands_provenance_manifest/provenance_manifest.csv": "a5eb28123f0fa2e38cc8244e6675c1eb76bc9a534ee54f56ef9ed68c4bdbc77b",
+    "results/p1_flatlands_query_audit_bounded/selected_observations.csv": "4e7ae4c992cf943ab81618e3826c4748fcaaa97c3c4d7cb187518ee3fe6a9409",
+    "results/baseline_review_20260909_v1/parent_sources/arkit_splits.csv": "06a0686866f186764ed0b92de1a943529cebd78b4af5b671907c40bb2dcd13e1",
+    "results/baseline_review_20260909_v1/parent_sources/3RScan.json": "674a00f50f76b198b9de44efd86c390fea3da37ba8f12cf8ccd00045e265fa64",
+    "src/pathrel/parent_groups.py": "2989a08d38e0bf95758a1e46f7b2e9326080e3f40c250fefddbafd0a3c1573be",
+    "scripts/audit_flatlands_parent_groups.py": "cd74d0f106e2b0f3915558170a1fb27774562cbe15617167b97ed5bbbbb97ff9",
+    "results/flatlands_parent_groups_v2/development_candidate.csv": "ccc86a4ca7016515e1f2c0371ccf1bb21a9ee3d8a1b9f92a63bef432360741e2",
+    "results/flatlands_parent_groups_v2/old_train_validation_parents.csv": "f8e9994b6c63bc0bc3a07c513a704d405795e01acb28e3cb24800042c6b5d85a"
+  },
+  "parent_metadata_sources": [
+    {
+      "path": "results/baseline_review_20260909_v1/parent_sources/arkit_splits.csv",
+      "url": "https://raw.githubusercontent.com/apple/ARKitScenes/main/threedod/3dod_train_val_splits.csv",
+      "sha256": "06a0686866f186764ed0b92de1a943529cebd78b4af5b671907c40bb2dcd13e1",
+      "bytes": 127263,
+      "success": true
+    },
+    {
+      "path": "results/baseline_review_20260909_v1/parent_sources/arkit_data.md",
+      "url": "https://raw.githubusercontent.com/apple/ARKitScenes/main/DATA.md",
+      "sha256": "bc849eea6ec95fd41513b7ad085dbb943d8f4b4c87f9fd999bdabd7e3aa63c52",
+      "bytes": 4704,
+      "success": true
+    },
+    {
+      "path": "results/baseline_review_20260909_v1/parent_sources/rscan_tree.json",
+      "url": "https://api.github.com/repos/WaldJohannaU/3RScan/git/trees/master?recursive=1",
+      "sha256": "d8f229cd15fd2d7476788f3ae2d11854fb24a077a203630769196d99202328ac",
+      "bytes": 17473,
+      "success": true
+    },
+    {
+      "path": "results/baseline_review_20260909_v1/parent_sources/matterport_organization.md",
+      "url": "https://raw.githubusercontent.com/niessner/Matterport/master/data_organization.md",
+      "sha256": "6a916fdcc398fa3453938bef6917bde92e53072712d38df22d97ad2123050ac5",
+      "bytes": 17858,
+      "success": true
+    },
+    {
+      "path": "results/baseline_review_20260909_v1/parent_sources/scannet_readme.md",
+      "url": "https://raw.githubusercontent.com/ScanNet/ScanNet/master/README.md",
+      "sha256": "4d0e789e7f4530a1f09492a38ccb17516a5f78ee7ed6f49642dc78512d235c87",
+      "bytes": 8104,
+      "success": true
+    },
+    {
+      "path": "results/baseline_review_20260909_v1/parent_sources/zind_readme.md",
+      "url": "https://raw.githubusercontent.com/zillow/zind/main/README.md",
+      "sha256": "78aa6d7f12c42a3bd7dc9c8c5e41e2fadf9fb824fde5600943b9761a664a9dc9",
+      "bytes": 16874,
+      "success": true
+    },
+    {
+      "path": "rscan_download.py",
+      "url": "https://raw.githubusercontent.com/WaldJohannaU/3RScan/master/scripts/download.py",
+      "success": false,
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "path": "results/baseline_review_20260909_v1/parent_sources/arkit_raw_splits.csv",
+      "url": "https://raw.githubusercontent.com/apple/ARKitScenes/main/raw/raw_train_val_splits.csv",
+      "sha256": "5a817c0ee8150cea1de4fa9d6399880eaa646c2b62326c3314e674d201536c57",
+      "bytes": 127868,
+      "success": true
+    },
+    {
+      "path": "results/baseline_review_20260909_v1/parent_sources/arkit_metadata.csv",
+      "url": "https://docs-assets.developer.apple.com/ml-research/datasets/arkitscenes/v1/threedod/metadata.csv",
+      "sha256": "657020f2d1119220b5068176ffc7298a8585076468407b60d8f5e3e6223442ca",
+      "bytes": 154354,
+      "success": true
+    },
+    {
+      "url": "https://campar.in.tum.de/public_datasets/3RScan/3RScan.json",
+      "path": "results/baseline_review_20260909_v1/parent_sources/3RScan.json",
+      "sha256": "674a00f50f76b198b9de44efd86c390fea3da37ba8f12cf8ccd00045e265fa64",
+      "bytes": 3155995,
+      "success": true
+    }
+  ],
+  "historical_access_erratum": "data/flatlands_read_scope_erratum.json"
+}

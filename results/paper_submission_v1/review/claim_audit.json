@@ -1,0 +1,120 @@
+{
+  "created_utc": "2026-09-10T09:53:39.926712+00:00",
+  "scope": {
+    "new_training_runs": 0,
+    "new_model_inference_runs": 0,
+    "prediction_rows_re_evaluated": 0,
+    "raw_or_saved_map_assets_opened": 0,
+    "checkpoint_files_opened": 0,
+    "final_test_assets_opened": 0,
+    "location_6_assets_opened": 0,
+    "new_holdout_created": false,
+    "test_unlocked": false,
+    "complete_189_source_audit_repeated": false
+  },
+  "manuscript_sha256_at_review": "714173c832833c6cfd3385f77f290bd2ef46cc3b3e4aa093935e4033e438e0cc",
+  "snapshot_sha256": "8a3b81ef1f01dec72e57f92d7c02d39ed0e3697e12389143a755a836cc4bbc32",
+  "claims": [
+    {
+      "rq": "RQ1",
+      "claim": "Spatial dependence carries path-event information beyond cell marginals",
+      "verdict": "Supported conditionally by historical finite-ensemble intervention; complementary current development comparison",
+      "same_protocol_evidence": [
+        "/evidence_rows/16",
+        "/evidence_rows/24",
+        "/fixed_marginal_mechanism",
+        "/evidence_rows/1",
+        "/evidence_rows/3",
+        "/paired_intervals/parent_three_seed/independent"
+      ],
+      "evidence": "Historical K128 cellwise world-index permutation exactly preserves empirical cell counts and raises Brier 0.06749 to 0.16139. Separately, current K32 ConPath 0.10380 versus independent 0.11201 in three matched seeds, paired parent difference 0.00821 [0.00439, 0.01251].",
+      "counterevidence": [
+        "Historical mean-map Brier 0.06957 is near ConPath 0.06749 and wins in one seed.",
+        "Current deterministic Brier interval versus ConPath crosses zero and its continuous map Brier is lower.",
+        "Current continuous hidden-map Brier 0.15147 vs 0.15158 is numerically close, but does not establish equal marginal distributions or statistical equivalence."
+      ],
+      "allowed_english": "A fixed-marginal intervention on an archived development cohort shows that the alignment of sampled worlds contains useful path-event information beyond their empirical cell marginals. A separate parent-isolated development comparison favors ConPath over independently sampled completion.",
+      "forbidden_extension": "The current unseen-place experiment causally proves a dependence benefit at identical map marginals, or stochastic inference uniformly dominates deterministic maps.",
+      "missing": [
+        "A current parent-isolated fixed-marginal intervention is not archived.",
+        "An untouched final holdout is not certified; no new intervention or final testing is performed."
+      ]
+    },
+    {
+      "rq": "RQ2",
+      "claim": "Reachability supervision and decoder global factors improve task-level scores",
+      "verdict": "Historical exploratory ablation support for Brier/NLL/ECE; robust false-safe claim not supported",
+      "same_protocol_evidence": [
+        "/evidence_rows/16",
+        "/evidence_rows/25",
+        "/evidence_rows/26",
+        "/paired_intervals/historical"
+      ],
+      "evidence": "Historical full/no-event/no-global Brier 0.06749/0.20425/0.09499 with three seeds and common K128 evaluator. Historical full/no-event/no-global NLL 0.28854/2.53067/0.78486 and ECE 0.05715/0.21690/0.08592.",
+      "counterevidence": [
+        "No-event false-safe@0.8 is lower (0.02561 vs 0.04552), at lower coverage (0.19316 vs 0.33644).",
+        "Historical equal-30%-coverage paired risk intervals include zero.",
+        "Current radius prior has lower NLL/ECE than ConPath but zero coverage at confidence 0.8.",
+        "Historical direct-query ECE is lower, but only one seed is available."
+      ],
+      "allowed_english": "Within the archived historical protocol, event supervision and low-rank decoder factors improve Event Brier, NLL, and ECE. The overlap-affected cohort and incomplete current ablation matrix limit causal and generalization claims; uniformly improved selective risk is not established.",
+      "forbidden_extension": "The current parent-isolated study proves every component necessary or proves better calibration and safety against direct-query and all map-only methods.",
+      "missing": [
+        "Current direct-query, no-event and no-global rows are absent.",
+        "No-event retains event-based checkpoint selection; no-global retains local noise and encoder context.",
+        "Three current repeats or adequate external convergence are not fabricated or newly trained."
+      ]
+    },
+    {
+      "rq": "RQ3",
+      "claim": "Footprint-conditioned event forecasts remain reliable over difficult query settings",
+      "verdict": "Structural radius monotonicity established; conditional reliability only partially investigated",
+      "same_protocol_evidence": [
+        "/development_run_metrics",
+        "/metric_contract",
+        "/development_posthoc_diagnostics"
+      ],
+      "evidence": "The same saved worlds and exact nested disk erosion produce non-increasing reachability with radius 0/10/20 cells. Existing radius, source, truth-stratum, reliability and fixed-case figures remain descriptive.",
+      "counterevidence": [
+        "750/1545 current events are already forced unreachable; full ConPath Brier 0.10380 contrasts with mutable-subset Brier 0.19912 under separately normalized parent weights.",
+        "At radius 20 cells, ConPath has zero confidence-0.8 coverage in every seed, so false-safe is undefined. Its Brier 0.06142 is worse than deterministic 0.04025. Radius-10 false-safe/coverage means are 0.30851/0.03547.",
+        "No saved strict interior-bottleneck case exists among the ten fixed queries after requiring both endpoints to fit.",
+        "No archived registered occlusion sweep or current full/no-event/no-global qualitative worlds exists."
+      ],
+      "allowed_english": "Shared-world footprint evaluation guarantees monotonic reachability forecasts as the disk radius increases. Existing development diagnostics assess reliability across recorded radii and query classes, but do not establish uniform calibration in occluded or narrow-bottleneck environments.",
+      "forbidden_extension": "Zero radius-monotonicity violations prove calibration, safe control, robust indoor navigation or outside-domain generalization.",
+      "missing": [
+        "Untouched holdout qualification.",
+        "Registered occlusion-stratified and strict bottleneck evidence.",
+        "No real robot, outdoor or control-trajectory claim is supported."
+      ]
+    }
+  ],
+  "uncertainty_units": {
+    "seed_summary": "Arithmetic mean and sample SD (ddof=1), not a confidence interval or SEM.",
+    "current_parent_interval": {
+      "resampling_unit": "40 parent places, stratified within five sources (eight validation parents each)",
+      "conditional_on": "Displayed three-seed average; not a confidence statement over arbitrary future training seeds",
+      "registered_source": "/paired_intervals/parent_three_seed"
+    },
+    "historical_interval": "Within-seed subscene bootstrap over 142 event-contributing subscenes; not independent-parent inference; 27/160 validation observations overlap training parents.",
+    "candidate_interval": "40 paired parent places, conditional on exactly the matched two seeds; no substitution of three-seed original mean.",
+    "event_units": "1545 correlated radius-conditioned events from 515 terminal queries over 40 validation parents; not 1545 independent scenes. K worlds are Monte Carlo draws, not experimental seeds.",
+    "radius_units": "Grid cells (0, 10, 20), never meters.",
+    "false_safe_units": "Conditional unreachable fraction among accepted event forecasts; distinct from FPR among all negatives, probability threshold, and risk at fixed coverage.",
+    "risk_aggregation": "Ratios formed under the existing equal-parent event weights per seed, then seed means; not a pooled ratio over all seeds.",
+    "empty_acceptance": "Undefined risk is JSON null / table dash, never zero.",
+    "map_estimators": "K-world cell vote Brier and continuous conditional-probability Brier are different estimators; current deterministic sigmoid Brier is the fair continuous map comparison.",
+    "calibration_interpretation": "Lower Brier is improved probabilistic event accuracy, not an isolated proof of better calibration. Ten-bin ECE and reliability are descriptive, and not conditional calibration guarantees."
+  },
+  "no_critical_numeric_conflict_found_in_selected_claims": true,
+  "required_editorial_constraints": [
+    "Keep every numerical cohort separate.",
+    "Use development validation rather than final-test language.",
+    "Retain deterministic continuous-map, prior, historical mean-map and selective-risk counterexamples.",
+    "Do not equate lower Brier with proof of calibrated probabilities.",
+    "Do not label only the post-quarantine external subset as all prior development access."
+  ],
+  "holdout_eligibility_proven": false,
+  "complete_submission_evidence": false
+}

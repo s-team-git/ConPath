@@ -1,0 +1,26 @@
+{
+  "created_utc": "2026-09-10T10:13:13.044653+00:00",
+  "reviewer": "root",
+  "actually_viewed": [
+    "main final contact sheet, all six pages",
+    "supplement page 2 at individual-page resolution"
+  ],
+  "findings": {
+    "main_columns_and_figures_clear": true,
+    "supplement_checkpoint_table_and_current_comparison_readable": true,
+    "missing_rows_preserved": true,
+    "hard_world_vs_continuous_map_labels_distinct": true,
+    "no_observed_clipping_or_overlap_in_viewed_images": true
+  },
+  "limits": [
+    "Root inspected these two images only; separate typesetting-agent receipt covers all 28 page contact renders and eight individual pages.",
+    "Data plots retain Chinese labels with English captions; main references continue onto page 6.",
+    "This is visual presentation review, not sufficient experimental evidence or acceptance certification."
+  ],
+  "files": {
+    "paper/build/main.pdf": "07d59b0c3b84bc63c616719fa9df9ab89d460853d1c5cd16db1db472b9456f2b",
+    "paper/build/supplement.pdf": "9951d00ddaafddfa52900f709999929850b113a36e2e91d4c40158b1fee1d4f4",
+    "paper/review/main_final_contact_0.jpg": "82cfde1d4ae94e23597a83f9ba28d553e1cc6061fd02f237e93eee1c92ac00c3",
+    "paper/review/final_pages/supplement-02.png": "e710f971906f5b95828b411be447466bffef941041020588af9a84d5601f31bc"
+  }
+}

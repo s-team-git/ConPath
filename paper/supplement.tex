@@ -1,0 +1,194 @@
+\RequirePackage[T1]{fontenc}
+\documentclass[conference,letterpaper,10pt,onecolumn]{IEEEtran}
+\input{preamble}
+\title{ConPath: Joint Spatial Map Posteriors for\\Footprint-Aware Reachability Prediction\\\large Supplementary Evidence and Reproducibility Record}
+\author{\IEEEauthorblockN{Anonymous working draft}}
+\renewcommand{\thepage}{S-\arabic{page}}
+\begin{document}
+\maketitle
+\workingnote
+\begin{abstract}
+This supplement preserves the full existing-evidence comparison, protocol differences, missing measurements, counterexamples, and fixed qualitative cases behind the main working manuscript. It is a record of development validation and historical diagnostics, not a final-test report. No additional model training, model inference, calibration fitting, query revision, or final-test reading is required to typeset these files. All numerical tables are converted from the project's existing auditable summaries. The LaMa BEV adaptation and FM+XAttn literature reimplementation remain under-converged supplementary engineering records; external training is stopped.
+\end{abstract}
+
+\section{Evidence Cohorts and Claims}
+\textbf{D1: current parent-isolated development.} Five indoor sources contribute 20/5/8 parent places apiece, for 100 training, 25 selection, and 40 validation places, with one observation per place. Validation has 515 terminal queries and 1,545 events at radii 0/10/20 cells. ConPath, independent, and deterministic models have three seeds: 20260910, 20260911, 20260912. All current packets derive from the physical training archive; recorded parent overlap and cross-split exact D4 duplicates are zero. Data preparation inspected development references and validation was later reused to choose a sampling modification. These are bounded development experiments, not unseen final-test confirmation.
+
+\textbf{D2: existing two-seed sampling exploration.} The correlated categorical-noise candidate uses the same 100/25/40 cohort but only seeds 20260910/20260911. Comparisons use those same two seeds in every row. It uses a $9\times9$, $\sigma=3$ Gaussian-copula categorical-noise field, with unchanged learned parameter count but additional computation. It is not the paper's selected method and is not pooled with D1's three-seed means.
+
+\textbf{H1: historical diagnostic.} The six-method comparison has 160 training and 160 validation observations; 142 validation subscenes contribute 1,408 terminal groups and 4,224 events. Stochastic evaluation uses $K=128$. The full/independent/no-event/no-global and deterministic families use seeds 20260831/20260901/20260902, while direct-query has only seed 20260831. Later audits found that 27 of the 160 validation \emph{observations} share a parent place with training. The 142 subscenes are not established independent parent places. This cohort supports conditional mechanism diagnostics, not unseen-place generalization. The fixed-marginal intervention and mean-map controls use this same cohort and remain separate from D1.
+
+\textbf{S1 and stopped external records.} P0 synthetic held-out-template reports are separate from FlatLands; the full model has two seeds and the matched no-event comparison one. They are not inserted into D1 or H1 tables. The independently frozen external protocol has 985/97/191 training/calibration/validation places, with no matched ConPath result used here. LaMa/FM staging was cancelled, and these observations do not fill D1's missing rows.
+
+\textbf{Interpretation of uncertainty.} Reported $\pm$ values are sample SD across training seeds. Existing paired bootstrap intervals condition on the recorded seed means and retain their original parent or subscene resampling unit. Generated worlds, query rows, and multiple views of the same place are not extra independent training repeats. Historical overlap cannot be repaired by a subscene bootstrap.
+
+\section{Protocol, Model, and Selection Freeze}
+The input remains free/blocked/unknown BEV channels with separately supplied valid support. Hidden-map scores use valid unobserved cells. Every within-cohort method shares the input, labels, queries, masks, footprint radii, weighting, and exact evaluation contract. In D1, query generation is input-defined and retains goals blocked in the reference. Radius is in grid cells; no meter conversion is asserted.
+
+The original ConPath uses a width-16 U-Net with pooled global context and coordinates; its decoder has four low-rank Gaussian factors and a $5\times5$ variance-normalized local Gaussian logit field. Independent disables global factors and changes the local kernel to one cell, retaining map and event training losses. No-global removes low-rank decoder factors only, not encoder context or local correlation. No-event sets event-loss weight to zero but still uses the common event-based checkpoint-selection rule. The separately trained deterministic model does not have ConPath's four-dimensional latent decoder. Direct-query is not relabeled as the distinct coordinate-query control.
+
+Known and support-invalid cells have $+10/-10$ class logits before registered unit-scale independent Gumbel sampling. Uniform draws are clipped to $[10^{-6},1-10^{-6}]$; the fixed logit gap protects hard-world constraints at that scale. Continuous marginals are separately projected by the evaluator. The original implementation does not contain an arbitrary-scale hard projection after sampling. The ideal conditional softmax identity has a numerical clipping approximation. These implementation details limit claims about the model class beyond the registered sampler.
+
+Current optimization uses AdamW with learning rate $3\times10^{-4}$, weight decay $10^{-4}$, gradient norm clipping 5, effective batch 4/micro-batch 2; training $K=4$, selection $K=16$. The budget is at most 24 epochs/600 updates with the archived early-stopping rule. The selection checkpoint minimizes Event Brier on 25 separate places, breaking ties within $10^{-5}$ using map NLL. The hard forward event is corrected to exact connectivity; the backward path retains a bounded 256-step relaxed surrogate. Two zero-query training places expose a shared micro-batch event-weighting limitation. The historical training/selection forward operator was bounded, with separate exact final evaluation; that protocol is not identical to the current one.
+
+\begin{table}[H]
+\centering\small
+\caption{Selected original ConPath checkpoints. No best-seed selection or ensemble is used; all three original selection checkpoints are retained. Paths are relative to the project root.}
+\begin{tabular}{@{}lccp{4.1in}@{}}\toprule
+Seed & Selected epoch & Trained epochs & Checkpoint under \texttt{results/parent\_group\_pilot\_v1/runs/}\\\midrule
+20260910 & 21 & 24 & \texttt{correlated/20260910/best.pt}\\
+20260911 & 17 & 23 & \texttt{correlated/20260911/best.pt}\\
+20260912 & 22 & 24 & \texttt{correlated/20260912/best.pt}\\\bottomrule
+\end{tabular}
+\end{table}
+The corresponding checkpoint SHA-256 values are, in seed order:
+\begin{quote}\footnotesize\ttfamily
+\nolinkurl{a1cc966191aa5d5526738dce648a3d42c57aedddf3218b979f3f5266fc69bc73}\\
+\nolinkurl{d4dc1e0becf492e037c723548c9c7e3a3098cd7c894552a02fd0f1cb64740618}\\
+\nolinkurl{284584c5dfbaac6a335759d6eb46a6480aae77508443171b4ff2e640e4456ab0}
+\end{quote}
+Existing ConPath Brier is lower than independent in all three current seeds, satisfying the requested stopping condition. No new A/B/C optimization, temperature fit, third candidate seed, external model training, or threshold change is started. Selection and checkpoint identities remain fixed.
+
+\section{Current Development Tables}
+\begin{table}[H]\centering\small
+\caption{D1 compact six-method matrix (source table T1). Three seeds, equal-parent weighting. Hidden-map Brier here is the hard-world free-frequency score; deterministic $K=1$ is binary-map squared error, not its continuous probability score. Risk30 means risk at equal 30\% coverage. Missing measurements are not zero.}
+\input{tables/T1}
+\end{table}
+The recorded interval for the Brier difference (independent minus ConPath) is $[0.00439,0.01251]$. For deterministic minus ConPath it is $[-0.01616,0.03377]$. These existing intervals use source-stratified paired-parent resampling conditional on the three seed means. Only the former excludes zero, within this development cohort.
+
+\begin{table}[H]\centering\small
+\caption{D1 retrospective metrics (T1b), from unchanged saved predictions. NLL clips at $10^{-6}$; ECE uses ten equal-width bins. These additional summaries were not original model-selection criteria. Continuous hidden-map Brier uses deterministic sigmoid probabilities and the stochastic $K=32$ conditional-probability average.}
+\input{tables/T1b}
+\end{table}
+Deterministic completion's continuous Brier is better than ConPath's. Its thresholded binary score must not be substituted to manufacture a probabilistic mapping advantage. NLL and ECE alone are also insufficient: a train-fitted radius prior below has better values than ConPath but no threshold-0.8 acceptance.
+
+\begin{table}[H]\centering\small
+\caption{D1 saved $K=4$ prefix versus $K=32$ (T1c). Same checkpoints and queries; no new inference. Zero score-monotonicity violations are structural checks and are not calibration guarantees.}
+\input{tables/T1c}
+\end{table}
+All 23 current method/seed/budget files retain 515 radius triples with zero score/target radius-monotonicity violations. Existing saved-world audits report zero observed-evidence and valid-support violations. No fresh geometry audit is implied by this typesetting step. Per-query calibration predictions were not archived; unavailable calibration NLL/ECE cannot be reconstructed honestly from aggregate selection scores.
+
+\begin{table}[H]\centering\small
+\caption{D1 fixed rule controls (T1d). Rules have one deterministic evaluation, not three optimization seeds. The radius prior has no sampled map; its archived $K=1$ filename tag is not a map count. A dash at zero coverage means undefined risk.}
+\input{tables/T1d}
+\end{table}
+
+\begin{table}[H]\centering\small
+\caption{D1 previously saved post-hoc conditional-mean threshold controls (T1e). The threshold remains 0.5 and each output is one binary map. These are distinct from the separately trained deterministic baseline. NLL/ECE were not stored and are not fabricated.}
+\input{tables/T1e}
+\end{table}
+The known-immutable subset contains 750/1,545 events (unweighted) with zero ConPath error. On the hidden-completion-mutable subset, ConPath's parent-weighted Brier is $0.19912\pm0.00967$. Full-cohort and subset metrics each use their own contributing-parent normalization. The saved diagnostic predates manuscript consolidation; it is not a new evaluation.
+
+\begin{table}[H]\centering\small
+\caption{D1 descriptive radius strata from the unchanged numeric snapshot. Three seeds; equal-parent normalization within each radius. Brier is mean $\pm$ sample SD; other displayed values are seed means. Undefined threshold risk is retained when no seed accepts any event. Radii are grid cells.}
+\input{tables/radius}
+\end{table}
+At radius 20 ConPath has zero threshold-0.8 coverage in every seed, and deterministic completion has lower Brier. Radius-10 ConPath coverage is also low. These strata prevent interpreting an overall Brier improvement or score monotonicity as reliable high-confidence reachability for every robot footprint. Source, reachable/unreachable, pooled, and parent-weighted metrics remain in the machine-readable snapshot and companion CSV exports.
+
+\clearpage
+\section{Historical Mechanism and Ablation Diagnostics}
+\textbf{This section is H1, not D1.} The later audit found training-parent overlap in 27/160 validation observations and historical physical archive-test access. The $K=128$ and subscene-weighted results below cannot fill D1's missing $K=32$ rows or support untouched-place conclusions.
+
+\begin{table}[H]\centering\small
+\caption{H1 historical six-method table (T2). Three training seeds 20260831/0901/0902 except direct-query (20260831 only). Common within-table evaluation does not repair parent overlap. Seed counts are shortened for typesetting; source tables preserve exact identifiers.}
+\input{tables/T2}
+\end{table}
+Full/no-event/no-global within-seed Brier intervals favor full, but their subscene resampling unit is not independent buildings. The direct-query row has lower ECE than ConPath's three-seed mean and only one seed. No-event has lower false-safe risk at threshold 0.8 but lower coverage. At equal 30\% coverage, full/independent risks are 0.03600/0.03901; every recorded within-seed paired interval includes zero. No-event/no-global mean risk30 values are 0.05655/0.04288, with paired intervals also including zero; no-global's point contrast reverses in two seeds. These counterexamples are retained.
+
+\begin{table}[H]\centering\small
+\caption{H1 fixed empirical marginals and same-checkpoint deterministic controls (T3). The permutation preserves every saved hard-world cell free count exactly. A mean-map control produces one binary map from the archived $K=128$ posterior estimate.}
+\input{tables/T3}
+\end{table}
+The permutation changes sample alignment without changing empirical cell marginals, isolating useful finite-ensemble dependence in this cohort. It is not an independently sampled infinite factorized posterior or a causal account of all separately trained architecture differences. Historical ConPath and independent map Brier differ (0.15451 versus 0.16789), so their ordinary comparison alone cannot establish fixed-marginal RQ1. The ConPath mean-map Brier is close to full and the direction reverses in one seed, preventing a broad stochastic-versus-deterministic claim.
+
+\begin{figure}[H]\centering
+\includegraphics[width=.86\textwidth]{flatlands_clean_marginal_shuffle.pdf}
+\caption{Byte-identical archived H1 dependence figure. Despite the old word ``clean'' in the original title/filename, 27/160 historical validation observations share training parent places, and physical archive-test access occurred. This correction overrides earlier untouched/isolated labels. The figure is not evidence of unseen-place generalization.}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]\centering
+\includegraphics[width=.92\textwidth]{flatlands_clean_training_ablations.pdf}
+\caption{Byte-identical H1 historical training ablations, with the same overlap/access caveat. Removing event loss retains event-based selection; removing global decoder factors retains encoder context. Existing intervals are conditional subscene intervals, not independent-building confirmation. Original-language labels are retained; main text and tables provide English method/metric names.}
+\end{figure}
+The historical no-event model predicts zero reachability for all radius-20 validation queries across three seeds despite a recorded 20.67\% positive rate. This is consistent with fragmented sampled support, not proof that every map-only completion architecture must fail. No corresponding no-event/no-global worlds were saved on D1, so a new parent-isolated qualitative ablation panel is unavailable. Earlier H1 examples selected for positive recovery or avoided false-safe outcomes are excluded from the fixed-case gallery.
+
+\section{Existing Two-seed Sampling Exploration}
+\begin{table}[H]\centering\small
+\caption{D2 only (T4): the current 100/25/40 cohort restricted to seeds 20260910 and 20260911 for every row. These two-seed means must not be compared directly with D1's three-seed means. The candidate is not selected as the paper method.}
+\input{tables/T4}
+\end{table}
+The original-minus-candidate Brier difference is 0.01135, with existing paired-parent interval $[-0.00117,0.02437]$ including zero. Empirical hard-world hidden-map Brier increases from 0.15192 to 0.15362; at $K=4$ risk30 increases from 23.73\% to 23.84\%. The variant does not establish stable multi-metric improvement, and no third seed or new search is initiated. The same parameter count is not equal compute cost.
+
+\section{External Under-convergence Record}
+LaMa is cited for large-mask image completion with Fourier convolutions~\cite{suvorov2022lama}; FlatLands is a close stochastic-completion task neighbor~\cite{bhattacharjee2026flatlands}. Our method names remain \emph{LaMa BEV adaptation} and \emph{FM+XAttn literature reimplementation}. They are neither original-author official checkpoints nor sufficiently converged formal main baselines. Existing short-stage engineering data is not a paper main-table result.
+
+At scope freeze, LaMa's first-seed four-member stage had completed 5,000 updates per member and its recorded calibration/validation stage audit. FM's first-seed 5,000-update stage had only partial validation evaluation (117/191 validation places, with 97 calibration places). That partial subset is not promoted to a complete pilot result. Full-training plans were not launched. The preserved STOP marker and cancellation receipts prohibit automatic restart. No result is claimed against external 3D mIoU, FID, or navigation-success numbers; those have different datasets, tasks, outputs, and metrics.
+
+\clearpage
+\section{Archived Metric Figures}
+Figures in this working supplement are byte-identical copies with original Chinese presentation labels. English captions and the tables provide translations and the protocol distinctions. Figure source paths and SHA-256 values are recorded in \texttt{figures/provenance.json}. No curve, sampled map, query, or measured value is edited for appearance.
+
+\begin{figure}[H]\centering
+\includegraphics[width=.94\textwidth]{03_event_metrics.pdf}
+\caption{Archived event metrics. Upper group: D1 three-seed original/independent/deterministic comparison. Lower group: D2 matched two-seed sampling exploration. Dots are individual seeds and bars are sample SD, not confidence intervals. Brier, NLL, ECE are separate event metrics. NLL/ECE are descriptive saved-prediction summaries.}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]\centering
+\includegraphics[width=.97\textwidth]{05_risk_coverage.pdf}
+\caption{Archived selective risk versus weighted coverage. Thin curves denote seeds, thick curves their means. Boundary-score ties are accepted fractionally without labels. D1 and D2 remain separate groups. The horizontal axis is coverage, not confidence threshold; these curves do not establish a deployment safety guarantee.}
+\end{figure}
+\begin{figure}[H]\centering
+\includegraphics[width=.85\textwidth]{06_radius.pdf}
+\caption{Archived Event Brier at frozen radii 0/10/20 cells. Error bars are training-seed SD and weights are recomputed within radius. Radius monotonicity of predictions does not imply uniformly better errors or meaningful acceptance for all radii; radius-20 ConPath threshold coverage is zero.}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]\centering
+\includegraphics[width=.92\textwidth]{07_map_metrics.pdf}
+\caption{Archived hidden valid-cell map diagnostics, separate from path-event scores. Empirical cell free frequency is not a path probability. Continuous deterministic map Brier is better than ConPath, as retained in the numerical tables; a binary-map score must not replace it.}
+\end{figure}
+\begin{figure}[H]\centering
+\includegraphics[width=.88\textwidth]{09_rule_controls.pdf}
+\caption{All available D1 rule controls and trained methods. Rules are single deterministic evaluations, not three trained repeats. Undefined risk at zero coverage is omitted, not drawn as zero. The radius prior has lower NLL/ECE than ConPath but zero threshold-0.8 coverage. No method dominates all objectives.}
+\end{figure}
+
+\clearpage
+\section{Fixed Qualitative Gallery}
+All ten queries in the pre-existing identifier-selected list are retained, including failures. Every panel uses the same input, reference, query, seed 20260910, and radius 10 cells, and shows the first four saved worlds in their stored order. Displayed event forecasts use all 32 worlds. Rows are original ConPath, independent, and the separately trained D2 sampling candidate; the last is supplementary only. The maps are existing model samples, not hand-drawn completions.
+
+\textbf{Legend for every case.} Green: free; dark: blocked; pale blue: valid unknown observation; checkerboard: invalid support, closed for connectivity. Blue circle S is start, orange diamond G is goal; rings show footprint extent. Columns are observed map, reference map, and four actual binary worlds. The reference is a label for evaluation, not an input to inference. No straight S--G segment is a predicted trajectory.
+
+No strict interior-bottleneck example is available in this fixed set after requiring reference radius-0 reachability, current-radius unreachability, and both terminals fitting the footprint. We do not replace queries by outcome-selected cases. No complete preregistered occlusion sweep is available. The gallery therefore does not complete all of RQ3.
+\input{gallery}
+
+\clearpage
+\section{Test Access, Reproducibility, and Remaining Gaps}
+No final test or \texttt{location\_6} has been opened for this consolidation or typesetting. Earlier FlatLands physical archive-test access included eight observations in historical training, five in historical validation, and 53 in an earlier query audit. These histories overlap and must not be summed as disjoint counts. An untouched physical-test claim is withdrawn. Final holdout eligibility requires a full access-history audit and exclusion of inspected parents; Boolean legacy flags do not establish it.
+
+The current metadata-only inventory identifies a partial union of 1,532 development-exposed parent places across three recorded histories. External data preparation accessed 2,292 observations from 1,292 parents; its later quarantine excluded 34 observations from 19 parents, which remain previously inspected. This incomplete inventory does not certify other data as untouched. The old eight training and five validation physical-test observations are subsets of the 53-observation audit. The existing history also records 32 inspected ScanNet++ scenes; these counts are not added. None of these counts should be added to the 1,532-parent union. This audit uses saved metadata and does not open a new test manifest or test asset.
+
+The principal source documents and the JSON/CSV validation snapshots are:
+\begin{quote}\small\ttfamily
+PAPER\_DRAFT.md\\
+PAPER\_EVIDENCE.md\\
+PAPER\_TABLES.md\\
+PAPER\_FIGURES.md\\
+results/FINAL\_MODEL\_SELECTION.md\\
+results/paper\_validation\_snapshot.json\\
+results/paper\_validation\_snapshot.csv
+\end{quote}
+The JSON snapshot has SHA-256
+\begin{quote}\footnotesize\ttfamily
+\nolinkurl{8a3b81ef1f01dec72e57f92d7c02d39ed0e3697e12389143a755a836cc4bbc32}.
+\end{quote}
+It contains 29 evidence rows, 23 current per-run metric records, and 189 source references. The typesetting manifest records source-document hashes, rendered table rows, and copied figure hashes. Underlying prediction/checkpoint/evaluator provenance remains in the original snapshot; no new model execution is necessary to rebuild the manuscript.
+
+The current six-method matrix still lacks direct-query/no-event/no-global runs on D1. Historical direct-query has one seed. Calibration per-query files and strict bottleneck examples are unavailable. External models are under-converged and cancelled. The principal empirical support remains indoor BEV development, without outdoor, end-to-end sensor, robot closed-loop, or trajectory-output validation. Bounded gradients, finite samples, unresolved physical-scale calibration, incomplete convergence evidence, and the known zero-query weighting limitation remain. These are scientific limits, not typesetting errors.
+
+The main document uses an IEEEtran conference-style layout. This work does not assert compliance with any unverified edition's page limit, anonymity policy, or submission formatting requirements. Authors and affiliations were not supplied and are not invented. Original Chinese plot labels are retained for current author review; a publication-ready language pass remains a presentation task, without authorization to alter experimental data or restart training.
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+\end{document}

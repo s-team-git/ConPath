@@ -1,0 +1,141 @@
+{
+  "source_figures": [
+    {
+      "source": "results/paper_figures/20260910T063236.828092Z/01_architecture.pdf",
+      "destination": "paper/figures/01_architecture.pdf",
+      "sha256": "92918667c46d68dc9452f6d07a1f8af59fe3f5922b3595062cacd7824af67513",
+      "operation": "byte-identical copy"
+    },
+    {
+      "source": "results/paper_figures/20260910T063236.828092Z/02_fixed_case_00.pdf",
+      "destination": "paper/figures/02_fixed_case_00.pdf",
+      "sha256": "369b82f0bd52d15dfc19a8b557fb86195381b4d8e4c3250dc47e743d859cd9c3",
+      "operation": "byte-identical copy"
+    },
+    {
+      "source": "results/paper_figures/20260910T063236.828092Z/02_fixed_case_01.pdf",
+      "destination": "paper/figures/02_fixed_case_01.pdf",
+      "sha256": "98eb29db0f19c40f49246e3bc53363862c41a1f41cf2e9bcbff0e1fdf3814c77",
+      "operation": "byte-identical copy"
+    },
+    {
+      "source": "results/paper_figures/20260910T063236.828092Z/02_fixed_case_02.pdf",
+      "destination": "paper/figures/02_fixed_case_02.pdf",
+      "sha256": "70d29686c1be3187075426c43944835c46bddef27ecd6d9722968c02cda67f51",
+      "operation": "byte-identical copy"
+    },
+    {
+      "source": "results/paper_figures/20260910T063236.828092Z/02_fixed_case_03.pdf",
+      "destination": "paper/figures/02_fixed_case_03.pdf",
+      "sha256": "e0d629c228313313c5fb40dad32fe4321ce311f6a81e60d088972aaae08dd4d3",
+      "operation": "byte-identical copy"
+    },
+    {
+      "source": "results/paper_figures/20260910T063236.828092Z/02_fixed_case_04.pdf",
+      "destination": "paper/figures/02_fixed_case_04.pdf",
+      "sha256": "b9337d44604737e2780f9ca905d65fbf9a2fb64c76f27bd59bf6c2bb1f9a3370",
+      "operation": "byte-identical copy"
+    },
+    {
+      "source": "results/paper_figures/20260910T063236.828092Z/02_fixed_case_05.pdf",
+      "destination": "paper/figures/02_fixed_case_05.pdf",
+      "sha256": "4543745908729d5439a90578f01eacbf60f2f15d5d07c4b69fc8ae7d9d8524d2",
+      "operation": "byte-identical copy"
+    },
+    {
+      "source": "results/paper_figures/20260910T063236.828092Z/02_fixed_case_06.pdf",
+      "destination": "paper/figures/02_fixed_case_06.pdf",
+      "sha256": "ce75afa3a67125fac5c6555628c191a9226a6f198a5b90ad2caaae41557e379d",
+      "operation": "byte-identical copy"
+    },
+    {
+      "source": "results/paper_figures/20260910T063236.828092Z/02_fixed_case_07.pdf",
+      "destination": "paper/figures/02_fixed_case_07.pdf",
+      "sha256": "a1564e412594a80afb512764b6d40c02a9627388f23ed915e4fe78c4fc7a2739",
+      "operation": "byte-identical copy"
+    },
+    {
+      "source": "results/paper_figures/20260910T063236.828092Z/02_fixed_case_08.pdf",
+      "destination": "paper/figures/02_fixed_case_08.pdf",
+      "sha256": "44453dad6cec6da1329f43ae3235e87efa6c2f0ce190b5f1b3ead31901875fe6",
+      "operation": "byte-identical copy"
+    },
+    {
+      "source": "results/paper_figures/20260910T063236.828092Z/02_fixed_case_09.pdf",
+      "destination": "paper/figures/02_fixed_case_09.pdf",
+      "sha256": "c5b8aaae547d94eacf7620bcfb7d3dee97c4d950466f15be0dff711b3e38f8a5",
+      "operation": "byte-identical copy"
+    },
+    {
+      "source": "results/paper_figures/20260910T063236.828092Z/03_event_metrics.pdf",
+      "destination": "paper/figures/03_event_metrics.pdf",
+      "sha256": "2a07ab0ac8e1294b2a8435e3b09d04814dcc3067f9cad181adb010b5adc4315d",
+      "operation": "byte-identical copy"
+    },
+    {
+      "source": "results/paper_figures/20260910T063236.828092Z/04_reliability.pdf",
+      "destination": "paper/figures/04_reliability.pdf",
+      "sha256": "ef9cb1969a1e3342ad9de0f82509d2d316267a0da00358c5f7f7edf6598d4003",
+      "operation": "byte-identical copy"
+    },
+    {
+      "source": "results/paper_figures/20260910T063236.828092Z/05_risk_coverage.pdf",
+      "destination": "paper/figures/05_risk_coverage.pdf",
+      "sha256": "ab8546f5a75f9ffe6e7ebe924c2bb30c1dd118a5bb59300d0febe53d24adc028",
+      "operation": "byte-identical copy"
+    },
+    {
+      "source": "results/paper_figures/20260910T063236.828092Z/06_radius.pdf",
+      "destination": "paper/figures/06_radius.pdf",
+      "sha256": "f50c6c237f1dcdec3fb8f1ab0821f0c8a3d79b8bfa888a6409d69f6ca8f6c621",
+      "operation": "byte-identical copy"
+    },
+    {
+      "source": "results/paper_figures/20260910T063236.828092Z/07_map_metrics.pdf",
+      "destination": "paper/figures/07_map_metrics.pdf",
+      "sha256": "547839493d68c381642b581fe94d956be0863ee1f3c9352c5bde63cf28c35024",
+      "operation": "byte-identical copy"
+    },
+    {
+      "source": "results/paper_figures/20260910T063236.828092Z/08_synthetic_event_ablation.pdf",
+      "destination": "paper/figures/08_synthetic_event_ablation.pdf",
+      "sha256": "527bcdd284ed80666e338b035ed13386d7d48b290e02803448df10cebfa30d12",
+      "operation": "byte-identical copy"
+    },
+    {
+      "source": "results/paper_figures/historical_aggregate/flatlands_clean_training_ablations.pdf",
+      "destination": "paper/figures/flatlands_clean_training_ablations.pdf",
+      "sha256": "2247fa76445388f5f17041ce839684e21a39f5974bd7567ad3c9b45c32e71633",
+      "operation": "byte-identical copy"
+    },
+    {
+      "source": "results/paper_figures/historical_aggregate/flatlands_clean_marginal_shuffle.pdf",
+      "destination": "paper/figures/flatlands_clean_marginal_shuffle.pdf",
+      "sha256": "2429f24b89163205feab0fcc73d893bd55991999b039263ebb8c1b9975a0fd83",
+      "operation": "byte-identical copy"
+    },
+    {
+      "source": "results/paper_figures/rule_controls/20260910T064132.442897Z/09_rule_controls.pdf",
+      "destination": "paper/figures/09_rule_controls.pdf",
+      "sha256": "1065505b8ba1d5ad68318845fb700b905f5fd05406b2b9e2f6fedbda5c8be611",
+      "operation": "byte-identical copy"
+    },
+    {
+      "source": "results/paper_figures/20260910T063236.828092Z/manifest.json",
+      "sha256": "60fba5c5be0d1b62264125510b6dd28869adfc31c345c474ba68cd07bee68c4b",
+      "role": "upstream figure metadata; not copied"
+    },
+    {
+      "source": "results/paper_figures/historical_aggregate/manifest_v2.json",
+      "sha256": "6aefc8aa018b2cb891b02ddab253d90e5243f6be558ebd122c79782b75a06980",
+      "role": "upstream figure metadata; not copied"
+    },
+    {
+      "source": "results/paper_figures/rule_controls/20260910T064132.442897Z/manifest.json",
+      "sha256": "f3eee080282579713174e057b628c592042cff6a3449cf71233f041ef87290fe",
+      "role": "upstream figure metadata; not copied"
+    }
+  ],
+  "main_architecture": "English condensed code schematic in main.tex; translated from existing 01_architecture, no measured data",
+  "data_modification": false
+}

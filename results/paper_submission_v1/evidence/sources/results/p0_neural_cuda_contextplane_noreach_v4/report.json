@@ -1,0 +1,320 @@
+{
+  "protocol": {
+    "seed": 20260827,
+    "radii_cells": [
+      0,
+      1,
+      2
+    ],
+    "map_shape": [
+      24,
+      24
+    ],
+    "steps": 120,
+    "warmup_steps": 24,
+    "batch_size": 8,
+    "train_templates": 12,
+    "test_templates": 4,
+    "worlds_per_template": 24,
+    "train_samples": 8,
+    "validation_samples": 128,
+    "categorical_noise_scale": 0.25,
+    "reachability_weight": 0.0,
+    "variogram_weight": 0.2,
+    "empirical_map_weight": 1.0,
+    "learning_rate": 0.001,
+    "training_unit": "observation_group",
+    "context_input": "plane",
+    "encoder_context_mode": "coord_global",
+    "device": "cuda",
+    "gpu_name": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+    "git_head": "38efae897036f699c390c2ec2867eb24c303797f",
+    "command": [
+      "scripts/train_p0_neural.py",
+      "--device",
+      "cuda",
+      "--steps",
+      "120",
+      "--warmup-steps",
+      "24",
+      "--batch-size",
+      "8",
+      "--train-templates",
+      "12",
+      "--test-templates",
+      "4",
+      "--worlds-per-template",
+      "24",
+      "--height",
+      "24",
+      "--width",
+      "24",
+      "--train-samples",
+      "8",
+      "--validation-samples",
+      "128",
+      "--categorical-noise-scale",
+      "0.25",
+      "--reachability-weight",
+      "0",
+      "--variogram-weight",
+      "0.2",
+      "--empirical-map-weight",
+      "1.0",
+      "--learning-rate",
+      "0.001",
+      "--training-unit",
+      "observation_group",
+      "--context-input",
+      "plane",
+      "--encoder-context-mode",
+      "coord_global",
+      "--checkpoint-every",
+      "10",
+      "--output-dir",
+      "results/p0_neural_cuda_contextplane_noreach_v4"
+    ]
+  },
+  "event_metrics": {
+    "brier": 0.19136752128330023,
+    "nll": 0.7951855442433261,
+    "ece": 0.19356960838154516,
+    "false_safe_rate@0.8": 0.4257703081232493,
+    "reliability": [
+      {
+        "bin": 0,
+        "lower": 0.0,
+        "upper": 0.1,
+        "count": 495,
+        "confidence": 0.005713383447980941,
+        "accuracy": 0.06262626262626263
+      },
+      {
+        "bin": 1,
+        "lower": 0.1,
+        "upper": 0.2,
+        "count": 103,
+        "confidence": 0.1337226922940282,
+        "accuracy": 0.2524271844660194
+      },
+      {
+        "bin": 2,
+        "lower": 0.2,
+        "upper": 0.30000000000000004,
+        "count": 22,
+        "confidence": 0.26846589080312033,
+        "accuracy": 0.8181818181818182
+      },
+      {
+        "bin": 3,
+        "lower": 0.30000000000000004,
+        "upper": 0.4,
+        "count": 28,
+        "confidence": 0.3281249797769955,
+        "accuracy": 0.8571428571428571
+      },
+      {
+        "bin": 4,
+        "lower": 0.4,
+        "upper": 0.5,
+        "count": 0,
+        "confidence": 0.45,
+        "accuracy": NaN
+      },
+      {
+        "bin": 5,
+        "lower": 0.5,
+        "upper": 0.6000000000000001,
+        "count": 4,
+        "confidence": 0.58984375,
+        "accuracy": 1.0
+      },
+      {
+        "bin": 6,
+        "lower": 0.6000000000000001,
+        "upper": 0.7000000000000001,
+        "count": 82,
+        "confidence": 0.6604420731707317,
+        "accuracy": 0.8658536585365854
+      },
+      {
+        "bin": 7,
+        "lower": 0.7000000000000001,
+        "upper": 0.8,
+        "count": 61,
+        "confidence": 0.7537141393442623,
+        "accuracy": 0.5737704918032787
+      },
+      {
+        "bin": 8,
+        "lower": 0.8,
+        "upper": 0.9,
+        "count": 161,
+        "confidence": 0.8470982142857143,
+        "accuracy": 0.22981366459627328
+      },
+      {
+        "bin": 9,
+        "lower": 0.9,
+        "upper": 1.0,
+        "count": 196,
+        "confidence": 0.9941007653061225,
+        "accuracy": 0.8571428571428571
+      }
+    ],
+    "count": 1152
+  },
+  "event_metrics_by_radius": [
+    {
+      "brier": 0.3413429260253906,
+      "nll": 1.5130980811522419,
+      "ece": 0.37076822916666674,
+      "false_safe_rate@0.8": 0.42696629213483145,
+      "count": 384
+    },
+    {
+      "brier": 0.11030403786996128,
+      "nll": 0.34545909742621533,
+      "ece": 0.10170491610188037,
+      "false_safe_rate@0.8": 0.0,
+      "count": 384
+    },
+    {
+      "brier": 0.12245559995454879,
+      "nll": 0.5269994541515209,
+      "ece": 0.1375325548760884,
+      "false_safe_rate@0.8": NaN,
+      "count": 384
+    }
+  ],
+  "event_mean_by_radius": [
+    0.9176432490348816,
+    0.2522176206111908,
+    0.0421549491584301
+  ],
+  "target_event_mean_by_radius": [
+    0.546875,
+    0.3515625,
+    0.1796875
+  ],
+  "event_mean_by_context_and_radius": {
+    "0": [
+      0.8394368290901184,
+      0.0807698592543602,
+      0.008056639693677425
+    ],
+    "1": [
+      0.995849609375,
+      0.4236653745174408,
+      0.0762532576918602
+    ]
+  },
+  "target_event_mean_by_context_and_radius": {
+    "0": [
+      0.21875,
+      0.15625,
+      0.140625
+    ],
+    "1": [
+      0.875,
+      0.546875,
+      0.21875
+    ]
+  },
+  "context_conditioning": {
+    "radius_zero_predicted_gap": 0.1564127802848816,
+    "radius_zero_target_gap": 0.65625,
+    "gap_ratio": 0.2383432842436291,
+    "minimum_gap_ratio": 0.5,
+    "passed": false
+  },
+  "map_marginal_metrics": {
+    "conditional_categorical_full": {
+      "brier": 0.00306632778904308,
+      "nll": 0.009454676686924424,
+      "ece": 0.0009838799959737846,
+      "false_safe_rate@0.8": 0.0,
+      "count": 110592
+    },
+    "empirical_hard_full": {
+      "brier": 0.0030982996578488185,
+      "nll": 0.009561777277901777,
+      "ece": 0.0010496775313202623,
+      "false_safe_rate@0.8": 1.1420609632142164e-05,
+      "count": 110592
+    },
+    "conditional_categorical_unknown": {
+      "brier": 0.02453062231234464,
+      "nll": 0.07563041349189518,
+      "ece": 0.007871039967790568,
+      "false_safe_rate@0.8": 0.0,
+      "count": 13824
+    },
+    "empirical_hard_unknown": {
+      "brier": 0.024786397262790548,
+      "nll": 0.07648721821971405,
+      "ece": 0.008397420250562199,
+      "false_safe_rate@0.8": 0.00011824524062906468,
+      "count": 13824
+    }
+  },
+  "doorway_joint": {
+    "0": {
+      "target": {
+        "any_open_rate": 0.21875,
+        "mean_free_cells": 1.21875,
+        "mean_transitions": 0.4375,
+        "fragmented_rate": 0.0
+      },
+      "sampled": {
+        "any_open_rate": 0.8394368489583334,
+        "mean_free_cells": 1.9998372395833333,
+        "mean_transitions": 2.8562825520833335,
+        "fragmented_rate": 0.4451497395833333
+      }
+    },
+    "1": {
+      "target": {
+        "any_open_rate": 0.875,
+        "mean_free_cells": 4.8125,
+        "mean_transitions": 1.75,
+        "fragmented_rate": 0.0
+      },
+      "sampled": {
+        "any_open_rate": 0.995849609375,
+        "mean_free_cells": 4.901936848958333,
+        "mean_transitions": 4.049967447916667,
+        "fragmented_rate": 0.7157389322916666
+      }
+    }
+  },
+  "last_training": {
+    "event": "step",
+    "step": 120,
+    "stage": "joint",
+    "total": 0.10522852092981339,
+    "map_nll": 0.07495222985744476,
+    "empirical_map_u": 0.025235615670681,
+    "variogram": 0.025203362107276917,
+    "reach_u": 0.09174521267414093,
+    "gradient_norm": 0.2656775116920471
+  },
+  "runtime": {
+    "elapsed_seconds": 87.65915764099918,
+    "peak_cuda_memory_bytes": 5792976384
+  },
+  "p0_gate": {
+    "passed": false,
+    "official_protocol": true,
+    "comparators": {
+      "independent_brier": 0.18317159016927084,
+      "direct_query_brier": 0.16988758349570215,
+      "independent_ece": 0.1762424045138889,
+      "direct_query_ece": 0.08912776173751391,
+      "independent_map_brier": 0.002829818813889115
+    },
+    "criterion": "beat independent and direct-query event Brier; ECE no more than 0.02 above the better comparator; empirical hard-map Brier within 0.02 of independent; recover at least half of the held-out radius-zero context gap"
+  },
+  "paper_result": false,
+  "interpretation": "Neural P0 remains NO-GO; do not expand to public-data claims."
+}

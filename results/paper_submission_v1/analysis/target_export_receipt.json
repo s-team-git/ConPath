@@ -1,0 +1,471 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-09-10T09:50:24.816659+00:00",
+  "purpose": "Portable export of existing frozen development labels, no new evaluation",
+  "snapshot_sha256": "8a3b81ef1f01dec72e57f92d7c02d39ed0e3697e12389143a755a836cc4bbc32",
+  "metadata": {
+    "results/parent_group_pilot_v1/data/protocol.json": "175d555c6da4dabf268b13a6cf0ca8bbbca97e91fcc0cebe7d4aadf9092222f3",
+    "results/parent_group_pilot_v1/data/selected.csv": "102f27e8f4186920035c87dcf70b113a4208a079afed257401fca4c8706fbb2c",
+    "results/parent_group_pilot_v1/data/seal.json": "5b8a927d56f0c4961963b7e091c0dc0bd34924ea4e2bbf86e9214c57810fcf2c"
+  },
+  "packets": [
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_007792.npz",
+      "sha256": "b6865016bbebfd165fcf6981c484ac62a4b4ea2b8f81035031f5972b983892cc",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 15
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_014028.npz",
+      "sha256": "9faeac61af1a1c15548e58000f5a273fc5fb0ed975c26d048b226e1139928e93",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 42
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_003677.npz",
+      "sha256": "4804da04b03877bda3bb823d653a8902224b32a75d5e67e552b792b4aa00d09f",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 60
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_013470.npz",
+      "sha256": "26415f158bbce3e2ca480dcb71ef65b0851a839f537ac0b9b5922b29e4248898",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 36
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_023532.npz",
+      "sha256": "91c9150ba8b0c609f5071e507000982d6a1fb65390a5cea13f8555ef9a5e3888",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 9
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_000206.npz",
+      "sha256": "118aa32ab018279cb01d1d85ff39ceef71fd92517e040a152bc04f6cfd4a5a09",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 27
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_009280.npz",
+      "sha256": "6b7c7009bf23bd0e209531281b9e36d3a63c5aacdd9ada0a88382eb3288dd196",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 33
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_023335.npz",
+      "sha256": "368d813cdc18caf6ef8c23c286af81a2a30774a6fc1ecb6f8bcfa56e72ea05b8",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 6
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_065777.npz",
+      "sha256": "e5516726f2862fdf8ce469445fb5d3e0b492af1163453eeb893a8249cc69af7f",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 33
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_082481.npz",
+      "sha256": "a43a179757d2c8ea365a73bd74fde0366d7fcbdab1b400f6249d07f1d0d189c7",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 42
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_088552.npz",
+      "sha256": "88c072a6acbe69a9b077c48fdd81737e41bf4665916b8f63cef08df544ad5bd7",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 36
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_029552.npz",
+      "sha256": "416e44877e5e0fd2e155b8742e01a434a1aa8cacd37d26ac9d41bdccc064ae80",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 42
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_097040.npz",
+      "sha256": "8fffcf1c4662ea03486704f39a51800bc73e017a8ba86b20c2e9934bd27cead6",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 36
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_039417.npz",
+      "sha256": "0a8275719bab2db545765fa4924be7e907497f76adede6c33b0553a715342206",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 54
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_053903.npz",
+      "sha256": "10c96cd13a4943ef609bf68b3cdc2af582678322d4d3efd27199d19382836d08",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 36
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_025765.npz",
+      "sha256": "4523890099a76734cdb3840b4c797fb11a7b1b7729ec842e385216d38cf5d068",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 15
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_116392.npz",
+      "sha256": "99f3107e31ce1e370d90acca8244a413af8933bd3193c27abf4832009725df56",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 63
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_132842.npz",
+      "sha256": "250775e9783f8a347a2848bbfa96dc8ab63fcca470f7aee676b585335cd4fc33",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 57
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_130240.npz",
+      "sha256": "6a1d7f22b60dca1af385aa943e462211091cffc60f2aef73b815e316e0b613bf",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 27
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_114561.npz",
+      "sha256": "0b557d454d5f42fc463451c540a92cb26fe21b85163ba82bdb65801431082b96",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 63
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_101106.npz",
+      "sha256": "c37eb9f7c92d6438ac6d7986fce6edeccbbaaad33c978ed8e3bec376b3b2fa1d",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 36
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_114394.npz",
+      "sha256": "428496e51bf6de1275d74a4fe002640fb73a97fecff6b8ddda7286c982bf1cfe",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 27
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_140368.npz",
+      "sha256": "0a37f1536fc81d5c77489ed03c24a31b34317d1b94119cbbc6d91ffa2f9c186c",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 33
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_115854.npz",
+      "sha256": "7ef830168e6a877076690ad01a66a12c2197f81570c29ddf4900ae7a8ebaa41e",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 18
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_157856.npz",
+      "sha256": "f5217277ec8754c92dfb837bbc450009a51ba41e204b9bc5539e9b75b7ec3137",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 60
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_146560.npz",
+      "sha256": "c8c4af890d73a4555d69ff165950b2ee631bf0ddd4429c0b8d7802fd2ea4fcc9",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 51
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_153173.npz",
+      "sha256": "de7d880d15dd3308adfd585ab1a58374638ac9b518203512722ea6bffe6bf8f4",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 18
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_158518.npz",
+      "sha256": "f98a5b259a695465f0c15b6970b6d0ab1f9298fa7acec47a71e177eb16b2bc7a",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 21
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_157947.npz",
+      "sha256": "f35addff8f5f60cb91e059eb89434a425b78c0c973a782628d1ea1aa468ed75e",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 54
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_168309.npz",
+      "sha256": "047c2d24d99e0febc3338c9edc7ec7e088739a7ba161bbe409999aae0d23866b",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 45
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_164403.npz",
+      "sha256": "a0d69c5bf0c7082fd74a863214e71a7a69a3da2a754dda7f67d9974a78d3a281",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 9
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_166408.npz",
+      "sha256": "839f700bd17c6b26963f146f8047c08012fe551a898c58af2642c5fa8cd7d4f8",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 54
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_173909.npz",
+      "sha256": "4df817d94639faef9790ca56e3fe3c8d8a3bb82219ded9e38474d7a7ec47c38a",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 27
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_228691.npz",
+      "sha256": "405a9f89d61e7acba19eba8e0f52df8e5d317d675cdac15e69ad4a99d25a0296",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 33
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_283473.npz",
+      "sha256": "bfc681282996f912e4ac3de2674cc9d99a1acb503ff0997f2be563178466d61e",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 60
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_177028.npz",
+      "sha256": "74b48b6febf82fbf71956350650e1d537ba4abb1f2029e1cdc0a91269be19045",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 54
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_203894.npz",
+      "sha256": "1c26373c95e093b4565e8c231e83afd04b545ede738150c2185fdbaea667cc59",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 48
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_257522.npz",
+      "sha256": "490d1da8fab76d9d9e2e4ddee21c13c7ed41d2d751c70dd7234fac8437a978b0",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 63
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_294030.npz",
+      "sha256": "cb027c90c586d20fcd63ebf46ee8a9bdfb16f1e12e94fe8dc790a04402c490bf",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 60
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/packets/obs_241948.npz",
+      "sha256": "1b4f2016b319b53d35879a8633577c2f5cc130cc52b0dc726f6dd6428155a5a4",
+      "archive_split": "train",
+      "candidate_split": "validation",
+      "arrays_decoded": [
+        "candidate_indices",
+        "targets"
+      ],
+      "events": 42
+    }
+  ],
+  "events": 1545,
+  "parents": 40,
+  "queries": 515,
+  "radii_cells": [
+    0,
+    10,
+    20
+  ],
+  "targets_sha256": "9f0115ff98be603576d3263cd1cb555f6d40b30553e892de7116fb4952b4e48d",
+  "export_script_sha256": "e92725fd872f8bf640936bede2298826fb48e70dab3aa1295ed7ce533c15a984",
+  "map_arrays_decoded": 0,
+  "raw_archive_assets_read": 0,
+  "final_test_assets_read": 0,
+  "physical_test_assets_read": 0,
+  "location_6_assets_read": 0,
+  "model_inference_runs": 0,
+  "training_runs": 0,
+  "caveat": "Development validation was already used for model development; not a final test."
+}

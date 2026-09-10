@@ -1,0 +1,24 @@
+{
+  "method": "independent",
+  "seed": 20260910,
+  "protocol_sha256": "175d555c6da4dabf268b13a6cf0ca8bbbca97e91fcc0cebe7d4aadf9092222f3",
+  "data_seal_sha256": "5b8a927d56f0c4961963b7e091c0dc0bd34924ea4e2bbf86e9214c57810fcf2c",
+  "source_sha256": {
+    "scripts/train_parent_group_pilot.py": "f902238f6fb242a5630fb6d6e0347812c46e34eb64e0737b469a019454bd1dc2",
+    "src/pathrel/parent_pilot_data.py": "119037a5924fecb2fcfb17b7fc86316b58e4b4d3b872e142a251e31ce1ec4475",
+    "src/pathrel/model.py": "397f7558362f389af3a419aec39db36f67184e8106c6b05643908001e4f81045",
+    "src/pathrel/stochastic_decoder.py": "6ca1b9f22e45f8832212d0350054965bafa4fb654992417bdcdd71e50efb0b41",
+    "src/pathrel/reachability.py": "0b19178f5146d81abe604286e753e4904568e8ff1c0cb9e78c18a2e2bdaf7a30",
+    "src/pathrel/losses.py": "71b3d8d918a1671362c5de460c4ea7b6ac506ea4997bfbcca9526da0886d1baf",
+    "src/pathrel/flatlands_baselines.py": "1c4a966dbcb81d6bda32a8041f318bcbeb1ed6088f5665755474811d4608e024",
+    "scripts/evaluate_flatlands_support_clamped.py": "3d9dac0555fbced0485c81694e73e1618b81d62870b4916495712e11566cf669",
+    "scripts/train_flatlands_conpath.py": "8e3eb712864119850381e0bd4e71f24b8a9a7e8edbbd2f15dee8438db6d9b00b"
+  },
+  "hard_event": "exact disk/four-neighbor oracle; any 256-step hard-forward errors replaced, surrogate gradient remains bounded",
+  "loss_weighting": "equal parent for map NLL, variogram, event; no query observations still train with map/variogram",
+  "validation_packets_loaded_by_trainer": false,
+  "torch": "2.12.1+cu130",
+  "effective_batch_size": 4,
+  "micro_batch_size": 2,
+  "gradient_accumulation": "size-weighted to one update per four observations"
+}

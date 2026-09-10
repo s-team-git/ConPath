@@ -1,0 +1,194 @@
+{
+  "created_utc": "2026-09-10T10:11:19.117439+00:00",
+  "review_scope": "Actual PDF page rendering and visual layout review, not scientific-quality or submission acceptance certification",
+  "documents": [
+    {
+      "name": "main",
+      "pdf_sha256": "07d59b0c3b84bc63c616719fa9df9ab89d460853d1c5cd16db1db472b9456f2b",
+      "pages": 6,
+      "all_fonts_embedded": true,
+      "nonempty_text_pages": 6,
+      "contact_sheet_visual_review_all_pages": true,
+      "page_renders": [
+        {
+          "path": "paper/review/final_pages/main-1.png",
+          "sha256": "702e0416977a48066a1462c151140f42a960001b22abd6dcd2bccf34540019b9"
+        },
+        {
+          "path": "paper/review/final_pages/main-2.png",
+          "sha256": "f52d0e761c239c83d377b757a794742a4e05e4d21860175b13a14820df840466"
+        },
+        {
+          "path": "paper/review/final_pages/main-3.png",
+          "sha256": "c3a08b4adf7fe84ffb0a81561161473af979f5bc5bd97c26778a121a69619c08"
+        },
+        {
+          "path": "paper/review/final_pages/main-4.png",
+          "sha256": "b29dfa129dc6d8595158a48cb72397a51904b9d778a0e4e3f5be3ed6c9c1e4d5"
+        },
+        {
+          "path": "paper/review/final_pages/main-5.png",
+          "sha256": "d417645f1adea9b4cb80d08f19daa9768295ccbb11d0539975adcbd2caf102f0"
+        },
+        {
+          "path": "paper/review/final_pages/main-6.png",
+          "sha256": "d15367239c932e7e100dbd533e2e549a38ddebc3a66ce57f09cb8eae31fd2d3f"
+        }
+      ],
+      "poppler_warning": "Existing imported figure PDFs trigger font type/embedded-font mismatch warnings; every page rendered, fonts remain embedded, no missing-glyph warning from final TeX. Imported data assets preserved byte-identically."
+    },
+    {
+      "name": "supplement",
+      "pdf_sha256": "9951d00ddaafddfa52900f709999929850b113a36e2e91d4c40158b1fee1d4f4",
+      "pages": 22,
+      "all_fonts_embedded": true,
+      "nonempty_text_pages": 22,
+      "contact_sheet_visual_review_all_pages": true,
+      "page_renders": [
+        {
+          "path": "paper/review/final_pages/supplement-01.png",
+          "sha256": "62767f469ab828caedc2a02014d0350297c74313aed19894392f3463a0f9db82"
+        },
+        {
+          "path": "paper/review/final_pages/supplement-02.png",
+          "sha256": "e710f971906f5b95828b411be447466bffef941041020588af9a84d5601f31bc"
+        },
+        {
+          "path": "paper/review/final_pages/supplement-03.png",
+          "sha256": "95176b1394a39f51a8eaefa11a9d74cdbfa099497c391f0a4f6ef775b099fb94"
+        },
+        {
+          "path": "paper/review/final_pages/supplement-04.png",
+          "sha256": "7e5c2a123c806f89eb0ba4c3e2c90e4c2427f46b93418208e8e90c110fe83df9"
+        },
+        {
+          "path": "paper/review/final_pages/supplement-05.png",
+          "sha256": "4bed2e8a92d2ee297e5335f05b0dee200c60680714ee831de04da34758e0f256"
+        },
+        {
+          "path": "paper/review/final_pages/supplement-06.png",
+          "sha256": "6e45d041a2115b2ed98fce4e152193d1fea45f89fb03042e8706658a51802f54"
+        },
+        {
+          "path": "paper/review/final_pages/supplement-07.png",
+          "sha256": "c362e1996aebaedea31f5b7c4a35d8a685171e2a7729b76a8dd208662dbedca4"
+        },
+        {
+          "path": "paper/review/final_pages/supplement-08.png",
+          "sha256": "5987d10a9380aa49f133fc173268b1685e55a50bc0f50bc064dd07b737f4bfc7"
+        },
+        {
+          "path": "paper/review/final_pages/supplement-09.png",
+          "sha256": "c5e2a8b773ef9c4cd19c11a096e2a115f9dbfdbef76ca17ac8931327d02bf94d"
+        },
+        {
+          "path": "paper/review/final_pages/supplement-10.png",
+          "sha256": "66ce5115c8fbe68c612757485f6483cb5a5a8c09a0da8089a68c75692c99ed58"
+        },
+        {
+          "path": "paper/review/final_pages/supplement-11.png",
+          "sha256": "a6a1c186ee59f8173a352f8817a1b7bb960dc756e51180d1c48b668e2723af7f"
+        },
+        {
+          "path": "paper/review/final_pages/supplement-12.png",
+          "sha256": "a790ab5fc5655da51f9d92737a78a0ac9f930282b3edd53bc5947d9f45d0fedb"
+        },
+        {
+          "path": "paper/review/final_pages/supplement-13.png",
+          "sha256": "2a6ea4ba81b2ceba845a7af29284c59f65c9cfd9253ae12607f4ff4ac5b60579"
+        },
+        {
+          "path": "paper/review/final_pages/supplement-14.png",
+          "sha256": "427c818ddeaf7a998fe46c705186378972df592229550c4f1d3eb27d639e3a30"
+        },
+        {
+          "path": "paper/review/final_pages/supplement-15.png",
+          "sha256": "7cc6fd450cf2f2eb58f1a8aca73fe589d2ae26198fe3c18ecf51f5c5f7670fc6"
+        },
+        {
+          "path": "paper/review/final_pages/supplement-16.png",
+          "sha256": "ca31dfcb91026a78c0473eb3744a487452ee1734dafafbc0948cbe35c1d82eeb"
+        },
+        {
+          "path": "paper/review/final_pages/supplement-17.png",
+          "sha256": "d2769497d903ea473bda51863e5540ef9149c58b58846efd9f312dc17e68d3bd"
+        },
+        {
+          "path": "paper/review/final_pages/supplement-18.png",
+          "sha256": "01a13c54aff07c53322a4203b44520f49b2ac4c24c522133eadfa72fe50c32d7"
+        },
+        {
+          "path": "paper/review/final_pages/supplement-19.png",
+          "sha256": "1bee54545d5ee5ece70f3a9c832cfe31559fd44afa4bd929b92f3cdccac8d289"
+        },
+        {
+          "path": "paper/review/final_pages/supplement-20.png",
+          "sha256": "2d8d07a7baf2ffabd4a08842a43d17a03aa8bf47bae5f1e1dcc0d6467782a243"
+        },
+        {
+          "path": "paper/review/final_pages/supplement-21.png",
+          "sha256": "4f2d5b90975274190e0c1705d49e10539dfb5318fe1fb3803acd3f71be8d8588"
+        },
+        {
+          "path": "paper/review/final_pages/supplement-22.png",
+          "sha256": "d056b5c20f4089744120cc5209944f63bf58354cad3e5ce24a2904eb0099f3fe"
+        }
+      ],
+      "poppler_warning": "Existing imported figure PDFs trigger font type/embedded-font mismatch warnings; every page rendered, fonts remain embedded, no missing-glyph warning from final TeX. Imported data assets preserved byte-identically."
+    }
+  ],
+  "contact_sheets": [
+    {
+      "path": "paper/review/main_final_contact_0.jpg",
+      "sha256": "82cfde1d4ae94e23597a83f9ba28d553e1cc6061fd02f237e93eee1c92ac00c3"
+    },
+    {
+      "path": "paper/review/supplement_final_contact_0.jpg",
+      "sha256": "625e69e3ee7b950c30dcce36f60fef7da51e83277aa6fbc1f41de8f795eb2cca"
+    },
+    {
+      "path": "paper/review/supplement_final_contact_1.jpg",
+      "sha256": "3ea7a23f6ce7016045ccedc0a666de45b323690a3e4df07c2bb055abe5dfc045"
+    },
+    {
+      "path": "paper/review/supplement_final_contact_2.jpg",
+      "sha256": "2d3dd356035a2661138ff213fa1c7b8378a12bc3f8d1e8984a1ed854236ebdcc"
+    },
+    {
+      "path": "paper/review/supplement_final_contact_3.jpg",
+      "sha256": "800f7daac07d683f5c51cda6941551a549982eda143f1d54568b565458b83308"
+    }
+  ],
+  "individual_page_images_actually_viewed": [
+    "main-1",
+    "main-3",
+    "main-4",
+    "main-5",
+    "supplement-02",
+    "supplement-04",
+    "supplement-13",
+    "supplement-22"
+  ],
+  "checks": {
+    "overfull_boxes": 0,
+    "undefined_references": 0,
+    "missing_font_shapes_or_characters": 0,
+    "observed_clipped_text_or_overlapping_panels": false,
+    "source_figure_byte_copy_count": 20,
+    "all_ten_fixed_cases_retained": true,
+    "r20_undefined_risk_retained": true
+  },
+  "presentation_limits": [
+    "Archived empirical figures retain original Chinese labels, with English captions/legends in manuscript.",
+    "Main reference list continues on page 6; supplemental gallery uses one fixed case per page for readable maps.",
+    "No edition-specific IROS/ICRA page/anonymity rules verified."
+  ],
+  "build_report_sha256": "ce4cdc7e81d94cf8e06650ab6b4b51d993e898d80ec0cff58075049d1f8985ef",
+  "source_documents": {
+    "main.tex": "bfc28601785afcdd8b35dda654c918c6f91df3301157704c02dd02a8a7568dde",
+    "supplement.tex": "fa5eb4fb67ea74bc8cab824740852c561c29a6c5f86830d8c5166ef59c9058c4",
+    "references.bib": "c7384f2f7fa3c146021c5be7ced9ae6d92adc2fe48c1bc801f248c8b2c4dfbaf",
+    "gallery.tex": "b835aaa35f6bb772096d98f3ce2a0525357e8f3ea3ee421e4a9d56ef1c4154da",
+    "preamble.tex": "3ca159c5e1996884cea1c631ec5970a27320810206b40ba9dbefda030400ef1d"
+  }
+}

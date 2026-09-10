@@ -1,5 +1,21 @@
 # ConPath continuation state
 
+## 最新：论文排版、离线实验数据与作者审阅材料（2026-09-10 UTC）
+
+用户要求继续全力推进论文、收集好实验数据。本阶段接续论文收敛版本7225410，范围仍为已有证据整理；外部STOP和最终测试锁继续有效。
+
+本阶段已完成6页主文、22页补充材料、离线数据包和324文件ZIP；28页版式审阅、独立TeX科学核对及3192项新增数据视图数值核对通过。Git是否已同步以 `results/paper_submission_v1/git_verification.json` 或实际远端为准。
+
+当前交付入口为 `paper/` 的双栏英文主文/补充材料、`PAPER_READING_ZH.md` 中文导读、`PAPER_DATA_PACKAGE.md` 数据说明、`PAPER_CLAIM_AUDIT.md` 逐RQ/持出资格审计。新产物统一在 `results/paper_submission_v1/`，其completion及release manifest记录最终完成和hash；下面 `paper_convergence_v1` 的收据只绑定上一阶段版本，保持历史原样。
+
+收集140份原样小文件，导出40个既有物理train开发验证缓存中保存的1545个事件标签和查询编号（仅targets/candidate_indices数组，未解码地图），与23份保存预测组成离线包。临时独立目录标准库核验368项指标通过，最大差异2.22e-15。新增276行种子/分层视图和36行三seed分层汇总，不修改冻结snapshot、查询、阈值或训练模型。旧cohort只封存其聚合诊断，没有读取旧物理test地图。
+
+正文/表T1f补充当前r20反例：ConPath置信度0.8覆盖率为零、风险未定义，且该半径deterministic Brier更好。新父级dev缺少direct/no-event/no-global等限制保持。
+
+仅元数据持出资格审计得到1532已知开发接触父地点的部分并集，包含外部初次检查后移出的19父地点/34观测；这些样本不能恢复untouched。名单不完整，`eligible_holdout_proven=false`、eligible数量未知，不新建或打开测试。
+
+下一步是作者审阅PDF、中文解释及证据缺口；不自动重跑、调参、恢复外部模型或打开最终测试。本阶段无新模型训练/推理，具体排版与Git发布状态看新completion/receipt，不把旧下一步当成授权。
+
 ## 当前：论文收敛，停止全部外部GPU工作（2026-09-10 UTC）
 
 用户最新指令已替代此前正式外部矩阵与所有后续full授权。06:08 UTC创建

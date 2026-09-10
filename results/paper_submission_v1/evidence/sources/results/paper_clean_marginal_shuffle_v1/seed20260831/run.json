@@ -1,0 +1,143 @@
+{
+  "kind": "flatlands_fixed_empirical_marginal_shuffle",
+  "validation_only": true,
+  "paper_result": false,
+  "test_evaluated": false,
+  "seed": 20260831,
+  "shuffle_seed": 40521737,
+  "samples": 128,
+  "source_run": {
+    "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260831_conpath/run.json",
+    "sha256": "3395c4e85bd8fffc11cba0418af61bf898f6ac662eecbe06cd1f0ba31d78fdd3"
+  },
+  "checkpoint": {
+    "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260831_conpath/best.pt",
+    "sha256": "f7b42163fb2fd6127a19e2a967f44181814a263c699020a7a59f895d913b797c"
+  },
+  "prediction": {
+    "path": "results/paper_clean_marginal_shuffle_v1/seed20260831/predictions_validation.csv",
+    "sha256": "bf70fa48fd9400ad12281403d244a70eab0af0302d321688edfb3f4dda84035a",
+    "rows": 4224
+  },
+  "checks": {
+    "canonical_k128_replay_exact": true,
+    "empirical_cell_counts_preserved": true,
+    "invalid_support_blocked": true,
+    "cells_checked": 9306112
+  },
+  "metrics": {
+    "weighting": "scene",
+    "brier": 0.16187033981737003,
+    "nll": 1.6459599130571,
+    "ece": 0.1678166751827384,
+    "false_safe_rate@0.8": 0.023106225833683346,
+    "high_confidence_safe_coverage@0.8": 0.27522117970870863,
+    "positive_rate": 0.46667441565187173,
+    "mean_probability": 0.2996507487383955,
+    "count": 4224,
+    "scene_count": 142,
+    "reliability": [
+      {
+        "bin": 0,
+        "lower": 0.0,
+        "upper": 0.1,
+        "count": 2519,
+        "weight": 0.6527312797725522,
+        "confidence": 0.00198769691360335,
+        "accuracy": 0.20427430556671441
+      },
+      {
+        "bin": 1,
+        "lower": 0.1,
+        "upper": 0.2,
+        "count": 78,
+        "weight": 0.014233394639359841,
+        "confidence": 0.1516996988299294,
+        "accuracy": 0.839199821802374
+      },
+      {
+        "bin": 2,
+        "lower": 0.2,
+        "upper": 0.30000000000000004,
+        "count": 51,
+        "weight": 0.010383392719981918,
+        "confidence": 0.23754337839136302,
+        "accuracy": 0.9253147529182817
+      },
+      {
+        "bin": 3,
+        "lower": 0.30000000000000004,
+        "upper": 0.4,
+        "count": 45,
+        "weight": 0.007853029789485988,
+        "confidence": 0.35201246622501825,
+        "accuracy": 0.8588439240927922
+      },
+      {
+        "bin": 4,
+        "lower": 0.4,
+        "upper": 0.5,
+        "count": 38,
+        "weight": 0.006481011398052344,
+        "confidence": 0.45309878765177847,
+        "accuracy": 0.9275601384968701
+      },
+      {
+        "bin": 5,
+        "lower": 0.5,
+        "upper": 0.6000000000000001,
+        "count": 45,
+        "weight": 0.007620052325825665,
+        "confidence": 0.5502797450134647,
+        "accuracy": 0.8964582938759291
+      },
+      {
+        "bin": 6,
+        "lower": 0.6000000000000001,
+        "upper": 0.7000000000000001,
+        "count": 61,
+        "weight": 0.012705917334618337,
+        "confidence": 0.6529981111743022,
+        "accuracy": 0.9352388194427254
+      },
+      {
+        "bin": 7,
+        "lower": 0.7000000000000001,
+        "upper": 0.8,
+        "count": 68,
+        "weight": 0.012770742311415138,
+        "confidence": 0.7651303935912183,
+        "accuracy": 0.8968609497759701
+      },
+      {
+        "bin": 8,
+        "lower": 0.8,
+        "upper": 0.9,
+        "count": 166,
+        "weight": 0.03336765100680637,
+        "confidence": 0.8614876185541948,
+        "accuracy": 0.966171000099263
+      },
+      {
+        "bin": 9,
+        "lower": 0.9,
+        "upper": 1.0,
+        "count": 1153,
+        "weight": 0.24185352870190222,
+        "confidence": 0.9800125953866391,
+        "accuracy": 0.9783731562733906
+      }
+    ]
+  },
+  "accelerator_audit": {
+    "passed": true,
+    "seed": 20260903,
+    "random_maps": 12,
+    "event_comparisons": 96,
+    "reference": "pathrel.labels clearance_radius_map + batched merge-tree"
+  },
+  "seconds": 82.89123477099974,
+  "script_sha256": "7edebe156c8117308dd7019691573c65cb164ce2fb708ba37cb7aa31a313f3a4",
+  "helper_sha256": "9117ddfa9f392d976f3d877d7c0cfde2ffc9297662d39a9410973dd2bc201cc4",
+  "claim_boundary": "Evaluation-only intervention on fixed trained worlds. Every empirical per-cell marginal is identical; only sample alignment across cells changes. This supports a dependence mechanism on the frozen validation set, not a trained no-event/no-global ablation or final test claim."
+}

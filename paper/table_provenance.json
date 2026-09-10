@@ -1,0 +1,543 @@
+{
+  "source_documents": [
+    {
+      "path": "PAPER_DRAFT.md",
+      "sha256": "a59c6cc74f255bbc7b54217c2f4c1dc666deb70e8820cdfef9ac7afd2af2111a"
+    },
+    {
+      "path": "PAPER_TABLES.md",
+      "sha256": "ce27b09ccfde86f8628217a8225f405e35195c29de52d5658c5c5d317debf2bd"
+    },
+    {
+      "path": "PAPER_FIGURES.md",
+      "sha256": "6c581f265671053b2f876f1a96fbab60a396a287a5fbc77f17f5ec519d965ba1"
+    },
+    {
+      "path": "PAPER_EVIDENCE.md",
+      "sha256": "e3a2902c975118b98d01e3c97fe18ffd8f088c666be6158b68a9e91d1844ffef"
+    },
+    {
+      "path": "results/paper_validation_snapshot.json",
+      "sha256": "8a3b81ef1f01dec72e57f92d7c02d39ed0e3697e12389143a755a836cc4bbc32"
+    },
+    {
+      "path": "results/FINAL_MODEL_SELECTION.md",
+      "sha256": "46b793949eafaf1e2b01e79a8401ada02d7270a918427c989d051d46c7a3209f"
+    }
+  ],
+  "tables": [
+    {
+      "id": "T1",
+      "source": "PAPER_TABLES.md",
+      "source_sha256": "ce27b09ccfde86f8628217a8225f405e35195c29de52d5658c5c5d317debf2bd",
+      "section": "## T1. Current parent-isolated development comparison",
+      "rows": [
+        [
+          "Deterministic occupancy",
+          "1",
+          "3",
+          "0.11152 ± 0.00256",
+          "0.25164 ± 0.01024",
+          "0.18988"
+        ],
+        [
+          "Independent Bernoulli",
+          "32",
+          "3",
+          "0.11201 ± 0.00366",
+          "0.24432 ± 0.00928",
+          "0.15402"
+        ],
+        [
+          "Direct-query",
+          "—",
+          "0",
+          "Not evaluated",
+          "—",
+          "—"
+        ],
+        [
+          "No-global",
+          "—",
+          "0",
+          "Not evaluated",
+          "—",
+          "—"
+        ],
+        [
+          "No-event",
+          "—",
+          "0",
+          "Not evaluated",
+          "—",
+          "—"
+        ],
+        [
+          "ConPath",
+          "32",
+          "3",
+          "0.10380 ± 0.00350",
+          "0.23952 ± 0.00578",
+          "0.15388"
+        ]
+      ],
+      "header": [
+        "Method",
+        "Actual K",
+        "Seeds",
+        "Event Brier ↓",
+        "Risk at 30% coverage ↓",
+        "Hidden-map Brier ↓"
+      ],
+      "generated_path": "paper/tables/T1.tex"
+    },
+    {
+      "id": "T1b",
+      "source": "PAPER_TABLES.md",
+      "source_sha256": "ce27b09ccfde86f8628217a8225f405e35195c29de52d5658c5c5d317debf2bd",
+      "section": "## T1b. Retrospective event and marginal-probability diagnostics",
+      "rows": [
+        [
+          "Deterministic occupancy",
+          "1",
+          "1.54065 ± 0.03537",
+          "0.11152 ± 0.00256",
+          "0.25164 ± 0.01024",
+          "0.34198 ± 0.00883",
+          "0.13869 ± 0.00542"
+        ],
+        [
+          "Independent Bernoulli",
+          "32",
+          "0.94364 ± 0.06507",
+          "0.10131 ± 0.00578",
+          "0.20847 ± 0.01295",
+          "0.22453 ± 0.01525",
+          "0.15158 ± 0.00852"
+        ],
+        [
+          "ConPath",
+          "32",
+          "0.79330 ± 0.10289",
+          "0.08622 ± 0.00315",
+          "0.18649 ± 0.01396",
+          "0.21340 ± 0.00842",
+          "0.15147 ± 0.00378"
+        ]
+      ],
+      "header": [
+        "Method",
+        "Actual K",
+        "Event NLL ↓",
+        "Event ECE ↓",
+        "False-safe @0.8 ↓",
+        "Coverage @0.8",
+        "Continuous hidden-map Brier ↓"
+      ],
+      "generated_path": "paper/tables/T1b.tex"
+    },
+    {
+      "id": "T1c",
+      "source": "PAPER_TABLES.md",
+      "source_sha256": "ce27b09ccfde86f8628217a8225f405e35195c29de52d5658c5c5d317debf2bd",
+      "section": "## T1c. Frozen sample budget and constraint checks",
+      "rows": [
+        [
+          "ConPath",
+          "4",
+          "0.11064 ± 0.00666",
+          "0.09633 ± 0.00698",
+          "0.17801 ± 0.01356",
+          "0.19624 ± 0.00358",
+          "0"
+        ],
+        [
+          "ConPath",
+          "32",
+          "0.10380 ± 0.00350",
+          "0.08622 ± 0.00315",
+          "0.18649 ± 0.01396",
+          "0.21340 ± 0.00842",
+          "0"
+        ],
+        [
+          "Independent Bernoulli",
+          "4",
+          "0.12028 ± 0.00844",
+          "0.10985 ± 0.01085",
+          "0.20673 ± 0.01934",
+          "0.21058 ± 0.01425",
+          "0"
+        ],
+        [
+          "Independent Bernoulli",
+          "32",
+          "0.11201 ± 0.00366",
+          "0.10131 ± 0.00578",
+          "0.20847 ± 0.01295",
+          "0.22453 ± 0.01525",
+          "0"
+        ]
+      ],
+      "header": [
+        "Method",
+        "K",
+        "Brier ↓",
+        "ECE ↓",
+        "False-safe @0.8 ↓",
+        "Coverage @0.8",
+        "Radius monotonicity violations"
+      ],
+      "generated_path": "paper/tables/T1c.tex"
+    },
+    {
+      "id": "T1d",
+      "source": "PAPER_TABLES.md",
+      "source_sha256": "ce27b09ccfde86f8628217a8225f405e35195c29de52d5658c5c5d317debf2bd",
+      "section": "## T1d. Existing training-free/radius-prior controls (supplement)",
+      "rows": [
+        [
+          "All unknown free",
+          "1",
+          "0.18048",
+          "2.49341",
+          "0.18048",
+          "0.39087",
+          "0.46174"
+        ],
+        [
+          "All unknown blocked",
+          "1",
+          "0.28126",
+          "3.88578",
+          "0.28126",
+          "—",
+          "0.00000"
+        ],
+        [
+          "Nearest observed",
+          "1",
+          "0.13834",
+          "1.91117",
+          "0.13834",
+          "0.30460",
+          "0.36573"
+        ],
+        [
+          "Train-fitted radius prior",
+          "N/A",
+          "0.15606",
+          "0.48499",
+          "0.05653",
+          "—",
+          "0.00000"
+        ]
+      ],
+      "header": [
+        "Control",
+        "Actual maps",
+        "Brier ↓",
+        "NLL ↓",
+        "ECE ↓",
+        "False-safe @0.8 ↓",
+        "Coverage @0.8"
+      ],
+      "generated_path": "paper/tables/T1d.tex"
+    },
+    {
+      "id": "T1e",
+      "source": "PAPER_TABLES.md",
+      "source_sha256": "ce27b09ccfde86f8628217a8225f405e35195c29de52d5658c5c5d317debf2bd",
+      "section": "## T1e. Previously saved mean-map and observation-constraint diagnostics",
+      "rows": [
+        [
+          "ConPath same-checkpoint conditional-mean threshold",
+          "1",
+          "0.11410 ± 0.00301",
+          "0.27791 ± 0.00724"
+        ],
+        [
+          "Independent same-checkpoint conditional-mean threshold",
+          "1",
+          "0.11640 ± 0.00694",
+          "0.27739 ± 0.01524"
+        ]
+      ],
+      "header": [
+        "Derived output",
+        "Actual maps",
+        "Event Brier ↓",
+        "Risk at 30% coverage ↓"
+      ],
+      "generated_path": "paper/tables/T1e.tex"
+    },
+    {
+      "id": "T2",
+      "source": "PAPER_TABLES.md",
+      "source_sha256": "ce27b09ccfde86f8628217a8225f405e35195c29de52d5658c5c5d317debf2bd",
+      "section": "## T2. Historical six-method diagnostic (not unseen-place main evidence)",
+      "rows": [
+        [
+          "Deterministic occupancy",
+          "1",
+          "3",
+          "0.08857 ± 0.00323",
+          "1.22362 ± 0.04463",
+          "0.08857 ± 0.00323",
+          "0.07293 ± 0.00682",
+          "0.44278 ± 0.01024"
+        ],
+        [
+          "Independent Bernoulli",
+          "128",
+          "3",
+          "0.09521 ± 0.00703",
+          "0.78503 ± 0.04690",
+          "0.08720 ± 0.00741",
+          "0.05689 ± 0.00832",
+          "0.36592 ± 0.01692"
+        ],
+        [
+          "Direct-query",
+          "N/A",
+          "1",
+          "0.09119",
+          "0.29788",
+          "0.04076",
+          "0.08335",
+          "0.37412"
+        ],
+        [
+          "No-global",
+          "128",
+          "3",
+          "0.09499 ± 0.00157",
+          "0.78486 ± 0.05495",
+          "0.08592 ± 0.00058",
+          "0.05739 ± 0.01662",
+          "0.36354 ± 0.00957"
+        ],
+        [
+          "No-event",
+          "128",
+          "3",
+          "0.20425 ± 0.00322",
+          "2.53067 ± 0.05699",
+          "0.21690 ± 0.01933",
+          "0.02561 ± 0.01609",
+          "0.19316 ± 0.10435"
+        ],
+        [
+          "ConPath",
+          "128",
+          "3",
+          "0.06749 ± 0.00936",
+          "0.28854 ± 0.01662",
+          "0.05715 ± 0.00683",
+          "0.04552 ± 0.01429",
+          "0.33644 ± 0.00579"
+        ]
+      ],
+      "header": [
+        "Method",
+        "Actual K",
+        "Seed count",
+        "Event Brier ↓",
+        "Event NLL ↓",
+        "Event ECE ↓",
+        "False-safe @0.8 ↓",
+        "Coverage @0.8"
+      ],
+      "generated_path": "paper/tables/T2.tex"
+    },
+    {
+      "id": "T3",
+      "source": "PAPER_TABLES.md",
+      "source_sha256": "ce27b09ccfde86f8628217a8225f405e35195c29de52d5658c5c5d317debf2bd",
+      "section": "## T3. Historical dependence and strong deterministic checks",
+      "rows": [
+        [
+          "ConPath, K128",
+          "0.06749 ± 0.00936",
+          "0.28854 ± 0.01662",
+          "0.05715 ± 0.00683",
+          "0.03600 ± 0.00986"
+        ],
+        [
+          "Cellwise world-index permutation, K128",
+          "0.16139 ± 0.00677",
+          "1.53947 ± 0.18205",
+          "0.16433 ± 0.01252",
+          "0.03908 ± 0.01622"
+        ],
+        [
+          "ConPath same-checkpoint mean map",
+          "0.06957 ± 0.00380",
+          "0.96118 ± 0.05253",
+          "0.06957 ± 0.00380",
+          "0.10509 ± 0.01468"
+        ],
+        [
+          "Independent same-checkpoint mean map",
+          "0.07184 ± 0.00349",
+          "0.99248 ± 0.04822",
+          "0.07184 ± 0.00349",
+          "0.11023 ± 0.01558"
+        ]
+      ],
+      "header": [
+        "Control",
+        "Event Brier ↓",
+        "Event NLL ↓",
+        "Event ECE ↓",
+        "Risk at 30% coverage ↓"
+      ],
+      "generated_path": "paper/tables/T3.tex"
+    },
+    {
+      "id": "T4",
+      "source": "PAPER_TABLES.md",
+      "source_sha256": "ce27b09ccfde86f8628217a8225f405e35195c29de52d5658c5c5d317debf2bd",
+      "section": "## T4. Two-seed sampling variant (supplementary only)",
+      "rows": [
+        [
+          "Correlated categorical-noise variant (candidate)",
+          "32",
+          "0.09191 ± 0.00902",
+          "0.22604 ± 0.00413",
+          "0.61919"
+        ],
+        [
+          "Original ConPath",
+          "32",
+          "0.10325 ± 0.00476",
+          "0.23649 ± 0.00342",
+          "0.62009"
+        ],
+        [
+          "Independent Bernoulli",
+          "32",
+          "0.11014 ± 0.00239",
+          "0.24873 ± 0.00748",
+          "0.62522"
+        ],
+        [
+          "Deterministic occupancy",
+          "1",
+          "0.11132 ± 0.00359",
+          "0.25047 ± 0.01419",
+          "0.66254"
+        ]
+      ],
+      "header": [
+        "Method",
+        "K",
+        "Event Brier ↓",
+        "Risk at 30% coverage ↓",
+        "Free-class sample IoU ↑"
+      ],
+      "generated_path": "paper/tables/T4.tex"
+    },
+    {
+      "id": "radius",
+      "source": "results/paper_submission_v1/analysis/primary_three_seed_strata.csv",
+      "source_sha256": "e4e00dc51b57d6fddba1854df1810a9312f44dbdc06f654b997d4c6067856238",
+      "header": [
+        "Method",
+        "K",
+        "Radius (cells)",
+        "Event Brier ↓",
+        "ECE ↓",
+        "False-safe @0.8",
+        "Coverage @0.8"
+      ],
+      "rows": [
+        [
+          "ConPath",
+          "32",
+          "0",
+          "0.15329 ± 0.01047",
+          "0.12824",
+          "0.17754",
+          "0.60473"
+        ],
+        [
+          "ConPath",
+          "32",
+          "10",
+          "0.09668 ± 0.00783",
+          "0.07830",
+          "0.30851",
+          "0.03547"
+        ],
+        [
+          "ConPath",
+          "32",
+          "20",
+          "0.06142 ± 0.00804",
+          "0.06179",
+          "Undefined",
+          "0.00000"
+        ],
+        [
+          "Deterministic",
+          "1",
+          "0",
+          "0.18790 ± 0.00759",
+          "0.18790",
+          "0.19302",
+          "0.66478"
+        ],
+        [
+          "Deterministic",
+          "1",
+          "10",
+          "0.10639 ± 0.00662",
+          "0.10639",
+          "0.39336",
+          "0.24830"
+        ],
+        [
+          "Deterministic",
+          "1",
+          "20",
+          "0.04025 ± 0.00425",
+          "0.04025",
+          "0.28529",
+          "0.11286"
+        ],
+        [
+          "Independent",
+          "32",
+          "0",
+          "0.16474 ± 0.01352",
+          "0.14892",
+          "0.18898",
+          "0.59613"
+        ],
+        [
+          "Independent",
+          "32",
+          "10",
+          "0.10249 ± 0.01566",
+          "0.09479",
+          "0.34346",
+          "0.07316"
+        ],
+        [
+          "Independent",
+          "32",
+          "20",
+          "0.06880 ± 0.00752",
+          "0.06997",
+          "0.41239",
+          "0.00430"
+        ]
+      ]
+    }
+  ],
+  "new_training": false,
+  "new_inference": false,
+  "raw_data_or_test_reads": false,
+  "rule": "Display-only conversion of existing saved summaries; no result selection."
+}

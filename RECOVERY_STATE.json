@@ -5,14 +5,14 @@
   "timezone": "America/New_York",
   "branch": "main",
   "remote_sync": {
-    "status": "paper_bundle_prepared_for_git_sync",
-    "receipt": "results/paper_convergence_v1/git_verification.json",
-    "note": "Use actual git/remote or receipt for synchronization; website experimental snapshot was not changed in this paper-only task."
+    "status": "paper_submission_v1_ready_for_commit_and_push",
+    "receipt": "results/paper_submission_v1/git_verification.json",
+    "note": "Actual post-push synchronization is recorded in that receipt and Git HEAD; this state file precedes its own commit."
   },
-  "latest_local_commit": "Resolve with git rev-parse HEAD; frozen experiment source commit remains a1fa04d10039731d27e723e58e1cf7b51da36aba.",
+  "latest_local_commit": "7225410c4e6ce4b800a8a7df4cda5db50ac51ddf",
   "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence. New external profiles on 2026-09-08 actually used Python 3.13 and torch 2.12.1+cu130; v2 explicitly disables TF32 and cudnn benchmarking and enables deterministic algorithms. GPU has unrelated concurrent load; no isolated-device latency claim.",
   "scientific_status": "Validation-only: original ConPath beats independent in three parent-isolated development seeds; historical complete ablations have parent overlap; equal-coverage safety gains and final-test generalization not established.",
-  "active_task": "Paper manuscript/evidence bundle completed; author review and submission formatting next. No further training authorized.",
+  "active_task": "paper_submission_v1 complete: author-review PDFs and portable existing evidence; scientific gaps and final test remain unresolved",
   "completed_milestones": [
     "Interruption-safe P0 training with atomic checkpoints and exact resume",
     "Two-seed synthetic P0 pass and matched no-reach failure",
@@ -4590,11 +4590,11 @@
     "model_selection": "cat results/FINAL_MODEL_SELECTION.md",
     "no_training": "Do not remove external STOP, resume old queues, or execute historical training commands."
   },
-  "next_command": "Read PAPER_DRAFT.md, PAPER_EVIDENCE.md, PAPER_TABLES.md, PAPER_FIGURES.md and results/FINAL_MODEL_SELECTION.md; do not run training or unlock tests.",
+  "next_command": "Read results/paper_submission_v1/completion.json and paper/README.md; existing paper/data bundle is complete, no automatic experiment continuation.",
   "next_actions": [
-    "Review the complete English paper and separately qualified validation tables/figures.",
-    "Keep original three selected checkpoints fixed; no additional optimization or external training.",
-    "Before any future test, audit eligibility from existing access metadata; do not open test assets in this scope."
+    "Author review of paper/build/main.pdf, supplement.pdf and PAPER_READING_ZH.md; use PAPER_DATA_PACKAGE.md for exact experiment sources.",
+    "Resolve manuscript scope and outstanding matched-ablation/holdout-evidence gaps; no automatic training, new queries, thresholds, calibration fitting or final-test access.",
+    "Keep original ConPath checkpoints and external STOP; use completion/release/Git receipts rather than old superseded training commands."
   ],
   "active_training": {
     "status": "stopped_by_user_paper_convergence",
@@ -4971,5 +4971,50 @@
     "supplement_verification": "results/paper_convergence_v1/supplement_verification.json",
     "submission_evidence_complete": false
   },
-  "latest_local_commit_role": "Pre-convergence source commit; actual final document revision is resolved by git HEAD or paper-convergence-validation-v1 tag."
+  "latest_local_commit_role": "Base revision before paper_submission_v1; actual final Git HEAD and post-push receipt identify its released version.",
+  "paper_submission_v1": {
+    "status": "completed_author_review_manuscript_and_portable_data",
+    "updated_utc": "2026-09-10T10:14:35.723889+00:00",
+    "base_commit": "7225410c4e6ce4b800a8a7df4cda5db50ac51ddf",
+    "scope": "English paper typesetting, portable existing evidence, Chinese author guide; no new model work",
+    "snapshot_sha256": "8a3b81ef1f01dec72e57f92d7c02d39ed0e3697e12389143a755a836cc4bbc32",
+    "source_files_copied": 140,
+    "saved_score_files": 23,
+    "fixed_event_labels": 1545,
+    "seed_stratum_rows": 276,
+    "primary_three_seed_stratum_rows": 36,
+    "offline_scalar_metric_checks": 368,
+    "maximum_absolute_metric_difference": 2.220446049250313e-15,
+    "isolated_directory_verification": "results/paper_submission_v1/portability_verification.json",
+    "target_export_scope": "40 previously registered physical-train development-validation NPZ caches; only stored targets and candidate_indices arrays, no map arrays",
+    "new_training_runs": 0,
+    "new_inference_runs": 0,
+    "test_asset_reads": 0,
+    "selected_model": "original ConPath; existing three selected checkpoints unchanged",
+    "seeds": [
+      20260910,
+      20260911,
+      20260912
+    ],
+    "new_radius_disclosure": "r20 coverage@0.8=0, false-safe undefined; deterministic r20 Brier lower",
+    "holdout_eligibility_proven": false,
+    "eligible_holdout_count": null,
+    "partial_development_exposure_parent_count": 1532,
+    "partial_inventory_is_complete": false,
+    "external_resume_authorized": false,
+    "test_unlock_authorized": false,
+    "submission_evidence_complete": false,
+    "completion_receipt": "results/paper_submission_v1/completion.json",
+    "release_manifest": "results/paper_submission_v1/release/release_manifest.json",
+    "git_receipt": "results/paper_submission_v1/git_verification.json",
+    "pdf_pages": {
+      "main": 6,
+      "supplement": 22
+    },
+    "release_files": 324,
+    "release_sha256": "a5a87b205fb2a9b58bf6fb0f860bd73c6a1c88f9debb1174bad85220959d02c0",
+    "release_bytes": 17914858,
+    "scientific_tex_review": "results/paper_submission_v1/review/paper_tex_science_check.json",
+    "visual_review": "paper/review/visual_check.json"
+  }
 }

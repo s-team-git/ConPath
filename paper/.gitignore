@@ -1,0 +1,14 @@
+tools/tectonic
+.cache/
+build/*
+!build/main.pdf
+!build/supplement.pdf
+!build/build_report.json
+!build/main.log
+!build/supplement.log
+review/*.ppm
+review/*.png
+review/final_pages/
+review/main_contact_*.jpg
+review/supp_contact_*.jpg
+review/*_extracted.txt

@@ -1,0 +1,664 @@
+{
+  "files": [
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_007792.npz",
+      "source_registry_sha256": "b6865016bbebfd165fcf6981c484ac62a4b4ea2b8f81035031f5972b983892cc",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "b6865016bbebfd165fcf6981c484ac62a4b4ea2b8f81035031f5972b983892cc",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_014028.npz",
+      "source_registry_sha256": "9faeac61af1a1c15548e58000f5a273fc5fb0ed975c26d048b226e1139928e93",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "9faeac61af1a1c15548e58000f5a273fc5fb0ed975c26d048b226e1139928e93",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_003677.npz",
+      "source_registry_sha256": "4804da04b03877bda3bb823d653a8902224b32a75d5e67e552b792b4aa00d09f",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "4804da04b03877bda3bb823d653a8902224b32a75d5e67e552b792b4aa00d09f",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_013470.npz",
+      "source_registry_sha256": "26415f158bbce3e2ca480dcb71ef65b0851a839f537ac0b9b5922b29e4248898",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "26415f158bbce3e2ca480dcb71ef65b0851a839f537ac0b9b5922b29e4248898",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_023532.npz",
+      "source_registry_sha256": "91c9150ba8b0c609f5071e507000982d6a1fb65390a5cea13f8555ef9a5e3888",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "91c9150ba8b0c609f5071e507000982d6a1fb65390a5cea13f8555ef9a5e3888",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_000206.npz",
+      "source_registry_sha256": "118aa32ab018279cb01d1d85ff39ceef71fd92517e040a152bc04f6cfd4a5a09",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "118aa32ab018279cb01d1d85ff39ceef71fd92517e040a152bc04f6cfd4a5a09",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_009280.npz",
+      "source_registry_sha256": "6b7c7009bf23bd0e209531281b9e36d3a63c5aacdd9ada0a88382eb3288dd196",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "6b7c7009bf23bd0e209531281b9e36d3a63c5aacdd9ada0a88382eb3288dd196",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_023335.npz",
+      "source_registry_sha256": "368d813cdc18caf6ef8c23c286af81a2a30774a6fc1ecb6f8bcfa56e72ea05b8",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "368d813cdc18caf6ef8c23c286af81a2a30774a6fc1ecb6f8bcfa56e72ea05b8",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_065777.npz",
+      "source_registry_sha256": "e5516726f2862fdf8ce469445fb5d3e0b492af1163453eeb893a8249cc69af7f",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "e5516726f2862fdf8ce469445fb5d3e0b492af1163453eeb893a8249cc69af7f",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_082481.npz",
+      "source_registry_sha256": "a43a179757d2c8ea365a73bd74fde0366d7fcbdab1b400f6249d07f1d0d189c7",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "a43a179757d2c8ea365a73bd74fde0366d7fcbdab1b400f6249d07f1d0d189c7",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_088552.npz",
+      "source_registry_sha256": "88c072a6acbe69a9b077c48fdd81737e41bf4665916b8f63cef08df544ad5bd7",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "88c072a6acbe69a9b077c48fdd81737e41bf4665916b8f63cef08df544ad5bd7",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_029552.npz",
+      "source_registry_sha256": "416e44877e5e0fd2e155b8742e01a434a1aa8cacd37d26ac9d41bdccc064ae80",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "416e44877e5e0fd2e155b8742e01a434a1aa8cacd37d26ac9d41bdccc064ae80",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_097040.npz",
+      "source_registry_sha256": "8fffcf1c4662ea03486704f39a51800bc73e017a8ba86b20c2e9934bd27cead6",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "8fffcf1c4662ea03486704f39a51800bc73e017a8ba86b20c2e9934bd27cead6",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_039417.npz",
+      "source_registry_sha256": "0a8275719bab2db545765fa4924be7e907497f76adede6c33b0553a715342206",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "0a8275719bab2db545765fa4924be7e907497f76adede6c33b0553a715342206",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_053903.npz",
+      "source_registry_sha256": "10c96cd13a4943ef609bf68b3cdc2af582678322d4d3efd27199d19382836d08",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "10c96cd13a4943ef609bf68b3cdc2af582678322d4d3efd27199d19382836d08",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_025765.npz",
+      "source_registry_sha256": "4523890099a76734cdb3840b4c797fb11a7b1b7729ec842e385216d38cf5d068",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "4523890099a76734cdb3840b4c797fb11a7b1b7729ec842e385216d38cf5d068",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_116392.npz",
+      "source_registry_sha256": "99f3107e31ce1e370d90acca8244a413af8933bd3193c27abf4832009725df56",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "99f3107e31ce1e370d90acca8244a413af8933bd3193c27abf4832009725df56",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_132842.npz",
+      "source_registry_sha256": "250775e9783f8a347a2848bbfa96dc8ab63fcca470f7aee676b585335cd4fc33",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "250775e9783f8a347a2848bbfa96dc8ab63fcca470f7aee676b585335cd4fc33",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_130240.npz",
+      "source_registry_sha256": "6a1d7f22b60dca1af385aa943e462211091cffc60f2aef73b815e316e0b613bf",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "6a1d7f22b60dca1af385aa943e462211091cffc60f2aef73b815e316e0b613bf",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_114561.npz",
+      "source_registry_sha256": "0b557d454d5f42fc463451c540a92cb26fe21b85163ba82bdb65801431082b96",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "0b557d454d5f42fc463451c540a92cb26fe21b85163ba82bdb65801431082b96",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_101106.npz",
+      "source_registry_sha256": "c37eb9f7c92d6438ac6d7986fce6edeccbbaaad33c978ed8e3bec376b3b2fa1d",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "c37eb9f7c92d6438ac6d7986fce6edeccbbaaad33c978ed8e3bec376b3b2fa1d",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_114394.npz",
+      "source_registry_sha256": "428496e51bf6de1275d74a4fe002640fb73a97fecff6b8ddda7286c982bf1cfe",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "428496e51bf6de1275d74a4fe002640fb73a97fecff6b8ddda7286c982bf1cfe",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_140368.npz",
+      "source_registry_sha256": "0a37f1536fc81d5c77489ed03c24a31b34317d1b94119cbbc6d91ffa2f9c186c",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "0a37f1536fc81d5c77489ed03c24a31b34317d1b94119cbbc6d91ffa2f9c186c",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_115854.npz",
+      "source_registry_sha256": "7ef830168e6a877076690ad01a66a12c2197f81570c29ddf4900ae7a8ebaa41e",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "7ef830168e6a877076690ad01a66a12c2197f81570c29ddf4900ae7a8ebaa41e",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_157856.npz",
+      "source_registry_sha256": "f5217277ec8754c92dfb837bbc450009a51ba41e204b9bc5539e9b75b7ec3137",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "f5217277ec8754c92dfb837bbc450009a51ba41e204b9bc5539e9b75b7ec3137",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_146560.npz",
+      "source_registry_sha256": "c8c4af890d73a4555d69ff165950b2ee631bf0ddd4429c0b8d7802fd2ea4fcc9",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "c8c4af890d73a4555d69ff165950b2ee631bf0ddd4429c0b8d7802fd2ea4fcc9",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_153173.npz",
+      "source_registry_sha256": "de7d880d15dd3308adfd585ab1a58374638ac9b518203512722ea6bffe6bf8f4",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "de7d880d15dd3308adfd585ab1a58374638ac9b518203512722ea6bffe6bf8f4",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_158518.npz",
+      "source_registry_sha256": "f98a5b259a695465f0c15b6970b6d0ab1f9298fa7acec47a71e177eb16b2bc7a",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "f98a5b259a695465f0c15b6970b6d0ab1f9298fa7acec47a71e177eb16b2bc7a",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_157947.npz",
+      "source_registry_sha256": "f35addff8f5f60cb91e059eb89434a425b78c0c973a782628d1ea1aa468ed75e",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "f35addff8f5f60cb91e059eb89434a425b78c0c973a782628d1ea1aa468ed75e",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_168309.npz",
+      "source_registry_sha256": "047c2d24d99e0febc3338c9edc7ec7e088739a7ba161bbe409999aae0d23866b",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "047c2d24d99e0febc3338c9edc7ec7e088739a7ba161bbe409999aae0d23866b",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_164403.npz",
+      "source_registry_sha256": "a0d69c5bf0c7082fd74a863214e71a7a69a3da2a754dda7f67d9974a78d3a281",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "a0d69c5bf0c7082fd74a863214e71a7a69a3da2a754dda7f67d9974a78d3a281",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_166408.npz",
+      "source_registry_sha256": "839f700bd17c6b26963f146f8047c08012fe551a898c58af2642c5fa8cd7d4f8",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "839f700bd17c6b26963f146f8047c08012fe551a898c58af2642c5fa8cd7d4f8",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_173909.npz",
+      "source_registry_sha256": "4df817d94639faef9790ca56e3fe3c8d8a3bb82219ded9e38474d7a7ec47c38a",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "4df817d94639faef9790ca56e3fe3c8d8a3bb82219ded9e38474d7a7ec47c38a",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_228691.npz",
+      "source_registry_sha256": "405a9f89d61e7acba19eba8e0f52df8e5d317d675cdac15e69ad4a99d25a0296",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "405a9f89d61e7acba19eba8e0f52df8e5d317d675cdac15e69ad4a99d25a0296",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_283473.npz",
+      "source_registry_sha256": "bfc681282996f912e4ac3de2674cc9d99a1acb503ff0997f2be563178466d61e",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "bfc681282996f912e4ac3de2674cc9d99a1acb503ff0997f2be563178466d61e",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_177028.npz",
+      "source_registry_sha256": "74b48b6febf82fbf71956350650e1d537ba4abb1f2029e1cdc0a91269be19045",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "74b48b6febf82fbf71956350650e1d537ba4abb1f2029e1cdc0a91269be19045",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_203894.npz",
+      "source_registry_sha256": "1c26373c95e093b4565e8c231e83afd04b545ede738150c2185fdbaea667cc59",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "1c26373c95e093b4565e8c231e83afd04b545ede738150c2185fdbaea667cc59",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_257522.npz",
+      "source_registry_sha256": "490d1da8fab76d9d9e2e4ddee21c13c7ed41d2d751c70dd7234fac8437a978b0",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "490d1da8fab76d9d9e2e4ddee21c13c7ed41d2d751c70dd7234fac8437a978b0",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_294030.npz",
+      "source_registry_sha256": "cb027c90c586d20fcd63ebf46ee8a9bdfb16f1e12e94fe8dc790a04402c490bf",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "cb027c90c586d20fcd63ebf46ee8a9bdfb16f1e12e94fe8dc790a04402c490bf",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/data/packets/obs_241948.npz",
+      "source_registry_sha256": "1b4f2016b319b53d35879a8633577c2f5cc130cc52b0dc726f6dd6428155a5a4",
+      "purpose": "sealed physical-train development-validation packet",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "1b4f2016b319b53d35879a8633577c2f5cc130cc52b0dc726f6dd6428155a5a4",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/runs/correlated/20260910/best.pt",
+      "source_registry_sha256": "a1cc966191aa5d5526738dce648a3d42c57aedddf3218b979f3f5266fc69bc73",
+      "purpose": "model checkpoint bytes only; no forward",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "a1cc966191aa5d5526738dce648a3d42c57aedddf3218b979f3f5266fc69bc73",
+      "reason": "Excluded model weights; original recorded hash retained without reading checkpoint bytes."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/evaluation/correlated/20260910/conditional_mean_maps.npz",
+      "source_registry_sha256": "c0cd728a62320eb362241911643a0458e774c2ad4f1a235e91134b00b3f1c929",
+      "purpose": "saved conditional categorical probabilities; no inference",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "c0cd728a62320eb362241911643a0458e774c2ad4f1a235e91134b00b3f1c929",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/runs/correlated/20260911/best.pt",
+      "source_registry_sha256": "d4dc1e0becf492e037c723548c9c7e3a3098cd7c894552a02fd0f1cb64740618",
+      "purpose": "model checkpoint bytes only; no forward",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "d4dc1e0becf492e037c723548c9c7e3a3098cd7c894552a02fd0f1cb64740618",
+      "reason": "Excluded model weights; original recorded hash retained without reading checkpoint bytes."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/evaluation/correlated/20260911/conditional_mean_maps.npz",
+      "source_registry_sha256": "56c943662bd17b557bde36865988c41b264c7e01b68b050710bf09d6c0691f96",
+      "purpose": "saved conditional categorical probabilities; no inference",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "56c943662bd17b557bde36865988c41b264c7e01b68b050710bf09d6c0691f96",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/runs/correlated/20260912/best.pt",
+      "source_registry_sha256": "284584c5dfbaac6a335759d6eb46a6480aae77508443171b4ff2e640e4456ab0",
+      "purpose": "model checkpoint bytes only; no forward",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "284584c5dfbaac6a335759d6eb46a6480aae77508443171b4ff2e640e4456ab0",
+      "reason": "Excluded model weights; original recorded hash retained without reading checkpoint bytes."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/evaluation/correlated/20260912/conditional_mean_maps.npz",
+      "source_registry_sha256": "5d031f01c1e5be546c37678bc3fb3584c87b9dc67321d99980888a7d1d67d903",
+      "purpose": "saved conditional categorical probabilities; no inference",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "5d031f01c1e5be546c37678bc3fb3584c87b9dc67321d99980888a7d1d67d903",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/runs/deterministic/20260910/best.pt",
+      "source_registry_sha256": "e1c359971d171466f756c8f8477cb7bf12671cb4181e0d491ac5d1e8dc510eb8",
+      "purpose": "model checkpoint bytes only; no forward",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "e1c359971d171466f756c8f8477cb7bf12671cb4181e0d491ac5d1e8dc510eb8",
+      "reason": "Excluded model weights; original recorded hash retained without reading checkpoint bytes."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/evaluation/deterministic/20260910/conditional_mean_maps.npz",
+      "source_registry_sha256": "811538e660b6f59d98c74f79d6619e665b04a4716a52985bd30edafa2082f838",
+      "purpose": "saved conditional categorical probabilities; no inference",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "811538e660b6f59d98c74f79d6619e665b04a4716a52985bd30edafa2082f838",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/runs/deterministic/20260911/best.pt",
+      "source_registry_sha256": "1d64165d9a6cc5a0104e17962236c75c56e03b976c1d94ce85d8a883d1fbc57d",
+      "purpose": "model checkpoint bytes only; no forward",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "1d64165d9a6cc5a0104e17962236c75c56e03b976c1d94ce85d8a883d1fbc57d",
+      "reason": "Excluded model weights; original recorded hash retained without reading checkpoint bytes."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/evaluation/deterministic/20260911/conditional_mean_maps.npz",
+      "source_registry_sha256": "6dfe45eca621b530466b8238a65b25cc6876a27e21b0c59ea7951d47e1fdd6ab",
+      "purpose": "saved conditional categorical probabilities; no inference",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "6dfe45eca621b530466b8238a65b25cc6876a27e21b0c59ea7951d47e1fdd6ab",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/runs/deterministic/20260912/best.pt",
+      "source_registry_sha256": "1997d665a97f87700361b74436bc653c28cf76d82686460099c10c06b1fa970c",
+      "purpose": "model checkpoint bytes only; no forward",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "1997d665a97f87700361b74436bc653c28cf76d82686460099c10c06b1fa970c",
+      "reason": "Excluded model weights; original recorded hash retained without reading checkpoint bytes."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/evaluation/deterministic/20260912/conditional_mean_maps.npz",
+      "source_registry_sha256": "b9baac0f09b176d813d20cc49f651d748c657e42d124e84e7817b0ec87ade3d1",
+      "purpose": "saved conditional categorical probabilities; no inference",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "b9baac0f09b176d813d20cc49f651d748c657e42d124e84e7817b0ec87ade3d1",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/runs/independent/20260910/best.pt",
+      "source_registry_sha256": "09c4a74cf19ad41a71b002734d27c11db8c1e62b617396f9e5d396879712692d",
+      "purpose": "model checkpoint bytes only; no forward",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "09c4a74cf19ad41a71b002734d27c11db8c1e62b617396f9e5d396879712692d",
+      "reason": "Excluded model weights; original recorded hash retained without reading checkpoint bytes."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/evaluation/independent/20260910/conditional_mean_maps.npz",
+      "source_registry_sha256": "de4679ad2dc756ba0747852d8ef35e4dc6457d83e4bde1921a5188338d696f04",
+      "purpose": "saved conditional categorical probabilities; no inference",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "de4679ad2dc756ba0747852d8ef35e4dc6457d83e4bde1921a5188338d696f04",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/runs/independent/20260911/best.pt",
+      "source_registry_sha256": "8d260723f4b9b6330ffb66086337144dca46b8f39d65d18861917b900014fee1",
+      "purpose": "model checkpoint bytes only; no forward",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "8d260723f4b9b6330ffb66086337144dca46b8f39d65d18861917b900014fee1",
+      "reason": "Excluded model weights; original recorded hash retained without reading checkpoint bytes."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/evaluation/independent/20260911/conditional_mean_maps.npz",
+      "source_registry_sha256": "c202423e246430e528e55479db4db339188cdd8ff4dbc73a763bdbbe6e6655a4",
+      "purpose": "saved conditional categorical probabilities; no inference",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "c202423e246430e528e55479db4db339188cdd8ff4dbc73a763bdbbe6e6655a4",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/runs/independent/20260912/best.pt",
+      "source_registry_sha256": "a5db0af9991af7ae45df63c81f2dd487015cf6be43833e472ee64d7a25a91a50",
+      "purpose": "model checkpoint bytes only; no forward",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "a5db0af9991af7ae45df63c81f2dd487015cf6be43833e472ee64d7a25a91a50",
+      "reason": "Excluded model weights; original recorded hash retained without reading checkpoint bytes."
+    },
+    {
+      "source_path": "results/parent_group_pilot_v1/evaluation/independent/20260912/conditional_mean_maps.npz",
+      "source_registry_sha256": "6759c450625059101231c800bf927ad268f6113eff47bc75f05b4bdcc4e7c426",
+      "purpose": "saved conditional categorical probabilities; no inference",
+      "cohort": "D1_parent_isolated_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "6759c450625059101231c800bf927ad268f6113eff47bc75f05b4bdcc4e7c426",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/coherent_parent_pilot_v1/runs/20260910/best.pt",
+      "source_registry_sha256": "823a6dec9ccf204a91b3e863a0d207b4ce6e8730ec90dfc3662bdeea57e0d4a7",
+      "purpose": "model checkpoint bytes only; no forward",
+      "cohort": "D2_reused_two_seed_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "823a6dec9ccf204a91b3e863a0d207b4ce6e8730ec90dfc3662bdeea57e0d4a7",
+      "reason": "Excluded model weights; original recorded hash retained without reading checkpoint bytes."
+    },
+    {
+      "source_path": "results/coherent_parent_pilot_v1/evaluation/20260910/conditional_mean_maps.npz",
+      "source_registry_sha256": "9f22d9a49e16f0d64eedaf6db9970a9fa4ac7abcd14fee169da9729a20c1677c",
+      "purpose": "saved conditional categorical probabilities; no inference",
+      "cohort": "D2_reused_two_seed_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "9f22d9a49e16f0d64eedaf6db9970a9fa4ac7abcd14fee169da9729a20c1677c",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/coherent_parent_pilot_v1/runs/20260911/best.pt",
+      "source_registry_sha256": "c49dcbe8ecdd7b39b0f26070664e3f6fcea3c424337bd4c581b05a2714500782",
+      "purpose": "model checkpoint bytes only; no forward",
+      "cohort": "D2_reused_two_seed_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "c49dcbe8ecdd7b39b0f26070664e3f6fcea3c424337bd4c581b05a2714500782",
+      "reason": "Excluded model weights; original recorded hash retained without reading checkpoint bytes."
+    },
+    {
+      "source_path": "results/coherent_parent_pilot_v1/evaluation/20260911/conditional_mean_maps.npz",
+      "source_registry_sha256": "a69a96f7d235cee7cd989794c676fd860a9b7494f7676ab3ed9d86403b051d77",
+      "purpose": "saved conditional categorical probabilities; no inference",
+      "cohort": "D2_reused_two_seed_development",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "a69a96f7d235cee7cd989794c676fd860a9b7494f7676ab3ed9d86403b051d77",
+      "reason": "Excluded saved raster/target packet or probability arrays; this pack carries scalar development targets separately."
+    },
+    {
+      "source_path": "results/p0_neural_cuda_contextplane_v4/checkpoint.pt",
+      "source_registry_sha256": "1ef83ea366f09b1f3dbffff7dcc5065472e4081d0bfb52fcc14fcefa69c031f4",
+      "purpose": "historical synthetic checkpoint bytes only",
+      "cohort": "S1_synthetic_mechanism",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "1ef83ea366f09b1f3dbffff7dcc5065472e4081d0bfb52fcc14fcefa69c031f4",
+      "reason": "Excluded model weights; original recorded hash retained without reading checkpoint bytes."
+    },
+    {
+      "source_path": "results/p0_neural_cuda_contextplane_seed20260828_v4/checkpoint.pt",
+      "source_registry_sha256": "0463e1f5da6e860e0093adfeb8387b480ac959fd83e30c59023f1bcdcbcf4b70",
+      "purpose": "historical synthetic checkpoint bytes only",
+      "cohort": "S1_synthetic_mechanism",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "0463e1f5da6e860e0093adfeb8387b480ac959fd83e30c59023f1bcdcbcf4b70",
+      "reason": "Excluded model weights; original recorded hash retained without reading checkpoint bytes."
+    },
+    {
+      "source_path": "results/p0_neural_cuda_contextplane_noreach_v4/checkpoint.pt",
+      "source_registry_sha256": "a78ceafd9ad3cdded9358dcd8090b41dea9bf807f11f52384f86769dbc8b810e",
+      "purpose": "historical synthetic checkpoint bytes only",
+      "cohort": "S1_synthetic_mechanism",
+      "status": "excluded_without_opening",
+      "package_path": null,
+      "sha256": "a78ceafd9ad3cdded9358dcd8090b41dea9bf807f11f52384f86769dbc8b810e",
+      "reason": "Excluded model weights; original recorded hash retained without reading checkpoint bytes."
+    }
+  ],
+  "count": 65,
+  "not_opened_by_archive_builder": true,
+  "also_not_included": [
+    "raw archive images",
+    "posterior world arrays",
+    "historical label/prediction rows possibly involving archive test",
+    "final-test or location_6 assets",
+    "untrained/missing current direct-query/no-event/no-global outputs"
+  ],
+  "historical_reports": "Existing aggregate reports and read-scope corrections remain included. They mention prior test identifiers as metadata, without distributing test labels or reading referenced paths."
+}

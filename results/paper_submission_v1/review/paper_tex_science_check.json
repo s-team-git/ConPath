@@ -1,0 +1,192 @@
+{
+  "created_utc": "2026-09-10T10:10:53.074753+00:00",
+  "status": "pass_for_scientific_consistency_of_recorded_sources",
+  "scope": {
+    "model_training_runs": 0,
+    "model_inference_runs": 0,
+    "raw_or_saved_map_assets_opened": 0,
+    "checkpoint_files_opened": 0,
+    "final_test_assets_opened": 0,
+    "location_6_assets_opened": 0,
+    "source_metadata_audit_repeated": false,
+    "new_web_or_literature_lookup": false
+  },
+  "reviewed_file_sha256": {
+    "paper/main.tex": "bfc28601785afcdd8b35dda654c918c6f91df3301157704c02dd02a8a7568dde",
+    "paper/supplement.tex": "fa5eb4fb67ea74bc8cab824740852c561c29a6c5f86830d8c5166ef59c9058c4",
+    "paper/references.bib": "c7384f2f7fa3c146021c5be7ced9ae6d92adc2fe48c1bc801f248c8b2c4dfbaf",
+    "paper/gallery.tex": "b835aaa35f6bb772096d98f3ce2a0525357e8f3ea3ee421e4a9d56ef1c4154da",
+    "PAPER_DRAFT.md": "a59c6cc74f255bbc7b54217c2f4c1dc666deb70e8820cdfef9ac7afd2af2111a",
+    "PAPER_TABLES.md": "ce27b09ccfde86f8628217a8225f405e35195c29de52d5658c5c5d317debf2bd",
+    "PAPER_CLAIM_AUDIT.md": "7cb27e817ea0cdd1f8928d160ca532ac62885f2d4db9981fe73fa19d064ff6f9",
+    "paper/tables/T1.tex": "bcdce13c5b8e207a037f5ad92926ef78336e782ce870afa49277e9e3ed60c5c5",
+    "paper/tables/T1b.tex": "6dbf6b7b8409a0f87b0e13a23883b8b321799e32c61a6ff0a9f8c9dc4d121bf4",
+    "paper/tables/T1c.tex": "33c46d97a39f36a87fd2b8a92ee6f48e79c259a2dea6360ded26c3125f07d68d",
+    "paper/tables/T1d.tex": "efdd4caadd67929b7979cab4734b8d7394b2ba1b03424120aeed2ee7bd55eb76",
+    "paper/tables/T1e.tex": "baa9f8faf0429e3255765a683d5805ad8ddaf1a1945610a4a15fe9dbc64baa6d",
+    "paper/tables/T2.tex": "1dfaa0cdbca752ab57d36456a352ece4c974982e94f2df0fecd021459e465bec",
+    "paper/tables/T3.tex": "66a47f18474c5410643801c101a19e59a61babdbe2b7b374d4bd036e6202b378",
+    "paper/tables/T4.tex": "3c3ce06c8b4f875a760a357d29c206d31061dde419c88241ac5c8824356c122e",
+    "paper/tables/radius.tex": "e99f12d3d878319bcd066cda3486475ea6cb413f196d235bb8f6a5898168634c"
+  },
+  "prior_review_chain": {
+    "claim_audit_path": "results/paper_submission_v1/review/claim_audit.json",
+    "claim_audit_sha256": "6eca69dab08e150f8794276bc1972d58ab348c54fb6698d760683df462ca89a4",
+    "prior_manuscript_sha256": "714173c832833c6cfd3385f77f290bd2ef46cc3b3e4aa093935e4033e438e0cc",
+    "numeric_check_path": "results/paper_submission_v1/review/numeric_claim_checks.json",
+    "numeric_check_sha256": "34f6887ac06d29c70c6fde4d84d88442bd401e36a8b1c3851c9861e397324df0",
+    "prior_audits_unchanged": true
+  },
+  "manual_scientific_checks": [
+    {
+      "check": "D1 and H1 numeric cohorts stay separate",
+      "status": "pass",
+      "detail": "Current K32 100/25/40 and historical K128 160/160 tables retain distinct cohort, seed, overlap and weighting labels."
+    },
+    {
+      "check": "Seed and candidate identity",
+      "status": "pass",
+      "detail": "Original D1 uses three seeds20260910/11/12; D2 uses only matched20260910/11 and original mean0.10325, not three-seed0.10380; historical direct-query has one seed."
+    },
+    {
+      "check": "Radius20 abstention and radius-specific counterexamples",
+      "status": "pass",
+      "detail": "ConPath radius20 confidence0.8 coverage zero in every seed; risk is undefined; Brier0.06142 loses to deterministic0.04025. Radius10 risk/coverage0.30851/0.03547 is retained."
+    },
+    {
+      "check": "Observed/support conditioning and sampling sequence",
+      "status": "pass",
+      "detail": "Known/support class logits+10/-10 before unit clipped independent Gumbel; global/local correlated logits; continuous map projection by evaluator. No invented generic post-sampling hard-projection layer."
+    },
+    {
+      "check": "Reachability and U-score interpretation",
+      "status": "pass",
+      "detail": "Exact discrete disk erosion/four-connected hard event, same worlds across radii, bounded relaxed backward surrogate. Unbiased score expectation is not an unbiased-gradient or calibration guarantee."
+    },
+    {
+      "check": "Metric estimators and uncertainty units",
+      "status": "pass",
+      "detail": "Continuous versus hard-world map Brier are separated; mean±sampleSD is not CI. Current bootstrap uses paired parents conditional on stated seed mean; historical subscene intervals retain overlap caveat."
+    },
+    {
+      "check": "Strong contrary evidence and missing data",
+      "status": "pass",
+      "detail": "Deterministic continuous-map advantage, radius-prior NLL/ECE advantage with zero coverage, historical same-checkpoint mean map, no-event risk/coverage reversal, missing D1 direct/no-event/no-global all retained."
+    },
+    {
+      "check": "Fixed-case sample count and scope labels",
+      "status": "pass",
+      "detail": "Ten gallery TeX captions preserve firstfour worlds/all32eventforecasts, scene/query, seed20260910, radius10cells, validation-only and supplementary candidate identity. No image pixels reread in this check."
+    },
+    {
+      "check": "External models and holdout status",
+      "status": "pass",
+      "detail": "LaMa BEV adaptation/FM+XAttn literature reimplementation remain under-converged, cancelled, not main baselines. Holdout partial1532-parent inventory is not certification of remaining data as untouched."
+    }
+  ],
+  "resolved_editorial_scope_findings": [
+    {
+      "finding": "Supplement initially described D1 target-blind/blocked-goal query rule without cohort qualifier",
+      "resolution": "Final inspected text explicitly says In D1; it does not retroactively assign current query rules to H1."
+    },
+    {
+      "finding": "Potential ambiguity about32ScanNet++ versus53physical-test audit counts",
+      "resolution": "Final text reports32inspectedscenes independently and says counts are not added; no unverified subset or disjointness assertion remains."
+    }
+  ],
+  "incremental_markdown_review": {
+    "full_old_review_repeated": false,
+    "new_radius_paragraph_and_limitations_sentence_verified": true,
+    "new_radius_table_verified": true,
+    "reference": "Existing radius_counterexample_checks in numeric_claim_checks.json; no new prediction scoring.",
+    "checked_radius_values": [
+      {
+        "method": "correlated",
+        "K": 32,
+        "radius_cells": 0,
+        "brier": 0.15329226998386689,
+        "risk": 0.17754074413658932,
+        "coverage": 0.6047292231618856
+      },
+      {
+        "method": "correlated",
+        "K": 32,
+        "radius_cells": 10,
+        "brier": 0.09668163508253005,
+        "risk": 0.30851491130891556,
+        "coverage": 0.03547125389230653
+      },
+      {
+        "method": "correlated",
+        "K": 32,
+        "radius_cells": 20,
+        "brier": 0.06142312475048842,
+        "risk": null,
+        "coverage": 0.0
+      },
+      {
+        "method": "deterministic",
+        "K": 1,
+        "radius_cells": 0,
+        "brier": 0.18790245956170878,
+        "risk": 0.19301915397727135,
+        "coverage": 0.6647752188328814
+      },
+      {
+        "method": "deterministic",
+        "K": 1,
+        "radius_cells": 10,
+        "brier": 0.1063936988936989,
+        "risk": 0.3933572375827844,
+        "coverage": 0.24829819972912073
+      },
+      {
+        "method": "deterministic",
+        "K": 1,
+        "radius_cells": 20,
+        "brier": 0.0402509746588694,
+        "risk": 0.2852937440553743,
+        "coverage": 0.11286253829016984
+      }
+    ]
+  },
+  "bibtex_consistency": {
+    "defined_keys": [
+      "banfi2022uncertainty",
+      "bhattacharjee2026flatlands",
+      "gneiting2007proper",
+      "guo2017calibration",
+      "ma2022connectivity",
+      "scheuerer2015variogram",
+      "shankar2020mrfmap",
+      "suvorov2022lama",
+      "turaga2009malis"
+    ],
+    "cited_keys": [
+      "banfi2022uncertainty",
+      "bhattacharjee2026flatlands",
+      "gneiting2007proper",
+      "guo2017calibration",
+      "ma2022connectivity",
+      "scheuerer2015variogram",
+      "shankar2020mrfmap",
+      "suvorov2022lama",
+      "turaga2009malis"
+    ],
+    "unresolved_keys": [],
+    "scope": "Citation-key and existing Related Work role consistency only; no new bibliographic factual audit or web lookup."
+  },
+  "included_table_files": 9,
+  "gallery_captions": 10,
+  "remaining_scientific_gaps": [
+    "Current D1 direct-query/no-event/no-global matrix incomplete.",
+    "Untouched holdout eligibility unproven; no final-test authorization or result.",
+    "Uniform high-confidence footprint reliability not established.",
+    "External methods not sufficiently converged formal main baselines."
+  ],
+  "not_claimed": [
+    "PDF visual or venue-format certification (owned by typesetting task).",
+    "Submission evidence complete.",
+    "Automatic approval of future source edits; this receipt binds recorded hashes."
+  ]
+}

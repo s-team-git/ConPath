@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-09-10T09:55:18.924329+00:00",
+  "included_original_files": 140,
+  "included_original_bytes": 5793605,
+  "excluded_registry_files": 65,
+  "new_scalar_target_rows": 1545,
+  "scalar_target_scope": "existing physical-train development-validation labels, exported by root from two named cache arrays only; no map arrays or final-test data",
+  "array_files_opened_by_archive_builder": 0,
+  "model_inference_runs": 0,
+  "training_runs": 0,
+  "final_test_assets_opened": 0,
+  "doc_updates_during_unsealed_assembly": [
+    {
+      "path": "PAPER_TABLES.md",
+      "initial_document_sha256": "4223206cfbbc09b7e5e10a92f9003a01d455a68a32e20b97471e16385ef427d3",
+      "final_document_sha256": "ce27b09ccfde86f8628217a8225f405e35195c29de52d5658c5c5d317debf2bd",
+      "reason": "Root finished new R20 counterexample table before evidence sealing; immutable numeric snapshot did not change."
+    }
+  ],
+  "initial_copy_scope_receipt": "scope.json",
+  "derived_views": "four existing-prediction export files from analysis; no new model experiment or statistical interval",
+  "source_documents_may_have_later_navigation_changes": true
+}

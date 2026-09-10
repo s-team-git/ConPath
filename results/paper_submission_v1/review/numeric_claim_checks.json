@@ -1,0 +1,1187 @@
+{
+  "created_utc": "2026-09-10T09:53:39.926712+00:00",
+  "scope": {
+    "new_training_runs": 0,
+    "new_model_inference_runs": 0,
+    "prediction_rows_re_evaluated": 0,
+    "raw_or_saved_map_assets_opened": 0,
+    "checkpoint_files_opened": 0,
+    "final_test_assets_opened": 0,
+    "location_6_assets_opened": 0,
+    "new_holdout_created": false,
+    "test_unlocked": false,
+    "complete_189_source_audit_repeated": false
+  },
+  "snapshot_sha256": "8a3b81ef1f01dec72e57f92d7c02d39ed0e3697e12389143a755a836cc4bbc32",
+  "selected_summary_checks": [
+    {
+      "source_pointer": "/evidence_rows/1/metrics/brier",
+      "cohort": "parent_isolated_three_seed",
+      "method": "correlated",
+      "K": 32,
+      "mean": 0.1037990099389618,
+      "sample_sd": 0.0034979706444203795,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/1/metrics/nll",
+      "cohort": "parent_isolated_three_seed",
+      "method": "correlated",
+      "K": 32,
+      "mean": 0.7933012216550581,
+      "sample_sd": 0.10288869738286698,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/1/metrics/ece",
+      "cohort": "parent_isolated_three_seed",
+      "method": "correlated",
+      "K": 32,
+      "mean": 0.08622294105194689,
+      "sample_sd": 0.003152652511641784,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/1/metrics/false_safe_at_0_8",
+      "cohort": "parent_isolated_three_seed",
+      "method": "correlated",
+      "K": 32,
+      "mean": 0.18649433502874543,
+      "sample_sd": 0.013963083127325249,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/1/metrics/coverage_at_0_8",
+      "cohort": "parent_isolated_three_seed",
+      "method": "correlated",
+      "K": 32,
+      "mean": 0.21340015901806406,
+      "sample_sd": 0.008422766220153994,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/1/metrics/risk_at_30_percent",
+      "cohort": "parent_isolated_three_seed",
+      "method": "correlated",
+      "K": 32,
+      "mean": 0.23951860449244516,
+      "sample_sd": 0.005779009059432317,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/3/metrics/brier",
+      "cohort": "parent_isolated_three_seed",
+      "method": "independent",
+      "K": 32,
+      "mean": 0.11201093264981389,
+      "sample_sd": 0.003656217333455471,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/3/metrics/nll",
+      "cohort": "parent_isolated_three_seed",
+      "method": "independent",
+      "K": 32,
+      "mean": 0.9436401510083161,
+      "sample_sd": 0.06506816944787941,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/3/metrics/ece",
+      "cohort": "parent_isolated_three_seed",
+      "method": "independent",
+      "K": 32,
+      "mean": 0.10131266580346253,
+      "sample_sd": 0.005778927417943361,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/3/metrics/false_safe_at_0_8",
+      "cohort": "parent_isolated_three_seed",
+      "method": "independent",
+      "K": 32,
+      "mean": 0.2084729804015157,
+      "sample_sd": 0.012945449020144712,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/3/metrics/coverage_at_0_8",
+      "cohort": "parent_isolated_three_seed",
+      "method": "independent",
+      "K": 32,
+      "mean": 0.22453289917331454,
+      "sample_sd": 0.015245604120767644,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/3/metrics/risk_at_30_percent",
+      "cohort": "parent_isolated_three_seed",
+      "method": "independent",
+      "K": 32,
+      "mean": 0.2443220756386459,
+      "sample_sd": 0.009281320527686578,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/4/metrics/brier",
+      "cohort": "parent_isolated_three_seed",
+      "method": "deterministic",
+      "K": 1,
+      "mean": 0.11151571103809237,
+      "sample_sd": 0.002560344480389613,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/4/metrics/nll",
+      "cohort": "parent_isolated_three_seed",
+      "method": "deterministic",
+      "K": 1,
+      "mean": 1.5406473717079143,
+      "sample_sd": 0.03537246364033902,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/4/metrics/ece",
+      "cohort": "parent_isolated_three_seed",
+      "method": "deterministic",
+      "K": 1,
+      "mean": 0.11151571103809232,
+      "sample_sd": 0.0025603444803895836,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/4/metrics/false_safe_at_0_8",
+      "cohort": "parent_isolated_three_seed",
+      "method": "deterministic",
+      "K": 1,
+      "mean": 0.25164089995763,
+      "sample_sd": 0.010237444651380248,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/4/metrics/coverage_at_0_8",
+      "cohort": "parent_isolated_three_seed",
+      "method": "deterministic",
+      "K": 1,
+      "mean": 0.3419786522840573,
+      "sample_sd": 0.008832957971988247,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/4/metrics/risk_at_30_percent",
+      "cohort": "parent_isolated_three_seed",
+      "method": "deterministic",
+      "K": 1,
+      "mean": 0.25164089995763006,
+      "sample_sd": 0.010237444651380287,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/8/metrics/brier",
+      "cohort": "parent_isolated_three_seed",
+      "method": "train_radius_prior",
+      "K": 1,
+      "mean": 0.15606418204128064,
+      "sample_sd": null,
+      "n_training_seeds_or_fixed_rules": 1,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/8/metrics/nll",
+      "cohort": "parent_isolated_three_seed",
+      "method": "train_radius_prior",
+      "K": 1,
+      "mean": 0.4849883218557583,
+      "sample_sd": null,
+      "n_training_seeds_or_fixed_rules": 1,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/8/metrics/ece",
+      "cohort": "parent_isolated_three_seed",
+      "method": "train_radius_prior",
+      "K": 1,
+      "mean": 0.056530989904418134,
+      "sample_sd": null,
+      "n_training_seeds_or_fixed_rules": 1,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/8/metrics/false_safe_at_0_8",
+      "cohort": "parent_isolated_three_seed",
+      "method": "train_radius_prior",
+      "K": 1,
+      "mean": null,
+      "sample_sd": null,
+      "n_training_seeds_or_fixed_rules": 0,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/8/metrics/coverage_at_0_8",
+      "cohort": "parent_isolated_three_seed",
+      "method": "train_radius_prior",
+      "K": 1,
+      "mean": 0.0,
+      "sample_sd": null,
+      "n_training_seeds_or_fixed_rules": 1,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/8/metrics/risk_at_30_percent",
+      "cohort": "parent_isolated_three_seed",
+      "method": "train_radius_prior",
+      "K": 1,
+      "mean": 0.40410844261947193,
+      "sample_sd": null,
+      "n_training_seeds_or_fixed_rules": 1,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/10/metrics/brier",
+      "cohort": "coherent_two_seed_matched",
+      "method": "coherent_categorical",
+      "K": 32,
+      "mean": 0.0919073586626844,
+      "sample_sd": 0.00902350990427286,
+      "n_training_seeds_or_fixed_rules": 2,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/10/metrics/nll",
+      "cohort": "coherent_two_seed_matched",
+      "method": "coherent_categorical",
+      "K": 32,
+      "mean": 0.557946063453667,
+      "sample_sd": 0.08265313875091694,
+      "n_training_seeds_or_fixed_rules": 2,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/10/metrics/ece",
+      "cohort": "coherent_two_seed_matched",
+      "method": "coherent_categorical",
+      "K": 32,
+      "mean": 0.07379290559425526,
+      "sample_sd": 0.01474437831132428,
+      "n_training_seeds_or_fixed_rules": 2,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/10/metrics/false_safe_at_0_8",
+      "cohort": "coherent_two_seed_matched",
+      "method": "coherent_categorical",
+      "K": 32,
+      "mean": 0.1905884873139469,
+      "sample_sd": 0.01642083205240551,
+      "n_training_seeds_or_fixed_rules": 2,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/10/metrics/coverage_at_0_8",
+      "cohort": "coherent_two_seed_matched",
+      "method": "coherent_categorical",
+      "K": 32,
+      "mean": 0.2340062663156703,
+      "sample_sd": 0.0014941240828276138,
+      "n_training_seeds_or_fixed_rules": 2,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/10/metrics/risk_at_30_percent",
+      "cohort": "coherent_two_seed_matched",
+      "method": "coherent_categorical",
+      "K": 32,
+      "mean": 0.22603574260025816,
+      "sample_sd": 0.004130024405721986,
+      "n_training_seeds_or_fixed_rules": 2,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/12/metrics/brier",
+      "cohort": "coherent_two_seed_matched",
+      "method": "correlated",
+      "K": 32,
+      "mean": 0.1032527506952331,
+      "sample_sd": 0.004762478586859914,
+      "n_training_seeds_or_fixed_rules": 2,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/12/metrics/nll",
+      "cohort": "coherent_two_seed_matched",
+      "method": "correlated",
+      "K": 32,
+      "mean": 0.7845743094683975,
+      "sample_sd": 0.1439278087111877,
+      "n_training_seeds_or_fixed_rules": 2,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/12/metrics/ece",
+      "cohort": "coherent_two_seed_matched",
+      "method": "correlated",
+      "K": 32,
+      "mean": 0.08710927917859396,
+      "sample_sd": 0.003894209042903722,
+      "n_training_seeds_or_fixed_rules": 2,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/12/metrics/false_safe_at_0_8",
+      "cohort": "coherent_two_seed_matched",
+      "method": "correlated",
+      "K": 32,
+      "mean": 0.17955480759542,
+      "sample_sd": 0.010049534061534025,
+      "n_training_seeds_or_fixed_rules": 2,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/12/metrics/coverage_at_0_8",
+      "cohort": "coherent_two_seed_matched",
+      "method": "correlated",
+      "K": 32,
+      "mean": 0.20864024291268873,
+      "sample_sd": 0.0024382726708605273,
+      "n_training_seeds_or_fixed_rules": 2,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/12/metrics/risk_at_30_percent",
+      "cohort": "coherent_two_seed_matched",
+      "method": "correlated",
+      "K": 32,
+      "mean": 0.23648874220077237,
+      "sample_sd": 0.0034224988501090183,
+      "n_training_seeds_or_fixed_rules": 2,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/16/metrics/brier",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "conpath",
+      "K": 128,
+      "mean": 0.06749355699246365,
+      "sample_sd": 0.00936227024789587,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/16/metrics/nll",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "conpath",
+      "K": 128,
+      "mean": 0.2885356406470848,
+      "sample_sd": 0.016620111099160235,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/16/metrics/ece",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "conpath",
+      "K": 128,
+      "mean": 0.057151337634350194,
+      "sample_sd": 0.0068254430491237585,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/16/metrics/false_safe_at_0_8",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "conpath",
+      "K": 128,
+      "mean": 0.045524861178574495,
+      "sample_sd": 0.014290631191223698,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/16/metrics/coverage_at_0_8",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "conpath",
+      "K": 128,
+      "mean": 0.3364429890339606,
+      "sample_sd": 0.0057856976851654385,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/16/metrics/risk_at_30_percent",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "conpath",
+      "K": 128,
+      "mean": 0.0359970008509174,
+      "sample_sd": 0.009863710544363375,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/17/metrics/brier",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "independent",
+      "K": 128,
+      "mean": 0.09521006056164819,
+      "sample_sd": 0.007033913750637799,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/17/metrics/nll",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "independent",
+      "K": 128,
+      "mean": 0.7850291646796212,
+      "sample_sd": 0.04690114700977095,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/17/metrics/ece",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "independent",
+      "K": 128,
+      "mean": 0.08720362998561186,
+      "sample_sd": 0.007412084222395084,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/17/metrics/false_safe_at_0_8",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "independent",
+      "K": 128,
+      "mean": 0.056887526778396286,
+      "sample_sd": 0.008322149296850209,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/17/metrics/coverage_at_0_8",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "independent",
+      "K": 128,
+      "mean": 0.3659210257490211,
+      "sample_sd": 0.016920167241918513,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/17/metrics/risk_at_30_percent",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "independent",
+      "K": 128,
+      "mean": 0.039007575292690035,
+      "sample_sd": 0.0074831183246287175,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/20/metrics/brier",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "direct_query",
+      "K": null,
+      "mean": 0.09118529284559757,
+      "sample_sd": null,
+      "n_training_seeds_or_fixed_rules": 1,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/20/metrics/nll",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "direct_query",
+      "K": null,
+      "mean": 0.2978753355577147,
+      "sample_sd": null,
+      "n_training_seeds_or_fixed_rules": 1,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/20/metrics/ece",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "direct_query",
+      "K": null,
+      "mean": 0.04075985198992008,
+      "sample_sd": null,
+      "n_training_seeds_or_fixed_rules": 1,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/20/metrics/false_safe_at_0_8",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "direct_query",
+      "K": null,
+      "mean": 0.08335053174946491,
+      "sample_sd": null,
+      "n_training_seeds_or_fixed_rules": 1,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/20/metrics/coverage_at_0_8",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "direct_query",
+      "K": null,
+      "mean": 0.3741174171114105,
+      "sample_sd": null,
+      "n_training_seeds_or_fixed_rules": 1,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/20/metrics/risk_at_30_percent",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "direct_query",
+      "K": null,
+      "mean": 0.05023399390050796,
+      "sample_sd": null,
+      "n_training_seeds_or_fixed_rules": 1,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/22/metrics/brier",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "mean_map",
+      "K": 1,
+      "mean": 0.06957235876251777,
+      "sample_sd": 0.0038022841174833746,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/22/metrics/nll",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "mean_map",
+      "K": 1,
+      "mean": 0.9611785874526244,
+      "sample_sd": 0.052530492566952025,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/22/metrics/ece",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "mean_map",
+      "K": 1,
+      "mean": 0.06957235876251781,
+      "sample_sd": 0.003802284117483373,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/22/metrics/false_safe_at_0_8",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "mean_map",
+      "K": 1,
+      "mean": 0.10509318438845623,
+      "sample_sd": 0.01467647082306013,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/22/metrics/coverage_at_0_8",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "mean_map",
+      "K": 1,
+      "mean": 0.5031424078040853,
+      "sample_sd": 0.014785973524933327,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/22/metrics/risk_at_30_percent",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "mean_map",
+      "K": 1,
+      "mean": 0.10509318438845484,
+      "sample_sd": 0.014676470823060344,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/24/metrics/brier",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "marginal_shuffle",
+      "K": 128,
+      "mean": 0.16139095773847983,
+      "sample_sd": 0.006770908305238319,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/24/metrics/nll",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "marginal_shuffle",
+      "K": 128,
+      "mean": 1.5394685659595195,
+      "sample_sd": 0.1820503299866262,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/24/metrics/ece",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "marginal_shuffle",
+      "K": 128,
+      "mean": 0.16432872229246534,
+      "sample_sd": 0.012523292681374455,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/24/metrics/false_safe_at_0_8",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "marginal_shuffle",
+      "K": 128,
+      "mean": 0.03225741421544135,
+      "sample_sd": 0.013196170197633451,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/24/metrics/coverage_at_0_8",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "marginal_shuffle",
+      "K": 128,
+      "mean": 0.27434944047585585,
+      "sample_sd": 0.010882915619743373,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/24/metrics/risk_at_30_percent",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "marginal_shuffle",
+      "K": 128,
+      "mean": 0.039079465336172466,
+      "sample_sd": 0.016219774331794626,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/25/metrics/brier",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "no_event",
+      "K": 128,
+      "mean": 0.20424853933464598,
+      "sample_sd": 0.0032180202506647336,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/25/metrics/nll",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "no_event",
+      "K": 128,
+      "mean": 2.5306696358019507,
+      "sample_sd": 0.05698509407007906,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/25/metrics/ece",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "no_event",
+      "K": 128,
+      "mean": 0.21689750763533278,
+      "sample_sd": 0.019327365261843275,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/25/metrics/false_safe_at_0_8",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "no_event",
+      "K": 128,
+      "mean": 0.025608010256554722,
+      "sample_sd": 0.016090288251216892,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/25/metrics/coverage_at_0_8",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "no_event",
+      "K": 128,
+      "mean": 0.1931626614131992,
+      "sample_sd": 0.10435499804331712,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/25/metrics/risk_at_30_percent",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "no_event",
+      "K": 128,
+      "mean": 0.05654616837565923,
+      "sample_sd": 0.005818570898569286,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/26/metrics/brier",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "no_global",
+      "K": 128,
+      "mean": 0.09498821421023494,
+      "sample_sd": 0.0015706237288741643,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/26/metrics/nll",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "no_global",
+      "K": 128,
+      "mean": 0.784862228106474,
+      "sample_sd": 0.054948814395868864,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/26/metrics/ece",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "no_global",
+      "K": 128,
+      "mean": 0.08591788591314284,
+      "sample_sd": 0.0005760816556015133,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/26/metrics/false_safe_at_0_8",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "no_global",
+      "K": 128,
+      "mean": 0.05739080215035444,
+      "sample_sd": 0.016624934693133708,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/26/metrics/coverage_at_0_8",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "no_global",
+      "K": 128,
+      "mean": 0.3635414064072184,
+      "sample_sd": 0.00957387879927059,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    },
+    {
+      "source_pointer": "/evidence_rows/26/metrics/risk_at_30_percent",
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "no_global",
+      "K": 128,
+      "mean": 0.04287629664341542,
+      "sample_sd": 0.012448940195462237,
+      "n_training_seeds_or_fixed_rules": 3,
+      "mean_and_sample_sd_recomputed_from_saved_seed_values": true
+    }
+  ],
+  "manuscript_literal_checks": [
+    {
+      "source_pointer": "/evidence_rows/1/metrics/brier/mean",
+      "exact": 0.1037990099389618,
+      "manuscript_literal": "0.10380",
+      "passed": true
+    },
+    {
+      "source_pointer": "/evidence_rows/3/metrics/brier/mean",
+      "exact": 0.11201093264981389,
+      "manuscript_literal": "0.11201",
+      "passed": true
+    },
+    {
+      "source_pointer": "/evidence_rows/4/metrics/brier/mean",
+      "exact": 0.11151571103809237,
+      "manuscript_literal": "0.11152",
+      "passed": true
+    },
+    {
+      "source_pointer": "/evidence_rows/1/metrics/nll/mean",
+      "exact": 0.793301221655058,
+      "manuscript_literal": "0.79330",
+      "passed": true
+    },
+    {
+      "source_pointer": "/evidence_rows/1/metrics/ece/mean",
+      "exact": 0.08622294105194689,
+      "manuscript_literal": "0.08622",
+      "passed": true
+    },
+    {
+      "source_pointer": "/evidence_rows/3/metrics/nll/mean",
+      "exact": 0.9436401510083162,
+      "manuscript_literal": "0.94364",
+      "passed": true
+    },
+    {
+      "source_pointer": "/evidence_rows/3/metrics/ece/mean",
+      "exact": 0.10131266580346253,
+      "manuscript_literal": "0.10131",
+      "passed": true
+    },
+    {
+      "source_pointer": "/evidence_rows/1/metrics/false_safe_at_0_8/mean",
+      "exact": 0.18649433502874543,
+      "manuscript_literal": "0.18649",
+      "passed": true
+    },
+    {
+      "source_pointer": "/evidence_rows/1/metrics/coverage_at_0_8/mean",
+      "exact": 0.21340015901806408,
+      "manuscript_literal": "0.21340",
+      "passed": true
+    },
+    {
+      "source_pointer": "/evidence_rows/3/metrics/false_safe_at_0_8/mean",
+      "exact": 0.2084729804015157,
+      "manuscript_literal": "0.20847",
+      "passed": true
+    },
+    {
+      "source_pointer": "/evidence_rows/3/metrics/coverage_at_0_8/mean",
+      "exact": 0.22453289917331454,
+      "manuscript_literal": "0.22453",
+      "passed": true
+    },
+    {
+      "source_pointer": "/evidence_rows/8/metrics/nll/mean",
+      "exact": 0.4849883218557583,
+      "manuscript_literal": "0.48499",
+      "passed": true
+    },
+    {
+      "source_pointer": "/evidence_rows/8/metrics/ece/mean",
+      "exact": 0.056530989904418134,
+      "manuscript_literal": "0.05653",
+      "passed": true
+    },
+    {
+      "source_pointer": "/evidence_rows/16/metrics/brier/mean",
+      "exact": 0.06749355699246364,
+      "manuscript_literal": "0.06749",
+      "passed": true
+    },
+    {
+      "source_pointer": "/evidence_rows/24/metrics/brier/mean",
+      "exact": 0.16139095773847983,
+      "manuscript_literal": "0.16139",
+      "passed": true
+    },
+    {
+      "source_pointer": "/evidence_rows/22/metrics/brier/mean",
+      "exact": 0.06957235876251777,
+      "manuscript_literal": "0.06957",
+      "passed": true
+    },
+    {
+      "source_pointer": "/evidence_rows/25/metrics/brier/mean",
+      "exact": 0.20424853933464596,
+      "manuscript_literal": "0.20425",
+      "passed": true
+    },
+    {
+      "source_pointer": "/evidence_rows/26/metrics/brier/mean",
+      "exact": 0.09498821421023496,
+      "manuscript_literal": "0.09499",
+      "passed": true
+    },
+    {
+      "source_pointer": "/evidence_rows/20/metrics/ece/mean",
+      "exact": 0.04075985198992008,
+      "manuscript_literal": "0.04076",
+      "passed": true
+    }
+  ],
+  "all_passed": true,
+  "uncertainty_units": {
+    "seed_summary": "Arithmetic mean and sample SD (ddof=1), not a confidence interval or SEM.",
+    "current_parent_interval": {
+      "resampling_unit": "40 parent places, stratified within five sources (eight validation parents each)",
+      "conditional_on": "Displayed three-seed average; not a confidence statement over arbitrary future training seeds",
+      "registered_source": "/paired_intervals/parent_three_seed"
+    },
+    "historical_interval": "Within-seed subscene bootstrap over 142 event-contributing subscenes; not independent-parent inference; 27/160 validation observations overlap training parents.",
+    "candidate_interval": "40 paired parent places, conditional on exactly the matched two seeds; no substitution of three-seed original mean.",
+    "event_units": "1545 correlated radius-conditioned events from 515 terminal queries over 40 validation parents; not 1545 independent scenes. K worlds are Monte Carlo draws, not experimental seeds.",
+    "radius_units": "Grid cells (0, 10, 20), never meters.",
+    "false_safe_units": "Conditional unreachable fraction among accepted event forecasts; distinct from FPR among all negatives, probability threshold, and risk at fixed coverage.",
+    "risk_aggregation": "Ratios formed under the existing equal-parent event weights per seed, then seed means; not a pooled ratio over all seeds.",
+    "empty_acceptance": "Undefined risk is JSON null / table dash, never zero.",
+    "map_estimators": "K-world cell vote Brier and continuous conditional-probability Brier are different estimators; current deterministic sigmoid Brier is the fair continuous map comparison.",
+    "calibration_interpretation": "Lower Brier is improved probabilistic event accuracy, not an isolated proof of better calibration. Ten-bin ECE and reliability are descriptive, and not conditional calibration guarantees."
+  },
+  "radius_counterexample_checks": [
+    {
+      "method": "correlated",
+      "K": 32,
+      "radius_cells": 0,
+      "seeds": [
+        20260910,
+        20260911,
+        20260912
+      ],
+      "source_pointers": [
+        "/development_run_metrics/3/by_radius/0",
+        "/development_run_metrics/5/by_radius/0",
+        "/development_run_metrics/7/by_radius/0"
+      ],
+      "brier": {
+        "mean": 0.15329226998386689,
+        "values": [
+          0.14843125923782563,
+          0.14613844768513995,
+          0.1653071030286351
+        ],
+        "available_repeats": 3
+      },
+      "false_safe_at_0_8": {
+        "mean": 0.17754074413658932,
+        "values": [
+          0.1734954647113167,
+          0.17767690286773186,
+          0.1814498648307194
+        ],
+        "available_repeats": 3
+      },
+      "coverage_at_0_8": {
+        "mean": 0.6047292231618856,
+        "values": [
+          0.6025936094134623,
+          0.5838189348705989,
+          0.6277751252015957
+        ],
+        "available_repeats": 3
+      }
+    },
+    {
+      "method": "correlated",
+      "K": 32,
+      "radius_cells": 10,
+      "seeds": [
+        20260910,
+        20260911,
+        20260912
+      ],
+      "source_pointers": [
+        "/development_run_metrics/3/by_radius/10",
+        "/development_run_metrics/5/by_radius/10",
+        "/development_run_metrics/7/by_radius/10"
+      ],
+      "brier": {
+        "mean": 0.09668163508253005,
+        "values": [
+          0.08902962273885769,
+          0.10467040218325169,
+          0.09634488032548078
+        ],
+        "available_repeats": 3
+      },
+      "false_safe_at_0_8": {
+        "mean": 0.30851491130891556,
+        "values": [
+          0.13770491803278684,
+          0.29761008259583466,
+          0.49022973329812514
+        ],
+        "available_repeats": 3
+      },
+      "coverage_at_0_8": {
+        "mean": 0.03547125389230653,
+        "values": [
+          0.01815476190476191,
+          0.047274151287309184,
+          0.040984848484848485
+        ],
+        "available_repeats": 3
+      }
+    },
+    {
+      "method": "correlated",
+      "K": 32,
+      "radius_cells": 20,
+      "seeds": [
+        20260910,
+        20260911,
+        20260912
+      ],
+      "source_pointers": [
+        "/development_run_metrics/3/by_radius/20",
+        "/development_run_metrics/5/by_radius/20",
+        "/development_run_metrics/7/by_radius/20"
+      ],
+      "brier": {
+        "mean": 0.06142312475048842,
+        "values": [
+          0.062194627396942884,
+          0.06905214492938073,
+          0.053022601925141626
+        ],
+        "available_repeats": 3
+      },
+      "false_safe_at_0_8": {
+        "mean": null,
+        "values": [
+          null,
+          null,
+          null
+        ],
+        "available_repeats": 0
+      },
+      "coverage_at_0_8": {
+        "mean": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "available_repeats": 3
+      }
+    },
+    {
+      "method": "deterministic",
+      "K": 1,
+      "radius_cells": 0,
+      "seeds": [
+        20260910,
+        20260911,
+        20260912
+      ],
+      "source_pointers": [
+        "/development_run_metrics/8/by_radius/0",
+        "/development_run_metrics/9/by_radius/0",
+        "/development_run_metrics/10/by_radius/0"
+      ],
+      "brier": {
+        "mean": 0.18790245956170878,
+        "values": [
+          0.18974193086325442,
+          0.19440492105933282,
+          0.17956052676253914
+        ],
+        "available_repeats": 3
+      },
+      "false_safe_at_0_8": {
+        "mean": 0.19301915397727135,
+        "values": [
+          0.18542439177044856,
+          0.20294761550093662,
+          0.19068545466042885
+        ],
+        "available_repeats": 3
+      },
+      "coverage_at_0_8": {
+        "mean": 0.6647752188328814,
+        "values": [
+          0.6455516827943298,
+          0.6757842341482048,
+          0.6729897395561095
+        ],
+        "available_repeats": 3
+      }
+    },
+    {
+      "method": "deterministic",
+      "K": 1,
+      "radius_cells": 10,
+      "seeds": [
+        20260910,
+        20260911,
+        20260912
+      ],
+      "source_pointers": [
+        "/development_run_metrics/8/by_radius/10",
+        "/development_run_metrics/9/by_radius/10",
+        "/development_run_metrics/10/by_radius/10"
+      ],
+      "brier": {
+        "mean": 0.1063936988936989,
+        "values": [
+          0.10123872655122657,
+          0.10408279220779221,
+          0.11385957792207793
+        ],
+        "available_repeats": 3
+      },
+      "false_safe_at_0_8": {
+        "mean": 0.3933572375827844,
+        "values": [
+          0.3797437700502267,
+          0.3917801138064231,
+          0.40854782889170344
+        ],
+        "available_repeats": 3
+      },
+      "coverage_at_0_8": {
+        "mean": 0.24829819972912073,
+        "values": [
+          0.241387275005696,
+          0.2550944359003569,
+          0.2484128882813093
+        ],
+        "available_repeats": 3
+      }
+    },
+    {
+      "method": "deterministic",
+      "K": 1,
+      "radius_cells": 20,
+      "seeds": [
+        20260910,
+        20260911,
+        20260912
+      ],
+      "source_pointers": [
+        "/development_run_metrics/8/by_radius/20",
+        "/development_run_metrics/9/by_radius/20",
+        "/development_run_metrics/10/by_radius/20"
+      ],
+      "brier": {
+        "mean": 0.0402509746588694,
+        "values": [
+          0.03536340852130326,
+          0.043081662489557235,
+          0.042307852965747704
+        ],
+        "available_repeats": 3
+      },
+      "false_safe_at_0_8": {
+        "mean": 0.2852937440553743,
+        "values": [
+          0.2575845474949597,
+          0.3064570558276462,
+          0.291839628843517
+        ],
+        "available_repeats": 3
+      },
+      "coverage_at_0_8": {
+        "mean": 0.11286253829016984,
+        "values": [
+          0.1098036758563074,
+          0.11759137426900582,
+          0.11119256474519632
+        ],
+        "available_repeats": 3
+      }
+    }
+  ],
+  "not_claimed": "No re-audit of all 189 source files or rerun of saved-prediction scoring; assertions bind the snapshot and manuscript hashes recorded in read_manifest.json."
+}

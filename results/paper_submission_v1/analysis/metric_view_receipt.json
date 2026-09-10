@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-09-10T09:51:45.036202+00:00",
+  "source": "results/paper_validation_snapshot.json",
+  "source_sha256": "8a3b81ef1f01dec72e57f92d7c02d39ed0e3697e12389143a755a836cc4bbc32",
+  "purpose": "Flatten already saved metrics; arithmetic three-seed means and sample SD only",
+  "seed_stratum_rows": 276,
+  "primary_three_seed_stratum_rows": 36,
+  "outputs": {
+    "development_metrics_by_seed_and_stratum.csv": "bfc41cfca0999a6190e39976b75afcc93798e3e3a426b97950818ade59b810cd",
+    "primary_three_seed_strata.csv": "e4e00dc51b57d6fddba1854df1810a9312f44dbdc06f654b997d4c6067856238"
+  },
+  "null_rule": "Empty CSV cell means undefined; primary summary requires all three defined repeats",
+  "primary_seed_ids": [
+    20260910,
+    20260911,
+    20260912
+  ],
+  "strata": [
+    "overall",
+    "source",
+    "radius",
+    "truth"
+  ],
+  "warning": "Truth-conditioned scores are error diagnostics, not separate calibration proof. No new CI or test.",
+  "snapshot_modified": false,
+  "predictions_modified": false,
+  "new_inference": 0,
+  "new_training": 0,
+  "test_asset_reads": 0
+}

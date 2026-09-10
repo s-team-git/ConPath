@@ -1,0 +1,114 @@
+{
+  "id": "parent_group_pilot_v1",
+  "created_utc": "2026-09-09T08:51:50.051192+00:00",
+  "scope": "Small development pilot, not a final test or a replication of published leaderboard values",
+  "physical_archive_split": "train",
+  "provenance_split_is_metadata_not_partition": true,
+  "partition": {
+    "train": 100,
+    "calibration": 25,
+    "validation": 40,
+    "observations_per_parent": 1,
+    "source_balanced": true
+  },
+  "selection": "Source and candidate-partition stratified parent hash; one hash-ranked view/parent; no outcome-based replacements",
+  "candidate_sha256": "ccc86a4ca7016515e1f2c0371ccf1bb21a9ee3d8a1b9f92a63bef432360741e2",
+  "selected_sha256_before_image_access": "102f27e8f4186920035c87dcf70b113a4208a079afed257401fca4c8706fbb2c",
+  "query": {
+    "distances_cells": [
+      40,
+      80,
+      120
+    ],
+    "angles_deg": [
+      0,
+      30,
+      60,
+      90,
+      120,
+      150,
+      180,
+      210,
+      240,
+      270,
+      300,
+      330
+    ],
+    "radii_cells": [
+      0,
+      10,
+      20
+    ],
+    "construction": "observed free start; unknown and supplied-support valid goals; frozen before target PNG",
+    "blocked_target_goal": "keep as negative, never drop based on target endpoint class",
+    "training_queries_per_observation": 8,
+    "training_query_order": "hash of global_id and candidate index",
+    "evaluation_queries": "all input-eligible queries",
+    "connectivity": "four-neighbor with exact integer disk clearance"
+  },
+  "scale": "Raster-cell geometry only; release resolution=0.01 is used to reproduce the cell stencil, not verified physical-metre claims",
+  "input": "3 observed free/blocked/unknown channels and supplied epistemic valid support; target map used only for loss/scoring",
+  "methods": [
+    "correlated",
+    "independent",
+    "deterministic",
+    "all_floor",
+    "all_blocked",
+    "nearest_observed",
+    "train_radius_prior"
+  ],
+  "seeds": [
+    20260910,
+    20260911,
+    20260912
+  ],
+  "training": {
+    "from_scratch": true,
+    "feature_channels": 16,
+    "latent_dim": 4,
+    "batch_size": 4,
+    "train_samples": 4,
+    "max_epochs": 24,
+    "minimum_epochs": 12,
+    "patience": 6,
+    "learning_rate": 0.0003,
+    "weight_decay": 0.0001,
+    "gradient_clip": 5.0,
+    "map_weight": 1.0,
+    "variogram_weight": 0.1,
+    "event_weight": 2.0,
+    "max_reachability_steps": 256,
+    "deterministic_loss": "unknown-valid binary map NLL",
+    "selection": "lowest equal-parent calibration event Brier, tie within 1e-5 broken by map NLL",
+    "calibration_K": 16,
+    "calibration_rng": "fixed per-case stream reset each epoch, independent of training stream",
+    "validation_access": "only after all nine baseline runs have selected checkpoints",
+    "precision": "float32, no AMP; shared GPU timing is not isolated latency"
+  },
+  "evaluation": {
+    "K_primary": 32,
+    "K_common_small": 4,
+    "deterministic_K": 1,
+    "no_oracle_selection": true,
+    "aggregation": "equal parent; one view per parent and equal source counts",
+    "metrics": [
+      "event Brier",
+      "risk at 30% coverage with fractional probability ties",
+      "unknown-valid map IoU",
+      "MES for K>1"
+    ],
+    "confidence": "source-stratified paired bootstrap over parent places; seed means shown separately"
+  },
+  "decision": {
+    "implementation_pass": "checksums, splits, source identities, exact query oracle, finite learning and all 9 complete runs",
+    "research_screen": "mean K32 Brier lower than independent and deterministic, lower than all-floor; risk30 not worse than deterministic",
+    "after_screen_pass": "freeze one bounded model improvement using training/calibration diagnostics, compare with original under the same budget; validation becomes iterated development",
+    "after_screen_fail": "retain negative result; analyze protocol/input/underfitting before extending architecture; no automatic long Transformer run",
+    "strong_claim": "pilot screen is not statistical proof, final-test result, or external-method superiority"
+  },
+  "source_hashes": {
+    "scripts/prepare_parent_group_pilot.py": "8dca9e1a2157796d8e9544b1e819fd7b74489ab2146686d415b02cbc1b80e887",
+    "src/pathrel/parent_pilot_data.py": "119037a5924fecb2fcfb17b7fc86316b58e4b4d3b872e142a251e31ce1ec4475",
+    "src/pathrel/data_access.py": "62c7c127527e2c181a1446a896869e2e89f5a4588a18ae77bdf80373a44927fe"
+  }
+}

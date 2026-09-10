@@ -1,0 +1,14 @@
+{
+  "method": "deterministic",
+  "seed": 20260911,
+  "epochs": 22,
+  "best_epoch": 16,
+  "best_calibration": [
+    0.07910254153597807,
+    0.34075945913791655
+  ],
+  "checkpoint_sha256": "1d64165d9a6cc5a0104e17962236c75c56e03b976c1d94ce85d8a883d1fbc57d",
+  "recipe_sha256": "3a798f489f74434bfde0dbc551bb8d2df4876590eeb087baadc4756028bcbdb2",
+  "wall_seconds_this_process": 16.826552241022,
+  "validation_evaluated": false
+}

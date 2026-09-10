@@ -1,0 +1,173 @@
+{
+  "id": "coherent_parent_pilot_v1",
+  "created_utc": "2026-09-09T10:28:51.458431+00:00",
+  "methods": {
+    "coherent_categorical": {
+      "seeds": [
+        20260910,
+        20260911
+      ],
+      "samples": 32,
+      "brier": {
+        "mean": 0.0919073586626844,
+        "sd": 0.00902350990427287,
+        "values": [
+          0.08552677361926908,
+          0.09828794370609972
+        ]
+      },
+      "risk30": {
+        "mean": 0.22603574260025833,
+        "sd": 0.004130024405721947,
+        "values": [
+          0.22895611086401027,
+          0.2231153743365064
+        ]
+      },
+      "map": {
+        "mean_iou": 0.6191924075009545,
+        "mean_blocked_iou": 0.30159401466859564,
+        "sample_vote_cell_brier": 0.15361830762818676,
+        "masked_energy_score": 0.2279497213095209
+      }
+    },
+    "correlated": {
+      "seeds": [
+        20260910,
+        20260911
+      ],
+      "samples": 32,
+      "brier": {
+        "mean": 0.1032527506952331,
+        "sd": 0.0047624785868599145,
+        "values": [
+          0.09988516979120872,
+          0.10662033159925746
+        ]
+      },
+      "risk30": {
+        "mean": 0.23648874220077232,
+        "sd": 0.003422498850109018,
+        "values": [
+          0.23890881434628758,
+          0.23406867005525708
+        ]
+      },
+      "map": {
+        "mean_iou": 0.6200905829651306,
+        "mean_blocked_iou": 0.2967667711775284,
+        "sample_vote_cell_brier": 0.15192128872627492,
+        "masked_energy_score": 0.2286207118842969
+      }
+    },
+    "independent": {
+      "seeds": [
+        20260910,
+        20260911
+      ],
+      "samples": 32,
+      "brier": {
+        "mean": 0.11013982379679006,
+        "sd": 0.0023936500036002705,
+        "values": [
+          0.10844725764745711,
+          0.11183238994612302
+        ]
+      },
+      "risk30": {
+        "mean": 0.24872678792469877,
+        "sd": 0.007475083915106492,
+        "values": [
+          0.25401247045100905,
+          0.24344110539838848
+        ]
+      },
+      "map": {
+        "mean_iou": 0.6252246169880276,
+        "mean_blocked_iou": 0.29221610598760006,
+        "sample_vote_cell_brier": 0.15605419784147873,
+        "masked_energy_score": 0.23168407218568432
+      }
+    },
+    "deterministic": {
+      "seeds": [
+        20260910,
+        20260911
+      ],
+      "samples": 1,
+      "brier": {
+        "mean": 0.11131890694874441,
+        "sd": 0.0035886399400077073,
+        "values": [
+          0.10878135531192808,
+          0.11385645858556075
+        ]
+      },
+      "risk30": {
+        "mean": 0.2504666189157891,
+        "sd": 0.014189324514887532,
+        "values": [
+          0.2404332513308556,
+          0.2604999865007226
+        ]
+      },
+      "map": {
+        "mean_iou": 0.6625434216751522,
+        "mean_blocked_iou": 0.3900929050702693,
+        "sample_vote_cell_brier": 0.18993281425009206,
+        "masked_energy_score": null
+      }
+    }
+  },
+  "paired_brier": {
+    "correlated": {
+      "other_minus_conpath": 0.011345392032548687,
+      "ci95": [
+        -0.0011731984532888063,
+        0.024370028873796194
+      ],
+      "unit": "parent place, source stratified; conditional on the displayed two-seed average"
+    },
+    "independent": {
+      "other_minus_conpath": 0.018232465134105657,
+      "ci95": [
+        0.00841234394416414,
+        0.028370224518098855
+      ],
+      "unit": "parent place, source stratified; conditional on the displayed two-seed average"
+    },
+    "deterministic": {
+      "other_minus_conpath": 0.01941154828606,
+      "ci95": [
+        0.0023914818114647188,
+        0.03794927453742456
+      ],
+      "unit": "parent place, source stratified; conditional on the displayed two-seed average"
+    }
+  },
+  "screen_conditions": {
+    "brier_better_than_matched_conpath": true,
+    "risk30_not_worse_than_matched_conpath": true
+  },
+  "development_screen_passed": true,
+  "independent_world_checks": {
+    "worlds_checked": 2560,
+    "independent_geometry_worlds": 160,
+    "event_vote_checks": 6180,
+    "per_scene_map_metric_checks": 640,
+    "independent_target_maps": 40
+  },
+  "baseline_analysis_sha256": "0875640afd84a7d5a1446943328ae90e40f3b4cdc8cbe02af04d01d428ee8cc5",
+  "protocol_sha256": "e386002c572923be16be3b65deb720a0e49ab211bce40c0451b8e50fcd3a1d57",
+  "validation_parents": 40,
+  "validation_events": 1545,
+  "training_seeds": [
+    20260910,
+    20260911
+  ],
+  "validation_reused_for_model_development": true,
+  "final_test": false,
+  "new_physical_test_reads": 0,
+  "no_direct_published_paper_ranking": true,
+  "scope": "Exactly two candidate seeds compared with the same two baseline seeds; not the earlier three-seed aggregate. One fixed 9x9 sigma-3 sampler change, no hyperparameter search. Development feedback reused; uncertainty is conditional on two training seeds."
+}

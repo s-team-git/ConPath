@@ -1,0 +1,14 @@
+{
+  "method": "coherent_categorical",
+  "seed": 20260910,
+  "epochs": 24,
+  "best_epoch": 21,
+  "best_calibration": [
+    0.08266681987039234,
+    0.48072051398456095
+  ],
+  "checkpoint_sha256": "823a6dec9ccf204a91b3e863a0d207b4ce6e8730ec90dfc3662bdeea57e0d4a7",
+  "recipe_sha256": "44b6d3be1804466b318d3951c52f90d8197e54e7c6b4bc60e033265bf5f99eb4",
+  "wall_seconds_this_process": 700.0495558989933,
+  "validation_evaluated": false
+}

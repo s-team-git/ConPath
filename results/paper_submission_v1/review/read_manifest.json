@@ -1,0 +1,106 @@
+{
+  "created_utc": "2026-09-10T09:53:39.926712+00:00",
+  "scope": {
+    "new_training_runs": 0,
+    "new_model_inference_runs": 0,
+    "prediction_rows_re_evaluated": 0,
+    "raw_or_saved_map_assets_opened": 0,
+    "checkpoint_files_opened": 0,
+    "final_test_assets_opened": 0,
+    "location_6_assets_opened": 0,
+    "new_holdout_created": false,
+    "test_unlocked": false,
+    "complete_189_source_audit_repeated": false
+  },
+  "explicit_input_files": [
+    {
+      "path": "PAPER_DRAFT.md",
+      "sha256": "714173c832833c6cfd3385f77f290bd2ef46cc3b3e4aa093935e4033e438e0cc",
+      "bytes": 43478,
+      "scope": "existing manuscript, aggregate result, or access/split metadata"
+    },
+    {
+      "path": "PAPER_EVIDENCE.md",
+      "sha256": "e3a2902c975118b98d01e3c97fe18ffd8f088c666be6158b68a9e91d1844ffef",
+      "bytes": 24034,
+      "scope": "existing manuscript, aggregate result, or access/split metadata"
+    },
+    {
+      "path": "PAPER_TABLES.md",
+      "sha256": "4223206cfbbc09b7e5e10a92f9003a01d455a68a32e20b97471e16385ef427d3",
+      "bytes": 11436,
+      "scope": "existing manuscript, aggregate result, or access/split metadata"
+    },
+    {
+      "path": "results/FINAL_MODEL_SELECTION.md",
+      "sha256": "46b793949eafaf1e2b01e79a8401ada02d7270a918427c989d051d46c7a3209f",
+      "bytes": 12520,
+      "scope": "existing manuscript, aggregate result, or access/split metadata"
+    },
+    {
+      "path": "results/paper_validation_snapshot.json",
+      "sha256": "8a3b81ef1f01dec72e57f92d7c02d39ed0e3697e12389143a755a836cc4bbc32",
+      "bytes": 1330677,
+      "scope": "existing manuscript, aggregate result, or access/split metadata"
+    },
+    {
+      "path": "site/data/flatlands_read_scope_erratum.json",
+      "sha256": "9a925babdb1246c73c51bf2d01c861608975b69bc7ad4bbc7678470c40a9400a",
+      "bytes": 9630,
+      "scope": "existing manuscript, aggregate result, or access/split metadata"
+    },
+    {
+      "path": "site/data/flatlands_parent_group_audit.json",
+      "sha256": "e5ceef15180c10d36d8cd38c6b321b9d0cce01836f6f80b4faab1358609c08ec",
+      "bytes": 12495,
+      "scope": "existing manuscript, aggregate result, or access/split metadata"
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/protocol.json",
+      "sha256": "175d555c6da4dabf268b13a6cf0ca8bbbca97e91fcc0cebe7d4aadf9092222f3",
+      "bytes": 4393,
+      "scope": "existing manuscript, aggregate result, or access/split metadata"
+    },
+    {
+      "path": "results/parent_group_pilot_v1/data/selected.csv",
+      "sha256": "102f27e8f4186920035c87dcf70b113a4208a079afed257401fca4c8706fbb2c",
+      "bytes": 29586,
+      "scope": "existing manuscript, aggregate result, or access/split metadata"
+    },
+    {
+      "path": "results/flatlands_parent_groups_v2/old_train_validation_parents.csv",
+      "sha256": "f8e9994b6c63bc0bc3a07c513a704d405795e01acb28e3cb24800042c6b5d85a",
+      "bytes": 53501,
+      "scope": "existing manuscript, aggregate result, or access/split metadata"
+    },
+    {
+      "path": "results/p1_flatlands_query_audit_bounded/selected_observations.csv",
+      "sha256": "4e7ae4c992cf943ab81618e3826c4748fcaaa97c3c4d7cb187518ee3fe6a9409",
+      "bytes": 72293,
+      "scope": "existing manuscript, aggregate result, or access/split metadata"
+    },
+    {
+      "path": "results/flatlands_external_formal_protocol_v1/data/selected.csv",
+      "sha256": "19d38768c6ec71a6c0b1a08d37f78d5d1ef26ea5fded00086be327f19f93957e",
+      "bytes": 432804,
+      "scope": "existing manuscript, aggregate result, or access/split metadata"
+    },
+    {
+      "path": "results/flatlands_external_formal_protocol_v1/data_eligible_v1/selected.csv",
+      "sha256": "70d1b4087ebed68ddba95ef252b78df0cea7186a679fbb931a465df3fe762ecf",
+      "bytes": 427116,
+      "scope": "existing manuscript, aggregate result, or access/split metadata"
+    },
+    {
+      "path": "results/flatlands_external_formal_protocol_v1/data/image_access.jsonl",
+      "sha256": "dca9967192b1053169ac86b6d32fb4e93b313ec970f2ce4a451f09691ea0ba82",
+      "bytes": 2758434,
+      "scope": "existing manuscript, aggregate result, or access/split metadata"
+    }
+  ],
+  "input_file_count": 14,
+  "script": "results/paper_submission_v1/review/build_claim_audit.py",
+  "script_sha256": "72c44537c7c22be76e8495cca9ed1cf7770337d2b2dfdd34f011013db114847f",
+  "no_model_or_geometry_function_executed": true,
+  "authority": "Existing evidence collection and manuscript claim review only; no dataset or training authorization."
+}

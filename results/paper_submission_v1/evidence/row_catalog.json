@@ -1,0 +1,847 @@
+{
+  "rows": [
+    {
+      "row_index": 0,
+      "snapshot_pointer": "/evidence_rows/0",
+      "cohort": "parent_isolated_three_seed",
+      "evidence_level": "D1_parent_isolated_small_development",
+      "method": "correlated",
+      "K": 4,
+      "actual_map_count": 4,
+      "K_role": "actual binary worlds used for event scores",
+      "seeds": [
+        20260910,
+        20260911,
+        20260912
+      ],
+      "repeats": 3,
+      "weighting": "equal parent then event",
+      "claim_scope": "development-only, small training budget; no external or final-test superiority",
+      "source_pointers": [
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/correlated/20260910/report.json",
+          "sha256": "d1a775e8649b112446006da156e0fd5f385a569371100202ce155a859250246f",
+          "role": "metadata",
+          "json_pointer": "/budgets/4"
+        },
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/correlated/20260911/report.json",
+          "sha256": "d4792bfeb471e657b9738c5b54ad2875f2963e430986884a1344597cb4658b23",
+          "role": "metadata",
+          "json_pointer": "/budgets/4"
+        },
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/correlated/20260912/report.json",
+          "sha256": "e24f48c93662ed02124a1caa2ebd2f9d46e2e3892e3fc7b39e11adbd2558a869",
+          "role": "metadata",
+          "json_pointer": "/budgets/4"
+        }
+      ]
+    },
+    {
+      "row_index": 1,
+      "snapshot_pointer": "/evidence_rows/1",
+      "cohort": "parent_isolated_three_seed",
+      "evidence_level": "D1_parent_isolated_small_development",
+      "method": "correlated",
+      "K": 32,
+      "actual_map_count": 32,
+      "K_role": "actual binary worlds used for event scores",
+      "seeds": [
+        20260910,
+        20260911,
+        20260912
+      ],
+      "repeats": 3,
+      "weighting": "equal parent then event",
+      "claim_scope": "development-only, small training budget; no external or final-test superiority",
+      "source_pointers": [
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/correlated/20260910/report.json",
+          "sha256": "d1a775e8649b112446006da156e0fd5f385a569371100202ce155a859250246f",
+          "role": "metadata",
+          "json_pointer": "/budgets/32"
+        },
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/correlated/20260911/report.json",
+          "sha256": "d4792bfeb471e657b9738c5b54ad2875f2963e430986884a1344597cb4658b23",
+          "role": "metadata",
+          "json_pointer": "/budgets/32"
+        },
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/correlated/20260912/report.json",
+          "sha256": "e24f48c93662ed02124a1caa2ebd2f9d46e2e3892e3fc7b39e11adbd2558a869",
+          "role": "metadata",
+          "json_pointer": "/budgets/32"
+        }
+      ]
+    },
+    {
+      "row_index": 2,
+      "snapshot_pointer": "/evidence_rows/2",
+      "cohort": "parent_isolated_three_seed",
+      "evidence_level": "D1_parent_isolated_small_development",
+      "method": "independent",
+      "K": 4,
+      "actual_map_count": 4,
+      "K_role": "actual binary worlds used for event scores",
+      "seeds": [
+        20260910,
+        20260911,
+        20260912
+      ],
+      "repeats": 3,
+      "weighting": "equal parent then event",
+      "claim_scope": "development-only, small training budget; no external or final-test superiority",
+      "source_pointers": [
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/independent/20260910/report.json",
+          "sha256": "0a9240b7cfdc2fbb1876008592df2f15553a8e98cb16dd210597556aab038e0a",
+          "role": "metadata",
+          "json_pointer": "/budgets/4"
+        },
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/independent/20260911/report.json",
+          "sha256": "98edb7d6877c88232dfb01064891be99bc6f0eb3fde97144e8a8dc4e00823a31",
+          "role": "metadata",
+          "json_pointer": "/budgets/4"
+        },
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/independent/20260912/report.json",
+          "sha256": "6bcc23d71e38ff73211d3d05258cffe370191c46c53f3c2cb0e6e3800aee24c1",
+          "role": "metadata",
+          "json_pointer": "/budgets/4"
+        }
+      ]
+    },
+    {
+      "row_index": 3,
+      "snapshot_pointer": "/evidence_rows/3",
+      "cohort": "parent_isolated_three_seed",
+      "evidence_level": "D1_parent_isolated_small_development",
+      "method": "independent",
+      "K": 32,
+      "actual_map_count": 32,
+      "K_role": "actual binary worlds used for event scores",
+      "seeds": [
+        20260910,
+        20260911,
+        20260912
+      ],
+      "repeats": 3,
+      "weighting": "equal parent then event",
+      "claim_scope": "development-only, small training budget; no external or final-test superiority",
+      "source_pointers": [
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/independent/20260910/report.json",
+          "sha256": "0a9240b7cfdc2fbb1876008592df2f15553a8e98cb16dd210597556aab038e0a",
+          "role": "metadata",
+          "json_pointer": "/budgets/32"
+        },
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/independent/20260911/report.json",
+          "sha256": "98edb7d6877c88232dfb01064891be99bc6f0eb3fde97144e8a8dc4e00823a31",
+          "role": "metadata",
+          "json_pointer": "/budgets/32"
+        },
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/independent/20260912/report.json",
+          "sha256": "6bcc23d71e38ff73211d3d05258cffe370191c46c53f3c2cb0e6e3800aee24c1",
+          "role": "metadata",
+          "json_pointer": "/budgets/32"
+        }
+      ]
+    },
+    {
+      "row_index": 4,
+      "snapshot_pointer": "/evidence_rows/4",
+      "cohort": "parent_isolated_three_seed",
+      "evidence_level": "D1_parent_isolated_small_development",
+      "method": "deterministic",
+      "K": 1,
+      "actual_map_count": 1,
+      "K_role": "actual binary worlds used for event scores",
+      "seeds": [
+        20260910,
+        20260911,
+        20260912
+      ],
+      "repeats": 3,
+      "weighting": "equal parent then event",
+      "claim_scope": "development-only, small training budget; no external or final-test superiority",
+      "source_pointers": [
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/deterministic/20260910/report.json",
+          "sha256": "f79f432c9bc72cf2455dda23eb98c1e0c5e982ea6fb5cbcf041185ffd0bf19a2",
+          "role": "metadata",
+          "json_pointer": "/budgets/1"
+        },
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/deterministic/20260911/report.json",
+          "sha256": "370684a42dec88d766b0675ed4a7db84a480ed0eb6d33729de50c0f8a0eb38f0",
+          "role": "metadata",
+          "json_pointer": "/budgets/1"
+        },
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/deterministic/20260912/report.json",
+          "sha256": "e091c39ffd707eeb413aecf6e24d2d7b5509e9e51cbde8ef234cc619b64b86d4",
+          "role": "metadata",
+          "json_pointer": "/budgets/1"
+        }
+      ]
+    },
+    {
+      "row_index": 5,
+      "snapshot_pointer": "/evidence_rows/5",
+      "cohort": "parent_isolated_three_seed",
+      "evidence_level": "D1_parent_isolated_small_development",
+      "method": "all_floor",
+      "K": 1,
+      "actual_map_count": 1,
+      "K_role": "actual binary worlds used for event scores",
+      "seeds": [
+        "rule"
+      ],
+      "repeats": 1,
+      "weighting": "equal parent then event",
+      "claim_scope": "development-only, small training budget; no external or final-test superiority",
+      "source_pointers": [
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/all_floor/rule/report.json",
+          "sha256": "9272adbe470405d58cd908a00e9e7752a2b270b613b2b6bb2d49b95c3fd188fb",
+          "role": "metadata",
+          "json_pointer": "/budgets/1"
+        }
+      ]
+    },
+    {
+      "row_index": 6,
+      "snapshot_pointer": "/evidence_rows/6",
+      "cohort": "parent_isolated_three_seed",
+      "evidence_level": "D1_parent_isolated_small_development",
+      "method": "all_blocked",
+      "K": 1,
+      "actual_map_count": 1,
+      "K_role": "actual binary worlds used for event scores",
+      "seeds": [
+        "rule"
+      ],
+      "repeats": 1,
+      "weighting": "equal parent then event",
+      "claim_scope": "development-only, small training budget; no external or final-test superiority",
+      "source_pointers": [
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/all_blocked/rule/report.json",
+          "sha256": "3acc370e7d5e42472588a3debcb6ed8d65564f404a1280ac52ffec484434ee4a",
+          "role": "metadata",
+          "json_pointer": "/budgets/1"
+        }
+      ]
+    },
+    {
+      "row_index": 7,
+      "snapshot_pointer": "/evidence_rows/7",
+      "cohort": "parent_isolated_three_seed",
+      "evidence_level": "D1_parent_isolated_small_development",
+      "method": "nearest_observed",
+      "K": 1,
+      "actual_map_count": 1,
+      "K_role": "actual binary worlds used for event scores",
+      "seeds": [
+        "rule"
+      ],
+      "repeats": 1,
+      "weighting": "equal parent then event",
+      "claim_scope": "development-only, small training budget; no external or final-test superiority",
+      "source_pointers": [
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/nearest_observed/rule/report.json",
+          "sha256": "681f8fcfca8322d082c5326886303162676f183f5c096b110180d14a3a870601",
+          "role": "metadata",
+          "json_pointer": "/budgets/1"
+        }
+      ]
+    },
+    {
+      "row_index": 8,
+      "snapshot_pointer": "/evidence_rows/8",
+      "cohort": "parent_isolated_three_seed",
+      "evidence_level": "D1_parent_isolated_small_development",
+      "method": "train_radius_prior",
+      "K": 1,
+      "actual_map_count": null,
+      "K_role": "archive filename budget tag; no generated map",
+      "seeds": [
+        "rule"
+      ],
+      "repeats": 1,
+      "weighting": "equal parent then event",
+      "claim_scope": "development-only, small training budget; no external or final-test superiority",
+      "source_pointers": [
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/train_radius_prior/rule/report.json",
+          "sha256": "00257086ba894d89b15337d78c6b960225ed0bfbbf5a376c0b75a59693a11b96",
+          "role": "metadata",
+          "json_pointer": "/budgets/1"
+        }
+      ]
+    },
+    {
+      "row_index": 9,
+      "snapshot_pointer": "/evidence_rows/9",
+      "cohort": "coherent_two_seed_matched",
+      "evidence_level": "D2_reused_validation_candidate",
+      "method": "coherent_categorical",
+      "K": 4,
+      "actual_map_count": 4,
+      "K_role": "actual binary worlds used for event scores",
+      "seeds": [
+        20260910,
+        20260911
+      ],
+      "repeats": 2,
+      "weighting": "equal parent then event",
+      "claim_scope": "development-only, small training budget; no external or final-test superiority",
+      "source_pointers": [
+        {
+          "path": "results/coherent_parent_pilot_v1/evaluation/20260910/report.json",
+          "sha256": "8421d44be8c3781e0fdfa8706824700cd02145710d10e0d300066bbfe17a48e3",
+          "role": "metadata",
+          "json_pointer": "/budgets/4"
+        },
+        {
+          "path": "results/coherent_parent_pilot_v1/evaluation/20260911/report.json",
+          "sha256": "4df563ba9daa5aa68c3c554e2f0366e439eb1a3777a3155a205111d81ea7f157",
+          "role": "metadata",
+          "json_pointer": "/budgets/4"
+        }
+      ]
+    },
+    {
+      "row_index": 10,
+      "snapshot_pointer": "/evidence_rows/10",
+      "cohort": "coherent_two_seed_matched",
+      "evidence_level": "D2_reused_validation_candidate",
+      "method": "coherent_categorical",
+      "K": 32,
+      "actual_map_count": 32,
+      "K_role": "actual binary worlds used for event scores",
+      "seeds": [
+        20260910,
+        20260911
+      ],
+      "repeats": 2,
+      "weighting": "equal parent then event",
+      "claim_scope": "development-only, small training budget; no external or final-test superiority",
+      "source_pointers": [
+        {
+          "path": "results/coherent_parent_pilot_v1/evaluation/20260910/report.json",
+          "sha256": "8421d44be8c3781e0fdfa8706824700cd02145710d10e0d300066bbfe17a48e3",
+          "role": "metadata",
+          "json_pointer": "/budgets/32"
+        },
+        {
+          "path": "results/coherent_parent_pilot_v1/evaluation/20260911/report.json",
+          "sha256": "4df563ba9daa5aa68c3c554e2f0366e439eb1a3777a3155a205111d81ea7f157",
+          "role": "metadata",
+          "json_pointer": "/budgets/32"
+        }
+      ]
+    },
+    {
+      "row_index": 11,
+      "snapshot_pointer": "/evidence_rows/11",
+      "cohort": "coherent_two_seed_matched",
+      "evidence_level": "D2_reused_validation_candidate",
+      "method": "correlated",
+      "K": 4,
+      "actual_map_count": 4,
+      "K_role": "actual binary worlds used for event scores",
+      "seeds": [
+        20260910,
+        20260911
+      ],
+      "repeats": 2,
+      "weighting": "equal parent then event",
+      "claim_scope": "development-only, small training budget; no external or final-test superiority",
+      "source_pointers": [
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/correlated/20260910/report.json",
+          "sha256": "d1a775e8649b112446006da156e0fd5f385a569371100202ce155a859250246f",
+          "role": "metadata",
+          "json_pointer": "/budgets/4"
+        },
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/correlated/20260911/report.json",
+          "sha256": "d4792bfeb471e657b9738c5b54ad2875f2963e430986884a1344597cb4658b23",
+          "role": "metadata",
+          "json_pointer": "/budgets/4"
+        }
+      ]
+    },
+    {
+      "row_index": 12,
+      "snapshot_pointer": "/evidence_rows/12",
+      "cohort": "coherent_two_seed_matched",
+      "evidence_level": "D2_reused_validation_candidate",
+      "method": "correlated",
+      "K": 32,
+      "actual_map_count": 32,
+      "K_role": "actual binary worlds used for event scores",
+      "seeds": [
+        20260910,
+        20260911
+      ],
+      "repeats": 2,
+      "weighting": "equal parent then event",
+      "claim_scope": "development-only, small training budget; no external or final-test superiority",
+      "source_pointers": [
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/correlated/20260910/report.json",
+          "sha256": "d1a775e8649b112446006da156e0fd5f385a569371100202ce155a859250246f",
+          "role": "metadata",
+          "json_pointer": "/budgets/32"
+        },
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/correlated/20260911/report.json",
+          "sha256": "d4792bfeb471e657b9738c5b54ad2875f2963e430986884a1344597cb4658b23",
+          "role": "metadata",
+          "json_pointer": "/budgets/32"
+        }
+      ]
+    },
+    {
+      "row_index": 13,
+      "snapshot_pointer": "/evidence_rows/13",
+      "cohort": "coherent_two_seed_matched",
+      "evidence_level": "D2_reused_validation_candidate",
+      "method": "independent",
+      "K": 4,
+      "actual_map_count": 4,
+      "K_role": "actual binary worlds used for event scores",
+      "seeds": [
+        20260910,
+        20260911
+      ],
+      "repeats": 2,
+      "weighting": "equal parent then event",
+      "claim_scope": "development-only, small training budget; no external or final-test superiority",
+      "source_pointers": [
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/independent/20260910/report.json",
+          "sha256": "0a9240b7cfdc2fbb1876008592df2f15553a8e98cb16dd210597556aab038e0a",
+          "role": "metadata",
+          "json_pointer": "/budgets/4"
+        },
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/independent/20260911/report.json",
+          "sha256": "98edb7d6877c88232dfb01064891be99bc6f0eb3fde97144e8a8dc4e00823a31",
+          "role": "metadata",
+          "json_pointer": "/budgets/4"
+        }
+      ]
+    },
+    {
+      "row_index": 14,
+      "snapshot_pointer": "/evidence_rows/14",
+      "cohort": "coherent_two_seed_matched",
+      "evidence_level": "D2_reused_validation_candidate",
+      "method": "independent",
+      "K": 32,
+      "actual_map_count": 32,
+      "K_role": "actual binary worlds used for event scores",
+      "seeds": [
+        20260910,
+        20260911
+      ],
+      "repeats": 2,
+      "weighting": "equal parent then event",
+      "claim_scope": "development-only, small training budget; no external or final-test superiority",
+      "source_pointers": [
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/independent/20260910/report.json",
+          "sha256": "0a9240b7cfdc2fbb1876008592df2f15553a8e98cb16dd210597556aab038e0a",
+          "role": "metadata",
+          "json_pointer": "/budgets/32"
+        },
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/independent/20260911/report.json",
+          "sha256": "98edb7d6877c88232dfb01064891be99bc6f0eb3fde97144e8a8dc4e00823a31",
+          "role": "metadata",
+          "json_pointer": "/budgets/32"
+        }
+      ]
+    },
+    {
+      "row_index": 15,
+      "snapshot_pointer": "/evidence_rows/15",
+      "cohort": "coherent_two_seed_matched",
+      "evidence_level": "D2_reused_validation_candidate",
+      "method": "deterministic",
+      "K": 1,
+      "actual_map_count": 1,
+      "K_role": "actual binary worlds used for event scores",
+      "seeds": [
+        20260910,
+        20260911
+      ],
+      "repeats": 2,
+      "weighting": "equal parent then event",
+      "claim_scope": "development-only, small training budget; no external or final-test superiority",
+      "source_pointers": [
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/deterministic/20260910/report.json",
+          "sha256": "f79f432c9bc72cf2455dda23eb98c1e0c5e982ea6fb5cbcf041185ffd0bf19a2",
+          "role": "metadata",
+          "json_pointer": "/budgets/1"
+        },
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/deterministic/20260911/report.json",
+          "sha256": "370684a42dec88d766b0675ed4a7db84a480ed0eb6d33729de50c0f8a0eb38f0",
+          "role": "metadata",
+          "json_pointer": "/budgets/1"
+        }
+      ]
+    },
+    {
+      "row_index": 16,
+      "snapshot_pointer": "/evidence_rows/16",
+      "cohort": "historical_overlapping_parent_K128",
+      "evidence_level": "H1_historical_diagnostic",
+      "method": "conpath",
+      "K": 128,
+      "actual_map_count": null,
+      "K_role": null,
+      "seeds": [
+        20260831,
+        20260901,
+        20260902
+      ],
+      "repeats": 3,
+      "weighting": "equal historical subscene then event; not independent building weighting",
+      "claim_scope": "historical mixed development cohort; parent leakage and prior physical-test access; no unseen-place generalization",
+      "source_pointers": [
+        {
+          "path": "results/paper_clean_analysis_v1/report.json",
+          "sha256": "29ca7640437695dbb432c256dc6a0ab0f176ddfb108c17bd8723e17a223e9de3",
+          "role": "metadata",
+          "json_pointer": "/methods/conpath"
+        }
+      ]
+    },
+    {
+      "row_index": 17,
+      "snapshot_pointer": "/evidence_rows/17",
+      "cohort": "historical_overlapping_parent_K128",
+      "evidence_level": "H1_historical_diagnostic",
+      "method": "independent",
+      "K": 128,
+      "actual_map_count": null,
+      "K_role": null,
+      "seeds": [
+        20260831,
+        20260901,
+        20260902
+      ],
+      "repeats": 3,
+      "weighting": "equal historical subscene then event; not independent building weighting",
+      "claim_scope": "historical mixed development cohort; parent leakage and prior physical-test access; no unseen-place generalization",
+      "source_pointers": [
+        {
+          "path": "results/paper_clean_analysis_v1/report.json",
+          "sha256": "29ca7640437695dbb432c256dc6a0ab0f176ddfb108c17bd8723e17a223e9de3",
+          "role": "metadata",
+          "json_pointer": "/methods/independent"
+        }
+      ]
+    },
+    {
+      "row_index": 18,
+      "snapshot_pointer": "/evidence_rows/18",
+      "cohort": "historical_overlapping_parent_K128",
+      "evidence_level": "H1_historical_diagnostic",
+      "method": "completion",
+      "K": 1,
+      "actual_map_count": null,
+      "K_role": null,
+      "seeds": [
+        20260831,
+        20260901,
+        20260902
+      ],
+      "repeats": 3,
+      "weighting": "equal historical subscene then event; not independent building weighting",
+      "claim_scope": "historical mixed development cohort; parent leakage and prior physical-test access; no unseen-place generalization",
+      "source_pointers": [
+        {
+          "path": "results/paper_clean_analysis_v1/report.json",
+          "sha256": "29ca7640437695dbb432c256dc6a0ab0f176ddfb108c17bd8723e17a223e9de3",
+          "role": "metadata",
+          "json_pointer": "/methods/completion"
+        }
+      ]
+    },
+    {
+      "row_index": 19,
+      "snapshot_pointer": "/evidence_rows/19",
+      "cohort": "historical_overlapping_parent_K128",
+      "evidence_level": "H1_historical_diagnostic",
+      "method": "coordinate",
+      "K": null,
+      "actual_map_count": null,
+      "K_role": null,
+      "seeds": [
+        20260831,
+        20260901,
+        20260902
+      ],
+      "repeats": 3,
+      "weighting": "equal historical subscene then event; not independent building weighting",
+      "claim_scope": "historical mixed development cohort; parent leakage and prior physical-test access; no unseen-place generalization",
+      "source_pointers": [
+        {
+          "path": "results/paper_clean_analysis_v1/report.json",
+          "sha256": "29ca7640437695dbb432c256dc6a0ab0f176ddfb108c17bd8723e17a223e9de3",
+          "role": "metadata",
+          "json_pointer": "/methods/coordinate"
+        }
+      ]
+    },
+    {
+      "row_index": 20,
+      "snapshot_pointer": "/evidence_rows/20",
+      "cohort": "historical_overlapping_parent_K128",
+      "evidence_level": "H1_historical_diagnostic",
+      "method": "direct_query",
+      "K": null,
+      "actual_map_count": null,
+      "K_role": null,
+      "seeds": [
+        20260831
+      ],
+      "repeats": 1,
+      "weighting": "equal historical subscene then event; not independent building weighting",
+      "claim_scope": "historical mixed development cohort; parent leakage and prior physical-test access; no unseen-place generalization",
+      "source_pointers": [
+        {
+          "path": "results/paper_clean_analysis_v1/report.json",
+          "sha256": "29ca7640437695dbb432c256dc6a0ab0f176ddfb108c17bd8723e17a223e9de3",
+          "role": "metadata",
+          "json_pointer": "/methods/direct_query"
+        }
+      ]
+    },
+    {
+      "row_index": 21,
+      "snapshot_pointer": "/evidence_rows/21",
+      "cohort": "historical_overlapping_parent_K128",
+      "evidence_level": "H1_historical_diagnostic",
+      "method": "radius_prior",
+      "K": null,
+      "actual_map_count": null,
+      "K_role": null,
+      "seeds": [
+        20260831
+      ],
+      "repeats": 1,
+      "weighting": "equal historical subscene then event; not independent building weighting",
+      "claim_scope": "historical mixed development cohort; parent leakage and prior physical-test access; no unseen-place generalization",
+      "source_pointers": [
+        {
+          "path": "results/paper_clean_analysis_v1/report.json",
+          "sha256": "29ca7640437695dbb432c256dc6a0ab0f176ddfb108c17bd8723e17a223e9de3",
+          "role": "metadata",
+          "json_pointer": "/methods/radius_prior"
+        }
+      ]
+    },
+    {
+      "row_index": 22,
+      "snapshot_pointer": "/evidence_rows/22",
+      "cohort": "historical_overlapping_parent_K128",
+      "evidence_level": "H1_historical_diagnostic",
+      "method": "mean_map",
+      "K": 1,
+      "actual_map_count": null,
+      "K_role": null,
+      "seeds": [
+        20260831,
+        20260901,
+        20260902
+      ],
+      "repeats": 3,
+      "weighting": "equal historical subscene then event; not independent building weighting",
+      "claim_scope": "historical mixed development cohort; parent leakage and prior physical-test access; no unseen-place generalization",
+      "source_pointers": [
+        {
+          "path": "results/paper_clean_analysis_v1/report.json",
+          "sha256": "29ca7640437695dbb432c256dc6a0ab0f176ddfb108c17bd8723e17a223e9de3",
+          "role": "metadata",
+          "json_pointer": "/methods/mean_map"
+        }
+      ]
+    },
+    {
+      "row_index": 23,
+      "snapshot_pointer": "/evidence_rows/23",
+      "cohort": "historical_overlapping_parent_K128",
+      "evidence_level": "H1_historical_diagnostic",
+      "method": "independent_mean_map",
+      "K": 1,
+      "actual_map_count": null,
+      "K_role": null,
+      "seeds": [
+        20260831,
+        20260901,
+        20260902
+      ],
+      "repeats": 3,
+      "weighting": "equal historical subscene then event; not independent building weighting",
+      "claim_scope": "historical mixed development cohort; parent leakage and prior physical-test access; no unseen-place generalization",
+      "source_pointers": [
+        {
+          "path": "results/paper_clean_analysis_v1/report.json",
+          "sha256": "29ca7640437695dbb432c256dc6a0ab0f176ddfb108c17bd8723e17a223e9de3",
+          "role": "metadata",
+          "json_pointer": "/methods/independent_mean_map"
+        }
+      ]
+    },
+    {
+      "row_index": 24,
+      "snapshot_pointer": "/evidence_rows/24",
+      "cohort": "historical_overlapping_parent_K128",
+      "evidence_level": "M1_fixed_marginal_conditional_mechanism",
+      "method": "marginal_shuffle",
+      "K": 128,
+      "actual_map_count": null,
+      "K_role": null,
+      "seeds": [
+        20260831,
+        20260901,
+        20260902
+      ],
+      "repeats": 3,
+      "weighting": "equal historical subscene then event; not independent building weighting",
+      "claim_scope": "historical mixed development cohort; parent leakage and prior physical-test access; no unseen-place generalization",
+      "source_pointers": [
+        {
+          "path": "results/paper_clean_analysis_v1/report.json",
+          "sha256": "29ca7640437695dbb432c256dc6a0ab0f176ddfb108c17bd8723e17a223e9de3",
+          "role": "metadata",
+          "json_pointer": "/methods/marginal_shuffle"
+        }
+      ]
+    },
+    {
+      "row_index": 25,
+      "snapshot_pointer": "/evidence_rows/25",
+      "cohort": "historical_overlapping_parent_K128",
+      "evidence_level": "H1_historical_training_ablation",
+      "method": "no_event",
+      "K": 128,
+      "actual_map_count": null,
+      "K_role": null,
+      "seeds": [
+        20260831,
+        20260901,
+        20260902
+      ],
+      "repeats": 3,
+      "weighting": "equal historical subscene then event",
+      "claim_scope": "Historical setting only; no matched no-event/no-global retraining on the current parent-isolated cohort",
+      "source_pointers": [
+        {
+          "path": "site/data/flatlands_clean_training_ablations.json",
+          "sha256": "d54ade10698106c1b36b11fd73fb3f90ac1da1c70b1b8ab780d0e6c687f2daab",
+          "role": "metadata",
+          "json_pointer": "/methods/no_event"
+        }
+      ]
+    },
+    {
+      "row_index": 26,
+      "snapshot_pointer": "/evidence_rows/26",
+      "cohort": "historical_overlapping_parent_K128",
+      "evidence_level": "H1_historical_training_ablation",
+      "method": "no_global",
+      "K": 128,
+      "actual_map_count": null,
+      "K_role": null,
+      "seeds": [
+        20260831,
+        20260901,
+        20260902
+      ],
+      "repeats": 3,
+      "weighting": "equal historical subscene then event",
+      "claim_scope": "Historical setting only; no matched no-event/no-global retraining on the current parent-isolated cohort",
+      "source_pointers": [
+        {
+          "path": "site/data/flatlands_clean_training_ablations.json",
+          "sha256": "d54ade10698106c1b36b11fd73fb3f90ac1da1c70b1b8ab780d0e6c687f2daab",
+          "role": "metadata",
+          "json_pointer": "/methods/no_global"
+        }
+      ]
+    },
+    {
+      "row_index": 27,
+      "snapshot_pointer": "/evidence_rows/27",
+      "cohort": "synthetic_P0_template_holdout",
+      "evidence_level": "S1_synthetic_mechanism",
+      "method": "full",
+      "K": 128,
+      "actual_map_count": null,
+      "K_role": null,
+      "seeds": [
+        20260827,
+        20260828
+      ],
+      "repeats": 2,
+      "weighting": "pooled repeated-world events on four held-out synthetic templates",
+      "claim_scope": "Synthetic mechanism sanity only; extra visible context input plane, radii0/1/2, two full seeds and one no-event seed; not public-data superiority",
+      "source_pointers": [
+        {
+          "path": "results/p0_neural_cuda_contextplane_v4/report.json",
+          "sha256": "1c69e30fb6f23b89d0276d09f15b631727be4506a837fe7d24b29a85657d1a11",
+          "role": "metadata"
+        },
+        {
+          "path": "results/p0_neural_cuda_contextplane_seed20260828_v4/report.json",
+          "sha256": "46ac08329182a19576218ce1bfd06a46477bc36d5033a471bf95b8a89d48473f",
+          "role": "metadata"
+        }
+      ]
+    },
+    {
+      "row_index": 28,
+      "snapshot_pointer": "/evidence_rows/28",
+      "cohort": "synthetic_P0_template_holdout",
+      "evidence_level": "S1_synthetic_mechanism",
+      "method": "no_event",
+      "K": 128,
+      "actual_map_count": null,
+      "K_role": null,
+      "seeds": [
+        20260827
+      ],
+      "repeats": 1,
+      "weighting": "pooled repeated-world events on four held-out synthetic templates",
+      "claim_scope": "Synthetic mechanism sanity only; extra visible context input plane, radii0/1/2, two full seeds and one no-event seed; not public-data superiority",
+      "source_pointers": [
+        {
+          "path": "results/p0_neural_cuda_contextplane_noreach_v4/report.json",
+          "sha256": "317ee4db452514c392cba1753c365b9f62f804f6b4e5ca6e2072b70c7ee3dd80",
+          "role": "metadata"
+        }
+      ]
+    }
+  ],
+  "missing_current_methods": [
+    "direct_query",
+    "no_event",
+    "no_global"
+  ],
+  "zero_means_measured_zero_only": true
+}

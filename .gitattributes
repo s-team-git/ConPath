@@ -7,3 +7,11 @@ site/assets/formal/**/*.svg -text whitespace=-blank-at-eol
 results/paper_validation_snapshot.csv -text whitespace=cr-at-eol
 results/paper_convergence_v1/snapshot_reviewed_v1/*.csv -text whitespace=cr-at-eol
 results/paper_figures/**/*.svg -text whitespace=-blank-at-eol
+
+# Byte-exact archived sources and vendored TeX files retain their original format.
+results/paper_submission_v1/evidence/sources/** -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
+paper/IEEEtran.cls -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
+paper/IEEEtran.bst -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
+paper/vendor/** -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
+# Preserve original compiler log bytes, including upstream package-name spacing.
+paper/build/*.log -text whitespace=-blank-at-eol

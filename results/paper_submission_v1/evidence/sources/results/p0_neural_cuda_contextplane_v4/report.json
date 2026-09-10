@@ -1,0 +1,320 @@
+{
+  "protocol": {
+    "seed": 20260827,
+    "radii_cells": [
+      0,
+      1,
+      2
+    ],
+    "map_shape": [
+      24,
+      24
+    ],
+    "steps": 120,
+    "warmup_steps": 24,
+    "batch_size": 8,
+    "train_templates": 12,
+    "test_templates": 4,
+    "worlds_per_template": 24,
+    "train_samples": 8,
+    "validation_samples": 128,
+    "categorical_noise_scale": 0.25,
+    "reachability_weight": 2.0,
+    "variogram_weight": 0.2,
+    "empirical_map_weight": 1.0,
+    "learning_rate": 0.001,
+    "training_unit": "observation_group",
+    "context_input": "plane",
+    "encoder_context_mode": "coord_global",
+    "device": "cuda",
+    "gpu_name": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+    "git_head": "2de9103d6ec1ba7ce256eac560f78b08fddb5119",
+    "command": [
+      "scripts/train_p0_neural.py",
+      "--device",
+      "cuda",
+      "--steps",
+      "120",
+      "--warmup-steps",
+      "24",
+      "--batch-size",
+      "8",
+      "--train-templates",
+      "12",
+      "--test-templates",
+      "4",
+      "--worlds-per-template",
+      "24",
+      "--height",
+      "24",
+      "--width",
+      "24",
+      "--train-samples",
+      "8",
+      "--validation-samples",
+      "128",
+      "--categorical-noise-scale",
+      "0.25",
+      "--reachability-weight",
+      "2.0",
+      "--variogram-weight",
+      "0.2",
+      "--empirical-map-weight",
+      "1.0",
+      "--learning-rate",
+      "0.001",
+      "--training-unit",
+      "observation_group",
+      "--context-input",
+      "plane",
+      "--encoder-context-mode",
+      "coord_global",
+      "--checkpoint-every",
+      "10",
+      "--output-dir",
+      "results/p0_neural_cuda_contextplane_v4"
+    ]
+  },
+  "event_metrics": {
+    "brier": 0.11637650605957282,
+    "nll": 0.35387181805693113,
+    "ece": 0.07864718954078853,
+    "false_safe_rate@0.8": 0.125,
+    "reliability": [
+      {
+        "bin": 0,
+        "lower": 0.0,
+        "upper": 0.1,
+        "count": 384,
+        "confidence": 0.0,
+        "accuracy": 0.0
+      },
+      {
+        "bin": 1,
+        "lower": 0.1,
+        "upper": 0.2,
+        "count": 2,
+        "confidence": 0.1953125,
+        "accuracy": 0.0
+      },
+      {
+        "bin": 2,
+        "lower": 0.2,
+        "upper": 0.30000000000000004,
+        "count": 82,
+        "confidence": 0.272484755734118,
+        "accuracy": 0.25609756097560976
+      },
+      {
+        "bin": 3,
+        "lower": 0.30000000000000004,
+        "upper": 0.4,
+        "count": 124,
+        "confidence": 0.34771925355157546,
+        "accuracy": 0.28225806451612906
+      },
+      {
+        "bin": 4,
+        "lower": 0.4,
+        "upper": 0.5,
+        "count": 146,
+        "confidence": 0.4513591609589041,
+        "accuracy": 0.2534246575342466
+      },
+      {
+        "bin": 5,
+        "lower": 0.5,
+        "upper": 0.6000000000000001,
+        "count": 56,
+        "confidence": 0.5262276775070599,
+        "accuracy": 0.14285714285714285
+      },
+      {
+        "bin": 6,
+        "lower": 0.6000000000000001,
+        "upper": 0.7000000000000001,
+        "count": 56,
+        "confidence": 0.658203125,
+        "accuracy": 0.8571428571428571
+      },
+      {
+        "bin": 7,
+        "lower": 0.7000000000000001,
+        "upper": 0.8,
+        "count": 110,
+        "confidence": 0.7491477272727273,
+        "accuracy": 0.8818181818181818
+      },
+      {
+        "bin": 8,
+        "lower": 0.8,
+        "upper": 0.9,
+        "count": 184,
+        "confidence": 0.8479534646739131,
+        "accuracy": 0.8695652173913043
+      },
+      {
+        "bin": 9,
+        "lower": 0.9,
+        "upper": 1.0,
+        "count": 8,
+        "confidence": 0.916015625,
+        "accuracy": 1.0
+      }
+    ],
+    "count": 1152
+  },
+  "event_metrics_by_radius": [
+    {
+      "brier": 0.17638746897379556,
+      "nll": 0.5310850211589425,
+      "ece": 0.13993326822916666,
+      "false_safe_rate@0.8": 0.12222222222222222,
+      "count": 384
+    },
+    {
+      "brier": 0.10196256637573242,
+      "nll": 0.31817412902039727,
+      "ece": 0.07163492838541664,
+      "false_safe_rate@0.8": 0.16666666666666666,
+      "count": 384
+    },
+    {
+      "brier": 0.0707794828291905,
+      "nll": 0.21235630399145355,
+      "ece": 0.04003906257761021,
+      "false_safe_rate@0.8": NaN,
+      "count": 384
+    }
+  ],
+  "event_mean_by_radius": [
+    0.6593831181526184,
+    0.3426310122013092,
+    0.15380859375
+  ],
+  "target_event_mean_by_radius": [
+    0.546875,
+    0.3515625,
+    0.1796875
+  ],
+  "event_mean_by_context_and_radius": {
+    "0": [
+      0.47119140625,
+      0.2189534455537796,
+      0.1434326171875
+    ],
+    "1": [
+      0.8475748896598816,
+      0.46630859375,
+      0.1641845703125
+    ]
+  },
+  "target_event_mean_by_context_and_radius": {
+    "0": [
+      0.21875,
+      0.15625,
+      0.140625
+    ],
+    "1": [
+      0.875,
+      0.546875,
+      0.21875
+    ]
+  },
+  "context_conditioning": {
+    "radius_zero_predicted_gap": 0.3763834834098816,
+    "radius_zero_target_gap": 0.65625,
+    "gap_ratio": 0.5735367366245815,
+    "minimum_gap_ratio": 0.5,
+    "passed": true
+  },
+  "map_marginal_metrics": {
+    "conditional_categorical_full": {
+      "brier": 0.003392544226602111,
+      "nll": 0.01060387911559389,
+      "ece": 0.002548910997310442,
+      "false_safe_rate@0.8": 0.000387906446092413,
+      "count": 110592
+    },
+    "empirical_hard_full": {
+      "brier": 0.0033834019192838915,
+      "nll": 0.010568250401208172,
+      "ece": 0.002541365446455118,
+      "false_safe_rate@0.8": 0.00042209977526038995,
+      "count": 110592
+    },
+    "conditional_categorical_unknown": {
+      "brier": 0.02714035381281689,
+      "nll": 0.08482403292125094,
+      "ece": 0.0203912879784834,
+      "false_safe_rate@0.8": 0.003978469459396209,
+      "count": 13824
+    },
+    "empirical_hard_unknown": {
+      "brier": 0.027067215354271132,
+      "nll": 0.0845390032061652,
+      "ece": 0.020330923571641017,
+      "false_safe_rate@0.8": 0.004325967496784754,
+      "count": 13824
+    }
+  },
+  "doorway_joint": {
+    "0": {
+      "target": {
+        "any_open_rate": 0.21875,
+        "mean_free_cells": 1.21875,
+        "mean_transitions": 0.4375,
+        "fragmented_rate": 0.0
+      },
+      "sampled": {
+        "any_open_rate": 0.47119140625,
+        "mean_free_cells": 3.109130859375,
+        "mean_transitions": 1.2523600260416667,
+        "fragmented_rate": 0.136962890625
+      }
+    },
+    "1": {
+      "target": {
+        "any_open_rate": 0.875,
+        "mean_free_cells": 4.8125,
+        "mean_transitions": 1.75,
+        "fragmented_rate": 0.0
+      },
+      "sampled": {
+        "any_open_rate": 0.8475748697916666,
+        "mean_free_cells": 5.832682291666667,
+        "mean_transitions": 2.0393880208333335,
+        "fragmented_rate": 0.16097005208333334
+      }
+    }
+  },
+  "last_training": {
+    "event": "step",
+    "step": 120,
+    "stage": "joint",
+    "total": 0.12440113723278046,
+    "map_nll": 0.0867985412478447,
+    "empirical_map_u": 0.02591766230762005,
+    "variogram": 0.02638903260231018,
+    "reach_u": 0.003203564090654254,
+    "gradient_norm": 1.8254128694534302
+  },
+  "runtime": {
+    "elapsed_seconds": 87.67214267497184,
+    "peak_cuda_memory_bytes": 5792976384
+  },
+  "p0_gate": {
+    "passed": true,
+    "official_protocol": true,
+    "comparators": {
+      "independent_brier": 0.18317159016927084,
+      "direct_query_brier": 0.16988758349570215,
+      "independent_ece": 0.1762424045138889,
+      "direct_query_ece": 0.08912776173751391,
+      "independent_map_brier": 0.002829818813889115
+    },
+    "criterion": "beat independent and direct-query event Brier; ECE no more than 0.02 above the better comparator; empirical hard-map Brier within 0.02 of independent; recover at least half of the held-out radius-zero context gap"
+  },
+  "paper_result": false,
+  "interpretation": "Synthetic neural P0 gate passed; public-data audit is still required."
+}
