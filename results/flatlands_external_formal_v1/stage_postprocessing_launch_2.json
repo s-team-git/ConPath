@@ -1,0 +1,16 @@
+{
+  "pid": 319162,
+  "started_utc": "2026-09-10T04:53:20.591383+00:00",
+  "git_commit": "547c1450185f6d85565785d63936e854663d4556",
+  "command": [
+    "/home/hairo/miniconda3/bin/python3.13",
+    "scripts/watch_flatlands_formal_stages.py",
+    "--watch"
+  ],
+  "reason": "Resume CPU stage postprocessing with reviewed metric-axis repair; reuse all four passed stage audits",
+  "GPU_workers_added": 0,
+  "automatic_visual_approval": false,
+  "automatic_full_training": false,
+  "automatic_publication": false,
+  "log": "results/flatlands_external_formal_v1/stage_postprocessing_launch_2.log"
+}

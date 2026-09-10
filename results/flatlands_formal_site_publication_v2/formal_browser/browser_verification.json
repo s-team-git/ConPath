@@ -1,0 +1,59 @@
+{
+  "passed": true,
+  "scope": "Diagnostic website rendering and published values; no scientific eligibility",
+  "created_utc": "2026-09-10T04:59:16.921Z",
+  "base": "http://127.0.0.1:8777/formal.html",
+  "gpu_model_inference_performed": false,
+  "new_test_images_opened": 0,
+  "viewports": [
+    {
+      "width": 1440,
+      "scrollWidth": 1425,
+      "methods": 8,
+      "figures": 25,
+      "all_fixed_images_loaded": true,
+      "displayed_values_match_audited_JSON": true,
+      "diagnostics_sha256": "c33bbe7059e57a11c58050af62b2877c15bd89d16e86c59b5cc524d59f66719c",
+      "gallery": {
+        "scrollWidth": 1425,
+        "broken": [],
+        "imageAltComplete": true,
+        "pdfLinks": 25
+      }
+    },
+    {
+      "width": 390,
+      "scrollWidth": 390,
+      "methods": 8,
+      "figures": 25,
+      "all_fixed_images_loaded": true,
+      "displayed_values_match_audited_JSON": true,
+      "diagnostics_sha256": "c33bbe7059e57a11c58050af62b2877c15bd89d16e86c59b5cc524d59f66719c",
+      "gallery": {
+        "scrollWidth": 390,
+        "broken": [],
+        "imageAltComplete": true,
+        "pdfLinks": 25
+      }
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "1440-overview.png",
+      "sha256": "79fe5da0bb3c1c2953164c3024408f03dc2c701f59ef57e3be7daf327b844aa4"
+    },
+    {
+      "path": "1440-first-fixed-case.png",
+      "sha256": "d724f90572f66f100573c282c354d4b745419730a49496960ab093005019c295"
+    },
+    {
+      "path": "390-overview.png",
+      "sha256": "e150756cdbb81bd53a527bc7b5bca2cb4d90530e7acd8bd04b5a166dfeb88ba2"
+    },
+    {
+      "path": "390-first-fixed-case.png",
+      "sha256": "0031e06da4e8888f05c4ab84db433552b7a6e3c9fbed8f45d1eb43e96fd580d3"
+    }
+  ],
+  "browser_exceptions": []
+}

@@ -4568,12 +4568,17 @@
     "independent_stages": [
       "results/flatlands_external_formal_v1/audits/lama/20260831/untrained/attempt_1/verification.json",
       "results/flatlands_external_formal_v1/audits/lama/20260831/smoke/attempt_1/verification.json",
-      "results/flatlands_external_formal_v1/audits/flow/20260831/untrained/attempt_1/verification.json"
+      "results/flatlands_external_formal_v1/audits/flow/20260831/untrained/attempt_1/verification.json",
+      "results/flatlands_external_formal_v1/audits/flow/20260831/smoke/attempt_1/verification.json"
     ],
-    "report_visual": "results/flatlands_external_formal_v1/report_visual_audits/20260910T035037.828561Z.json",
-    "formal_browser": "results/flatlands_formal_site_publication_v1/browser_attempt_3/browser_verification.json",
-    "homepage_browser": "results/flatlands_formal_site_publication_v1/home_browser_attempt_1/browser_verification.json",
-    "final_scientific_audit_passed": false
+    "report_visual": "results/flatlands_external_formal_v1/report_visual_audits/20260910T045321.733633Z.json",
+    "formal_browser": "results/flatlands_formal_site_publication_v2/formal_browser/browser_verification.json",
+    "homepage_browser": "results/flatlands_formal_site_publication_v2/home_browser/browser_verification.json",
+    "final_scientific_audit_passed": false,
+    "current_report_tests_after_metric_axis_fix": 18,
+    "final_auditor_CPU_fixture_tests": 31,
+    "convergence_renderer_CPU_fixture_tests": 13,
+    "stage_watcher_CPU_fixture_tests": 17
   },
   "recovery_commands": [
     "git rev-parse --short HEAD",
@@ -4852,7 +4857,7 @@
     "protocol_commit": "6694e86",
     "protocol_sha256": "409c8bc4a9142d75a62e6c3d67204ef7d5045ad38f74b45b5411f8bfe899c0e2",
     "queue_pid": 1841989,
-    "updated_utc": "2026-09-10T04:32:01.952988+00:00",
+    "updated_utc": "2026-09-10T05:02:04.786764+00:00",
     "all_regression_tests": 258,
     "completed_independently_audited_stages": {
       "lama": [
@@ -4860,11 +4865,12 @@
         "smoke_1000"
       ],
       "flow": [
-        "untrained"
+        "untrained",
+        "smoke_1000"
       ]
     },
     "stage_results_document": "FLATLANDS_FORMAL_STAGE_RESULTS_ZH.md",
-    "current_report_snapshot": "results/flatlands_external_formal_v1/reports/20260910T035037.828561Z",
+    "current_report_snapshot": "results/flatlands_external_formal_v1/reports/20260910T045321.733633Z",
     "website": {
       "page": "site/formal.html",
       "current_receipt": "site/data/formal_current.json",
@@ -4873,11 +4879,29 @@
       "main_table_eligible": false,
       "deployment_commit": "6591fb3b63d3134c6be950185eaa0fe2f1cbea59",
       "deployment_receipt": "results/flatlands_formal_site_publication_v1/deployment_verification.json",
-      "url": "https://s-team-git.github.io/ConPath/formal.html"
+      "url": "https://s-team-git.github.io/ConPath/formal.html",
+      "pending_local_update_receipt": "results/flatlands_formal_site_publication_v2/local_verification.json"
     },
     "full_runner": "scripts/run_flatlands_formal_full.py",
     "final_auditor": "scripts/audit_flatlands_formal_final.py",
-    "final_audit_passed": false
+    "final_audit_passed": false,
+    "stage_postprocessing": {
+      "pid": 319162,
+      "status": "watching",
+      "launch_receipt": "results/flatlands_external_formal_v1/stage_postprocessing_launch_2.json",
+      "state": "results/flatlands_external_formal_v1/postprocessing/state.json",
+      "status_file": "results/flatlands_external_formal_v1/postprocessing/status.json",
+      "CPU_only": true,
+      "automatic_visual_approval": false,
+      "automatic_full_training": false,
+      "automatic_publication": false
+    },
+    "pilot_reviews": {
+      "lama": "results/flatlands_external_formal_v1/pilot_reviews/lama/20260831/attempt_1",
+      "flow": "results/flatlands_external_formal_v1/pilot_reviews/flow/20260831/attempt_1",
+      "status": "waiting_for_real_pilot_completion_and_independent_audit",
+      "no_passed_review_yet": true
+    }
   },
   "historical_recovery_commands_before_formal_v1": [
     "git status --short --branch",

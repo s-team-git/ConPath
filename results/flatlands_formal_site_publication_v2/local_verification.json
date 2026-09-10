@@ -1,0 +1,44 @@
+{
+  "passed": true,
+  "created_utc": "2026-09-10T05:01:05.814205+00:00",
+  "scope": "Local validation-only diagnostic publication and rendering; not model quality or formal three-seed eligibility",
+  "snapshot": "results/flatlands_external_formal_v1/reports/20260910T045321.733633Z",
+  "receipts": [
+    {
+      "path": "results/flatlands_formal_site_publication_v2/formal_browser/browser_verification.json",
+      "sha256": "a4a999a9faffd0192a058e957f4e711d8ec1c8a08684fa18458577477f7b1b1a"
+    },
+    {
+      "path": "results/flatlands_formal_site_publication_v2/home_browser/browser_verification.json",
+      "sha256": "18c697067dd076cde9a32ee0d2593f897cbb08424b5b9543fa55ed2d8fd4f582"
+    },
+    {
+      "path": "results/flatlands_formal_site_publication_v2/homepage_verification.json",
+      "sha256": "d945fade80f65e0aa697dba4e4686a078b05be647edafe9679dda3b88b5968f9"
+    },
+    {
+      "path": "results/flatlands_external_formal_v1/report_visual_audits/20260910T045321.733633Z.json",
+      "sha256": "cbfca71df51510fff36145bc062349da6cf9507f24bc18ddd3769bda97fde059"
+    }
+  ],
+  "actual_root_browser_screenshots_viewed": [
+    "formal_browser/1440-overview.png",
+    "formal_browser/390-overview.png",
+    "formal_browser/390-first-fixed-case.png"
+  ],
+  "all_fixed_25_validation_figures_preserved": true,
+  "all_27_PNGs_reviewed_by_root_and_named_collaborator": true,
+  "old_40_cases_and_244_assets_unchanged": true,
+  "methods_with_matching_stage_audits": [
+    "lama",
+    "flow"
+  ],
+  "phase": "smoke_1000",
+  "outer_seeds": [
+    20260831
+  ],
+  "deployment_verified": false,
+  "full_training_authorized": false,
+  "main_table_or_superiority_authorized": false,
+  "new_test_images_opened": 0
+}

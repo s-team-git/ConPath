@@ -3439,13 +3439,13 @@
     "site/data/coherent_pilot_gallery_verification.json": "1eca8614149a75cade7147eca58104f08704c21ec367273155450f06db51472a",
     "site/data/parent_group_pilot_status_zh.json": "d7e04cf37c4f34b45036380a5d98374be4c9b7996911d85a73bbd4ea6917ef6c",
     "site/data/coherent_pilot_status_zh.json": "ede736178c7dd04cb4cf078d150d7dd543d4029562933e5a3a461fec7ff4e479",
-    "site/data/formal_current.json": "1e735869e92ad04b077e4887ba3408286c5ef4e3a578f94a5dbbf8e55bc3fe2b",
-    "site/assets/formal/20260910T035037.828561Z_18191ad50979/build_receipt.json": "1e735869e92ad04b077e4887ba3408286c5ef4e3a578f94a5dbbf8e55bc3fe2b",
-    "site/formal.html": "c99e8aca4e6dad89ea42fdcfae553ad8158a2933497545b4c8a5a22f5c1c6e23",
-    "site/assets/formal/20260910T035037.828561Z_18191ad50979/formal.html": "c99e8aca4e6dad89ea42fdcfae553ad8158a2933497545b4c8a5a22f5c1c6e23",
-    "site/assets/formal/20260910T035037.828561Z_18191ad50979/diagnostics.json": "18191ad5097927c8ca263fb136c44b9706ebaece96a506c70f80881a04f0b5e0",
-    "site/assets/formal/20260910T035037.828561Z_18191ad50979/formal.css": "39fd6a70db90627820e87b9edc6b0ce79bca2862769bb2b03eaed08d6c705e72",
-    "site/assets/formal/20260910T035037.828561Z_18191ad50979/builder_source.py": "bf9da5c5e5b7f274ef8db4a8a9ec67669e617de560303e4c25e494ac42102afb",
+    "site/data/formal_current.json": "33f8e065f02d224283759195f3fc4393cdeec9a0b4b4bac67cfdd028a7f2e970",
+    "site/assets/formal/20260910T045321.733633Z_c33bbe7059e5/build_receipt.json": "33f8e065f02d224283759195f3fc4393cdeec9a0b4b4bac67cfdd028a7f2e970",
+    "site/formal.html": "bcd5cb0d7df874107f89e8f8a529eb78047c5f8747c63576b1a32f22d806c1c0",
+    "site/assets/formal/20260910T045321.733633Z_c33bbe7059e5/formal.html": "bcd5cb0d7df874107f89e8f8a529eb78047c5f8747c63576b1a32f22d806c1c0",
+    "site/assets/formal/20260910T045321.733633Z_c33bbe7059e5/diagnostics.json": "c33bbe7059e57a11c58050af62b2877c15bd89d16e86c59b5cc524d59f66719c",
+    "site/assets/formal/20260910T045321.733633Z_c33bbe7059e5/formal.css": "39fd6a70db90627820e87b9edc6b0ce79bca2862769bb2b03eaed08d6c705e72",
+    "site/assets/formal/20260910T045321.733633Z_c33bbe7059e5/builder_source.py": "bf9da5c5e5b7f274ef8db4a8a9ec67669e617de560303e4c25e494ac42102afb",
     "results/flatlands_external_formal_protocol_v1/protocol.json": "409c8bc4a9142d75a62e6c3d67204ef7d5045ad38f74b45b5411f8bfe899c0e2"
   }
 }

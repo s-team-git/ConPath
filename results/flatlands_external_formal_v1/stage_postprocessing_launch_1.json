@@ -1,0 +1,15 @@
+{
+  "pid": 186156,
+  "started_utc": "2026-09-10T04:48:32.272765+00:00",
+  "command": [
+    "/home/hairo/miniconda3/bin/python3.13",
+    "scripts/watch_flatlands_formal_stages.py",
+    "--watch"
+  ],
+  "git_commit": "7d307d6c88db482bd6efbbe0720805d45689d75d",
+  "GPU_workers_added": 0,
+  "automatic_visual_approval": false,
+  "automatic_full_training": false,
+  "automatic_publication": false,
+  "log": "results/flatlands_external_formal_v1/stage_postprocessing_launch_1.log"
+}

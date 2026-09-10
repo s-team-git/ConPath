@@ -1,0 +1,994 @@
+{
+  "passed": true,
+  "created_utc": "2026-09-10T04:59:03.610889+00:00",
+  "scope": "Homepage current diagnostic entry refresh; historical gallery/results unchanged",
+  "old_case_count": 40,
+  "all_unchanged_home_data_except_source_hashes": true,
+  "unchanged_sections_sha256": {
+    "effects": "60774a052337644fcac687151573b29aa8bb2ad9f0d8d1a65400187a8e4ee26c",
+    "results": "4c3bc21412584c43f3b7274b4c9445b29da1ef060f4fd7761898a825bcbfd5ea"
+  },
+  "old_assets": [
+    {
+      "path": "site/assets/zh/model-examples/positive_recovery-observed.svg",
+      "sha256": "ce8249a1e225a7f51539506831a351b50d4ddf36d27d6e33f0c5801514ad8ccf"
+    },
+    {
+      "path": "site/assets/zh/model-examples/positive_recovery-reference.svg",
+      "sha256": "f3ee9e4b326585619c18f78d8c90ee66f4c40a7d9f8cc6a5b6d18fd77ee0edb7"
+    },
+    {
+      "path": "site/assets/zh/model-examples/positive_recovery-correlated.svg",
+      "sha256": "6995f14fba604953d3527a05e6b862ca2d9c3f1cda26c164ef57189e91d4b1fc"
+    },
+    {
+      "path": "site/assets/zh/model-examples/positive_recovery-correlated_sample.svg",
+      "sha256": "d758cfb6c836b3dabcff5971f81369e9e71a1c0caa57ab398c36005744da9f73"
+    },
+    {
+      "path": "site/assets/zh/model-examples/positive_recovery-independent.svg",
+      "sha256": "76fc746b25a4c4524b660dbf55fa201e7eb895d272c367e18eb59ad3d598276c"
+    },
+    {
+      "path": "site/assets/zh/model-examples/positive_recovery-independent_sample.svg",
+      "sha256": "3882f66ecf844b3f566b4dcbd86e39d86c8dc6d6d91c1b7e95b8cf7dee3a8b1f"
+    },
+    {
+      "path": "site/assets/zh/model-examples/false_safe_avoided-observed.svg",
+      "sha256": "fbfe8861fc620423f77eaa72218accb4c9dec704ab759f767265776f9ad54fed"
+    },
+    {
+      "path": "site/assets/zh/model-examples/false_safe_avoided-reference.svg",
+      "sha256": "42c9f0cbaac7abbe40005e0515f4b752e88800d637b1bf1c751511708052cd33"
+    },
+    {
+      "path": "site/assets/zh/model-examples/false_safe_avoided-correlated.svg",
+      "sha256": "63c86dd11b042b82884fb8f5d7da7ff7da77f40ae2b03c59c4efc75eec2f8b3c"
+    },
+    {
+      "path": "site/assets/zh/model-examples/false_safe_avoided-correlated_sample.svg",
+      "sha256": "6013edb98b1c02b0513eaee1da6a23844282da0049ada28a9694585ab60120cf"
+    },
+    {
+      "path": "site/assets/zh/model-examples/false_safe_avoided-independent.svg",
+      "sha256": "26efdbf4b2827754057f1c223504398987bb9b400495b0f0c693436948088592"
+    },
+    {
+      "path": "site/assets/zh/model-examples/false_safe_avoided-independent_sample.svg",
+      "sha256": "a93f87a7ddec0a8f21501d0ac737ad5d9dd0f427e6dc63140bf44ce86028ca68"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_006301-observed.svg",
+      "sha256": "a1e05ae8336d51587cbe818153ff803a3f8af07e730809c6331ce0367e4d9359"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_006301-reference.svg",
+      "sha256": "10a181a4281dc1a55373d0f1428fd92bf4255d25e5c65570eb96fadfc8ce3f61"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_006301-correlated_sample.svg",
+      "sha256": "00e2ec435a05368537bb9d91eb907c7a52e3a183bfef31d99a9a2c30e0032cf3"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_006301-correlated.svg",
+      "sha256": "edce892170c9d106d8b1e3e2b083ebbaed5e9f722610a6f82f172b88a059c4a3"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_006301-independent_sample.svg",
+      "sha256": "09f7dbea2e58eb35d99744a49e83de6a4333b9ba3e948871b6d6b1a1c592c2ae"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_006301-independent.svg",
+      "sha256": "088eb675368929ad9cd13722890833d5e0ea9c19f63d708e453a0ce7b7689506"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_002879-observed.svg",
+      "sha256": "19264da0498e81e403fffa041aa06bd736fb074f72b442afbd2e11d894ef98a6"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_002879-reference.svg",
+      "sha256": "919d2c25403844cb11fcdfdddd63637c136ee6ac80c7d497f11d3974bdacef8e"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_002879-correlated_sample.svg",
+      "sha256": "e9cb2f2a3d16594876a15bc24c4ec75aae2a909b691f27f2f995f37d42032eef"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_002879-correlated.svg",
+      "sha256": "83a56a569ac6825f235af06e2d0ade6fd3260e68a2cf583ffaf45d7b5d082224"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_002879-independent_sample.svg",
+      "sha256": "53e7cb48b5f8e7b33c0175aefae05df379c73bae2669215ec1a86647af550409"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_002879-independent.svg",
+      "sha256": "40543ea1076c75b180f1dea959d03d8e7510244621787619b1cbf69e9850d9e8"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_016075-observed.svg",
+      "sha256": "53aa5d30352e4110b5b905bc48fc693d81237b221a2009ef8d4f00b5895817c4"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_016075-reference.svg",
+      "sha256": "0b6e12693a3ce88c46d9b5a677456cae6753e3761bc5952d9783990b42c9e4b3"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_016075-correlated_sample.svg",
+      "sha256": "1504e7a1c8d155bf9f121fa86698974eaf88df1b1c99b9a61a8d5f1f6ede309a"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_016075-correlated.svg",
+      "sha256": "4f8932cff8c94632c1ef44aa16a0c5cfc432769df70752183d39a662f3dd5630"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_016075-independent_sample.svg",
+      "sha256": "f5a566d1e850b768c30fd0f603711bc2030e950c7cc09bcd3891717ff28ae539"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_016075-independent.svg",
+      "sha256": "3b04cd7db2ee68f884941118432ed609a294f42419a9f42f8c5cac941aefa55e"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_021198-observed.svg",
+      "sha256": "63e47ee0ffc0f6e3762a0d85fe41e63af27cbe73cbab391885a4c0acca7a9bc2"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_021198-reference.svg",
+      "sha256": "cd84c12f1b911c69a3dc4e6e5ba7312001c6aa64737b3d7f1060d7f301efee56"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_021198-correlated_sample.svg",
+      "sha256": "5dd2283453a351159a1f533e0b22d4689b060ef42fe60102cfe36f5aca1b80ac"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_021198-correlated.svg",
+      "sha256": "588aef69a7098b1a8634eba2f673a9ba93f219a89e358c768c31eadf54a9da6d"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_021198-independent_sample.svg",
+      "sha256": "9150de47d65d3664d5147c18a14939c6281cbc4e007f9ac3409dea7210ed554d"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_021198-independent.svg",
+      "sha256": "7cd8615fe2625a5dc0d9ca68828960e14c2cb77b9555dff20f02f0b4424e1ea0"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_067726-observed.svg",
+      "sha256": "66ac170635e4cf63b28081993d923ed90b022dafafbb9499d9117a933727af2b"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_067726-reference.svg",
+      "sha256": "dbf2ae018cca8f7eb5dd5600a6fce3156d20f885ce0a286281ac84b4e3207be8"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_067726-correlated_sample.svg",
+      "sha256": "6d2c4dde1766f25b6269927c8f6e23c27bdaced53aff704834edb1ed719b7952"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_067726-correlated.svg",
+      "sha256": "523a95b8c19e1f6b1444d02f5ebba9791cc3fb5a36acb1342b9d3a3973369064"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_067726-independent_sample.svg",
+      "sha256": "4522199cb411de45d4f0560ada8aa0abe93f382e88943480a6fbfb2e2e77158d"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_067726-independent.svg",
+      "sha256": "243ce3f42abcd940a3079b304a7a4a8a367ad8025fe68c3c5ff7ed592a80b020"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_070581-observed.svg",
+      "sha256": "abeb37952f4356b25ff99d141a177a89d2a1b40f77b92f7c853f2177a93cd07d"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_070581-reference.svg",
+      "sha256": "6b92e2678fcdda2d92ba33ed786f953d53c196a70a421f22c059f116d74a44ea"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_070581-correlated_sample.svg",
+      "sha256": "770dccfaf6c0eedb11703d84968e278b13a49c36bccc575f78ca5b57dee955ed"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_070581-correlated.svg",
+      "sha256": "688076e42aaf454d0b055f91e2c1672739ed69cdcb0e3e351561b8a97851ef65"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_070581-independent_sample.svg",
+      "sha256": "47fe29bfdf8f6f4063dac2759cf6e3e4204d7399a7298fd8f1038c7edf11d648"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_070581-independent.svg",
+      "sha256": "bc296d47a80f2d2cdc5a845fe215010e361d3a359aa2433f4316e53eca321fb5"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_034400-observed.svg",
+      "sha256": "58fc4e631ec8eceeeace944970e5cb9be123092cf9cd9c014d853334c02ad8ef"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_034400-reference.svg",
+      "sha256": "6a5c77b454ef62f050bd27e921242266d5deb56d36d3d2d71fb3f6dde7a0476d"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_034400-correlated_sample.svg",
+      "sha256": "0ae61fd1ece3485ed3af0a30546d429fefc8c496e51ee3329458e12721d0301e"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_034400-correlated.svg",
+      "sha256": "743b0330928d8acc5e7af336bac5c2995478abcfcd46bc0d1643f3df0cb051e0"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_034400-independent_sample.svg",
+      "sha256": "8943d3eed06968f3410f8519cf309b7b364747ace23ad606319b1efbc0fe3a58"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_034400-independent.svg",
+      "sha256": "12bf8cd6986263dde31eff35a7d75906f0ce49f43d52bc25569c56fd5d149064"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_078724-observed.svg",
+      "sha256": "f4d05a2e9e113019d2f4298ab33fc5b60aa47f16256ccd5ddbfc058272497940"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_078724-reference.svg",
+      "sha256": "9d9efc1eca0e8a8da59f29ae175ff205e9448d2c30d0426717da3de32efd5a97"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_078724-correlated_sample.svg",
+      "sha256": "0abb3e37d13cd09a0aaba2e837786b0ff34fb1f915431d30c8a36e73af79b400"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_078724-correlated.svg",
+      "sha256": "0cbd9c010ee8df70aaab5ae2475ac4b204bcbec9cda616428ea55d5fd2d2f572"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_078724-independent_sample.svg",
+      "sha256": "e92593c031463c2f0089e7cdd7ab5f2796b43dd4caee675ce90df27d7bc2b659"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_078724-independent.svg",
+      "sha256": "c277858e38c4df7c66592ee9213ae40f90a819e4321c5ebb2cac2b3d20385c46"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_128102-observed.svg",
+      "sha256": "30657aa353c256e61264b1e55b2ce775822063e48321309508b6de87e537b05e"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_128102-reference.svg",
+      "sha256": "8ccba114f5eb6b20e103e0255fd52ec0f4d836ecd5f494389b006c59c844236f"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_128102-correlated_sample.svg",
+      "sha256": "380f12924f4a364b535d3d466a4c0c58646f1494fd4c564b9f94946cf9038444"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_128102-correlated.svg",
+      "sha256": "16d79d4760ae9b4d68f9368d0825f26c73684bec4ff0d3d68e971f423ae0ae59"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_128102-independent_sample.svg",
+      "sha256": "f0d6b8b8f1df1adb88c8608e69f40955a87e0071b7985783777682ca1d32df69"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_128102-independent.svg",
+      "sha256": "2b6f05ed48f1efa0e1670c1b1fa7bf490a8ee85850a628b2ce333ae35e277080"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_130279-observed.svg",
+      "sha256": "e80b972373b6ba8d2a2160c97bb26cb32e830565e14a5b6f9a10171af52f2db1"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_130279-reference.svg",
+      "sha256": "1d39db89a15418c4c049bd985960f4109f9efe72556151af24851d21b920e0c3"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_130279-correlated_sample.svg",
+      "sha256": "af6b7d6074e2391a28a35598d1698ac4f0d786cfdc77426d069a121b6019c6bd"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_130279-correlated.svg",
+      "sha256": "bf91ab93c656ef72ff9a3c36d05ba618243a8837e972d15cce09b95e4f1bfd78"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_130279-independent_sample.svg",
+      "sha256": "eb361c25e93fd555b7265822b545183f780377a8b95c182115b0c9f241ac1409"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_130279-independent.svg",
+      "sha256": "466e272b92cc843a6051cf055a33a2bb3e93322b7292c8d93663294f101ab66c"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_114571-observed.svg",
+      "sha256": "1b4646977064b7fd5ec18064f0267d7a3ffedbb8e1d750f88ba4fe405e915e3d"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_114571-reference.svg",
+      "sha256": "65b5cc2b5d7342f44384e243eed8604fec35226e914716f7ac37ed11e558ca4d"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_114571-correlated_sample.svg",
+      "sha256": "54d59634dfcf9740703b3774c5eb374765d80a6bce4548611035351afe2e284c"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_114571-correlated.svg",
+      "sha256": "afa76f86b7fa26757838a783185dc3303e8c1139dbd53b81192648a9e7e7b255"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_114571-independent_sample.svg",
+      "sha256": "55b860debddfe956c1abc7eb540719e34ff070d592360717d384a0a9dbfa9eb0"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_114571-independent.svg",
+      "sha256": "aedcb35b579554035f75a961dd246de792d3aaa3c1e4ce70e49798b7d323cec8"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_127760-observed.svg",
+      "sha256": "21136493e839873131fa9355c70ef1797a1c6f5738d729febb53ccae75293125"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_127760-reference.svg",
+      "sha256": "9d4676fcb03731cee05297c6c1edb95893c569289cde73591ed00383a0acc1f3"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_127760-correlated_sample.svg",
+      "sha256": "af28e5ff259c3a463d92d4498928e5e33192372d8ae3625f6583c9b85f520d2d"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_127760-correlated.svg",
+      "sha256": "9069a6ab7c9b20a687c2382cd2c5fd951af0490d00b5b28a5e379c37f11fea61"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_127760-independent_sample.svg",
+      "sha256": "d777a4d72f4ba12ae7acd2a7bdf30416fbeeea4954e22273c9263f2b0d935656"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_127760-independent.svg",
+      "sha256": "e1c6ab5ef8562306dc1bcaa80259f37929f15c72380606d6c0d1d56917c54132"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_160850-observed.svg",
+      "sha256": "44c2900ffeed08aabe290d7bf8fa4088988b04bf5eecc8b9c0e4a42f37a9f623"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_160850-reference.svg",
+      "sha256": "c7effcdc82ddc7579b76a21187ef7041d016620c1d8d3e93d3bd9975cbe0b3cc"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_160850-correlated_sample.svg",
+      "sha256": "078abf5f7ee0b4c6992252f2c61d39336a9f54c51908da2dc59b8446da6c9cfc"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_160850-correlated.svg",
+      "sha256": "a05eca8d6c0556d608fe296f492fe0870c042d08927d7d0b83a7589deeb08b9a"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_160850-independent_sample.svg",
+      "sha256": "83af3389cd7e629e2cd506fef6e44e0cbf02f77731b4971790f9f3de645d54a1"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_160850-independent.svg",
+      "sha256": "1e4ad5a2ff395c415c484f2963dae34648f15e5581fc18676892b6006650f054"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_157915-observed.svg",
+      "sha256": "e419c4d02dea45471319433416c1b9bafb6ca160a96ddf9b1b26377774f9e4d5"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_157915-reference.svg",
+      "sha256": "d2af0b3ebe75b0b7375079ad6f5427e597f9711a7568a708f5abfe33a9af64ea"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_157915-correlated_sample.svg",
+      "sha256": "4c68b45638b476a78e7e3f1f61ac2cf33a998f4e23c90ff32d73d7d7eb5d51fb"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_157915-correlated.svg",
+      "sha256": "56dfc0143eb94590becf4589069b70845981513ca26e53365a0ad02fc1ff6fa8"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_157915-independent_sample.svg",
+      "sha256": "9603b1baa41e535af86eeaac2c56e41b0f0008e25eac84de3951c43209dc49b9"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_157915-independent.svg",
+      "sha256": "da351de16e6ce3d1f4ec49df3e5d31831d0bd2614d43f4ec940d5cc7f735bd73"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_153182-observed.svg",
+      "sha256": "3f65d20876c00cccc08ecd40ba59cd8bef19797566f111053c18ba739be7ff32"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_153182-reference.svg",
+      "sha256": "0fa6cb2e98c3bdada4d86f4515ac9380e40a8ca6dc2b680f889e4895279b4d06"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_153182-correlated_sample.svg",
+      "sha256": "69ab619c467d4c92e99c59e97d7a5421804dcab8278eca66d1d957d0ad846ca9"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_153182-correlated.svg",
+      "sha256": "5bad7e200a66ae1f845879de06a079dbff9eaea53c3353c66d17c45002803109"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_153182-independent_sample.svg",
+      "sha256": "29ad4e9fc4f3f40e6ece7eb55a202bdb23f4256275164cc8907a1cccb08c3fa9"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_153182-independent.svg",
+      "sha256": "0bd928c984138143e25f698f1752e11229bdc8cff682bed4d292f46ef8eaae11"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_168764-observed.svg",
+      "sha256": "149ac1d95fe41a853b98929136b28441632a26f269579cec30e97909c5bb6de0"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_168764-reference.svg",
+      "sha256": "c8bab000990b256aee8f731e7461f3d03bce6daad64a51859ed63380a98eeb63"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_168764-correlated_sample.svg",
+      "sha256": "a68ae2432ec1f0e6e124cf1009f1daf4710a2b4f7c2659d0b6bf68336b083f48"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_168764-correlated.svg",
+      "sha256": "37e34ae8154ea38655229478f18188e79d4b679123b984f36a558c733f2a65d6"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_168764-independent_sample.svg",
+      "sha256": "a4f9a593802595bd23ccfa283979bd65a37ad0aa48ef2d07fc48b27c8aa2fa51"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_168764-independent.svg",
+      "sha256": "884ac7f79b9d1d061b7d66b01e907457b9af1def7f41fdfb9ab91f104173517d"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_286918-observed.svg",
+      "sha256": "41e86e32896700e763f260b2d94f0a5d8e221382a23e4eb6b16b19425daa3ecb"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_286918-reference.svg",
+      "sha256": "5be372183bbe574c956f040f027157a9b7157f68b22f65398d136eb6370f4b98"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_286918-correlated_sample.svg",
+      "sha256": "6be7dba396814ed31531a51b01bea562c4aef87a1f2b8045a7364beee473ace8"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_286918-correlated.svg",
+      "sha256": "9099081e06fd9ad0ef0a7fa6d2bbaecc709be5ffccb8969414544abe979c13e8"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_286918-independent_sample.svg",
+      "sha256": "7d86bcbb28d7854cf3cc2b4de5507c66b68ac2276670013ab782a632b50ad36e"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_286918-independent.svg",
+      "sha256": "e22d915996ee927f4e2902c727f282e58c23723baeb39cf3755016c50bb21420"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_253644-observed.svg",
+      "sha256": "37821eafeb1d7ca5778cbcaf576730e0f63e43fe9d2e06ad9740cfc9b5377165"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_253644-reference.svg",
+      "sha256": "a21a96d964171d2a2a33c5fe824b5f8093ced934caa88cfa2359a7f4a9b0a5e8"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_253644-correlated_sample.svg",
+      "sha256": "5853dd4b68d9c9621dbd3a959695cba0813f50b129eab8f2f6d24506661fed48"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_253644-correlated.svg",
+      "sha256": "85a3bd707e607fab96c38e0167962fb5c5b595efa4d9e030e95ab1eb04accb2b"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_253644-independent_sample.svg",
+      "sha256": "922972b74cadd47eccc80facb376676ea7f54ccb08f87af2017e4526f13fe1ca"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_253644-independent.svg",
+      "sha256": "480aaf66558985856aa05b09d6b879596e9af2e32c382769f4a9e86650bec81f"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_255950-observed.svg",
+      "sha256": "36c1a35e3c31989e9125190cb9f65e9664c3f3d4ae441828f38527561cdd7a47"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_255950-reference.svg",
+      "sha256": "0188999f42626a502743371270ca03d5c2de160afca7d0e3b8275e2f510c0089"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_255950-correlated_sample.svg",
+      "sha256": "afc266f2859dbf7d64b8d6dfe20d89f495e5210c7ed4651b151bc98822ea4eeb"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_255950-correlated.svg",
+      "sha256": "54ee6d509de66cb4f4ad1e453d34ee6938980f346978aefc803724705191459a"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_255950-independent_sample.svg",
+      "sha256": "65190085398bc77d33651702856f455443a14fadd235933ee51b30d695c15a08"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_255950-independent.svg",
+      "sha256": "0c6a019ca3287433c9a3a75d959fcfed9ba4078f0bc16c7b99e28991e4940511"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_244001-observed.svg",
+      "sha256": "71af150d6616fa44c4d3d2b5c87d5ddcbf525b0598c428280e4aad1e8300b7f5"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_244001-reference.svg",
+      "sha256": "24d041acfbc0e874b883460c7daddd5e1d2f74766d5f99099e8023220416d27e"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_244001-correlated_sample.svg",
+      "sha256": "97e2ce4083074e1f9db1a2d301486a1f953e1ba085000e8ee25a4d0af9355d58"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_244001-correlated.svg",
+      "sha256": "dd2e951160c3de6fcb05520d2ceab38a10ed079c8b815483c243fedf5d3f71d3"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_244001-independent_sample.svg",
+      "sha256": "84a9bf77c6e5d66346c993e5ee0456d43d9a36ce2ed72032a417ce25d3d85c0f"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/indoor-obs_244001-independent.svg",
+      "sha256": "57c2a782147dac2d0b6f3259464c0674fa0ac5b3bf6ebc4d716ce319ddbfee6f"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/outdoor-1693191326-259244-observed.svg",
+      "sha256": "368bbd65018ca909672af776edea0b802c8c0429eeb7623491bc708bbd1a5b5b"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/outdoor-1693191326-259244-reference.svg",
+      "sha256": "028fdebfbab940fee0bdf43f8c8c5b98a331e7b78606e5613747dfc79b4364b1"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/outdoor-1693191326-259244-correlated_sample.svg",
+      "sha256": "836e15815147565d6149b6bbb5e3cb3a17a8032907edf1e2d03e203d85bc5a80"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/outdoor-1693191326-259244-correlated.svg",
+      "sha256": "2d0df62aebe615d20bf1542f44c3aac0c5937aac7d533867f9f85b04106f54cc"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/outdoor-1693191340-710595-observed.svg",
+      "sha256": "5f8946cee37d83aa1c59d8bb3e5ffbe5dec2b79768a87fb7125522813ddc2d09"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/outdoor-1693191340-710595-reference.svg",
+      "sha256": "d3c4735e2d2f024e7b35fb18bb2ea4a6bfddddf38226033a145983d46d471881"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/outdoor-1693191340-710595-correlated_sample.svg",
+      "sha256": "71c970b607c6e4fbb0eca1da56de10d1b39c8eaeac556ce9900f04ce5e992387"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/outdoor-1693191340-710595-correlated.svg",
+      "sha256": "bf86020402fa158e4f91138de2d72b8b52954b937298d47e437e3c5a0d374c80"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/outdoor-1693191351-325015-observed.svg",
+      "sha256": "3e7b8dffd35ef48f5d3beb8736d9a39efaf6d91e405593cc66419c83070a8927"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/outdoor-1693191351-325015-reference.svg",
+      "sha256": "011d83a490df689e51599ac1e8dbd1e6fd8c72b1ea773660bffb94adb1edaa57"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/outdoor-1693191351-325015-correlated_sample.svg",
+      "sha256": "2519eb8c2d990e3198bdbc24f7fa88e5e081483e0a1ea9aebefa731f386f0842"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/outdoor-1693191351-325015-correlated.svg",
+      "sha256": "9a1704588e7f648b50221da36cf06fd6ac32a65f8386f7058103cd7224803f90"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/outdoor-1693191361-599799-observed.svg",
+      "sha256": "849e89305e99c9a3d105a6026503af28f9ac57840677ff083cd067c9ec3cf3c0"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/outdoor-1693191361-599799-reference.svg",
+      "sha256": "956f97cf6c431ea19d1d1f136db83e3557c8814c7c6c3c5d4f8f1c2e7e78cb9e"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/outdoor-1693191361-599799-correlated_sample.svg",
+      "sha256": "9b928fbca0d9c5b8646814d70c665ca5f2dd9cd50945fd03029c093d33f6a231"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/outdoor-1693191361-599799-correlated.svg",
+      "sha256": "af14b58f8014ee6ab3d4689612ad043b2399deb672357d51398bb63260d5ac73"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/outdoor-1693304934-305044-observed.svg",
+      "sha256": "95de177628ee46bfe1d023d9fb8180b732aac8995174994fc532186d69d14015"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/outdoor-1693304934-305044-reference.svg",
+      "sha256": "694b4d8a6e226e6e8bfbe629d5ea0c263583a71bec5fb9169916e0219de5bcd7"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/outdoor-1693304934-305044-correlated_sample.svg",
+      "sha256": "1490d3b0880fc89b2bd35980215b2682dd9390b03e7560f89fdac4dde819c3bb"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/outdoor-1693304934-305044-correlated.svg",
+      "sha256": "7f8cec4a38c06fae887a5ca7d6873bdc46662004cf07ea17b2c09c313beebb71"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/outdoor-1693304947-977672-observed.svg",
+      "sha256": "e88277ddfe94a5898090a223fde46cdfa7376f0bd2c8bac27164e1997d058327"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/outdoor-1693304947-977672-reference.svg",
+      "sha256": "53401c9a68f3f91e5cf1c52910b7afc7f77413b817aef52535646bdd2f1fcdb8"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/outdoor-1693304947-977672-correlated_sample.svg",
+      "sha256": "4a59e1eff8a0ff67f5d0e814c75d167ab5737c90121144d3e40ccbde6a3a8dfb"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/outdoor-1693304947-977672-correlated.svg",
+      "sha256": "b9114adb2febafa2a7c99ce04cc3172d8a2d1679b6b988aa1f52516ab5890e91"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/outdoor-1693304960-572121-observed.svg",
+      "sha256": "729d0cf3c4e8850527d8c280bb4191f47ec7b8c755ae1044c2fd2facaa7bf75c"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/outdoor-1693304960-572121-reference.svg",
+      "sha256": "3496ae352edb05ec8f7a493c6d60ec51d0615cdac2d3e9c12eb3b46f0ec5d980"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/outdoor-1693304960-572121-correlated_sample.svg",
+      "sha256": "3b886343ba8f33bf41c05fd1f2bb4696557024bf19afcb6abde13882057604e3"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/outdoor-1693304960-572121-correlated.svg",
+      "sha256": "acfa4cac07a8fba30e20e8a62b4e4a7ad52faa714c762900517793ac39d4075f"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/outdoor-1693304973-296874-observed.svg",
+      "sha256": "7ca0c19aefc0e9c6810c030812dc0cd8fb9afda7851f116fd01bcd0f84061ad6"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/outdoor-1693304973-296874-reference.svg",
+      "sha256": "575f0ff670251ae72450fef4967f48a65a573480f9032aaf9ece4ee9c299acb2"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/outdoor-1693304973-296874-correlated_sample.svg",
+      "sha256": "319fac210067ded4c6129765a1af2f61d7220e127631e7478b9183111ea26fd0"
+    },
+    {
+      "path": "site/assets/zh/expanded-models/outdoor-1693304973-296874-correlated.svg",
+      "sha256": "91cc43f10b86e7066ec7b8d3392a5251ebc2cc9e4930f2e8654730d84d3ccf75"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_014028-observed.svg",
+      "sha256": "c99b982d963640070b71644550f04771d28d0102610cf177ef522ce83658d748"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_014028-reference.svg",
+      "sha256": "0e60f78250aaaf40857fde57ef78a92b31f909dfda637074b645bbdc69cb05c1"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_014028-correlated_sample.svg",
+      "sha256": "6053307068ece2848d2c5f0c958352acf4a416fabb666182cae9981688653be6"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_014028-correlated.svg",
+      "sha256": "c92e4c1ea9656f1e097f20c6173c74a24bd32b4d289bc6cce672c9bd9c72157c"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_014028-independent_sample.svg",
+      "sha256": "37066d5ed4cf5acc655a591726c243c102c9b0ebecb72bd5e4b04a7ce5d2b796"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_014028-independent.svg",
+      "sha256": "bc6ae6fb2751b134e06a71d44d8936b4938fbd519d7dc172ba4aaf3394b416b1"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_013470-observed.svg",
+      "sha256": "5a8ec47cb3aca246d4989f21d6c3d9944401411af0ada68e09bc01e122ac0849"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_013470-reference.svg",
+      "sha256": "93daeba1ed244a7c6f98c90e3d06a78f8467ed474ac56e76295e7eda3555cc76"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_013470-correlated_sample.svg",
+      "sha256": "3b7333a57a671ed76e8950286b80769851620445e98203e0a15a12d12b157e18"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_013470-correlated.svg",
+      "sha256": "50bdc75c3a52251a22c3e419dd0b9c2273969973f49b85a8297b994dbfdb77a7"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_013470-independent_sample.svg",
+      "sha256": "819e3d5280100d96ccd18e088e9415c2bf284e27a38b4f01aab0c31d4254e3d5"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_013470-independent.svg",
+      "sha256": "4234a40a9c84ea15f597f5049c656328b8eb6b5e14864788d7426d579695d9c6"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_082481-observed.svg",
+      "sha256": "8ef8e2bd97ff4b82134a7bb911d7cc19a133555ea949083e85e2d815e238a1b1"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_082481-reference.svg",
+      "sha256": "641240d8f43be253110c936e40df2063e06cbfea5028efb53f8c0f66d2b7972b"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_082481-correlated_sample.svg",
+      "sha256": "d3fcd704fc0f9a577908e57c569bcb8e445a36584fd883cf6ce51c94fa32b780"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_082481-correlated.svg",
+      "sha256": "5faaf7f9d22da3c3e2fea3f57dd71bdbd9a099a5beea440a229bcdb54d0692e4"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_082481-independent_sample.svg",
+      "sha256": "252b811ddd2ae0ae7991e99a36f5a659d4633ac9c0d6bacaff2822c77d2d337e"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_082481-independent.svg",
+      "sha256": "7d42a1bc94ad88ce14f629a969fc458d32b40bc1b16b5e51e1a4f223d909c639"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_065777-observed.svg",
+      "sha256": "43fc4ff54657dad4c741225e829843ea81f62a5617b6b4c6e1bb312ac0adbbec"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_065777-reference.svg",
+      "sha256": "3ec6b641943566b7425166191af855774cf034525a7d58163d6477ab4969942e"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_065777-correlated_sample.svg",
+      "sha256": "f5233d92cede3a5d52b13934a63bfe686c9c396d70c3d34b057ed1930e197bab"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_065777-correlated.svg",
+      "sha256": "016c4371f2294e49b9abd2125ccaa6c8112eb58f7a54a8745b677d9cbc2e67a6"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_065777-independent_sample.svg",
+      "sha256": "4cb8e0516e997d7f7af694421349fe7beb9152aaa5936931b690b4ccc9584d89"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_065777-independent.svg",
+      "sha256": "18eb8a695c6158b46fd89790a6ff82dce36144a022e8d62f9f0b40ab98655e8e"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_114561-observed.svg",
+      "sha256": "d873034dee127c240d014f69c3ea56ab5e3d4dfff9407de48b1da3f09e377825"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_114561-reference.svg",
+      "sha256": "7f848aa201af34ca8125fa97807d6b71bb888b0bb90d35edf886bb5d9be609ac"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_114561-correlated_sample.svg",
+      "sha256": "57b8963bba7bfbceb9109ab117d1f2efa9848a51bcfe85766c187fa0d65b3fae"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_114561-correlated.svg",
+      "sha256": "de652d80f23459d72c1210fc07c649115eccfb320bd12d270d27536eb5e4b10c"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_114561-independent_sample.svg",
+      "sha256": "cc1b6434bbb4a455b5700468950ab06e47f160c5750c151fa4486ceb845b2319"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_114561-independent.svg",
+      "sha256": "3816a66eb4c0e3edf3a3df41ff97512678a4ba25ab3cd454f2279b88f70c03d1"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_101106-observed.svg",
+      "sha256": "8b8a795525a1bd69e8c3b1c67b3b3d0c7b5d7dace2f29eecec7f5eba772b1a8e"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_101106-reference.svg",
+      "sha256": "f31bcb5b457916fe1e2b421340924422c424e8243502ddefd90022b5ca5cc748"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_101106-correlated_sample.svg",
+      "sha256": "7611f25db00e68a94b200819da2d85a219662c96598e484790aa9a5c2cd2403d"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_101106-correlated.svg",
+      "sha256": "0df6437e5f3aaf750dd578d1724c548a33768d12e38f3e399d0ba7a61bc53a40"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_101106-independent_sample.svg",
+      "sha256": "7bf5187f575948c7210630d481e4aeccbc26f64915621086c17be01f1db0d080"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_101106-independent.svg",
+      "sha256": "cd482714fcdd3156eca30d2210edb1e045cf74c339f553ee58f738f1412c89a0"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_166408-observed.svg",
+      "sha256": "183f8b9e47a906cc639a0d09c15fbb62d4a1e4452b284c3c100216be8373cbac"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_166408-reference.svg",
+      "sha256": "7d9bc34f1a7ab01882331515c0922cc55cacf243eade775956bdd29dec421208"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_166408-correlated_sample.svg",
+      "sha256": "404b9d74ef6385726c77382c42bec463c18dc038ff26a5a911869c6d41f1adc6"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_166408-correlated.svg",
+      "sha256": "ecf30533457a9c27917cbee4d9f906af8e3403c3e992c9d11d59df920f3c33da"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_166408-independent_sample.svg",
+      "sha256": "1918a73be49f5a7844874d0ab19830e6f7593edda280d0e20ae31212948fb5cc"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_166408-independent.svg",
+      "sha256": "54b949c4843911f7ab9b4aba98e90915691a56dc484bf501f80e786806cf45c7"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_157856-observed.svg",
+      "sha256": "4fb9b830e0d9ed51c6ae45170ab81f76f10f6100ab0f10506f0bd8b600f3d456"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_157856-reference.svg",
+      "sha256": "cef1f6ba1db61e79c2a8d9ebd1ee3b40e0a9ef40562a7ea184b1700a6420b8de"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_157856-correlated_sample.svg",
+      "sha256": "e9545f57d784313a6482f89e8d211f42c36088ed774ec2f9700210c991d495de"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_157856-correlated.svg",
+      "sha256": "ba1630b12308dc10f88293053a594eb0fe0297cb6c49deebaab216cc4c37d99f"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_157856-independent_sample.svg",
+      "sha256": "1056ad51882c271bbaff8ca2bde4c9f6d2630d41253f988c829d579070e6ffb6"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_157856-independent.svg",
+      "sha256": "dd03b74b5e26f2a7ac4730384b2d06e00e3e97c11cb10d0706e0ac957254ffb1"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_203894-observed.svg",
+      "sha256": "6cf0633dad53aa4e360f6095b4b1b816c376dbc1eed26869b3da46245d79fb1a"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_203894-reference.svg",
+      "sha256": "cbdeea012e641b92640c2b541ad374f81796d353f6862326129290b20a4f47c5"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_203894-correlated_sample.svg",
+      "sha256": "a8e17e29c680568925cde7ed4287ad2e53db739f7c2292e2f7efd58a34b70ddc"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_203894-correlated.svg",
+      "sha256": "b1c77408868f70e921b77c6694c01d77423645c6ac188eb22709a96fa8d8e5a4"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_203894-independent_sample.svg",
+      "sha256": "d7376f510dae23264ebc13c58d5bb14e92b38ef6b8835944aba04e6adbbfb48e"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_203894-independent.svg",
+      "sha256": "c5c53be18f2749e1ab544e9e3aca38f609fe7381132febc19a5c4522999733a5"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_173909-observed.svg",
+      "sha256": "6414633405123b8a635d60e49804fbc0e8a0b16ae76b0ca5695b00361a5e04ca"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_173909-reference.svg",
+      "sha256": "898ed55f310213b9c563bc2934bf7d6980a9fdafd645129cab81e6ae763e6599"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_173909-correlated_sample.svg",
+      "sha256": "ccf5133e757801ac762548d70e55004f22be578b6d054e1fa94068d5d79a8393"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_173909-correlated.svg",
+      "sha256": "74d9123f5ff404ec7b7e2b332924ecc930ec23f6b2ee810d7323a7e03d6799b9"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_173909-independent_sample.svg",
+      "sha256": "7b577bbb389654a55ce73c3fcab34b0ed6cbde004403aeced3515e13bd56221c"
+    },
+    {
+      "path": "site/assets/zh/parent-pilot/obs_173909-independent.svg",
+      "sha256": "16509b7a6334137ea1eca2b0516a1f51affdcbd94976d5b07ab993e9e35e4472"
+    },
+    {
+      "path": "site/assets/zh/coherent-pilot/obs_014028-coherent_categorical_sample.svg",
+      "sha256": "9c68fc714a2ffe640f70e3c0da0386a000db5debf44b45313345dd4dea2f6aee"
+    },
+    {
+      "path": "site/assets/zh/coherent-pilot/obs_014028-coherent_categorical.svg",
+      "sha256": "ee091d66c344b179ba4b919dcc7048148c2215a2cee352c448102ddd7033dce5"
+    },
+    {
+      "path": "site/assets/zh/coherent-pilot/obs_013470-coherent_categorical_sample.svg",
+      "sha256": "d57621b5d9b70f2266bac02f26938bc41fb69c2bad4013a70dfad1d7fbb402c6"
+    },
+    {
+      "path": "site/assets/zh/coherent-pilot/obs_013470-coherent_categorical.svg",
+      "sha256": "f6225c2af3dae5b75bcc8fc5e7650b65518f6b7b2b2c90b3bef52e42ee989b6b"
+    },
+    {
+      "path": "site/assets/zh/coherent-pilot/obs_082481-coherent_categorical_sample.svg",
+      "sha256": "4a670b8ed81748f5949df731f39dbc7d1c0861189830e9dc5eac96496533ad10"
+    },
+    {
+      "path": "site/assets/zh/coherent-pilot/obs_082481-coherent_categorical.svg",
+      "sha256": "3a43cd9988680573847b5e1bcce82029593270b1f0bce5f122f43b1a82206a7c"
+    },
+    {
+      "path": "site/assets/zh/coherent-pilot/obs_065777-coherent_categorical_sample.svg",
+      "sha256": "ce22f40163823cc937cc4ff6bd83a7c497065a18b935bc47226f5053d888406a"
+    },
+    {
+      "path": "site/assets/zh/coherent-pilot/obs_065777-coherent_categorical.svg",
+      "sha256": "fe6adb241cff4b4c09994afe1b11c0762d1b2a50c2d5a0674e982724235978ab"
+    },
+    {
+      "path": "site/assets/zh/coherent-pilot/obs_114561-coherent_categorical_sample.svg",
+      "sha256": "5213d23bead90d2bd56f767c358821e4ea97f59a6ff7d093048b85e40e665beb"
+    },
+    {
+      "path": "site/assets/zh/coherent-pilot/obs_114561-coherent_categorical.svg",
+      "sha256": "702db060b19756fbcabe0495127caa9a608015ed7cf2fa4694bd5f7cfa14ea02"
+    },
+    {
+      "path": "site/assets/zh/coherent-pilot/obs_101106-coherent_categorical_sample.svg",
+      "sha256": "9b39b47fc54b22600f1b8b772200e9555da30a247b846f8676ef9871bd4af8d8"
+    },
+    {
+      "path": "site/assets/zh/coherent-pilot/obs_101106-coherent_categorical.svg",
+      "sha256": "5fa972ff405b004f290e1e1f8f0077fdb334b06a53d77f54544051f60dd427d4"
+    },
+    {
+      "path": "site/assets/zh/coherent-pilot/obs_166408-coherent_categorical_sample.svg",
+      "sha256": "411d0c0b95a66b918f82fce36172a18a0feda102efb71a450063af1aa1ed8b2b"
+    },
+    {
+      "path": "site/assets/zh/coherent-pilot/obs_166408-coherent_categorical.svg",
+      "sha256": "f30090c9dd5f17577ec4f912f51d6eb5201e9f93eeda3e2215f5733e64e556c8"
+    },
+    {
+      "path": "site/assets/zh/coherent-pilot/obs_157856-coherent_categorical_sample.svg",
+      "sha256": "197409a4ae73ae5bb9bf0c56aee1a38b07e99195053c9d41fad1449c35fe08d9"
+    },
+    {
+      "path": "site/assets/zh/coherent-pilot/obs_157856-coherent_categorical.svg",
+      "sha256": "cbbe8bf0e5f4c8303f45b0a2c078c61067a1d3a0a439615116b39c770f0a3c94"
+    },
+    {
+      "path": "site/assets/zh/coherent-pilot/obs_203894-coherent_categorical_sample.svg",
+      "sha256": "402dc3414d1586695544b6292aa33869effcc0781b3fb1dbfa4fb97242580fa4"
+    },
+    {
+      "path": "site/assets/zh/coherent-pilot/obs_203894-coherent_categorical.svg",
+      "sha256": "2255046d53114348c6f6697c3829d900c825af01ee24bcb6f134ccd42b4df31e"
+    },
+    {
+      "path": "site/assets/zh/coherent-pilot/obs_173909-coherent_categorical_sample.svg",
+      "sha256": "218e932046d892d105d72ee46ebf2325d85f3db41f1f1125cd70897d9879ea71"
+    },
+    {
+      "path": "site/assets/zh/coherent-pilot/obs_173909-coherent_categorical.svg",
+      "sha256": "d5359b0b85c3e35b7ada0d1c6c8c1952c58cb982fb9024536de1a05492cb1338"
+    }
+  ],
+  "new_home_sha256": "46965979fa0ddc972082cedf2b59a46065349878eb1cb112b626b0498ff03808",
+  "new_formal_sha256": "bcd5cb0d7df874107f89e8f8a529eb78047c5f8747c63576b1a32f22d806c1c0",
+  "new_test_images_opened": 0,
+  "GPU_training_or_inference_started": false,
+  "formal_main_or_superiority_authorized": false
+}

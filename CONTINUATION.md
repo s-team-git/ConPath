@@ -8,11 +8,15 @@ LaMa/FM真实中途SIGINT跨进程恢复已通过，loss/模型/optimizer/schedu
 
 恢复时先核对 `results/flatlands_external_formal_v1/queue.json`、`stage_status/`和实际进程；若已有完成receipt，直接复用并核验，不重复训练或旧profiles。源码/协议冻结后不得直接改写已登记文件；运行只能显式resume，非空结果目录拒绝覆盖。结果尚未完成三次充分训练，无正式优越性或投稿结论。
 
-**UTC 2026-09-10 04:33 阶段更新：** LaMa 未训练与四成员1000步完整校准/验证均完成且独立审计通过；FM未训练参照通过独立审计，1000步训练完成、校准/验证进行中。LaMa 5000步pilot成员0已完成，成员1训练中。仍只有两个GPU工作进程，不另启队列。LaMa的验证Brier改善，但NLL/ECE变差，约45.55%的生成世界未知区域接近全空；须继续检查pilot，不能仅凭Brier进入完整训练。完整数据见 [FLATLANDS_FORMAL_STAGE_RESULTS_ZH.md](FLATLANDS_FORMAL_STAGE_RESULTS_ZH.md)。
+**UTC 2026-09-10 05:00 阶段更新：** LaMa与FM的未训练参照、1000步完整校准/验证均完成且通过独立CPU审计；两者都进入5000步pilot。仍只有两个GPU工作进程。LaMa的Brier改善，但NLL/ECE变差且约45.55%的生成世界未知区域接近全空；FM相对初始化地图Brier 0.36328→0.16291、Event Brier 0.30852→0.09076，但仍有漏墙和错误障碍团。详见 [阶段结果](FLATLANDS_FORMAL_STAGE_RESULTS_ZH.md)。本轮尚未训练ConPath及注册控制，不能混入旧结果。
 
-最新报告快照为 `results/flatlands_external_formal_v1/reports/20260910T035037.828561Z`，27组真实图片已逐图核对。新增 `site/formal.html` 只含已独立核验的同阶段validation-only诊断，25组验证图均有图例与固定案例标注，训练曲线未作为验证图发布；首页40组旧案例与244个旧资产内容不变。网页发布状态以本轮 `results/flatlands_formal_site_publication_v1/` 凭据及Git远端为准，不能把本地生成视为上线。
+最新报告快照为 `results/flatlands_external_formal_v1/reports/20260910T045321.733633Z`，同1000步的LaMa/FM已并排展示；27组真实图片由root及协作者逐图核对，81个文件hash通过。修复ECE点贴边裁切只调整绘图，未改数值或冻结源码。网站更新仅发布25组验证图，训练曲线另留在本地报告；旧40案例和244资产内容不变。
 
-网页提交 `6591fb3` 已推送，GitHub Actions `34437742396` 部署成功；线上84个页面、数据及图文件均逐字节hash匹配。当前入口为 https://s-team-git.github.io/ConPath/formal.html ，完成凭据 `results/flatlands_formal_site_publication_v1/deployment_verification.json`。这只确认开发诊断发布，不代表正式三种子结果完成。
+`site/formal.html` 首次诊断版本6591fb3已经上线，84文件线上hash核验通过，凭据在 `results/flatlands_formal_site_publication_v1`。当前补入FM的新版已完成本地浏览器核验，发布凭据在 `results/flatlands_formal_site_publication_v2`；以该目录实际deployment receipt和远端Git为准。入口为 https://s-team-git.github.io/ConPath/formal.html 。网页完成不是正式三种子实验完成。
+
+CPU后处理watcher已提交并启动，当前PID319162，每30秒检查新完成阶段、恰好一次审计并渲染报告，已有四项审计复用。旧PID186156仅为修复绘图而正常退出，没有停止GPU训练或创建训练STOP。状态见`postprocessing/status.json`，启动凭据`stage_postprocessing_launch_2.json`。它不批准视觉门槛、不启动完整训练、不自动发布网站；若修改它记录的源码会停止自己的CPU子进程，必须审查后显式重新启动。LaMa/FM的pilot审查分别等待真实完成+独立审计，只生成数字门槛和固定图片审查建议；目前没有passed视觉回执或full plan。
+
+中文论文方法草案见 [PAPER_FORMAL_EXPERIMENTS_ZH.md](PAPER_FORMAL_EXPERIMENTS_ZH.md)，明确37个验证父地点有既往开发记录、K1/N/A对照、同边际归因限制以及共享GPU计时限制。旧论文数字保留历史，不进入本轮主表。
 
 完整训练控制器和最终独立审计已实现，但尚未运行完整训练或授予任何最终审计通过。操作与严格视觉回执要求见 [FLATLANDS_FORMAL_CLOSEOUT_ZH.md](FLATLANDS_FORMAL_CLOSEOUT_ZH.md)。网页排版审查不能当作模型pilot质量审查。以下内容按日期视为历史。
 

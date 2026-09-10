@@ -1,0 +1,284 @@
+{
+  "created_utc": "2026-09-10T05:02:45.282365+00:00",
+  "validation_only": true,
+  "formal_main_table_or_superiority_authorized": false,
+  "new_test_images_opened": 0,
+  "results": [
+    {
+      "method": "lama",
+      "stage": "untrained",
+      "outer_seed": 20260831,
+      "metrics": "results/flatlands_external_formal_v1/stages/lama/20260831/untrained/attempt_1/metrics.json",
+      "metrics_sha256": "ebe8e251ed6baec914a8ae12c955ac6d8209323501da87af2659a70f719aa35c",
+      "independent_audit": "results/flatlands_external_formal_v1/audits/lama/20260831/untrained/attempt_1/verification.json",
+      "independent_audit_sha256": "193c1faac924e3dc48a1d78d9c22c629ed932374d6d85c24ce73b51713904919",
+      "summary": {
+        "calibration": {
+          "event_brier": 0.11097510887348129,
+          "event_nll": 0.31453613767386873,
+          "event_ece": 0.045622229849412894,
+          "false_safe_at_0_8": null,
+          "coverage_at_0_8": 0.0,
+          "map_brier": 0.2605094946779112,
+          "map_nll": 0.7437930698033607,
+          "continuous_score_brier_diagnostic": 0.24943745500170375,
+          "continuous_score_nll_diagnostic": 0.6920220784700036,
+          "observed_evidence_violation_count": 0,
+          "valid_support_violation_count": 0,
+          "collapse_diagnostic": {
+            "thresholds": {
+              "nearly_all_blocked": "hidden free fraction <= .01",
+              "nearly_all_free": "hidden free fraction >= .99"
+            },
+            "generated_worlds_with_hidden": 388,
+            "generated_nearly_all_blocked_fraction": 0.14432989690721648,
+            "generated_nearly_all_free_fraction": 0.75,
+            "reference_nearly_all_blocked_case_fraction": 0.0,
+            "reference_nearly_all_free_case_fraction": 0.05154639175257732,
+            "mean_valid_free_components_per_world": 56.15979381443299,
+            "mean_reference_valid_free_components": 11.041237113402062,
+            "weighting": "diagnostic output/case fractions; raw per-case quantities retained, no outcome filtering"
+          },
+          "scenes": 97,
+          "events": 3510
+        },
+        "validation": {
+          "event_brier": 0.11111665447831925,
+          "event_nll": 0.3160267911706923,
+          "event_ece": 0.04296316004197547,
+          "false_safe_at_0_8": 0.0,
+          "coverage_at_0_8": 0.00012531328320802005,
+          "map_brier": 0.2447041486911686,
+          "map_nll": 0.7110696866707432,
+          "continuous_score_brier_diagnostic": 0.24926874205076616,
+          "continuous_score_nll_diagnostic": 0.6916846491163311,
+          "observed_evidence_violation_count": 0,
+          "valid_support_violation_count": 0,
+          "collapse_diagnostic": {
+            "thresholds": {
+              "nearly_all_blocked": "hidden free fraction <= .01",
+              "nearly_all_free": "hidden free fraction >= .99"
+            },
+            "generated_worlds_with_hidden": 764,
+            "generated_nearly_all_blocked_fraction": 0.1400523560209424,
+            "generated_nearly_all_free_fraction": 0.75,
+            "reference_nearly_all_blocked_case_fraction": 0.005235602094240838,
+            "reference_nearly_all_free_case_fraction": 0.03664921465968586,
+            "mean_valid_free_components_per_world": 59.596858638743456,
+            "mean_reference_valid_free_components": 12.235602094240837,
+            "weighting": "diagnostic output/case fractions; raw per-case quantities retained, no outcome filtering"
+          },
+          "scenes": 190,
+          "events": 7380
+        }
+      }
+    },
+    {
+      "method": "lama",
+      "stage": "smoke",
+      "outer_seed": 20260831,
+      "metrics": "results/flatlands_external_formal_v1/stages/lama/20260831/smoke/attempt_1/metrics.json",
+      "metrics_sha256": "bef26282fa7120b6503e5a1a3c8337486247de331a0c8353cef09987f35f5dd5",
+      "independent_audit": "results/flatlands_external_formal_v1/audits/lama/20260831/smoke/attempt_1/verification.json",
+      "independent_audit_sha256": "67ccc2cacd7904d9f43e903ec9ba5bfa5bc04828b292504e86ec1c9ea3cba4ab",
+      "summary": {
+        "calibration": {
+          "event_brier": 0.07122060804523361,
+          "event_nll": 0.5716128892735098,
+          "event_ece": 0.05651875507958542,
+          "false_safe_at_0_8": 0.1307956970320654,
+          "coverage_at_0_8": 0.2517263258370309,
+          "map_brier": 0.12778153012852417,
+          "map_nll": 0.8490972890966408,
+          "continuous_score_brier_diagnostic": 0.1270132216159129,
+          "continuous_score_nll_diagnostic": 0.5099234039241387,
+          "observed_evidence_violation_count": 0,
+          "valid_support_violation_count": 0,
+          "collapse_diagnostic": {
+            "thresholds": {
+              "nearly_all_blocked": "hidden free fraction <= .01",
+              "nearly_all_free": "hidden free fraction >= .99"
+            },
+            "generated_worlds_with_hidden": 388,
+            "generated_nearly_all_blocked_fraction": 0.023195876288659795,
+            "generated_nearly_all_free_fraction": 0.4381443298969072,
+            "reference_nearly_all_blocked_case_fraction": 0.0,
+            "reference_nearly_all_free_case_fraction": 0.05154639175257732,
+            "mean_valid_free_components_per_world": 11.29896907216495,
+            "mean_reference_valid_free_components": 11.041237113402062,
+            "weighting": "diagnostic output/case fractions; raw per-case quantities retained, no outcome filtering"
+          },
+          "scenes": 97,
+          "events": 3510
+        },
+        "validation": {
+          "event_brier": 0.07256414129658309,
+          "event_nll": 0.6235458267480894,
+          "event_ece": 0.06530833072745411,
+          "false_safe_at_0_8": 0.13165874314027662,
+          "coverage_at_0_8": 0.2845623841974381,
+          "map_brier": 0.12641740638994559,
+          "map_nll": 0.8878269882295267,
+          "continuous_score_brier_diagnostic": 0.12547972770913174,
+          "continuous_score_nll_diagnostic": 0.5149095794328312,
+          "observed_evidence_violation_count": 0,
+          "valid_support_violation_count": 0,
+          "collapse_diagnostic": {
+            "thresholds": {
+              "nearly_all_blocked": "hidden free fraction <= .01",
+              "nearly_all_free": "hidden free fraction >= .99"
+            },
+            "generated_worlds_with_hidden": 764,
+            "generated_nearly_all_blocked_fraction": 0.020942408376963352,
+            "generated_nearly_all_free_fraction": 0.45549738219895286,
+            "reference_nearly_all_blocked_case_fraction": 0.005235602094240838,
+            "reference_nearly_all_free_case_fraction": 0.03664921465968586,
+            "mean_valid_free_components_per_world": 12.087696335078535,
+            "mean_reference_valid_free_components": 12.235602094240837,
+            "weighting": "diagnostic output/case fractions; raw per-case quantities retained, no outcome filtering"
+          },
+          "scenes": 190,
+          "events": 7380
+        }
+      }
+    },
+    {
+      "method": "flow",
+      "stage": "untrained",
+      "outer_seed": 20260831,
+      "metrics": "results/flatlands_external_formal_v1/stages/flow/20260831/untrained/attempt_1/metrics.json",
+      "metrics_sha256": "dec54b6686532ce3b7f4b0380b498cd963f3fb4ef1d5e926c9ec6f056818f940",
+      "independent_audit": "results/flatlands_external_formal_v1/audits/flow/20260831/untrained/attempt_1/verification.json",
+      "independent_audit_sha256": "bf2503cf64b5e603efc64f76adc54b348160ee9d4dd9fe629e4aa6113b86796f",
+      "summary": {
+        "calibration": {
+          "event_brier": 0.3014992348974168,
+          "event_nll": 4.112094997389788,
+          "event_ece": 0.30312227996630026,
+          "false_safe_at_0_8": null,
+          "coverage_at_0_8": 0.0,
+          "map_brier": 0.3589153594505098,
+          "map_nll": 2.102916146813993,
+          "continuous_score_brier_diagnostic": 0.34778688264937097,
+          "continuous_score_nll_diagnostic": 1.4207909613345424,
+          "observed_evidence_violation_count": 0,
+          "valid_support_violation_count": 0,
+          "collapse_diagnostic": {
+            "thresholds": {
+              "nearly_all_blocked": "hidden free fraction <= .01",
+              "nearly_all_free": "hidden free fraction >= .99"
+            },
+            "generated_worlds_with_hidden": 388,
+            "generated_nearly_all_blocked_fraction": 0.0,
+            "generated_nearly_all_free_fraction": 0.0,
+            "reference_nearly_all_blocked_case_fraction": 0.0,
+            "reference_nearly_all_free_case_fraction": 0.05154639175257732,
+            "mean_valid_free_components_per_world": 1646.6005154639174,
+            "mean_reference_valid_free_components": 11.041237113402062,
+            "weighting": "diagnostic output/case fractions; raw per-case quantities retained, no outcome filtering"
+          },
+          "scenes": 97,
+          "events": 3510
+        },
+        "validation": {
+          "event_brier": 0.30852113793442637,
+          "event_nll": 4.20281171445559,
+          "event_ece": 0.3100716574817648,
+          "false_safe_at_0_8": 0.0,
+          "coverage_at_0_8": 0.0004678362573099415,
+          "map_brier": 0.36328377484867913,
+          "map_nll": 2.146203908196417,
+          "continuous_score_brier_diagnostic": 0.35180833339419865,
+          "continuous_score_nll_diagnostic": 1.4352048012286251,
+          "observed_evidence_violation_count": 0,
+          "valid_support_violation_count": 0,
+          "collapse_diagnostic": {
+            "thresholds": {
+              "nearly_all_blocked": "hidden free fraction <= .01",
+              "nearly_all_free": "hidden free fraction >= .99"
+            },
+            "generated_worlds_with_hidden": 764,
+            "generated_nearly_all_blocked_fraction": 0.0,
+            "generated_nearly_all_free_fraction": 0.0,
+            "reference_nearly_all_blocked_case_fraction": 0.005235602094240838,
+            "reference_nearly_all_free_case_fraction": 0.03664921465968586,
+            "mean_valid_free_components_per_world": 1786.8835078534032,
+            "mean_reference_valid_free_components": 12.235602094240837,
+            "weighting": "diagnostic output/case fractions; raw per-case quantities retained, no outcome filtering"
+          },
+          "scenes": 190,
+          "events": 7380
+        }
+      }
+    },
+    {
+      "method": "flow",
+      "stage": "smoke",
+      "outer_seed": 20260831,
+      "metrics": "results/flatlands_external_formal_v1/stages/flow/20260831/smoke/attempt_1/metrics.json",
+      "metrics_sha256": "c58d6867732fd18e05162bd47633f1a9dae10a9b697ff46b2b24a7b56dd52658",
+      "independent_audit": "results/flatlands_external_formal_v1/audits/flow/20260831/smoke/attempt_1/verification.json",
+      "independent_audit_sha256": "e7ddc4647345b7f96c9985bae3c329e1f804c85ea931d93175ca0e2e25f09c9e",
+      "summary": {
+        "calibration": {
+          "event_brier": 0.0903932657585689,
+          "event_nll": 0.7765824077083949,
+          "event_ece": 0.07358537832110329,
+          "false_safe_at_0_8": 0.1533522490895174,
+          "coverage_at_0_8": 0.2157372277241576,
+          "map_brier": 0.14920215782208723,
+          "map_nll": 1.3182053230363155,
+          "continuous_score_brier_diagnostic": 0.1465209175991303,
+          "continuous_score_nll_diagnostic": 0.7345600029738226,
+          "observed_evidence_violation_count": 0,
+          "valid_support_violation_count": 0,
+          "collapse_diagnostic": {
+            "thresholds": {
+              "nearly_all_blocked": "hidden free fraction <= .01",
+              "nearly_all_free": "hidden free fraction >= .99"
+            },
+            "generated_worlds_with_hidden": 388,
+            "generated_nearly_all_blocked_fraction": 0.0,
+            "generated_nearly_all_free_fraction": 0.05154639175257732,
+            "reference_nearly_all_blocked_case_fraction": 0.0,
+            "reference_nearly_all_free_case_fraction": 0.05154639175257732,
+            "mean_valid_free_components_per_world": 28.809278350515463,
+            "mean_reference_valid_free_components": 11.041237113402062,
+            "weighting": "diagnostic output/case fractions; raw per-case quantities retained, no outcome filtering"
+          },
+          "scenes": 97,
+          "events": 3510
+        },
+        "validation": {
+          "event_brier": 0.09075699850444295,
+          "event_nll": 0.8086905581395604,
+          "event_ece": 0.06480095436853625,
+          "false_safe_at_0_8": 0.17344160351319202,
+          "coverage_at_0_8": 0.23825465111050229,
+          "map_brier": 0.16290928831965987,
+          "map_nll": 1.552663595487786,
+          "continuous_score_brier_diagnostic": 0.16060149826801545,
+          "continuous_score_nll_diagnostic": 0.8236621666553149,
+          "observed_evidence_violation_count": 0,
+          "valid_support_violation_count": 0,
+          "collapse_diagnostic": {
+            "thresholds": {
+              "nearly_all_blocked": "hidden free fraction <= .01",
+              "nearly_all_free": "hidden free fraction >= .99"
+            },
+            "generated_worlds_with_hidden": 764,
+            "generated_nearly_all_blocked_fraction": 0.0,
+            "generated_nearly_all_free_fraction": 0.03795811518324607,
+            "reference_nearly_all_blocked_case_fraction": 0.005235602094240838,
+            "reference_nearly_all_free_case_fraction": 0.03664921465968586,
+            "mean_valid_free_components_per_world": 28.969895287958114,
+            "mean_reference_valid_free_components": 12.235602094240837,
+            "weighting": "diagnostic output/case fractions; raw per-case quantities retained, no outcome filtering"
+          },
+          "scenes": 190,
+          "events": 7380
+        }
+      }
+    }
+  ]
+}
