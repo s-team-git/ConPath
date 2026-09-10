@@ -1,5 +1,7 @@
 # Recent-baseline bridge for ConPath
 
+> **2026-09-10 论文收敛指令（覆盖下方历史计划）：** 外部模型训练/评估和自动续训已取消，保留全部结果；不扩数据、不新建模型方向、不再调参、不打开最终测试。已有原ConPath父级隔离三seed触发停止条件，当前仅整理论文及可审计图表。LaMa/FM只保留Related Work与欠收敛补充记录。当前计划见 [WORK_PLAN.md](WORK_PLAN.md)，证据见 [PAPER_EVIDENCE.md](PAPER_EVIDENCE.md)。
+
 > **当前任务（2026-09-10 UTC）：** 只完成 LaMa BEV adaptation / FM+XAttn literature reimplementation 与注册对照的共同 K=4、三种子外部矩阵。985训练 / 97校准 / 191验证父场景、查询及源码已冻结；1000/5000步阶段运行中。短训练仅是诊断，没有正式优越性结论。下文其它方向与已完成旧实验保留为历史，不是本轮新增任务。见 [正式协议](FLATLANDS_FORMAL_PROTOCOL_ZH.md)、[阶段结果](FLATLANDS_FORMAL_STAGE_RESULTS_ZH.md)及[执行与收尾](FLATLANDS_FORMAL_CLOSEOUT_ZH.md)。
 
 > **2026-09-07 文献复核后的主线：** 已读八篇正文。主比较优先采用 LaMa/集成、条件流匹配，

@@ -1,0 +1,50 @@
+{
+  "pid": null,
+  "phase": "staged_only",
+  "methods": [
+    "lama",
+    "flow"
+  ],
+  "results": [
+    {
+      "method": "lama",
+      "seed": 20260831,
+      "protocol_sha256": "409c8bc4a9142d75a62e6c3d67204ef7d5045ad38f74b45b5411f8bfe899c0e2",
+      "status": "pilot_evaluated_waiting_numerical_and_visual_review",
+      "completed_evaluations": {
+        "untrained": "results/flatlands_external_formal_v1/stages/lama/20260831/untrained/attempt_1",
+        "smoke": "results/flatlands_external_formal_v1/stages/lama/20260831/smoke/attempt_1",
+        "pilot": "results/flatlands_external_formal_v1/stages/lama/20260831/pilot/attempt_1"
+      },
+      "full_training_started": false,
+      "test_assets_opened": false,
+      "current_stage": "pilot",
+      "step": 5000,
+      "current_action": null,
+      "evaluation": "results/flatlands_external_formal_v1/stages/lama/20260831/pilot/attempt_1",
+      "current_member": 3,
+      "completed_utc": "2026-09-10T06:01:19.187216+00:00"
+    },
+    {
+      "method": "flow",
+      "seed": 20260831,
+      "protocol_sha256": "409c8bc4a9142d75a62e6c3d67204ef7d5045ad38f74b45b5411f8bfe899c0e2",
+      "status": "paused",
+      "completed_evaluations": {
+        "untrained": "results/flatlands_external_formal_v1/stages/flow/20260831/untrained/attempt_1",
+        "smoke": "results/flatlands_external_formal_v1/stages/flow/20260831/smoke/attempt_1"
+      },
+      "full_training_started": false,
+      "test_assets_opened": false,
+      "current_stage": "pilot",
+      "step": 5000,
+      "current_action": "calibration_and_validation",
+      "evaluation": "results/flatlands_external_formal_v1/stages/flow/20260831/pilot/attempt_1",
+      "current_member": 0,
+      "error": "RuntimeError('flow child exit=-2; log=/home/hairo/pathrel_transfer/pathrel_pro6000/results/flatlands_external_formal_v1/logs/flow_20260831_pilot_evaluation.attempt1.log')",
+      "stopped_utc": "2026-09-10T06:08:06.933781+00:00"
+    }
+  ],
+  "finished_utc": "2026-09-10T06:08:06.944267+00:00",
+  "full_training_started": false
+}

@@ -1,0 +1,520 @@
+{
+  "source_gallery": "site/data/coherent_pilot_gallery_zh.json",
+  "gallery_sha256": "78c1ff1449d2361a7cb356f55c956fa8cd7363ea738614df7a07edc65bbe53ce",
+  "examples": [
+    {
+      "id": "pilot-obs_014028",
+      "global_id": "obs_014028",
+      "source": "3RScan",
+      "scene": "7747a508-9431-24e8-863c-c53906506d8b",
+      "parent_group": "3RScan:7747a50a-9431-24e8-85c6-3488c128ac26",
+      "domain": "indoor",
+      "cohort": "new_pilot",
+      "panels": {
+        "observed": "assets/zh/parent-pilot/obs_014028-observed.svg",
+        "reference": "assets/zh/parent-pilot/obs_014028-reference.svg",
+        "correlated_sample": "assets/zh/parent-pilot/obs_014028-correlated_sample.svg",
+        "correlated": "assets/zh/parent-pilot/obs_014028-correlated.svg",
+        "independent_sample": "assets/zh/parent-pilot/obs_014028-independent_sample.svg",
+        "independent": "assets/zh/parent-pilot/obs_014028-independent.svg",
+        "coherent_categorical_sample": "assets/zh/coherent-pilot/obs_014028-coherent_categorical_sample.svg",
+        "coherent_categorical": "assets/zh/coherent-pilot/obs_014028-coherent_categorical.svg"
+      },
+      "split_zh": "新基线 · 独立地点验证",
+      "checkpoint_scope_zh": "本轮从头训练；此地点未参与训练或检查点选优，属于开发验证",
+      "radius_cells": 10,
+      "seed": 20260910,
+      "sampling_seed": 24274938,
+      "candidate_index": 24,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        191,
+        248
+      ],
+      "samples": 32,
+      "target": false,
+      "event_probability": {
+        "correlated": 0.0,
+        "independent": 0.0,
+        "coherent_categorical": 0.0
+      },
+      "displayed_world_event": {
+        "correlated": false,
+        "independent": false,
+        "coherent_categorical": false
+      },
+      "final_test": false,
+      "selection": "two hash-ranked observations/source, first input-hash-ordered query; first sampled world",
+      "checkpoint_selected_on_this_cohort": false,
+      "candidate_model_available": true,
+      "candidate_scope_zh": "此地点未参与训练或检查点选优；其验证反馈已用于选择改进方向，属于开发比较，非最终测试。",
+      "validation_reused_for_model_development": true
+    },
+    {
+      "id": "pilot-obs_013470",
+      "global_id": "obs_013470",
+      "source": "3RScan",
+      "scene": "d63767be-3205-226c-9a89-3a27969053a7",
+      "parent_group": "3RScan:d63767be-3205-226c-9a89-3a27969053a7",
+      "domain": "indoor",
+      "cohort": "new_pilot",
+      "panels": {
+        "observed": "assets/zh/parent-pilot/obs_013470-observed.svg",
+        "reference": "assets/zh/parent-pilot/obs_013470-reference.svg",
+        "correlated_sample": "assets/zh/parent-pilot/obs_013470-correlated_sample.svg",
+        "correlated": "assets/zh/parent-pilot/obs_013470-correlated.svg",
+        "independent_sample": "assets/zh/parent-pilot/obs_013470-independent_sample.svg",
+        "independent": "assets/zh/parent-pilot/obs_013470-independent.svg",
+        "coherent_categorical_sample": "assets/zh/coherent-pilot/obs_013470-coherent_categorical_sample.svg",
+        "coherent_categorical": "assets/zh/coherent-pilot/obs_013470-coherent_categorical.svg"
+      },
+      "split_zh": "新基线 · 独立地点验证",
+      "checkpoint_scope_zh": "本轮从头训练；此地点未参与训练或检查点选优，属于开发验证",
+      "radius_cells": 10,
+      "seed": 20260910,
+      "sampling_seed": 24274380,
+      "candidate_index": 12,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        191,
+        208
+      ],
+      "samples": 32,
+      "target": false,
+      "event_probability": {
+        "correlated": 0.0,
+        "independent": 0.0,
+        "coherent_categorical": 0.0
+      },
+      "displayed_world_event": {
+        "correlated": false,
+        "independent": false,
+        "coherent_categorical": false
+      },
+      "final_test": false,
+      "selection": "two hash-ranked observations/source, first input-hash-ordered query; first sampled world",
+      "checkpoint_selected_on_this_cohort": false,
+      "candidate_model_available": true,
+      "candidate_scope_zh": "此地点未参与训练或检查点选优；其验证反馈已用于选择改进方向，属于开发比较，非最终测试。",
+      "validation_reused_for_model_development": true
+    },
+    {
+      "id": "pilot-obs_082481",
+      "global_id": "obs_082481",
+      "source": "ARKitScenes",
+      "scene": "42444501_3dod_mesh",
+      "parent_group": "ARKitScenes:421065",
+      "domain": "indoor",
+      "cohort": "new_pilot",
+      "panels": {
+        "observed": "assets/zh/parent-pilot/obs_082481-observed.svg",
+        "reference": "assets/zh/parent-pilot/obs_082481-reference.svg",
+        "correlated_sample": "assets/zh/parent-pilot/obs_082481-correlated_sample.svg",
+        "correlated": "assets/zh/parent-pilot/obs_082481-correlated.svg",
+        "independent_sample": "assets/zh/parent-pilot/obs_082481-independent_sample.svg",
+        "independent": "assets/zh/parent-pilot/obs_082481-independent.svg",
+        "coherent_categorical_sample": "assets/zh/coherent-pilot/obs_082481-coherent_categorical_sample.svg",
+        "coherent_categorical": "assets/zh/coherent-pilot/obs_082481-coherent_categorical.svg"
+      },
+      "split_zh": "新基线 · 独立地点验证",
+      "checkpoint_scope_zh": "本轮从头训练；此地点未参与训练或检查点选优，属于开发验证",
+      "radius_cells": 10,
+      "seed": 20260910,
+      "sampling_seed": 24343391,
+      "candidate_index": 30,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        191,
+        8
+      ],
+      "samples": 32,
+      "target": false,
+      "event_probability": {
+        "correlated": 0.0,
+        "independent": 0.0,
+        "coherent_categorical": 0.0
+      },
+      "displayed_world_event": {
+        "correlated": false,
+        "independent": false,
+        "coherent_categorical": false
+      },
+      "final_test": false,
+      "selection": "two hash-ranked observations/source, first input-hash-ordered query; first sampled world",
+      "checkpoint_selected_on_this_cohort": false,
+      "candidate_model_available": true,
+      "candidate_scope_zh": "此地点未参与训练或检查点选优；其验证反馈已用于选择改进方向，属于开发比较，非最终测试。",
+      "validation_reused_for_model_development": true
+    },
+    {
+      "id": "pilot-obs_065777",
+      "global_id": "obs_065777",
+      "source": "ARKitScenes",
+      "scene": "42897583_3dod_mesh",
+      "parent_group": "ARKitScenes:422385",
+      "domain": "indoor",
+      "cohort": "new_pilot",
+      "panels": {
+        "observed": "assets/zh/parent-pilot/obs_065777-observed.svg",
+        "reference": "assets/zh/parent-pilot/obs_065777-reference.svg",
+        "correlated_sample": "assets/zh/parent-pilot/obs_065777-correlated_sample.svg",
+        "correlated": "assets/zh/parent-pilot/obs_065777-correlated.svg",
+        "independent_sample": "assets/zh/parent-pilot/obs_065777-independent_sample.svg",
+        "independent": "assets/zh/parent-pilot/obs_065777-independent.svg",
+        "coherent_categorical_sample": "assets/zh/coherent-pilot/obs_065777-coherent_categorical_sample.svg",
+        "coherent_categorical": "assets/zh/coherent-pilot/obs_065777-coherent_categorical.svg"
+      },
+      "split_zh": "新基线 · 独立地点验证",
+      "checkpoint_scope_zh": "本轮从头训练；此地点未参与训练或检查点选优，属于开发验证",
+      "radius_cells": 10,
+      "seed": 20260910,
+      "sampling_seed": 24326687,
+      "candidate_index": 2,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        226,
+        148
+      ],
+      "samples": 32,
+      "target": false,
+      "event_probability": {
+        "correlated": 0.0,
+        "independent": 0.0,
+        "coherent_categorical": 0.0
+      },
+      "displayed_world_event": {
+        "correlated": false,
+        "independent": false,
+        "coherent_categorical": false
+      },
+      "final_test": false,
+      "selection": "two hash-ranked observations/source, first input-hash-ordered query; first sampled world",
+      "checkpoint_selected_on_this_cohort": false,
+      "candidate_model_available": true,
+      "candidate_scope_zh": "此地点未参与训练或检查点选优；其验证反馈已用于选择改进方向，属于开发比较，非最终测试。",
+      "validation_reused_for_model_development": true
+    },
+    {
+      "id": "pilot-obs_114561",
+      "global_id": "obs_114561",
+      "source": "Matterport3D",
+      "scene": "EDJbREhghzL_region_segmentations_region8.ply",
+      "parent_group": "Matterport3D:EDJbREhghzL",
+      "domain": "indoor",
+      "cohort": "new_pilot",
+      "panels": {
+        "observed": "assets/zh/parent-pilot/obs_114561-observed.svg",
+        "reference": "assets/zh/parent-pilot/obs_114561-reference.svg",
+        "correlated_sample": "assets/zh/parent-pilot/obs_114561-correlated_sample.svg",
+        "correlated": "assets/zh/parent-pilot/obs_114561-correlated.svg",
+        "independent_sample": "assets/zh/parent-pilot/obs_114561-independent_sample.svg",
+        "independent": "assets/zh/parent-pilot/obs_114561-independent.svg",
+        "coherent_categorical_sample": "assets/zh/coherent-pilot/obs_114561-coherent_categorical_sample.svg",
+        "coherent_categorical": "assets/zh/coherent-pilot/obs_114561-coherent_categorical.svg"
+      },
+      "split_zh": "新基线 · 独立地点验证",
+      "checkpoint_scope_zh": "本轮从头训练；此地点未参与训练或检查点选优，属于开发验证",
+      "radius_cells": 10,
+      "seed": 20260910,
+      "sampling_seed": 24375471,
+      "candidate_index": 2,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        226,
+        148
+      ],
+      "samples": 32,
+      "target": true,
+      "event_probability": {
+        "correlated": 0.75,
+        "independent": 0.71875,
+        "coherent_categorical": 0.96875
+      },
+      "displayed_world_event": {
+        "correlated": false,
+        "independent": true,
+        "coherent_categorical": true
+      },
+      "final_test": false,
+      "selection": "two hash-ranked observations/source, first input-hash-ordered query; first sampled world",
+      "checkpoint_selected_on_this_cohort": false,
+      "candidate_model_available": true,
+      "candidate_scope_zh": "此地点未参与训练或检查点选优；其验证反馈已用于选择改进方向，属于开发比较，非最终测试。",
+      "validation_reused_for_model_development": true
+    },
+    {
+      "id": "pilot-obs_101106",
+      "global_id": "obs_101106",
+      "source": "Matterport3D",
+      "scene": "HxpKQynjfin_region_segmentations_region1.ply",
+      "parent_group": "Matterport3D:HxpKQynjfin",
+      "domain": "indoor",
+      "cohort": "new_pilot",
+      "panels": {
+        "observed": "assets/zh/parent-pilot/obs_101106-observed.svg",
+        "reference": "assets/zh/parent-pilot/obs_101106-reference.svg",
+        "correlated_sample": "assets/zh/parent-pilot/obs_101106-correlated_sample.svg",
+        "correlated": "assets/zh/parent-pilot/obs_101106-correlated.svg",
+        "independent_sample": "assets/zh/parent-pilot/obs_101106-independent_sample.svg",
+        "independent": "assets/zh/parent-pilot/obs_101106-independent.svg",
+        "coherent_categorical_sample": "assets/zh/coherent-pilot/obs_101106-coherent_categorical_sample.svg",
+        "coherent_categorical": "assets/zh/coherent-pilot/obs_101106-coherent_categorical.svg"
+      },
+      "split_zh": "新基线 · 独立地点验证",
+      "checkpoint_scope_zh": "本轮从头训练；此地点未参与训练或检查点选优，属于开发验证",
+      "radius_cells": 10,
+      "seed": 20260910,
+      "sampling_seed": 24362016,
+      "candidate_index": 11,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        171,
+        163
+      ],
+      "samples": 32,
+      "target": false,
+      "event_probability": {
+        "correlated": 0.5625,
+        "independent": 0.78125,
+        "coherent_categorical": 0.75
+      },
+      "displayed_world_event": {
+        "correlated": true,
+        "independent": true,
+        "coherent_categorical": true
+      },
+      "final_test": false,
+      "selection": "two hash-ranked observations/source, first input-hash-ordered query; first sampled world",
+      "checkpoint_selected_on_this_cohort": false,
+      "candidate_model_available": true,
+      "candidate_scope_zh": "此地点未参与训练或检查点选优；其验证反馈已用于选择改进方向，属于开发比较，非最终测试。",
+      "validation_reused_for_model_development": true
+    },
+    {
+      "id": "pilot-obs_166408",
+      "global_id": "obs_166408",
+      "source": "ScanNet",
+      "scene": "scene0489_00",
+      "parent_group": "ScanNet:scene0489",
+      "domain": "indoor",
+      "cohort": "new_pilot",
+      "panels": {
+        "observed": "assets/zh/parent-pilot/obs_166408-observed.svg",
+        "reference": "assets/zh/parent-pilot/obs_166408-reference.svg",
+        "correlated_sample": "assets/zh/parent-pilot/obs_166408-correlated_sample.svg",
+        "correlated": "assets/zh/parent-pilot/obs_166408-correlated.svg",
+        "independent_sample": "assets/zh/parent-pilot/obs_166408-independent_sample.svg",
+        "independent": "assets/zh/parent-pilot/obs_166408-independent.svg",
+        "coherent_categorical_sample": "assets/zh/coherent-pilot/obs_166408-coherent_categorical_sample.svg",
+        "coherent_categorical": "assets/zh/coherent-pilot/obs_166408-coherent_categorical.svg"
+      },
+      "split_zh": "新基线 · 独立地点验证",
+      "checkpoint_scope_zh": "本轮从头训练；此地点未参与训练或检查点选优，属于开发验证",
+      "radius_cells": 10,
+      "seed": 20260910,
+      "sampling_seed": 24427318,
+      "candidate_index": 19,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        151,
+        59
+      ],
+      "samples": 32,
+      "target": false,
+      "event_probability": {
+        "correlated": 0.0,
+        "independent": 0.0,
+        "coherent_categorical": 0.0
+      },
+      "displayed_world_event": {
+        "correlated": false,
+        "independent": false,
+        "coherent_categorical": false
+      },
+      "final_test": false,
+      "selection": "two hash-ranked observations/source, first input-hash-ordered query; first sampled world",
+      "checkpoint_selected_on_this_cohort": false,
+      "candidate_model_available": true,
+      "candidate_scope_zh": "此地点未参与训练或检查点选优；其验证反馈已用于选择改进方向，属于开发比较，非最终测试。",
+      "validation_reused_for_model_development": true
+    },
+    {
+      "id": "pilot-obs_157856",
+      "global_id": "obs_157856",
+      "source": "ScanNet",
+      "scene": "scene0355_00",
+      "parent_group": "ScanNet:scene0355",
+      "domain": "indoor",
+      "cohort": "new_pilot",
+      "panels": {
+        "observed": "assets/zh/parent-pilot/obs_157856-observed.svg",
+        "reference": "assets/zh/parent-pilot/obs_157856-reference.svg",
+        "correlated_sample": "assets/zh/parent-pilot/obs_157856-correlated_sample.svg",
+        "correlated": "assets/zh/parent-pilot/obs_157856-correlated.svg",
+        "independent_sample": "assets/zh/parent-pilot/obs_157856-independent_sample.svg",
+        "independent": "assets/zh/parent-pilot/obs_157856-independent.svg",
+        "coherent_categorical_sample": "assets/zh/coherent-pilot/obs_157856-coherent_categorical_sample.svg",
+        "coherent_categorical": "assets/zh/coherent-pilot/obs_157856-coherent_categorical.svg"
+      },
+      "split_zh": "新基线 · 独立地点验证",
+      "checkpoint_scope_zh": "本轮从头训练；此地点未参与训练或检查点选优，属于开发验证",
+      "radius_cells": 10,
+      "seed": 20260910,
+      "sampling_seed": 24418766,
+      "candidate_index": 19,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        151,
+        59
+      ],
+      "samples": 32,
+      "target": false,
+      "event_probability": {
+        "correlated": 0.0,
+        "independent": 0.0,
+        "coherent_categorical": 0.0
+      },
+      "displayed_world_event": {
+        "correlated": false,
+        "independent": false,
+        "coherent_categorical": false
+      },
+      "final_test": false,
+      "selection": "two hash-ranked observations/source, first input-hash-ordered query; first sampled world",
+      "checkpoint_selected_on_this_cohort": false,
+      "candidate_model_available": true,
+      "candidate_scope_zh": "此地点未参与训练或检查点选优；其验证反馈已用于选择改进方向，属于开发比较，非最终测试。",
+      "validation_reused_for_model_development": true
+    },
+    {
+      "id": "pilot-obs_203894",
+      "global_id": "obs_203894",
+      "source": "ZInD",
+      "scene": "1288_floor_01_pano_9",
+      "parent_group": "ZInD:1288",
+      "domain": "indoor",
+      "cohort": "new_pilot",
+      "panels": {
+        "observed": "assets/zh/parent-pilot/obs_203894-observed.svg",
+        "reference": "assets/zh/parent-pilot/obs_203894-reference.svg",
+        "correlated_sample": "assets/zh/parent-pilot/obs_203894-correlated_sample.svg",
+        "correlated": "assets/zh/parent-pilot/obs_203894-correlated.svg",
+        "independent_sample": "assets/zh/parent-pilot/obs_203894-independent_sample.svg",
+        "independent": "assets/zh/parent-pilot/obs_203894-independent.svg",
+        "coherent_categorical_sample": "assets/zh/coherent-pilot/obs_203894-coherent_categorical_sample.svg",
+        "coherent_categorical": "assets/zh/coherent-pilot/obs_203894-coherent_categorical.svg"
+      },
+      "split_zh": "新基线 · 独立地点验证",
+      "checkpoint_scope_zh": "本轮从头训练；此地点未参与训练或检查点选优，属于开发验证",
+      "radius_cells": 10,
+      "seed": 20260910,
+      "sampling_seed": 24464804,
+      "candidate_index": 2,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        226,
+        148
+      ],
+      "samples": 32,
+      "target": true,
+      "event_probability": {
+        "correlated": 0.03125,
+        "independent": 0.0,
+        "coherent_categorical": 0.4375
+      },
+      "displayed_world_event": {
+        "correlated": false,
+        "independent": false,
+        "coherent_categorical": false
+      },
+      "final_test": false,
+      "selection": "two hash-ranked observations/source, first input-hash-ordered query; first sampled world",
+      "checkpoint_selected_on_this_cohort": false,
+      "candidate_model_available": true,
+      "candidate_scope_zh": "此地点未参与训练或检查点选优；其验证反馈已用于选择改进方向，属于开发比较，非最终测试。",
+      "validation_reused_for_model_development": true
+    },
+    {
+      "id": "pilot-obs_173909",
+      "global_id": "obs_173909",
+      "source": "ZInD",
+      "scene": "1246_floor_02_pano_54",
+      "parent_group": "ZInD:1246",
+      "domain": "indoor",
+      "cohort": "new_pilot",
+      "panels": {
+        "observed": "assets/zh/parent-pilot/obs_173909-observed.svg",
+        "reference": "assets/zh/parent-pilot/obs_173909-reference.svg",
+        "correlated_sample": "assets/zh/parent-pilot/obs_173909-correlated_sample.svg",
+        "correlated": "assets/zh/parent-pilot/obs_173909-correlated.svg",
+        "independent_sample": "assets/zh/parent-pilot/obs_173909-independent_sample.svg",
+        "independent": "assets/zh/parent-pilot/obs_173909-independent.svg",
+        "coherent_categorical_sample": "assets/zh/coherent-pilot/obs_173909-coherent_categorical_sample.svg",
+        "coherent_categorical": "assets/zh/coherent-pilot/obs_173909-coherent_categorical.svg"
+      },
+      "split_zh": "新基线 · 独立地点验证",
+      "checkpoint_scope_zh": "本轮从头训练；此地点未参与训练或检查点选优，属于开发验证",
+      "radius_cells": 10,
+      "seed": 20260910,
+      "sampling_seed": 24434819,
+      "candidate_index": 7,
+      "start": [
+        191,
+        128
+      ],
+      "goal": [
+        171,
+        93
+      ],
+      "samples": 32,
+      "target": false,
+      "event_probability": {
+        "correlated": 0.0,
+        "independent": 0.0,
+        "coherent_categorical": 0.0
+      },
+      "displayed_world_event": {
+        "correlated": false,
+        "independent": false,
+        "coherent_categorical": false
+      },
+      "final_test": false,
+      "selection": "two hash-ranked observations/source, first input-hash-ordered query; first sampled world",
+      "checkpoint_selected_on_this_cohort": false,
+      "candidate_model_available": true,
+      "candidate_scope_zh": "此地点未参与训练或检查点选优；其验证反馈已用于选择改进方向，属于开发比较，非最终测试。",
+      "validation_reused_for_model_development": true
+    }
+  ],
+  "selection": "Retain all 10 pre-existing hash-selected cases in recorded order; display fixed world indices 0..3 of saved K32.",
+  "new_outcome_based_selection": false,
+  "new_inference": false,
+  "new_test_asset_reads": 0
+}

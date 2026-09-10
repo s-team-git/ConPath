@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "completed_utc": "2026-09-10T06:49:01.310181+00:00",
+  "paper_consolidation_complete": true,
+  "scientific_status": {
+    "completed": "Existing-evidence paper bundle only",
+    "not_completed": "Full confirmatory paper evidence / final test / complete new-cohort six-method matrix",
+    "missing_or_limited": [
+      "new-parent direct-query/no-event/no-global runs",
+      "strict fixed-ten-case internal-bottleneck qualitative",
+      "calibration per-query predictions",
+      "untouched final holdout eligibility",
+      "sufficiently converged external baselines (cancelled, no restart)"
+    ],
+    "reason_no_more_training": "User stop condition 1 met by existing three-seed ConPath vs independent; external continuation cancelled."
+  },
+  "files": {
+    "PAPER_DRAFT.md": "714173c832833c6cfd3385f77f290bd2ef46cc3b3e4aa093935e4033e438e0cc",
+    "PAPER_EVIDENCE.md": "e3a2902c975118b98d01e3c97fe18ffd8f088c666be6158b68a9e91d1844ffef",
+    "PAPER_TABLES.md": "4223206cfbbc09b7e5e10a92f9003a01d455a68a32e20b97471e16385ef427d3",
+    "PAPER_FIGURES.md": "6c581f265671053b2f876f1a96fbab60a396a287a5fbc77f17f5ec519d965ba1",
+    "results/paper_validation_snapshot.json": "8a3b81ef1f01dec72e57f92d7c02d39ed0e3697e12389143a755a836cc4bbc32",
+    "results/paper_validation_snapshot.csv": "a6ea41fe2a6fce10af290dc401a526b1b25fc6bd6ac0a0a8c41d2a19d9981475",
+    "results/FINAL_MODEL_SELECTION.md": "46b793949eafaf1e2b01e79a8401ada02d7270a918427c989d051d46c7a3209f",
+    "CONTINUATION.md": "b9621283ec62e2a721e9feaf2e1bcf205ecc949670bf1e282c160728f9112ab1",
+    "RECOVERY_STATE.json": "32ca43288c38cbe8c632355f43eb7664c0361751f1fb46fbb5895c45367d2b41",
+    "CONFERENCE_READINESS.md": "6654d0ba97e14d0b8d451aaf69b1b18e1f00f89e82856fdd3a822d09d09b7a71",
+    "WORK_PLAN.md": "cd0a11b68c0e5c3f049426f83ff5d153acd88b11cedc248e67b453dbd7b639d4"
+  },
+  "numeric_rows": 29,
+  "existing_prediction_reports": 23,
+  "source_files_verified": 189,
+  "current_figure_groups": 18,
+  "current_figure_exports": 54,
+  "historical_figure_groups": 2,
+  "historical_figure_exports": 4,
+  "verification": {
+    "results/paper_convergence_v1/bundle_verification.json": "14fbb6121897a4ead427fd80972009d42b256a03af8c4c24ce480c5a2a31db7b",
+    "results/paper_convergence_v1/supplement_verification.json": "2b0e8e0803899f42fe5a35b2f076f8049f1ba5052172600e4366b08c164c6af8"
+  },
+  "external_cancellation_receipt": "results/flatlands_external_formal_v1/cancellation_20260910T0608Z/coordinator_verification.json",
+  "new_training_runs": 0,
+  "new_model_inference_runs": 0,
+  "test_assets_read_this_task": 0,
+  "external_resume_authorized": false,
+  "new_optimization_authorized": false,
+  "website_modified": false,
+  "git_tag_intended": "paper-convergence-validation-v1"
+}

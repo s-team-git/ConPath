@@ -1,0 +1,718 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-09-10T06:18:26.370844+00:00",
+  "status": "external_training_and_full_followthrough_cancelled_by_user",
+  "cancellation_is_not_model_inferiority_evidence": true,
+  "coordinator": "/root/formal_resume",
+  "stop_marker": {
+    "path": "results/flatlands_external_formal_v1/STOP",
+    "sha256": "e0dd3e0c19c61eb86df710f2cbc305b6e6b0ab0a50903d5048d9f3dbfdcce56e",
+    "bytes": 151
+  },
+  "stop_reason": "User superseded external baseline training with paper convergence on 2026-09-10T06:08:06.523492+00:00; no external training or full launch authorized.",
+  "queue": {
+    "path": "results/flatlands_external_formal_v1/queue.json",
+    "sha256": "2bd4021cf788307de9479deb4b79ba8a9b358dc335d473471b3545b286a55de3",
+    "bytes": 2052
+  },
+  "former_supervisor_pid": 1841989,
+  "former_watcher_pid": 319162,
+  "active_project_training_evaluation_queue_or_watcher_processes": [],
+  "locks": {
+    ".queue.lock": "released",
+    "postprocessing/.watcher.lock": "released"
+  },
+  "gpu_query": "pid, process_name, used_gpu_memory [MiB]\n8519, python3, 1026 MiB\n1144236, /home/hairo/skillstore/components/h-ide-vision/.venv/bin/python3, 946 MiB\n1802974, /workspaces/ros2_ws/.venv-viewer/lib/python3.12/site-packages/rerun_sdk/rerun_cli/rerun, 258 MiB\n",
+  "signals_sent_by_this_coordinator": [],
+  "coordinator_wait_process_already_exited": {
+    "tool_session": 68402,
+    "exit_code": 143
+  },
+  "protocol": {
+    "path": "results/flatlands_external_formal_protocol_v1/protocol.json",
+    "sha256": "409c8bc4a9142d75a62e6c3d67204ef7d5045ad38f74b45b5411f8bfe899c0e2",
+    "bytes": 432743
+  },
+  "frozen_source_integrity": {
+    "src/pathrel/__init__.py": true,
+    "src/pathrel/ablation_protocol.py": true,
+    "src/pathrel/benchmark_metrics.py": true,
+    "src/pathrel/cogniplan.py": true,
+    "src/pathrel/coherent_categorical.py": true,
+    "src/pathrel/data_access.py": true,
+    "src/pathrel/external_completion.py": true,
+    "src/pathrel/external_training.py": true,
+    "src/pathrel/flatlands.py": true,
+    "src/pathrel/flatlands_baselines.py": true,
+    "src/pathrel/flatlands_data.py": true,
+    "src/pathrel/flatlands_eval.py": true,
+    "src/pathrel/flatlands_query.py": true,
+    "src/pathrel/flatlands_sampling.py": true,
+    "src/pathrel/flow_matching.py": true,
+    "src/pathrel/formal_checkpoint.py": true,
+    "src/pathrel/formal_data.py": true,
+    "src/pathrel/formal_inference.py": true,
+    "src/pathrel/formal_metrics.py": true,
+    "src/pathrel/formal_training.py": true,
+    "src/pathrel/gpu_diagnostics.py": true,
+    "src/pathrel/labels.py": true,
+    "src/pathrel/lama.py": true,
+    "src/pathrel/losses.py": true,
+    "src/pathrel/metrics.py": true,
+    "src/pathrel/model.py": true,
+    "src/pathrel/parent_groups.py": true,
+    "src/pathrel/parent_pilot_data.py": true,
+    "src/pathrel/posterior_audits.py": true,
+    "src/pathrel/reachability.py": true,
+    "src/pathrel/recovery.py": true,
+    "src/pathrel/selective_risk.py": true,
+    "src/pathrel/stochastic_decoder.py": true,
+    "src/pathrel/synthetic.py": true,
+    "src/pathrel/types.py": true,
+    "src/pathrel/unscenes3d.py": true,
+    "scripts/train_flatlands_formal.py": true,
+    "scripts/evaluate_flatlands_formal.py": true,
+    "scripts/freeze_flatlands_formal_protocol.py": true,
+    "scripts/check_formal_resume_smoke.py": true,
+    "scripts/prepare_flatlands_formal_data.py": true,
+    "scripts/quarantine_flatlands_formal_duplicates.py": true,
+    "scripts/run_flatlands_formal_stages.py": true,
+    "scripts/seal_flatlands_formal_full_plan.py": true,
+    "scripts/freeze_flatlands_formal_figures.py": true,
+    "third_party/lama/sources.json": true,
+    "third_party/lama/saicinpainting/training/losses/feature_matching.py": true,
+    "third_party/lama/saicinpainting/training/modules/base.py": true,
+    "third_party/lama/saicinpainting/training/modules/ffc.py": true,
+    "third_party/lama/saicinpainting/training/modules/pix2pixhd.py": true,
+    "third_party/lama/saicinpainting/training/modules/squeeze_excitation.py": true
+  },
+  "data_seal_matches": true,
+  "external_methods": {
+    "lama": {
+      "label": "LaMa BEV adaptation",
+      "outer_seed": 20260831,
+      "checkpoint_group": [
+        {
+          "path": "results/flatlands_external_formal_v1/runs/lama/20260831/member_0/step_00005000.pt",
+          "sha256": "314e34eae075e20f84594eee8e34467f01d9c60ab5273a9ed10ed834f569ea34",
+          "bytes": 696342361,
+          "member": 0,
+          "completed_steps": 5000,
+          "latest_matches_snapshot": true,
+          "boundary": {
+            "path": "results/flatlands_external_formal_v1/runs/lama/20260831/member_0/boundary_00005000.json",
+            "sha256": "16210d6cdb15839f5b926be0f3c6685f1f5cbaaf89f6aa2982079d5ac9f7fdde",
+            "bytes": 699
+          },
+          "progress": {
+            "path": "results/flatlands_external_formal_v1/runs/lama/20260831/member_0/progress.jsonl",
+            "sha256": "ea8ce38792c3616fb902b31b31302f51d8b04bed5387efbadbacce9fbf0985d7",
+            "bytes": 3966690
+          },
+          "time_summary": {
+            "path": "results/flatlands_external_formal_v1/runs/lama/20260831/member_0/time_summary.json",
+            "sha256": "c83f4e79a7ea8076172db11f09087d5da3a49346ba5a7137c4a89b533722e823",
+            "bytes": 126
+          }
+        },
+        {
+          "path": "results/flatlands_external_formal_v1/runs/lama/20260831/member_1/step_00005000.pt",
+          "sha256": "ad13e5d2abf37e84412d2dda12c52b7fcc1f90f9953d87426d3dbeabab480cdf",
+          "bytes": 696342425,
+          "member": 1,
+          "completed_steps": 5000,
+          "latest_matches_snapshot": true,
+          "boundary": {
+            "path": "results/flatlands_external_formal_v1/runs/lama/20260831/member_1/boundary_00005000.json",
+            "sha256": "8f98553f0e6c1b103c146ed261660d8d8cea425902fecccfe30e0fbd04607acb",
+            "bytes": 698
+          },
+          "progress": {
+            "path": "results/flatlands_external_formal_v1/runs/lama/20260831/member_1/progress.jsonl",
+            "sha256": "ebf4116d3039985a7127fb51792e80848c1df87f149124da623ed6513d8ce6e0",
+            "bytes": 3966676
+          },
+          "time_summary": {
+            "path": "results/flatlands_external_formal_v1/runs/lama/20260831/member_1/time_summary.json",
+            "sha256": "38f40bbe729fe81d619e340884450b5ce97ae656f156d7e898eb6083919989b7",
+            "bytes": 126
+          }
+        },
+        {
+          "path": "results/flatlands_external_formal_v1/runs/lama/20260831/member_2/step_00005000.pt",
+          "sha256": "f1b7f3861c564a10253cef1c67e1e99db5a66eb139ee0e385e3d40dc85e38382",
+          "bytes": 696342361,
+          "member": 2,
+          "completed_steps": 5000,
+          "latest_matches_snapshot": true,
+          "boundary": {
+            "path": "results/flatlands_external_formal_v1/runs/lama/20260831/member_2/boundary_00005000.json",
+            "sha256": "e3d83efe57b6fcb168306ead8383cef0b344f195f9dd127961e98fa454f7fd92",
+            "bytes": 699
+          },
+          "progress": {
+            "path": "results/flatlands_external_formal_v1/runs/lama/20260831/member_2/progress.jsonl",
+            "sha256": "3053ace96d5c1cd5992bae932739fc3ae4d5b2a0292fe32c5ea66ea8a1f750aa",
+            "bytes": 3966672
+          },
+          "time_summary": {
+            "path": "results/flatlands_external_formal_v1/runs/lama/20260831/member_2/time_summary.json",
+            "sha256": "1c53e137b3e93ba090b3ddf2086ff35b401af6e1d1567790d1e5dd053b0b51c4",
+            "bytes": 126
+          }
+        },
+        {
+          "path": "results/flatlands_external_formal_v1/runs/lama/20260831/member_3/step_00005000.pt",
+          "sha256": "fff76db4f4b8096e98b401b9353ec8ce2e46dd2bc56db4182e021731029a7823",
+          "bytes": 696342361,
+          "member": 3,
+          "completed_steps": 5000,
+          "latest_matches_snapshot": true,
+          "boundary": {
+            "path": "results/flatlands_external_formal_v1/runs/lama/20260831/member_3/boundary_00005000.json",
+            "sha256": "a3341b3f6769446984c75d29c25350340f50e1e4b9eb858c092f74556a6132a6",
+            "bytes": 698
+          },
+          "progress": {
+            "path": "results/flatlands_external_formal_v1/runs/lama/20260831/member_3/progress.jsonl",
+            "sha256": "5a070db4f615b2b956bca79f91b3c0d3cbff127ed97180b847e4ced26cb8fc10",
+            "bytes": 3965588
+          },
+          "time_summary": {
+            "path": "results/flatlands_external_formal_v1/runs/lama/20260831/member_3/time_summary.json",
+            "sha256": "bfc60bc022991b779fe861bca88be7338e77c7643e33ef8d2e6b40d6ef5373dc",
+            "bytes": 127
+          }
+        }
+      ],
+      "pilot": {
+        "directory": "results/flatlands_external_formal_v1/stages/lama/20260831/pilot/attempt_1",
+        "complete": true,
+        "last_logged_progress": {
+          "calibration": {
+            "evaluation_split": "calibration",
+            "method": "lama",
+            "seed": 20260831,
+            "completed_cases": 97,
+            "total_cases": 97,
+            "global_id": "obs_172562"
+          },
+          "validation": {
+            "evaluation_split": "validation",
+            "method": "lama",
+            "seed": 20260831,
+            "completed_cases": 191,
+            "total_cases": 191,
+            "global_id": "obs_214830"
+          }
+        },
+        "saved_prediction_file_counts": {
+          "calibration": 97,
+          "validation": 191
+        },
+        "metrics": {
+          "path": "results/flatlands_external_formal_v1/stages/lama/20260831/pilot/attempt_1/metrics.json",
+          "sha256": "3744ec3d421ce8755abac54c89cf3a0e0c1525cc766d7b1ebe1f7a83ffd4acef",
+          "bytes": 3807247
+        }
+      },
+      "full_plan_exists": false,
+      "visual_review_exists": false,
+      "future_training_authorized": false
+    },
+    "flow": {
+      "label": "FM+XAttn literature reimplementation",
+      "outer_seed": 20260831,
+      "checkpoint_group": [
+        {
+          "path": "results/flatlands_external_formal_v1/runs/flow/20260831/member_0/step_00005000.pt",
+          "sha256": "290ed61f2aa58acec37b62a026087088f28fa99df47510310ed283ecfa1fd646",
+          "bytes": 254787465,
+          "member": 0,
+          "completed_steps": 5000,
+          "latest_matches_snapshot": true,
+          "boundary": {
+            "path": "results/flatlands_external_formal_v1/runs/flow/20260831/member_0/boundary_00005000.json",
+            "sha256": "ea09f33de6a18093b56a179117af857c53d00b45d81117215b90ef9b07997fa2",
+            "bytes": 697
+          },
+          "progress": {
+            "path": "results/flatlands_external_formal_v1/runs/flow/20260831/member_0/progress.jsonl",
+            "sha256": "c9c9820640d2605f6fdd68109ff4e4cd06d094b2b5f370774c7d672258b865cb",
+            "bytes": 3105875
+          },
+          "time_summary": {
+            "path": "results/flatlands_external_formal_v1/runs/flow/20260831/member_0/time_summary.json",
+            "sha256": "d15271961c961b5fbf193b9f739bb89c1808fd69617ba6822dfc755e76f141c6",
+            "bytes": 127
+          }
+        }
+      ],
+      "pilot": {
+        "directory": "results/flatlands_external_formal_v1/stages/flow/20260831/pilot/attempt_1",
+        "complete": false,
+        "last_logged_progress": {
+          "calibration": {
+            "evaluation_split": "calibration",
+            "method": "flow",
+            "seed": 20260831,
+            "completed_cases": 97,
+            "total_cases": 97,
+            "global_id": "obs_172562"
+          },
+          "validation": {
+            "evaluation_split": "validation",
+            "method": "flow",
+            "seed": 20260831,
+            "completed_cases": 117,
+            "total_cases": 191,
+            "global_id": "obs_153526"
+          }
+        },
+        "saved_prediction_file_counts": {
+          "calibration": 97,
+          "validation": 117
+        },
+        "metrics": null
+      },
+      "full_plan_exists": false,
+      "visual_review_exists": false,
+      "future_training_authorized": false
+    }
+  },
+  "retained_model_inventory": [
+    {
+      "cohort": "parent_group_pilot_v1",
+      "method": "correlated",
+      "seed": 20260910,
+      "trained_epochs": 24,
+      "selected_epoch": 21,
+      "checkpoint": {
+        "path": "results/parent_group_pilot_v1/runs/correlated/20260910/best.pt",
+        "sha256": "a1cc966191aa5d5526738dce648a3d42c57aedddf3218b979f3f5266fc69bc73",
+        "bytes": 1507141
+      },
+      "selection_receipt": {
+        "path": "results/parent_group_pilot_v1/runs/correlated/20260910/complete.json",
+        "sha256": "f362c3c9f9ba188c4552e64deac4f019b6ced454e842a336505c80153548a416",
+        "bytes": 422
+      }
+    },
+    {
+      "cohort": "parent_group_pilot_v1",
+      "method": "correlated",
+      "seed": 20260911,
+      "trained_epochs": 23,
+      "selected_epoch": 17,
+      "checkpoint": {
+        "path": "results/parent_group_pilot_v1/runs/correlated/20260911/best.pt",
+        "sha256": "d4dc1e0becf492e037c723548c9c7e3a3098cd7c894552a02fd0f1cb64740618",
+        "bytes": 1506757
+      },
+      "selection_receipt": {
+        "path": "results/parent_group_pilot_v1/runs/correlated/20260911/complete.json",
+        "sha256": "6b6ee303ad54ae2d9965639a1f100db15ea9dc0285ff41e3494d029c854924a3",
+        "bytes": 424
+      }
+    },
+    {
+      "cohort": "parent_group_pilot_v1",
+      "method": "correlated",
+      "seed": 20260912,
+      "trained_epochs": 24,
+      "selected_epoch": 22,
+      "checkpoint": {
+        "path": "results/parent_group_pilot_v1/runs/correlated/20260912/best.pt",
+        "sha256": "284584c5dfbaac6a335759d6eb46a6480aae77508443171b4ff2e640e4456ab0",
+        "bytes": 1507397
+      },
+      "selection_receipt": {
+        "path": "results/parent_group_pilot_v1/runs/correlated/20260912/complete.json",
+        "sha256": "be5102c5f81d3dcd5f6014081afc7758bfdf6fefad947cddc99e4c72a937533d",
+        "bytes": 422
+      }
+    },
+    {
+      "cohort": "parent_group_pilot_v1",
+      "method": "deterministic",
+      "seed": 20260910,
+      "trained_epochs": 24,
+      "selected_epoch": 19,
+      "checkpoint": {
+        "path": "results/parent_group_pilot_v1/runs/deterministic/20260910/best.pt",
+        "sha256": "e1c359971d171466f756c8f8477cb7bf12671cb4181e0d491ac5d1e8dc510eb8",
+        "bytes": 1498727
+      },
+      "selection_receipt": {
+        "path": "results/parent_group_pilot_v1/runs/deterministic/20260910/complete.json",
+        "sha256": "d157fbeb28ed8c2bb13c37bd5537d92c527be49b2577bebc19550609a72acb64",
+        "bytes": 428
+      }
+    },
+    {
+      "cohort": "parent_group_pilot_v1",
+      "method": "deterministic",
+      "seed": 20260911,
+      "trained_epochs": 22,
+      "selected_epoch": 16,
+      "checkpoint": {
+        "path": "results/parent_group_pilot_v1/runs/deterministic/20260911/best.pt",
+        "sha256": "1d64165d9a6cc5a0104e17962236c75c56e03b976c1d94ce85d8a883d1fbc57d",
+        "bytes": 1498023
+      },
+      "selection_receipt": {
+        "path": "results/parent_group_pilot_v1/runs/deterministic/20260911/complete.json",
+        "sha256": "50c660c4846ecca17c82bc71be57b68af2f35a09cf9d168218666eda09575d66",
+        "bytes": 425
+      }
+    },
+    {
+      "cohort": "parent_group_pilot_v1",
+      "method": "deterministic",
+      "seed": 20260912,
+      "trained_epochs": 24,
+      "selected_epoch": 20,
+      "checkpoint": {
+        "path": "results/parent_group_pilot_v1/runs/deterministic/20260912/best.pt",
+        "sha256": "1997d665a97f87700361b74436bc653c28cf76d82686460099c10c06b1fa970c",
+        "bytes": 1498983
+      },
+      "selection_receipt": {
+        "path": "results/parent_group_pilot_v1/runs/deterministic/20260912/complete.json",
+        "sha256": "0f51d9f19358edbbdc69e2418e802f591887af19d4c4f79f39b9f4a0f8929e4d",
+        "bytes": 427
+      }
+    },
+    {
+      "cohort": "parent_group_pilot_v1",
+      "method": "independent",
+      "seed": 20260910,
+      "trained_epochs": 24,
+      "selected_epoch": 21,
+      "checkpoint": {
+        "path": "results/parent_group_pilot_v1/runs/independent/20260910/best.pt",
+        "sha256": "09c4a74cf19ad41a71b002734d27c11db8c1e62b617396f9e5d396879712692d",
+        "bytes": 1504337
+      },
+      "selection_receipt": {
+        "path": "results/parent_group_pilot_v1/runs/independent/20260910/complete.json",
+        "sha256": "a568a9a2807fa4af2fa7693345133c5440d32f6e2bb0eb21f77a5fc1b0821130",
+        "bytes": 424
+      }
+    },
+    {
+      "cohort": "parent_group_pilot_v1",
+      "method": "independent",
+      "seed": 20260911,
+      "trained_epochs": 21,
+      "selected_epoch": 15,
+      "checkpoint": {
+        "path": "results/parent_group_pilot_v1/runs/independent/20260911/best.pt",
+        "sha256": "8d260723f4b9b6330ffb66086337144dca46b8f39d65d18861917b900014fee1",
+        "bytes": 1503441
+      },
+      "selection_receipt": {
+        "path": "results/parent_group_pilot_v1/runs/independent/20260911/complete.json",
+        "sha256": "ba7165a2771a431dc1494cd0d67fcd77658b2f309c632e5a52c5b08b0220213c",
+        "bytes": 426
+      }
+    },
+    {
+      "cohort": "parent_group_pilot_v1",
+      "method": "independent",
+      "seed": 20260912,
+      "trained_epochs": 24,
+      "selected_epoch": 22,
+      "checkpoint": {
+        "path": "results/parent_group_pilot_v1/runs/independent/20260912/best.pt",
+        "sha256": "a5db0af9991af7ae45df63c81f2dd487015cf6be43833e472ee64d7a25a91a50",
+        "bytes": 1504657
+      },
+      "selection_receipt": {
+        "path": "results/parent_group_pilot_v1/runs/independent/20260912/complete.json",
+        "sha256": "79aef42fbd67b6ce9cfe137ee3681dc2f479963097e00167da00d5fee0d6dea4",
+        "bytes": 425
+      }
+    },
+    {
+      "cohort": "coherent_parent_pilot_v1",
+      "method": "coherent_categorical",
+      "seed": 20260910,
+      "trained_epochs": 24,
+      "selected_epoch": 21,
+      "checkpoint": {
+        "path": "results/coherent_parent_pilot_v1/runs/20260910/best.pt",
+        "sha256": "823a6dec9ccf204a91b3e863a0d207b4ce6e8730ec90dfc3662bdeea57e0d4a7",
+        "bytes": 495403
+      },
+      "selection_receipt": {
+        "path": "results/coherent_parent_pilot_v1/runs/20260910/complete.json",
+        "sha256": "313f90d3dff25d4f4a829c47d524516d04e2d7b0d744d1b39c11602b4e7bb491",
+        "bytes": 434
+      }
+    },
+    {
+      "cohort": "coherent_parent_pilot_v1",
+      "method": "coherent_categorical",
+      "seed": 20260911,
+      "trained_epochs": 23,
+      "selected_epoch": 17,
+      "checkpoint": {
+        "path": "results/coherent_parent_pilot_v1/runs/20260911/best.pt",
+        "sha256": "c49dcbe8ecdd7b39b0f26070664e3f6fcea3c424337bd4c581b05a2714500782",
+        "bytes": 495403
+      },
+      "selection_receipt": {
+        "path": "results/coherent_parent_pilot_v1/runs/20260911/complete.json",
+        "sha256": "1939c164dfae2fbf01d902b23f2e882695ef5fb6a11d0fcaf7a5dffc192a4e15",
+        "bytes": 432
+      }
+    },
+    {
+      "cohort": "historical_160_observations",
+      "method": "conpath",
+      "seed": 20260831,
+      "selected_epoch": 19,
+      "checkpoint": {
+        "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260831_conpath/best.pt",
+        "sha256": "f7b42163fb2fd6127a19e2a967f44181814a263c699020a7a59f895d913b797c",
+        "bytes": 1503621
+      },
+      "selection_receipt": {
+        "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260831_conpath/run.json",
+        "sha256": "3395c4e85bd8fffc11cba0418af61bf898f6ac662eecbe06cd1f0ba31d78fdd3",
+        "bytes": 190686
+      }
+    },
+    {
+      "cohort": "historical_160_observations",
+      "method": "conpath",
+      "seed": 20260901,
+      "selected_epoch": 16,
+      "checkpoint": {
+        "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260901_conpath/best.pt",
+        "sha256": "9a39816f303fadc1ab28a60ac6e8cdc80c92a4953d0e309919da7ebd2ee90dbf",
+        "bytes": 1503173
+      },
+      "selection_receipt": {
+        "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260901_conpath/run.json",
+        "sha256": "056e99bc40fc24a554acb93d2451e63392b896a891bc5d882934f0bde435d866",
+        "bytes": 189887
+      }
+    },
+    {
+      "cohort": "historical_160_observations",
+      "method": "conpath",
+      "seed": 20260902,
+      "selected_epoch": 8,
+      "checkpoint": {
+        "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260902_conpath/best.pt",
+        "sha256": "d1b5b9a1a85e36a68dce0fd929938522ad5944f8088d096a85ef7b12045f3322",
+        "bytes": 1502021
+      },
+      "selection_receipt": {
+        "path": "results/p1_flatlands_conpath_k128_support_clamped_v1/seed20260902_conpath/run.json",
+        "sha256": "926f809a46f911a5f557b88186fb431c7f401a567a55bcb1f3a940aaebaa9b7c",
+        "bytes": 186067
+      }
+    },
+    {
+      "cohort": "historical_160_observations",
+      "method": "independent",
+      "seed": 20260831,
+      "selected_epoch": 5,
+      "checkpoint": {
+        "path": "results/p1_flatlands_independent_k128_support_clamped_v1/seed20260831_independent/best.pt",
+        "sha256": "87257f20d4e8282c2c318f70ee099b30cb5ec945bf34608200236096fea9ef23",
+        "bytes": 1498833
+      },
+      "selection_receipt": {
+        "path": "results/p1_flatlands_independent_k128_support_clamped_v1/seed20260831_independent/run.json",
+        "sha256": "72d2c5a42a6943cc386926c9b3c89104be8683a06e1c4c5dd15de7bed489114d",
+        "bytes": 183480
+      }
+    },
+    {
+      "cohort": "historical_160_observations",
+      "method": "independent",
+      "seed": 20260901,
+      "selected_epoch": 16,
+      "checkpoint": {
+        "path": "results/p1_flatlands_independent_k128_support_clamped_v1/seed20260901_independent/best.pt",
+        "sha256": "c41cdbc3b178cc24a9f2479ec460572ad84b731e1727386fb4e03a375e1caa28",
+        "bytes": 1500433
+      },
+      "selection_receipt": {
+        "path": "results/p1_flatlands_independent_k128_support_clamped_v1/seed20260901_independent/run.json",
+        "sha256": "ae62bf37d05cec0368cda4ce1b632f8b175d6cd1ab5490e6e73b80b3d0b6ada9",
+        "bytes": 188008
+      }
+    },
+    {
+      "cohort": "historical_160_observations",
+      "method": "independent",
+      "seed": 20260902,
+      "selected_epoch": 10,
+      "checkpoint": {
+        "path": "results/p1_flatlands_independent_k128_support_clamped_v1/seed20260902_independent/best.pt",
+        "sha256": "01044e316122d54300062a7d0c3553ccf073e9a51e0c6071826fab57c485aca1",
+        "bytes": 1499537
+      },
+      "selection_receipt": {
+        "path": "results/p1_flatlands_independent_k128_support_clamped_v1/seed20260902_independent/run.json",
+        "sha256": "6f21f11f908da66fc131175210c90432cbb11e9efcc139624f3e80bde188d05f",
+        "bytes": 185927
+      }
+    },
+    {
+      "cohort": "historical_160_observations",
+      "method": "no_event",
+      "seed": 20260831,
+      "selected_epoch": 4,
+      "checkpoint": {
+        "path": "results/paper_clean_ablation_matrix_v1/seed20260831_no_event/best.pt",
+        "sha256": "8fa4d46e18a8d976f3327e3cd8391e6cbd3206279041446bf289c0b903fc18b7",
+        "bytes": 1501445
+      },
+      "selection_receipt": {
+        "path": "results/paper_clean_ablation_matrix_v1/seed20260831_no_event/run.json",
+        "sha256": "79412fdd0ff86cc9b94138b9a9d5c0c6fb15c559c25d7a91f7a59c011983e6ff",
+        "bytes": 171015
+      }
+    },
+    {
+      "cohort": "historical_160_observations",
+      "method": "no_event",
+      "seed": 20260901,
+      "selected_epoch": 1,
+      "checkpoint": {
+        "path": "results/paper_clean_ablation_matrix_v1/seed20260901_no_event/best.pt",
+        "sha256": "05af3c9e76a6dce1ceb59246cd313f43b8b409a9adf893fa77fd94f0167dff1a",
+        "bytes": 1500997
+      },
+      "selection_receipt": {
+        "path": "results/paper_clean_ablation_matrix_v1/seed20260901_no_event/run.json",
+        "sha256": "83f28c581754a5de7e9a5962c093c251a58c047e516c87720555ea7923cfab71",
+        "bytes": 168631
+      }
+    },
+    {
+      "cohort": "historical_160_observations",
+      "method": "no_event",
+      "seed": 20260902,
+      "selected_epoch": 9,
+      "checkpoint": {
+        "path": "results/paper_clean_ablation_matrix_v1/seed20260902_no_event/best.pt",
+        "sha256": "f769420f5d8ef4accff81af933c7496e3bb99cac081e6afdc989d9c6fdec1b43",
+        "bytes": 1502853
+      },
+      "selection_receipt": {
+        "path": "results/paper_clean_ablation_matrix_v1/seed20260902_no_event/run.json",
+        "sha256": "acec1a32b0a63e09cb816c33a5477d6bf21cfb7bcae9995a67b79d65c3253ebc",
+        "bytes": 173385
+      }
+    },
+    {
+      "cohort": "historical_160_observations",
+      "method": "no_global",
+      "seed": 20260831,
+      "selected_epoch": 4,
+      "checkpoint": {
+        "path": "results/paper_clean_ablation_matrix_v1/seed20260831_no_global/best.pt",
+        "sha256": "a77d9966228209a9f4de1689535890eef6bbae7d4c64b23c04c041cdce406d82",
+        "bytes": 1498705
+      },
+      "selection_receipt": {
+        "path": "results/paper_clean_ablation_matrix_v1/seed20260831_no_global/run.json",
+        "sha256": "a524a4cf8a480c389cd4e4ceab990ac9b48e30e2ca3a5b1ac45b67f668cb1b19",
+        "bytes": 180851
+      }
+    },
+    {
+      "cohort": "historical_160_observations",
+      "method": "no_global",
+      "seed": 20260901,
+      "selected_epoch": 10,
+      "checkpoint": {
+        "path": "results/paper_clean_ablation_matrix_v1/seed20260901_no_global/best.pt",
+        "sha256": "dee44941b86688fc55cb3e2aaf4aa2bf4dae47d8b589bb69d7efdd531e648ccf",
+        "bytes": 1499601
+      },
+      "selection_receipt": {
+        "path": "results/paper_clean_ablation_matrix_v1/seed20260901_no_global/run.json",
+        "sha256": "61a64a7c6dc3b3cce6999f2a7212a31012618765cbb7bd85965cb2b0681c101e",
+        "bytes": 183588
+      }
+    },
+    {
+      "cohort": "historical_160_observations",
+      "method": "no_global",
+      "seed": 20260902,
+      "selected_epoch": 10,
+      "checkpoint": {
+        "path": "results/paper_clean_ablation_matrix_v1/seed20260902_no_global/best.pt",
+        "sha256": "609b6f1a715190eb34ee0b648c7065514338ff68b66a52b5c3a1a286e5584a11",
+        "bytes": 1499601
+      },
+      "selection_receipt": {
+        "path": "results/paper_clean_ablation_matrix_v1/seed20260902_no_global/run.json",
+        "sha256": "3934b00523fdcb502d94b683ffa1e5a9fcd4aa36bbd2909cbb81156126080f7e",
+        "bytes": 183711
+      }
+    }
+  ],
+  "analysis_sources": [
+    {
+      "path": "results/parent_group_pilot_v1/analysis.json",
+      "sha256": "0875640afd84a7d5a1446943328ae90e40f3b4cdc8cbe02af04d01d428ee8cc5",
+      "bytes": 18561
+    },
+    {
+      "path": "results/coherent_parent_pilot_v1/analysis.json",
+      "sha256": "6da43493e5e50b975b4d5c08036c85fdd0dca3c6ee2e078e54ff80646f8496b6",
+      "bytes": 4818
+    },
+    {
+      "path": "results/paper_clean_analysis_v1/report.json",
+      "sha256": "29ca7640437695dbb432c256dc6a0ab0f176ddfb108c17bd8723e17a223e9de3",
+      "bytes": 260625
+    },
+    {
+      "path": "results/paper_clean_ablation_matrix_v1/analysis/report.json",
+      "sha256": "d54ade10698106c1b36b11fd73fb3f90ac1da1c70b1b8ab780d0e6c687f2daab",
+      "bytes": 343516
+    },
+    {
+      "path": "results/parent_group_pilot_v1/verification.json",
+      "sha256": "b64fd22bce079357883d8eb6f289c44e29d639c53af8b6acadcda41cd16c3f86",
+      "bytes": 3074
+    },
+    {
+      "path": "results/coherent_parent_pilot_v1/independent_verification.json",
+      "sha256": "10748e3cabe19eaad77bf3f7f9d45895c6fda9277b5f77d062b9c7470f071801",
+      "bytes": 43451
+    }
+  ],
+  "selected_development_method": {
+    "method": "original ConPath / correlated",
+    "cohort": "parent_group_pilot_v1",
+    "seeds": [
+      20260910,
+      20260911,
+      20260912
+    ],
+    "display_seed": 20260910,
+    "display_selection_rule": "first registered seed; not selected by validation score",
+    "seed_ensemble": false,
+    "new_ABC_training": false,
+    "coherent_candidate_is_final_model": false
+  },
+  "new_raw_archive_or_test_images_opened": 0,
+  "final_test_locked": true,
+  "location_6_locked": true,
+  "main_table_eligibility_granted": false,
+  "full_plan_sealed": false,
+  "full_runner_launched": false,
+  "restart_requires_new_explicit_user_authorization": true,
+  "note": "FM pilot evaluation stopped by user at 97 calibration + 117 validation observations. No complete pilot metrics or formal conclusion may be invented. LaMa full pilot metrics remain diagnostic; visual review was not finalized before cancellation."
+}

@@ -1,109 +1,39 @@
-# ConPath 顶会投稿可行性与门槛
+# ConPath 论文收敛与投稿证据状态
 
-> **2026-09-10 状态更正：** 下文早期“clean”与公开数据数字受后续物理test历史访问、父场景重叠更正约束，不能直接作为当前外部正式比较或新地点泛化证据。本轮仅启动LaMa/FM公平协议的分阶段收敛验证，尚无三次充分训练结论；最终测试锁定。当前范围见 [FLATLANDS_FORMAL_PROTOCOL_ZH.md](FLATLANDS_FORMAL_PROTOCOL_ZH.md)，不扩展历史帧、室外或新架构方向。
+更新：2026-09-10。用户已终止外部基线矩阵及新增调参，当前工作是封存已有结果、形成完整英文稿与可审计图表。**完整工作稿可以交付，现有证据尚不能称为完成 IROS/ICRA 正式验证。** 不用赶期限或追加训练改变这个判断。
 
-## 当前判断
+## 当前已经支持什么
 
-当前仓库仍不是可直接投稿的论文。2026-09-06 的有效证据已超过早期 P0/baseline pilot：
-clean FlatLands K=128 三种子结果、九方法同查询比较、固定经验边际干预、K 收敛和等覆盖率
-风险分析均已完成，见 [PAPER_EVIDENCE.md](PAPER_EVIDENCE.md)。固定经验边际后打散空间结构
-会大幅增加 Brier，但同检查点均值图仍很强，等覆盖率风险改善尚不稳定。UnScenes3D 冻结观测
-约束的验证 Brier 下界达 0.47574，不能作为跨域成功证据。clean 训练消融、观测模型诊断、
-可扩展训练算子和正式测试仍未完成。下方日期与历史 gate 仅供过程追踪；当前执行计划见
-[WORK_PLAN.md](WORK_PLAN.md)。
+- 父级隔离的100/25/40地点开发实验中，原ConPath三个种子均优于independent的Event Brier；均值0.10380对0.11201，来源分层父级配对区间支持该开发对照。
+- 历史K128三种子中，固定每格经验边际、打散样本空间关系后，Event Brier从0.06749升至0.16139；它支持该保存样本中的空间依赖机制。
+- 历史no-event/no-global重训在Brier/NLL/ECE上较完整模型差；它们没有在最新父级隔离划分上完成。
+- 共享世界、离散圆盘和精确连通性使随半径增大的可达预测单调不升；单调性不等于概率已校准。
 
-## 时间选择（截至 2026-08-28）
+## 当前不能支持什么
 
-- ICRA 2027 的官方 paper deadline 是 2026-09-15 23:59 Pacific；以当前原型状态不应为了赶
-  这个 deadline 拼凑结果。官方页面：
-  <https://www.ieee-ras.org/conferences-workshops/fully-sponsored/icra/>。
-- IROS 2027 的官方 paper deadline 是 2027-03-01；它更适合作为第一目标。
-  官方页面：
-  <https://www.ieee-ras.org/event/2027-ieee-rsj-international-conference-on-intelligent-robots-and-systems-iros-70525/>。
-- 如果 IROS 结果显示问题成立，再准备 ICRA 2028 或 RA-L/会议转投版本。
+旧队列27/160个验证观测与训练共享父级地点，并有历史物理test访问。旧消融、固定边际和子场景区间只能作为历史机制诊断，不能证明新地点泛化。新的40个验证地点也已参与后续开发决策，不是最终留出。
 
-## 论文必须证明什么
+完整六方法在最新划分上尚未齐全；direct-query旧结果只有一个种子。不能把旧no-event/no-global/direct-query数字拼进新主表，或把coherent两个种子补写成三个。
 
-1. 在相同 voxel marginal 质量/ECE 下，联合后验显著降低 start-goal-footprint 事件的 Brier、
-   NLL、ECE 和 false-safe rate。
-2. 优势来自空间联合结构，而不是更大的 encoder、更多 Monte-Carlo 样本或阈值调参；必须
-   包含 independent Bernoulli、deep ensemble、direct-query、deterministic threshold 和
-   topology-loss 基线。
-3. 在遮挡、窄瓶颈、断连和多替代路径上成立，并跨 sequence/site、地图和车辆 footprint 泛化。
-4. 把当前 Python 迭代原型替换成可扩展的 exact-forward/merge-tree/path-cut 算子，或给出
-   清晰的上下界；否则真实分辨率实验会被速度/显存问题卡住。
-5. 真实数据只使用可审计的 occupancy/road-support 标签，并明确 unknown 与不可见区域，不能
-   把合成门洞实验冒充真实导航验证。
+原ConPath相对确定性补全的父级配对区间跨零；旧等覆盖率误判风险的区间跨零。地图指标和ECE并非所有对照都领先。不得写“显著提高所有安全指标”“全面超越直接查询”或外部模型SOTA。
 
-## 主要审稿风险
+LaMa BEV adaptation与FM+XAttn literature reimplementation只保留欠收敛补充记录，已停止GPU训练/评估/自动续训。不要求继续外部实验才能完成这份缩小主张的工作稿；同时它们的缺席限制了相对生成补全方法的论证强度。
 
-相关 occupancy 建模、拓扑规划、edge/connectivity learning 和 occupancy 不确定性规划本身已有
-先例。因此论文不能把“RGB/LiDAR + 随机地图 + A*”作为贡献；贡献必须集中在联合后验到
-`P(存在 footprint 条件路径)` 的事件级 proper calibration，以及它相对于 voxel calibration
-的可验证差异。
+## 模型选择与停止条件
 
-至少要在 related work 中正面讨论 [MRFMap](https://www.roboticsproceedings.org/rss16/p060.html)、
-[Saroya et al.](https://doi.org/10.1109/LRA.2021.3068886)、
-[Banfi et al.](https://arxiv.org/abs/2205.14251) 和
-[Ma et al.](https://arxiv.org/abs/2112.08106)，并把 connectivity-loss/edge predictor 纳入
-baseline；还要检查 [SCOPE](https://arxiv.org/abs/2407.00144) 与
-[diffusion-based occupancy completion](https://arxiv.org/abs/2409.10681)。尤其要把
-[FlatLands](https://arxiv.org/abs/2603.16016) 作为强近邻和优先数据审计对象：它已经提供
-partial-view BEV、多个合法完整布局和 stochastic/flow completion benchmark。不能声称首次
-提出 correlated occupancy、topology-aware planning、connectivity learning、partial-view
-multi-layout completion 或 stochastic map completion。
+已触发用户停止条件1：原ConPath在最新三种子开发比较中稳定优于independent。因此停止A/B/C新增优化、温度拟合和超参搜索，不重跑P0、FlatLands、UnScenes3D或旧消融。
 
-FlatLands query-balance audit 已确认存在足量 footprint 失败，但分布强烈依赖 source/radius；
-bounded test/ARKitScenes 在 20 cm 下没有正例。它目前只支持分层固定基线实验，不能直接支撑
-导航事件结论。
+主方法保留原ConPath；使用原选优规则确定的三个checkpoint，不按验证数字选择最好seed。两种子coherent候选只作探索补充，其相对原版区间跨零且K4风险略升。身份、hash与选择理由见 [FINAL_MODEL_SELECTION.md](results/FINAL_MODEL_SELECTION.md)。
 
-## Go / No-Go
+## 最终测试前仍需完成的事项
 
-若 P0 中 calibrated independent-cell 或 direct-query 追平 PathRel，停止该方向；当前学习版
-P0 与 bounded P1 data gate 已通过，所以只允许进入 **P1 固定 baseline pilot**。若 FlatLands
-completion + post-hoc connectivity 追平，或分 source/radius 后任务退化，仍应停止或更换主
-数据，而不是直接投入 UnScenes3D/WildOcc 和大规模算子。此阶段不要加入 3DGS、ROS、实车
-闭环或更多传感器。
+1. 仅通过已有访问清单和父级元数据审计留出资格，排除历史参与开发/检查的地点；不读取封存测试图或标签。
+2. 冻结最终模型、checkpoint集合、输入/支持/隐藏掩码、查询、格网半径、K、evaluator、权重、阈值和统计规则。不能沿用失真的“test从未读取”标志。
+3. 对缺失的新划分消融、单seed直接查询、小训练预算、训练事件微批权重限制作明确论文披露；没有授权时不训练补表。
+4. 由作者评估这些验证证据是否足以支撑投稿范围；完整英文稿不等于会议接收或正式主张已证实。本轮不执行最终测试。
 
-## 本轮 P0 审计状态（更新于 2026-08-30）
+## 当前交付入口
 
-已实现 `scripts/evaluate_p0.py`，并按 scene-template 留出测试集、两个可见 context family
-（隐藏门洞先验约 0.2/0.8）、多隐藏世界重复、常数/独立 cell/direct-query/edge-connectivity/
-random completion/deterministic/correlated ablation 等基线。最新默认测试集结果为：direct-query
-Brier 0.1699、deterministic threshold 0.1458、相关事件代理 0.1024；相关代理的 ECE 为
-0.0325，独立 cell 为 0.1762，且地图边际 Brier 与独立采样相差 0.0173。因而 **oracle
-proxy death test PASS**，支持继续验证联合后验假设。早期 120-step CUDA 神经 checkpoint 的
-event Brier 为 0.2436，确实失败；随后修正了 scaled-Gumbel 边际、事件梯度、重复世界监督、全局
-上下文编码和可见 context 输入，并加入可恢复检查点与严格 context-gap gate。
+[PAPER_DRAFT.md](PAPER_DRAFT.md) 为英文稿；[PAPER_EVIDENCE.md](PAPER_EVIDENCE.md)、[PAPER_TABLES.md](PAPER_TABLES.md)、[PAPER_FIGURES.md](PAPER_FIGURES.md) 分别说明来源、同协议数字和真实图片。最终测试、室外、RGB/LiDAR端到端、机器人闭环、轨迹控制均不在本轮已证实范围。
 
-在完全相同的 12/4 template、24 worlds/template、128 validation-sample protocol 下，完整模型的
-两个优化种子均通过：
-
-| 配置 | Event Brier | ECE | Hard-map Brier | radius-0 context-gap ratio | 结论 |
-|---|---:|---:|---:|---:|---|
-| full, seed 20260827 | 0.1164 | 0.0786 | 0.00338 | 0.5735 | PASS |
-| full, seed 20260828 | 0.1116 | 0.0719 | 0.00289 | 0.6957 | PASS |
-| no-reach, seed 20260827 | 0.1914 | 0.1936 | 0.00310 | 0.2383 | FAIL |
-
-两个完整种子都优于 independent (`0.1832`) 与 direct-query (`0.1699`) 的 event Brier；而
-no-reach 对照在地图 Brier 仍好的情况下事件指标和上下文条件性同时失败。因此该 P0 checkpoint
-当时升级为 **P0 GO / P1 audit allowed**。这仍不是公开数据或论文级 GO：它只有一个固定
-synthetic split、两个优化种子，完整模型仍有约 13.7%-16.1% 的门洞碎裂。后续 P1 数据 gate
-结果单独记录如下；在公开数据固定基线完成前不得宣称 ICRA/IROS 贡献。
-
-同时加入 `labels.py::merge_tree_bottleneck_scores` exact-forward NumPy 参考，用于后续可扩展
-CUDA 算子的契约验证；这不是已经完成的可反传大图实现。
-
-## P1 bounded 数据 gate（更新于 2026-08-31）
-
-官方 FlatLands observation split 存在大量 scene leakage，继续 NO-GO。使用数据包内
-`provenance.original_split` 构造的非官方 scene-disjoint split 上，direct-from-ZIP 审计按 16 个
-split/source strata 各取 32 个不同场景，共 512 个 observation。查询在读取 `floor_map` 前由
-camera、metric polar stencil、`unobserved` 与 `epistemic_mask` 冻结。Mask gate 通过；4,653 个
-有效端点包含 121 个 radius-0 断连、3,095 个足迹失败和 1,437 个 20 cm 正例；全部 11 个
-validation/test source strata 通过最低样本量与 10% 失败率门槛。
-
-这只把决策推进到 **GO for streaming adapter + fixed baselines**。它不是公开数据上的 ConPath
-结果，也没有消除 test/ARKitScenes 在 20 cm 下全负的饱和风险。必须先跑相同 query/mask 上的
-deterministic、independent-cell、direct-query 和可获得的官方 completion baseline，且逐
-source/radius 报告，再讨论 P1 模型 GO/NO-GO。
+此前包含更多实验和会议日期的版本可从Git历史a08e9d2及 `results/paper_convergence_v1/prior_documents/` 核对；旧计划不再具有执行授权。

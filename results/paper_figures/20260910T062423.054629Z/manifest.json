@@ -1,0 +1,890 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-09-10T06:24:49.068352+00:00",
+  "scope": "Existing evidence only; external training cancelled; no new experiments",
+  "cohort": {
+    "train_parents": 100,
+    "calibration_parents": 25,
+    "validation_parents": 40,
+    "queries": 515,
+    "events": 1545,
+    "radii_cells": [
+      0,
+      10,
+      20
+    ],
+    "baseline_seeds": [
+      20260910,
+      20260911,
+      20260912
+    ],
+    "coherent_matched_seeds": [
+      20260910,
+      20260911
+    ],
+    "validation_reused_for_development": true,
+    "final_test": false
+  },
+  "protocols": {
+    "parent": {
+      "path": "results/parent_group_pilot_v1/data/protocol.json",
+      "sha256": "175d555c6da4dabf268b13a6cf0ca8bbbca97e91fcc0cebe7d4aadf9092222f3"
+    },
+    "coherent": {
+      "path": "results/coherent_parent_pilot_v1/protocol.json",
+      "sha256": "e386002c572923be16be3b65deb720a0e49ab211bce40c0451b8e50fcd3a1d57"
+    }
+  },
+  "source_bundle_sha256": "15838a2fe7e6d6cf6e3537b26f942d13b4beb86e6c33fe5251bcc39e1752dba8",
+  "source_hashes": {
+    "results/parent_group_pilot_v1/data/protocol.json": "175d555c6da4dabf268b13a6cf0ca8bbbca97e91fcc0cebe7d4aadf9092222f3",
+    "results/coherent_parent_pilot_v1/protocol.json": "e386002c572923be16be3b65deb720a0e49ab211bce40c0451b8e50fcd3a1d57",
+    "results/parent_group_pilot_v1/data/seal.json": "5b8a927d56f0c4961963b7e091c0dc0bd34924ea4e2bbf86e9214c57810fcf2c",
+    "results/parent_group_pilot_v1/data/selected.csv": "102f27e8f4186920035c87dcf70b113a4208a079afed257401fca4c8706fbb2c",
+    "results/parent_group_pilot_v1/data/data_audit.json": "c9cc43c6cfb0f570342beed808afe40f81d7688d7cf7da036c8505cc41a7e523",
+    "results/parent_group_pilot_v1/data/input_queries_before_target.jsonl": "8bcded74e95f8182cfdfa45195ce9dabae44bfeace07df195104d8247ad1657a",
+    "site/data/coherent_pilot_gallery_zh.json": "78c1ff1449d2361a7cb356f55c956fa8cd7363ea738614df7a07edc65bbe53ce",
+    "results/coherent_parent_pilot_v1/gallery_verification.json": "1eca8614149a75cade7147eca58104f08704c21ec367273155450f06db51472a",
+    "results/parent_group_pilot_v1/analysis.json": "0875640afd84a7d5a1446943328ae90e40f3b4cdc8cbe02af04d01d428ee8cc5",
+    "results/parent_group_pilot_v1/verification.json": "b64fd22bce079357883d8eb6f289c44e29d639c53af8b6acadcda41cd16c3f86",
+    "results/coherent_parent_pilot_v1/analysis.json": "6da43493e5e50b975b4d5c08036c85fdd0dca3c6ee2e078e54ff80646f8496b6",
+    "results/coherent_parent_pilot_v1/verification.json": "93efe27602f4550499aa110a29ac1d9ab00d571543d3bafcfbca17a02ea80aaa",
+    "src/pathrel/model.py": "397f7558362f389af3a419aec39db36f67184e8106c6b05643908001e4f81045",
+    "src/pathrel/stochastic_decoder.py": "6ca1b9f22e45f8832212d0350054965bafa4fb654992417bdcdd71e50efb0b41",
+    "src/pathrel/coherent_categorical.py": "97a11fddbd59de27ea3e1ea4f200336df4d8f8cfa387622e795025d8c865b8c4",
+    "src/pathrel/reachability.py": "0b19178f5146d81abe604286e753e4904568e8ff1c0cb9e78c18a2e2bdaf7a30",
+    "src/pathrel/losses.py": "71b3d8d918a1671362c5de460c4ea7b6ac506ea4997bfbcca9526da0886d1baf",
+    "src/pathrel/parent_pilot_data.py": "119037a5924fecb2fcfb17b7fc86316b58e4b4d3b872e142a251e31ce1ec4475",
+    "src/pathrel/selective_risk.py": "d44033c218bf5d5a914974c78709cbe66f5888fba3f29e61615404160fa50126",
+    "scripts/train_parent_group_pilot.py": "f902238f6fb242a5630fb6d6e0347812c46e34eb64e0737b469a019454bd1dc2",
+    "results/p0_neural_cuda_contextplane_v4/report.json": "1c69e30fb6f23b89d0276d09f15b631727be4506a837fe7d24b29a85657d1a11",
+    "results/p0_neural_cuda_contextplane_seed20260828_v4/report.json": "46ac08329182a19576218ce1bfd06a46477bc36d5033a471bf95b8a89d48473f",
+    "results/p0_neural_cuda_contextplane_noreach_v4/report.json": "317ee4db452514c392cba1753c365b9f62f804f6b4e5ca6e2072b70c7ee3dd80",
+    "results/parent_group_pilot_v1/data/packets/obs_007792.npz": "b6865016bbebfd165fcf6981c484ac62a4b4ea2b8f81035031f5972b983892cc",
+    "results/parent_group_pilot_v1/data/packets/obs_014028.npz": "9faeac61af1a1c15548e58000f5a273fc5fb0ed975c26d048b226e1139928e93",
+    "results/parent_group_pilot_v1/data/packets/obs_003677.npz": "4804da04b03877bda3bb823d653a8902224b32a75d5e67e552b792b4aa00d09f",
+    "results/parent_group_pilot_v1/data/packets/obs_013470.npz": "26415f158bbce3e2ca480dcb71ef65b0851a839f537ac0b9b5922b29e4248898",
+    "results/parent_group_pilot_v1/data/packets/obs_023532.npz": "91c9150ba8b0c609f5071e507000982d6a1fb65390a5cea13f8555ef9a5e3888",
+    "results/parent_group_pilot_v1/data/packets/obs_000206.npz": "118aa32ab018279cb01d1d85ff39ceef71fd92517e040a152bc04f6cfd4a5a09",
+    "results/parent_group_pilot_v1/data/packets/obs_009280.npz": "6b7c7009bf23bd0e209531281b9e36d3a63c5aacdd9ada0a88382eb3288dd196",
+    "results/parent_group_pilot_v1/data/packets/obs_023335.npz": "368d813cdc18caf6ef8c23c286af81a2a30774a6fc1ecb6f8bcfa56e72ea05b8",
+    "results/parent_group_pilot_v1/data/packets/obs_065777.npz": "e5516726f2862fdf8ce469445fb5d3e0b492af1163453eeb893a8249cc69af7f",
+    "results/parent_group_pilot_v1/data/packets/obs_082481.npz": "a43a179757d2c8ea365a73bd74fde0366d7fcbdab1b400f6249d07f1d0d189c7",
+    "results/parent_group_pilot_v1/data/packets/obs_088552.npz": "88c072a6acbe69a9b077c48fdd81737e41bf4665916b8f63cef08df544ad5bd7",
+    "results/parent_group_pilot_v1/data/packets/obs_029552.npz": "416e44877e5e0fd2e155b8742e01a434a1aa8cacd37d26ac9d41bdccc064ae80",
+    "results/parent_group_pilot_v1/data/packets/obs_097040.npz": "8fffcf1c4662ea03486704f39a51800bc73e017a8ba86b20c2e9934bd27cead6",
+    "results/parent_group_pilot_v1/data/packets/obs_039417.npz": "0a8275719bab2db545765fa4924be7e907497f76adede6c33b0553a715342206",
+    "results/parent_group_pilot_v1/data/packets/obs_053903.npz": "10c96cd13a4943ef609bf68b3cdc2af582678322d4d3efd27199d19382836d08",
+    "results/parent_group_pilot_v1/data/packets/obs_025765.npz": "4523890099a76734cdb3840b4c797fb11a7b1b7729ec842e385216d38cf5d068",
+    "results/parent_group_pilot_v1/data/packets/obs_116392.npz": "99f3107e31ce1e370d90acca8244a413af8933bd3193c27abf4832009725df56",
+    "results/parent_group_pilot_v1/data/packets/obs_132842.npz": "250775e9783f8a347a2848bbfa96dc8ab63fcca470f7aee676b585335cd4fc33",
+    "results/parent_group_pilot_v1/data/packets/obs_130240.npz": "6a1d7f22b60dca1af385aa943e462211091cffc60f2aef73b815e316e0b613bf",
+    "results/parent_group_pilot_v1/data/packets/obs_114561.npz": "0b557d454d5f42fc463451c540a92cb26fe21b85163ba82bdb65801431082b96",
+    "results/parent_group_pilot_v1/data/packets/obs_101106.npz": "c37eb9f7c92d6438ac6d7986fce6edeccbbaaad33c978ed8e3bec376b3b2fa1d",
+    "results/parent_group_pilot_v1/data/packets/obs_114394.npz": "428496e51bf6de1275d74a4fe002640fb73a97fecff6b8ddda7286c982bf1cfe",
+    "results/parent_group_pilot_v1/data/packets/obs_140368.npz": "0a37f1536fc81d5c77489ed03c24a31b34317d1b94119cbbc6d91ffa2f9c186c",
+    "results/parent_group_pilot_v1/data/packets/obs_115854.npz": "7ef830168e6a877076690ad01a66a12c2197f81570c29ddf4900ae7a8ebaa41e",
+    "results/parent_group_pilot_v1/data/packets/obs_157856.npz": "f5217277ec8754c92dfb837bbc450009a51ba41e204b9bc5539e9b75b7ec3137",
+    "results/parent_group_pilot_v1/data/packets/obs_146560.npz": "c8c4af890d73a4555d69ff165950b2ee631bf0ddd4429c0b8d7802fd2ea4fcc9",
+    "results/parent_group_pilot_v1/data/packets/obs_153173.npz": "de7d880d15dd3308adfd585ab1a58374638ac9b518203512722ea6bffe6bf8f4",
+    "results/parent_group_pilot_v1/data/packets/obs_158518.npz": "f98a5b259a695465f0c15b6970b6d0ab1f9298fa7acec47a71e177eb16b2bc7a",
+    "results/parent_group_pilot_v1/data/packets/obs_157947.npz": "f35addff8f5f60cb91e059eb89434a425b78c0c973a782628d1ea1aa468ed75e",
+    "results/parent_group_pilot_v1/data/packets/obs_168309.npz": "047c2d24d99e0febc3338c9edc7ec7e088739a7ba161bbe409999aae0d23866b",
+    "results/parent_group_pilot_v1/data/packets/obs_164403.npz": "a0d69c5bf0c7082fd74a863214e71a7a69a3da2a754dda7f67d9974a78d3a281",
+    "results/parent_group_pilot_v1/data/packets/obs_166408.npz": "839f700bd17c6b26963f146f8047c08012fe551a898c58af2642c5fa8cd7d4f8",
+    "results/parent_group_pilot_v1/data/packets/obs_173909.npz": "4df817d94639faef9790ca56e3fe3c8d8a3bb82219ded9e38474d7a7ec47c38a",
+    "results/parent_group_pilot_v1/data/packets/obs_228691.npz": "405a9f89d61e7acba19eba8e0f52df8e5d317d675cdac15e69ad4a99d25a0296",
+    "results/parent_group_pilot_v1/data/packets/obs_283473.npz": "bfc681282996f912e4ac3de2674cc9d99a1acb503ff0997f2be563178466d61e",
+    "results/parent_group_pilot_v1/data/packets/obs_177028.npz": "74b48b6febf82fbf71956350650e1d537ba4abb1f2029e1cdc0a91269be19045",
+    "results/parent_group_pilot_v1/data/packets/obs_203894.npz": "1c26373c95e093b4565e8c231e83afd04b545ede738150c2185fdbaea667cc59",
+    "results/parent_group_pilot_v1/data/packets/obs_257522.npz": "490d1da8fab76d9d9e2e4ddee21c13c7ed41d2d751c70dd7234fac8437a978b0",
+    "results/parent_group_pilot_v1/data/packets/obs_294030.npz": "cb027c90c586d20fcd63ebf46ee8a9bdfb16f1e12e94fe8dc790a04402c490bf",
+    "results/parent_group_pilot_v1/data/packets/obs_241948.npz": "1b4f2016b319b53d35879a8633577c2f5cc130cc52b0dc726f6dd6428155a5a4",
+    "results/coherent_parent_pilot_v1/evaluation/20260910/report.json": "8421d44be8c3781e0fdfa8706824700cd02145710d10e0d300066bbfe17a48e3",
+    "results/coherent_parent_pilot_v1/evaluation/20260910/predictions_k32.csv": "5807c8f77607ce72f7429c5e992b2c798f083d03f577d84ee8ec1d84700c9c87",
+    "results/coherent_parent_pilot_v1/evaluation/20260911/report.json": "4df563ba9daa5aa68c3c554e2f0366e439eb1a3777a3155a205111d81ea7f157",
+    "results/coherent_parent_pilot_v1/evaluation/20260911/predictions_k32.csv": "57271fd2bcd25ab934dbfc42ae12c36e5fba91d25e383300f5ab820e59b1ff6d",
+    "results/parent_group_pilot_v1/evaluation/correlated/20260910/report.json": "d1a775e8649b112446006da156e0fd5f385a569371100202ce155a859250246f",
+    "results/parent_group_pilot_v1/evaluation/correlated/20260910/predictions_k32.csv": "b98ff3a43afb8c86866d48849b9acc83f1280a952ea3719c564a2e7941110ccc",
+    "results/parent_group_pilot_v1/evaluation/correlated/20260911/report.json": "d4792bfeb471e657b9738c5b54ad2875f2963e430986884a1344597cb4658b23",
+    "results/parent_group_pilot_v1/evaluation/correlated/20260911/predictions_k32.csv": "a22d8c4b4db70546bde30d1ecb74dc709f760337d11f2c7bd50a729d40b732c7",
+    "results/parent_group_pilot_v1/evaluation/correlated/20260912/report.json": "e24f48c93662ed02124a1caa2ebd2f9d46e2e3892e3fc7b39e11adbd2558a869",
+    "results/parent_group_pilot_v1/evaluation/correlated/20260912/predictions_k32.csv": "602fcd8e54d02dafdb0370ea1223289601529f54b9bc7662dc43d24564075b63",
+    "results/parent_group_pilot_v1/evaluation/independent/20260910/report.json": "0a9240b7cfdc2fbb1876008592df2f15553a8e98cb16dd210597556aab038e0a",
+    "results/parent_group_pilot_v1/evaluation/independent/20260910/predictions_k32.csv": "07d7dc4ecd91907957a0ace223f6a5fe5fafafa1d75d0cc20b4fd13260c364f1",
+    "results/parent_group_pilot_v1/evaluation/independent/20260911/report.json": "98edb7d6877c88232dfb01064891be99bc6f0eb3fde97144e8a8dc4e00823a31",
+    "results/parent_group_pilot_v1/evaluation/independent/20260911/predictions_k32.csv": "c803782fdb2d8a72c90c2fa8bc080701acb5c6ca369e90a662bf39834ffb55cc",
+    "results/parent_group_pilot_v1/evaluation/independent/20260912/report.json": "6bcc23d71e38ff73211d3d05258cffe370191c46c53f3c2cb0e6e3800aee24c1",
+    "results/parent_group_pilot_v1/evaluation/independent/20260912/predictions_k32.csv": "f6d64b786cdf7f54b0612c1892ed6b108954124f470637097de4d630d07ee09d",
+    "results/parent_group_pilot_v1/evaluation/deterministic/20260910/report.json": "f79f432c9bc72cf2455dda23eb98c1e0c5e982ea6fb5cbcf041185ffd0bf19a2",
+    "results/parent_group_pilot_v1/evaluation/deterministic/20260910/predictions_k1.csv": "f915512dbdebce54d85bfb812fd96a2ff16b5e4f460f0291fdf093de7755211a",
+    "results/parent_group_pilot_v1/evaluation/deterministic/20260911/report.json": "370684a42dec88d766b0675ed4a7db84a480ed0eb6d33729de50c0f8a0eb38f0",
+    "results/parent_group_pilot_v1/evaluation/deterministic/20260911/predictions_k1.csv": "8c21ed064db50fe5980281464428f92c0b34f7a7e6366d2a52ff8be7579995be",
+    "results/parent_group_pilot_v1/evaluation/deterministic/20260912/report.json": "e091c39ffd707eeb413aecf6e24d2d7b5509e9e51cbde8ef234cc619b64b86d4",
+    "results/parent_group_pilot_v1/evaluation/deterministic/20260912/predictions_k1.csv": "0d7956ddaaa84bc9215033ce4bf2de1ac9b0a2ba84283fc53609d4e2efd4265f",
+    "results/coherent_parent_pilot_v1/evaluation/20260910/worlds.npz": "0ff42577a7339ca075568a8453ce0c716241b8139fb539ccb32514b9eda4e3fe",
+    "results/parent_group_pilot_v1/evaluation/correlated/20260910/worlds.npz": "134f65fd6fcfbb134c7a05ff5c14a6371cf5ee4fc91d3ced5d0f2fe53b4d91c9",
+    "results/parent_group_pilot_v1/evaluation/independent/20260910/worlds.npz": "139622921e6326bb672b864d9c3aba4e6f6d4d2a58511a84247e77ac2342d355",
+    "results/paper_figures/build_saved_figures.py": "7c16f1883bd216dcf5c062ce7b57a983e723ea4e10226ce543d7daf9ddefda76"
+  },
+  "figures": [
+    {
+      "name": "01_architecture",
+      "caption_zh": "按实际模型、解码器和父级地点训练脚本绘制；硬前向与松弛反向明确区分。",
+      "caption_en": "Implemented ConPath pipeline. Correlated map samples are constrained by observed evidence and support, then evaluated by exact disk-footprint connectivity. The original and coherent categorical samplers are distinct trained variants. Exact hard event correction is paired with a bounded relaxed backward surrogate.",
+      "scope": "implementation schematic; no experiment score",
+      "source_bundle_sha256": "15838a2fe7e6d6cf6e3537b26f942d13b4beb86e6c33fe5251bcc39e1752dba8",
+      "files": [
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/01_architecture.svg",
+          "sha256": "b6c5335750abdd61c208fb808d7a6a02800836252cb7240105fc83248f07c5fa"
+        },
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/01_architecture.png",
+          "sha256": "9a9c6dc2d2a50f93c2a69458759de1617100e3f56941b8ba047891b8f8077227"
+        },
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/01_architecture.pdf",
+          "sha256": "a7e0582c3f54c1ad4544906bf8f12b831a300c58574eed9f2deaf85327b8b81b"
+        }
+      ]
+    },
+    {
+      "name": "03_event_metrics",
+      "caption_zh": "父级地点等权的事件指标，分开呈现两种子coherent比较和三种子原采样器比较。",
+      "caption_en": "Event metrics on the same 40-parent development cohort. Two-seed coherent comparisons and three-seed original-sampler comparisons are shown separately; error bars are training-seed SD, not confidence intervals.",
+      "scope": "validation-only development",
+      "source_bundle_sha256": "15838a2fe7e6d6cf6e3537b26f942d13b4beb86e6c33fe5251bcc39e1752dba8",
+      "files": [
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/03_event_metrics.svg",
+          "sha256": "86799eaff67088cab7b0f8cf4055cd3ddbf443586341b923b08d3fa2dcc8b6a4"
+        },
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/03_event_metrics.png",
+          "sha256": "1647509781b2cb89d0f9ed20c7a800de6a5b5814a8a37582289c5a89c2c805b8"
+        },
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/03_event_metrics.pdf",
+          "sha256": "007a7e79ad1cb3f08288940f5529ffecc27d13cf3e80b6bb593afe791874858f"
+        }
+      ]
+    },
+    {
+      "name": "04_reliability",
+      "caption_zh": "原ConPath及两个基线三个匹配种子的原始事件可靠性；分箱内按父级地点等权计算。",
+      "caption_en": "Uncalibrated event reliability for the original ConPath and baselines, for each of the three matched training seeds, using ten fixed bins and equal-parent weights. Empty bins are omitted; line segments are visual guides.",
+      "scope": "validation-only development",
+      "source_bundle_sha256": "15838a2fe7e6d6cf6e3537b26f942d13b4beb86e6c33fe5251bcc39e1752dba8",
+      "files": [
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/04_reliability.svg",
+          "sha256": "35c8a4a828bf8b47dfd8fd05f6e076610471adddc8f4f8ad984de6e3bb5b7658"
+        },
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/04_reliability.png",
+          "sha256": "3a806e409bce4017b3e8c8c78583cfb7dfafd4156f608a3ab8a15c2a5d973719"
+        },
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/04_reliability.pdf",
+          "sha256": "8aba3c4605fedab34c3004d33f2d962a5b67ad1d53c8ad88576497c28a878fdc"
+        }
+      ]
+    },
+    {
+      "name": "05_risk_coverage",
+      "caption_zh": "相同覆盖率下的误判风险；不把较低覆盖率下的风险当作直接安全优势。",
+      "caption_en": "Selective risk versus weighted coverage, with label-independent fractional acceptance of tied boundary scores. Thin curves show individual seeds and thick curves their means; no deployment safety guarantee is implied.",
+      "scope": "validation-only development",
+      "source_bundle_sha256": "15838a2fe7e6d6cf6e3537b26f942d13b4beb86e6c33fe5251bcc39e1752dba8",
+      "files": [
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/05_risk_coverage.svg",
+          "sha256": "d8ceb774e583f8a13f2ef86fb016f1721de5abce11fd18541c81fc838b843b9a"
+        },
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/05_risk_coverage.png",
+          "sha256": "812e123462a5ed4c8ca68dc5fcfb8ba7d343ed4c43d851a93da220dc4cdd619b"
+        },
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/05_risk_coverage.pdf",
+          "sha256": "e067b092ddd10e7e356d088989709c19a02bf7dd2f1cbdb4368942a63554e185"
+        }
+      ]
+    },
+    {
+      "name": "06_radius",
+      "caption_zh": "固定查询在0、10、20格圆盘足迹下的事件误差。",
+      "caption_en": "Event Brier at the three frozen disk-footprint radii, in raster cells. Equal-parent weights are recomputed within each radius; error bars denote seed SD.",
+      "scope": "validation-only development",
+      "source_bundle_sha256": "15838a2fe7e6d6cf6e3537b26f942d13b4beb86e6c33fe5251bcc39e1752dba8",
+      "files": [
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/06_radius.svg",
+          "sha256": "3402c6e3b01ff10fbebcc05680e5356017ccd5fb436a44913b8f2bc5ede9aaad"
+        },
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/06_radius.png",
+          "sha256": "312a87f3b3853d85fb493770bc5a7fd25d032e2a19632beb5fb27b74f7cf9628"
+        },
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/06_radius.pdf",
+          "sha256": "a968ae1f36dc3fbff1b35c5eba1879cb34570beac5a80c645a38aae39deae13c"
+        }
+      ]
+    },
+    {
+      "name": "07_map_metrics",
+      "caption_zh": "同一隐藏有效区域的地图指标；与路径事件评分区分。",
+      "caption_en": "Hidden valid-cell map metrics on the same cohort, separated from path-event scores. The empirical cellwise free frequency is not a path probability.",
+      "scope": "validation-only development",
+      "source_bundle_sha256": "15838a2fe7e6d6cf6e3537b26f942d13b4beb86e6c33fe5251bcc39e1752dba8",
+      "files": [
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/07_map_metrics.svg",
+          "sha256": "812edeaee3937b73d07c50743c3a7ddb600b9ad536ff7b99a7af70d3d585d8d8"
+        },
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/07_map_metrics.png",
+          "sha256": "0c963a8d2251fcfd0a3cb6cdf7a90eb825686d0d75941bd5ce03a04d745611cc"
+        },
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/07_map_metrics.pdf",
+          "sha256": "c9089427b2aa1962a0dbb1954c37d2083645f767e275f51505744ea3292c7527"
+        }
+      ]
+    },
+    {
+      "name": "02_fixed_case_00",
+      "caption_zh": "固定哈希案例1，同一输入、参考及同一种子的前三方法真实世界。",
+      "caption_en": "Fixed pre-existing gallery case 1, obs_014028:q024, radius 10 cells. All methods use the same observation and query. The first four saved worlds are shown in order; displayed event frequencies use all 32 worlds. Development validation only.",
+      "scope": "validation-only development",
+      "source_bundle_sha256": "15838a2fe7e6d6cf6e3537b26f942d13b4beb86e6c33fe5251bcc39e1752dba8",
+      "files": [
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/02_fixed_case_00.svg",
+          "sha256": "b13c22ae0a2a0198acd794215cc92b266e14a3dcc685b8eabf846571fa132ed3"
+        },
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/02_fixed_case_00.png",
+          "sha256": "7706567129234f10d181f443ceea7dd50b655aa3c3cc96a5b651ef74d5ca0b58"
+        },
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/02_fixed_case_00.pdf",
+          "sha256": "d0aae6275b7302004ad0f5f4e2ab282a7d7fa793f570a8508b5234fb236f594f"
+        }
+      ],
+      "scene_id": "7747a508-9431-24e8-863c-c53906506d8b",
+      "query_id": "obs_014028:q024",
+      "radius_cells": 10,
+      "seed": 20260910,
+      "displayed_world_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "metric_K": 32,
+      "reference_geometry": {
+        "global_id": "obs_014028",
+        "query_id": "obs_014028:q024",
+        "radius_cells": 10,
+        "reference_events_r0_r10_r20": [
+          true,
+          false,
+          false
+        ],
+        "endpoints_fit_radius": false,
+        "reference_bottleneck_at_displayed_radius": false,
+        "reference_unreachable": true
+      }
+    },
+    {
+      "name": "02_fixed_case_01",
+      "caption_zh": "固定哈希案例2，同一输入、参考及同一种子的前三方法真实世界。",
+      "caption_en": "Fixed pre-existing gallery case 2, obs_013470:q012, radius 10 cells. All methods use the same observation and query. The first four saved worlds are shown in order; displayed event frequencies use all 32 worlds. Development validation only.",
+      "scope": "validation-only development",
+      "source_bundle_sha256": "15838a2fe7e6d6cf6e3537b26f942d13b4beb86e6c33fe5251bcc39e1752dba8",
+      "files": [
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/02_fixed_case_01.svg",
+          "sha256": "a0f1dff26e3724722eabc7bdc7340388f529f4aa470ca0b4322f3d22ff81fe58"
+        },
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/02_fixed_case_01.png",
+          "sha256": "16c8a7fff7aaba472553536c9750a79ad5ec2facde7c83e66e194a8388770777"
+        },
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/02_fixed_case_01.pdf",
+          "sha256": "d33d73fb42369896a51e42a05f0bece32f8f4019eb59db6281487e5c93de24c3"
+        }
+      ],
+      "scene_id": "d63767be-3205-226c-9a89-3a27969053a7",
+      "query_id": "obs_013470:q012",
+      "radius_cells": 10,
+      "seed": 20260910,
+      "displayed_world_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "metric_K": 32,
+      "reference_geometry": {
+        "global_id": "obs_013470",
+        "query_id": "obs_013470:q012",
+        "radius_cells": 10,
+        "reference_events_r0_r10_r20": [
+          false,
+          false,
+          false
+        ],
+        "endpoints_fit_radius": false,
+        "reference_bottleneck_at_displayed_radius": false,
+        "reference_unreachable": true
+      }
+    },
+    {
+      "name": "02_fixed_case_02",
+      "caption_zh": "固定哈希案例3，同一输入、参考及同一种子的前三方法真实世界。",
+      "caption_en": "Fixed pre-existing gallery case 3, obs_082481:q030, radius 10 cells. All methods use the same observation and query. The first four saved worlds are shown in order; displayed event frequencies use all 32 worlds. Development validation only.",
+      "scope": "validation-only development",
+      "source_bundle_sha256": "15838a2fe7e6d6cf6e3537b26f942d13b4beb86e6c33fe5251bcc39e1752dba8",
+      "files": [
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/02_fixed_case_02.svg",
+          "sha256": "7b8f441cecdd99e0cd6cd02c86c3c8c432e3aba058cc718cfe21470d4c0e04cb"
+        },
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/02_fixed_case_02.png",
+          "sha256": "099f1669cf7d7552ab9e548ea5c9e471e5170a4f87fb69301d82e4fcdebfea7b"
+        },
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/02_fixed_case_02.pdf",
+          "sha256": "27136c13519b8c3b4db4ae735f659592e2f6284ef4ba0152688e95ce51268c03"
+        }
+      ],
+      "scene_id": "42444501_3dod_mesh",
+      "query_id": "obs_082481:q030",
+      "radius_cells": 10,
+      "seed": 20260910,
+      "displayed_world_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "metric_K": 32,
+      "reference_geometry": {
+        "global_id": "obs_082481",
+        "query_id": "obs_082481:q030",
+        "radius_cells": 10,
+        "reference_events_r0_r10_r20": [
+          false,
+          false,
+          false
+        ],
+        "endpoints_fit_radius": false,
+        "reference_bottleneck_at_displayed_radius": false,
+        "reference_unreachable": true
+      }
+    },
+    {
+      "name": "02_fixed_case_03",
+      "caption_zh": "固定哈希案例4，同一输入、参考及同一种子的前三方法真实世界。",
+      "caption_en": "Fixed pre-existing gallery case 4, obs_065777:q002, radius 10 cells. All methods use the same observation and query. The first four saved worlds are shown in order; displayed event frequencies use all 32 worlds. Development validation only.",
+      "scope": "validation-only development",
+      "source_bundle_sha256": "15838a2fe7e6d6cf6e3537b26f942d13b4beb86e6c33fe5251bcc39e1752dba8",
+      "files": [
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/02_fixed_case_03.svg",
+          "sha256": "4b4d2f57d6a209cf9c00a35b350c4b38e92cc5adb7f0936fd9cf8d695f7763db"
+        },
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/02_fixed_case_03.png",
+          "sha256": "acf01f8c20d174d8dd9d28ebcdd80bb9b9cdb57611bd5a2c8fba6d52e792cd1f"
+        },
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/02_fixed_case_03.pdf",
+          "sha256": "cf4a15a9fb1f73e124f3e213555dfb2dcf750fd7f443c8085c7ea5da5af0e730"
+        }
+      ],
+      "scene_id": "42897583_3dod_mesh",
+      "query_id": "obs_065777:q002",
+      "radius_cells": 10,
+      "seed": 20260910,
+      "displayed_world_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "metric_K": 32,
+      "reference_geometry": {
+        "global_id": "obs_065777",
+        "query_id": "obs_065777:q002",
+        "radius_cells": 10,
+        "reference_events_r0_r10_r20": [
+          false,
+          false,
+          false
+        ],
+        "endpoints_fit_radius": false,
+        "reference_bottleneck_at_displayed_radius": false,
+        "reference_unreachable": true
+      }
+    },
+    {
+      "name": "02_fixed_case_04",
+      "caption_zh": "固定哈希案例5，同一输入、参考及同一种子的前三方法真实世界。",
+      "caption_en": "Fixed pre-existing gallery case 5, obs_114561:q002, radius 10 cells. All methods use the same observation and query. The first four saved worlds are shown in order; displayed event frequencies use all 32 worlds. Development validation only.",
+      "scope": "validation-only development",
+      "source_bundle_sha256": "15838a2fe7e6d6cf6e3537b26f942d13b4beb86e6c33fe5251bcc39e1752dba8",
+      "files": [
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/02_fixed_case_04.svg",
+          "sha256": "19ed7e0e11b6db8f94aeec19cb97d0964b4f9d2437339eeedda33b0291c57a19"
+        },
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/02_fixed_case_04.png",
+          "sha256": "9076f28073d8b533bd478c3ab313e769c73760d4e1d2ed5777596bc8246e02d7"
+        },
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/02_fixed_case_04.pdf",
+          "sha256": "a55d26a773270c220c123c2225ca230a517fc6d2ad4622bc7798dff32f07ba1a"
+        }
+      ],
+      "scene_id": "EDJbREhghzL_region_segmentations_region8.ply",
+      "query_id": "obs_114561:q002",
+      "radius_cells": 10,
+      "seed": 20260910,
+      "displayed_world_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "metric_K": 32,
+      "reference_geometry": {
+        "global_id": "obs_114561",
+        "query_id": "obs_114561:q002",
+        "radius_cells": 10,
+        "reference_events_r0_r10_r20": [
+          true,
+          true,
+          true
+        ],
+        "endpoints_fit_radius": true,
+        "reference_bottleneck_at_displayed_radius": false,
+        "reference_unreachable": false
+      }
+    },
+    {
+      "name": "02_fixed_case_05",
+      "caption_zh": "固定哈希案例6，同一输入、参考及同一种子的前三方法真实世界。",
+      "caption_en": "Fixed pre-existing gallery case 6, obs_101106:q011, radius 10 cells. All methods use the same observation and query. The first four saved worlds are shown in order; displayed event frequencies use all 32 worlds. Development validation only.",
+      "scope": "validation-only development",
+      "source_bundle_sha256": "15838a2fe7e6d6cf6e3537b26f942d13b4beb86e6c33fe5251bcc39e1752dba8",
+      "files": [
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/02_fixed_case_05.svg",
+          "sha256": "adfff5206dbde6d897274eb50cb2693ad9ddb19533edc355856e0d566a11b346"
+        },
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/02_fixed_case_05.png",
+          "sha256": "239829ed30459411b10647ae6b7421ab774f436a1751d07d0befb106f86bac58"
+        },
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/02_fixed_case_05.pdf",
+          "sha256": "e8478ec39bc17f6c3eab83b2be8ab587bcd9b27ecf5ec912c20302abaa7a47b2"
+        }
+      ],
+      "scene_id": "HxpKQynjfin_region_segmentations_region1.ply",
+      "query_id": "obs_101106:q011",
+      "radius_cells": 10,
+      "seed": 20260910,
+      "displayed_world_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "metric_K": 32,
+      "reference_geometry": {
+        "global_id": "obs_101106",
+        "query_id": "obs_101106:q011",
+        "radius_cells": 10,
+        "reference_events_r0_r10_r20": [
+          true,
+          false,
+          false
+        ],
+        "endpoints_fit_radius": false,
+        "reference_bottleneck_at_displayed_radius": false,
+        "reference_unreachable": true
+      }
+    },
+    {
+      "name": "02_fixed_case_06",
+      "caption_zh": "固定哈希案例7，同一输入、参考及同一种子的前三方法真实世界。",
+      "caption_en": "Fixed pre-existing gallery case 7, obs_166408:q019, radius 10 cells. All methods use the same observation and query. The first four saved worlds are shown in order; displayed event frequencies use all 32 worlds. Development validation only.",
+      "scope": "validation-only development",
+      "source_bundle_sha256": "15838a2fe7e6d6cf6e3537b26f942d13b4beb86e6c33fe5251bcc39e1752dba8",
+      "files": [
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/02_fixed_case_06.svg",
+          "sha256": "bbb85388714a0210ebcea5079d4f49f65824804b2422d47bdf04acf38a0a9d6b"
+        },
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/02_fixed_case_06.png",
+          "sha256": "115ceaf94bc842c699cd6b33c809e562070389f5d340b6a958a052e37a814b9b"
+        },
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/02_fixed_case_06.pdf",
+          "sha256": "f79f6248084265e358b13b4699bd62ccc44b45867cf8d394bd506fc2685eff70"
+        }
+      ],
+      "scene_id": "scene0489_00",
+      "query_id": "obs_166408:q019",
+      "radius_cells": 10,
+      "seed": 20260910,
+      "displayed_world_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "metric_K": 32,
+      "reference_geometry": {
+        "global_id": "obs_166408",
+        "query_id": "obs_166408:q019",
+        "radius_cells": 10,
+        "reference_events_r0_r10_r20": [
+          false,
+          false,
+          false
+        ],
+        "endpoints_fit_radius": false,
+        "reference_bottleneck_at_displayed_radius": false,
+        "reference_unreachable": true
+      }
+    },
+    {
+      "name": "02_fixed_case_07",
+      "caption_zh": "固定哈希案例8，同一输入、参考及同一种子的前三方法真实世界。",
+      "caption_en": "Fixed pre-existing gallery case 8, obs_157856:q019, radius 10 cells. All methods use the same observation and query. The first four saved worlds are shown in order; displayed event frequencies use all 32 worlds. Development validation only.",
+      "scope": "validation-only development",
+      "source_bundle_sha256": "15838a2fe7e6d6cf6e3537b26f942d13b4beb86e6c33fe5251bcc39e1752dba8",
+      "files": [
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/02_fixed_case_07.svg",
+          "sha256": "e3189529cc0fc19dfd8bf2ba8cfacaa50ac96de05efd7f09f9d9ae85b2adfe98"
+        },
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/02_fixed_case_07.png",
+          "sha256": "7d6d0ec0c822f8df5226e9522b313e2a8d25bd91f8958a17a7043f88e8517de9"
+        },
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/02_fixed_case_07.pdf",
+          "sha256": "85b7058bbeca42ec550b757e96f1395142ae89249f4930cb9ee0be4dc2d18da3"
+        }
+      ],
+      "scene_id": "scene0355_00",
+      "query_id": "obs_157856:q019",
+      "radius_cells": 10,
+      "seed": 20260910,
+      "displayed_world_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "metric_K": 32,
+      "reference_geometry": {
+        "global_id": "obs_157856",
+        "query_id": "obs_157856:q019",
+        "radius_cells": 10,
+        "reference_events_r0_r10_r20": [
+          true,
+          false,
+          false
+        ],
+        "endpoints_fit_radius": false,
+        "reference_bottleneck_at_displayed_radius": false,
+        "reference_unreachable": true
+      }
+    },
+    {
+      "name": "02_fixed_case_08",
+      "caption_zh": "固定哈希案例9，同一输入、参考及同一种子的前三方法真实世界。",
+      "caption_en": "Fixed pre-existing gallery case 9, obs_203894:q002, radius 10 cells. All methods use the same observation and query. The first four saved worlds are shown in order; displayed event frequencies use all 32 worlds. Development validation only.",
+      "scope": "validation-only development",
+      "source_bundle_sha256": "15838a2fe7e6d6cf6e3537b26f942d13b4beb86e6c33fe5251bcc39e1752dba8",
+      "files": [
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/02_fixed_case_08.svg",
+          "sha256": "93bdeb9f8dbb50df27a271e375d33f9d74a629141638af9edacc03ee1521cd24"
+        },
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/02_fixed_case_08.png",
+          "sha256": "2a491af0ba2d9d1414340dd42ea47732d6d2414d8255a60c8abc9f6d1ffd5cd7"
+        },
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/02_fixed_case_08.pdf",
+          "sha256": "d04c08a4363fb22f4fa83ac47512f23619d6a5550cc7d4deccc3a853b3a0fa67"
+        }
+      ],
+      "scene_id": "1288_floor_01_pano_9",
+      "query_id": "obs_203894:q002",
+      "radius_cells": 10,
+      "seed": 20260910,
+      "displayed_world_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "metric_K": 32,
+      "reference_geometry": {
+        "global_id": "obs_203894",
+        "query_id": "obs_203894:q002",
+        "radius_cells": 10,
+        "reference_events_r0_r10_r20": [
+          true,
+          true,
+          true
+        ],
+        "endpoints_fit_radius": true,
+        "reference_bottleneck_at_displayed_radius": false,
+        "reference_unreachable": false
+      }
+    },
+    {
+      "name": "02_fixed_case_09",
+      "caption_zh": "固定哈希案例10，同一输入、参考及同一种子的前三方法真实世界。",
+      "caption_en": "Fixed pre-existing gallery case 10, obs_173909:q007, radius 10 cells. All methods use the same observation and query. The first four saved worlds are shown in order; displayed event frequencies use all 32 worlds. Development validation only.",
+      "scope": "validation-only development",
+      "source_bundle_sha256": "15838a2fe7e6d6cf6e3537b26f942d13b4beb86e6c33fe5251bcc39e1752dba8",
+      "files": [
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/02_fixed_case_09.svg",
+          "sha256": "96a0dab7fccbe6286308ed23078109f97f3ab82b8ec7a59f9f0befa1591bf691"
+        },
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/02_fixed_case_09.png",
+          "sha256": "7ce0d553b930821361da522dbbe0e76e2181387286bc84442782f2e5bf534c14"
+        },
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/02_fixed_case_09.pdf",
+          "sha256": "ad5b53730d22ace69719f46d5ebe2145b1b7233651b2600e653e60cf97055775"
+        }
+      ],
+      "scene_id": "1246_floor_02_pano_54",
+      "query_id": "obs_173909:q007",
+      "radius_cells": 10,
+      "seed": 20260910,
+      "displayed_world_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "metric_K": 32,
+      "reference_geometry": {
+        "global_id": "obs_173909",
+        "query_id": "obs_173909:q007",
+        "radius_cells": 10,
+        "reference_events_r0_r10_r20": [
+          true,
+          false,
+          false
+        ],
+        "endpoints_fit_radius": false,
+        "reference_bottleneck_at_displayed_radius": false,
+        "reference_unreachable": true
+      }
+    },
+    {
+      "name": "08_synthetic_event_ablation",
+      "caption_zh": "P0已保存报告中的事件指标；两种子完整模型与一个匹配种子的无事件损失控制分别标识，不作跨数据集并表。",
+      "caption_en": "Existing synthetic held-out-template diagnostics, reported separately from FlatLands. The no-event-loss control has one matched seed; the additional full-model seed is shown separately, not treated as an extra ablation repeat.",
+      "scope": "synthetic-heldout diagnostic",
+      "source_bundle_sha256": "15838a2fe7e6d6cf6e3537b26f942d13b4beb86e6c33fe5251bcc39e1752dba8",
+      "files": [
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/08_synthetic_event_ablation.svg",
+          "sha256": "a7b4287bc0b23c0aa003de7a3151ccf18e2d50f6af337be91c4f2970e2fecf22"
+        },
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/08_synthetic_event_ablation.png",
+          "sha256": "3285df1f62f2bdf6ca8b947eb647761ef1d750d3005c5ee458e387e8fd0da59b"
+        },
+        {
+          "path": "results/paper_figures/20260910T062423.054629Z/08_synthetic_event_ablation.pdf",
+          "sha256": "ea87653a487304d06f5bed7dfaf7842d2f55599774f3a9668650ce3198be445d"
+        }
+      ]
+    }
+  ],
+  "reference_geometry_for_fixed_cases": [
+    {
+      "global_id": "obs_014028",
+      "query_id": "obs_014028:q024",
+      "radius_cells": 10,
+      "reference_events_r0_r10_r20": [
+        true,
+        false,
+        false
+      ],
+      "endpoints_fit_radius": false,
+      "reference_bottleneck_at_displayed_radius": false,
+      "reference_unreachable": true
+    },
+    {
+      "global_id": "obs_013470",
+      "query_id": "obs_013470:q012",
+      "radius_cells": 10,
+      "reference_events_r0_r10_r20": [
+        false,
+        false,
+        false
+      ],
+      "endpoints_fit_radius": false,
+      "reference_bottleneck_at_displayed_radius": false,
+      "reference_unreachable": true
+    },
+    {
+      "global_id": "obs_082481",
+      "query_id": "obs_082481:q030",
+      "radius_cells": 10,
+      "reference_events_r0_r10_r20": [
+        false,
+        false,
+        false
+      ],
+      "endpoints_fit_radius": false,
+      "reference_bottleneck_at_displayed_radius": false,
+      "reference_unreachable": true
+    },
+    {
+      "global_id": "obs_065777",
+      "query_id": "obs_065777:q002",
+      "radius_cells": 10,
+      "reference_events_r0_r10_r20": [
+        false,
+        false,
+        false
+      ],
+      "endpoints_fit_radius": false,
+      "reference_bottleneck_at_displayed_radius": false,
+      "reference_unreachable": true
+    },
+    {
+      "global_id": "obs_114561",
+      "query_id": "obs_114561:q002",
+      "radius_cells": 10,
+      "reference_events_r0_r10_r20": [
+        true,
+        true,
+        true
+      ],
+      "endpoints_fit_radius": true,
+      "reference_bottleneck_at_displayed_radius": false,
+      "reference_unreachable": false
+    },
+    {
+      "global_id": "obs_101106",
+      "query_id": "obs_101106:q011",
+      "radius_cells": 10,
+      "reference_events_r0_r10_r20": [
+        true,
+        false,
+        false
+      ],
+      "endpoints_fit_radius": false,
+      "reference_bottleneck_at_displayed_radius": false,
+      "reference_unreachable": true
+    },
+    {
+      "global_id": "obs_166408",
+      "query_id": "obs_166408:q019",
+      "radius_cells": 10,
+      "reference_events_r0_r10_r20": [
+        false,
+        false,
+        false
+      ],
+      "endpoints_fit_radius": false,
+      "reference_bottleneck_at_displayed_radius": false,
+      "reference_unreachable": true
+    },
+    {
+      "global_id": "obs_157856",
+      "query_id": "obs_157856:q019",
+      "radius_cells": 10,
+      "reference_events_r0_r10_r20": [
+        true,
+        false,
+        false
+      ],
+      "endpoints_fit_radius": false,
+      "reference_bottleneck_at_displayed_radius": false,
+      "reference_unreachable": true
+    },
+    {
+      "global_id": "obs_203894",
+      "query_id": "obs_203894:q002",
+      "radius_cells": 10,
+      "reference_events_r0_r10_r20": [
+        true,
+        true,
+        true
+      ],
+      "endpoints_fit_radius": true,
+      "reference_bottleneck_at_displayed_radius": false,
+      "reference_unreachable": false
+    },
+    {
+      "global_id": "obs_173909",
+      "query_id": "obs_173909:q007",
+      "radius_cells": 10,
+      "reference_events_r0_r10_r20": [
+        true,
+        false,
+        false
+      ],
+      "endpoints_fit_radius": false,
+      "reference_bottleneck_at_displayed_radius": false,
+      "reference_unreachable": true
+    }
+  ],
+  "missing_or_excluded": [
+    {
+      "requested": "父级隔离no-event/no-global/direct定性对照",
+      "status": "不可生成",
+      "reason": "该cohort没有这些方法的已保存训练/世界结果；旧K128属于含地点重叠及历史physical-test访问的不同队列，不能补入。"
+    },
+    {
+      "requested": "P0 obs/reference/模型多世界定性",
+      "status": "不可生成",
+      "reason": "三个P0目录仅有报告、日志和模型checkpoint，未发现已保存地图数组；本任务禁止新模型推理。"
+    },
+    {
+      "requested": "历史K128两例作为无选择偏差的消融主图",
+      "status": "不采用",
+      "reason": "旧例子名称与既有选择记录含positive_recovery/false_safe_avoided，按结果挑选；不能把沿用旧挑图称为盲选。"
+    },
+    {
+      "requested": "严格窄瓶颈定性",
+      "status": "不可生成独立瓶颈案例",
+      "reason": "只在既有10个固定查询中核对reference r0可达、当前半径不可达且起终点均放得下圆盘；不另按模型结果选图。",
+      "cases": []
+    }
+  ],
+  "new_inference": false,
+  "new_training": false,
+  "gpu_used": false,
+  "new_test_asset_reads": 0,
+  "external_model_images_included": false,
+  "formal_superiority_claim": false
+}

@@ -1,185 +1,284 @@
-# ConPath: Connectivity-Calibrated Path Reliability from Partial BEV Observations
+# ConPath: Joint Spatial Map Posteriors for Footprint-Aware Reachability Prediction
 
-> **2026-09-10 当前状态：LaMa 与 FM+XAttn 的统一外部验证矩阵正在进行，尚未完成充分训练后的三个固定种子及最终独立审计。** 本轮实验方法、985/97/191开发划分、历史访问限制和归因边界见[中文实验方法草案](PAPER_FORMAL_EXPERIMENTS_ZH.md)。下文已有表格保留为其原历史阶段记录，不作为本轮外部正式主表；location_6与最终测试继续锁定。
-
-**读取范围更正：旧训练／验证包含原发布test中的8／5条观测，本轮回放也读取了这5条验证观测。更早的512观测查询审计检查过53条物理test观测（含32条ScanNet++）。因此撤回“物理test从未读取”的说法；旧 `test_evaluated=false` 等标志不能证明物理测试未触碰。详见[读取范围更正记录](site/data/flatlands_read_scope_erratum.json)。已停止进一步读取物理test图片，最终留出集需要审核全部历史访问并排除已检查的父级地点。**
-
-Working manuscript, updated 2026-09-09. The latest parent-place-isolated development and two-seed follow-up results are in Sections 9–10; formal final-test and external-baseline evidence remain incomplete. Physical-place isolation failed on the old FlatLands cohort; results below are diagnostic, not unseen-building evidence. Current numerical tables and standalone figures are generated in [PAPER_EVIDENCE.md](PAPER_EVIDENCE.md); a [Chinese evaluation summary](EVALUATION_SUMMARY_ZH.md) explains the new results and fixed-case images. Earlier tables and superseded experiments are preserved in [PAPER_DRAFT_HISTORY.md](PAPER_DRAFT_HISTORY.md).
-
-**2026-09-09 更正：旧 FlatLands 队列仅隔离子场景 ID，27/160个验证观测与训练共享建筑／地点。旧数值保留为队列诊断，不能证明新建筑泛化；旧子场景配对区间也不是独立建筑总体区间。数据隔离门槛重新打开。当前统一K=4对照、90条论文公开成绩、分组修正和历史帧分析见 [最新中文评估](BASELINE_REVIEW_ZH.md)。**
+**完整英文工作稿 · 2026-09-10 · validation-only。** 已停止外部基线及新增调参。本文的方法版本固定为原版 ConPath；父级地点隔离的三种子开发实验是当前主要验证证据，旧六方法表仅作历史机制诊断。最终测试未在本轮打开，但历史物理 test 访问不能隐瞒。尚不能称为已达到 IROS/ICRA 投稿证据门槛。数字、缺项和来源分别见 [PAPER_EVIDENCE.md](PAPER_EVIDENCE.md)、[PAPER_TABLES.md](PAPER_TABLES.md)、[PAPER_FIGURES.md](PAPER_FIGURES.md) 和 [最终模型选择](results/FINAL_MODEL_SELECTION.md)。
 
 ## Abstract
 
-Path reliability depends on the joint distribution of free space, whereas occupancy scores usually evaluate individual cells. ConPath learns a correlated posterior over binary support maps and estimates the probability that a path exists between two terminals for a specified disk footprint. Training combines map and spatial losses with a proper event score; evaluation uses exact discrete connectivity. A synthetic repeated-world experiment passes in two optimization seeds, while a matched model without the event loss fails. On a frozen, non-official FlatLands diagnostic cohort with distinct subscene IDs but overlapping parent places, three corrected training runs achieve event Brier 0.06749 versus 0.09521 for a matched independent decoder. Matched retraining without the event loss or global decoder factors yields Brier 0.20425 and 0.09499, respectively; all six within-seed paired scene intervals favor the full model. Permuting sample indices separately at every cell preserves all empirical occupancy marginals but worsens event Brier to 0.16139, isolating a role for spatial dependence. The advantage over a deterministic map from the same checkpoint is smaller and inconsistent across seeds. Equal-coverage risk intervals do not establish a stable safety improvement over the independent decoder or either training ablation. A second-domain audit identifies an observation-conditioned error floor that limits the current UnScenes3D adapter. A new audit identifies shared training places in 27 of 160 validation observations, invalidating an unseen-building interpretation of this cohort and its subscene-based intervals. At K=4, ConPath event Brier is 0.08007 versus 0.07237 for an untrained all-free completion rule, while their equal-30%-coverage error rates are 4.89% and 13.43%. These mixed diagnostics motivate stronger controls and fresh parent-grouped training. External-paper superiority, final testing and robust generalization remain unestablished.
+A robot's ability to reach a goal through partly observed space depends on how free cells occur together, as well as on their individual probabilities. We study the probability that a path exists for a specified circular robot footprint, conditioned on a partial bird's-eye-view map and a supplied valid-support mask. ConPath represents a joint stochastic occupancy posterior with global latent factors and local spatial noise, conditions sampled worlds to preserve observed evidence under the registered sampling rule, and estimates reachability by exact disk erosion and connectivity. A sample-pair event objective trains the posterior toward the downstream probability forecast. On a small FlatLands development split with disjoint parent places, three training seeds obtain Event Brier 0.10380 versus 0.11201 for independently sampled completion. A separate historical-cohort intervention preserves every empirical cell marginal while increasing Event Brier from 0.06749 to 0.16139 after spatial dependence is disrupted. Historical matched training ablations also support event supervision and global decoder factors, but that cohort has subsequently identified place overlap and cannot establish unseen-place generalization. Selective-risk improvements are not uniformly supported, and deterministic completion remains competitive. These validation-only findings support task-level evaluation of joint map posteriors; they do not establish final-test calibration, external-model superiority, or closed-loop navigation performance.
 
-## 1. Problem and scope
+## 1. Introduction
 
-For a partial BEV observation `X`, a supplied validity domain `V`, start `s`, goal `g`, and disk radius `r`, the quantity of interest is
+A partially observed map can assign high free-space probability to every cell in a doorway while rarely generating a doorway wide enough for a robot. Conversely, a model can assign uncertain occupancy to many cells yet consistently generate one of several connected passages. A cellwise completion score cannot distinguish these situations completely. For a navigation decision, the relevant random variable may be whether **any** footprint-feasible path exists between a particular start and goal.
 
-```text
-q_theta(s,g,r | X,V)
-  = E_{M ~ p_theta(M | X,V)} [1{a support-valid path exists from s to g for radius r}].
-```
+Uncertain mapping, topology-aware roadmap construction, and uncertainty-aware planning already address related problems. MRFMap models occupancy dependencies induced by sensor rays, and uncertainty-aware planners can use alternative route hypotheses. ConPath's scope is narrower: learning and evaluating a conditional probability of a path-existence event from a partial BEV map, rather than constructing a sensor map or executing a trajectory. [MRFMap](https://www.roboticsproceedings.org/rss16/p060.html), [Banfi et al.](https://arxiv.org/abs/2205.14251)
 
-Identical probabilities at individual cells do not determine this expectation: dependence can change whether a bottleneck opens as a coherent region. We evaluate map marginals, joint sample structure, and path events separately. Lower map error alone does not establish better event reliability.
+Our working hypothesis is that spatially correlated map samples and explicit event supervision improve this forecast beyond independently sampled cells. A fair test must separate three effects: changing map marginals, changing dependence at fixed marginals, and changing the training objective. It must also retain strong deterministic and direct-event controls, disclose finite-sample effects, and evaluate errors at comparable coverage.
 
-The prototype operates on rasters, circular footprints, and four-neighbor connectivity. It does not implement vehicle dynamics, an arbitrary SE(2) swept footprint, or a collision guarantee. Released validity masks define the benchmark support domain; UnScenes3D uses label validity as a supplied support mask. This is a benchmark condition, not evidence that the same support domain is available to a deployed robot.
+We organize the paper around three questions:
 
-## 2. Comparison with related methods
+- **RQ1:** At identical empirical map marginals, does the joint arrangement of sampled maps improve path-event prediction relative to disrupted spatial dependence?
+- **RQ2:** Does reachability supervision improve Event Brier, NLL, ECE, and false-safe behavior relative to optimizing map completion alone?
+- **RQ3:** How reliable are the predictions across footprint radii, partial observations, bottlenecks, and unreachable queries?
 
-The comparison separates deterministic completion, independent stochastic completion, joint stochastic completion, and direct event prediction. The primary dependence comparison matches encoder capacity and sample budget. The fixed-marginal shuffle additionally changes the joint arrangement of generated worlds while preserving every empirical cell probability, addressing a confound that separately trained models cannot eliminate.
+The contributions are (i) an explicit joint-map-to-footprint-event formulation; (ii) a stochastic decoder trained with an event-level sample-pair score; (iii) an auditable fixed-marginal intervention and matched training ablations that examine the dependence and supervision mechanisms; and (iv) a reproducible evaluation contract connecting map quality, event scores, and selective risk. The empirical support has different strengths across the questions: the newer place-isolated development study supports the independent-sampling comparison, whereas the complete ablation and fixed-marginal evidence remains historical and exploratory. We do not claim the first correlated occupancy model, a general proof of calibration, or uniformly superior safety.
 
-The coordinate-query control is inspired by implicit-field representations; it is not a faithful S4C reproduction. Sources, task differences, and implementation status are recorded in [RECENT_BASELINES.md](RECENT_BASELINES.md). An eight-paper review now prioritizes BEV completion over a wholesale transition to 3-D SSC: the FlatLands benchmark compares completion families under shared BEV conditioning; MapEx uses LaMa-based map predictions; CogniPlan provides a conditional generative map module with native layout-type supervision. PaSCo's separate common-backbone uncertainty comparisons and S4C's re-evaluation under a shared support mask inform the proposed controls. The review and source locations are recorded in [LITERATURE_REVIEW_ZH.md](LITERATURE_REVIEW_ZH.md).
+## 2. Problem Formulation
 
-The external comparison candidates include LaMa/ensemble, conditional flow completion, and CogniPlan. The revised execution preference is to reuse compatible published scores first, then author predictions or checkpoints, and undertake only necessary common-protocol adaptation training. The generator's layout labels prevent treating a file-path replacement as a faithful FlatLands transfer. These experiments have not been run. Engineering implementations retain their core mechanisms and disclose changes; full navigation-system claims require separate closed-loop evaluation. Cross-task 3-D mIoU, FID, or exploration scores do not enter the event table. [EXPERIMENT_DESIGN_ZH.md](EXPERIMENT_DESIGN_ZH.md) specifies a new matched-output K=4 comparison and measured cost curves; neither overwrites the frozen K=128 validation evidence.
+Let the finite grid be \(\Omega\), the supplied valid-support domain be \(V\subseteq\Omega\), and the observed free and blocked cells be \(O_f\) and \(O_b\). The hidden evaluation region is \(H=V\setminus(O_f\cup O_b)\). The input \(X\) encodes free, blocked, and unknown states; the support mask is supplied separately. Unknown is an observation state, not a third physical map class. A binary world \(M(v)\in\{0,1\}\) denotes free space when one. The posterior must satisfy
 
-## 3. Method
+\[
+M(v)=1\quad(v\in O_f\cap V),\qquad
+M(v)=0\quad(v\in O_b\text{ or }v\notin V).
+\]
 
-### 3.1 Correlated map posterior
+For input-chosen terminals \((s,g)\) and integer disk radius \(r\), define \(\rho_r(M;s,g)\) as the indicator of four-connected reachability after footprint erosion. The desired forecast is
 
-Three input channels encode observed free, observed blocked, and unknown cells. A compact BEV encoder supplies a two-class mean-logit head, low-rank global factors, and locally correlated stochastic logits. The final FlatLands model uses feature width 16 and four global latent dimensions, with 120,108 parameters. The matched independent decoder uses the same capacity, disables global factors, and uses a one-cell local kernel.
+\[
+q_\theta(s,g,r\mid X,V)=\mathbb E_{M\sim p_\theta(\cdot\mid X,V)}[\rho_r(M;s,g)].
+\]
 
-Observed evidence is clamped in each world, and the complement of `V` is always blocked before sampling. `UNKNOWN` is an observation state, not a third physical world class. The exact target geometry uses the same support boundary. Earlier forwards omitted this boundary; only checkpoints retrained with the corrected contract supply current main results.
+This is a probability under the learned conditional model. Whether it agrees with empirical event frequencies is an evaluation question, not an architectural guarantee. It is not the probability of a particular trajectory, and no control sequence is returned.
 
-### 3.2 Footprint-conditioned connectivity
+**Why cell marginals are insufficient.** Consider a route that requires two hidden cells to be free, each with marginal probability one half. If their states always agree, the route event has probability one half; if independent, it has probability one quarter; if exactly one is free, it has probability zero. These distributions have identical cell marginals. This elementary example establishes non-identifiability from marginals alone; it is an analytical illustration, not an experimental result.
 
-Eroding a sampled free set by a discrete radius-`r` disk gives valid vehicle-center positions. The event is one when `s` and `g` belong to the same four-connected component after erosion. Equivalently, let `C*(s,g;M)` be the maximum, over all paths, of the minimum clearance along the path. Then
+## 3. Method Overview
 
-```text
-q_hat(s,g,r) = (1/K) sum_k 1{C*(s,g;M_k) >= r}.
-```
+ConPath first encodes the partial BEV raster. A stochastic decoder then produces complete binary worlds sharing observed evidence and the same support boundary. Each world induces an exact footprint-feasible graph. Averaging binary connectivity events yields a Monte Carlo estimate of \(q_\theta\). During training, reference maps supply both hidden-cell supervision and query-event labels. At inference, the reference map and event labels are unavailable to the model.
 
-Using the same worlds for every radius makes probability non-increasing with vehicle size. Invalid endpoints are unreachable. Final predictions use exact disk clearance and connectivity. A NumPy merge-tree reference supplies the correctness oracle; the accelerated connected-component evaluator checks itself against that oracle before loading checkpoints.
+A single sampled world is reused across all footprint radii for a query. The sampler is independent of the query terminals: different queries can therefore be answered from the same world ensemble. This separates map inference from query evaluation while letting the event objective influence the map posterior during learning. The architecture and implementation provenance are documented in [the figure inventory](PAPER_FIGURES.md).
 
-### 3.3 Training and checkpoint selection
+![ConPath implementation diagram](results/paper_figures/20260910T063236.828092Z/01_architecture.png)
 
-The objective combines posterior-marginal NLL, a variogram term, and an event U-statistic Brier estimator. For binary sample events `z_k` and target `y`,
+*Implemented original ConPath: known-class logit conditioning, spatially correlated logits, independent class noise, and exact footprint events. This is a code schematic, not measured experimental data.*
 
-```text
-L_U = ((sum_k z_k)^2 - sum_k z_k) / (K(K-1)) - 2 y mean_k(z_k) + y^2.
-```
+## 4. Correlated Stochastic Occupancy Posterior
 
-Its expectation is the squared error of the underlying event probability without the additional Monte Carlo variance penalty of the plug-in training Brier. Evaluation uses ordinary Brier, NLL, and ECE. Straight-through samples and a relaxed connectivity backward path provide gradients. Public-data training uses a bounded 256-step propagation budget; this is not a globally exact large-map training operator.
+A compact U-Net with feature width 16 produces a feature field \(F_\theta(X)\). Global pooled context and coordinate features are part of the existing encoder. Three decoder heads produce class-location logits \(\mu_c(v)\), bounded low-rank factors \(B_{cd}(v)\), and bounded local noise scales \(\sigma_c(v)\). For world \(k\),
 
-Clean FlatLands runs use eight training worlds, 128 validation worlds in chunks of eight, AdamW with learning rate 0.0003, at most 40 epochs, and patience eight. Both decoders use the same three optimization seeds. Checkpoint selection evaluates up to eight fixed target-blind queries per observation with bounded propagation; final exact evaluation includes all retained queries. The selection/evaluation operator difference remains a limitation. New analyses do not retune checkpoints, query selection, split, or radii.
+\[
+L_{kc}(v)=\mu_c(v)+D^{-1/2}\sum_{d=1}^{D} B_{cd}(v)z_{kd}
+ +\sigma_c(v)\,\widetilde{G\!\ast\!\epsilon}_{kc}(v),
+\]
 
-## 4. Experimental protocol
+where \(z\) and \(\epsilon\) are independent standard Gaussian draws across worlds, \(D=4\), and the local Gaussian kernel is \(5\times5\). The filtered noise is normalized by the in-bounds squared kernel weights, maintaining its pointwise variance near boundaries. The model has 120,108 learned parameters.
 
-### 4.1 Synthetic hypothesis test
+The original decoder adds independent per-cell Gumbel class noise to these correlated logits and uses a hard argmax in the forward pass with a Concrete relaxation in the backward pass. The implementation encodes observed and invalid cells as known classes and replaces their class logits by +10/−10 before categorical sampling. At the registered unit categorical-noise scale, the 20-logit gap exceeds the possible class-noise difference after uniform draws are clipped to [10⁻⁶, 1−10⁻⁶]; the resulting hard worlds therefore preserve these constraints. Saved-world audits verify zero violations. Continuous marginal maps are separately projected by the evaluator. This is a property of the registered implementation, not an assertion of an arbitrary-scale final projection layer. Global and local logit dependence therefore coexist with independent final categorical noise; coherent wall geometry is not guaranteed. The two-seed spatially correlated categorical-noise variant is a separate development experiment, not the selected paper method.
 
-P0 holds out scene templates, supplies visible context distinguishing hidden-door priors, and repeats hidden worlds for the same observation. Two full-model seeds obtain event Brier 0.116377 and 0.111621, versus 0.183172 for independent Bernoulli and 0.169888 for direct query. A matched no-event-loss run obtains 0.191368 despite comparable map marginals. Residual fragmented doorway samples remain a limitation. These are synthetic results; exact gates and configurations are in [P0_DEATH_TEST.md](P0_DEATH_TEST.md).
+With ideal untruncated Gumbel noise and positive categorical-noise scale \(a\), the conditional class probability is \(\mathrm{softmax}(L_k/a)\); clipping the uniform draws introduces a numerical approximation to that identity in the implementation. Its average across latent worlds estimates the model marginal. \(\mathrm{softmax}(\mu)\) is generally not that marginal. We distinguish this continuous conditional-probability estimate from the empirical fraction of hard worlds that mark a cell free; archived map metrics must be interpreted using their recorded estimator. Both are distinct from the query's path-event probability.
 
-### 4.2 FlatLands validation
+## 5. Footprint-aware Reachability
 
-The published observation-directory split fails scene isolation. We use the explicitly non-official `provenance.original_split`, preserving upstream scene memberships. The bounded dataset/query manifest is frozen. The current comparison has 4,224 event rows from 1,408 endpoint groups across 142 contributing validation scenes, at radii 0, 10, and 20 cells. All methods use identical event keys. No test set is used for model selection or evaluation in this analysis.
+Let \(D_r=\{u\in\mathbb Z^2:\|u\|_2^2\leq r^2\}\). A center cell is valid for the robot if its translated disk lies entirely inside sampled free support:
 
-Each scene receives equal total weight and each event within it equal weight. Three-seed variability is sample standard deviation. Paired uncertainty resamples whole scenes 2,000 times within each seed; event rows are not independent observations. The exploratory comparisons are not adjusted confirmatory significance tests.
+\[
+F_r(M)=\{v\in\Omega:v+D_r\subseteq V\cap\{u:M(u)=1\}\}.
+\]
 
-The clean training ablations use the same 160 training and 160 validation packets, seeds, optimizer, support policy, bounded checkpoint-selection operator, and exact K=128 final evaluator as the full model. Each run starts from its seed's random initialization. No-event changes only the event-loss weight from 2 to 0, retaining event-based validation checkpoint selection. No-global disables only the decoder's low-rank global factors; encoder context, local correlation (kernel size 5), and the variogram loss remain enabled. The primary contrast is ablation minus full-model scene-weighted Brier, paired by training seed. The ablation analysis plan fixed 2,000 whole-scene resamples with bootstrap seed 20260907 before inspecting outcomes. This retraining intervention is separate from the fixed-checkpoint, fixed-marginal shuffle.
+We set \(\rho_r(M;s,g)=1\) precisely when both endpoints belong to \(F_r(M)\) and share a four-connected component. Endpoints invalid for the footprint produce event zero. Out-of-map cells are blocked. All reported radii are **grid cells**, specifically 0, 10, and 20 on FlatLands; no independently verified conversion to meters is assumed.
 
-Selective risk uses scene-weighted coverage. Every event tied at the boundary probability receives the same acceptance fraction independently of its label. This achieves requested coverage in expectation, including binary predictors. Each bootstrap replicate recomputes its coverage boundary. These curves describe validation ranking behavior; they are not fitted deployment thresholds.
+For \(K\) actual worlds,
 
-### 4.3 Second-domain diagnosis
+\[
+\widehat q_r=\frac1K\sum_{k=1}^K\rho_r(M_k;s,g).
+\]
 
-The frozen UnScenes3D LiDAR/ground-valid adapter uses nine training scenes and two validation scenes, with 478/62 frames and 15,567/1,529 queries. Three radii yield 46,701/4,587 events. The test site `location_6` remains unopened. Six fresh correlated/independent adapters pass support/checkpoint audits. Their deterministic K=128 mean-map events form a transfer diagnostic with a different predictive object from the primary stochastic event table.
+Exact evaluation is checked against the project's discrete geometric oracle. The training backward path uses bounded relaxed propagation and is not a collision-certified differentiable planner.
 
-### 4.4 External baseline preparation (no comparative results yet)
+**Radius monotonicity.** If \(r_2\geq r_1\), then \(D_{r_1}\subseteq D_{r_2}\), hence \(F_{r_2}(M)\subseteq F_{r_1}(M)\). Any path valid for \(r_2\) is valid for \(r_1\), so \(\rho_{r_2}\leq\rho_{r_1}\). Averaging the same worlds preserves this inequality exactly. This structural property does not imply calibrated probabilities at either radius. Direct-query predictors have no corresponding architectural guarantee.
 
-We have frozen a new, non-official split of CogniPlan's original inpainting training maps: 2,400 training, 300 calibration, and 300 validation mother maps, corresponding to 19,045, 2,369, and 2,381 partial observations. Grouping includes exact geometry matches under all eight square rotations/reflections; no such duplicate groups were found among the 3,000 mothers. Each layout contributes 800/100/100 mothers, and every partial observation inherits its mother's split. The public generator was trained using the original training asset, so its predictions on any of these subsets are training-domain interface checks, not held-out evidence. All formal methods must be retrained on the shared split.
+## 6. Training Objectives
 
-The pinned official CogniPlan generator, four fixed inference conditions, grayscale normalization, padding/cropping, threshold and morphology were exercised on 32 preselected training observations. All 128 hard maps exactly replay the native postprocessing with zero observed-cell conflicts. Reconstruction and adversarial phases each received 10 warmup and 100 measured updates; the adapted optimizer sequence also exactly matches the official loop in three update branches. These checks establish numerical compatibility, not convergence, comparative accuracy, or navigation performance. Example outputs, including incorrect hidden geometry, and resource estimates under concurrent GPU load are documented in [EXTERNAL_PROGRESS_ZH.md](EXTERNAL_PROGRESS_ZH.md). They are excluded from the validation result tables and isolated-device runtime claims. Common queries and final training recipes remain pending. A pinned Big-LaMa Fourier backbone adapted to shared BEV conditioning and a documented FM+XAttn literature reimplementation have now also passed short, training-only engineering checks. Each completed 100 measured effective-batch-64 optimizer updates; this establishes neither convergence nor external comparative accuracy. The shared support channel, BEV loss normalization, chosen flow-network architecture, microbatch BatchNorm behavior, and actual Heun/CFG forward counts are disclosed in [FLATLANDS_EXTERNAL_PROGRESS_ZH.md](FLATLANDS_EXTERNAL_PROGRESS_ZH.md). These uncalibrated diagnostic outputs are excluded from the result tables.
+The public-data stochastic models use
 
-The 160 inspected FlatLands training metadata records consistently specify a 512-to-256 crop retaining a 0.01 m/cell field. This agrees with the paper's crop description but does not resolve its separate 0.039 m/cell downsampling description. We retain cell-radius results without claiming independently verified physical scale.
+\[
+\mathcal L=\mathcal L_{\mathrm{map\mbox{-}NLL}}+0.1\mathcal L_{\mathrm{vario}}+2\mathcal L_{\mathrm{event\mbox{-}U}}.
+\]
 
-## 5. Historical-cohort diagnostic results
+The map log score applies only to hidden valid cells. The variogram term compares reference pair differences with sampled pair differences at fixed offsets. This encourages selected spatial dependencies but cannot identify an arbitrary joint distribution. Variogram scoring has a broader probabilistic-forecasting foundation. [Scheuerer and Hamill](https://repository.library.noaa.gov/view/noaa/22327)
 
-The full nine-control table, per-seed paired intervals, source/radius results, and prediction hashes are in [PAPER_EVIDENCE.md](PAPER_EVIDENCE.md) and [the machine-readable analysis](site/data/flatlands_clean_paper_analysis.json).
+For query label \(y\in\{0,1\}\) and binary sample events \(z_k\), the event term is
 
-### 5.1 Event accuracy and dependence
+\[
+\mathcal L_{\mathrm{event\mbox{-}U}}
+=\frac{\sum_{k\neq\ell}z_kz_\ell}{K(K-1)}-\frac{2y}{K}\sum_k z_k+y^2.
+\]
 
-ConPath Brier is 0.06749 ± 0.00936 versus 0.09521 ± 0.00703 for the independent decoder. The paired mean reduction is 0.02772, with positive scene-bootstrap intervals in all three seeds. Deterministic completion and coordinate query obtain 0.08857 and 0.09204; their third-seed paired Brier intervals include zero, so the evidence does not establish a uniformly decisive improvement over every comparator.
+For independent world draws conditional on the observation, this is an unbiased estimator of \((q_\theta-y)^2\). In contrast, the expected squared error of the finite-ensemble mean contains an additional \(q_\theta(1-q_\theta)/K\) term. An individual sample-pair estimate can be negative; the expected target remains nonnegative. Evaluation uses ordinary Brier, not this training estimator. Proper-score theory motivates the objective, but finite data, limited model capacity, and approximate gradients prevent a calibration guarantee. [Gneiting and Raftery](https://www.eecs.harvard.edu/cs286r/courses/fall10/papers/Gneiting07.pdf)
 
-Separately trained correlated and independent models have different hidden-map Brier (0.15451 versus 0.16789), so that comparison alone does not hold marginals fixed. The shuffle intervention preserves every empirical per-cell count in the original 128 worlds, changing only world-index alignment between cells. Event Brier rises to 0.16139 ± 0.00677. This supports a dependence mechanism in the frozen samples; it does not replace clean no-event/no-global training ablations or prove generalization.
+Hard sampled events use a straight-through backward surrogate with at most 256 propagation steps. In the newer parent-isolated experiment, exact hard connectivity replaces any truncated forward event while the bounded surrogate supplies gradients. The historical cohort used a bounded training/selection operator and a separate exact final evaluator. These protocols are not interchangeable.
 
-![Fixed-marginal dependence intervention](site/assets/flatlands_clean_marginal_shuffle.svg)
+In the newer experiment, AdamW uses learning rate \(3\times10^{-4}\), weight decay \(10^{-4}\), gradient clipping at 5, effective batch 4, and micro-batch 2. Training uses \(K=4\); model selection uses \(K=16\) on 25 separate selection places. The frozen budget is at most 24 epochs/600 updates, with its recorded early-stopping rule. The selected checkpoint minimizes selection Event Brier, breaking ties within \(10^{-5}\) by map NLL. Two zero-query training places expose a known micro-batch event-weighting limitation shared by the stochastic methods. We retain the archived models and disclose this limitation rather than silently changing the objective after evaluation.
 
-### 5.2 Strong mean-map control and selective risk
+## 7. Baselines
 
-Thresholding the same ConPath checkpoint's posterior mean at 0.5 gives Brier 0.06957 ± 0.00380; the independent checkpoint's mean map gives 0.07184 ± 0.00349. The stochastic-versus-mean-map gap is small and reverses in one seed. The stochastic method cannot be described as uniformly better than deterministic thresholding on this benchmark.
+The intended compact comparison contains six internal methods:
 
-At confidence 0.8, ConPath has lower false-safe rate (0.04552 versus 0.05689) but different coverage (0.33644 versus 0.36592). At equal 30% coverage, risks are 0.03600 and 0.03901; all three per-seed paired intervals include zero. This does not support a robust equal-coverage safety claim.
+1. **Deterministic occupancy:** a completion network trained on map loss, thresholded at the archived fixed threshold, followed by the same footprint connectivity evaluator.
+2. **Independent Bernoulli:** a matched stochastic completion model with global factors disabled and a one-cell local kernel; map and event training terms remain enabled. It is a separately trained independent model, not an exactly marginal-matched intervention.
+3. **Direct-query:** a classifier predicting the start–goal–radius event without a sampled map. Its existing historical result has one training seed; the distinct coordinate-query control is not relabeled as three direct-query repeats.
+4. **No-global:** the full decoder without its low-rank global factors. Encoder context, local correlation, and the event loss remain present.
+5. **No-event:** the full stochastic architecture with event-loss weight zero. Historical checkpoint selection still uses Event Brier, so the contrast concerns training supervision, not complete removal of event information.
+6. **ConPath:** the original correlated decoder with map, variogram, and event objectives.
 
-![Equal-coverage selective risk](site/assets/flatlands_clean_equal_coverage.svg)
+All numerical comparisons require common inputs, labels, query keys, support and hidden masks, radii, split, weighting, and evaluator contract. Available evidence does not provide all six methods on the newer place-isolated split. Missing cells remain missing. The historical cohort contains the requested six-row comparison, explicitly marked as a diagnostic table. The stronger same-checkpoint deterministic mean-map control is retained in the text and supplementary tables even though it is outside the compact six-row list.
 
-### 5.3 Sample-budget sensitivity
+A separate **fixed-marginal shuffle** independently permutes world indices at every cell of the saved ConPath ensemble. It preserves each cell's empirical free count exactly while disrupting their alignment across worlds. This is a finite-ensemble dependence intervention, not a claim that each shuffled world is an independent draw from an exactly factorized infinite posterior.
 
-The saved final sampling state reproduces every original K=128 event probability across six checkpoints with zero drift. Nested prefixes give ConPath Brier 0.06861 / 0.06771 / 0.06749 at K=32 / 64 / 128, and independent Brier 0.09575 / 0.09540 / 0.09521. Aggregate changes over these budgets are small relative to seed variation. This is fixed-checkpoint sensitivity, not arbitrary-K convergence or a training-budget ablation.
+External completions are discussed in Related Work and an under-convergence supplement only. LaMa BEV adaptation and FM+XAttn literature reimplementation are not official pretrained checkpoints or adequately converged principal baselines.
 
-### 5.4 Second-domain observation constraints
+## 8. Experimental Protocol
 
-Clean UnScenes3D mean-map Brier is 0.51142 ± 0.00198 versus 0.51130 ± 0.00218 for the independent decoder. The near-zero difference is not evidence of successful transfer. A final mean-map projection audit found that restoring observed-free cells could reopen invalid support after correct model sampling. Version 2 applies the support mask last in both the evaluator and renderer; all six checkpoints and hidden-map metrics reproduce exactly, and all 27,522 corrected event predictions satisfy the observation bounds. Superseded v1 predictions remain available for audit.
+### 8.1 Evidence cohorts and data separation
 
-Let `F_min` contain only observed-free valid cells, and let `F_max` also free every unknown valid cell. Every world respecting the hard observation lies between these sets. Disk erosion and connectivity are monotone, so its event is bounded by the pessimistic and optimistic events. A positive target with optimistic event zero, or a negative target with pessimistic event one, forces Brier error one for every such posterior. This yields a lower bound without selecting model parameters.
+The primary data source is FlatLands, a partial-view BEV floor-completion benchmark. Its published completion task is related but has different targets and metrics from our path-event evaluation. [FlatLands v3](https://arxiv.org/abs/2603.16016v3)
 
-All 51,288 train/validation event labels were replayed against the exact oracle. The scene-weighted Brier lower bound is 0.13097 on training and 0.47574 on validation. Only 15.66% of validation events are mutable through unknown completion; the lower bound accounts for about 93% of current mean-map error. Further optimization cannot remove this forced component. A future adapter should first revisit the observation likelihood using training data and a separately versioned protocol. The bound applies to the frozen hard-observation adapter, not to all sensor models or the dataset in general.
+**Parent-isolated development cohort.** Five indoor sources—3RScan, ARKitScenes, Matterport3D, ScanNet, and ZInD—contribute 20/5/8 parent places each to training/selection/validation, totaling 100/25/40. Each place contributes one fixed observation. Parent-place overlap and cross-split exact D4 duplicate checks pass. Input-defined query generation precedes target inspection and retains goals whose reference cell is blocked. The 40 validation places contain 515 queries and 1,545 radius-conditioned events. Seeds are the existing **20260910, 20260911, and 20260912**. These identifiers are not replaced with the different seeds requested for a possible new optimization study.
 
-![Observation-conditioned error floor](site/assets/unscenes3d_observation_ceiling.svg)
+The original nine model runs finished and fixed their checkpoints before validation scoring. Data-preparation quality checks had already inspected the development references, and validation was later reused to choose a sampling modification. Thus, the cohort is development validation, not a pristine confirmatory test. It also has a small training budget that does not establish full convergence.
 
-### 5.5 Clean training ablations
+**Historical diagnostic cohort.** The archived six-method comparison uses 160 training and 160 validation packets, 142 event-contributing validation subscenes, 1,408 terminal groups, and 4,224 events. Full, independent, no-global, and no-event use seeds **20260831, 20260901, and 20260902**. A later parent audit found training-place overlap in 27 of the 160 validation observations. Historical metrics are reproducible but cannot substantiate unseen-place generalization. Resampling subscenes does not correct this overlap.
 
-All six clean retrainings passed the frozen configuration, checkpoint, support, query-key, and metric-replay audits. Removing the event training loss raises Brier from 0.06749 ± 0.00936 to 0.20425 ± 0.00322; removing the decoder's global factors yields 0.09499 ± 0.00157. The mean ablation-minus-full differences are +0.13675 ± 0.01039 and +0.02749 ± 0.00964 across the three training seeds. Every per-seed 95% whole-scene Brier interval is positive: no-event intervals are [0.11130, 0.17652], [0.11139, 0.17645], and [0.09559, 0.15611]; no-global intervals are [0.01947, 0.04971], [0.02185, 0.04192], and [0.00866, 0.02416]. These descriptive reused-validation results support both design choices under the current bounded-data protocol.
+**Two-seed sampling follow-up.** The modified sampler uses the same 100/25/40 cohort and existing seeds 20260910/20260911. Its comparisons are restricted to those two matched seeds and remain supplementary. It is not pooled with the three-seed main development result.
 
-The radius analysis identifies a specific no-event failure mode: all radius-20 validation probabilities are zero in every seed, although the scene-weighted positive rate is 20.67%. Radius-10 predictions are also almost entirely zero. Thus, visually high cell probabilities do not ensure coherent sampled free regions large enough for the robot. This is a diagnostic on the frozen cell radii; the unresolved physical-resolution discrepancy prevents extending the conclusion to new metric footprints. Source/radius results and both pre-existing illustrative cases are retained in the Chinese summary. The latter includes probability maps and the first sampled world's disk-eroded support, with no outcome-based sample selection.
+**Stopped external cohort.** The separately frozen 985/97/191 training/calibration/validation-place protocol remains archived. No ConPath result from that cohort is available for the present paper. LaMa/FM staging was stopped when the user froze the paper scope; these results never fill missing internal-baseline rows.
 
-At equal 30% coverage, mean false-safe rates are 3.60% for the full model, 5.65% without event loss, and 4.29% without global factors. All six paired risk intervals include zero, and the no-global point contrast reverses in two seeds. Better overall Brier does not establish a stable selective-risk improvement. The ablations also do not remove the close same-checkpoint mean-map control or substitute for the planned external methods.
+### 8.2 Test lock and access history
 
-![Clean training ablations](site/assets/flatlands_clean_training_ablations.svg)
+No final test is opened for this manuscript consolidation. UnScenes3D `location_6` remains locked. Earlier FlatLands work did access physical archive-test observations: eight occurred in the old training manifest, five in old validation, and an earlier query audit inspected 53 archive-test observations. These counts refer to overlapping histories and must not be added as disjoint totals. We withdraw any historical claim that all physical test assets were untouched. Final holdout eligibility requires a complete access-history audit and exclusion of inspected parent places. Old Boolean `test_evaluated=false` fields do not establish that condition. [Access erratum](site/data/flatlands_read_scope_erratum.json)
 
-## 6. Reproducibility and limitations
+### 8.3 Metrics, weighting, and uncertainty
 
-Source, protocol, checkpoint and prediction hashes accompany the reports. The checkpoint environment uses Python 3.13.13. Reruns restore the saved CUDA sampling state and validate exact geometry. Commands and downloadable SVG/PDF figures are in [PAPER_EVIDENCE.md](PAPER_EVIDENCE.md). Real checkpoint-derived positive and false-safe panels disclose their label-based explanatory case selection.
+For event rows \(i\) with fixed nonnegative weights \(w_i\) summing to one (\(w_i=1/(S n_s)\) for a row in a parent with \(n_s\) events among \(S\) contributing parents), we report weighted Brier \(\sum_i w_i(\widehat q_i-y_i)^2\), binary NLL with the archived clipping rule, and ECE with the archived bins. Hidden-map Brier applies only to valid unobserved cells, using the specific stored marginal estimator. No bin boundaries, probability thresholds, or query lists are retuned. The parent-isolated experiment originally registered Brier and equal-coverage risk; NLL, ECE, and confidence-0.8 summaries added here are retrospective calculations from its saved validation predictions, using the existing project convention (NLL clipping at 10⁻⁶ and ten equal-width ECE bins). They are not relabeled as preregistered selection criteria. Per-query calibration predictions were not archived, so missing calibration summaries remain unavailable. Low ECE alone can accompany uninformative forecasts, and NLL is particularly sensitive to confidently wrong finite-ensemble zeros and ones.
 
-Limitations include validation reuse for checkpoint selection, the non-official split, source/radius-dependent prevalence, two second-domain validation scenes, hard observation assumptions, and bounded differentiable propagation. Current NumPy/accelerated CPU inference diagnostics do not establish a scalable CUDA backward operator. There is no claimed end-to-end sensor fusion, real-robot navigation, rectangular footprint, or certified collision result.
+At confidence \(0.8\), acceptance is \(A_i=\mathbf1\{\widehat q_i\geq0.8\}\). Coverage is \(\sum_iw_iA_i\), and false-safe rate is \(\sum_iw_iA_i(1-y_i)/\sum_iw_iA_i\). If nothing is accepted, risk is undefined, not zero. The same threshold has different available probability bins for different \(K\). Equal-coverage curves additionally compare ranking: every row tied at the boundary receives the same fractional acceptance without using its label. A 30%-coverage risk is not relabeled as risk at confidence 0.8.
 
-## 7. Current research decision
+The newer cohort weights parent places equally; the historical cohort weights contributing subscenes equally. Seed summaries use sample standard deviations, not confidence intervals. Recorded paired bootstrap intervals retain their original resampling unit and condition on the stated seed averages. Event rows and generated worlds are not treated as independent experimental repetitions. Complete available threshold metrics, radius strata, monotonicity and constraint audits are indexed in [the numeric snapshot](results/paper_validation_snapshot.json).
 
-The evidence supports further study of joint map structure and event scoring. It does not yet meet the final-paper gate: deterministic controls remain close, equal-coverage risk improvement over the independent decoder is not stable, and the second-domain adapter has a large observation-conditioned error floor.
+### 8.4 Freeze at paper convergence
 
-The clean three-seed no-event/no-global matrix is now complete under the frozen [ablation analysis plan](CLEAN_ABLATION_PLAN.md). The external-method interfaces have passed short engineering checks. The next milestone is to freeze shared data and queries and establish adequate baseline convergence; the discrepancy between the FlatLands paper's nominal spatial resolution and the local release metadata remains unresolved, so physical-footprint claims cannot yet be expanded. LaMa/ensemble and conditional flow completion on FlatLands, and CogniPlan's generator on native maps, remain required under [EXPERIMENT_DESIGN_ZH.md](EXPERIMENT_DESIGN_ZH.md). The new matched-output K=4 table requires common data and geometry; a larger training set requires retraining all relevant methods under one new version.
+The existing parent-isolated original model beats independent sampling in all three recorded training seeds, satisfying the requested stop condition. Consequently no A/B/C configurations are launched, no temperature calibration is fitted, and no loss, sampler, data split, threshold, or query set is changed. The selected method is the original ConPath family with all three original selection checkpoints; it is not a best-seed pick or an ensemble. The complete checkpoint identities and remaining test requirements are recorded in [FINAL_MODEL_SELECTION.md](results/FINAL_MODEL_SELECTION.md).
 
-Before another UnScenes3D matrix, a training-only observation-model audit must address its error floor without held-out test labels. Scalable-operator evidence, measured cost curves, the external-method comparison, and a frozen test protocol remain necessary. Pause/resume execution history and completed checkpoint identities are preserved in CONTINUATION.md and RECOVERY_STATE.json. This remains a working draft; final public-data, transfer, and submission-ready claims are unsupported.
+## 9. Main Results
 
-## 8. New baseline and data audit (2026-09-09)
+### 9.1 Current place-isolated development evidence
 
-The [Chinese baseline review](BASELINE_REVIEW_ZH.md) supplies the complete local K=4 table, 90 versioned published reference values, and protocol mismatches. Map MES and oracle best-of-K IoU from FlatLands cannot replace path-event Brier or label-blind mean-of-K prediction. Published values remain in a separate reference table; no external-model superiority is established.
+Table 1 uses only the 100/25/40 parent-isolated protocol and its three existing seeds. The risk column is explicitly **equal-30%-coverage risk**. Additional metrics from saved predictions are kept in the separate metric tables; absence of a baseline is never represented by zero.
 
-Upstream house/space/home/visit/reference-rescan grouping finds 19 Matterport3D, 5 3RScan, 2 ZInD and 1 ScanNet validation observations sharing a training parent. ARKitScenes has zero such overlap in the selected cohort. Historical exact numerical replays remain valid, but existing subscene bootstrap intervals are conditional diagnostics. Simply removing overlapping validation rows cannot create a fresh holdout for checkpoints already selected on that validation set. A metadata-only candidate partitions 215,289 physical-train observations into 3,589/445/445 parent groups for training/calibration/development validation, with zero cross-partition parent overlap. It quarantines 53 observations lacking visit IDs. Quality, scale, query and independent final-test gates remain open; the original physical ID test also overlaps development parents. New experiments require training from scratch.
+| Method | Actual K | Event Brier ↓ | False-safe at 30% coverage ↓ |
+|---|---:|---:|---:|
+| Deterministic occupancy | 1 | 0.11152 ± 0.00256 | 0.2516 |
+| Independent Bernoulli | 32 | 0.11201 ± 0.00366 | 0.2443 |
+| Direct-query | — | Not evaluated on this cohort | — |
+| No-global | — | Not evaluated on this cohort | — |
+| No-event | — | Not evaluated on this cohort | — |
+| ConPath | 32 | 0.10380 ± 0.00350 | 0.2395 |
 
-A train-only UnScenes3D audit of 36 frames from nine scenes finds 22.75% observed-valid cell conflict. Of 307 observation-forced false-negative events, 207 have a directly blocked endpoint. On 27 strictly causal historical pairs, a calibration-derived pose candidate increases mean 0.3-m overlap from 39.38% to 45.59%, but improves median distance in only 11 pairs; independent ego-pose files validate only four sampled frames. Neither temporal prediction quality nor a Transformer benefit has been measured. Proposed work prioritizes observation likelihood and terrain representation, then confidence-gated geometric fusion, followed by a matched single/history-frame by convolution/attention factorial design. Future frames and accumulated complete maps are excluded. Data-scale experiments distinguish independent places from repeated views.
+*Table 1. Validation-only, bounded development experiment. Brier is mean ± sample SD over seeds 20260910/11/12; displayed risks are mean point estimates. Source: `site/data/parent_group_pilot_zh.json`; exact values and hashes are in PAPER_TABLES.md and the snapshot. Dashes denote missing measurements.*
 
-The physical-test access claim is also withdrawn: the old development manifest included eight original archive-test observations in training and five in validation; the current replay read those five. Earlier bounded query auditing inspected 53 original archive-test observations, including 32 ScanNet++ scenes. Historical false test-access flags do not establish an untouched holdout. No further physical-test PNG access is allowed, and final holdout eligibility requires a complete access audit and exclusion of already-inspected parent groups.
+Retrospective calculations from the unchanged saved validation predictions give mean Event NLL/ECE of 0.79330/0.08622 for ConPath and 0.94364/0.10131 for independent sampling. At confidence 0.8, ConPath has mean false-safe rate 0.18649 and coverage 0.21340, versus 0.20847 and 0.22453 for independent sampling. These additional scores describe the selected checkpoints; they were not used to redefine the original selection or screening rules, and lower threshold risk at lower coverage is not a matched-coverage safety claim. The existing train-fitted radius prior is a useful counterexample: its NLL 0.48499 and ECE 0.05653 are lower than ConPath's, although its Brier is higher and its confidence-0.8 coverage is zero. Its false-safe rate at that threshold is undefined. This rule remains in the supplementary table; we do not claim the lowest NLL or ECE among all available controls.
 
+The independent-minus-ConPath Brier difference is 0.00821, with the recorded source-stratified paired parent interval [0.00439, 0.01251], conditional on the three seed means. Against deterministic completion the corresponding difference is 0.00772, with interval [−0.01616, 0.03377]. This supports the independent-sampling comparison within the available development cohort, but not a stable advantage over deterministic completion.
 
-## 9. 父级地点隔离的最新开发实验（2026-09-09）
+Difficulty is not uniform. In a recorded post-evaluation diagnosis, 750/1,545 events are forced unreachable by the observed map; ConPath has zero error on that subset. On events mutable by hidden completion, its parent-weighted Brier is 0.19912. The smaller overall Brier partly reflects easy known negatives. Unknown-region per-sample free-space IoU is 0.62238 for ConPath versus 0.66228 for deterministic completion; improved event accuracy does not imply better map reconstruction on every metric. In the saved continuous-probability estimator, hidden-map Brier is 0.15147 for ConPath, 0.15158 for independent, and 0.13869 for deterministic completion. The deterministic model's worse thresholded binary-map Brier must not be substituted for its better continuous score to manufacture a probabilistic mapping advantage.
 
-九次从头训练已完成；使用100/25/40个父级地点的训练/选优/开发验证，父级交叉为零，保留目标为障碍的输入选择查询。ConPath K32 Brier为0.10380±0.00350，独立对照0.11201±0.00366，确定性网络0.11152±0.00256；30%覆盖风险分别23.95%、24.43%、25.16%。相对独立对照的父级配对区间为[0.00439,0.01251]，相对确定性网络区间跨零；区间条件于三个训练种子的均值。地图可通行类IoU仍低于确定性网络。
+A previously saved post-hoc mean-map analysis on the same current checkpoints uses the fixed 0.5 threshold. ConPath's conditional mean map has Event Brier 0.11410 and risk at 30% coverage 0.27791; the independent checkpoint's conditional mean map has Brier 0.11640 and risk 0.27739. These derived controls were not original registered screening rows and do not replace the separately trained deterministic baseline. Their saved report is retained in T1e, without fresh inference or a retuned threshold.
 
-完整中文实验正文、七方法表、误差诊断和限制见[PARENT_PILOT_RESULTS_ZH.md](PARENT_PILOT_RESULTS_ZH.md)，原始公开数字见[本轮JSON](site/data/parent_group_pilot_zh.json)。本节替代旧队列作为最新开发证据，但不是正式最终测试或外部论文排名。两个种子的固定空间采样改进已完成，结果见下一节及[中文实验记录](COHERENT_RESULTS_ZH.md)；协议见[COHERENT_PILOT_ZH.md](COHERENT_PILOT_ZH.md)。
+### 9.2 Historical six-method diagnostic
 
+The complete historical six-row table is retained in [PAPER_TABLES.md](PAPER_TABLES.md), with the overlap caveat in its caption. ConPath's Event Brier/NLL/ECE are 0.06749/0.28854/0.05715; independent sampling obtains 0.09521/0.78503/0.08720. The direct-query control, available for one seed, has ECE 0.04076, below ConPath's three-seed mean. Consequently the evidence cannot support an all-metric or uniformly better direct-query-calibration claim. Counts and uncertainty remain visible rather than presenting one direct-query seed as three repetitions.
 
-## 10. 空间连续类别采样的两种子开发试验
+The same-checkpoint ConPath mean map is an important counterexample to a broad stochastic-versus-deterministic claim: its Brier is 0.06957, near the stochastic value 0.06749, and the direction reverses in one seed. These historical findings describe a reused, overlapping development cohort, not independent-building generalization.
 
-在第9节基线完成后，固定一个9×9、σ=3的空间相关Gumbel类别采样变体。两个模型使用相同初始化参数、数据、优化器、训练预算和检查点选优规则；新变体只改变最终类别噪声的空间联合分布。额外卷积与CDF计算未增加学习参数，但不能声称计算成本相同。两种子20260910/20260911分别完成24/23轮，选中21/17轮。此方向由原40地点开发验证反馈确定，后续复用该验证，非最终留出。
+![Event-score comparison](results/paper_figures/20260910T063236.828092Z/03_event_metrics.png)
 
-| 方法（同两个训练种子） | K | 通路Brier ↓ | 30%覆盖风险 ↓ | 可通行类IoU ↑ |
-|---|---:|---:|---:|---:|
-| 空间连续采样ConPath | 32 | 0.09191 ± 0.00902 | 22.60% | 0.61919 |
-| 原ConPath | 32 | 0.10325 ± 0.00476 | 23.65% | 0.62009 |
-| 独立单元对照 | 32 | 0.11014 ± 0.00239 | 24.87% | 0.62522 |
-| 确定性补全网络 | 1 | 0.11132 ± 0.00359 | 25.05% | 0.66254 |
+*Event Brier, NLL, and ECE. The upper row is the original three-seed comparison; the lower row is the distinct two-seed sampling exploration. Dots are individual seeds and bars are seed SD. NLL/ECE are retrospective summaries of unchanged validation predictions.*
 
-±表示两次训练的样本标准差。本表与第9节的三种子均值分开。原ConPath减新变体的父级平均Brier差为0.01135，按来源分层配对95%区间[-0.00117,0.02437]跨零；区间条件于两个种子的平均值。相对独立对照/确定性网络的区间在本次条件分析下为正，但开发复用限制了确认性解释。风险下降仅报告点估计，未检验其统计显著性；可通行类IoU及逐格概率Brier没有同时改善。
+## 10. Ablation Study
 
-固定前K4输出时，改进版/原模型Brier为0.10141/0.10982，K32为0.09191/0.10325，均未挑选最好样本或重新选优。 K4的30%覆盖误判风险从原模型23.73%略升至改进版23.84%，不能将Brier改善解释为所有预算下的风险改善。现有10个预先固定病例使用同输入、同查询、同seed和第一张实际世界展示新旧差异。完整分种子结果、SVG/PDF图、独立审计及范围说明见[COHERENT_RESULTS_ZH.md](COHERENT_RESULTS_ZH.md)。
+### 10.1 RQ1: dependence at fixed empirical marginals
 
-本轮通过了预设的两项开发筛查，但尚不足以建立稳定优于原模型的证据。正式实验仍需共同数据扩展和收敛检查、修复零查询微批事件权重并共同重训、强外部同协议对照，以及完成历史访问审计后的最终留出。该结果不涉及室外历史帧或Transformer架构收益。
+In the saved historical K=128 samples, independently permuting world indices at every cell leaves each empirical occupancy marginal exactly unchanged. Event Brier increases from 0.06749 ± 0.00936 to 0.16139 ± 0.00677. The intervention therefore shows that the original sample alignment contains useful event information beyond its finite-sample marginals. It does not prove the learned posterior is the true conditional distribution or establish this effect on an untouched test cohort.
+
+Separately trained ConPath and independent models have different hidden-map Brier, 0.15451 and 0.16789 in the archived marginal estimator. Their comparison alone cannot answer a strictly fixed-marginal RQ1. The paired permutation supplies that narrower mechanism test. The newer place-isolated comparison supplies complementary development evidence, but has no newly executed fixed-marginal intervention in this consolidation.
+
+![Historical fixed-marginal intervention](results/paper_figures/historical_aggregate/flatlands_clean_marginal_shuffle.svg)
+
+*Historical diagnostic only: original K128 samples versus cellwise world-index permutations with exactly preserved empirical marginals. This plot predates the parent-overlap discovery and does not establish unseen-place generalization.*
+
+### 10.2 RQ2: event supervision and global factors
+
+The historical matched retrainings use the same three seeds and common query/evaluator contract. Removing the event loss increases Event Brier to 0.20425 ± 0.00322, NLL to 2.53067 ± 0.05699, and ECE to 0.21690 ± 0.01933. Removing global decoder factors gives 0.09499 ± 0.00157, 0.78486 ± 0.05495, and 0.08592 ± 0.00058, respectively. Every recorded within-seed subscene-bootstrap Brier interval favors the full model. These are conditional historical diagnostics; the place-overlap finding prevents a confirmatory interpretation.
+
+The no-event model assigns zero reachability to every radius-20 validation query across all three seeds, despite an archived scene-weighted positive rate of 20.67%. This is consistent with fragmented sampled support destroying finite-footprint connections. It does not imply that all map-only completion architectures must fail. No-global removes low-rank decoder factors only; it does not remove the encoder's global context.
+
+![Historical training ablations](results/paper_figures/historical_aggregate/flatlands_clean_training_ablations.svg)
+
+*Historical diagnostic only: full/no-event/no-global on their common archived cohort. The later audit found train-place overlap in 27/160 validation observations; the displayed old subscene intervals are not independent-building intervals.*
+
+### 10.3 Archived sampling modification
+
+The two-seed correlated categorical-noise variant obtains K32 Brier 0.09191 versus 0.10325 for the original model on the same two seeds. The recorded original-minus-variant interval [−0.00117, 0.02437] includes zero. Empirical hard-world hidden-map Brier rises from 0.15192 to 0.15362, and at K4 the 30%-coverage risk rises from 23.73% to 23.84%. The variant therefore does not establish the requested stable multi-metric improvement and is retained as supplementary exploration. No third seed or additional search is initiated.
+
+## 11. Calibration and Selective Risk
+
+Reliability diagrams display predicted event scores against observed event frequencies using the saved weighting and bins. They must be read with their counts, radius composition, and cohort labels. The archived historical reliability evidence supports lower overall event error relative to independent sampling and the two training ablations, but it does not support uniformly improved selective risk.
+
+At confidence 0.8 on the historical cohort, ConPath's mean false-safe rate is 0.04552 at coverage 0.33644; independent sampling has risk 0.05689 at coverage 0.36592. At equal 30% coverage the risks are 0.03600 and 0.03901, and every recorded within-seed paired risk interval includes zero. At the fixed 0.8 threshold, no-event actually has a lower mean false-safe rate, 0.02561, than full ConPath, but also much lower mean coverage, 0.19316. No-event and no-global have mean equal-coverage risks 0.05655 and 0.04288, but their paired risk intervals also include zero. No-global's point contrast reverses in two seeds.
+
+These results answer only part of RQ2: overall probabilistic scores improve in the historical ablation, while a robust false-safe improvement is not established. A lower risk at a fixed threshold can reflect lower coverage. No claim of a safety guarantee follows from any of these point estimates. Post-hoc temperature or threshold fitting is not performed during manuscript consolidation.
+
+![Event reliability](results/paper_figures/20260910T063236.828092Z/04_reliability.png)
+
+*Saved event forecasts and observed frequencies on the parent-isolated development cohort; each seed remains visible. Connecting segments are visual guides, not calibrated fits.*
+
+![Selective risk and coverage](results/paper_figures/20260910T063236.828092Z/05_risk_coverage.png)
+
+*Equal-parent selective risk with fractional, label-independent handling of score ties. Coverage is the fraction of accepted query events, not the confidence threshold.*
+
+## 12. Qualitative Results and Footprint Analysis
+
+The figure bundle reuses stored predictions and previously recorded case lists. The newer gallery fixes ten parent-place examples across the five indoor sources using input identifiers and fixed query ordering. Comparisons preserve the same observation, reference, seed, radius, and first sampled world; they do not select the best-looking sample. Earlier historical positive/failure examples were selected using outcomes and came from the overlap-affected cohort. They remain traceable in the archive but are excluded from the new figure bundle; they are not presented as blind-selected main evidence.
+
+Each map distinguishes observed free space, observed blocked space, unknown valid cells, and closed invalid support. Posterior sample panels show actual binary worlds. Cell-probability panels show the recorded marginal estimate, and query annotations show a separate event forecast. S and G identify query terminals; a straight segment between them would not constitute a predicted path. Any footprint-eroded panel is explicitly labeled as robot-center support rather than the original occupancy map.
+
+Archived historical no-event/no-global/full panels illustrate how similar-looking cell probabilities can produce different eroded connected components, but their outcome-based selection prevents including them as unbiased main qualitative evidence. No matching no-event/no-global worlds were saved for the newer cohort, so its requested qualitative ablation panel remains unavailable. Unreachable examples are retained with their source and selection rationale. No strict interior-bottleneck example is available among the ten existing fixed queries after requiring both endpoints to fit the footprint; this missing qualitative category is disclosed rather than filled by a new outcome-selected example. Radius curves report the actual 0/10/20-cell strata. Although shared-world connectivity guarantees non-increasing forecasts with radius, the archived no-event collapse and radius/source differences show that this is weaker than empirical reliability. No preregistered occlusion-stratified sweep or complete narrow-bottleneck validation figure set is available. RQ3 is therefore partially supported by an exact structural property and diagnostic figures, with remaining evidence gaps recorded in [PAPER_FIGURES.md](PAPER_FIGURES.md).
+
+![First previously fixed query and posterior samples](results/paper_figures/20260910T063236.828092Z/02_fixed_case_00.png)
+
+*The first case in the existing fixed ten-case list, obs_014028:q024, seed 20260910, radius 10 cells. Original ConPath and independent samples appear above the supplementary sampling variant. These are the first four saved worlds in order; query scores use all 32 worlds. All ten cases remain in the figure inventory, including failures.*
+
+![Footprint-radius results](results/paper_figures/20260910T063236.828092Z/06_radius.png)
+
+*Brier at the fixed 0/10/20-cell radii; the same query set and saved worlds are used. Monotonic probabilities do not imply equal error or equal calibration across radii.*
+
+## 13. Limitations
+
+**Development evidence and historical contamination.** The current principal results are validation-only. The newer 40-place cohort has been reused for development and is small; the older full ablation cohort overlaps training parent places and includes historical archive-test access. No final test has been opened in this consolidation, and final holdout eligibility has not been established. Existing subscene confidence intervals cannot be reinterpreted as independent-building uncertainty.
+
+**Incomplete matched baseline matrix.** The newer split lacks direct-query, no-event, and no-global runs, while the historical direct-query result has only one seed. We neither mix the two cohorts nor start replacement training. External generative models have not served as sufficiently converged formal main baselines. We make no ranking claim against LaMa, FM+XAttn, or published navigation systems.
+
+**Task and sensor scope.** Inputs are supplied BEV maps and valid-support masks, not end-to-end RGB or LiDAR. Current primary evidence concerns indoor FlatLands development protocols. Outdoor generalization, real-robot closed-loop operation, and historical-frame reasoning are unproven. The method forecasts path existence and does not directly output a control trajectory.
+
+**Geometry and computation.** Footprints are discrete circular disks with four-neighbor motion; nonholonomic dynamics, arbitrary robot orientation, and continuous collision checking are outside the model. Radius units remain grid cells because physical-scale calibration is unresolved. Bounded relaxed gradients are approximate. Finite-world probability estimates have sampling noise and clipped NLL depends on the recorded clipping convention. No controlled-device throughput superiority is asserted.
+
+**Learning and inference limitations.** The parent-isolated experiment has at most 600 updates, a known zero-query micro-batch event-weighting limitation, and no claim of sufficient convergence for every model. The original categorical noise can fragment narrow passages. Better Brier does not imply uniformly better NLL, ECE, map quality, or false-safe risk; deterministic controls remain strong. Event-based selection of the no-event checkpoint limits attribution to the training-loss intervention. Fixed-marginal shuffling is a saved-sample intervention rather than a complete causal account of separately trained architectures.
+
+## 14. Related Work
+
+**Probabilistic mapping and planning.** MRFMap uses a Markov random field and forward ray sensor models for occupancy inference, establishing that dependencies in occupancy mapping are not new. ConPath studies a learned hidden-region posterior under an already supplied BEV observation and scores a downstream footprint-conditioned event. [Shankar and Michael](https://www.roboticsproceedings.org/rss16/p060.html) Topology-informed growing neural gas uses probabilistic map topology to construct navigation roadmaps, and uncertainty-aware planning can reason about alternative paths and information-gathering actions. Those outputs and experiments differ from a calibrated scalar path-existence forecast. [Saroya et al.](https://doi.org/10.1109/LRA.2021.3068886), [Banfi et al.](https://arxiv.org/abs/2205.14251)
+
+**Connectivity supervision.** MALIS trains affinity graphs through maximin connectivity rather than only individual-edge error. Learned promising-region methods also supervise connectivity for sampling-based planning. These precedents motivate task-sensitive supervision and prevent claiming connectivity learning itself as novel. ConPath combines a stochastic map posterior, a robot-footprint event, and probabilistic scoring; its bounded surrogate is not presented as a new general maximin algorithm. [Turaga et al.](https://arxiv.org/abs/0911.5372), [Ma et al.](https://arxiv.org/abs/2112.08106)
+
+**Generative map completion.** FlatLands directly studies partial-view floor completion using deterministic and stochastic completion families, including flow-based methods. It is a close data/task neighbor, so our contribution cannot be the mere generation of multiple BEV maps. Our comparison asks whether their joint structure supports a specific reachability forecast. [Bhattacharjee et al.](https://arxiv.org/abs/2603.16016v3) LaMa addresses large-mask image inpainting using Fourier convolutions and a wide-receptive-field training design. Its BEV adaptation is a distinct implementation contract. [Suvorov et al.](https://arxiv.org/abs/2109.07161) Our LaMa BEV adaptation and FM+XAttn literature reimplementation received incomplete convergence-stage experiments and were stopped before adequate three-seed confirmation. They remain related methods and supplementary engineering records, with no numerical superiority claim.
+
+**Probabilistic evaluation.** Proper scoring rules evaluate forecasts against realized outcomes; variogram scores address aspects of multivariate dependence, and temperature scaling is an established post-hoc calibration method. ConPath uses these ideas to distinguish map-marginal quality, event accuracy, and selective risk. Temperature scaling is not newly implemented or fitted here, and lower binned ECE is not equated with a safety certificate. [Gneiting and Raftery](https://www.eecs.harvard.edu/cs286r/courses/fall10/papers/Gneiting07.pdf), [Scheuerer and Hamill](https://repository.library.noaa.gov/view/noaa/22327), [Guo et al.](https://proceedings.mlr.press/v70/guo17a.html)
+
+Published external mIoU, FID, and navigation-success values are omitted from our numerical event tables. Where cited in the archived literature review, they refer to **different datasets, tasks, outputs, and metrics and cannot be compared directly** with ConPath Event Brier.
+
+## 15. Conclusion
+
+ConPath connects a joint stochastic map posterior to the probability of footprint-feasible start–goal reachability. The current evidence supports the importance of evaluating map dependence at the event level: a small place-isolated development study improves on independent sampling, and a separate historical fixed-marginal intervention and training ablations expose the roles of sample structure and event supervision. The evidence does not establish uniformly better selective risk, superiority to strong deterministic completion, or final-test generalization. We freeze the original method and the existing checkpoints, stop additional tuning and external training, and preserve these limits in the manuscript. The remaining submission question is the sufficiency of the documented validation evidence and a properly audited final holdout, not whether further parameter searches can improve every reported decimal.
+
+## Reproducibility and manuscript assets
+
+The [evidence register](PAPER_EVIDENCE.md), [tables](PAPER_TABLES.md), [figures](PAPER_FIGURES.md), [JSON snapshot](results/paper_validation_snapshot.json), [CSV snapshot](results/paper_validation_snapshot.csv), and [model-selection record](results/FINAL_MODEL_SELECTION.md) bind results to their original protocols, seeds, checkpoints, and saved predictions. No training, new model inference, raw test-data reading, threshold fitting, or query revision is required to regenerate this manuscript bundle. Source references above identify prior work; all ConPath numbers derive exclusively from local auditable experiment records.

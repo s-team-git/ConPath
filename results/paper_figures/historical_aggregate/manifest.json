@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "created_utc": "20260910T063929.361060Z",
+  "kind": "historical_aggregate_only_original_byte_copies",
+  "files": [
+    {
+      "source": "site/assets/flatlands_clean_marginal_shuffle.svg",
+      "destination": "results/paper_figures/historical_aggregate/flatlands_clean_marginal_shuffle.svg",
+      "source_sha256": "2a691747b508f9c0c47dfb0bada12d50026e63161b7706f6db3005c5c086bc9e",
+      "destination_sha256": "2a691747b508f9c0c47dfb0bada12d50026e63161b7706f6db3005c5c086bc9e",
+      "byte_identical": true
+    },
+    {
+      "source": "site/assets/flatlands_clean_marginal_shuffle.pdf",
+      "destination": "results/paper_figures/historical_aggregate/flatlands_clean_marginal_shuffle.pdf",
+      "source_sha256": "2429f24b89163205feab0fcc73d893bd55991999b039263ebb8c1b9975a0fd83",
+      "destination_sha256": "2429f24b89163205feab0fcc73d893bd55991999b039263ebb8c1b9975a0fd83",
+      "byte_identical": true
+    },
+    {
+      "source": "site/assets/flatlands_clean_training_ablations.svg",
+      "destination": "results/paper_figures/historical_aggregate/flatlands_clean_training_ablations.svg",
+      "source_sha256": "bda2f459c967f59849e5dfcb854b3782033dee39d2083f435ee0d19f51aa2df6",
+      "destination_sha256": "bda2f459c967f59849e5dfcb854b3782033dee39d2083f435ee0d19f51aa2df6",
+      "byte_identical": true
+    },
+    {
+      "source": "site/assets/flatlands_clean_training_ablations.pdf",
+      "destination": "results/paper_figures/historical_aggregate/flatlands_clean_training_ablations.pdf",
+      "source_sha256": "2247fa76445388f5f17041ce839684e21a39f5974bd7567ad3c9b45c32e71633",
+      "destination_sha256": "2247fa76445388f5f17041ce839684e21a39f5974bd7567ad3c9b45c32e71633",
+      "byte_identical": true
+    }
+  ],
+  "metadata_sources": [
+    {
+      "path": "site/data/flatlands_clean_paper_analysis.json",
+      "sha256": "29ca7640437695dbb432c256dc6a0ab0f176ddfb108c17bd8723e17a223e9de3"
+    },
+    {
+      "path": "site/data/flatlands_clean_training_ablations.json",
+      "sha256": "d54ade10698106c1b36b11fd73fb3f90ac1da1c70b1b8ab780d0e6c687f2daab"
+    },
+    {
+      "path": "site/data/flatlands_read_scope_erratum.json",
+      "sha256": "9a925babdb1246c73c51bf2d01c861608975b69bc7ad4bbc7678470c40a9400a"
+    }
+  ],
+  "scope": "Historical mixed development cohort: 27/160 validation parents overlap training; physical-test archives were historically accessed.",
+  "legacy_clean_title_and_test_untouched_flags_superseded_by_erratum": true,
+  "current_task_reads_raw_images_or_worlds_or_targets": false,
+  "current_task_runs_inference": false,
+  "new_parent_primary_evidence": false,
+  "new_qualitative_selection": false,
+  "K": 128,
+  "radii_cells": [
+    0,
+    10,
+    20
+  ],
+  "seeds": [
+    20260831,
+    20260901,
+    20260902
+  ],
+  "rq1": "Saved exact-marginal shuffle: conditional mechanism evidence in the historical cohort only.",
+  "rq2": "Saved training ablations: no-event retains common event-based checkpoint selection; no-global removes decoder factors but retains encoder context.",
+  "no_main_table_or_generalization_authorization": true
+}

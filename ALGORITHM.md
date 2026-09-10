@@ -1,5 +1,7 @@
 # ConPath Algorithm Contract
 
+> **2026-09-10 论文收敛指令（覆盖下方历史计划）：** 外部模型训练/评估和自动续训已取消，保留全部结果；不扩数据、不新建模型方向、不再调参、不打开最终测试。已有原ConPath父级隔离三seed触发停止条件，当前仅整理论文及可审计图表。LaMa/FM只保留Related Work与欠收敛补充记录。当前计划见 [WORK_PLAN.md](WORK_PLAN.md)，证据见 [PAPER_EVIDENCE.md](PAPER_EVIDENCE.md)。
+
 > 当前执行范围（UTC 2026-09-10）：先完成冻结的FlatLands LaMa/FM外部矩阵。现有空间一致采样ConPath候选与原版、去reachability loss和独立采样控制共同登记；本任务不新增架构或研究方向。下方历史P2/P3想法不是当前任务。详见[正式协议执行记录](FLATLANDS_FORMAL_PROTOCOL_ZH.md)。
 
 ## Research question

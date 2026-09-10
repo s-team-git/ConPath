@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "created_utc": "20260910T064132.442897Z",
+  "kind": "one_complete_rule_control_supplement",
+  "snapshot": {
+    "path": "results/paper_convergence_v1/snapshot_reviewed_v1/paper_validation_snapshot.json",
+    "sha256": "1908010b58880be4265d9d258839422282671e7bdf2a069703a53f24f216c887"
+  },
+  "protocol": {
+    "path": "results/parent_group_pilot_v1/data/protocol.json",
+    "sha256": "175d555c6da4dabf268b13a6cf0ca8bbbca97e91fcc0cebe7d4aadf9092222f3"
+  },
+  "renderer": {
+    "path": "results/paper_figures/build_rule_and_historical_supplements.py",
+    "sha256": "4fa1a9e5b2fe228ef3a6e12ea9cfaf8b8bb40731fc7a6be265eece014d93a8fe"
+  },
+  "selection": "all seven existing main-cohort methods, fixed declared order, no outcome selection",
+  "files": [
+    {
+      "path": "results/paper_figures/rule_controls/20260910T064132.442897Z/09_rule_controls.svg",
+      "sha256": "daa18fb6d200ae971ab6ebcdcbaa1c77eabd07575d523b398ea54e95c66b0b83"
+    },
+    {
+      "path": "results/paper_figures/rule_controls/20260910T064132.442897Z/09_rule_controls.png",
+      "sha256": "582a6c46553c1b7d55ca310cbc084b238d701807b9a39527dc9219bbab003998"
+    },
+    {
+      "path": "results/paper_figures/rule_controls/20260910T064132.442897Z/09_rule_controls.pdf",
+      "sha256": "1065505b8ba1d5ad68318845fb700b905f5fd05406b2b9e2f6fedbda5c8be611"
+    }
+  ],
+  "english_caption": "All available deterministic rule controls and three trained methods on the same 40-parent development cohort. All rule methods are shown without outcome-based selection. Error bars for trained methods denote the sample SD of three seeds; rules have one deterministic evaluation. Undefined risk at zero accepted coverage is omitted. The training-radius prior has lower NLL and ECE but zero coverage at score 0.8. Deterministic completion has lower continuous hidden-map Brier (0.138685) than original ConPath (0.151468). No method dominates all objectives; development validation only.",
+  "validation_only": true,
+  "new_inference": false,
+  "test_assets_read": false,
+  "source_values": {
+    "path": "results/paper_figures/rule_controls/20260910T064132.442897Z/values.json",
+    "sha256": "d9bf8d04eb8d9bc3d07545ca42bd2ad76af9d6c799ebb8639a36da48d3053707"
+  }
+}

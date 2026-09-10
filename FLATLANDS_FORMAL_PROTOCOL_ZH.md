@@ -1,5 +1,7 @@
 # FlatLands 正式外部比较：执行记录
 
+> **2026-09-10 论文收敛指令（覆盖下方历史计划）：** 外部模型训练/评估和自动续训已取消，保留全部结果；不扩数据、不新建模型方向、不再调参、不打开最终测试。已有原ConPath父级隔离三seed触发停止条件，当前仅整理论文及可审计图表。LaMa/FM只保留Related Work与欠收敛补充记录。当前计划见 [WORK_PLAN.md](WORK_PLAN.md)，证据见 [PAPER_EVIDENCE.md](PAPER_EVIDENCE.md)。
+
 本轮已于 UTC 2026-09-10 03:12 启动分阶段队列，尚未完成正式三次重复。源码提交 `a1fa04d`，协议提交与标签 `6694e86` / `flatlands-external-formal-protocol-v1` 已推送。258项回归通过。
 
 本轮只验证“联合空间随机地图后验 + footprint-aware reachability”相对于地图补全、独立采样和直接事件预测的作用。LaMa 使用 **LaMa BEV adaptation**，FM 使用 **FM+XAttn literature reimplementation**；均从头训练，不是作者官方 checkpoint，不导入不兼容的论文 3D 指标。没有新增研究方向。

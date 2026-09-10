@@ -1,0 +1,28 @@
+{
+  "created_utc": "2026-09-10T06:30:06.248609+00:00",
+  "kind": "selection_document_clarification_and_read_only_provenance_check",
+  "passed": true,
+  "document": "results/FINAL_MODEL_SELECTION.md",
+  "document_sha256": "4fafc44182649a0f749a4e515690bc2fc9dd96c3882983a8d9b038ddb09ac3f0",
+  "prior_receipt": "results/flatlands_external_formal_v1/cancellation_20260910T0608Z/model_selection_check.json",
+  "prior_receipt_sha256": "6834a5720271ae3e8f55a4ff33487b65e06142d6095c52b9199d6eb1304469f1",
+  "prior_document_sha256": "9b2bf330717424481c7e47e4f1f0ede00681b132347e9d120f261249a9259dc5",
+  "scope": "Only clarify checkpoint-source table and pretest requirements; original numbers/checkpoints unchanged. Prior checkpoint-byte checks are inherited from the immutable prior receipt, not claimed as newly executed.",
+  "checks": {
+    "prior_verification_receipt_is_passed": true,
+    "original_19_checks_retained_as_prior_evidence_not_reexecuted": true,
+    "source_table_is_not_called_six_methods": true,
+    "historical_six_method_table_link_and_single_direct_seed_disclosed": true,
+    "mean_maps_do_not_replace_deterministic_or_direct": true,
+    "metadata_only_history_and_parent_exclusion_required": true,
+    "before_test_frozen_analysis_and_missing_evidence_required": true,
+    "author_acknowledgment_required_before_new_test_authorization": true,
+    "no_test_unlock_or_gap_training_authorized": true,
+    "document_link_targets_exist": true,
+    "STOP_preserved": true,
+    "no_full_plan_created": true
+  },
+  "new_training_or_inference": false,
+  "new_test_or_raw_image_access": false,
+  "formal_main_table_eligibility_granted": false
+}

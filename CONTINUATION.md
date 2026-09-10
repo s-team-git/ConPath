@@ -1,5 +1,33 @@
 # ConPath continuation state
 
+## 当前：论文收敛，停止全部外部GPU工作（2026-09-10 UTC）
+
+用户最新指令已替代此前正式外部矩阵与所有后续full授权。06:08 UTC创建
+`results/flatlands_external_formal_v1/STOP`，向已核实的stage supervisor 1841989和CPU watcher 319162
+发送SIGINT；两者退出、共享锁释放，项目训练/评估worker已退出。其它项目GPU进程未受影响。
+LaMa四成员各完成5000步及pilot评估，FM完成5000步但完整pilot评估被中止；均未完成充分训练后三seed，
+不进入论文正式外部表。不移除STOP、不恢复watcher、不封存fullplan、不启动fullrunner。
+旧pilot_followthrough_v1协调授权已被用户取消，旧文档中的下一步均是历史。
+
+当前研究仅保留RQ1联合空间后验、RQ2 footprint-aware reachability训练目标、RQ3半径/遮挡/瓶颈/不可达可靠性。
+已完成的父级隔离原ConPath三seed均优于independent Event Brier，触发用户停止条件；不启动A/B/C新优化。
+原ConPath作为论文方法，保留既有20260910/11/12三个selection checkpoint，不选最佳seed、不合成集成。
+历史20260831/0901/0902三seed旧消融只作历史诊断；coherent两seed作为补充，不冒充完成三次验证。
+
+最新100/25/40父级开发表与旧160/160表必须分开，旧27/160父级重叠与physicaltest历史访问更正继续有效。
+最终测试及location_6继续锁定，本轮不读取测试资产。物理test历史“从未访问”的说法不能恢复。
+不新增LaMa/FM/CogniPlan/PaSCo/S4C/SGN、室外、3DGS、ROS、历史帧、Transformer或LLM工作。
+
+本轮论文整理已完成：189份来源哈希、29聚合行、23份保存预测及117个本地链接核对通过；18组新绘图（54导出）和2组历史聚合图（4导出）完成，三seed与两seed严格分开。完整英文稿包含八幅实际图，论文证据完整性仍受新划分消融缺失等限制。
+
+本轮交付：PAPER_DRAFT.md、PAPER_EVIDENCE.md、PAPER_TABLES.md、PAPER_FIGURES.md、
+results/paper_validation_snapshot.json/.csv、results/paper_figures/、results/FINAL_MODEL_SELECTION.md。
+各文件当前完成与hash以 `results/paper_convergence_v1/completion.json` 为准；没有收据时继续未完成的文稿/审计，
+不得把它解释成训练授权。结果JSON/CSV是已有预测CPU汇总，不是新训练或新测试。
+
+停止过程见 `results/paper_convergence_v1/` 下取消回执；此前文档完整版本保留在Git a08e9d2及
+`results/paper_convergence_v1/prior_documents/`。下面所有旧“当前任务/下一步/必跑”均已被本段取代。
+
 ## 当前任务：LaMa / FM+XAttn 正式公平验证（2026-09-09 / UTC 2026-09-10）
 
 用户要求先完成现有外部基线矩阵，禁止新增研究方向。执行说明见 [FLATLANDS_FORMAL_PROTOCOL_ZH.md](FLATLANDS_FORMAL_PROTOCOL_ZH.md)。新数据通过版为 `results/flatlands_external_formal_protocol_v1/data_eligible_v1`：985训练父场景×2观测、97校准、191验证；所有源图严格来自物理train，最终测试及location_6锁定。原候选去重失败结果保留不覆盖，19个输入模板重复父场景统一隔离、不补抽，开放空间范围限制随报告披露。

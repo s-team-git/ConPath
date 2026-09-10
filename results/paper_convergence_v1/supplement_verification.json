@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "scope": "final supplements provenance and visual receipts, no new evaluation",
+  "source_manifests": {
+    "results/paper_figures/rule_controls/20260910T064132.442897Z/manifest.json": "f3eee080282579713174e057b628c592042cff6a3449cf71233f041ef87290fe",
+    "results/paper_figures/historical_aggregate/manifest_v2.json": "6aefc8aa018b2cb891b02ddab253d90e5243f6be558ebd122c79782b75a06980",
+    "results/paper_figures/visual_reviews/20260910T064523.389507Z/review.json": "6f40f64246e963118470bf8c108c635ac658b57cf393c37ee1626b0a7dc0403a"
+  },
+  "current_figures": 18,
+  "current_exports": 54,
+  "historical_copied_figures": 2,
+  "historical_exports": 4,
+  "old_snapshot_all_29_numeric_rows_exactly_match_final": true,
+  "root_actually_viewed_rule_png": true,
+  "new_model_inference": false,
+  "new_test_assets_read": false
+}

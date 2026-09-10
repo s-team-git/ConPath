@@ -4,11 +4,15 @@
   "updated_local_date": "2026-09-10",
   "timezone": "America/New_York",
   "branch": "main",
-  "remote_sync": "Diagnostic website commit 17eb450 pushed; GitHub Actions 34439514660 succeeded and all 84 current published files match audited local bytes. Later documentation-only commits do not change the site.",
+  "remote_sync": {
+    "status": "paper_bundle_prepared_for_git_sync",
+    "receipt": "results/paper_convergence_v1/git_verification.json",
+    "note": "Use actual git/remote or receipt for synchronization; website experimental snapshot was not changed in this paper-only task."
+  },
   "latest_local_commit": "Resolve with git rev-parse HEAD; frozen experiment source commit remains a1fa04d10039731d27e723e58e1cf7b51da36aba.",
   "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence. New external profiles on 2026-09-08 actually used Python 3.13 and torch 2.12.1+cu130; v2 explicitly disables TF32 and cudnn benchmarking and enables deterministic algorithms. GPU has unrelated concurrent load; no isolated-device latency claim.",
-  "scientific_status": "No formal external superiority result. Old profiles remain engineering-only; current formal three-seed matrix has not completed. Final test and location_6 locked; historical access remains disclosed.",
-  "active_task": "Formal fair LaMa BEV adaptation and FM+XAttn literature reimplementation matrix: fresh shared physical-train parent split, protocol/source freeze, exact resume verified, then untrained/1000/5000 convergence stages; no full training before numerical and fixed-case review gates.",
+  "scientific_status": "Validation-only: original ConPath beats independent in three parent-isolated development seeds; historical complete ablations have parent overlap; equal-coverage safety gains and final-test generalization not established.",
+  "active_task": "Paper manuscript/evidence bundle completed; author review and submission formatting next. No further training authorized.",
   "completed_milestones": [
     "Interruption-safe P0 training with atomic checkpoints and exact resume",
     "Two-seed synthetic P0 pass and matched no-reach failure",
@@ -4580,44 +4584,37 @@
     "convergence_renderer_CPU_fixture_tests": 13,
     "stage_watcher_CPU_fixture_tests": 17
   },
-  "recovery_commands": [
-    "git rev-parse --short HEAD",
-    "git status --short --branch",
-    "nvidia-smi",
-    "python --version",
-    "cat results/flatlands_external_formal_v1/queue.json",
-    "cat results/flatlands_external_formal_v1/stage_status/lama.json",
-    "cat results/flatlands_external_formal_v1/stage_status/flow.json",
-    "cat FLATLANDS_FORMAL_CLOSEOUT_ZH.md",
-    "cat FLATLANDS_FORMAL_STAGE_RESULTS_ZH.md"
-  ],
-  "next_command": "cat results/flatlands_external_formal_v1/stage_status/lama.json",
+  "recovery_commands": {
+    "git_state": "git status --short --branch",
+    "paper_state": "cat results/paper_convergence_v1/completion.json",
+    "model_selection": "cat results/FINAL_MODEL_SELECTION.md",
+    "no_training": "Do not remove external STOP, resume old queues, or execute historical training commands."
+  },
+  "next_command": "Read PAPER_DRAFT.md, PAPER_EVIDENCE.md, PAPER_TABLES.md, PAPER_FIGURES.md and results/FINAL_MODEL_SELECTION.md; do not run training or unlock tests.",
   "next_actions": [
-    "Inspect current supervisor and worker processes; never start a duplicate queue. At most two GPU model workers, about 60 GiB total project budget.",
-    "Complete existing untrained/1000/5000 pipelines and reuse completed matching audits. Do not rerun old profiles, K128, P0 or UnScenes3D audits.",
-    "Independently recompute saved-world stage metrics on CPU, review all frozen convergence cases and only then seal data-derived full budgets if numerical and visual gates pass.",
-    "Run full three-seed matrix on the frozen 985/97/191 parent split only after the stage queue releases its lock. Register sufficient training and actual cost; final audit required for any main-table eligibility.",
-    "Publish only independently audited validation-only diagnostics. Keep final test/location_6 locked and do not add new research directions."
+    "Review the complete English paper and separately qualified validation tables/figures.",
+    "Keep original three selected checkpoints fixed; no additional optimization or external training.",
+    "Before any future test, audit eligibility from existing access metadata; do not open test assets in this scope."
   ],
   "active_training": {
-    "status": "staged_convergence_running",
-    "project": "flatlands_external_formal_v1",
-    "supervisor_pid": 1841989,
-    "maximum_gpu_workers": 2,
-    "project_gpu_budget_gib": 60,
-    "queue_receipt": "results/flatlands_external_formal_v1/queue.json",
-    "status_directory": "results/flatlands_external_formal_v1/stage_status",
-    "note": "Live worker/count/steps must be read from queue/status and ps; never blindly restart a live queue."
+    "status": "stopped_by_user_paper_convergence",
+    "project_gpu_workers": 0,
+    "supervisor_pid": null,
+    "stop_marker": "results/flatlands_external_formal_v1/STOP",
+    "external_resume_authorized": false,
+    "full_launch_authorized": false,
+    "stopped_utc": "2026-09-10T06:08:06Z",
+    "note": "External stage supervisor and CPU watcher exited; locks released; unrelated GPU processes were not stopped."
   },
   "accepted_experiment_plan": {
-    "status": "historical_plan_superseded_by_external_formal_v1",
+    "status": "superseded_by_user_paper_convergence_20260910",
     "recorded_utc": "2026-09-08T01:42:23.683337+00:00",
     "authorization": "results/training_resume_20260907/authorization.json",
     "document": "EXPERIMENT_DESIGN_ZH.md",
     "accepted_snapshot": "results/training_resume_20260907/accepted_experiment_design.md",
     "accepted_snapshot_sha256": "c76120768c8f4a911881ee7249841b59e9d5a5a57312f4c565b519493b59356d",
     "paper_deliverables_section": "EXPERIMENT_DESIGN_ZH.md section 8",
-    "continue_without_reasking_after_session_restart": true,
+    "continue_without_reasking_after_session_restart": false,
     "required_controls": [
       "independent-cell",
       "deterministic completion",
@@ -4646,11 +4643,11 @@
     "unfrozen_parameters": "External training data scale, calibration/validation splits and per-method recipes must be fixed after interface and resource audits, before formal runs. Do not mix expanded-data runs with old frozen ablations.",
     "data_audit": "EXTERNAL_DATA_AUDIT_ZH.md",
     "test_evaluated": false,
-    "execution_paused_by_user": false,
-    "pause_requires_new_explicit_resume_request": false,
+    "execution_paused_by_user": true,
+    "pause_requires_new_explicit_resume_request": true,
     "latest_execution_authorization": "results/training_resume_20260908_finalization/authorization.json",
     "bounded_training_ablation_completion": "EVALUATION_SUMMARY_ZH.md; all six completed 2026-09-08, larger-data and external experiments remain required",
-    "latest_user_revision": "Current formal task supersedes prior extension candidates: no new Transformer/LLM/3DGS/ROS/history/outdoor models; finish the registered LaMa/FM and control matrix.",
+    "latest_user_revision": "All external model work cancelled; no additional ABC optimization because stop condition 1 is met; consolidate existing ConPath evidence.",
     "previous_external_training_candidates": [
       "FlatLands: genuine LaMa BEV module and four-member ensemble",
       "FlatLands: documented conditional FM+XAttn literature reimplementation with quality gate",
@@ -4832,7 +4829,7 @@
     "protocol": "PARENT_GROUP_PILOT_ZH.md"
   },
   "external_formal_v1": {
-    "status": "protocol_frozen_staged_queue_running",
+    "status": "cancelled_by_user_paper_convergence",
     "protocol": "results/flatlands_external_formal_protocol_v1/protocol.json",
     "data": "results/flatlands_external_formal_protocol_v1/data_eligible_v1",
     "results": "results/flatlands_external_formal_v1",
@@ -4902,7 +4899,11 @@
       "status": "waiting_for_real_pilot_completion_and_independent_audit",
       "no_passed_review_yet": true
     },
-    "coordination": "results/flatlands_external_formal_v1/pilot_followthrough_v1/coordination.json"
+    "coordination": "results/flatlands_external_formal_v1/pilot_followthrough_v1/coordination.json",
+    "automatic_full_launch_authorized": false,
+    "stop_marker": "results/flatlands_external_formal_v1/STOP",
+    "paper_eligibility": "under-converged supplementary record only; not a formal external baseline",
+    "superseding_scope": "results/paper_convergence_v1/scope_freeze.json"
   },
   "historical_recovery_commands_before_formal_v1": [
     "git status --short --branch",
@@ -4927,5 +4928,48 @@
     "browser": "results/coherent_parent_pilot_v1/publication/browser/report.json",
     "unit_tests_passed": 190,
     "publication": "results/coherent_parent_pilot_v1/publication/completion.json"
-  }
+  },
+  "paper_convergence_v1": {
+    "status": "complete_existing_evidence_manuscript_bundle",
+    "scope_freeze": "results/paper_convergence_v1/scope_freeze.json",
+    "training_authorized": false,
+    "external_training_authorized": false,
+    "stop_condition_triggered": 1,
+    "selected_method": "original ConPath",
+    "primary_existing_seeds": [
+      20260910,
+      20260911,
+      20260912
+    ],
+    "historical_ablation_seeds": [
+      20260831,
+      20260901,
+      20260902
+    ],
+    "coherent_supplement_only_seeds": [
+      20260910,
+      20260911
+    ],
+    "new_optimization_seeds_if_future_authorized": [
+      20260831,
+      20260901,
+      20260902
+    ],
+    "new_optimization_launched": false,
+    "final_test_locked": true,
+    "historical_physical_test_access_disclosed": true,
+    "completion_receipt": "results/paper_convergence_v1/completion.json",
+    "selection_record": "results/FINAL_MODEL_SELECTION.md",
+    "validation_only": true,
+    "main_document": "PAPER_DRAFT.md",
+    "numeric_snapshot": "results/paper_validation_snapshot.json",
+    "numeric_snapshot_sha256": "8a3b81ef1f01dec72e57f92d7c02d39ed0e3697e12389143a755a836cc4bbc32",
+    "current_figure_groups": 18,
+    "historical_aggregate_figure_groups": 2,
+    "source_files_verified": 189,
+    "bundle_verification": "results/paper_convergence_v1/bundle_verification.json",
+    "supplement_verification": "results/paper_convergence_v1/supplement_verification.json",
+    "submission_evidence_complete": false
+  },
+  "latest_local_commit_role": "Pre-convergence source commit; actual final document revision is resolved by git HEAD or paper-convergence-validation-v1 tag."
 }

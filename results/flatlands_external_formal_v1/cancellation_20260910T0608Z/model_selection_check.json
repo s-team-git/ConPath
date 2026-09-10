@@ -1,0 +1,31 @@
+{
+  "created_utc": "2026-09-10T06:22:11.795321+00:00",
+  "kind": "read_only_existing_provenance_checks_not_new_evaluation",
+  "passed": true,
+  "document": "results/FINAL_MODEL_SELECTION.md",
+  "document_sha256": "9b2bf330717424481c7e47e4f1f0ede00681b132347e9d120f261249a9259dc5",
+  "checks": {
+    "correlated_20260910_report_bound_to_original_selection": true,
+    "correlated_20260911_report_bound_to_original_selection": true,
+    "correlated_20260912_report_bound_to_original_selection": true,
+    "independent_20260910_report_bound_to_original_selection": true,
+    "independent_20260911_report_bound_to_original_selection": true,
+    "independent_20260912_report_bound_to_original_selection": true,
+    "deterministic_20260910_report_bound_to_original_selection": true,
+    "deterministic_20260911_report_bound_to_original_selection": true,
+    "deterministic_20260912_report_bound_to_original_selection": true,
+    "each_of_three_seeds_better_than_independent_K4": true,
+    "each_of_three_seeds_better_than_independent_K32": true,
+    "positive_conditional_parent_interval": true,
+    "coherent_has_exactly_two_real_seeds": true,
+    "coherent_vs_original_interval_crosses_zero": true,
+    "historical_no_event_three_intervals_positive": true,
+    "historical_no_global_three_intervals_positive": true,
+    "document_link_targets_exist": true,
+    "STOP_preserved": true,
+    "no_full_plan_created": true
+  },
+  "new_training_or_inference": false,
+  "new_test_or_raw_image_access": false,
+  "formal_main_table_eligibility_granted": false
+}

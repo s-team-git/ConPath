@@ -1,0 +1,1033 @@
+{
+  "selected_rows": [
+    {
+      "cohort": "parent_isolated_three_seed",
+      "evidence_level": "D1_parent_isolated_small_development",
+      "method": "correlated",
+      "label": "ConPath (original)",
+      "K": 32,
+      "seeds": [
+        20260910,
+        20260911,
+        20260912
+      ],
+      "repeats": 3,
+      "events_per_run": 1545,
+      "parents_per_run": 40,
+      "weighting": "equal parent then event",
+      "metrics": {
+        "brier": {
+          "mean": 0.1037990099389618,
+          "sample_sd": 0.0034979706444203795,
+          "values": [
+            0.09988516979120873,
+            0.10662033159925748,
+            0.10489152842641918
+          ],
+          "available_repeats": 3
+        },
+        "nll": {
+          "mean": 0.793301221655058,
+          "sample_sd": 0.10288869738286698,
+          "values": [
+            0.6828019799273964,
+            0.8863466390093986,
+            0.8107550460283794
+          ],
+          "available_repeats": 3
+        },
+        "ece": {
+          "mean": 0.08622294105194689,
+          "sample_sd": 0.003152652511641784,
+          "values": [
+            0.08435565755699875,
+            0.08986290080018915,
+            0.08445026479865275
+          ],
+          "available_repeats": 3
+        },
+        "false_safe_at_0_8": {
+          "mean": 0.18649433502874543,
+          "sample_sd": 0.013963083127325249,
+          "values": [
+            0.1724487139127441,
+            0.1866609012780959,
+            0.2003733898953963
+          ],
+          "available_repeats": 3
+        },
+        "coverage_at_0_8": {
+          "mean": 0.21340015901806408,
+          "sample_sd": 0.008422766220153994,
+          "values": [
+            0.2069161237727414,
+            0.21036436205263603,
+            0.22291999122881473
+          ],
+          "available_repeats": 3
+        },
+        "risk_at_30_percent": {
+          "mean": 0.2395186044924452,
+          "sample_sd": 0.005779009059432317,
+          "values": [
+            0.23890881434628763,
+            0.23406867005525714,
+            0.24557832907579075
+          ],
+          "available_repeats": 3
+        }
+      },
+      "map_metrics": {
+        "sample_vote_cell_brier": {
+          "mean": 0.15388084081051537,
+          "sample_sd": 0.003481940420487575,
+          "values": [
+            0.15114387250617659,
+            0.15269870494637322,
+            0.15779994497899624
+          ],
+          "available_repeats": 3
+        },
+        "mean_iou": {
+          "mean": 0.6223785770186246,
+          "sample_sd": 0.00451654261067839,
+          "values": [
+            0.6222572409417395,
+            0.6179239249885219,
+            0.6269545651256125
+          ],
+          "available_repeats": 3
+        },
+        "mean_blocked_iou": {
+          "mean": 0.29585287366191954,
+          "sample_sd": 0.008078470486967011,
+          "values": [
+            0.3046886433932164,
+            0.28884489896184046,
+            0.2940250786307019
+          ],
+          "available_repeats": 3
+        },
+        "masked_energy_score": {
+          "mean": 0.2301414408693462,
+          "sample_sd": 0.003148261769974835,
+          "values": [
+            0.2268962692977265,
+            0.2303451544708673,
+            0.23318289883944487
+          ],
+          "available_repeats": 3
+        }
+      },
+      "continuous_map_brier": {
+        "mean": 0.15146795857387316,
+        "sample_sd": 0.003775604296788065,
+        "values": [
+          0.14879894652861667,
+          0.1498170887687987,
+          0.15578784042420404
+        ],
+        "available_repeats": 3
+      },
+      "continuous_probability_budget": 32,
+      "radius_monotonicity_violating_queries": 0,
+      "sources": [
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/correlated/20260910/report.json",
+          "sha256": "d1a775e8649b112446006da156e0fd5f385a569371100202ce155a859250246f",
+          "role": "metadata",
+          "json_pointer": "/budgets/32"
+        },
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/correlated/20260911/report.json",
+          "sha256": "d4792bfeb471e657b9738c5b54ad2875f2963e430986884a1344597cb4658b23",
+          "role": "metadata",
+          "json_pointer": "/budgets/32"
+        },
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/correlated/20260912/report.json",
+          "sha256": "e24f48c93662ed02124a1caa2ebd2f9d46e2e3892e3fc7b39e11adbd2558a869",
+          "role": "metadata",
+          "json_pointer": "/budgets/32"
+        }
+      ],
+      "prediction_sources": [
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/correlated/20260910/predictions_k32.csv",
+          "sha256": "b98ff3a43afb8c86866d48849b9acc83f1280a952ea3719c564a2e7941110ccc",
+          "role": "existing label-free physical-train development-validation predictions"
+        },
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/correlated/20260911/predictions_k32.csv",
+          "sha256": "a22d8c4b4db70546bde30d1ecb74dc709f760337d11f2c7bd50a729d40b732c7",
+          "role": "existing label-free physical-train development-validation predictions"
+        },
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/correlated/20260912/predictions_k32.csv",
+          "sha256": "602fcd8e54d02dafdb0370ea1223289601529f54b9bc7662dc43d24564075b63",
+          "role": "existing label-free physical-train development-validation predictions"
+        }
+      ],
+      "claim_scope": "development-only, small training budget; no external or final-test superiority",
+      "new_metric_derivation": "NLL/ECE/confidence metrics newly summarized from frozen predictions; original primary Brier/risk30 reproduced",
+      "actual_map_count": 32,
+      "K_role": "actual binary worlds used for event scores"
+    },
+    {
+      "cohort": "parent_isolated_three_seed",
+      "evidence_level": "D1_parent_isolated_small_development",
+      "method": "independent",
+      "label": "Independent completion",
+      "K": 32,
+      "seeds": [
+        20260910,
+        20260911,
+        20260912
+      ],
+      "repeats": 3,
+      "events_per_run": 1545,
+      "parents_per_run": 40,
+      "weighting": "equal parent then event",
+      "metrics": {
+        "brier": {
+          "mean": 0.11201093264981389,
+          "sample_sd": 0.003656217333455471,
+          "values": [
+            0.10844725764745712,
+            0.111832389946123,
+            0.11575315035586156
+          ],
+          "available_repeats": 3
+        },
+        "nll": {
+          "mean": 0.9436401510083162,
+          "sample_sd": 0.06506816944787941,
+          "values": [
+            0.8811937693896779,
+            0.9386804212285992,
+            1.0110462624066714
+          ],
+          "available_repeats": 3
+        },
+        "ece": {
+          "mean": 0.10131266580346253,
+          "sample_sd": 0.005778927417943361,
+          "values": [
+            0.09996037819035111,
+            0.09632979107670113,
+            0.10764782814333536
+          ],
+          "available_repeats": 3
+        },
+        "false_safe_at_0_8": {
+          "mean": 0.2084729804015157,
+          "sample_sd": 0.01294544902014471,
+          "values": [
+            0.20570982063968435,
+            0.19713220352626734,
+            0.22257691703859542
+          ],
+          "available_repeats": 3
+        },
+        "coverage_at_0_8": {
+          "mean": 0.22453289917331454,
+          "sample_sd": 0.015245604120767644,
+          "values": [
+            0.2418114591663353,
+            0.21297523461803644,
+            0.21881200373557186
+          ],
+          "available_repeats": 3
+        },
+        "risk_at_30_percent": {
+          "mean": 0.24432207563864594,
+          "sample_sd": 0.009281320527686576,
+          "values": [
+            0.2540124704510091,
+            0.24344110539838829,
+            0.23551265106654035
+          ],
+          "available_repeats": 3
+        }
+      },
+      "map_metrics": {
+        "sample_vote_cell_brier": {
+          "mean": 0.1540211404890021,
+          "sample_sd": 0.008035213225586821,
+          "values": [
+            0.16327671021497228,
+            0.14883168546798514,
+            0.14995502578404887
+          ],
+          "available_repeats": 3
+        },
+        "mean_iou": {
+          "mean": 0.6212020536167194,
+          "sample_sd": 0.00900418249082541,
+          "values": [
+            0.6309283222836681,
+            0.619520911692387,
+            0.6131569268741033
+          ],
+          "available_repeats": 3
+        },
+        "mean_blocked_iou": {
+          "mean": 0.2989267562682694,
+          "sample_sd": 0.012840981688979167,
+          "values": [
+            0.29767434097414613,
+            0.28675787100105404,
+            0.31234805682960814
+          ],
+          "available_repeats": 3
+        },
+        "masked_energy_score": {
+          "mean": 0.2296880907990457,
+          "sample_sd": 0.006500194470375152,
+          "values": [
+            0.2371886796253908,
+            0.22617946474597783,
+            0.2256961280257684
+          ],
+          "available_repeats": 3
+        }
+      },
+      "continuous_map_brier": {
+        "mean": 0.15157959222959935,
+        "sample_sd": 0.008523282636202304,
+        "values": [
+          0.16138371909927227,
+          0.14593209661199522,
+          0.14742296097753055
+        ],
+        "available_repeats": 3
+      },
+      "continuous_probability_budget": 32,
+      "radius_monotonicity_violating_queries": 0,
+      "sources": [
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/independent/20260910/report.json",
+          "sha256": "0a9240b7cfdc2fbb1876008592df2f15553a8e98cb16dd210597556aab038e0a",
+          "role": "metadata",
+          "json_pointer": "/budgets/32"
+        },
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/independent/20260911/report.json",
+          "sha256": "98edb7d6877c88232dfb01064891be99bc6f0eb3fde97144e8a8dc4e00823a31",
+          "role": "metadata",
+          "json_pointer": "/budgets/32"
+        },
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/independent/20260912/report.json",
+          "sha256": "6bcc23d71e38ff73211d3d05258cffe370191c46c53f3c2cb0e6e3800aee24c1",
+          "role": "metadata",
+          "json_pointer": "/budgets/32"
+        }
+      ],
+      "prediction_sources": [
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/independent/20260910/predictions_k32.csv",
+          "sha256": "07d7dc4ecd91907957a0ace223f6a5fe5fafafa1d75d0cc20b4fd13260c364f1",
+          "role": "existing label-free physical-train development-validation predictions"
+        },
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/independent/20260911/predictions_k32.csv",
+          "sha256": "c803782fdb2d8a72c90c2fa8bc080701acb5c6ca369e90a662bf39834ffb55cc",
+          "role": "existing label-free physical-train development-validation predictions"
+        },
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/independent/20260912/predictions_k32.csv",
+          "sha256": "f6d64b786cdf7f54b0612c1892ed6b108954124f470637097de4d630d07ee09d",
+          "role": "existing label-free physical-train development-validation predictions"
+        }
+      ],
+      "claim_scope": "development-only, small training budget; no external or final-test superiority",
+      "new_metric_derivation": "NLL/ECE/confidence metrics newly summarized from frozen predictions; original primary Brier/risk30 reproduced",
+      "actual_map_count": 32,
+      "K_role": "actual binary worlds used for event scores"
+    },
+    {
+      "cohort": "parent_isolated_three_seed",
+      "evidence_level": "D1_parent_isolated_small_development",
+      "method": "deterministic",
+      "label": "Deterministic completion",
+      "K": 1,
+      "seeds": [
+        20260910,
+        20260911,
+        20260912
+      ],
+      "repeats": 3,
+      "events_per_run": 1545,
+      "parents_per_run": 40,
+      "weighting": "equal parent then event",
+      "metrics": {
+        "brier": {
+          "mean": 0.11151571103809237,
+          "sample_sd": 0.002560344480389613,
+          "values": [
+            0.10878135531192806,
+            0.11385645858556076,
+            0.11190931921678826
+          ],
+          "available_repeats": 3
+        },
+        "nll": {
+          "mean": 1.5406473717079143,
+          "sample_sd": 0.03537246364033902,
+          "values": [
+            1.502870854038398,
+            1.5729859918226026,
+            1.5460852692627427
+          ],
+          "available_repeats": 3
+        },
+        "ece": {
+          "mean": 0.11151571103809232,
+          "sample_sd": 0.0025603444803895836,
+          "values": [
+            0.10878135531192806,
+            0.1138564585855607,
+            0.1119093192167882
+          ],
+          "available_repeats": 3
+        },
+        "false_safe_at_0_8": {
+          "mean": 0.25164089995763,
+          "sample_sd": 0.010237444651380247,
+          "values": [
+            0.24043325133085564,
+            0.2604999865007225,
+            0.25398946204131195
+          ],
+          "available_repeats": 3
+        },
+        "coverage_at_0_8": {
+          "mean": 0.3419786522840573,
+          "sample_sd": 0.008832957971988247,
+          "values": [
+            0.33224754455211114,
+            0.3494900147725225,
+            0.3441983975275384
+          ],
+          "available_repeats": 3
+        },
+        "risk_at_30_percent": {
+          "mean": 0.25164089995763006,
+          "sample_sd": 0.010237444651380287,
+          "values": [
+            0.2404332513308556,
+            0.26049998650072254,
+            0.25398946204131195
+          ],
+          "available_repeats": 3
+        }
+      },
+      "map_metrics": {
+        "sample_vote_cell_brier": {
+          "mean": 0.1898769455692837,
+          "sample_sd": 0.006828360853225422,
+          "values": [
+            0.19676048940444554,
+            0.1831051390957386,
+            0.18976520820766699
+          ],
+          "available_repeats": 3
+        },
+        "mean_iou": {
+          "mean": 0.6622824626658812,
+          "sample_sd": 0.01237127599934567,
+          "values": [
+            0.650180405415419,
+            0.6749064379348854,
+            0.6617605446473391
+          ],
+          "available_repeats": 3
+        },
+        "mean_blocked_iou": {
+          "mean": 0.38799882205488156,
+          "sample_sd": 0.013600745896514612,
+          "values": [
+            0.4032010986115454,
+            0.37698471152899315,
+            0.38381065602410613
+          ],
+          "available_repeats": 3
+        },
+        "masked_energy_score": {
+          "mean": null,
+          "sample_sd": null,
+          "values": [
+            null,
+            null,
+            null
+          ],
+          "available_repeats": 0
+        }
+      },
+      "continuous_map_brier": {
+        "mean": 0.13868544096390148,
+        "sample_sd": 0.00542051981278851,
+        "values": [
+          0.14472244548637608,
+          0.1342358666089007,
+          0.13709801079642764
+        ],
+        "available_repeats": 3
+      },
+      "continuous_probability_budget": 1,
+      "radius_monotonicity_violating_queries": 0,
+      "sources": [
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/deterministic/20260910/report.json",
+          "sha256": "f79f432c9bc72cf2455dda23eb98c1e0c5e982ea6fb5cbcf041185ffd0bf19a2",
+          "role": "metadata",
+          "json_pointer": "/budgets/1"
+        },
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/deterministic/20260911/report.json",
+          "sha256": "370684a42dec88d766b0675ed4a7db84a480ed0eb6d33729de50c0f8a0eb38f0",
+          "role": "metadata",
+          "json_pointer": "/budgets/1"
+        },
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/deterministic/20260912/report.json",
+          "sha256": "e091c39ffd707eeb413aecf6e24d2d7b5509e9e51cbde8ef234cc619b64b86d4",
+          "role": "metadata",
+          "json_pointer": "/budgets/1"
+        }
+      ],
+      "prediction_sources": [
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/deterministic/20260910/predictions_k1.csv",
+          "sha256": "f915512dbdebce54d85bfb812fd96a2ff16b5e4f460f0291fdf093de7755211a",
+          "role": "existing label-free physical-train development-validation predictions"
+        },
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/deterministic/20260911/predictions_k1.csv",
+          "sha256": "8c21ed064db50fe5980281464428f92c0b34f7a7e6366d2a52ff8be7579995be",
+          "role": "existing label-free physical-train development-validation predictions"
+        },
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/deterministic/20260912/predictions_k1.csv",
+          "sha256": "0d7956ddaaa84bc9215033ce4bf2de1ac9b0a2ba84283fc53609d4e2efd4265f",
+          "role": "existing label-free physical-train development-validation predictions"
+        }
+      ],
+      "claim_scope": "development-only, small training budget; no external or final-test superiority",
+      "new_metric_derivation": "NLL/ECE/confidence metrics newly summarized from frozen predictions; original primary Brier/risk30 reproduced",
+      "actual_map_count": 1,
+      "K_role": "actual binary worlds used for event scores"
+    },
+    {
+      "cohort": "parent_isolated_three_seed",
+      "evidence_level": "D1_parent_isolated_small_development",
+      "method": "all_floor",
+      "label": "All-free unknown rule",
+      "K": 1,
+      "seeds": [
+        "rule"
+      ],
+      "repeats": 1,
+      "events_per_run": 1545,
+      "parents_per_run": 40,
+      "weighting": "equal parent then event",
+      "metrics": {
+        "brier": {
+          "mean": 0.18047901291032098,
+          "sample_sd": null,
+          "values": [
+            0.18047901291032098
+          ],
+          "available_repeats": 1
+        },
+        "nll": {
+          "mean": 2.4934105278697185,
+          "sample_sd": null,
+          "values": [
+            2.4934105278697185
+          ],
+          "available_repeats": 1
+        },
+        "ece": {
+          "mean": 0.18047901291032098,
+          "sample_sd": null,
+          "values": [
+            0.18047901291032098
+          ],
+          "available_repeats": 1
+        },
+        "false_safe_at_0_8": {
+          "mean": 0.3908661685140183,
+          "sample_sd": null,
+          "values": [
+            0.3908661685140183
+          ],
+          "available_repeats": 1
+        },
+        "coverage_at_0_8": {
+          "mean": 0.46174119800764524,
+          "sample_sd": null,
+          "values": [
+            0.46174119800764524
+          ],
+          "available_repeats": 1
+        },
+        "risk_at_30_percent": {
+          "mean": 0.3908661685140183,
+          "sample_sd": null,
+          "values": [
+            0.3908661685140183
+          ],
+          "available_repeats": 1
+        }
+      },
+      "map_metrics": {
+        "sample_vote_cell_brier": {
+          "mean": 0.3682477491790076,
+          "sample_sd": null,
+          "values": [
+            0.3682477491790076
+          ],
+          "available_repeats": 1
+        },
+        "mean_iou": {
+          "mean": 0.6317522508209924,
+          "sample_sd": null,
+          "values": [
+            0.6317522508209924
+          ],
+          "available_repeats": 1
+        },
+        "mean_blocked_iou": {
+          "mean": 0.0,
+          "sample_sd": null,
+          "values": [
+            0.0
+          ],
+          "available_repeats": 1
+        },
+        "masked_energy_score": {
+          "mean": null,
+          "sample_sd": null,
+          "values": [
+            null
+          ],
+          "available_repeats": 0
+        }
+      },
+      "continuous_map_brier": {
+        "mean": null,
+        "sample_sd": null,
+        "values": [
+          null
+        ],
+        "available_repeats": 0
+      },
+      "continuous_probability_budget": null,
+      "radius_monotonicity_violating_queries": 0,
+      "sources": [
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/all_floor/rule/report.json",
+          "sha256": "9272adbe470405d58cd908a00e9e7752a2b270b613b2b6bb2d49b95c3fd188fb",
+          "role": "metadata",
+          "json_pointer": "/budgets/1"
+        }
+      ],
+      "prediction_sources": [
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/all_floor/rule/predictions_k1.csv",
+          "sha256": "c7b3568655c80abd3d047aedce9750dc568012c0885e110c6a5ef170df9c6f4f",
+          "role": "existing label-free physical-train development-validation predictions"
+        }
+      ],
+      "claim_scope": "development-only, small training budget; no external or final-test superiority",
+      "new_metric_derivation": "NLL/ECE/confidence metrics newly summarized from frozen predictions; original primary Brier/risk30 reproduced",
+      "actual_map_count": 1,
+      "K_role": "actual binary worlds used for event scores"
+    },
+    {
+      "cohort": "parent_isolated_three_seed",
+      "evidence_level": "D1_parent_isolated_small_development",
+      "method": "all_blocked",
+      "label": "All-blocked unknown rule",
+      "K": 1,
+      "seeds": [
+        "rule"
+      ],
+      "repeats": 1,
+      "events_per_run": 1545,
+      "parents_per_run": 40,
+      "weighting": "equal parent then event",
+      "metrics": {
+        "brier": {
+          "mean": 0.2812621850973244,
+          "sample_sd": null,
+          "values": [
+            0.2812621850973244
+          ],
+          "available_repeats": 1
+        },
+        "nll": {
+          "mean": 3.885781406506364,
+          "sample_sd": null,
+          "values": [
+            3.885781406506364
+          ],
+          "available_repeats": 1
+        },
+        "ece": {
+          "mean": 0.2812621850973244,
+          "sample_sd": null,
+          "values": [
+            0.2812621850973244
+          ],
+          "available_repeats": 1
+        },
+        "false_safe_at_0_8": {
+          "mean": null,
+          "sample_sd": null,
+          "values": [
+            null
+          ],
+          "available_repeats": 0
+        },
+        "coverage_at_0_8": {
+          "mean": 0.0,
+          "sample_sd": null,
+          "values": [
+            0.0
+          ],
+          "available_repeats": 1
+        },
+        "risk_at_30_percent": {
+          "mean": 0.7187378149026756,
+          "sample_sd": null,
+          "values": [
+            0.7187378149026756
+          ],
+          "available_repeats": 1
+        }
+      },
+      "map_metrics": {
+        "sample_vote_cell_brier": {
+          "mean": 0.6317522508209924,
+          "sample_sd": null,
+          "values": [
+            0.6317522508209924
+          ],
+          "available_repeats": 1
+        },
+        "mean_iou": {
+          "mean": 0.0,
+          "sample_sd": null,
+          "values": [
+            0.0
+          ],
+          "available_repeats": 1
+        },
+        "mean_blocked_iou": {
+          "mean": 0.3682477491790076,
+          "sample_sd": null,
+          "values": [
+            0.3682477491790076
+          ],
+          "available_repeats": 1
+        },
+        "masked_energy_score": {
+          "mean": null,
+          "sample_sd": null,
+          "values": [
+            null
+          ],
+          "available_repeats": 0
+        }
+      },
+      "continuous_map_brier": {
+        "mean": null,
+        "sample_sd": null,
+        "values": [
+          null
+        ],
+        "available_repeats": 0
+      },
+      "continuous_probability_budget": null,
+      "radius_monotonicity_violating_queries": 0,
+      "sources": [
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/all_blocked/rule/report.json",
+          "sha256": "3acc370e7d5e42472588a3debcb6ed8d65564f404a1280ac52ffec484434ee4a",
+          "role": "metadata",
+          "json_pointer": "/budgets/1"
+        }
+      ],
+      "prediction_sources": [
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/all_blocked/rule/predictions_k1.csv",
+          "sha256": "06799c4968c9f5197bba5b987b8589bba6b2588d7b36c7df949c84af06dd3aca",
+          "role": "existing label-free physical-train development-validation predictions"
+        }
+      ],
+      "claim_scope": "development-only, small training budget; no external or final-test superiority",
+      "new_metric_derivation": "NLL/ECE/confidence metrics newly summarized from frozen predictions; original primary Brier/risk30 reproduced",
+      "actual_map_count": 1,
+      "K_role": "actual binary worlds used for event scores"
+    },
+    {
+      "cohort": "parent_isolated_three_seed",
+      "evidence_level": "D1_parent_isolated_small_development",
+      "method": "nearest_observed",
+      "label": "Nearest-observed rule",
+      "K": 1,
+      "seeds": [
+        "rule"
+      ],
+      "repeats": 1,
+      "events_per_run": 1545,
+      "parents_per_run": 40,
+      "weighting": "equal parent then event",
+      "metrics": {
+        "brier": {
+          "mean": 0.13833505052738798,
+          "sample_sd": null,
+          "values": [
+            0.13833505052738798
+          ],
+          "available_repeats": 1
+        },
+        "nll": {
+          "mean": 1.9111702127598267,
+          "sample_sd": null,
+          "values": [
+            1.9111702127598267
+          ],
+          "available_repeats": 1
+        },
+        "ece": {
+          "mean": 0.13833505052738795,
+          "sample_sd": null,
+          "values": [
+            0.13833505052738795
+          ],
+          "available_repeats": 1
+        },
+        "false_safe_at_0_8": {
+          "mean": 0.3045988751675424,
+          "sample_sd": null,
+          "values": [
+            0.3045988751675424
+          ],
+          "available_repeats": 1
+        },
+        "coverage_at_0_8": {
+          "mean": 0.3657275122967848,
+          "sample_sd": null,
+          "values": [
+            0.3657275122967848
+          ],
+          "available_repeats": 1
+        },
+        "risk_at_30_percent": {
+          "mean": 0.30459887516754236,
+          "sample_sd": null,
+          "values": [
+            0.30459887516754236
+          ],
+          "available_repeats": 1
+        }
+      },
+      "map_metrics": {
+        "sample_vote_cell_brier": {
+          "mean": 0.2702790483013,
+          "sample_sd": null,
+          "values": [
+            0.2702790483013
+          ],
+          "available_repeats": 1
+        },
+        "mean_iou": {
+          "mean": 0.5870743989904872,
+          "sample_sd": null,
+          "values": [
+            0.5870743989904872
+          ],
+          "available_repeats": 1
+        },
+        "mean_blocked_iou": {
+          "mean": 0.3076429694693183,
+          "sample_sd": null,
+          "values": [
+            0.3076429694693183
+          ],
+          "available_repeats": 1
+        },
+        "masked_energy_score": {
+          "mean": null,
+          "sample_sd": null,
+          "values": [
+            null
+          ],
+          "available_repeats": 0
+        }
+      },
+      "continuous_map_brier": {
+        "mean": null,
+        "sample_sd": null,
+        "values": [
+          null
+        ],
+        "available_repeats": 0
+      },
+      "continuous_probability_budget": null,
+      "radius_monotonicity_violating_queries": 0,
+      "sources": [
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/nearest_observed/rule/report.json",
+          "sha256": "681f8fcfca8322d082c5326886303162676f183f5c096b110180d14a3a870601",
+          "role": "metadata",
+          "json_pointer": "/budgets/1"
+        }
+      ],
+      "prediction_sources": [
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/nearest_observed/rule/predictions_k1.csv",
+          "sha256": "8f2e2b40fe56aa909cf9d894df586f4f887bfcf2e29a45c99d1d983344578707",
+          "role": "existing label-free physical-train development-validation predictions"
+        }
+      ],
+      "claim_scope": "development-only, small training budget; no external or final-test superiority",
+      "new_metric_derivation": "NLL/ECE/confidence metrics newly summarized from frozen predictions; original primary Brier/risk30 reproduced",
+      "actual_map_count": 1,
+      "K_role": "actual binary worlds used for event scores"
+    },
+    {
+      "cohort": "parent_isolated_three_seed",
+      "evidence_level": "D1_parent_isolated_small_development",
+      "method": "train_radius_prior",
+      "label": "Train-fitted radius prior",
+      "K": 1,
+      "seeds": [
+        "rule"
+      ],
+      "repeats": 1,
+      "events_per_run": 1545,
+      "parents_per_run": 40,
+      "weighting": "equal parent then event",
+      "metrics": {
+        "brier": {
+          "mean": 0.15606418204128064,
+          "sample_sd": null,
+          "values": [
+            0.15606418204128064
+          ],
+          "available_repeats": 1
+        },
+        "nll": {
+          "mean": 0.4849883218557583,
+          "sample_sd": null,
+          "values": [
+            0.4849883218557583
+          ],
+          "available_repeats": 1
+        },
+        "ece": {
+          "mean": 0.056530989904418134,
+          "sample_sd": null,
+          "values": [
+            0.056530989904418134
+          ],
+          "available_repeats": 1
+        },
+        "false_safe_at_0_8": {
+          "mean": null,
+          "sample_sd": null,
+          "values": [
+            null
+          ],
+          "available_repeats": 0
+        },
+        "coverage_at_0_8": {
+          "mean": 0.0,
+          "sample_sd": null,
+          "values": [
+            0.0
+          ],
+          "available_repeats": 1
+        },
+        "risk_at_30_percent": {
+          "mean": 0.40410844261947193,
+          "sample_sd": null,
+          "values": [
+            0.40410844261947193
+          ],
+          "available_repeats": 1
+        }
+      },
+      "map_metrics": {
+        "sample_vote_cell_brier": {
+          "mean": null,
+          "sample_sd": null,
+          "values": [
+            null
+          ],
+          "available_repeats": 0
+        },
+        "mean_iou": {
+          "mean": null,
+          "sample_sd": null,
+          "values": [
+            null
+          ],
+          "available_repeats": 0
+        },
+        "mean_blocked_iou": {
+          "mean": null,
+          "sample_sd": null,
+          "values": [
+            null
+          ],
+          "available_repeats": 0
+        },
+        "masked_energy_score": {
+          "mean": null,
+          "sample_sd": null,
+          "values": [
+            null
+          ],
+          "available_repeats": 0
+        }
+      },
+      "continuous_map_brier": {
+        "mean": null,
+        "sample_sd": null,
+        "values": [
+          null
+        ],
+        "available_repeats": 0
+      },
+      "continuous_probability_budget": null,
+      "radius_monotonicity_violating_queries": 0,
+      "sources": [
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/train_radius_prior/rule/report.json",
+          "sha256": "00257086ba894d89b15337d78c6b960225ed0bfbbf5a376c0b75a59693a11b96",
+          "role": "metadata",
+          "json_pointer": "/budgets/1"
+        }
+      ],
+      "prediction_sources": [
+        {
+          "path": "results/parent_group_pilot_v1/evaluation/train_radius_prior/rule/predictions_k1.csv",
+          "sha256": "3d1b23eed7e7edce8a79e894b8bcf488366d2413c9b0c5314c76a1951455773f",
+          "role": "existing label-free physical-train development-validation predictions"
+        }
+      ],
+      "claim_scope": "development-only, small training budget; no external or final-test superiority",
+      "new_metric_derivation": "NLL/ECE/confidence metrics newly summarized from frozen predictions; original primary Brier/risk30 reproduced",
+      "actual_map_count": null,
+      "K_role": "archive filename budget tag; no generated map"
+    }
+  ],
+  "source": "results/paper_convergence_v1/snapshot_reviewed_v1/paper_validation_snapshot.json",
+  "sha256": "1908010b58880be4265d9d258839422282671e7bdf2a069703a53f24f216c887"
+}

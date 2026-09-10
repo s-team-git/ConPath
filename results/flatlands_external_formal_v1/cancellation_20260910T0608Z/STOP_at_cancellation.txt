@@ -1,0 +1,1 @@
+User superseded external baseline training with paper convergence on 2026-09-10T06:08:06.523492+00:00; no external training or full launch authorized.

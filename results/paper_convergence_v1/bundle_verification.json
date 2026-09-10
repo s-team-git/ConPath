@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-09-10T06:46:35.924361+00:00",
+  "passed": true,
+  "scope": "assembled manuscript, saved numeric consistency, byte provenance, cancelled queue; not scientific submission approval",
+  "snapshot": {
+    "path": "results/paper_validation_snapshot.json",
+    "sha256": "8a3b81ef1f01dec72e57f92d7c02d39ed0e3697e12389143a755a836cc4bbc32"
+  },
+  "csv_sha256": "a6ea41fe2a6fce10af290dc401a526b1b25fc6bd6ac0a0a8c41d2a19d9981475",
+  "aggregate_rows": 29,
+  "source_files_verified_without_model_execution": 189,
+  "plot_run_metric_matches": 11,
+  "figure_manifest": {
+    "path": "results/paper_figures/20260910T063236.828092Z/manifest.json",
+    "sha256": "60fba5c5be0d1b62264125510b6dd28869adfc31c345c474ba68cd07bee68c4b"
+  },
+  "figure_groups": 17,
+  "figure_export_hashes_verified": 51,
+  "local_links_verified": 117,
+  "frozen_external_source_hashes_verified": 51,
+  "project_external_gpu_workers": 0,
+  "new_training": false,
+  "new_inference": false,
+  "test_assets_decoded": false,
+  "documents": {
+    "PAPER_DRAFT.md": "714173c832833c6cfd3385f77f290bd2ef46cc3b3e4aa093935e4033e438e0cc",
+    "PAPER_EVIDENCE.md": "e3a2902c975118b98d01e3c97fe18ffd8f088c666be6158b68a9e91d1844ffef",
+    "PAPER_TABLES.md": "4223206cfbbc09b7e5e10a92f9003a01d455a68a32e20b97471e16385ef427d3",
+    "PAPER_FIGURES.md": "6c581f265671053b2f876f1a96fbab60a396a287a5fbc77f17f5ec519d965ba1",
+    "results/FINAL_MODEL_SELECTION.md": "46b793949eafaf1e2b01e79a8401ada02d7270a918427c989d051d46c7a3209f"
+  },
+  "validator_sha256": "d88fe6a8647e9bcc8d470d0bbc6d5a232a78025d1be34bfa0d2d9733ed4794b3"
+}

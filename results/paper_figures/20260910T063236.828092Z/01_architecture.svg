@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="963pt" height="772.92875pt" viewBox="0 0 963 772.92875" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-09-10T02:32:36.889479</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.1, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 772.92875 
+L 963 772.92875 
+L 963 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 30.915 262.9728 
+L 230.121 262.9728 
+Q 241.5042 262.9728 241.5042 256.32 
+L 241.5042 128.808 
+Q 241.5042 122.1552 230.121 122.1552 
+L 30.915 122.1552 
+Q 19.5318 122.1552 19.5318 128.808 
+L 19.5318 256.32 
+Q 19.5318 262.9728 30.915 262.9728 
+z
+" clip-path="url(#p7bad6574b9)" style="fill: #edf5f3; stroke: #7e9691; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 277.551 262.9728 
+L 514.701 262.9728 
+Q 526.0842 262.9728 526.0842 256.32 
+L 526.0842 128.808 
+Q 526.0842 122.1552 514.701 122.1552 
+L 277.551 122.1552 
+Q 266.1678 122.1552 266.1678 128.808 
+L 266.1678 256.32 
+Q 266.1678 262.9728 277.551 262.9728 
+z
+" clip-path="url(#p7bad6574b9)" style="fill: #edf5f3; stroke: #7e9691; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 562.131 262.9728 
+L 932.085 262.9728 
+Q 943.4682 262.9728 943.4682 256.32 
+L 943.4682 128.808 
+Q 943.4682 122.1552 932.085 122.1552 
+L 562.131 122.1552 
+Q 550.7478 122.1552 550.7478 128.808 
+L 550.7478 256.32 
+Q 550.7478 262.9728 562.131 262.9728 
+z
+" clip-path="url(#p7bad6574b9)" style="fill: #edf5f3; stroke: #7e9691; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 562.131 440.3808 
+L 932.085 440.3808 
+Q 943.4682 440.3808 943.4682 433.728 
+L 943.4682 300.672 
+Q 943.4682 294.0192 932.085 294.0192 
+L 562.131 294.0192 
+Q 550.7478 294.0192 550.7478 300.672 
+L 550.7478 433.728 
+Q 550.7478 440.3808 562.131 440.3808 
+z
+" clip-path="url(#p7bad6574b9)" style="fill: #edf5f3; stroke: #7e9691; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 277.551 440.3808 
+L 514.701 440.3808 
+Q 526.0842 440.3808 526.0842 433.728 
+L 526.0842 300.672 
+Q 526.0842 294.0192 514.701 294.0192 
+L 277.551 294.0192 
+Q 266.1678 294.0192 266.1678 300.672 
+L 266.1678 433.728 
+Q 266.1678 440.3808 277.551 440.3808 
+z
+" clip-path="url(#p7bad6574b9)" style="fill: #edf5f3; stroke: #7e9691; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 30.915 440.3808 
+L 230.121 440.3808 
+Q 241.5042 440.3808 241.5042 433.728 
+L 241.5042 300.672 
+Q 241.5042 294.0192 230.121 294.0192 
+L 30.915 294.0192 
+Q 19.5318 294.0192 19.5318 300.672 
+L 19.5318 433.728 
+Q 19.5318 440.3808 30.915 440.3808 
+z
+" clip-path="url(#p7bad6574b9)" style="fill: #edf5f3; stroke: #7e9691; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 30.915 609.4728 
+L 230.121 609.4728 
+Q 241.5042 609.4728 241.5042 602.82 
+L 241.5042 491.94 
+Q 241.5042 485.2872 230.121 485.2872 
+L 30.915 485.2872 
+Q 19.5318 485.2872 19.5318 491.94 
+L 19.5318 602.82 
+Q 19.5318 609.4728 30.915 609.4728 
+z
+" clip-path="url(#p7bad6574b9)" style="fill: #edf5f3; stroke: #7e9691; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 277.551 609.4728 
+L 514.701 609.4728 
+Q 526.0842 609.4728 526.0842 602.82 
+L 526.0842 491.94 
+Q 526.0842 485.2872 514.701 485.2872 
+L 277.551 485.2872 
+Q 266.1678 485.2872 266.1678 491.94 
+L 266.1678 602.82 
+Q 266.1678 609.4728 277.551 609.4728 
+z
+" clip-path="url(#p7bad6574b9)" style="fill: #edf5f3; stroke: #7e9691; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 562.131 609.4728 
+L 932.085 609.4728 
+Q 943.4682 609.4728 943.4682 602.82 
+L 943.4682 491.94 
+Q 943.4682 485.2872 932.085 485.2872 
+L 562.131 485.2872 
+Q 550.7478 485.2872 550.7478 491.94 
+L 550.7478 602.82 
+Q 550.7478 609.4728 562.131 609.4728 
+z
+" clip-path="url(#p7bad6574b9)" style="fill: #f7f0e6; stroke: #7e9691; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 233.069685 195.336 
+Q 254.309893 195.336 273.87305 195.336 
+" clip-path="url(#p7bad6574b9)" style="fill: none; stroke: #436c65; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 266.67305 191.736 
+L 273.87305 195.336 
+L 266.67305 198.936 
+z
+" clip-path="url(#p7bad6574b9)" style="fill: #436c65; stroke: #436c65; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 516.701374 195.336 
+Q 538.416591 195.336 558.454757 195.336 
+" clip-path="url(#p7bad6574b9)" style="fill: none; stroke: #436c65; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 551.254757 191.736 
+L 558.454757 195.336 
+L 551.254757 198.936 
+z
+" clip-path="url(#p7bad6574b9)" style="fill: #436c65; stroke: #436c65; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="patch_13">
+    <path d="M 747.108 258.320496 
+Q 747.108 278.497172 747.108 296.996798 
+" clip-path="url(#p7bad6574b9)" style="fill: none; stroke: #436c65; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 750.708 289.796798 
+L 747.108 296.996798 
+L 743.508 289.796798 
+z
+" clip-path="url(#p7bad6574b9)" style="fill: #436c65; stroke: #436c65; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="patch_14">
+    <path d="M 560.130626 367.2 
+Q 538.415409 367.2 518.377243 367.2 
+" clip-path="url(#p7bad6574b9)" style="fill: none; stroke: #436c65; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 525.577243 370.8 
+L 518.377243 367.2 
+L 525.577243 363.6 
+z
+" clip-path="url(#p7bad6574b9)" style="fill: #436c65; stroke: #436c65; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="patch_15">
+    <path d="M 275.550915 367.2 
+Q 254.310707 367.2 234.74755 367.2 
+" clip-path="url(#p7bad6574b9)" style="fill: none; stroke: #436c65; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 241.94755 370.8 
+L 234.74755 367.2 
+L 241.94755 363.6 
+z
+" clip-path="url(#p7bad6574b9)" style="fill: #436c65; stroke: #436c65; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="patch_16">
+    <path d="M 130.518 435.728327 
+Q 130.518 462.83406 130.518 488.262741 
+" clip-path="url(#p7bad6574b9)" style="fill: none; stroke: #436c65; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 134.118 481.062741 
+L 130.518 488.262741 
+L 126.918 481.062741 
+z
+" clip-path="url(#p7bad6574b9)" style="fill: #436c65; stroke: #436c65; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="patch_17">
+    <path d="M 233.069685 547.38 
+Q 254.309893 547.38 273.87305 547.38 
+" clip-path="url(#p7bad6574b9)" style="fill: none; stroke: #436c65; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 266.67305 543.78 
+L 273.87305 547.38 
+L 266.67305 550.98 
+z
+" clip-path="url(#p7bad6574b9)" style="fill: #436c65; stroke: #436c65; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="patch_18">
+    <path d="M 560.130626 547.38 
+Q 538.415409 547.38 518.377243 547.38 
+" clip-path="url(#p7bad6574b9)" style="fill: none; stroke-dasharray: 5.55,2.4; stroke-dashoffset: 0; stroke: #436c65; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 525.577243 550.98 
+L 518.377243 547.38 
+L 525.577243 543.78 
+z
+" clip-path="url(#p7bad6574b9)" style="fill: #436c65; stroke-dasharray: 5.55,2.4; stroke-dashoffset: 0; stroke: #436c65; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif; text-anchor: middle" x="130.518" y="162.424" transform="rotate(-0 130.518 162.424)">共同观测与支持</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(69.341438 187.600175)">3通道：可通行 / 阻挡 / 未知</text>
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(77.973469 202.575956)">有效支持mask单独约束</text>
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(85.518 217.075956)">不输入完整参考地图</text>
+   </g>
+   <g id="text_3">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif; text-anchor: middle" x="396.126" y="162.424" transform="rotate(-0 396.126 162.424)">TinyBEVUNet 编码器</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(346.126 188.080644)">内部添加二维坐标平面</text>
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(324.99475 202.470487)">16 → 32 → 64通道，两次下采样</text>
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(351.110375 217.095487)">双线性上采样 + 跳连</text>
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(351.126 231.596269)">池化全局上下文相加</text>
+   </g>
+   <g id="text_5">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif; text-anchor: middle" x="747.108" y="162.424" transform="rotate(-0 747.108 162.424)">相关 Gaussian logit</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(673.437688 187.2408)">μ：两类logit位置，不是边际概率</text>
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(656.787688 202.486112)">B：4维全局Gaussian因子；σ：局部尺度</text>
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(665.868156 216.6908)">L_k = μ + B z_k / √4 + σ · filter(ε_k)</text>
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(661.558 231.4908)">局部核5×5；边缘按卷积权重归一方差</text>
+   </g>
+   <g id="text_7">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif; text-anchor: middle" x="747.108" y="334.288" transform="rotate(-0 747.108 334.288)">采样前：已知证据 / 支持条件约束</text>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(650.967375 359.125112)">已观测类别的logit设为+10，另一类设为-10</text>
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(660.996281 374.444644)">PathRelNet将支持范围外列入已知障碍</text>
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(652.108 388.8548)">约束先于类别抽样；不是采样后重写硬地图</text>
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(662.108 403.4298)">条件均值图的独立投影属于评价器诊断</text>
+   </g>
+   <g id="text_9">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif; text-anchor: middle" x="396.126" y="334.288" transform="rotate(-0 396.126 334.288)">原版类别采样</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(319.370531 359.850112)">逐单元独立Gumbel；噪声尺度a=1</text>
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(346.901 373.9048)">U截断：[1e-6, 1-1e-6]</text>
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(333.004906 388.1298)">硬前向：argmax(L_k + G_k)</text>
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(331.165844 402.614956)">straight-through反向温度0.7</text>
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(326.126 417.960269)">注册设置下已审计硬样本零违规</text>
+   </g>
+   <g id="text_11">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif; text-anchor: middle" x="130.518" y="334.288" transform="rotate(-0 130.518 334.288)">K张二值世界</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(88.482844 358.869644)">W_1, W_2, ..., W_K</text>
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(80.518 374.435269)">跨世界使用独立随机流</text>
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(56.812531 388.114956)">相关来自Gaussian因子/局部logit</text>
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(69.007844 402.8798)">逐格mean(W_k)是地图频率</text>
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(90.518 417.934487)">不是路径事件分数</text>
+   </g>
+   <g id="text_13">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif; text-anchor: middle" x="130.518" y="525.556" transform="rotate(-0 130.518 525.556)">精确任务几何</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(78.751594 550.807175)">固定S / G / 半径r（格）</text>
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(90.502375 565.7728)">圆盘足迹 + 四邻域</text>
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(90.518 580.218112)">超出地图视为障碍</text>
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(79.337531 594.152487)">每世界事件ρ_k ∈ {0,1}</text>
+   </g>
+   <g id="text_15">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif; text-anchor: middle" x="396.126" y="525.556" transform="rotate(-0 396.126 525.556)">事件频率</text>
+   </g>
+   <g id="text_16">
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(345.004906 550.367331)">p(S,G,r) = mean_k ρ_k</text>
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(356.126 565.728269)">不是预测一条路线</text>
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(341.126 580.228269)">单个世界不等于真实地图</text>
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(346.126 594.732956)">验证用完整精确连通性</text>
+   </g>
+   <g id="text_17">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif; text-anchor: middle" x="747.108" y="525.556" transform="rotate(-0 747.108 525.556)">训练监督（只用于训练）</text>
+   </g>
+   <g id="text_18">
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(647.252531 550.393112)">隐藏图BCE + 0.1 variogram + 2 × 事件U统计</text>
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(672.718156 565.732956)">事件硬前向由完整精确oracle修正</text>
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(683.783 580.2228)">反向保留最多256步松弛传播</text>
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif" transform="translate(662.108 594.617331)">这是代理梯度，不是精确硬连通性梯度</text>
+   </g>
+  </g>
+  <g id="text_19">
+   <text style="font-size: 17px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif; text-anchor: middle" x="466.2" y="22.16" transform="rotate(-0 466.2 22.16)">最终ConPath代码路径：相关logit → 条件约束 → 独立类别抽样 → 足迹事件</text>
+  </g>
+  <g id="text_20">
+   <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif; fill: #52616a" transform="translate(310.734375 737.84)">非测量架构图；仅对应parent-pilot最终原版方法，scene/query/seed具体数值不适用。</text>
+   <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif; fill: #52616a" transform="translate(320.355625 746.7525)">已知类别间隔20与a=1截断Gumbel共同保留硬证据；不声称任意噪声尺度均成立。</text>
+   <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif; fill: #52616a" transform="translate(270.875 754.7525)">coherent为另训的补充候选，不在此主路径；no-global保留编码器全局上下文，no-event只关闭事件训练项。</text>
+   <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'DejaVu Sans', sans-serif; fill: #52616a" transform="translate(335.100625 763.7925)">来源清单 SHA256=4a148d716dfa6b33；完整来源见同目录 manifest.json</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p7bad6574b9">
+   <rect x="7.2" y="90" width="948.6" height="554.4"/>
+  </clipPath>
+ </defs>
+</svg>

@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "recorded_utc": "2026-09-10T06:22:40.690127+00:00",
+  "user_instruction": "Stop all external model training and automatic full followthrough; consolidate ConPath paper using existing evidence.",
+  "supersedes": [
+    "results/flatlands_external_formal_v1/pilot_followthrough_v1/coordination.json",
+    "external_formal_v1 full/stage authorizations"
+  ],
+  "external_training_authorized": false,
+  "automatic_full_launch_authorized": false,
+  "new_abc_training_started": false,
+  "stop_marker": "results/flatlands_external_formal_v1/STOP",
+  "stop_marker_sha256": "e0dd3e0c19c61eb86df710f2cbc305b6e6b0ab0a50903d5048d9f3dbfdcce56e",
+  "stop_condition": "Existing parent-isolated original ConPath beats independent in all three recorded seeds; stop condition 1.",
+  "test_access_authorized": false,
+  "new_research_authorized": false
+}

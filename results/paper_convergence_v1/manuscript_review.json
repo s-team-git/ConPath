@@ -1,0 +1,296 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-09-10T06:32:48.677410+00:00",
+  "reviewer": "formal_resume independent bounded local manuscript review",
+  "reviewed_document": "PAPER_DRAFT.md",
+  "reviewed_document_sha256": "61f1a2a9e9288415a139e186a0504efefc882eca5d89393070e6597a65329e00",
+  "scientific_text_status": "checked_with_explicit_development_and_historical_limits; identified wording defects resolved in the hashed manuscript",
+  "assembled_bundle_status": "pending_generated_prediction_snapshots_and_final_cross_asset_hash_check_by_root",
+  "submission_eligibility_granted": false,
+  "formal_external_main_table_eligibility_granted": false,
+  "scope": {
+    "source_and_saved_json_read_only": true,
+    "training": false,
+    "model_inference": false,
+    "GPU_tasks": false,
+    "CSV_metric_recalculation": false,
+    "raw_or_test_data_opened": false,
+    "test_unlock": false,
+    "new_agents": false,
+    "manuscript_edited_by_reviewer": false,
+    "external_literature_reverified": false,
+    "changes_owned_by_reviewer": [
+      "results/FINAL_MODEL_SELECTION.md",
+      "results/flatlands_external_formal_v1/cancellation_20260910T0608Z/model_selection_check_v2.json"
+    ]
+  },
+  "input_sha256": {
+    "PAPER_DRAFT.md": "61f1a2a9e9288415a139e186a0504efefc882eca5d89393070e6597a65329e00",
+    "PAPER_TABLES.md": "33f73001e3a6fc2f0438b95b21bedb1dbabc8a8bcfb40f99a29231d9a89580b2",
+    "PAPER_FIGURES.md": "d88014575af79e269304588a5f081b1aac978c421b119389cb8cad240734a4f6",
+    "results/FINAL_MODEL_SELECTION.md": "4fafc44182649a0f749a4e515690bc2fc9dd96c3882983a8d9b038ddb09ac3f0",
+    "results/flatlands_external_formal_v1/cancellation_20260910T0608Z/coordinator_verification.json": "79ef25cfa75b9dada1f1b8c5be725a867f370f98bb862cdf8acb108fdfcbda3e",
+    "results/flatlands_external_formal_v1/cancellation_20260910T0608Z/model_selection_check_v2.json": "c22c6f4945b000ef93477724f59c5d01ef946ee11df4e0a9bea01dccfdf50b2e",
+    "results/parent_group_pilot_v1/data/protocol.json": "175d555c6da4dabf268b13a6cf0ca8bbbca97e91fcc0cebe7d4aadf9092222f3",
+    "results/parent_group_pilot_v1/analysis.json": "0875640afd84a7d5a1446943328ae90e40f3b4cdc8cbe02af04d01d428ee8cc5",
+    "results/coherent_parent_pilot_v1/analysis.json": "6da43493e5e50b975b4d5c08036c85fdd0dca3c6ee2e078e54ff80646f8496b6",
+    "results/paper_clean_analysis_v1/report.json": "29ca7640437695dbb432c256dc6a0ab0f176ddfb108c17bd8723e17a223e9de3",
+    "results/paper_clean_ablation_matrix_v1/analysis/report.json": "d54ade10698106c1b36b11fd73fb3f90ac1da1c70b1b8ab780d0e6c687f2daab",
+    "results/paper_clean_marginal_shuffle_v1/seed20260831/run.json": "222d4577c5e327c6340a9c9b336b2bae720ed3d7f575d01ab2fe6d73a44a31c8",
+    "site/data/parent_group_pilot_zh.json": "0875640afd84a7d5a1446943328ae90e40f3b4cdc8cbe02af04d01d428ee8cc5",
+    "site/data/flatlands_read_scope_erratum.json": "9a925babdb1246c73c51bf2d01c861608975b69bc7ad4bbc7678470c40a9400a",
+    "src/pathrel/model.py": "397f7558362f389af3a419aec39db36f67184e8106c6b05643908001e4f81045",
+    "src/pathrel/stochastic_decoder.py": "6ca1b9f22e45f8832212d0350054965bafa4fb654992417bdcdd71e50efb0b41",
+    "src/pathrel/types.py": "273d2b4b96556133950d13d0724c6fc0c1068537806e49b6d35f474d29affd69",
+    "src/pathrel/coherent_categorical.py": "97a11fddbd59de27ea3e1ea4f200336df4d8f8cfa387622e795025d8c865b8c4",
+    "src/pathrel/losses.py": "71b3d8d918a1671362c5de460c4ea7b6ac506ea4997bfbcca9526da0886d1baf",
+    "scripts/train_parent_group_pilot.py": "f902238f6fb242a5630fb6d6e0347812c46e34eb64e0737b469a019454bd1dc2",
+    "scripts/evaluate_parent_group_pilot.py": "78841c3148fcb65e7c2d897cc820dfbb4e389c33c199a1193d80c8330183ca4c",
+    "results/paper_convergence_v1/scope_freeze.json": "16674c88032d7bcd85d1207ea59bc89f9cff5ce4f0fa1fb549f181c674430be8"
+  },
+  "resolved_findings": [
+    {
+      "id": "M1",
+      "severity": "must_correct_implementation_description",
+      "location": "PAPER_DRAFT.md:7,61",
+      "issue": "The original decoder fixes known-class logits to +10/-10 before a clipped Gumbel draw; safe_samples selects the free channel and has no final hard-map projection layer. A generic arbitrary-scale final-projection claim did not match the selected implementation.",
+      "evidence": [
+        "src/pathrel/stochastic_decoder.py:144-185",
+        "src/pathrel/types.py:58-65",
+        "scripts/train_parent_group_pilot.py:89-111"
+      ],
+      "resolution": "Abstract now conditions the claim on registered sampling; section 4 states the unit-scale 20-logit-gap argument, audit result, and separate continuous-map evaluator projection. No decoder changes or reruns were made.",
+      "status": "resolved_by_manuscript_owner_and_reread"
+    },
+    {
+      "id": "M2",
+      "severity": "formula_scope_qualification",
+      "location": "PAPER_DRAFT.md:63",
+      "issue": "softmax(L/a) is the conditional categorical identity for ideal untruncated Gumbel noise; implementation clamps uniforms to [1e-6,1-1e-6].",
+      "evidence": [
+        "src/pathrel/stochastic_decoder.py:161-175"
+      ],
+      "resolution": "Text now explicitly distinguishes the ideal identity and numerical clipping approximation.",
+      "status": "resolved_by_manuscript_owner_and_reread"
+    },
+    {
+      "id": "M3",
+      "severity": "formula_normalization",
+      "location": "PAPER_DRAFT.md:147-149",
+      "issue": "Weighted Brier and coverage written as sums require nonnegative weights summing to one.",
+      "resolution": "Text now states normalization and w_i=1/(S*n_s) for equal contributing-parent weighting.",
+      "status": "resolved_by_manuscript_owner_and_reread"
+    },
+    {
+      "id": "M4",
+      "severity": "avoid_retrospective_preregistration",
+      "location": "PAPER_DRAFT.md:147",
+      "issue": "The parent protocol originally registers Event Brier, equal-30%-coverage risk, unknown-valid IoU and MES. The current project NLL/ECE/0.8 convention cannot be called its original registered event-metric contract.",
+      "evidence": [
+        "results/parent_group_pilot_v1/data/protocol.json:evaluation.metrics"
+      ],
+      "resolution": "Current text labels added NLL/ECE/0.8 as retrospective saved-prediction summaries, names epsilon and bins, and leaves unarchived per-query calibration summaries missing. Snapshot provenance remains a separate assembly check.",
+      "status": "confirmed_correct_in_latest_manuscript"
+    },
+    {
+      "id": "S1",
+      "severity": "selection_document_clarification",
+      "location": "results/FINAL_MODEL_SELECTION.md",
+      "issue": "A six-row checkpoint/mean-map source list could be confused with the six requested internal methods. Final-test prerequisites also needed an explicit list.",
+      "resolution": "Renamed source section, linked real historical six-method table and its one-seed direct-query limitation; added metadata-only access history and parent exclusion, preregistered test configuration/statistics/missingness, and author acknowledgment. No test or training authorization is granted.",
+      "status": "reviewer_owned_edit_verified_in_model_selection_check_v2"
+    }
+  ],
+  "remaining_assembly_checks": [
+    {
+      "id": "A1",
+      "status": "pending_owner_output_at_review_time",
+      "required_before_final_bundle_claim": "Check results/paper_validation_snapshot.json and .csv exist, bind the retained predictions/checkpoints/protocols, label added metrics retrospective, and match PAPER_TABLES/PAPER_EVIDENCE/PAPER_DRAFT. The independent review does not claim to verify not-yet-generated data.",
+      "currently_missing": []
+    },
+    {
+      "id": "A2",
+      "status": "required_final_owner_check",
+      "required_before_final_bundle_claim": "Final table/figure/source hashes must be checked after concurrent evidence and figure assembly completes. This review binds its current input hashes and does not certify future edits."
+    }
+  ],
+  "checked_scientific_boundaries": [
+    "Selected method is original ConPath, all three recorded parent seeds 20260910/20260911/20260912; no outcome-picked seed or ensemble. Display seed 20260910 is fixed by listed seed order.",
+    "Parent-isolated 100/25/40 cohort and K32/K4 results are separate from historical overlapping 160/160 cohort K128 and from two-seed coherent follow-up. Missing current direct-query/no-event/no-global measurements stay missing.",
+    "Historical direct-query is one seed 20260831; coordinate-query three-seed model is not relabeled. Same-checkpoint mean maps remain additional controls and one binary output.",
+    "RQ1 shuffle preserves empirical hard-world cell counts, not an exact infinite factorized posterior. Its historical overlap caveat prevents a confirmatory unseen-place claim.",
+    "RQ2 historical no-event/no-global evidence remains historical; no-event still has event-based selection, and no-global retains encoder context and local noise.",
+    "Independent per-cell final Gumbel sampling belongs to original ConPath; spatially correlated categorical noise is a distinct two-seed candidate, not the selected method.",
+    "Radius disk inclusion proves monotonicity only for the same worlds and disk/four-neighbor geometry; units remain cells. It does not prove empirical calibration or continuous collision safety.",
+    "Sample-pair U-score is unbiased for conditional-world expected event squared error under independent world draws and K>1; ordinary finite-K Brier includes sampling variance. Negative individual U estimates do not contradict nonnegative expected squared loss.",
+    "Exact hard forward correction versus bounded straight-through gradient is identified for the new parent cohort; the older bounded training/selection operator is not silently replaced in history.",
+    "Fixed-threshold false-safe is conditioned on accepted queries and reported with coverage; equal-30%-coverage risk uses label-independent fractional ties and is not called confidence-0.8 risk. Undefined zero-coverage risk is not zero.",
+    "Seed SD, conditional paired bootstrap intervals, and source/parent resampling are distinct. Historical overlap is not repaired by subscene bootstrap. No superiority to deterministic or uniform safety gain is asserted.",
+    "No-event lower fixed-threshold risk and much lower coverage, one-seed direct-query lower ECE, parent deterministic higher IoU, and coherent uncertain paired gain are retained as counterevidence.",
+    "Historical physical test access is disclosed; inspected-place counts are not added as disjoint. This consolidation opens no final test and does not certify untouched final holdout eligibility.",
+    "Stopped LaMa/FM under-convergence diagnostics do not fill current baseline rows or establish external method superiority/inferiority. Full plans and launches remain unauthorized.",
+    "User stop criterion 1 supports stopping within the existing bounded development evidence; no third coherent seed or A/B/C tuning is required to satisfy other stopping conditions."
+  ],
+  "numeric_spot_checks_from_saved_aggregates": [
+    {
+      "source": "results/parent_group_pilot_v1/analysis.json",
+      "method": "correlated",
+      "K": 32,
+      "metric": "event_brier",
+      "statistic": "mean",
+      "exact_value": 0.1037990099389618,
+      "manuscript_value": "0.10380"
+    },
+    {
+      "source": "results/parent_group_pilot_v1/analysis.json",
+      "method": "correlated",
+      "K": 32,
+      "metric": "event_brier",
+      "statistic": "sd",
+      "exact_value": 0.0034979706444203816,
+      "manuscript_value": "0.00350"
+    },
+    {
+      "source": "results/parent_group_pilot_v1/analysis.json",
+      "method": "independent",
+      "K": 32,
+      "metric": "event_brier",
+      "statistic": "mean",
+      "exact_value": 0.11201093264981389,
+      "manuscript_value": "0.11201"
+    },
+    {
+      "source": "results/parent_group_pilot_v1/analysis.json",
+      "method": "independent",
+      "K": 32,
+      "metric": "event_brier",
+      "statistic": "sd",
+      "exact_value": 0.0036562173334554774,
+      "manuscript_value": "0.00366"
+    },
+    {
+      "source": "results/parent_group_pilot_v1/analysis.json",
+      "method": "deterministic",
+      "K": 1,
+      "metric": "event_brier",
+      "statistic": "mean",
+      "exact_value": 0.11151571103809237,
+      "manuscript_value": "0.11152"
+    },
+    {
+      "source": "results/parent_group_pilot_v1/analysis.json",
+      "method": "deterministic",
+      "K": 1,
+      "metric": "event_brier",
+      "statistic": "sd",
+      "exact_value": 0.002560344480389599,
+      "manuscript_value": "0.00256"
+    },
+    {
+      "source": "results/paper_clean_analysis_v1/report.json",
+      "method": "conpath",
+      "metric": "brier",
+      "statistic": "mean",
+      "exact_value": 0.06749355699246364,
+      "manuscript_value": "0.06749"
+    },
+    {
+      "source": "results/paper_clean_analysis_v1/report.json",
+      "method": "conpath",
+      "metric": "nll",
+      "statistic": "mean",
+      "exact_value": 0.28853564064708476,
+      "manuscript_value": "0.28854"
+    },
+    {
+      "source": "results/paper_clean_analysis_v1/report.json",
+      "method": "conpath",
+      "metric": "ece",
+      "statistic": "mean",
+      "exact_value": 0.0571513376343502,
+      "manuscript_value": "0.05715"
+    },
+    {
+      "source": "results/paper_clean_analysis_v1/report.json",
+      "method": "independent",
+      "metric": "brier",
+      "statistic": "mean",
+      "exact_value": 0.09521006056164817,
+      "manuscript_value": "0.09521"
+    },
+    {
+      "source": "results/paper_clean_analysis_v1/report.json",
+      "method": "independent",
+      "metric": "nll",
+      "statistic": "mean",
+      "exact_value": 0.7850291646796212,
+      "manuscript_value": "0.78503"
+    },
+    {
+      "source": "results/paper_clean_analysis_v1/report.json",
+      "method": "independent",
+      "metric": "ece",
+      "statistic": "mean",
+      "exact_value": 0.08720362998561186,
+      "manuscript_value": "0.08720"
+    },
+    {
+      "source": "results/paper_clean_analysis_v1/report.json",
+      "method": "direct_query",
+      "metric": "ece",
+      "statistic": "mean",
+      "exact_value": 0.04075985198992008,
+      "manuscript_value": "0.04076"
+    },
+    {
+      "source": "results/paper_clean_analysis_v1/report.json",
+      "method": "mean_map",
+      "metric": "brier",
+      "statistic": "mean",
+      "exact_value": 0.06957235876251777,
+      "manuscript_value": "0.06957"
+    },
+    {
+      "source": "results/paper_clean_analysis_v1/report.json",
+      "method": "marginal_shuffle",
+      "metric": "brier",
+      "statistic": "mean",
+      "exact_value": 0.16139095773847983,
+      "manuscript_value": "0.16139"
+    },
+    {
+      "source": "results/coherent_parent_pilot_v1/analysis.json",
+      "method": "coherent_categorical",
+      "seeds": [
+        20260910,
+        20260911
+      ],
+      "metric": "event_brier",
+      "statistic": "mean",
+      "exact_value": 0.0919073586626844,
+      "manuscript_value": "0.09191"
+    },
+    {
+      "source": "results/coherent_parent_pilot_v1/analysis.json",
+      "method": "correlated",
+      "seeds": [
+        20260910,
+        20260911
+      ],
+      "metric": "event_brier",
+      "statistic": "mean",
+      "exact_value": 0.1032527506952331,
+      "manuscript_value": "0.10325"
+    }
+  ],
+  "other_values_manually_cross_checked": [
+    "parent independent-minus-original interval [0.00439,0.01251]",
+    "parent deterministic-minus-original interval [-0.01616,0.03377]",
+    "coherent same-two-seed interval [-0.00117,0.02437]",
+    "parent risk30/IoU values in Table1 and paragraph9.1",
+    "historical no-event/no-global Brier/NLL/ECE mean/SD",
+    "historical confidence0.8 risk and coverage and equal30 risk",
+    "parent versus coherent map-Brier estimator and same-two-seed denominator"
+  ],
+  "recommendation": "Complete the already-running CPU-only evidence assembly and final bundle hash/number check. Preserve validation-only status and every stated evidence limit. No new training, inference, threshold fitting, test unlocking, or final external superiority claim is warranted by this review."
+}

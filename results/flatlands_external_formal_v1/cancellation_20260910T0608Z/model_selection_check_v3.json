@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-09-10T06:39:43.583030+00:00",
+  "kind": "post_snapshot_selection_counterexample_clarification",
+  "passed": true,
+  "document": "results/FINAL_MODEL_SELECTION.md",
+  "document_sha256": "46b793949eafaf1e2b01e79a8401ada02d7270a918427c989d051d46c7a3209f",
+  "prior_receipt": "results/flatlands_external_formal_v1/cancellation_20260910T0608Z/model_selection_check_v2.json",
+  "prior_receipt_sha256": "c22c6f4945b000ef93477724f59c5d01ef946ee11df4e0a9bea01dccfdf50b2e",
+  "snapshot": "results/paper_validation_snapshot.json",
+  "snapshot_sha256": "1908010b58880be4265d9d258839422282671e7bdf2a069703a53f24f216c887",
+  "checks": {
+    "prior_v2_passed": true,
+    "counterexamples_linked": true,
+    "no_zero_coverage_safe_claim": true,
+    "threshold_not_equal_coverage": true,
+    "posthoc_not_original_registered": true,
+    "checkpoint_set_unchanged": true
+  },
+  "previous_checkpoint_byte_checks_inherited_not_rerun": true,
+  "training_or_inference": false,
+  "test_data_opened": false,
+  "main_table_or_submission_eligibility_granted": false
+}

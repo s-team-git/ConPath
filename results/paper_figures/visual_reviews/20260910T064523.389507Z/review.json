@@ -1,0 +1,167 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-09-10T06:45:23.389423+00:00",
+  "reviewer": "Codex actual visual inspection via view_image",
+  "scope": "18 current PNG layouts and scientific presentation; not numerical evaluation, pilot quality gate, or main-table authorization",
+  "main_snapshot": {
+    "path": "results/paper_figures/20260910T063236.828092Z/manifest.json",
+    "sha256": "60fba5c5be0d1b62264125510b6dd28869adfc31c345c474ba68cd07bee68c4b"
+  },
+  "rule_snapshot": {
+    "path": "results/paper_figures/rule_controls/20260910T064132.442897Z/manifest.json",
+    "sha256": "f3eee080282579713174e057b628c592042cff6a3449cf71233f041ef87290fe"
+  },
+  "historical_manifest": {
+    "path": "results/paper_figures/historical_aggregate/manifest_v2.json",
+    "sha256": "6aefc8aa018b2cb891b02ddab253d90e5243f6be558ebd122c79782b75a06980"
+  },
+  "png_images_actually_viewed": 18,
+  "qualitative_cases_actually_viewed": 10,
+  "displayed_worlds_per_method_case": 4,
+  "world_selection": "Saved indices0,1,2,3 of K32; fixed ten cases/query hashes; does not claim visual inspection of unshown 28 worlds.",
+  "figures": [
+    {
+      "path": "results/paper_figures/20260910T063236.828092Z/01_architecture.png",
+      "sha256": "fdb234f88a1ac96b8289ac9dab89dbc25f92539c75c87c7fd780fbf163e76b33",
+      "actual_view_image": true,
+      "layout_readable": true,
+      "notes_zh": "已逐框查看：相关Gaussian logit→采样前已知/支持±10条件→unit clamped独立Gumbel→世界→足迹精确事件，箭头顺序正确；coherent不在主路径。注册噪声限制和非测量示意清楚。"
+    },
+    {
+      "path": "results/paper_figures/20260910T063236.828092Z/03_event_metrics.png",
+      "sha256": "90eeba5d0e1ee71f4a328641ea444f5f3813e7cdb185b1e44e29d0b05232e43a",
+      "actual_view_image": true,
+      "layout_readable": true,
+      "notes_zh": "主三种子/补充两种子分组明确，每seed点/均值/SD可辨；SD不是CI与事后NLL/ECE注记可读。仅训练模型子集，全部规则在09补图。"
+    },
+    {
+      "path": "results/paper_figures/20260910T063236.828092Z/04_reliability.png",
+      "sha256": "96f3933db186b55dac688d1314f0e97990199f45330dc7ca9866dca1280bf7a8",
+      "actual_view_image": true,
+      "layout_readable": true,
+      "notes_zh": "三seed分别显示十固定分箱；真实非单调曲线保留，未宣称校准通过。颜色/理想线/权重/K/radius/validation-only注记清楚。"
+    },
+    {
+      "path": "results/paper_figures/20260910T063236.828092Z/05_risk_coverage.png",
+      "sha256": "f9183181ac4d4ce1a045126fcc59912e19ffdd144e2d1cd8ce1ed0eed7b8acd9",
+      "actual_view_image": true,
+      "layout_readable": true,
+      "notes_zh": "主三seed/补充两seed分图；薄单seed/粗均值、30%覆盖线、百分数轴清楚。交叉及高风险区间保留，不按标签拆同分组。"
+    },
+    {
+      "path": "results/paper_figures/20260910T063236.828092Z/06_radius.png",
+      "sha256": "554638a892226f360f920168f76451502bf2380dfe78615c38170c7d7bb2879d",
+      "actual_view_image": true,
+      "layout_readable": true,
+      "notes_zh": "0/10/20 grid cell明确；主三seed/补充两seed、SD/父级等权清楚。r20确定性较低Brier保留，无米制换算。"
+    },
+    {
+      "path": "results/paper_figures/20260910T063236.828092Z/07_map_metrics.png",
+      "sha256": "51b995e23fc142d03648ddd299e90568a71db63f1be01cb3416233e883804350",
+      "actual_view_image": true,
+      "layout_readable": true,
+      "notes_zh": "隐藏地图频率Brier与障碍IoU分别显示，确定性IoU优势保留。频率Brier不冒充连续mean-map Brier；后者在09补图说明det更低。"
+    },
+    {
+      "path": "results/paper_figures/20260910T063236.828092Z/02_fixed_case_00.png",
+      "sha256": "c8d5c124eeab16b1957a2a31ecd437c92bdff3ac0328ee5e34a4ae0601b270a2",
+      "actual_view_image": true,
+      "layout_readable": true,
+      "notes_zh": "固定第一例目标贴支持边界、r10参考不可达，三方法事件0。原版/独立有细碎点，coherent较大斑块。棋盘、S/G、足迹和方法行清楚，无虚构路径。"
+    },
+    {
+      "path": "results/paper_figures/20260910T063236.828092Z/02_fixed_case_01.png",
+      "sha256": "964491ffb6b06917de5e337e4313937e020e504934c0cf307548a78a14b42912",
+      "actual_view_image": true,
+      "layout_readable": true,
+      "notes_zh": "固定第二例参考目标处障碍；原版/独立孤立绿点，coherent大绿块。全组事件0不代表重建准确；主比较/补充区分清楚。"
+    },
+    {
+      "path": "results/paper_figures/20260910T063236.828092Z/02_fixed_case_02.png",
+      "sha256": "23923dbcd12f816c73fd08daca39482b78daa5c091632f127d1d3434c3a981da",
+      "actual_view_image": true,
+      "layout_readable": true,
+      "notes_zh": "参考下方大片障碍未被各方法重建，明显偏可通行的失败保留。S/G/radius/seed清楚，顺序前4/32样本未择优。"
+    },
+    {
+      "path": "results/paper_figures/20260910T063236.828092Z/02_fixed_case_03.png",
+      "sha256": "613afd1421cdd82e0e71c300d13606d813038a9143e93dc1c31488f98950fe72",
+      "actual_view_image": true,
+      "layout_readable": true,
+      "notes_zh": "参考大面积障碍和狭细结构；细碎噪声与块状噪声均保留。不可达文本清楚；不能冒称严格端点有效瓶颈。"
+    },
+    {
+      "path": "results/paper_figures/20260910T063236.828092Z/02_fixed_case_04.png",
+      "sha256": "751c8cdffc331534c2ae3d97ebdec2c515e16252bed648b3b15c92fdfd8aac4e",
+      "actual_view_image": true,
+      "layout_readable": true,
+      "notes_zh": "参考可达；主原版/独立事件频率0.75000/0.71875，补充coherent0.96875。前4/32世界明确，所有颜色和未知输入可读。"
+    },
+    {
+      "path": "results/paper_figures/20260910T063236.828092Z/02_fixed_case_05.png",
+      "sha256": "3dfe168c2aa7c749673c6db155ecc50cc66150317120f811d3fa8a5cd5b85062",
+      "actual_view_image": true,
+      "layout_readable": true,
+      "notes_zh": "参考不可达但原版/独立/coherent频率0.56250/0.78125/0.75000的失败完整保留。参考起点足迹靠障碍，绿色连通不等于圆盘能通过。"
+    },
+    {
+      "path": "results/paper_figures/20260910T063236.828092Z/02_fixed_case_06.png",
+      "sha256": "bbbf7fee02422fb2dd72c8a09661d3eecfdcec9ddc414c552d80a349cca2a15a",
+      "actual_view_image": true,
+      "layout_readable": true,
+      "notes_zh": "参考目标在大块障碍，模型补全偏可通行；各方法事件0仍不证明地图正确。主/补充行、固定world顺序清楚。"
+    },
+    {
+      "path": "results/paper_figures/20260910T063236.828092Z/02_fixed_case_07.png",
+      "sha256": "fb9b28a2c997bf982bffb7c68e04ca565d4be68137058594dae3f12b3089c640",
+      "actual_view_image": true,
+      "layout_readable": true,
+      "notes_zh": "自由区内预测明显点噪声或块状障碍，参考不可达/全组0明示。无S/G直连线；输入与参考对齐。"
+    },
+    {
+      "path": "results/paper_figures/20260910T063236.828092Z/02_fixed_case_08.png",
+      "sha256": "480daeb4dea7a9dcc267ac466d628e5429c3e79daa6ecc3d8c4c80f029d68423",
+      "actual_view_image": true,
+      "layout_readable": true,
+      "notes_zh": "参考可达但原版事件0.03125低于独立0.50000；coherent0.43750。对原版不利的固定样本保留，4张展示与K32事件频率区分。"
+    },
+    {
+      "path": "results/paper_figures/20260910T063236.828092Z/02_fixed_case_09.png",
+      "sha256": "39e175de596e442aabb1121b67db43c317fa9cc027cd918f29c54d6bf0ac5041",
+      "actual_view_image": true,
+      "layout_readable": true,
+      "notes_zh": "参考不可达、足迹近支持边界。细噪声与块噪声均保留，方法全组0明示；查询、半径、种子、图例可读。"
+    },
+    {
+      "path": "results/paper_figures/20260910T063236.828092Z/08_synthetic_event_ablation.png",
+      "sha256": "f7412d171e1c406dab20aa9575bdf981d985f737ce085e2b36c0f5838ced7ba4",
+      "actual_view_image": true,
+      "layout_readable": true,
+      "notes_zh": "synthetic-heldout与FlatLands分图，完整两seed及no-event单匹配seed分别标识。K128/r0/1/2与1152事件清楚，不制造额外消融重复。"
+    },
+    {
+      "path": "results/paper_figures/rule_controls/20260910T064132.442897Z/09_rule_controls.png",
+      "sha256": "582a6c46553c1b7d55ca310cbc084b238d701807b9a39527dc9219bbab003998",
+      "actual_view_image": true,
+      "layout_readable": true,
+      "notes_zh": "七方法六指标完整显示。N/A风险行现有显式上下留白；prior低NLL/ECE零coverage、det连续mapBrier .138685<ConPath .151468明确。训练SD不伪造规则重复；0coverage确为0，不替代缺失风险。"
+    }
+  ],
+  "all_png_layouts_readable": true,
+  "architecture_other48_artifacts_byte_identical": true,
+  "all54_current_exports_sha256_match": true,
+  "historical4_exports_byte_identical": true,
+  "historic_svg_pdf_actually_viewed_in_this_review": false,
+  "limitations": [
+    "No strict endpoint-valid bottleneck in fixed ten queries; missing rather than manufactured.",
+    "All current FlatLands images are development validation, reused for design.",
+    "No matched no-event/no-global/direct qualitative worlds; no new inference to fill gaps.",
+    "Maps show substantial failures/noise; readability is not model-quality certification.",
+    "Historical160/27 count observations,142 counts event-contributing subscenes; these are not 160/142 independent parent places."
+  ],
+  "new_training": false,
+  "new_model_inference": false,
+  "new_test_asset_reads": false,
+  "external_model_images_included": false,
+  "formal_gate_or_superiority_passed": false
+}

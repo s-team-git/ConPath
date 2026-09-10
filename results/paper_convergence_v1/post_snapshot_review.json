@@ -1,0 +1,1842 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-09-10T06:39:43.583845+00:00",
+  "kind": "independent_JSON_to_manuscript_table_consistency_review",
+  "passed_within_scope": true,
+  "scope": "29 JSON aggregate identities/ranges/mean/SD checks and 22 unique FlatLands rows mapped to displayed tables; no prediction CSV reread, geometry audit, model evaluation, raw data, or GPU work. Root owns final full-bundle links/source-chain verification.",
+  "input_sha256": {
+    "results/paper_validation_snapshot.json": "1908010b58880be4265d9d258839422282671e7bdf2a069703a53f24f216c887",
+    "PAPER_TABLES.md": "398a646f16bf3298b904ed087cad709757d729e9aa913aa7a5263c9857a0b337",
+    "PAPER_DRAFT.md": "1d79d7468b0d16b3c2c230362481cdc33a294136e590e546920ee345a1bd51b0",
+    "results/FINAL_MODEL_SELECTION.md": "46b793949eafaf1e2b01e79a8401ada02d7270a918427c989d051d46c7a3209f",
+    "results/paper_convergence_v1/manuscript_review.json": "286e72b0c2a37d9f721d0cb2c0d37f1642fd5a18a023b31fac6cd5d899a1d26e"
+  },
+  "checks": {
+    "29_unique_snapshot_rows_checked": true,
+    "22_unique_flatlands_rows_match_displayed_tables": true,
+    "7_unprinted_rows_retained_in_snapshot_not_covertly_mixed": true,
+    "all_23_development_saved_score_recomputation_receipts_report_pass": true,
+    "threshold_is_0_8": true,
+    "clip_is_1e_6_bins10": true,
+    "prior_lower_NLL_ECE_but_higher_Brier": true,
+    "prior_zero_coverage_undefined_risk": true,
+    "deterministic_better_continuous_hidden_brier": true,
+    "stochastic_continuous_estimator_is_K32_even_on_K4_bookkeeping_rows": true,
+    "draft_new_counterexample_numbers_match": true,
+    "draft_zero_coverage_risk_undefined": true,
+    "posthoc_disclosure_preserved": true,
+    "snapshot_hash_bound_in_tables": true,
+    "STOP_preserved": true
+  },
+  "rows_checked": [
+    {
+      "cohort": "parent_isolated_three_seed",
+      "method": "correlated",
+      "K": 4,
+      "seeds": [
+        20260910,
+        20260911,
+        20260912
+      ],
+      "metric_mean_sd_and_ranges": "pass"
+    },
+    {
+      "cohort": "parent_isolated_three_seed",
+      "method": "correlated",
+      "K": 32,
+      "seeds": [
+        20260910,
+        20260911,
+        20260912
+      ],
+      "metric_mean_sd_and_ranges": "pass"
+    },
+    {
+      "cohort": "parent_isolated_three_seed",
+      "method": "independent",
+      "K": 4,
+      "seeds": [
+        20260910,
+        20260911,
+        20260912
+      ],
+      "metric_mean_sd_and_ranges": "pass"
+    },
+    {
+      "cohort": "parent_isolated_three_seed",
+      "method": "independent",
+      "K": 32,
+      "seeds": [
+        20260910,
+        20260911,
+        20260912
+      ],
+      "metric_mean_sd_and_ranges": "pass"
+    },
+    {
+      "cohort": "parent_isolated_three_seed",
+      "method": "deterministic",
+      "K": 1,
+      "seeds": [
+        20260910,
+        20260911,
+        20260912
+      ],
+      "metric_mean_sd_and_ranges": "pass"
+    },
+    {
+      "cohort": "parent_isolated_three_seed",
+      "method": "all_floor",
+      "K": 1,
+      "seeds": [
+        "rule"
+      ],
+      "metric_mean_sd_and_ranges": "pass"
+    },
+    {
+      "cohort": "parent_isolated_three_seed",
+      "method": "all_blocked",
+      "K": 1,
+      "seeds": [
+        "rule"
+      ],
+      "metric_mean_sd_and_ranges": "pass"
+    },
+    {
+      "cohort": "parent_isolated_three_seed",
+      "method": "nearest_observed",
+      "K": 1,
+      "seeds": [
+        "rule"
+      ],
+      "metric_mean_sd_and_ranges": "pass"
+    },
+    {
+      "cohort": "parent_isolated_three_seed",
+      "method": "train_radius_prior",
+      "K": 1,
+      "seeds": [
+        "rule"
+      ],
+      "metric_mean_sd_and_ranges": "pass"
+    },
+    {
+      "cohort": "coherent_two_seed_matched",
+      "method": "coherent_categorical",
+      "K": 4,
+      "seeds": [
+        20260910,
+        20260911
+      ],
+      "metric_mean_sd_and_ranges": "pass"
+    },
+    {
+      "cohort": "coherent_two_seed_matched",
+      "method": "coherent_categorical",
+      "K": 32,
+      "seeds": [
+        20260910,
+        20260911
+      ],
+      "metric_mean_sd_and_ranges": "pass"
+    },
+    {
+      "cohort": "coherent_two_seed_matched",
+      "method": "correlated",
+      "K": 4,
+      "seeds": [
+        20260910,
+        20260911
+      ],
+      "metric_mean_sd_and_ranges": "pass"
+    },
+    {
+      "cohort": "coherent_two_seed_matched",
+      "method": "correlated",
+      "K": 32,
+      "seeds": [
+        20260910,
+        20260911
+      ],
+      "metric_mean_sd_and_ranges": "pass"
+    },
+    {
+      "cohort": "coherent_two_seed_matched",
+      "method": "independent",
+      "K": 4,
+      "seeds": [
+        20260910,
+        20260911
+      ],
+      "metric_mean_sd_and_ranges": "pass"
+    },
+    {
+      "cohort": "coherent_two_seed_matched",
+      "method": "independent",
+      "K": 32,
+      "seeds": [
+        20260910,
+        20260911
+      ],
+      "metric_mean_sd_and_ranges": "pass"
+    },
+    {
+      "cohort": "coherent_two_seed_matched",
+      "method": "deterministic",
+      "K": 1,
+      "seeds": [
+        20260910,
+        20260911
+      ],
+      "metric_mean_sd_and_ranges": "pass"
+    },
+    {
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "conpath",
+      "K": 128,
+      "seeds": [
+        20260831,
+        20260901,
+        20260902
+      ],
+      "metric_mean_sd_and_ranges": "pass"
+    },
+    {
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "independent",
+      "K": 128,
+      "seeds": [
+        20260831,
+        20260901,
+        20260902
+      ],
+      "metric_mean_sd_and_ranges": "pass"
+    },
+    {
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "completion",
+      "K": 1,
+      "seeds": [
+        20260831,
+        20260901,
+        20260902
+      ],
+      "metric_mean_sd_and_ranges": "pass"
+    },
+    {
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "coordinate",
+      "K": null,
+      "seeds": [
+        20260831,
+        20260901,
+        20260902
+      ],
+      "metric_mean_sd_and_ranges": "pass"
+    },
+    {
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "direct_query",
+      "K": null,
+      "seeds": [
+        20260831
+      ],
+      "metric_mean_sd_and_ranges": "pass"
+    },
+    {
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "radius_prior",
+      "K": null,
+      "seeds": [
+        20260831
+      ],
+      "metric_mean_sd_and_ranges": "pass"
+    },
+    {
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "mean_map",
+      "K": 1,
+      "seeds": [
+        20260831,
+        20260901,
+        20260902
+      ],
+      "metric_mean_sd_and_ranges": "pass"
+    },
+    {
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "independent_mean_map",
+      "K": 1,
+      "seeds": [
+        20260831,
+        20260901,
+        20260902
+      ],
+      "metric_mean_sd_and_ranges": "pass"
+    },
+    {
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "marginal_shuffle",
+      "K": 128,
+      "seeds": [
+        20260831,
+        20260901,
+        20260902
+      ],
+      "metric_mean_sd_and_ranges": "pass"
+    },
+    {
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "no_event",
+      "K": 128,
+      "seeds": [
+        20260831,
+        20260901,
+        20260902
+      ],
+      "metric_mean_sd_and_ranges": "pass"
+    },
+    {
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "no_global",
+      "K": 128,
+      "seeds": [
+        20260831,
+        20260901,
+        20260902
+      ],
+      "metric_mean_sd_and_ranges": "pass"
+    },
+    {
+      "cohort": "synthetic_P0_template_holdout",
+      "method": "full",
+      "K": 128,
+      "seeds": [
+        20260827,
+        20260828
+      ],
+      "metric_mean_sd_and_ranges": "pass"
+    },
+    {
+      "cohort": "synthetic_P0_template_holdout",
+      "method": "no_event",
+      "K": 128,
+      "seeds": [
+        20260827
+      ],
+      "metric_mean_sd_and_ranges": "pass"
+    }
+  ],
+  "table_numeric_cells_checked": [
+    {
+      "table": "T1",
+      "row": "Deterministic occupancy",
+      "column": 3,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "deterministic",
+        1
+      ],
+      "metric": "metrics.brier",
+      "display": "0.11152 ± 0.00256",
+      "passed": true
+    },
+    {
+      "table": "T1",
+      "row": "Deterministic occupancy",
+      "column": 4,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "deterministic",
+        1
+      ],
+      "metric": "metrics.risk_at_30_percent",
+      "display": "0.25164 ± 0.01024",
+      "passed": true
+    },
+    {
+      "table": "T1",
+      "row": "Deterministic occupancy",
+      "column": 5,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "deterministic",
+        1
+      ],
+      "metric": "map_metrics.sample_vote_cell_brier",
+      "display": "0.18988",
+      "passed": true
+    },
+    {
+      "table": "T1b",
+      "row": "Deterministic occupancy",
+      "column": 2,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "deterministic",
+        1
+      ],
+      "metric": "metrics.nll",
+      "display": "1.54065 ± 0.03537",
+      "passed": true
+    },
+    {
+      "table": "T1b",
+      "row": "Deterministic occupancy",
+      "column": 3,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "deterministic",
+        1
+      ],
+      "metric": "metrics.ece",
+      "display": "0.11152 ± 0.00256",
+      "passed": true
+    },
+    {
+      "table": "T1b",
+      "row": "Deterministic occupancy",
+      "column": 4,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "deterministic",
+        1
+      ],
+      "metric": "metrics.false_safe_at_0_8",
+      "display": "0.25164 ± 0.01024",
+      "passed": true
+    },
+    {
+      "table": "T1b",
+      "row": "Deterministic occupancy",
+      "column": 5,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "deterministic",
+        1
+      ],
+      "metric": "metrics.coverage_at_0_8",
+      "display": "0.34198 ± 0.00883",
+      "passed": true
+    },
+    {
+      "table": "T1b",
+      "row": "Deterministic occupancy",
+      "column": 6,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "deterministic",
+        1
+      ],
+      "metric": "continuous_map_brier.continuous",
+      "display": "0.13869 ± 0.00542",
+      "passed": true
+    },
+    {
+      "table": "T1",
+      "row": "Independent Bernoulli",
+      "column": 3,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "independent",
+        32
+      ],
+      "metric": "metrics.brier",
+      "display": "0.11201 ± 0.00366",
+      "passed": true
+    },
+    {
+      "table": "T1",
+      "row": "Independent Bernoulli",
+      "column": 4,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "independent",
+        32
+      ],
+      "metric": "metrics.risk_at_30_percent",
+      "display": "0.24432 ± 0.00928",
+      "passed": true
+    },
+    {
+      "table": "T1",
+      "row": "Independent Bernoulli",
+      "column": 5,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "independent",
+        32
+      ],
+      "metric": "map_metrics.sample_vote_cell_brier",
+      "display": "0.15402",
+      "passed": true
+    },
+    {
+      "table": "T1b",
+      "row": "Independent Bernoulli",
+      "column": 2,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "independent",
+        32
+      ],
+      "metric": "metrics.nll",
+      "display": "0.94364 ± 0.06507",
+      "passed": true
+    },
+    {
+      "table": "T1b",
+      "row": "Independent Bernoulli",
+      "column": 3,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "independent",
+        32
+      ],
+      "metric": "metrics.ece",
+      "display": "0.10131 ± 0.00578",
+      "passed": true
+    },
+    {
+      "table": "T1b",
+      "row": "Independent Bernoulli",
+      "column": 4,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "independent",
+        32
+      ],
+      "metric": "metrics.false_safe_at_0_8",
+      "display": "0.20847 ± 0.01295",
+      "passed": true
+    },
+    {
+      "table": "T1b",
+      "row": "Independent Bernoulli",
+      "column": 5,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "independent",
+        32
+      ],
+      "metric": "metrics.coverage_at_0_8",
+      "display": "0.22453 ± 0.01525",
+      "passed": true
+    },
+    {
+      "table": "T1b",
+      "row": "Independent Bernoulli",
+      "column": 6,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "independent",
+        32
+      ],
+      "metric": "continuous_map_brier.continuous",
+      "display": "0.15158 ± 0.00852",
+      "passed": true
+    },
+    {
+      "table": "T1",
+      "row": "ConPath",
+      "column": 3,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "correlated",
+        32
+      ],
+      "metric": "metrics.brier",
+      "display": "0.10380 ± 0.00350",
+      "passed": true
+    },
+    {
+      "table": "T1",
+      "row": "ConPath",
+      "column": 4,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "correlated",
+        32
+      ],
+      "metric": "metrics.risk_at_30_percent",
+      "display": "0.23952 ± 0.00578",
+      "passed": true
+    },
+    {
+      "table": "T1",
+      "row": "ConPath",
+      "column": 5,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "correlated",
+        32
+      ],
+      "metric": "map_metrics.sample_vote_cell_brier",
+      "display": "0.15388",
+      "passed": true
+    },
+    {
+      "table": "T1b",
+      "row": "ConPath",
+      "column": 2,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "correlated",
+        32
+      ],
+      "metric": "metrics.nll",
+      "display": "0.79330 ± 0.10289",
+      "passed": true
+    },
+    {
+      "table": "T1b",
+      "row": "ConPath",
+      "column": 3,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "correlated",
+        32
+      ],
+      "metric": "metrics.ece",
+      "display": "0.08622 ± 0.00315",
+      "passed": true
+    },
+    {
+      "table": "T1b",
+      "row": "ConPath",
+      "column": 4,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "correlated",
+        32
+      ],
+      "metric": "metrics.false_safe_at_0_8",
+      "display": "0.18649 ± 0.01396",
+      "passed": true
+    },
+    {
+      "table": "T1b",
+      "row": "ConPath",
+      "column": 5,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "correlated",
+        32
+      ],
+      "metric": "metrics.coverage_at_0_8",
+      "display": "0.21340 ± 0.00842",
+      "passed": true
+    },
+    {
+      "table": "T1b",
+      "row": "ConPath",
+      "column": 6,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "correlated",
+        32
+      ],
+      "metric": "continuous_map_brier.continuous",
+      "display": "0.15147 ± 0.00378",
+      "passed": true
+    },
+    {
+      "table": "T1c",
+      "row": "ConPath",
+      "K": 4,
+      "metric": "brier",
+      "display": "0.11064 ± 0.00666",
+      "passed": true
+    },
+    {
+      "table": "T1c",
+      "row": "ConPath",
+      "K": 4,
+      "metric": "ece",
+      "display": "0.09633 ± 0.00698",
+      "passed": true
+    },
+    {
+      "table": "T1c",
+      "row": "ConPath",
+      "K": 4,
+      "metric": "false_safe_at_0_8",
+      "display": "0.17801 ± 0.01356",
+      "passed": true
+    },
+    {
+      "table": "T1c",
+      "row": "ConPath",
+      "K": 4,
+      "metric": "coverage_at_0_8",
+      "display": "0.19624 ± 0.00358",
+      "passed": true
+    },
+    {
+      "table": "T1c",
+      "row": "ConPath",
+      "K": 32,
+      "metric": "brier",
+      "display": "0.10380 ± 0.00350",
+      "passed": true
+    },
+    {
+      "table": "T1c",
+      "row": "ConPath",
+      "K": 32,
+      "metric": "ece",
+      "display": "0.08622 ± 0.00315",
+      "passed": true
+    },
+    {
+      "table": "T1c",
+      "row": "ConPath",
+      "K": 32,
+      "metric": "false_safe_at_0_8",
+      "display": "0.18649 ± 0.01396",
+      "passed": true
+    },
+    {
+      "table": "T1c",
+      "row": "ConPath",
+      "K": 32,
+      "metric": "coverage_at_0_8",
+      "display": "0.21340 ± 0.00842",
+      "passed": true
+    },
+    {
+      "table": "T1c",
+      "row": "Independent Bernoulli",
+      "K": 4,
+      "metric": "brier",
+      "display": "0.12028 ± 0.00844",
+      "passed": true
+    },
+    {
+      "table": "T1c",
+      "row": "Independent Bernoulli",
+      "K": 4,
+      "metric": "ece",
+      "display": "0.10985 ± 0.01085",
+      "passed": true
+    },
+    {
+      "table": "T1c",
+      "row": "Independent Bernoulli",
+      "K": 4,
+      "metric": "false_safe_at_0_8",
+      "display": "0.20673 ± 0.01934",
+      "passed": true
+    },
+    {
+      "table": "T1c",
+      "row": "Independent Bernoulli",
+      "K": 4,
+      "metric": "coverage_at_0_8",
+      "display": "0.21058 ± 0.01425",
+      "passed": true
+    },
+    {
+      "table": "T1c",
+      "row": "Independent Bernoulli",
+      "K": 32,
+      "metric": "brier",
+      "display": "0.11201 ± 0.00366",
+      "passed": true
+    },
+    {
+      "table": "T1c",
+      "row": "Independent Bernoulli",
+      "K": 32,
+      "metric": "ece",
+      "display": "0.10131 ± 0.00578",
+      "passed": true
+    },
+    {
+      "table": "T1c",
+      "row": "Independent Bernoulli",
+      "K": 32,
+      "metric": "false_safe_at_0_8",
+      "display": "0.20847 ± 0.01295",
+      "passed": true
+    },
+    {
+      "table": "T1c",
+      "row": "Independent Bernoulli",
+      "K": 32,
+      "metric": "coverage_at_0_8",
+      "display": "0.22453 ± 0.01525",
+      "passed": true
+    },
+    {
+      "table": "T1d",
+      "row": "All unknown free",
+      "column": 2,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "all_floor",
+        1
+      ],
+      "metric": "metrics.brier",
+      "display": "0.18048",
+      "passed": true
+    },
+    {
+      "table": "T1d",
+      "row": "All unknown free",
+      "column": 3,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "all_floor",
+        1
+      ],
+      "metric": "metrics.nll",
+      "display": "2.49341",
+      "passed": true
+    },
+    {
+      "table": "T1d",
+      "row": "All unknown free",
+      "column": 4,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "all_floor",
+        1
+      ],
+      "metric": "metrics.ece",
+      "display": "0.18048",
+      "passed": true
+    },
+    {
+      "table": "T1d",
+      "row": "All unknown free",
+      "column": 5,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "all_floor",
+        1
+      ],
+      "metric": "metrics.false_safe_at_0_8",
+      "display": "0.39087",
+      "passed": true
+    },
+    {
+      "table": "T1d",
+      "row": "All unknown free",
+      "column": 6,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "all_floor",
+        1
+      ],
+      "metric": "metrics.coverage_at_0_8",
+      "display": "0.46174",
+      "passed": true
+    },
+    {
+      "table": "T1d",
+      "row": "All unknown blocked",
+      "column": 2,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "all_blocked",
+        1
+      ],
+      "metric": "metrics.brier",
+      "display": "0.28126",
+      "passed": true
+    },
+    {
+      "table": "T1d",
+      "row": "All unknown blocked",
+      "column": 3,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "all_blocked",
+        1
+      ],
+      "metric": "metrics.nll",
+      "display": "3.88578",
+      "passed": true
+    },
+    {
+      "table": "T1d",
+      "row": "All unknown blocked",
+      "column": 4,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "all_blocked",
+        1
+      ],
+      "metric": "metrics.ece",
+      "display": "0.28126",
+      "passed": true
+    },
+    {
+      "table": "T1d",
+      "row": "All unknown blocked",
+      "column": 5,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "all_blocked",
+        1
+      ],
+      "metric": "metrics.false_safe_at_0_8",
+      "display": "—",
+      "passed": true
+    },
+    {
+      "table": "T1d",
+      "row": "All unknown blocked",
+      "column": 6,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "all_blocked",
+        1
+      ],
+      "metric": "metrics.coverage_at_0_8",
+      "display": "0.00000",
+      "passed": true
+    },
+    {
+      "table": "T1d",
+      "row": "Nearest observed",
+      "column": 2,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "nearest_observed",
+        1
+      ],
+      "metric": "metrics.brier",
+      "display": "0.13834",
+      "passed": true
+    },
+    {
+      "table": "T1d",
+      "row": "Nearest observed",
+      "column": 3,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "nearest_observed",
+        1
+      ],
+      "metric": "metrics.nll",
+      "display": "1.91117",
+      "passed": true
+    },
+    {
+      "table": "T1d",
+      "row": "Nearest observed",
+      "column": 4,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "nearest_observed",
+        1
+      ],
+      "metric": "metrics.ece",
+      "display": "0.13834",
+      "passed": true
+    },
+    {
+      "table": "T1d",
+      "row": "Nearest observed",
+      "column": 5,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "nearest_observed",
+        1
+      ],
+      "metric": "metrics.false_safe_at_0_8",
+      "display": "0.30460",
+      "passed": true
+    },
+    {
+      "table": "T1d",
+      "row": "Nearest observed",
+      "column": 6,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "nearest_observed",
+        1
+      ],
+      "metric": "metrics.coverage_at_0_8",
+      "display": "0.36573",
+      "passed": true
+    },
+    {
+      "table": "T1d",
+      "row": "Train-fitted radius prior",
+      "column": 2,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "train_radius_prior",
+        1
+      ],
+      "metric": "metrics.brier",
+      "display": "0.15606",
+      "passed": true
+    },
+    {
+      "table": "T1d",
+      "row": "Train-fitted radius prior",
+      "column": 3,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "train_radius_prior",
+        1
+      ],
+      "metric": "metrics.nll",
+      "display": "0.48499",
+      "passed": true
+    },
+    {
+      "table": "T1d",
+      "row": "Train-fitted radius prior",
+      "column": 4,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "train_radius_prior",
+        1
+      ],
+      "metric": "metrics.ece",
+      "display": "0.05653",
+      "passed": true
+    },
+    {
+      "table": "T1d",
+      "row": "Train-fitted radius prior",
+      "column": 5,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "train_radius_prior",
+        1
+      ],
+      "metric": "metrics.false_safe_at_0_8",
+      "display": "—",
+      "passed": true
+    },
+    {
+      "table": "T1d",
+      "row": "Train-fitted radius prior",
+      "column": 6,
+      "source_key": [
+        "parent_isolated_three_seed",
+        "train_radius_prior",
+        1
+      ],
+      "metric": "metrics.coverage_at_0_8",
+      "display": "0.00000",
+      "passed": true
+    },
+    {
+      "table": "T2",
+      "row": "Deterministic occupancy",
+      "column": 3,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "completion",
+        1
+      ],
+      "metric": "metrics.brier",
+      "display": "0.08857 ± 0.00323",
+      "passed": true
+    },
+    {
+      "table": "T2",
+      "row": "Deterministic occupancy",
+      "column": 4,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "completion",
+        1
+      ],
+      "metric": "metrics.nll",
+      "display": "1.22362 ± 0.04463",
+      "passed": true
+    },
+    {
+      "table": "T2",
+      "row": "Deterministic occupancy",
+      "column": 5,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "completion",
+        1
+      ],
+      "metric": "metrics.ece",
+      "display": "0.08857 ± 0.00323",
+      "passed": true
+    },
+    {
+      "table": "T2",
+      "row": "Deterministic occupancy",
+      "column": 6,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "completion",
+        1
+      ],
+      "metric": "metrics.false_safe_at_0_8",
+      "display": "0.07293 ± 0.00682",
+      "passed": true
+    },
+    {
+      "table": "T2",
+      "row": "Deterministic occupancy",
+      "column": 7,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "completion",
+        1
+      ],
+      "metric": "metrics.coverage_at_0_8",
+      "display": "0.44278 ± 0.01024",
+      "passed": true
+    },
+    {
+      "table": "T2",
+      "row": "Independent Bernoulli",
+      "column": 3,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "independent",
+        128
+      ],
+      "metric": "metrics.brier",
+      "display": "0.09521 ± 0.00703",
+      "passed": true
+    },
+    {
+      "table": "T2",
+      "row": "Independent Bernoulli",
+      "column": 4,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "independent",
+        128
+      ],
+      "metric": "metrics.nll",
+      "display": "0.78503 ± 0.04690",
+      "passed": true
+    },
+    {
+      "table": "T2",
+      "row": "Independent Bernoulli",
+      "column": 5,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "independent",
+        128
+      ],
+      "metric": "metrics.ece",
+      "display": "0.08720 ± 0.00741",
+      "passed": true
+    },
+    {
+      "table": "T2",
+      "row": "Independent Bernoulli",
+      "column": 6,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "independent",
+        128
+      ],
+      "metric": "metrics.false_safe_at_0_8",
+      "display": "0.05689 ± 0.00832",
+      "passed": true
+    },
+    {
+      "table": "T2",
+      "row": "Independent Bernoulli",
+      "column": 7,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "independent",
+        128
+      ],
+      "metric": "metrics.coverage_at_0_8",
+      "display": "0.36592 ± 0.01692",
+      "passed": true
+    },
+    {
+      "table": "T2",
+      "row": "Direct-query",
+      "column": 3,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "direct_query",
+        null
+      ],
+      "metric": "metrics.brier",
+      "display": "0.09119",
+      "passed": true
+    },
+    {
+      "table": "T2",
+      "row": "Direct-query",
+      "column": 4,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "direct_query",
+        null
+      ],
+      "metric": "metrics.nll",
+      "display": "0.29788",
+      "passed": true
+    },
+    {
+      "table": "T2",
+      "row": "Direct-query",
+      "column": 5,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "direct_query",
+        null
+      ],
+      "metric": "metrics.ece",
+      "display": "0.04076",
+      "passed": true
+    },
+    {
+      "table": "T2",
+      "row": "Direct-query",
+      "column": 6,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "direct_query",
+        null
+      ],
+      "metric": "metrics.false_safe_at_0_8",
+      "display": "0.08335",
+      "passed": true
+    },
+    {
+      "table": "T2",
+      "row": "Direct-query",
+      "column": 7,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "direct_query",
+        null
+      ],
+      "metric": "metrics.coverage_at_0_8",
+      "display": "0.37412",
+      "passed": true
+    },
+    {
+      "table": "T2",
+      "row": "No-global",
+      "column": 3,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "no_global",
+        128
+      ],
+      "metric": "metrics.brier",
+      "display": "0.09499 ± 0.00157",
+      "passed": true
+    },
+    {
+      "table": "T2",
+      "row": "No-global",
+      "column": 4,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "no_global",
+        128
+      ],
+      "metric": "metrics.nll",
+      "display": "0.78486 ± 0.05495",
+      "passed": true
+    },
+    {
+      "table": "T2",
+      "row": "No-global",
+      "column": 5,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "no_global",
+        128
+      ],
+      "metric": "metrics.ece",
+      "display": "0.08592 ± 0.00058",
+      "passed": true
+    },
+    {
+      "table": "T2",
+      "row": "No-global",
+      "column": 6,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "no_global",
+        128
+      ],
+      "metric": "metrics.false_safe_at_0_8",
+      "display": "0.05739 ± 0.01662",
+      "passed": true
+    },
+    {
+      "table": "T2",
+      "row": "No-global",
+      "column": 7,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "no_global",
+        128
+      ],
+      "metric": "metrics.coverage_at_0_8",
+      "display": "0.36354 ± 0.00957",
+      "passed": true
+    },
+    {
+      "table": "T2",
+      "row": "No-event",
+      "column": 3,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "no_event",
+        128
+      ],
+      "metric": "metrics.brier",
+      "display": "0.20425 ± 0.00322",
+      "passed": true
+    },
+    {
+      "table": "T2",
+      "row": "No-event",
+      "column": 4,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "no_event",
+        128
+      ],
+      "metric": "metrics.nll",
+      "display": "2.53067 ± 0.05699",
+      "passed": true
+    },
+    {
+      "table": "T2",
+      "row": "No-event",
+      "column": 5,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "no_event",
+        128
+      ],
+      "metric": "metrics.ece",
+      "display": "0.21690 ± 0.01933",
+      "passed": true
+    },
+    {
+      "table": "T2",
+      "row": "No-event",
+      "column": 6,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "no_event",
+        128
+      ],
+      "metric": "metrics.false_safe_at_0_8",
+      "display": "0.02561 ± 0.01609",
+      "passed": true
+    },
+    {
+      "table": "T2",
+      "row": "No-event",
+      "column": 7,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "no_event",
+        128
+      ],
+      "metric": "metrics.coverage_at_0_8",
+      "display": "0.19316 ± 0.10435",
+      "passed": true
+    },
+    {
+      "table": "T2",
+      "row": "ConPath",
+      "column": 3,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "conpath",
+        128
+      ],
+      "metric": "metrics.brier",
+      "display": "0.06749 ± 0.00936",
+      "passed": true
+    },
+    {
+      "table": "T2",
+      "row": "ConPath",
+      "column": 4,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "conpath",
+        128
+      ],
+      "metric": "metrics.nll",
+      "display": "0.28854 ± 0.01662",
+      "passed": true
+    },
+    {
+      "table": "T2",
+      "row": "ConPath",
+      "column": 5,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "conpath",
+        128
+      ],
+      "metric": "metrics.ece",
+      "display": "0.05715 ± 0.00683",
+      "passed": true
+    },
+    {
+      "table": "T2",
+      "row": "ConPath",
+      "column": 6,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "conpath",
+        128
+      ],
+      "metric": "metrics.false_safe_at_0_8",
+      "display": "0.04552 ± 0.01429",
+      "passed": true
+    },
+    {
+      "table": "T2",
+      "row": "ConPath",
+      "column": 7,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "conpath",
+        128
+      ],
+      "metric": "metrics.coverage_at_0_8",
+      "display": "0.33644 ± 0.00579",
+      "passed": true
+    },
+    {
+      "table": "T3",
+      "row": "ConPath, K128",
+      "column": 1,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "conpath",
+        128
+      ],
+      "metric": "metrics.brier",
+      "display": "0.06749 ± 0.00936",
+      "passed": true
+    },
+    {
+      "table": "T3",
+      "row": "ConPath, K128",
+      "column": 2,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "conpath",
+        128
+      ],
+      "metric": "metrics.nll",
+      "display": "0.28854 ± 0.01662",
+      "passed": true
+    },
+    {
+      "table": "T3",
+      "row": "ConPath, K128",
+      "column": 3,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "conpath",
+        128
+      ],
+      "metric": "metrics.ece",
+      "display": "0.05715 ± 0.00683",
+      "passed": true
+    },
+    {
+      "table": "T3",
+      "row": "ConPath, K128",
+      "column": 4,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "conpath",
+        128
+      ],
+      "metric": "metrics.risk_at_30_percent",
+      "display": "0.03600 ± 0.00986",
+      "passed": true
+    },
+    {
+      "table": "T3",
+      "row": "Cellwise world-index permutation, K128",
+      "column": 1,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "marginal_shuffle",
+        128
+      ],
+      "metric": "metrics.brier",
+      "display": "0.16139 ± 0.00677",
+      "passed": true
+    },
+    {
+      "table": "T3",
+      "row": "Cellwise world-index permutation, K128",
+      "column": 2,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "marginal_shuffle",
+        128
+      ],
+      "metric": "metrics.nll",
+      "display": "1.53947 ± 0.18205",
+      "passed": true
+    },
+    {
+      "table": "T3",
+      "row": "Cellwise world-index permutation, K128",
+      "column": 3,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "marginal_shuffle",
+        128
+      ],
+      "metric": "metrics.ece",
+      "display": "0.16433 ± 0.01252",
+      "passed": true
+    },
+    {
+      "table": "T3",
+      "row": "Cellwise world-index permutation, K128",
+      "column": 4,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "marginal_shuffle",
+        128
+      ],
+      "metric": "metrics.risk_at_30_percent",
+      "display": "0.03908 ± 0.01622",
+      "passed": true
+    },
+    {
+      "table": "T3",
+      "row": "ConPath same-checkpoint mean map",
+      "column": 1,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "mean_map",
+        1
+      ],
+      "metric": "metrics.brier",
+      "display": "0.06957 ± 0.00380",
+      "passed": true
+    },
+    {
+      "table": "T3",
+      "row": "ConPath same-checkpoint mean map",
+      "column": 2,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "mean_map",
+        1
+      ],
+      "metric": "metrics.nll",
+      "display": "0.96118 ± 0.05253",
+      "passed": true
+    },
+    {
+      "table": "T3",
+      "row": "ConPath same-checkpoint mean map",
+      "column": 3,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "mean_map",
+        1
+      ],
+      "metric": "metrics.ece",
+      "display": "0.06957 ± 0.00380",
+      "passed": true
+    },
+    {
+      "table": "T3",
+      "row": "ConPath same-checkpoint mean map",
+      "column": 4,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "mean_map",
+        1
+      ],
+      "metric": "metrics.risk_at_30_percent",
+      "display": "0.10509 ± 0.01468",
+      "passed": true
+    },
+    {
+      "table": "T3",
+      "row": "Independent same-checkpoint mean map",
+      "column": 1,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "independent_mean_map",
+        1
+      ],
+      "metric": "metrics.brier",
+      "display": "0.07184 ± 0.00349",
+      "passed": true
+    },
+    {
+      "table": "T3",
+      "row": "Independent same-checkpoint mean map",
+      "column": 2,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "independent_mean_map",
+        1
+      ],
+      "metric": "metrics.nll",
+      "display": "0.99248 ± 0.04822",
+      "passed": true
+    },
+    {
+      "table": "T3",
+      "row": "Independent same-checkpoint mean map",
+      "column": 3,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "independent_mean_map",
+        1
+      ],
+      "metric": "metrics.ece",
+      "display": "0.07184 ± 0.00349",
+      "passed": true
+    },
+    {
+      "table": "T3",
+      "row": "Independent same-checkpoint mean map",
+      "column": 4,
+      "source_key": [
+        "historical_overlapping_parent_K128",
+        "independent_mean_map",
+        1
+      ],
+      "metric": "metrics.risk_at_30_percent",
+      "display": "0.11023 ± 0.01558",
+      "passed": true
+    },
+    {
+      "table": "T4",
+      "row": "Correlated categorical-noise variant (candidate)",
+      "column": 2,
+      "source_key": [
+        "coherent_two_seed_matched",
+        "coherent_categorical",
+        32
+      ],
+      "metric": "metrics.brier",
+      "display": "0.09191 ± 0.00902",
+      "passed": true
+    },
+    {
+      "table": "T4",
+      "row": "Correlated categorical-noise variant (candidate)",
+      "column": 3,
+      "source_key": [
+        "coherent_two_seed_matched",
+        "coherent_categorical",
+        32
+      ],
+      "metric": "metrics.risk_at_30_percent",
+      "display": "0.22604 ± 0.00413",
+      "passed": true
+    },
+    {
+      "table": "T4",
+      "row": "Correlated categorical-noise variant (candidate)",
+      "column": 4,
+      "source_key": [
+        "coherent_two_seed_matched",
+        "coherent_categorical",
+        32
+      ],
+      "metric": "map_metrics.mean_iou",
+      "display": "0.61919",
+      "passed": true
+    },
+    {
+      "table": "T4",
+      "row": "Original ConPath",
+      "column": 2,
+      "source_key": [
+        "coherent_two_seed_matched",
+        "correlated",
+        32
+      ],
+      "metric": "metrics.brier",
+      "display": "0.10325 ± 0.00476",
+      "passed": true
+    },
+    {
+      "table": "T4",
+      "row": "Original ConPath",
+      "column": 3,
+      "source_key": [
+        "coherent_two_seed_matched",
+        "correlated",
+        32
+      ],
+      "metric": "metrics.risk_at_30_percent",
+      "display": "0.23649 ± 0.00342",
+      "passed": true
+    },
+    {
+      "table": "T4",
+      "row": "Original ConPath",
+      "column": 4,
+      "source_key": [
+        "coherent_two_seed_matched",
+        "correlated",
+        32
+      ],
+      "metric": "map_metrics.mean_iou",
+      "display": "0.62009",
+      "passed": true
+    },
+    {
+      "table": "T4",
+      "row": "Independent Bernoulli",
+      "column": 2,
+      "source_key": [
+        "coherent_two_seed_matched",
+        "independent",
+        32
+      ],
+      "metric": "metrics.brier",
+      "display": "0.11014 ± 0.00239",
+      "passed": true
+    },
+    {
+      "table": "T4",
+      "row": "Independent Bernoulli",
+      "column": 3,
+      "source_key": [
+        "coherent_two_seed_matched",
+        "independent",
+        32
+      ],
+      "metric": "metrics.risk_at_30_percent",
+      "display": "0.24873 ± 0.00748",
+      "passed": true
+    },
+    {
+      "table": "T4",
+      "row": "Independent Bernoulli",
+      "column": 4,
+      "source_key": [
+        "coherent_two_seed_matched",
+        "independent",
+        32
+      ],
+      "metric": "map_metrics.mean_iou",
+      "display": "0.62522",
+      "passed": true
+    },
+    {
+      "table": "T4",
+      "row": "Deterministic occupancy",
+      "column": 2,
+      "source_key": [
+        "coherent_two_seed_matched",
+        "deterministic",
+        1
+      ],
+      "metric": "metrics.brier",
+      "display": "0.11132 ± 0.00359",
+      "passed": true
+    },
+    {
+      "table": "T4",
+      "row": "Deterministic occupancy",
+      "column": 3,
+      "source_key": [
+        "coherent_two_seed_matched",
+        "deterministic",
+        1
+      ],
+      "metric": "metrics.risk_at_30_percent",
+      "display": "0.25047 ± 0.01419",
+      "passed": true
+    },
+    {
+      "table": "T4",
+      "row": "Deterministic occupancy",
+      "column": 4,
+      "source_key": [
+        "coherent_two_seed_matched",
+        "deterministic",
+        1
+      ],
+      "metric": "map_metrics.mean_iou",
+      "display": "0.66254",
+      "passed": true
+    }
+  ],
+  "table_unique_source_rows": 22,
+  "unprinted_snapshot_rows": [
+    {
+      "cohort": "coherent_two_seed_matched",
+      "method": "coherent_categorical",
+      "K": 4,
+      "reason": "kept in snapshot supplement; not substituted into the displayed cohort comparisons"
+    },
+    {
+      "cohort": "coherent_two_seed_matched",
+      "method": "correlated",
+      "K": 4,
+      "reason": "kept in snapshot supplement; not substituted into the displayed cohort comparisons"
+    },
+    {
+      "cohort": "coherent_two_seed_matched",
+      "method": "independent",
+      "K": 4,
+      "reason": "kept in snapshot supplement; not substituted into the displayed cohort comparisons"
+    },
+    {
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "coordinate",
+      "K": null,
+      "reason": "kept in snapshot supplement; not substituted into the displayed cohort comparisons"
+    },
+    {
+      "cohort": "historical_overlapping_parent_K128",
+      "method": "radius_prior",
+      "K": null,
+      "reason": "kept in snapshot supplement; not substituted into the displayed cohort comparisons"
+    },
+    {
+      "cohort": "synthetic_P0_template_holdout",
+      "method": "full",
+      "K": 128,
+      "reason": "kept in snapshot supplement; not substituted into the displayed cohort comparisons"
+    },
+    {
+      "cohort": "synthetic_P0_template_holdout",
+      "method": "no_event",
+      "K": 128,
+      "reason": "kept in snapshot supplement; not substituted into the displayed cohort comparisons"
+    }
+  ],
+  "selection_check_v3": "results/flatlands_external_formal_v1/cancellation_20260910T0608Z/model_selection_check_v3.json",
+  "selection_check_v3_sha256": "e8ba31606579e090a05656a377124b45ff8a29066053996f4d3718c238c2c40d",
+  "note": "Parent train_radius_prior has internal bookkeeping K=1 but generates no map; table correctly says actual maps N/A. Historical direct-query K is N/A with one seed. Stochastic continuous maps use saved K32 averages, even when the JSON also links that estimator on a K4 event-budget row.",
+  "manuscript_estimator_wording_followup": {
+    "section": "10.3 archived sampling modification",
+    "issue": "0.15192 to 0.15362 are empirical hard-world hidden-map Brier for matched two seeds; distinguish from continuous values 0.149308 to 0.150856. Owner notified.",
+    "resolved_in_reviewed_document": true
+  },
+  "new_training_or_inference": false,
+  "new_test_or_raw_data_access": false,
+  "final_test_or_submission_eligibility_granted": false
+}
