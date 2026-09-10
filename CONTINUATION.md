@@ -6,10 +6,16 @@
 
 LaMa/FM真实中途SIGINT跨进程恢复已通过，loss/模型/optimizer/scheduler/全部RNG逐位一致。正式K4使用LaMa真实4成员×3外部seed（20260831/20260901/20260902），不可复制地图。源码/查询/图片清单与protocol.json已冻结：实现提交a1fa04d、协议提交6694e86，协议SHA409c8bc4a9142d75a62e6c3d67204ef7d5045ad38f74b45b5411f8bfe899c0e2，258项回归通过。阶段队列PID1841989已启动，最多两个GPU worker运行未训练、1000、5000步阶段并评估完整固定校准/验证集。LaMa未训练K4参照已完成，随后成员0训练开始；FM参照评估中。此句是启动快照，最新步数以stage_status和实际进程为准。完整训练必须等待数值改善、固定图片审查与另行冻结full plan，不能盲跑300000步。
 
-恢复时先核对 `results/flatlands_external_formal_v1/queue.json`、`stage_status/`和实际进程；若已有完成receipt，直接复用并核验，不重复训练或旧profiles。源码/协议冻结后不得直接改写已登记文件；运行只能显式resume，非空结果目录拒绝覆盖。结果尚未完成三次充分训练，无正式优越性或投稿结论。以下内容按日期视为历史。
+恢复时先核对 `results/flatlands_external_formal_v1/queue.json`、`stage_status/`和实际进程；若已有完成receipt，直接复用并核验，不重复训练或旧profiles。源码/协议冻结后不得直接改写已登记文件；运行只能显式resume，非空结果目录拒绝覆盖。结果尚未完成三次充分训练，无正式优越性或投稿结论。
+
+**UTC 2026-09-10 04:33 阶段更新：** LaMa 未训练与四成员1000步完整校准/验证均完成且独立审计通过；FM未训练参照通过独立审计，1000步训练完成、校准/验证进行中。LaMa 5000步pilot成员0已完成，成员1训练中。仍只有两个GPU工作进程，不另启队列。LaMa的验证Brier改善，但NLL/ECE变差，约45.55%的生成世界未知区域接近全空；须继续检查pilot，不能仅凭Brier进入完整训练。完整数据见 [FLATLANDS_FORMAL_STAGE_RESULTS_ZH.md](FLATLANDS_FORMAL_STAGE_RESULTS_ZH.md)。
+
+最新报告快照为 `results/flatlands_external_formal_v1/reports/20260910T035037.828561Z`，27组真实图片已逐图核对。新增 `site/formal.html` 只含已独立核验的同阶段validation-only诊断，25组验证图均有图例与固定案例标注，训练曲线未作为验证图发布；首页40组旧案例与244个旧资产内容不变。网页发布状态以本轮 `results/flatlands_formal_site_publication_v1/` 凭据及Git远端为准，不能把本地生成视为上线。
+
+完整训练控制器和最终独立审计已实现，但尚未运行完整训练或授予任何最终审计通过。操作与严格视觉回执要求见 [FLATLANDS_FORMAL_CLOSEOUT_ZH.md](FLATLANDS_FORMAL_CLOSEOUT_ZH.md)。网页排版审查不能当作模型pilot质量审查。以下内容按日期视为历史。
 
 
-## 当前交付：两种子改进试验已收尾（2026-09-09，America/New_York）
+## 历史交付：两种子改进试验已收尾（2026-09-09，America/New_York）
 
 两次训练及统一评估均已完成，独立数值和图片审计通过；没有本项目训练进程，显存已释放。
 改进版与原ConPath严格按相同两个种子比较：Brier 0.09191 / 0.10325，风险30%为22.60% / 23.65%；

@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "checkpoint_id": "flatlands-external-formal-v1-stages-running",
-  "updated_local_date": "2026-09-09",
+  "updated_local_date": "2026-09-10",
   "timezone": "America/New_York",
   "branch": "main",
-  "remote_sync": "Resolve current homepage publication via git log -1 -- RECOVERY_STATE.json; results/model_home_publication_20260909/completion.json verifies deployment. Prior dbebf3c baseline/access audit remains authoritative.",
-  "latest_local_commit": "Resolve with git log -1 -- RECOVERY_STATE.json; old ablation implementation e6f0910 remains immutable.",
+  "remote_sync": "Protocol code a1fa04d and protocol commit 6694e86/tag are on origin/main. Current diagnostic website publication is recorded under results/flatlands_formal_site_publication_v1; verify its receipt and git remote before assuming deployment.",
+  "latest_local_commit": "Resolve with git rev-parse HEAD; frozen experiment source commit remains a1fa04d10039731d27e723e58e1cf7b51da36aba.",
   "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence. New external profiles on 2026-09-08 actually used Python 3.13 and torch 2.12.1+cu130; v2 explicitly disables TF32 and cudnn benchmarking and enables deterministic algorithms. GPU has unrelated concurrent load; no isolated-device latency claim.",
   "scientific_status": "No formal external superiority result. Old profiles remain engineering-only; current formal three-seed matrix has not completed. Final test and location_6 locked; historical access remains disclosed.",
   "active_task": "Formal fair LaMa BEV adaptation and FM+XAttn literature reimplementation matrix: fresh shared physical-train parent split, protocol/source freeze, exact resume verified, then untrained/1000/5000 convergence stages; no full training before numerical and fixed-case review gates.",
@@ -4563,35 +4563,36 @@
     }
   ],
   "last_verification": {
-    "results": "results/coherent_parent_pilot_v1/independent_verification.json",
-    "gallery": "results/coherent_parent_pilot_v1/gallery_verification.json",
-    "browser": "results/coherent_parent_pilot_v1/publication/browser/report.json",
-    "unit_tests_passed": 190,
-    "publication": "results/coherent_parent_pilot_v1/publication/completion.json"
+    "protocol_preflight_regression_tests_passed": 258,
+    "resume": "results/flatlands_external_resume_v1/verification.json",
+    "independent_stages": [
+      "results/flatlands_external_formal_v1/audits/lama/20260831/untrained/attempt_1/verification.json",
+      "results/flatlands_external_formal_v1/audits/lama/20260831/smoke/attempt_1/verification.json",
+      "results/flatlands_external_formal_v1/audits/flow/20260831/untrained/attempt_1/verification.json"
+    ],
+    "report_visual": "results/flatlands_external_formal_v1/report_visual_audits/20260910T035037.828561Z.json",
+    "formal_browser": "results/flatlands_formal_site_publication_v1/browser_attempt_3/browser_verification.json",
+    "homepage_browser": "results/flatlands_formal_site_publication_v1/home_browser_attempt_1/browser_verification.json",
+    "final_scientific_audit_passed": false
   },
   "recovery_commands": [
+    "git rev-parse --short HEAD",
     "git status --short --branch",
-    "PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/verify_recovery_state.py --quick",
-    "PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/verify_recovery_state.py",
-    "PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/audit_flatlands_conpath_k128.py --root results/p1_flatlands_conpath_k128_support_clamped_v1 --output /tmp/conpath_clean_audit.json",
-    "PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/audit_flatlands_conpath_k128.py --root results/p1_flatlands_independent_k128_support_clamped_v1 --run-suffix independent --decoder-variant independent --method independent_k128_audit --output /tmp/independent_clean_audit.json",
-    "PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/compare_flatlands_k128_paired.py --correlated-root results/p1_flatlands_conpath_k128_support_clamped_v1 --independent-root results/p1_flatlands_independent_k128_support_clamped_v1 --output /tmp/flatlands_clean_paired.json",
-    "PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/audit_paper_evidence.py --output results/paper_evidence_current_audit.json",
-    "cat WORK_PLAN.md",
-    "tail -n 65 CONTINUATION.md",
-    "cat results/paper_clean_ablation_matrix_v1/progress.json",
-    "PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/audit_site_visuals.py",
-    "cat EXTERNAL_PROGRESS_ZH.md",
-    "cat results/cogniplan_native_profile_v2/report.json",
-    "cat FLATLANDS_EXTERNAL_PROGRESS_ZH.md",
-    "cat results/flatlands_external_publication_20260909/completion.json"
+    "nvidia-smi",
+    "python --version",
+    "cat results/flatlands_external_formal_v1/queue.json",
+    "cat results/flatlands_external_formal_v1/stage_status/lama.json",
+    "cat results/flatlands_external_formal_v1/stage_status/flow.json",
+    "cat FLATLANDS_FORMAL_CLOSEOUT_ZH.md",
+    "cat FLATLANDS_FORMAL_STAGE_RESULTS_ZH.md"
   ],
-  "next_command": "cat results/coherent_parent_pilot_v1/publication/completion.json",
+  "next_command": "cat results/flatlands_external_formal_v1/stage_status/lama.json",
   "next_actions": [
-    "Respect completed publication receipts; do not repeat this training/evaluation/gallery run.",
-    "Before any new training, freeze a new common data scale, convergence budget and zero-query event-weight correction for original/candidate and strong baselines.",
-    "External comparisons prioritize compatible published scores, author predictions/checkpoints and only necessary adaptation. Final holdout needs complete historical-access exclusion.",
-    "Retain at most two concurrent training tasks and about 60 GiB project GPU budget; no next-stage training is currently launched."
+    "Inspect current supervisor and worker processes; never start a duplicate queue. At most two GPU model workers, about 60 GiB total project budget.",
+    "Complete existing untrained/1000/5000 pipelines and reuse completed matching audits. Do not rerun old profiles, K128, P0 or UnScenes3D audits.",
+    "Independently recompute saved-world stage metrics on CPU, review all frozen convergence cases and only then seal data-derived full budgets if numerical and visual gates pass.",
+    "Run full three-seed matrix on the frozen 985/97/191 parent split only after the stage queue releases its lock. Register sufficient training and actual cost; final audit required for any main-table eligibility.",
+    "Publish only independently audited validation-only diagnostics. Keep final test/location_6 locked and do not add new research directions."
   ],
   "active_training": {
     "status": "staged_convergence_running",
@@ -4604,7 +4605,7 @@
     "note": "Live worker/count/steps must be read from queue/status and ps; never blindly restart a live queue."
   },
   "accepted_experiment_plan": {
-    "status": "approved_by_user",
+    "status": "historical_plan_superseded_by_external_formal_v1",
     "recorded_utc": "2026-09-08T01:42:23.683337+00:00",
     "authorization": "results/training_resume_20260907/authorization.json",
     "document": "EXPERIMENT_DESIGN_ZH.md",
@@ -4644,7 +4645,7 @@
     "pause_requires_new_explicit_resume_request": false,
     "latest_execution_authorization": "results/training_resume_20260908_finalization/authorization.json",
     "bounded_training_ablation_completion": "EVALUATION_SUMMARY_ZH.md; all six completed 2026-09-08, larger-data and external experiments remain required",
-    "latest_user_revision": "2026-09-09: prioritize finishing current data and published paper numbers; avoid unnecessary reproductions. History/Transformer/data-size are hypotheses to test, not assumed solutions.",
+    "latest_user_revision": "Current formal task supersedes prior extension candidates: no new Transformer/LLM/3DGS/ROS/history/outdoor models; finish the registered LaMa/FM and control matrix.",
     "previous_external_training_candidates": [
       "FlatLands: genuine LaMa BEV module and four-member ensemble",
       "FlatLands: documented conditional FM+XAttn literature reimplementation with quality gate",
@@ -4655,7 +4656,9 @@
       "At least one credible strong external common-protocol evaluation is needed for an external path-superiority claim; absent author outputs, necessary adaptation or narrowing the claim is required, not automatic full retraining of every candidate."
     ],
     "parent_isolation_reopened": true,
-    "test_evaluated_scope": "No final provenance-test model evaluation; original physical-test assets were accessed historically and in development. See read_scope_erratum; do not infer untouched physical test."
+    "test_evaluated_scope": "No final provenance-test model evaluation; original physical-test assets were accessed historically and in development. See read_scope_erratum; do not infer untouched physical test.",
+    "current_frozen_protocol": "results/flatlands_external_formal_protocol_v1/protocol.json",
+    "extensions_are_currently_authorized": false
   },
   "external_baseline_preparation": {
     "status": "all_three_interfaces_and_resource_checks_complete_formal_data_and_convergence_pending",
@@ -4849,7 +4852,52 @@
     "protocol_commit": "6694e86",
     "protocol_sha256": "409c8bc4a9142d75a62e6c3d67204ef7d5045ad38f74b45b5411f8bfe899c0e2",
     "queue_pid": 1841989,
-    "updated_utc": "2026-09-10T03:17:24.447762+00:00",
-    "all_regression_tests": 258
+    "updated_utc": "2026-09-10T04:32:01.952988+00:00",
+    "all_regression_tests": 258,
+    "completed_independently_audited_stages": {
+      "lama": [
+        "untrained",
+        "smoke_1000"
+      ],
+      "flow": [
+        "untrained"
+      ]
+    },
+    "stage_results_document": "FLATLANDS_FORMAL_STAGE_RESULTS_ZH.md",
+    "current_report_snapshot": "results/flatlands_external_formal_v1/reports/20260910T035037.828561Z",
+    "website": {
+      "page": "site/formal.html",
+      "current_receipt": "site/data/formal_current.json",
+      "local_browser_verified": true,
+      "deployment_verified": false,
+      "main_table_eligible": false
+    },
+    "full_runner": "scripts/run_flatlands_formal_full.py",
+    "final_auditor": "scripts/audit_flatlands_formal_final.py",
+    "final_audit_passed": false
+  },
+  "historical_recovery_commands_before_formal_v1": [
+    "git status --short --branch",
+    "PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/verify_recovery_state.py --quick",
+    "PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/verify_recovery_state.py",
+    "PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/audit_flatlands_conpath_k128.py --root results/p1_flatlands_conpath_k128_support_clamped_v1 --output /tmp/conpath_clean_audit.json",
+    "PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/audit_flatlands_conpath_k128.py --root results/p1_flatlands_independent_k128_support_clamped_v1 --run-suffix independent --decoder-variant independent --method independent_k128_audit --output /tmp/independent_clean_audit.json",
+    "PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/compare_flatlands_k128_paired.py --correlated-root results/p1_flatlands_conpath_k128_support_clamped_v1 --independent-root results/p1_flatlands_independent_k128_support_clamped_v1 --output /tmp/flatlands_clean_paired.json",
+    "PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/audit_paper_evidence.py --output results/paper_evidence_current_audit.json",
+    "cat WORK_PLAN.md",
+    "tail -n 65 CONTINUATION.md",
+    "cat results/paper_clean_ablation_matrix_v1/progress.json",
+    "PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 scripts/audit_site_visuals.py",
+    "cat EXTERNAL_PROGRESS_ZH.md",
+    "cat results/cogniplan_native_profile_v2/report.json",
+    "cat FLATLANDS_EXTERNAL_PROGRESS_ZH.md",
+    "cat results/flatlands_external_publication_20260909/completion.json"
+  ],
+  "historical_verification_before_formal_v1": {
+    "results": "results/coherent_parent_pilot_v1/independent_verification.json",
+    "gallery": "results/coherent_parent_pilot_v1/gallery_verification.json",
+    "browser": "results/coherent_parent_pilot_v1/publication/browser/report.json",
+    "unit_tests_passed": 190,
+    "publication": "results/coherent_parent_pilot_v1/publication/completion.json"
   }
 }

@@ -1,5 +1,7 @@
 # Recent-baseline bridge for ConPath
 
+> **当前任务（2026-09-10 UTC）：** 只完成 LaMa BEV adaptation / FM+XAttn literature reimplementation 与注册对照的共同 K=4、三种子外部矩阵。985训练 / 97校准 / 191验证父场景、查询及源码已冻结；1000/5000步阶段运行中。短训练仅是诊断，没有正式优越性结论。下文其它方向与已完成旧实验保留为历史，不是本轮新增任务。见 [正式协议](FLATLANDS_FORMAL_PROTOCOL_ZH.md)、[阶段结果](FLATLANDS_FORMAL_STAGE_RESULTS_ZH.md)及[执行与收尾](FLATLANDS_FORMAL_CLOSEOUT_ZH.md)。
+
 > **2026-09-07 文献复核后的主线：** 已读八篇正文。主比较优先采用 LaMa/集成、条件流匹配，
 > 以及 CogniPlan 原生地图上的官方生成模块；KITTI-360 暂不列为必跑。
 > 见 [LITERATURE_REVIEW_ZH.md](LITERATURE_REVIEW_ZH.md) 与 [EXPERIMENT_DESIGN_ZH.md](EXPERIMENT_DESIGN_ZH.md)。

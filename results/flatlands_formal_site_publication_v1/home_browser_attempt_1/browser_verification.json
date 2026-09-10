@@ -1,0 +1,73 @@
+{
+  "passed": true,
+  "scope": "Diagnostic website rendering and published values; no scientific eligibility",
+  "created_utc": "2026-09-10T04:30:15.955Z",
+  "base": "http://127.0.0.1:8777/formal.html",
+  "gpu_model_inference_performed": false,
+  "new_test_images_opened": 0,
+  "viewports": [
+    {
+      "width": 1440,
+      "scrollWidth": 1425,
+      "lang": "zh-CN",
+      "next": "03 / 下一步\n\n先完成外部基线的公平验证。\n01\n本轮数据与协议已冻结\n\n985个训练、97个校准、191个验证父级地点；共同K=4，半径固定0、10、20格。地点隔离与查询清单按已核验协议锁定。\n\n02\n先完成1000步与5000步阶段验证\n\nLaMa BEV adaptation与FM+XAttn literature reimplementation先检查训练稳定性、未知地图补全、可达性校准和固定图片。只有阶段收敛检查通过才冻结完整训练预算。\n\n03\n通过收敛后完成正式三种子矩阵\n\n每种方法运行20260831、20260901、20260902；统一校准集选优与验证评估，补齐对照和独立审计。location_6与最终测试继续锁定，不用测试集调参；此前短训练不能进入正式主表。\n\n训练资源策略：同时最多2个训练进程，本项目显存目标约60 GiB，每进程分配器上限28 GiB。这是配置目标，不是实时占用；其它程序的显存另计。\n\n最近公开且已核验的阶段：稳定性诊断 · 1000步；报告快照20260910T035037.828561Z，不作为实时训练进度。本轮外部诊断 ↗ · 本轮固定协议 ↗。 完整工作计划 ↗",
+      "links": [
+        {
+          "label": "查看本轮外部诊断 · 稳定性诊断 · 1000步 ↗",
+          "url": "http://127.0.0.1:8777/formal.html"
+        },
+        {
+          "label": "本轮外部诊断 ↗",
+          "url": "http://127.0.0.1:8777/formal.html"
+        },
+        {
+          "label": "外部基线统一验证\n本轮已核验的validation-only诊断 ↗",
+          "url": "http://127.0.0.1:8777/formal.html"
+        }
+      ],
+      "formal_entry_available": true,
+      "formal_html_sha256": "c99e8aca4e6dad89ea42fdcfae553ad8158a2933497545b4c8a5a22f5c1c6e23"
+    },
+    {
+      "width": 390,
+      "scrollWidth": 390,
+      "lang": "zh-CN",
+      "next": "03 / 下一步\n\n先完成外部基线的公平验证。\n01\n本轮数据与协议已冻结\n\n985个训练、97个校准、191个验证父级地点；共同K=4，半径固定0、10、20格。地点隔离与查询清单按已核验协议锁定。\n\n02\n先完成1000步与5000步阶段验证\n\nLaMa BEV adaptation与FM+XAttn literature reimplementation先检查训练稳定性、未知地图补全、可达性校准和固定图片。只有阶段收敛检查通过才冻结完整训练预算。\n\n03\n通过收敛后完成正式三种子矩阵\n\n每种方法运行20260831、20260901、20260902；统一校准集选优与验证评估，补齐对照和独立审计。location_6与最终测试继续锁定，不用测试集调参；此前短训练不能进入正式主表。\n\n训练资源策略：同时最多2个训练进程，本项目显存目标约60 GiB，每进程分配器上限28 GiB。这是配置目标，不是实时占用；其它程序的显存另计。\n\n最近公开且已核验的阶段：稳定性诊断 · 1000步；报告快照20260910T035037.828561Z，不作为实时训练进度。本轮外部诊断 ↗ · 本轮固定协议 ↗。 完整工作计划 ↗",
+      "links": [
+        {
+          "label": "查看本轮外部诊断 · 稳定性诊断 · 1000步 ↗",
+          "url": "http://127.0.0.1:8777/formal.html"
+        },
+        {
+          "label": "本轮外部诊断 ↗",
+          "url": "http://127.0.0.1:8777/formal.html"
+        },
+        {
+          "label": "外部基线统一验证\n本轮已核验的validation-only诊断 ↗",
+          "url": "http://127.0.0.1:8777/formal.html"
+        }
+      ],
+      "formal_entry_available": true,
+      "formal_html_sha256": "c99e8aca4e6dad89ea42fdcfae553ad8158a2933497545b4c8a5a22f5c1c6e23"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "1440-home-overview.png",
+      "sha256": "2de5a76f0e95d05b45b02d601ea6f7fde2083769f0fbcbe94b4780ddee6f91cf"
+    },
+    {
+      "path": "1440-home-next.png",
+      "sha256": "129a2f185905acb78658f71c1d617c0fa5230fc3eb910b2b926b4934710b09d1"
+    },
+    {
+      "path": "390-home-overview.png",
+      "sha256": "2a27cd1fccb048cf609554a33dc8cfb9eebe35c968173fd5b3db080f70aba433"
+    },
+    {
+      "path": "390-home-next.png",
+      "sha256": "f2a8d4f06a4e50c4cd2d5c9f1a0ba1627906bd186114ce7481fe284c940b6290"
+    }
+  ],
+  "browser_exceptions": []
+}

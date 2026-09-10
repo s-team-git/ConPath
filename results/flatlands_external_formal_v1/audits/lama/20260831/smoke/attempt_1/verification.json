@@ -1,0 +1,1851 @@
+{
+  "passed": true,
+  "created_utc": "2026-09-10T03:49:09.304745+00:00",
+  "evaluation_dir": "/home/hairo/pathrel_transfer/pathrel_pro6000/results/flatlands_external_formal_v1/stages/lama/20260831/smoke/attempt_1",
+  "auditor_sha256": "33c76835b46276a0caeceb0a3d09a6d4739cf2e6d648f70a1585624190d2b7cf",
+  "scope": "Single-stage engineering audit; not a formal three-repeat result or superiority claim",
+  "gpu_inference_performed": false,
+  "new_raw_archive_or_test_images_opened": 0,
+  "method": "lama",
+  "seed": 20260831,
+  "stage": "smoke",
+  "protocol_sha256": "409c8bc4a9142d75a62e6c3d67204ef7d5045ad38f74b45b5411f8bfe899c0e2",
+  "metrics_sha256": "bef26282fa7120b6503e5a1a3c8337486247de331a0c8353cef09987f35f5dd5",
+  "complete_sha256": "9744db4061d12f3e8f0be7d9ce8c510787032573d55f024a41af49681f9334c7",
+  "data_seal_sha256": "034886fe31e816844abd2439240eb3c7ee97a8dc362ec05b11223cfd918b9efb",
+  "splits": {
+    "calibration": {
+      "cases": 97,
+      "worlds": 388,
+      "world_events": 14040,
+      "explicit_disk_cases": [
+        "obs_005750",
+        "obs_002795",
+        "obs_012827",
+        "obs_024157",
+        "obs_269232"
+      ],
+      "map_parent_count": 97,
+      "event_parent_count": 97,
+      "events": 3510,
+      "radius_monotonicity": {
+        "raw_score_pair_violations": 0,
+        "reference_pair_violations": 0,
+        "world_event_pair_violations": 0,
+        "cases": [
+          {
+            "global_id": "obs_005750",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_013391",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_003768",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_002795",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_001558",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_010428",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_009401",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_008158",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_010089",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_021740",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_007010",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_008473",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_017879",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_012827",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_010054",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_014411",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_006884",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_014800",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_024157",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_001272",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_008288",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_021108",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_014596",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_055905",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_067993",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_091465",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_035472",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_073936",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_063616",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_028488",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_027446",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_038179",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_078467",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_040906",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_061254",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_081608",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_054247",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_031872",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_088970",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_068519",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_052017",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_049182",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_092017",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_046127",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_067386",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_077615",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_141060",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_118559",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_125538",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_130905",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_117275",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_131555",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_120171",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_103401",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_145947",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_169038",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_168039",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_158983",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_153455",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_155491",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_153292",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_162703",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_164136",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_157995",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_164530",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_161966",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_148503",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_161162",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_164811",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_152004",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_158795",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_166076",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_159676",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_143134",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_159023",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_161220",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_149176",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_207012",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_179856",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_216799",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_297896",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_204099",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_208339",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_232333",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_277035",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_271199",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_269232",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_246737",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_215660",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_241973",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_221167",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_284059",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_289728",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_266785",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_210488",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_214870",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_172562",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          }
+        ]
+      }
+    },
+    "validation": {
+      "cases": 191,
+      "worlds": 764,
+      "world_events": 29520,
+      "explicit_disk_cases": [
+        "obs_008045",
+        "obs_006178",
+        "obs_016844",
+        "obs_003621",
+        "obs_008415",
+        "obs_002831",
+        "obs_019421",
+        "obs_090489",
+        "obs_047911",
+        "obs_058875",
+        "obs_050052",
+        "obs_097462",
+        "obs_049136",
+        "obs_142339",
+        "obs_141392",
+        "obs_165123",
+        "obs_150937",
+        "obs_160475",
+        "obs_239914",
+        "obs_259516"
+      ],
+      "map_parent_count": 191,
+      "event_parent_count": 190,
+      "events": 7380,
+      "radius_monotonicity": {
+        "raw_score_pair_violations": 0,
+        "reference_pair_violations": 0,
+        "world_event_pair_violations": 0,
+        "cases": [
+          {
+            "global_id": "obs_001305",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_008486",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_007610",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_014873",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_011104",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_008045",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_011289",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_014321",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_006178",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_013470",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_016844",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_008082",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_003634",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_017423",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_009885",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_003621",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_009206",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_021819",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_017919",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_023137",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_000462",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_022513",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_021515",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_010897",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_020480",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_019725",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_011430",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_001849",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_020725",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_000641",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_014941",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_003803",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_002949",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_022357",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_008415",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_022723",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_022625",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_002831",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_022045",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_003674",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_010924",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_019421",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_024186",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_021864",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_009424",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_008862",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_040078",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_100470",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_050753",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_067851",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_090489",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_029935",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_047911",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_066408",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_094860",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_058875",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_090772",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_042365",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_055012",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_095495",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_036551",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_031019",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_051397",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_096808",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_069668",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_099330",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_026622",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_050052",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_066740",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_046878",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_060811",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_053541",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_027524",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_095363",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_032299",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_065438",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_074678",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_094914",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_033752",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_097462",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_032252",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_083158",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_058015",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_047101",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_085228",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_051343",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_072432",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_049136",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_039129",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_096089",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_052428",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_049285",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_126583",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_125827",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_142339",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_119116",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_141392",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_130464",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_117554",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_113699",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_166481",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_165123",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_156513",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_155795",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_157802",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_158657",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_151710",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_160758",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_146155",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_144369",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_153000",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_152093",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_170174",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_158404",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_150937",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_143894",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_153526",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_163050",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_155950",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_147425",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_160817",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_152107",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_143752",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_144926",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_153648",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_165467",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_160884",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_150215",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_161301",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_160475",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_165826",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_151587",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_170410",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_169562",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_169208",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_162378",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_161198",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_151958",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_154659",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_164234",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_146897",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_148366",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_145102",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_165551",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_143936",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_151702",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_237827",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_177910",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_237544",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_310336",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_251574",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_196889",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_227665",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_203337",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_267658",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_183937",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_247923",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_186134",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_270490",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_201915",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_275554",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_215183",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_279284",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_276150",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_224036",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_266351",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_215525",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_171542",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_197555",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_248323",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_248006",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_276093",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_239914",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_292366",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_250647",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_208063",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_192912",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_175326",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_308558",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_197631",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_268152",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_297591",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_259846",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_185768",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_281242",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_281250",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_223754",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_301659",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_259516",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_286950",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          },
+          {
+            "global_id": "obs_214830",
+            "raw_score_pair_violations": 0,
+            "reference_pair_violations": 0,
+            "world_event_pair_violations": 0
+          }
+        ]
+      }
+    }
+  },
+  "checkpoints": [
+    {
+      "path": "results/flatlands_external_formal_v1/runs/lama/20260831/member_0/step_00001000.pt",
+      "sha256": "39e2f7920c8bfc42521d2aa218b7a8e17c774b28825fd43c9aa9f388d9b66e98",
+      "step": 1000
+    },
+    {
+      "path": "results/flatlands_external_formal_v1/runs/lama/20260831/member_1/step_00001000.pt",
+      "sha256": "b5a14822335483edbea567f7912635557b0cc68c6e9e6c25602470cb33818ffa",
+      "step": 1000
+    },
+    {
+      "path": "results/flatlands_external_formal_v1/runs/lama/20260831/member_2/step_00001000.pt",
+      "sha256": "59e6f9469644cfb8e39dd8d351c26a5b403e1d8bed05e6e8486d59e087f9e4f5",
+      "step": 1000
+    },
+    {
+      "path": "results/flatlands_external_formal_v1/runs/lama/20260831/member_3/step_00001000.pt",
+      "sha256": "b91ae65142547aba094f1f8a047dbcd8dd8c0de613e26567a2ef25b04a121ec2",
+      "step": 1000
+    }
+  ],
+  "calibration": {
+    "calibration_input_hash_verified": true,
+    "validation_labels_used_for_refit": false,
+    "independent_a": 0.2343386056166667,
+    "independent_b": -0.7250269774849276,
+    "independent_objective": 0.2549286547588219
+  },
+  "real_world_budget": 4,
+  "main_table_or_superiority_authorized": false,
+  "independence": {
+    "metrics": "independent numpy arithmetic, no formal_metrics imports",
+    "all_world_geometry": "historical _accelerated_events, independent evaluator wrapper",
+    "subset_geometry": "explicit integer-disk erosion plus four-connected components",
+    "model_inference_replayed": false
+  },
+  "check_counts": {
+    "assertions": 421557,
+    "numeric_values": 101081,
+    "reference_events": 10890,
+    "explicit_disk_world_events": 3756,
+    "explicit_disk_reference_events": 939
+  },
+  "maximum_numeric_difference": 1.616484723854228e-13,
+  "elapsed_seconds": 10.765988541010302
+}

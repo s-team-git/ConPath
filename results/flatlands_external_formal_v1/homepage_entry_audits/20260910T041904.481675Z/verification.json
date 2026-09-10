@@ -1,0 +1,62 @@
+{
+  "passed": true,
+  "scope": "homepage entry and task direction only; no training or model output changes",
+  "created_utc": "20260910T041904.481675Z",
+  "builder_sha256": "53c2dbf5af126f698391ac0f7dcb580825fb099a9d1ff38198aca21c05f83ed9",
+  "homepage_before_sha256": "f020d328b08e907fd637b2763c111c2966d625f65ab621ba870b4d35ddd06897",
+  "homepage_after_sha256": "751bc4f74db686ff115db62f1472acff8741dd61970dbf61704e2347de8335e6",
+  "home_data_before_sha256": "3e57cbd4164e8f513d6cdda66bb4139a5499c081bcaad711bfdd440119b3d7a8",
+  "home_data_after_sha256": "b4fb6f12217b3a64dcb4ad3a94b43ef7d25a6f39a7c13b9119c923fa885c8bf9",
+  "only_home_data_changed_field": "source_hashes",
+  "historical_examples": 40,
+  "examples_all_values_unchanged": true,
+  "asset_inventory_all_values_unchanged": true,
+  "verified_old_asset_paths": 244,
+  "old_asset_files_all_sha256_unchanged": true,
+  "results_section_byte_identical": true,
+  "effects_section_byte_identical": true,
+  "results_cohort": "coherent_matched_two_seed",
+  "result_seeds": [
+    20260910,
+    20260911
+  ],
+  "result_methods": [
+    "coherent_categorical",
+    "correlated",
+    "independent",
+    "deterministic"
+  ],
+  "formal_entry_count": 3,
+  "formal_page_and_current_receipt_unchanged": {
+    "formal.html": "c99e8aca4e6dad89ea42fdcfae553ad8158a2933497545b4c8a5a22f5c1c6e23",
+    "data/formal_current.json": "1e735869e92ad04b077e4887ba3408286c5ef4e3a578f94a5dbbf8e55bc3fe2b"
+  },
+  "new_task_direction_checks_passed": true,
+  "new_raw_archive_or_test_images_opened": 0,
+  "homepage_source_hashes": {
+    "site/data/site_visuals_zh.json": "3fe0c0270fa2db16eb17e3ac6d69415592740df22c113c0258716ed12de832f8",
+    "site/data/expanded_model_gallery_zh.json": "e9e5f9314c538765a448b0ce7280a73818eab69c5b7e40a66c77eb58cb37284d",
+    "site/data/current_baseline_k4_analysis.json": "41c70d9158733cc608f19c28f9bb55b7edfccd64354c05490cc001b00b7581c2",
+    "scripts/build_model_home.py": "53c2dbf5af126f698391ac0f7dcb580825fb099a9d1ff38198aca21c05f83ed9",
+    "site/data/parent_pilot_gallery_zh.json": "313839fcdc5130a2bdafa003e6f3f5d4fe77740a96999265fd781ed6b5539e5b",
+    "site/data/parent_group_pilot_zh.json": "0875640afd84a7d5a1446943328ae90e40f3b4cdc8cbe02af04d01d428ee8cc5",
+    "site/data/parent_group_pilot_verification.json": "b64fd22bce079357883d8eb6f289c44e29d639c53af8b6acadcda41cd16c3f86",
+    "site/pilot.html": "edb1d7b9a3cb7deb4973b3cd2cdb0c38cf72e547f25d3184e05aa1c00dab569d",
+    "site/data/parent_pilot_gallery_verification.json": "cd9e8a08b2132e69b758f796b373de32a81d1010ecfd3d3ddae216d3ead541af",
+    "site/data/coherent_pilot_gallery_zh.json": "78c1ff1449d2361a7cb356f55c956fa8cd7363ea738614df7a07edc65bbe53ce",
+    "site/data/coherent_parent_pilot_zh.json": "6da43493e5e50b975b4d5c08036c85fdd0dca3c6ee2e078e54ff80646f8496b6",
+    "site/data/coherent_parent_pilot_verification.json": "10748e3cabe19eaad77bf3f7f9d45895c6fda9277b5f77d062b9c7470f071801",
+    "site/coherent.html": "585ad718d515cc1d4ef02bc2b9e749e88942118085ba7f320cdaf080a7a402f6",
+    "site/data/coherent_pilot_gallery_verification.json": "1eca8614149a75cade7147eca58104f08704c21ec367273155450f06db51472a",
+    "site/data/parent_group_pilot_status_zh.json": "d7e04cf37c4f34b45036380a5d98374be4c9b7996911d85a73bbd4ea6917ef6c",
+    "site/data/coherent_pilot_status_zh.json": "ede736178c7dd04cb4cf078d150d7dd543d4029562933e5a3a461fec7ff4e479",
+    "site/data/formal_current.json": "1e735869e92ad04b077e4887ba3408286c5ef4e3a578f94a5dbbf8e55bc3fe2b",
+    "site/assets/formal/20260910T035037.828561Z_18191ad50979/build_receipt.json": "1e735869e92ad04b077e4887ba3408286c5ef4e3a578f94a5dbbf8e55bc3fe2b",
+    "site/formal.html": "c99e8aca4e6dad89ea42fdcfae553ad8158a2933497545b4c8a5a22f5c1c6e23",
+    "site/assets/formal/20260910T035037.828561Z_18191ad50979/formal.html": "c99e8aca4e6dad89ea42fdcfae553ad8158a2933497545b4c8a5a22f5c1c6e23",
+    "site/assets/formal/20260910T035037.828561Z_18191ad50979/diagnostics.json": "18191ad5097927c8ca263fb136c44b9706ebaece96a506c70f80881a04f0b5e0",
+    "site/assets/formal/20260910T035037.828561Z_18191ad50979/formal.css": "39fd6a70db90627820e87b9edc6b0ce79bca2862769bb2b03eaed08d6c705e72",
+    "site/assets/formal/20260910T035037.828561Z_18191ad50979/builder_source.py": "bf9da5c5e5b7f274ef8db4a8a9ec67669e617de560303e4c25e494ac42102afb",
+    "results/flatlands_external_formal_protocol_v1/protocol.json": "409c8bc4a9142d75a62e6c3d67204ef7d5045ad38f74b45b5411f8bfe899c0e2"
+  }
+}

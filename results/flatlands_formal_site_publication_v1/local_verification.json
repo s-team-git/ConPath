@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-09-10T04:34:05.281993+00:00",
+  "passed": true,
+  "scope": "Local Chinese diagnostic publication; browser/layout/provenance checks only",
+  "protocol_sha256": "409c8bc4a9142d75a62e6c3d67204ef7d5045ad38f74b45b5411f8bfe899c0e2",
+  "snapshot": "results/flatlands_external_formal_v1/reports/20260910T035037.828561Z",
+  "verified_receipts": [
+    {
+      "path": "results/flatlands_formal_site_publication_v1/browser_attempt_3/browser_verification.json",
+      "sha256": "94be985f452fc3dcd89d5386d36db65e5644ce2b30bb62a151be0cb2b6cf1589"
+    },
+    {
+      "path": "results/flatlands_formal_site_publication_v1/home_browser_attempt_1/browser_verification.json",
+      "sha256": "219862501705a78a76caa8dc75c8480564e8da646257a4ead545777e43637d9d"
+    },
+    {
+      "path": "results/flatlands_external_formal_v1/homepage_entry_audits/20260910T041904.481675Z/verification.json",
+      "sha256": "05021bda9239311e1abb4ade8312a4839632f698f8491697cb16558080d51624"
+    },
+    {
+      "path": "results/flatlands_external_formal_v1/report_visual_audits/20260910T035037.828561Z.json",
+      "sha256": "a8b07106323720befb377dd5ecd52850851a8ee5060fc765088a9d54f9d69623"
+    }
+  ],
+  "entry_files": [
+    {
+      "path": "site/formal.html",
+      "sha256": "c99e8aca4e6dad89ea42fdcfae553ad8158a2933497545b4c8a5a22f5c1c6e23"
+    },
+    {
+      "path": "site/index.html",
+      "sha256": "751bc4f74db686ff115db62f1472acff8741dd61970dbf61704e2347de8335e6"
+    },
+    {
+      "path": "site/data/formal_current.json",
+      "sha256": "1e735869e92ad04b077e4887ba3408286c5ef4e3a578f94a5dbbf8e55bc3fe2b"
+    },
+    {
+      "path": "site/data/model_home_zh.json",
+      "sha256": "b4fb6f12217b3a64dcb4ad3a94b43ef7d25a6f39a7c13b9119c923fa885c8bf9"
+    }
+  ],
+  "root_actual_visual_review": {
+    "formal_all_plot_groups": 27,
+    "homepage_screenshots": [
+      "1440-home-overview.png",
+      "390-home-overview.png",
+      "1440-home-next.png",
+      "390-home-next.png"
+    ],
+    "notes_zh": "桌面及手机首页入口、下一步、正式诊断页面与固定图库可阅读；25组验证图完整保留，半径与原图一致，NLL/ECE变差和过多全空输出如实披露；历史40案例和244旧资产不变。"
+  },
+  "superseded_unpublished_draft": "results/flatlands_formal_site_publication_v1/unpublished_draft/archive.json",
+  "GPU_model_inference_started_by_publication": false,
+  "new_test_images_opened": 0,
+  "full_training_gate_authorized": false,
+  "main_table_or_superiority_authorized": false,
+  "deployment_verified": false
+}

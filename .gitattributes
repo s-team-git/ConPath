@@ -1,2 +1,4 @@
 # Frozen CSV manifests use the Python csv writer's CRLF bytes; preserve hashes.
 results/flatlands_external_formal_protocol_v1/data_eligible_v1/*.csv -text whitespace=cr-at-eol
+# Matplotlib SVG path commands retain generator whitespace; keep audited bytes.
+site/assets/formal/**/*.svg -text whitespace=-blank-at-eol

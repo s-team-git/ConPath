@@ -147,6 +147,73 @@ def verified_coherent(pilot):
         return None, 'published_report_validation_failed'
 
 
+def verified_formal_entry():
+    """Link an already built, hash-verified diagnostic page without importing scores.
+
+    The existing homepage's gallery and experiment cohort remain separate.
+    This only opens published page metadata/assets and the tracked protocol.
+    """
+    pointer = SITE/'data/formal_current.json'
+    protocol_path = ROOT/'results/flatlands_external_formal_protocol_v1/protocol.json'
+    if not pointer.is_file() or not (SITE/'formal.html').is_file() or not protocol_path.is_file():
+        return None, 'awaiting_verified_external_diagnostic_page'
+    try:
+        receipt = json.loads(pointer.read_text())
+        version = (SITE/receipt['version_url']).resolve()
+        assert version.is_relative_to((SITE/'assets/formal').resolve())
+        assert receipt['validation_only'] is True
+        bundle_receipt = version/'build_receipt.json'
+        assert sha(pointer) == sha(bundle_receipt)
+        page, archived_page, diagnostic = SITE/'formal.html', version/'formal.html', version/'diagnostics.json'
+        assert sha(page) == sha(archived_page) == receipt['page_sha256']
+        assert sha(diagnostic) == receipt['data_sha256']
+        assert sha(version/'formal.css') == receipt['stylesheet_sha256']
+        assert sha(version/'builder_source.py') == receipt['builder_sha256']
+        data = json.loads(diagnostic.read_text())
+        assert data['builder_sha256'] == receipt['builder_sha256']
+        assert data['validation_only'] is True and data['paper_main_or_superiority_authorized'] is False
+        assert data['final_test_locked'] is True and data['location_6_locked'] is True
+        assert data['new_physical_test_images_opened'] == 0 and data['training_loss_images_published'] is False
+        assert data['snapshot'] == receipt['source_snapshot']
+        assert data['reproducibility_sha256'] == receipt['source_reproducibility_sha256']
+        assert data['protocol_sha256'] == sha(protocol_path)
+        protocol = json.loads(protocol_path.read_text())
+        assert 'scripts/build_model_home.py' not in protocol['source_hashes']
+        assert protocol['test_lock']['final_test_locked'] is True and protocol['test_lock']['location_6_locked'] is True
+        assert protocol['seeds'] == data['registered_seeds'] == [20260831, 20260901, 20260902]
+        assert protocol['sampling']['K'] == data['common_K'] == 4
+        assert protocol['query']['radii_cells'] == data['radii_cells'] == [0, 10, 20]
+        counts = {split: len({row['parent_group'] for row in protocol['scenes'][split]}) for split in ('train', 'calibration', 'validation')}
+        assert all(counts[split] == protocol['partition'][split] for split in counts)
+        assets = {item['path']: item['sha256'] for item in receipt['assets']}
+        expected_assets = {item['path']: item['sha256'] for figure in data['figures'] for item in figure['files']}
+        assert assets == expected_assets
+        for relative, checksum in assets.items():
+            path = (version/relative).resolve()
+            assert path.is_relative_to(version) and sha(path) == checksum
+        assert any(row['verified_seeds'] for row in data['methods'].values())
+        assert all(run['audit_sha256'] and run['metrics_sha256'] for row in data['methods'].values() for run in row['runs'])
+        return {'counts': counts, 'stage_zh': data['stage_zh'], 'selected_group': data['selected_group'],
+                'snapshot_created_utc': data['snapshot_created_utc'], 'protocol_sha256': data['protocol_sha256'],
+                'source_paths': [pointer, bundle_receipt, page, archived_page, diagnostic, version/'formal.css',
+                                 version/'builder_source.py', protocol_path]}, 'verified'
+    except (AssertionError, KeyError, TypeError, ValueError, OSError) as error:
+        print(f'External diagnostic entry withheld: page/protocol verification failed ({type(error).__name__}).')
+        return None, 'external_diagnostic_page_verification_failed'
+
+
+def formal_work_copy(formal):
+    """Current authorized work; never infer ongoing work from old pilot status."""
+    first = ('本轮外部比较协议待核验', '固定训练、校准和验证地点及共同输入、支持区域、查询与半径；发布入口核验后显示地点数。')
+    if formal:
+        counts = formal['counts']
+        first = ('本轮数据与协议已冻结', f"{counts['train']}个训练、{counts['calibration']}个校准、{counts['validation']}个验证父级地点；共同K=4，半径固定0、10、20格。地点隔离与查询清单按已核验协议锁定。")
+    steps = [first,
+             ('先完成1000步与5000步阶段验证', 'LaMa BEV adaptation与FM+XAttn literature reimplementation先检查训练稳定性、未知地图补全、可达性校准和固定图片。只有阶段收敛检查通过才冻结完整训练预算。'),
+             ('通过收敛后完成正式三种子矩阵', '每种方法运行20260831、20260901、20260902；统一校准集选优与验证评估，补齐对照和独立审计。location_6与最终测试继续锁定，不用测试集调参；此前短训练不能进入正式主表。')]
+    return steps
+
+
 def training_copy(status, pilot_ready, candidate=None, coherent_ready=False):
     """Describe the recorded state without turning a dated snapshot into live status."""
     if pilot_ready:
@@ -276,6 +343,9 @@ def main():
         source_paths.append(SITE/'data/parent_group_pilot_status_zh.json')
     if candidate_status:
         source_paths.append(SITE/'data/coherent_pilot_status_zh.json')
+    formal, formal_state = verified_formal_entry()
+    if formal:
+        source_paths += formal['source_paths']
     result_methods = list(COHERENT_METHODS) if coherent else list(PILOT_METHODS) if pilot else ['correlated', 'independent', 'tiny_deterministic', 'all_floor']
     home_data = {'examples': cases, 'baseline_training_snapshot': pilot_status, 'candidate_training_snapshot': candidate_status, 'historical_model_training_samples': 160,
                  'example_samples': sorted({row['samples'] for row in cases}),
@@ -298,6 +368,8 @@ def main():
                      f'共{count}组真实输出：{sum(row["domain"] == "indoor" for row in cases)}组室内、{sum(row["domain"] == "outdoor" for row in cases)}组室外；均来自此前的检查点。')
     if coherent:
         gallery_intro = f'共{count}组真实输出。前{new_count}组现可切换ConPath改进版、原ConPath和独立对照；使用相同地点、输入与查询直接比较。'
+    formal_intro = (f'<p class="status" id="formal-diagnostic-entry">下方{count}组效果图和结果表保留此前已完成阶段，仍使用原来的比较队列。当前工作是外部基线统一验证：<a href="formal.html">查看本轮外部诊断 · {html.escape(formal["stage_zh"])} ↗</a>。新旧阶段的数据分别报告，不合并比较。</p>' if formal else
+                    f'<p class="status" id="formal-diagnostic-entry">下方{count}组效果图与结果表属于此前已完成阶段。当前聚焦LaMa与FM+XAttn的统一外部验证；新的诊断页面核验后再提供入口。</p>')
     selection_note = f'旧版{len(expanded["examples"])}组按来源、编号和时间固定选择，未按模型效果筛选；最后{len(original["examples"])}组保留此前按标签选定的解释性案例。'
     if pilot:
         selection_note = f'前{new_count}组来自本轮新检查点，五个来源各按编号哈希固定选两组，查询只按输入排序；均显示第1次实际采样。' + selection_note
@@ -365,14 +437,18 @@ def main():
         result_link = '<a href="research.html#baseline-review">完整6种方法、波动区间与图表 ↗</a>'
     css = sha(SITE/'home.css')[:12]; js = sha(SITE/'home.js')[:12]
     model_options = ('<option value="coherent_categorical">ConPath改进版</option>' if coherent else '') + '<option value="correlated">原ConPath</option><option value="independent">独立单元对照</option>'
-    next_heading = '下一步补齐正式实验，当前不追加训练。' if coherent else '先确认优势在独立地点上是否成立。'
-    next_third_heading = '正式规模、强基线与最终留出评估待完成' if coherent else '再验证室外历史融合'
-    next_third_description = ('先固定正式数据与对比预算，补足训练重复和可比强基线，再对未参与开发的地点做最终评估。室外另需先修正观测与地面表达，再检验历史融合。' if coherent else '先修正观测置信度与地面表达，再测试历史几何融合，最后加入注意力；分别检验数据和架构的贡献。')
+    next_heading = '先完成外部基线的公平验证。'
+    next_steps = ''.join(f'<li><span>{index:02d}</span><div><h3>{html.escape(heading)}</h3><p>{html.escape(description)}</p></div></li>'
+                         for index, (heading, description) in enumerate(formal_work_copy(formal), 1))
+    next_note = (f'最近公开且已核验的阶段：{html.escape(formal["stage_zh"])}；报告快照{html.escape(formal["snapshot_created_utc"])}，不作为实时训练进度。<a href="formal.html">本轮外部诊断 ↗</a> · <a href="https://github.com/s-team-git/ConPath/blob/main/FLATLANDS_FORMAL_PROTOCOL_ZH.md">本轮固定协议 ↗</a>。' if formal else
+                 '本轮外部诊断尚未通过页面与协议核验，暂不提供发布入口。')
+    external_record_link = ('<a href="formal.html"><strong>外部基线统一验证</strong><span>本轮已核验的validation-only诊断 ↗</span></a>' if formal else
+                            '<a href="research.html#flatlands-external-progress"><strong>历史外部方法检查</strong><span>此前短训练记录，不代表当前正式矩阵 ↗</span></a>')
     embedded_data = json.dumps(home_data, ensure_ascii=False).replace('<', '\\u003c')
     page = f'''<!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f8faf9"><title>ConPath · 模型效果与实验结果</title><meta name="description" content="直接查看ConPath真实模型输出：输入、预测与参考地图并排比较，保留失败例子。"><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="home.css?v={css}"><script src="home.js?v={js}" defer></script></head>
 <body><a class="skip" href="#effects">跳到模型效果</a><header class="header"><nav class="wrap navigation" aria-label="主导航"><a class="brand" href="index.html">ConPath<span>研究项目</span></a><div><a href="#effects">模型效果</a><a href="#results">实验结果</a><a href="#next">下一步</a><a href="research.html">研究记录 ↗</a></div></nav></header>
-<main class="wrap"><section class="intro"><p class="eyebrow">部分地图 → 完整世界 → 通路概率</p><h1>模型补全得怎么样？<br><span>把预测和真实地图放在一起看。</span></h1><p>ConPath根据已观测区域推测完整地图，再结合机器人尺寸估计两个点之间是否有路。</p><p class="status">{gallery_intro}</p><p class="status">{pilot_note}</p></section>
+<main class="wrap"><section class="intro"><p class="eyebrow">部分地图 → 完整世界 → 通路概率</p><h1>模型补全得怎么样？<br><span>把预测和真实地图放在一起看。</span></h1><p>ConPath根据已观测区域推测完整地图，再结合机器人尺寸估计两个点之间是否有路。</p><p class="status">{gallery_intro}</p><p class="status">历史阶段记录：{pilot_note}</p>{formal_intro}</section>
 <section id="effects" class="section effects"><span id="method" class="anchor-alias"></span><div class="section-heading"><div><p class="eyebrow">01 / 真实模型输出</p><h2>输入、预测、参考</h2></div><span id="case-badge" class="badge">开发验证 · {count}组案例</span></div>
 <div class="controls"><label class="model-select">数据来源<select id="home-source"><option value="all">全部（{count}组）</option>{sources}</select></label><div class="case-paging"><button id="case-prev" aria-label="上一个案例">←</button><span id="case-counter">1 / {count}</span><button id="case-next" aria-label="下一个案例">→</button></div><label class="model-select">模型<select id="home-model">{model_options}</select></label></div>
 <div class="case-strip" aria-label="选择ConPath效果案例">{thumbnails}</div><div class="view-row"><div class="segmented light" aria-label="模型输出显示方式"><button data-view="sample" class="selected" aria-pressed="true">一次实际补全</button><button data-view="probability" aria-pressed="false">每格概率图</button></div><p id="view-explanation">绿色表示可通行，深灰表示阻挡。</p></div>
@@ -387,13 +463,13 @@ def main():
 <section id="results" class="section" data-results-cohort="{home_data['results_cohort']}"><div class="section-heading"><div><p class="eyebrow">{result_eyebrow}</p><h2>{result_heading}</h2></div></div><p class="section-description">{result_description}</p>
 <div class="table-scroll"><table><caption>{result_caption}</caption><thead><tr><th scope="col">方法</th><th scope="col">输出数</th><th scope="col">概率误差 ↓</th><th scope="col">30%覆盖率误判 ↓</th></tr></thead><tbody>{''.join(rows)}</tbody></table></div>
 <p class="result-reading">{result_reading}</p><p class="caption">概率误差指Brier；30%覆盖率误判指只接受评分最高的30%查询后，实际无路的比例。{result_link}</p></section>
-<section id="next" class="section"><div class="section-heading"><div><p class="eyebrow">03 / 下一步</p><h2>{next_heading}</h2></div></div><ol class="next-steps"><li><span>01</span><div><h3>小规模数据检查已通过</h3><p>100个训练、25个选优、40个验证地点，地点隔离与地图重复检查通过。查询保留目标落在障碍上的自然负例。</p></div></li><li><span>02</span><div><h3>{training_heading}</h3><p>{training_description}</p></div></li><li><span>03</span><div><h3>{next_third_heading}</h3><p>{next_third_description}</p></div></li></ol>{resource_paragraph}<p class="caption">{pilot_note} <a href="https://github.com/s-team-git/ConPath/blob/main/PARENT_GROUP_PILOT_ZH.md">本轮固定协议 ↗</a>。外部对比优先复用可比较的论文成绩、作者预测或权重。<a href="https://github.com/s-team-git/ConPath/blob/main/WORK_PLAN.md">完整工作计划 ↗</a></p></section>
-<section class="records-links" aria-label="深入阅读"><a href="research.html#datasets"><strong>数据集与实景</strong><span>训练数据示例、相机与俯视地图 ↗</span></a><a href="research.html#training-ablations"><strong>内部消融</strong><span>完整模型与两个删减版本 ↗</span></a><a href="research.html#flatlands-external-progress"><strong>外部方法检查</strong><span>短训练输出，尚不是正式对比 ↗</span></a></section>
+<section id="next" class="section"><div class="section-heading"><div><p class="eyebrow">03 / 下一步</p><h2>{next_heading}</h2></div></div><ol class="next-steps">{next_steps}</ol>{resource_paragraph}<p class="caption">{next_note} <a href="https://github.com/s-team-git/ConPath/blob/main/WORK_PLAN.md">完整工作计划 ↗</a></p></section>
+<section class="records-links" aria-label="深入阅读"><a href="research.html#datasets"><strong>数据集与实景</strong><span>训练数据示例、相机与俯视地图 ↗</span></a><a href="research.html#training-ablations"><strong>内部消融</strong><span>完整模型与两个删减版本 ↗</span></a>{external_record_link}</section>
 </main><footer class="wrap footer"><span>ConPath · 可复现研究记录</span><div><a href="research.html">全部研究记录</a><a href="https://github.com/s-team-git/ConPath/blob/main/BASELINE_REVIEW_ZH.md">中文分析</a><a href="https://github.com/s-team-git/ConPath">GitHub</a></div><p>FlatLands派生数据保留上游来源条款。<a href="https://github.com/s-team-git/ConPath/blob/main/DATASET_CHOICE_ZH.md">数据来源与使用说明</a></p></footer>
 <dialog id="model-dialog" aria-labelledby="model-dialog-caption"><div class="dialog-toolbar"><p id="model-dialog-caption"></p><button id="model-dialog-close" aria-label="关闭放大图片">关闭 ×</button></div><img id="model-dialog-image" alt="当前模型图片的放大视图"><a id="model-dialog-source" href="#effects">打开原始图片 ↗</a></dialog><p id="home-error" hidden>交互加载失败，仍可查看当前静态示例；请刷新重试。</p>
 <script type="application/json" id="home-data">{embedded_data}</script></body></html>'''
     (SITE/'index.html').write_text(page+'\n')
-    print(f'Homepage: {count} real model cases, 3 comparison panels, {len(rows)} summary rows; pilot: {pilot_state}; improvement: {coherent_state}.')
+    print(f'Homepage: {count} real model cases, 3 comparison panels, {len(rows)} summary rows; pilot: {pilot_state}; improvement: {coherent_state}; formal entry: {formal_state}.')
 
 
 if __name__ == '__main__':

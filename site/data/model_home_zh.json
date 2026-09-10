@@ -3426,7 +3426,7 @@
     "site/data/site_visuals_zh.json": "3fe0c0270fa2db16eb17e3ac6d69415592740df22c113c0258716ed12de832f8",
     "site/data/expanded_model_gallery_zh.json": "e9e5f9314c538765a448b0ce7280a73818eab69c5b7e40a66c77eb58cb37284d",
     "site/data/current_baseline_k4_analysis.json": "41c70d9158733cc608f19c28f9bb55b7edfccd64354c05490cc001b00b7581c2",
-    "scripts/build_model_home.py": "e52acbf52f8489cb592ed2d1b568bbdef0afade5de9d89f9a25489a1fa11f5a4",
+    "scripts/build_model_home.py": "53c2dbf5af126f698391ac0f7dcb580825fb099a9d1ff38198aca21c05f83ed9",
     "site/data/parent_pilot_gallery_zh.json": "313839fcdc5130a2bdafa003e6f3f5d4fe77740a96999265fd781ed6b5539e5b",
     "site/data/parent_group_pilot_zh.json": "0875640afd84a7d5a1446943328ae90e40f3b4cdc8cbe02af04d01d428ee8cc5",
     "site/data/parent_group_pilot_verification.json": "b64fd22bce079357883d8eb6f289c44e29d639c53af8b6acadcda41cd16c3f86",
@@ -3438,6 +3438,14 @@
     "site/coherent.html": "585ad718d515cc1d4ef02bc2b9e749e88942118085ba7f320cdaf080a7a402f6",
     "site/data/coherent_pilot_gallery_verification.json": "1eca8614149a75cade7147eca58104f08704c21ec367273155450f06db51472a",
     "site/data/parent_group_pilot_status_zh.json": "d7e04cf37c4f34b45036380a5d98374be4c9b7996911d85a73bbd4ea6917ef6c",
-    "site/data/coherent_pilot_status_zh.json": "ede736178c7dd04cb4cf078d150d7dd543d4029562933e5a3a461fec7ff4e479"
+    "site/data/coherent_pilot_status_zh.json": "ede736178c7dd04cb4cf078d150d7dd543d4029562933e5a3a461fec7ff4e479",
+    "site/data/formal_current.json": "1e735869e92ad04b077e4887ba3408286c5ef4e3a578f94a5dbbf8e55bc3fe2b",
+    "site/assets/formal/20260910T035037.828561Z_18191ad50979/build_receipt.json": "1e735869e92ad04b077e4887ba3408286c5ef4e3a578f94a5dbbf8e55bc3fe2b",
+    "site/formal.html": "c99e8aca4e6dad89ea42fdcfae553ad8158a2933497545b4c8a5a22f5c1c6e23",
+    "site/assets/formal/20260910T035037.828561Z_18191ad50979/formal.html": "c99e8aca4e6dad89ea42fdcfae553ad8158a2933497545b4c8a5a22f5c1c6e23",
+    "site/assets/formal/20260910T035037.828561Z_18191ad50979/diagnostics.json": "18191ad5097927c8ca263fb136c44b9706ebaece96a506c70f80881a04f0b5e0",
+    "site/assets/formal/20260910T035037.828561Z_18191ad50979/formal.css": "39fd6a70db90627820e87b9edc6b0ce79bca2862769bb2b03eaed08d6c705e72",
+    "site/assets/formal/20260910T035037.828561Z_18191ad50979/builder_source.py": "bf9da5c5e5b7f274ef8db4a8a9ec67669e617de560303e4c25e494ac42102afb",
+    "results/flatlands_external_formal_protocol_v1/protocol.json": "409c8bc4a9142d75a62e6c3d67204ef7d5045ad38f74b45b5411f8bfe899c0e2"
   }
 }
