@@ -4,7 +4,7 @@
   "updated_local_date": "2026-09-10",
   "timezone": "America/New_York",
   "branch": "main",
-  "remote_sync": "Protocol code a1fa04d and protocol commit 6694e86/tag are on origin/main. Current diagnostic website publication is recorded under results/flatlands_formal_site_publication_v1; verify its receipt and git remote before assuming deployment.",
+  "remote_sync": "Protocol 6694e86 and diagnostic website 6591fb3 pushed to origin/main; Actions run 34437742396 successful, all 84 published files match local audited bytes. See results/flatlands_formal_site_publication_v1/deployment_verification.json.",
   "latest_local_commit": "Resolve with git rev-parse HEAD; frozen experiment source commit remains a1fa04d10039731d27e723e58e1cf7b51da36aba.",
   "gpu_visibility_note": "Full-access session exposes /dev/nvidia0, /dev/nvidiactl, /dev/nvidia-uvm and nvidia-smi sees an NVIDIA RTX PRO 6000 Blackwell (driver 580.173.02); torch 2.13.0+cu130 reports cuda_available=true, device_count=1, compute capability 12.0. Earlier no-GPU reports were container passthrough failures, not physical GPU absence. New external profiles on 2026-09-08 actually used Python 3.13 and torch 2.12.1+cu130; v2 explicitly disables TF32 and cudnn benchmarking and enables deterministic algorithms. GPU has unrelated concurrent load; no isolated-device latency claim.",
   "scientific_status": "No formal external superiority result. Old profiles remain engineering-only; current formal three-seed matrix has not completed. Final test and location_6 locked; historical access remains disclosed.",
@@ -4869,8 +4869,11 @@
       "page": "site/formal.html",
       "current_receipt": "site/data/formal_current.json",
       "local_browser_verified": true,
-      "deployment_verified": false,
-      "main_table_eligible": false
+      "deployment_verified": true,
+      "main_table_eligible": false,
+      "deployment_commit": "6591fb3b63d3134c6be950185eaa0fe2f1cbea59",
+      "deployment_receipt": "results/flatlands_formal_site_publication_v1/deployment_verification.json",
+      "url": "https://s-team-git.github.io/ConPath/formal.html"
     },
     "full_runner": "scripts/run_flatlands_formal_full.py",
     "final_auditor": "scripts/audit_flatlands_formal_final.py",

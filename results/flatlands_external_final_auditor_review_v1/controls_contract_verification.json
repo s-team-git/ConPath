@@ -1,0 +1,138 @@
+{
+  "scope": "CPU read-only comparison of the real renderer output_contract API to the independent final-auditor contract",
+  "passed": true,
+  "methods_checked": [
+    "lama",
+    "flow",
+    "conpath",
+    "conpath_original",
+    "independent",
+    "no_reach",
+    "deterministic",
+    "direct_query"
+  ],
+  "actual_contracts": {
+    "lama": {
+      "actual_world_count": 4,
+      "common_world_budget": 4,
+      "event_score_semantics": "raw_world_event_frequency",
+      "column_layout": [
+        "observed",
+        "reference",
+        "world_0",
+        "world_1",
+        "world_2",
+        "world_3"
+      ],
+      "world_order": "exact saved order; LaMa independent members 0..3, other models samples 0..3"
+    },
+    "flow": {
+      "actual_world_count": 4,
+      "common_world_budget": 4,
+      "event_score_semantics": "raw_world_event_frequency",
+      "column_layout": [
+        "observed",
+        "reference",
+        "world_0",
+        "world_1",
+        "world_2",
+        "world_3"
+      ],
+      "world_order": "exact saved order; LaMa independent members 0..3, other models samples 0..3"
+    },
+    "conpath": {
+      "actual_world_count": 4,
+      "common_world_budget": 4,
+      "event_score_semantics": "raw_world_event_frequency",
+      "column_layout": [
+        "observed",
+        "reference",
+        "world_0",
+        "world_1",
+        "world_2",
+        "world_3"
+      ],
+      "world_order": "exact saved order; LaMa independent members 0..3, other models samples 0..3"
+    },
+    "conpath_original": {
+      "actual_world_count": 4,
+      "common_world_budget": 4,
+      "event_score_semantics": "raw_world_event_frequency",
+      "column_layout": [
+        "observed",
+        "reference",
+        "world_0",
+        "world_1",
+        "world_2",
+        "world_3"
+      ],
+      "world_order": "exact saved order; LaMa independent members 0..3, other models samples 0..3"
+    },
+    "independent": {
+      "actual_world_count": 4,
+      "common_world_budget": 4,
+      "event_score_semantics": "raw_world_event_frequency",
+      "column_layout": [
+        "observed",
+        "reference",
+        "world_0",
+        "world_1",
+        "world_2",
+        "world_3"
+      ],
+      "world_order": "exact saved order; LaMa independent members 0..3, other models samples 0..3"
+    },
+    "no_reach": {
+      "actual_world_count": 4,
+      "common_world_budget": 4,
+      "event_score_semantics": "raw_world_event_frequency",
+      "column_layout": [
+        "observed",
+        "reference",
+        "world_0",
+        "world_1",
+        "world_2",
+        "world_3"
+      ],
+      "world_order": "exact saved order; LaMa independent members 0..3, other models samples 0..3"
+    },
+    "deterministic": {
+      "actual_world_count": 1,
+      "common_world_budget": 4,
+      "event_score_semantics": "raw_world_event_frequency",
+      "column_layout": [
+        "observed",
+        "reference",
+        "world_0"
+      ],
+      "world_order": "one actual deterministic world; never replicated"
+    },
+    "direct_query": {
+      "actual_world_count": null,
+      "common_world_budget": 4,
+      "event_score_semantics": "direct_query_sigmoid",
+      "column_layout": [
+        "observed",
+        "reference",
+        "direct_event_score"
+      ],
+      "world_order": null
+    }
+  },
+  "renderer_source": "scripts/render_flatlands_formal_convergence.py",
+  "renderer_sha256": "11b71b0ce97d5609952f249c7ca65dee80874b25d37a8b53d7eb50f325615204",
+  "auditor_source": "scripts/audit_flatlands_formal_final.py",
+  "auditor_sha256": "a964e7bb9fa73a959b29ae7ba330682cb4fcfa150a3262f1d0f91fef27c636c9",
+  "cpu_suite_review": "results/flatlands_external_final_auditor_review_v1/verification.json",
+  "cpu_suite_review_sha256": "ed4ef3fa193236a0278743c480f493557de30e854bcbf3f7e2b6828222451d6a",
+  "created_utc": "2026-09-10T04:36:04.261367+00:00",
+  "real_final_audit_performed": false,
+  "real_final_audit_passed": false,
+  "real_final_audit_receipt_generated": false,
+  "actual_data_render_performed": false,
+  "gpu_training_performed": false,
+  "gpu_inference_performed": false,
+  "raw_archive_opened": false,
+  "test_assets_opened": false,
+  "main_table_eligible": false
+}

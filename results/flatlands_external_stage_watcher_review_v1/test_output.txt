@@ -1,0 +1,26 @@
+test_claimed_or_partial_attempt_is_never_automatically_retried (test_formal_stage_watcher.StageWatcherTests.test_claimed_or_partial_attempt_is_never_automatically_retried) ... ok
+test_cpu_child_whitelist_empty_cuda_and_source_change_interrupt_only_own_child (test_formal_stage_watcher.StageWatcherTests.test_cpu_child_whitelist_empty_cuda_and_source_change_interrupt_only_own_child) ... ok
+test_duplicate_complete_identity_or_changed_metrics_fails_closed (test_formal_stage_watcher.StageWatcherTests.test_duplicate_complete_identity_or_changed_metrics_fails_closed) ... ok
+test_failed_audit_is_kept_without_retry_and_manual_success_unblocks (test_formal_stage_watcher.StageWatcherTests.test_failed_audit_is_kept_without_retry_and_manual_success_unblocks) ... ok
+test_failed_render_not_retried_but_finished_snapshot_after_crash_reused (test_formal_stage_watcher.StageWatcherTests.test_failed_render_not_retried_but_finished_snapshot_after_crash_reused) ... ok
+test_final_completion_between_scan_and_queue_release_is_drained (test_formal_stage_watcher.StageWatcherTests.test_final_completion_between_scan_and_queue_release_is_drained) ... {"status": "caught_up", "completed_stages": 0, "audited_stages": 0, "blocked_stages": [], "report": null}
+{"status": "caught_up", "completed_stages": 1, "audited_stages": 1, "blocked_stages": [], "report": {"snapshot": "out/reports/snapshot_1", "reproducibility_sha256": "dc5f3311733b49b59d63e43c0588a288391ea0dc7534008fa17875786cb0f5dd", "renderer_sha256": "e92d83433085fee2f1fa7b4a68b543468c732bff0c6115e6ac1e9f520c21c02a"}}
+ok
+test_new_completion_during_audit_is_drained_before_one_composite_report (test_formal_stage_watcher.StageWatcherTests.test_new_completion_during_audit_is_drained_before_one_composite_report) ... ok
+test_new_completion_during_render_is_new_input_not_blocked_retry (test_formal_stage_watcher.StageWatcherTests.test_new_completion_during_render_is_new_input_not_blocked_retry) ... ok
+test_new_stage_audited_and_reported_once_across_restart (test_formal_stage_watcher.StageWatcherTests.test_new_stage_audited_and_reported_once_across_restart) ... ok
+test_own_lock_prevents_second_watcher_and_stop_does_not_touch_gpu_queue (test_formal_stage_watcher.StageWatcherTests.test_own_lock_prevents_second_watcher_and_stop_does_not_touch_gpu_queue) ... ok
+test_partial_audit_json_blocks_only_that_stage_and_other_audits_continue (test_formal_stage_watcher.StageWatcherTests.test_partial_audit_json_blocks_only_that_stage_and_other_audits_continue) ... ok
+test_protocol_source_and_frozen_figure_changes_stop_before_children (test_formal_stage_watcher.StageWatcherTests.test_protocol_source_and_frozen_figure_changes_stop_before_children) ... ok
+test_report_cannot_omit_a_displayed_method_while_claiming_full_input_coverage (test_formal_stage_watcher.StageWatcherTests.test_report_cannot_omit_a_displayed_method_while_claiming_full_input_coverage) ... ok
+test_report_image_hash_change_is_not_silently_rerendered (test_formal_stage_watcher.StageWatcherTests.test_report_image_hash_change_is_not_silently_rerendered) ... ok
+test_three_existing_audits_and_complete_report_are_reused_without_children (test_formal_stage_watcher.StageWatcherTests.test_three_existing_audits_and_complete_report_are_reused_without_children) ... ok
+test_watch_exits_after_queue_finished_without_polling_or_launching_child (test_formal_stage_watcher.StageWatcherTests.test_watch_exits_after_queue_finished_without_polling_or_launching_child) ... {"status": "caught_up", "completed_stages": 0, "audited_stages": 0, "blocked_stages": [], "report": null}
+{"status": "caught_up", "completed_stages": 0, "audited_stages": 0, "blocked_stages": [], "report": null}
+ok
+test_wrong_audit_metrics_hash_is_not_reused_or_retried (test_formal_stage_watcher.StageWatcherTests.test_wrong_audit_metrics_hash_is_not_reused_or_retried) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.586s
+
+OK

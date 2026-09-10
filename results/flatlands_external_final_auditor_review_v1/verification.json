@@ -1,0 +1,78 @@
+{
+  "scope": "CPU-only engineering review of the independent final auditor; not an experiment result",
+  "passed": true,
+  "test_exit_code": 0,
+  "test_count": 31,
+  "suite_counts": {
+    "final_auditor": 24,
+    "stage_auditor": 7
+  },
+  "coverage_note": "Original 21 final-auditor tests plus 3 new deterministic/direct-query convergence-contract tests; stage suite unchanged.",
+  "test_command": [
+    "/home/hairo/miniconda3/bin/python3.13",
+    "-m",
+    "unittest",
+    "tests.test_formal_final_audit",
+    "tests.test_formal_stage_audit",
+    "-v"
+  ],
+  "test_environment": {
+    "PYTHONPATH": "src",
+    "CUDA_VISIBLE_DEVICES": "",
+    "OMP_NUM_THREADS": "1"
+  },
+  "test_log": "results/flatlands_external_final_auditor_review_v1/unittest.log",
+  "test_log_sha256": "b22fb4ad5150e19859f575ba7b4c7a911b185c59645cb698e5e469fc6f992380",
+  "source_hashes_before": {
+    "scripts/audit_flatlands_formal_final.py": "a964e7bb9fa73a959b29ae7ba330682cb4fcfa150a3262f1d0f91fef27c636c9",
+    "tests/test_formal_final_audit.py": "a2f1ad59fdac9bc58989e483701cb2293466cc614a6b50fd6126a61ca5373fa2",
+    "scripts/audit_flatlands_formal_stage.py": "33c76835b46276a0caeceb0a3d09a6d4739cf2e6d648f70a1585624190d2b7cf",
+    "tests/test_formal_stage_audit.py": "a78dae62bf793a017218b17dca7cc64aae3f344fc31aaa8bace27ae3a4645018",
+    "scripts/evaluate_flatlands_support_clamped.py": "3d9dac0555fbced0485c81694e73e1618b81d62870b4916495712e11566cf669",
+    "src/pathrel/formal_data.py": "6da3a3c7a3b315432c823ee38ec6c62099410af4ea40dbb15bd3b72a7c98e8cc",
+    "src/pathrel/parent_pilot_data.py": "119037a5924fecb2fcfb17b7fc86316b58e4b4d3b872e142a251e31ce1ec4475",
+    "src/pathrel/data_access.py": "62c7c127527e2c181a1446a896869e2e89f5a4588a18ae77bdf80373a44927fe"
+  },
+  "source_hashes_after": {
+    "scripts/audit_flatlands_formal_final.py": "a964e7bb9fa73a959b29ae7ba330682cb4fcfa150a3262f1d0f91fef27c636c9",
+    "tests/test_formal_final_audit.py": "a2f1ad59fdac9bc58989e483701cb2293466cc614a6b50fd6126a61ca5373fa2",
+    "scripts/audit_flatlands_formal_stage.py": "33c76835b46276a0caeceb0a3d09a6d4739cf2e6d648f70a1585624190d2b7cf",
+    "tests/test_formal_stage_audit.py": "a78dae62bf793a017218b17dca7cc64aae3f344fc31aaa8bace27ae3a4645018",
+    "scripts/evaluate_flatlands_support_clamped.py": "3d9dac0555fbced0485c81694e73e1618b81d62870b4916495712e11566cf669",
+    "src/pathrel/formal_data.py": "6da3a3c7a3b315432c823ee38ec6c62099410af4ea40dbb15bd3b72a7c98e8cc",
+    "src/pathrel/parent_pilot_data.py": "119037a5924fecb2fcfb17b7fc86316b58e4b4d3b872e142a251e31ce1ec4475",
+    "src/pathrel/data_access.py": "62c7c127527e2c181a1446a896869e2e89f5a4588a18ae77bdf80373a44927fe"
+  },
+  "sources_unchanged_during_tests": true,
+  "protocol_sha256": "409c8bc4a9142d75a62e6c3d67204ef7d5045ad38f74b45b5411f8bfe899c0e2",
+  "git_head": "6591fb3b63d3134c6be950185eaa0fe2f1cbea59",
+  "created_utc": "2026-09-10T04:35:02.780080+00:00",
+  "elapsed_seconds": 1.918802339991089,
+  "convergence_contract": {
+    "renderer_schema_version": 2,
+    "common_world_budget": 4,
+    "actual_world_count": {
+      "lama": 4,
+      "flow": 4,
+      "conpath": 4,
+      "conpath_original": 4,
+      "independent": 4,
+      "no_reach": 4,
+      "deterministic": 1,
+      "direct_query": null
+    },
+    "direct_query_score_semantics": "direct_query_sigmoid",
+    "map_score_semantics": "raw_world_event_frequency",
+    "required_real_artifacts": "complete actual convergence manifest; fixed query/radius coverage; all metrics, prediction, world-order and image export hashes"
+  },
+  "real_final_audit_performed": false,
+  "real_final_audit_passed": false,
+  "real_formal_evaluation_performed": false,
+  "real_final_audit_receipt_generated": false,
+  "gpu_training_performed": false,
+  "gpu_inference_performed": false,
+  "raw_archive_opened": false,
+  "test_assets_opened": false,
+  "main_table_eligible": false,
+  "fully_trained_outer_seeds": []
+}

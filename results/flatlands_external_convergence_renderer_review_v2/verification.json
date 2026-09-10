@@ -1,0 +1,30 @@
+{
+  "created_utc": "2026-09-10T04:38:43.733358+00:00",
+  "passed": true,
+  "scope": "CPU renderer interface tests; no real pilot quality or scientific eligibility",
+  "command": "PYTHONPATH=src /home/hairo/miniconda3/bin/python3.13 -m unittest discover -s tests -p test_formal_convergence.py -v",
+  "tests": 13,
+  "unittest_elapsed_seconds": 0.718,
+  "tool_wall_seconds": 1.8690167519999998,
+  "exit_code": 0,
+  "evidence_source": "formal_eval tool execution reported to root; successful 13-test output, not a rerun",
+  "source_sha256": {
+    "scripts/render_flatlands_formal_convergence.py": "11b71b0ce97d5609952f249c7ca65dee80874b25d37a8b53d7eb50f325615204",
+    "tests/test_formal_convergence.py": "b3d473cfb44a04f7408b984170028d99f4e395f00184e790ed4a7a9206063410",
+    "scripts/render_flatlands_formal_report.py": "e0c4958b577bde6b84638916060854674aa60cc81654c32e17fba3361455473b"
+  },
+  "actual_world_contract": {
+    "lama": 4,
+    "flow": 4,
+    "conpath": 4,
+    "conpath_original": 4,
+    "independent": 4,
+    "no_reach": 4,
+    "deterministic": 1,
+    "direct_query": null
+  },
+  "actual_model_inference_performed": false,
+  "new_test_images_opened": 0,
+  "actual_pilot_visual_gate_granted": false,
+  "formal_main_table_or_superiority_authorized": false
+}

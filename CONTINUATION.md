@@ -12,6 +12,8 @@ LaMa/FM真实中途SIGINT跨进程恢复已通过，loss/模型/optimizer/schedu
 
 最新报告快照为 `results/flatlands_external_formal_v1/reports/20260910T035037.828561Z`，27组真实图片已逐图核对。新增 `site/formal.html` 只含已独立核验的同阶段validation-only诊断，25组验证图均有图例与固定案例标注，训练曲线未作为验证图发布；首页40组旧案例与244个旧资产内容不变。网页发布状态以本轮 `results/flatlands_formal_site_publication_v1/` 凭据及Git远端为准，不能把本地生成视为上线。
 
+网页提交 `6591fb3` 已推送，GitHub Actions `34437742396` 部署成功；线上84个页面、数据及图文件均逐字节hash匹配。当前入口为 https://s-team-git.github.io/ConPath/formal.html ，完成凭据 `results/flatlands_formal_site_publication_v1/deployment_verification.json`。这只确认开发诊断发布，不代表正式三种子结果完成。
+
 完整训练控制器和最终独立审计已实现，但尚未运行完整训练或授予任何最终审计通过。操作与严格视觉回执要求见 [FLATLANDS_FORMAL_CLOSEOUT_ZH.md](FLATLANDS_FORMAL_CLOSEOUT_ZH.md)。网页排版审查不能当作模型pilot质量审查。以下内容按日期视为历史。
 
 

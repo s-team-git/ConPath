@@ -1,5 +1,7 @@
 # ConPath: Connectivity-Calibrated Path Reliability from Partial BEV Observations
 
+> **2026-09-10 当前状态：LaMa 与 FM+XAttn 的统一外部验证矩阵正在进行，尚未完成充分训练后的三个固定种子及最终独立审计。** 本轮实验方法、985/97/191开发划分、历史访问限制和归因边界见[中文实验方法草案](PAPER_FORMAL_EXPERIMENTS_ZH.md)。下文已有表格保留为其原历史阶段记录，不作为本轮外部正式主表；location_6与最终测试继续锁定。
+
 **读取范围更正：旧训练／验证包含原发布test中的8／5条观测，本轮回放也读取了这5条验证观测。更早的512观测查询审计检查过53条物理test观测（含32条ScanNet++）。因此撤回“物理test从未读取”的说法；旧 `test_evaluated=false` 等标志不能证明物理测试未触碰。详见[读取范围更正记录](site/data/flatlands_read_scope_erratum.json)。已停止进一步读取物理test图片，最终留出集需要审核全部历史访问并排除已检查的父级地点。**
 
 Working manuscript, updated 2026-09-09. The latest parent-place-isolated development and two-seed follow-up results are in Sections 9–10; formal final-test and external-baseline evidence remain incomplete. Physical-place isolation failed on the old FlatLands cohort; results below are diagnostic, not unseen-building evidence. Current numerical tables and standalone figures are generated in [PAPER_EVIDENCE.md](PAPER_EVIDENCE.md); a [Chinese evaluation summary](EVALUATION_SUMMARY_ZH.md) explains the new results and fixed-case images. Earlier tables and superseded experiments are preserved in [PAPER_DRAFT_HISTORY.md](PAPER_DRAFT_HISTORY.md).
