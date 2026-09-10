@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "purpose": "恢复工程测试；合成输入；不是正式训练或收敛证据",
+  "test_assets_opened": false,
+  "synthetic_input_shape": [
+    7,
+    3,
+    256,
+    256
+  ],
+  "completed_steps_per_comparison": 4,
+  "effective_batch": 2,
+  "microbatch": 2,
+  "checkpoint_interval": 2,
+  "real_SIGINT_after_first_optimizer_update": true,
+  "simultaneous_GPU_workers_maximum": 1,
+  "GPU_allocator_limit_gib_per_worker": 28,
+  "CPU_unit_tests": {
+    "passed": 11,
+    "command": "PYTHONPATH=src CUDA_VISIBLE_DEVICES='' /home/hairo/miniconda3/bin/python3.13 -m unittest discover -s tests -p test_formal_checkpoint.py -v",
+    "test_file_sha256": "3436ac0cc826799ad570d0aabfcf2f42d1648b4a66883674e72840650f2088b6"
+  },
+  "methods": {
+    "lama": {
+      "report": "results/flatlands_external_resume_v1/lama/report.json",
+      "report_sha256": "cf85db097f0620cc7540fb1c6ae3a656e2d21fec72114f3a357307e95af32a5d",
+      "complete_loss_curve_bitwise_equal": true,
+      "state_differences": [],
+      "elapsed_seconds_all_subprocesses": 12.029255524015753,
+      "peak_allocated_gib": 2.0477843284606934,
+      "peak_reserved_gib": 2.34375,
+      "archived_journal_tail": [
+        "split/recovery_journal/uncommitted_tail_a3a19732278046e5be8c31ba5677db82.jsonl"
+      ]
+    },
+    "flow": {
+      "report": "results/flatlands_external_resume_v1/flow/report.json",
+      "report_sha256": "1ae88c29730be8d3734295ae84016936efb73da09abb23328e9cf1eba07828cb",
+      "complete_loss_curve_bitwise_equal": true,
+      "state_differences": [],
+      "elapsed_seconds_all_subprocesses": 8.75591353100026,
+      "peak_allocated_gib": 2.747960090637207,
+      "peak_reserved_gib": 3.66796875,
+      "archived_journal_tail": [
+        "split/recovery_journal/uncommitted_tail_1d98230df7c3412aa843908b0ce8f49a.jsonl"
+      ]
+    }
+  }
+}

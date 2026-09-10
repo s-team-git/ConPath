@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "CPU_tests_passed": 12,
+  "command": [
+    "/home/hairo/miniconda3/bin/python3.13",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_formal_training_review.py",
+    "-v"
+  ],
+  "elapsed_seconds": 1.9053513770049904,
+  "GPU_tests_repeated": false,
+  "dataset_assets_read": false,
+  "source_hashes": {
+    "scripts/train_flatlands_formal.py": "a8afdb6aa4eb738d81b97421ec41895ce081495c44c2a633b39f656856de8b5c",
+    "src/pathrel/formal_training.py": "15f3204f15d04240183bfbbf2b452d7b4b36c8bc8445e556e6307ea66973ba45",
+    "tests/test_formal_training_review.py": "b76c7b6505813a6840e2b223fcac06a72e84cb89236fe3b19591bab070d5c533"
+  },
+  "full_plan_guard": [
+    "method/protocol identity and pilot_gate_passed is True",
+    "allowed_full_steps from frozen protocol and exact stage+2500-step checkpoint schedule",
+    "both numerical and visual gate receipts required, project-relative contained paths, SHA256 binding",
+    "passed is True/protocol/method/staged seed for both gate receipts",
+    "numeric pilot_evaluation_metrics and pilot_evaluation_metrics_sha256 binding, metric protocol/method/outer_seed/stage identity",
+    "negative CPU cases reject boolean-only claim, modified receipt, false pass, modified or wrong-seed metrics, outside-project path, unregistered300000-step budget, missing checkpoint boundaries"
+  ]
+}

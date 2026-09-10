@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "created_utc": "2026-09-10T03:11:48.012721+00:00",
+  "unittest_count": 258,
+  "command": "PYTHONPATH=src:. CUDA_VISIBLE_DEVICES='' python -m unittest discover -s tests -v",
+  "log_sha256": "86882ed4a4d3d2910119255adc903a1250bab673622b639a25089d90f7a223fb",
+  "syntax_compile_passed": true,
+  "git_diff_check_passed": true,
+  "test_assets_opened_by_preflight": false
+}

@@ -1,0 +1,243 @@
+{
+  "passed": true,
+  "case_entries_checked": 18,
+  "checks": [
+    {
+      "global_id": "obs_003621",
+      "query_id": "obs_003621:q004",
+      "case_category": "general",
+      "query_matches_frozen_input": true,
+      "explicit_disk_four_neighbour_events": [
+        true,
+        false,
+        false
+      ],
+      "cached_label_agrees": true
+    },
+    {
+      "global_id": "obs_016844",
+      "query_id": "obs_016844:q002",
+      "case_category": "general",
+      "query_matches_frozen_input": true,
+      "explicit_disk_four_neighbour_events": [
+        true,
+        false,
+        false
+      ],
+      "cached_label_agrees": true
+    },
+    {
+      "global_id": "obs_058875",
+      "query_id": "obs_058875:q003",
+      "case_category": "general",
+      "query_matches_frozen_input": true,
+      "explicit_disk_four_neighbour_events": [
+        false,
+        false,
+        false
+      ],
+      "cached_label_agrees": true
+    },
+    {
+      "global_id": "obs_047911",
+      "query_id": "obs_047911:q022",
+      "case_category": "general",
+      "query_matches_frozen_input": true,
+      "explicit_disk_four_neighbour_events": [
+        false,
+        false,
+        false
+      ],
+      "cached_label_agrees": true
+    },
+    {
+      "global_id": "obs_141392",
+      "query_id": "obs_141392:q017",
+      "case_category": "general",
+      "query_matches_frozen_input": true,
+      "explicit_disk_four_neighbour_events": [
+        true,
+        false,
+        false
+      ],
+      "cached_label_agrees": true
+    },
+    {
+      "global_id": "obs_142339",
+      "query_id": "obs_142339:q000",
+      "case_category": "general",
+      "query_matches_frozen_input": true,
+      "explicit_disk_four_neighbour_events": [
+        true,
+        true,
+        true
+      ],
+      "cached_label_agrees": true
+    },
+    {
+      "global_id": "obs_160475",
+      "query_id": "obs_160475:q003",
+      "case_category": "general",
+      "query_matches_frozen_input": true,
+      "explicit_disk_four_neighbour_events": [
+        true,
+        true,
+        false
+      ],
+      "cached_label_agrees": true
+    },
+    {
+      "global_id": "obs_165123",
+      "query_id": "obs_165123:q005",
+      "case_category": "general",
+      "query_matches_frozen_input": true,
+      "explicit_disk_four_neighbour_events": [
+        true,
+        false,
+        false
+      ],
+      "cached_label_agrees": true
+    },
+    {
+      "global_id": "obs_259516",
+      "query_id": "obs_259516:q023",
+      "case_category": "general",
+      "query_matches_frozen_input": true,
+      "explicit_disk_four_neighbour_events": [
+        true,
+        true,
+        true
+      ],
+      "cached_label_agrees": true
+    },
+    {
+      "global_id": "obs_239914",
+      "query_id": "obs_239914:q011",
+      "case_category": "general",
+      "query_matches_frozen_input": true,
+      "explicit_disk_four_neighbour_events": [
+        true,
+        true,
+        true
+      ],
+      "cached_label_agrees": true
+    },
+    {
+      "global_id": "obs_003621",
+      "query_id": "obs_003621:q004",
+      "case_category": "multi_radius",
+      "query_matches_frozen_input": true,
+      "explicit_disk_four_neighbour_events": [
+        true,
+        false,
+        false
+      ],
+      "cached_label_agrees": true
+    },
+    {
+      "global_id": "obs_016844",
+      "query_id": "obs_016844:q002",
+      "case_category": "multi_radius",
+      "query_matches_frozen_input": true,
+      "explicit_disk_four_neighbour_events": [
+        true,
+        false,
+        false
+      ],
+      "cached_label_agrees": true
+    },
+    {
+      "global_id": "obs_002831",
+      "query_id": "obs_002831:q033",
+      "case_category": "unreachable",
+      "query_matches_frozen_input": true,
+      "explicit_disk_four_neighbour_events": [
+        false,
+        false,
+        false
+      ],
+      "cached_label_agrees": true,
+      "both_target_endpoints_free": true
+    },
+    {
+      "global_id": "obs_008415",
+      "query_id": "obs_008415:q002",
+      "case_category": "unreachable",
+      "query_matches_frozen_input": true,
+      "explicit_disk_four_neighbour_events": [
+        false,
+        false,
+        false
+      ],
+      "cached_label_agrees": true,
+      "both_target_endpoints_free": true
+    },
+    {
+      "global_id": "obs_049136",
+      "query_id": "obs_049136:q035",
+      "case_category": "narrow_bottleneck",
+      "query_matches_frozen_input": true,
+      "explicit_disk_four_neighbour_events": [
+        true,
+        false,
+        false
+      ],
+      "cached_label_agrees": true,
+      "both_endpoints_fit_failed_radius": true
+    },
+    {
+      "global_id": "obs_150937",
+      "query_id": "obs_150937:q033",
+      "case_category": "narrow_bottleneck",
+      "query_matches_frozen_input": true,
+      "explicit_disk_four_neighbour_events": [
+        true,
+        false,
+        false
+      ],
+      "cached_label_agrees": true,
+      "both_endpoints_fit_failed_radius": true
+    },
+    {
+      "global_id": "obs_019421",
+      "query_id": "obs_019421:q018",
+      "case_category": "multiple_alternatives",
+      "query_matches_frozen_input": true,
+      "explicit_disk_four_neighbour_events": [
+        true,
+        true,
+        true
+      ],
+      "cached_label_agrees": true,
+      "path_a_vertices": 81,
+      "path_b_vertices": 83,
+      "shared_internal_vertices": 0,
+      "both_paths_valid_four_neighbour_reference_witnesses": true
+    },
+    {
+      "global_id": "obs_008045",
+      "query_id": "obs_008045:q031",
+      "case_category": "multiple_alternatives",
+      "query_matches_frozen_input": true,
+      "explicit_disk_four_neighbour_events": [
+        true,
+        true,
+        false
+      ],
+      "cached_label_agrees": true,
+      "path_a_vertices": 165,
+      "path_b_vertices": 165,
+      "shared_internal_vertices": 0,
+      "both_paths_valid_four_neighbour_reference_witnesses": true
+    }
+  ],
+  "geometry_oracle": "independent explicit integer-disk binary erosion plus four-neighbour BFS; no trained model involved",
+  "new_png_or_test_reads": 0,
+  "created_utc": "2026-09-10T03:02:01.208496+00:00",
+  "data_seal_sha256": "034886fe31e816844abd2439240eb3c7ee97a8dc362ec05b11223cfd918b9efb",
+  "source_hashes": {
+    "scripts/freeze_flatlands_formal_figures.py": "6541c7c57db9947005b3208e2e91ec75c03dd7f97d605dbdb01c8deeb9ef9118",
+    "src/pathrel/formal_data.py": "6da3a3c7a3b315432c823ee38ec6c62099410af4ea40dbb15bd3b72a7c98e8cc"
+  },
+  "figure_cases_sha256": "a45c376e2e4223369c5941bbb38e4d7e96642072f548d6047a3e64afa9d7143c"
+}

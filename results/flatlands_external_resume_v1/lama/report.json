@@ -1,0 +1,172 @@
+{
+  "passed": true,
+  "method": "lama",
+  "device": "cuda",
+  "complete_loss_curve_bitwise_equal": true,
+  "state_differences": [],
+  "compared_states": [
+    "model",
+    "all optimizers",
+    "all schedulers",
+    "sampler permutation/cursor/epoch",
+    "Python/NumPy/Torch CPU/CUDA RNG",
+    "named generators",
+    "progress index"
+  ],
+  "exclusions": [
+    "elapsed wall-clock seconds"
+  ],
+  "steps": 4,
+  "interrupt_at": 4,
+  "checkpoint_interval": 2,
+  "interruption": {
+    "reason": "test SIGINT after first optimizer changed parameters",
+    "completed_steps": 2,
+    "journaled_updates_to_replay": 1,
+    "maximum_journaled_updates_to_replay": 2,
+    "saved_utc": "2026-09-10T02:50:16.288437+00:00",
+    "saved_state": "last durable complete update; unfinished work will be replayed",
+    "latest_sha256": "146312b1e9b18e6c9152986518a32aa47b79a0596089999164d65c26147ad172",
+    "interrupted_sha256": "146312b1e9b18e6c9152986518a32aa47b79a0596089999164d65c26147ad172"
+  },
+  "archived_uncommitted_journals": [
+    "split/recovery_journal/uncommitted_tail_a3a19732278046e5be8c31ba5677db82.jsonl"
+  ],
+  "loss_curve_sha256": "9826ad9afd90d677b312ddc4f4b5e642ac207dc985bd1a3a91a0dbd95ca92100",
+  "runs": [
+    {
+      "phase": "continuous",
+      "returncode": 0,
+      "expected_returncode": 0,
+      "elapsed_seconds": 4.154224477999378,
+      "command": [
+        "/home/hairo/miniconda3/bin/python3.13",
+        "/home/hairo/pathrel_transfer/pathrel_pro6000/scripts/check_formal_resume_smoke.py",
+        "--worker",
+        "--method",
+        "lama",
+        "--device",
+        "cuda",
+        "--steps",
+        "4",
+        "--size",
+        "256",
+        "--checkpoint-interval",
+        "2",
+        "--memory-gib",
+        "28.0",
+        "--output-dir",
+        "results/flatlands_external_resume_v1/lama/continuous",
+        "--interrupt-at",
+        "0"
+      ]
+    },
+    {
+      "phase": "interrupted",
+      "returncode": 86,
+      "expected_returncode": 86,
+      "elapsed_seconds": 4.450922888994683,
+      "command": [
+        "/home/hairo/miniconda3/bin/python3.13",
+        "/home/hairo/pathrel_transfer/pathrel_pro6000/scripts/check_formal_resume_smoke.py",
+        "--worker",
+        "--method",
+        "lama",
+        "--device",
+        "cuda",
+        "--steps",
+        "4",
+        "--size",
+        "256",
+        "--checkpoint-interval",
+        "2",
+        "--memory-gib",
+        "28.0",
+        "--output-dir",
+        "results/flatlands_external_resume_v1/lama/split",
+        "--interrupt-at",
+        "4"
+      ]
+    },
+    {
+      "phase": "resumed",
+      "returncode": 0,
+      "expected_returncode": 0,
+      "elapsed_seconds": 3.424108157021692,
+      "command": [
+        "/home/hairo/miniconda3/bin/python3.13",
+        "/home/hairo/pathrel_transfer/pathrel_pro6000/scripts/check_formal_resume_smoke.py",
+        "--worker",
+        "--method",
+        "lama",
+        "--device",
+        "cuda",
+        "--steps",
+        "4",
+        "--size",
+        "256",
+        "--checkpoint-interval",
+        "2",
+        "--memory-gib",
+        "28.0",
+        "--output-dir",
+        "results/flatlands_external_resume_v1/lama/split",
+        "--interrupt-at",
+        "0",
+        "--resume"
+      ]
+    }
+  ],
+  "resources": {
+    "continuous": {
+      "completed_steps": 4,
+      "elapsed_seconds_this_process": 2.691091120010242,
+      "gpu": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+      "peak_allocated_bytes": 2198791680,
+      "peak_reserved_bytes": 2474639360,
+      "gpu_allocator_limit_gib": 28.0,
+      "python": "3.13.13 | packaged by Anaconda, Inc. | (main, Apr 14 2026, 06:19:41) [GCC 14.3.0]",
+      "torch": "2.12.1+cu130",
+      "cuda": "13.0",
+      "test_assets_opened": false,
+      "synthetic_only": true
+    },
+    "interrupted": {
+      "elapsed_seconds_this_process": 2.9243141959887,
+      "gpu": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+      "peak_allocated_bytes": 2198791680,
+      "peak_reserved_bytes": 2474639360,
+      "gpu_allocator_limit_gib": 28.0,
+      "python": "3.13.13 | packaged by Anaconda, Inc. | (main, Apr 14 2026, 06:19:41) [GCC 14.3.0]",
+      "torch": "2.12.1+cu130",
+      "cuda": "13.0"
+    },
+    "resumed": {
+      "completed_steps": 4,
+      "elapsed_seconds_this_process": 2.003503064974211,
+      "gpu": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+      "peak_allocated_bytes": 2197251584,
+      "peak_reserved_bytes": 2516582400,
+      "gpu_allocator_limit_gib": 28.0,
+      "python": "3.13.13 | packaged by Anaconda, Inc. | (main, Apr 14 2026, 06:19:41) [GCC 14.3.0]",
+      "torch": "2.12.1+cu130",
+      "cuda": "13.0",
+      "test_assets_opened": false,
+      "synthetic_only": true
+    }
+  },
+  "python": "3.13.13 | packaged by Anaconda, Inc. | (main, Apr 14 2026, 06:19:41) [GCC 14.3.0]",
+  "torch": "2.12.1+cu130",
+  "cuda": "13.0",
+  "synthetic_only": true,
+  "test_assets_opened": false,
+  "formal_training": false,
+  "model_recipe": "unchanged full-size model; synthetic batch 2, microbatch 2",
+  "sources": {
+    "scripts/check_formal_resume_smoke.py": "4284b3a7713f8b43c4851ca593e4efa9d70f948c825577e0a56b54cc97165cfb",
+    "src/pathrel/formal_checkpoint.py": "835361e8b8e1843d2251bee48c1e6d36027fd1e7ab7ef48729783f27e9faa375",
+    "src/pathrel/external_training.py": "58a7069dab1cf7b78b7c7eb3a9a0e8de15f7c508a18afeaa20e0a444ca64b02c",
+    "src/pathrel/lama.py": "016c20e563931ef76bf30924bcf2d9c4754812e3a8f8146fa23fe7a837159b6f",
+    "src/pathrel/flow_matching.py": "bd48d15d4322bcf19ed327cedb3c70e8928ee89c6fec7404bea95d92451c690b"
+  }
+}

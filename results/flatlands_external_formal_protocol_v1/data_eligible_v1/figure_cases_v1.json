@@ -1,0 +1,2671 @@
+{
+  "id": "flatlands_external_formal_figure_cases_v1",
+  "created_utc": "2026-09-10T03:02:00.628111+00:00",
+  "validation_only": true,
+  "frozen_before_formal_model_training_and_inference": true,
+  "data_seal_sha256": "034886fe31e816844abd2439240eb3c7ee97a8dc362ec05b11223cfd918b9efb",
+  "original_primary_selection_sha256": "d1f73cf905f943eb2dac56cec59fa4b8943a7a94844d4fa4b40131e9f70823a0",
+  "frozen_queries_sha256": "92a11b87d8df9204de1ca02f1e6fe0e059764a26c009d88e21fb0d95f2128874",
+  "general_cases": [
+    {
+      "case_category": "general",
+      "global_id": "obs_003621",
+      "parent_group": "3RScan:a0905ffa-66f7-2272-9ca9-24c7ec00f34f",
+      "scene_id": "a0905ff4-66f7-2272-9e2c-823789eb613a",
+      "source": "3RScan",
+      "physical_archive_split": "train",
+      "candidate_split": "validation",
+      "validation_only": true,
+      "radii_cells": [
+        0,
+        10,
+        20
+      ],
+      "reference_packet_sha256": "5b2771eec4c1560ceba7ef19932cdfef6ae83f2381f7c814b8d3b2d15571bc8b",
+      "query_id": "obs_003621:q004",
+      "candidate_index": 4,
+      "start_rc": [
+        191,
+        128
+      ],
+      "goal_rc": [
+        226,
+        108
+      ],
+      "reference_events": [
+        true,
+        false,
+        false
+      ],
+      "no_eligible_query": false,
+      "selection_rule": "Original pre-image metadata-only two cases per source, unchanged; first input-hash-ranked query, or explicit none",
+      "label_zh": "固定验证场景"
+    },
+    {
+      "case_category": "general",
+      "global_id": "obs_016844",
+      "parent_group": "3RScan:0cac75c4-8d6f-2d13-8c37-fcfaf141ae5a",
+      "scene_id": "0cac75c4-8d6f-2d13-8c37-fcfaf141ae5a",
+      "source": "3RScan",
+      "physical_archive_split": "train",
+      "candidate_split": "validation",
+      "validation_only": true,
+      "radii_cells": [
+        0,
+        10,
+        20
+      ],
+      "reference_packet_sha256": "87181dc081118e08008335fd1e80ad5df3253e61679d1dccae9e77c6b3e0a653",
+      "query_id": "obs_016844:q002",
+      "candidate_index": 2,
+      "start_rc": [
+        191,
+        128
+      ],
+      "goal_rc": [
+        226,
+        148
+      ],
+      "reference_events": [
+        true,
+        false,
+        false
+      ],
+      "no_eligible_query": false,
+      "selection_rule": "Original pre-image metadata-only two cases per source, unchanged; first input-hash-ranked query, or explicit none",
+      "label_zh": "固定验证场景"
+    },
+    {
+      "case_category": "general",
+      "global_id": "obs_058875",
+      "parent_group": "ARKitScenes:438966",
+      "scene_id": "44358291_3dod_mesh",
+      "source": "ARKitScenes",
+      "physical_archive_split": "train",
+      "candidate_split": "validation",
+      "validation_only": true,
+      "radii_cells": [
+        0,
+        10,
+        20
+      ],
+      "reference_packet_sha256": "1e27d63677d431e69580cea008751c87071b82a9f04b4f0f129c8558b9919a52",
+      "query_id": "obs_058875:q003",
+      "candidate_index": 3,
+      "start_rc": [
+        191,
+        128
+      ],
+      "goal_rc": [
+        231,
+        128
+      ],
+      "reference_events": [
+        false,
+        false,
+        false
+      ],
+      "no_eligible_query": false,
+      "selection_rule": "Original pre-image metadata-only two cases per source, unchanged; first input-hash-ranked query, or explicit none",
+      "label_zh": "固定验证场景"
+    },
+    {
+      "case_category": "general",
+      "global_id": "obs_047911",
+      "parent_group": "ARKitScenes:438028",
+      "scene_id": "43896069_3dod_mesh",
+      "source": "ARKitScenes",
+      "physical_archive_split": "train",
+      "candidate_split": "validation",
+      "validation_only": true,
+      "radii_cells": [
+        0,
+        10,
+        20
+      ],
+      "reference_packet_sha256": "e49e95c9f13f6e687e149944316ab8cbf7b6c5f3dc4025e121763795baed185d",
+      "query_id": "obs_047911:q022",
+      "candidate_index": 22,
+      "start_rc": [
+        191,
+        128
+      ],
+      "goal_rc": [
+        122,
+        168
+      ],
+      "reference_events": [
+        false,
+        false,
+        false
+      ],
+      "no_eligible_query": false,
+      "selection_rule": "Original pre-image metadata-only two cases per source, unchanged; first input-hash-ranked query, or explicit none",
+      "label_zh": "固定验证场景"
+    },
+    {
+      "case_category": "general",
+      "global_id": "obs_141392",
+      "parent_group": "Matterport3D:EDJbREhghzL",
+      "scene_id": "EDJbREhghzL_region_segmentations_region3.ply",
+      "source": "Matterport3D",
+      "physical_archive_split": "train",
+      "candidate_split": "validation",
+      "validation_only": true,
+      "radii_cells": [
+        0,
+        10,
+        20
+      ],
+      "reference_packet_sha256": "0e28f43eee1bc848ae35a2f233fc1d1986c9abfe24e3a17e1f7007c1d40f8ad1",
+      "query_id": "obs_141392:q017",
+      "candidate_index": 17,
+      "start_rc": [
+        191,
+        128
+      ],
+      "goal_rc": [
+        231,
+        59
+      ],
+      "reference_events": [
+        true,
+        false,
+        false
+      ],
+      "no_eligible_query": false,
+      "selection_rule": "Original pre-image metadata-only two cases per source, unchanged; first input-hash-ranked query, or explicit none",
+      "label_zh": "固定验证场景"
+    },
+    {
+      "case_category": "general",
+      "global_id": "obs_142339",
+      "parent_group": "Matterport3D:YFuZgdQ5vWj",
+      "scene_id": "YFuZgdQ5vWj_region_segmentations_region13.ply",
+      "source": "Matterport3D",
+      "physical_archive_split": "train",
+      "candidate_split": "validation",
+      "validation_only": true,
+      "radii_cells": [
+        0,
+        10,
+        20
+      ],
+      "reference_packet_sha256": "ad13b5696b27267e66214dfe786945f67a216a436f2d08c5d0030a941b5de95c",
+      "query_id": "obs_142339:q000",
+      "candidate_index": 0,
+      "start_rc": [
+        191,
+        128
+      ],
+      "goal_rc": [
+        191,
+        168
+      ],
+      "reference_events": [
+        true,
+        true,
+        true
+      ],
+      "no_eligible_query": false,
+      "selection_rule": "Original pre-image metadata-only two cases per source, unchanged; first input-hash-ranked query, or explicit none",
+      "label_zh": "固定验证场景"
+    },
+    {
+      "case_category": "general",
+      "global_id": "obs_160475",
+      "parent_group": "ScanNet:scene0148",
+      "scene_id": "scene0148_00",
+      "source": "ScanNet",
+      "physical_archive_split": "train",
+      "candidate_split": "validation",
+      "validation_only": true,
+      "radii_cells": [
+        0,
+        10,
+        20
+      ],
+      "reference_packet_sha256": "119cd28dcbfa695bd385c2571b11f773e70bc26896828cb2de7615f2da01e425",
+      "query_id": "obs_160475:q003",
+      "candidate_index": 3,
+      "start_rc": [
+        191,
+        128
+      ],
+      "goal_rc": [
+        231,
+        128
+      ],
+      "reference_events": [
+        true,
+        true,
+        false
+      ],
+      "no_eligible_query": false,
+      "selection_rule": "Original pre-image metadata-only two cases per source, unchanged; first input-hash-ranked query, or explicit none",
+      "label_zh": "固定验证场景"
+    },
+    {
+      "case_category": "general",
+      "global_id": "obs_165123",
+      "parent_group": "ScanNet:scene0563",
+      "scene_id": "scene0563_00",
+      "source": "ScanNet",
+      "physical_archive_split": "train",
+      "candidate_split": "validation",
+      "validation_only": true,
+      "radii_cells": [
+        0,
+        10,
+        20
+      ],
+      "reference_packet_sha256": "4d091c7b210f5cb53a29a19bd75837446e0dc46faed3226fb2d6bcd039e0e839",
+      "query_id": "obs_165123:q005",
+      "candidate_index": 5,
+      "start_rc": [
+        191,
+        128
+      ],
+      "goal_rc": [
+        211,
+        93
+      ],
+      "reference_events": [
+        true,
+        false,
+        false
+      ],
+      "no_eligible_query": false,
+      "selection_rule": "Original pre-image metadata-only two cases per source, unchanged; first input-hash-ranked query, or explicit none",
+      "label_zh": "固定验证场景"
+    },
+    {
+      "case_category": "general",
+      "global_id": "obs_259516",
+      "parent_group": "ZInD:0866",
+      "scene_id": "0866_floor_01_pano_10",
+      "source": "ZInD",
+      "physical_archive_split": "train",
+      "candidate_split": "validation",
+      "validation_only": true,
+      "radii_cells": [
+        0,
+        10,
+        20
+      ],
+      "reference_packet_sha256": "0c920361cfabf177280476ccd602b1ef8ebae1d9d2c1fb0ac31f9549e06aa6b8",
+      "query_id": "obs_259516:q023",
+      "candidate_index": 23,
+      "start_rc": [
+        191,
+        128
+      ],
+      "goal_rc": [
+        151,
+        197
+      ],
+      "reference_events": [
+        true,
+        true,
+        true
+      ],
+      "no_eligible_query": false,
+      "selection_rule": "Original pre-image metadata-only two cases per source, unchanged; first input-hash-ranked query, or explicit none",
+      "label_zh": "固定验证场景"
+    },
+    {
+      "case_category": "general",
+      "global_id": "obs_239914",
+      "parent_group": "ZInD:1163",
+      "scene_id": "1163_floor_01_pano_9",
+      "source": "ZInD",
+      "physical_archive_split": "train",
+      "candidate_split": "validation",
+      "validation_only": true,
+      "radii_cells": [
+        0,
+        10,
+        20
+      ],
+      "reference_packet_sha256": "3c400b8c83e5b06609fba5e0a1325505f38a14ee4dfa516d1b16107122e06925",
+      "query_id": "obs_239914:q011",
+      "candidate_index": 11,
+      "start_rc": [
+        191,
+        128
+      ],
+      "goal_rc": [
+        171,
+        163
+      ],
+      "reference_events": [
+        true,
+        true,
+        true
+      ],
+      "no_eligible_query": false,
+      "selection_rule": "Original pre-image metadata-only two cases per source, unchanged; first input-hash-ranked query, or explicit none",
+      "label_zh": "固定验证场景"
+    }
+  ],
+  "reference_categories": {
+    "unreachable": {
+      "requested_cases": 2,
+      "available_cases": 2,
+      "cases": [
+        {
+          "case_category": "unreachable",
+          "global_id": "obs_002831",
+          "parent_group": "3RScan:ab835fae-54c6-29a1-995e-b06cfc555786",
+          "scene_id": "ab835fae-54c6-29a1-995e-b06cfc555786",
+          "source": "3RScan",
+          "physical_archive_split": "train",
+          "candidate_split": "validation",
+          "validation_only": true,
+          "radii_cells": [
+            0,
+            10,
+            20
+          ],
+          "reference_packet_sha256": "0a05984cd679064fe9959770730e3914cd5ac9f1a133c8698229553050ea6de4",
+          "query_id": "obs_002831:q033",
+          "candidate_index": 33,
+          "start_rc": [
+            191,
+            128
+          ],
+          "goal_rc": [
+            71,
+            128
+          ],
+          "reference_events": [
+            false,
+            false,
+            false
+          ],
+          "no_eligible_query": false,
+          "label_zh": "参考图中自由端点之间不连通（半径0格）",
+          "selection_rule": "source name then fixed input-identity SHA256 order; first two qualifying distinct parents; reference geometry only, no model outputs"
+        },
+        {
+          "case_category": "unreachable",
+          "global_id": "obs_008415",
+          "parent_group": "3RScan:75c25973-9ca2-2844-96f4-90cd531364ac",
+          "scene_id": "8eabc449-5af7-2f32-8669-f776ccecc6fa",
+          "source": "3RScan",
+          "physical_archive_split": "train",
+          "candidate_split": "validation",
+          "validation_only": true,
+          "radii_cells": [
+            0,
+            10,
+            20
+          ],
+          "reference_packet_sha256": "6bd46e5d699aa81095ceec3248eccd90a94d1237bba770d5293d4f6862e67164",
+          "query_id": "obs_008415:q002",
+          "candidate_index": 2,
+          "start_rc": [
+            191,
+            128
+          ],
+          "goal_rc": [
+            226,
+            148
+          ],
+          "reference_events": [
+            false,
+            false,
+            false
+          ],
+          "no_eligible_query": false,
+          "label_zh": "参考图中自由端点之间不连通（半径0格）",
+          "selection_rule": "source name then fixed input-identity SHA256 order; first two qualifying distinct parents; reference geometry only, no model outputs"
+        }
+      ],
+      "status": "available"
+    },
+    "narrow_bottleneck": {
+      "requested_cases": 2,
+      "available_cases": 2,
+      "cases": [
+        {
+          "case_category": "narrow_bottleneck",
+          "global_id": "obs_049136",
+          "parent_group": "ARKitScenes:484161",
+          "scene_id": "48458519_3dod_mesh",
+          "source": "ARKitScenes",
+          "physical_archive_split": "train",
+          "candidate_split": "validation",
+          "validation_only": true,
+          "radii_cells": [
+            0,
+            10,
+            20
+          ],
+          "reference_packet_sha256": "b6633d8ebeb052de85044e2eceb8e10f25c3546f873793b20665e52a735205a1",
+          "query_id": "obs_049136:q035",
+          "candidate_index": 35,
+          "start_rc": [
+            191,
+            128
+          ],
+          "goal_rc": [
+            131,
+            232
+          ],
+          "reference_events": [
+            true,
+            false,
+            false
+          ],
+          "no_eligible_query": false,
+          "bottleneck_failed_radius_cells": 10,
+          "reachable_radius_cells": 0,
+          "start_clearance_cells": 15,
+          "goal_clearance_cells": 18,
+          "label_zh": "参考图内部瓶颈；较大半径的起终点自身均可容纳",
+          "selection_rule": "source name then fixed input-identity SHA256 order; first two qualifying distinct parents; reference geometry only, no model outputs"
+        },
+        {
+          "case_category": "narrow_bottleneck",
+          "global_id": "obs_150937",
+          "parent_group": "ScanNet:scene0343",
+          "scene_id": "scene0343_00",
+          "source": "ScanNet",
+          "physical_archive_split": "train",
+          "candidate_split": "validation",
+          "validation_only": true,
+          "radii_cells": [
+            0,
+            10,
+            20
+          ],
+          "reference_packet_sha256": "0f5e127f27f9c56edf0a81affc2e4fab638e41c482d468787456c884e706eef8",
+          "query_id": "obs_150937:q033",
+          "candidate_index": 33,
+          "start_rc": [
+            191,
+            128
+          ],
+          "goal_rc": [
+            71,
+            128
+          ],
+          "reference_events": [
+            true,
+            false,
+            false
+          ],
+          "no_eligible_query": false,
+          "bottleneck_failed_radius_cells": 10,
+          "reachable_radius_cells": 0,
+          "start_clearance_cells": 11,
+          "goal_clearance_cells": 21,
+          "label_zh": "参考图内部瓶颈；较大半径的起终点自身均可容纳",
+          "selection_rule": "source name then fixed input-identity SHA256 order; first two qualifying distinct parents; reference geometry only, no model outputs"
+        }
+      ],
+      "status": "available"
+    },
+    "multiple_alternatives": {
+      "requested_cases": 2,
+      "available_cases": 2,
+      "cases": [
+        {
+          "case_category": "multiple_alternatives",
+          "global_id": "obs_019421",
+          "parent_group": "3RScan:2e4a3964-d452-21a0-9de5-4f7895499143",
+          "scene_id": "2e4a3964-d452-21a0-9de5-4f7895499143",
+          "source": "3RScan",
+          "physical_archive_split": "train",
+          "candidate_split": "validation",
+          "validation_only": true,
+          "radii_cells": [
+            0,
+            10,
+            20
+          ],
+          "reference_packet_sha256": "4cf87d94f217375bba5ac757fe494190085bca5462f1cb35a8b0106c5a699fbc",
+          "query_id": "obs_019421:q018",
+          "candidate_index": 18,
+          "start_rc": [
+            191,
+            128
+          ],
+          "goal_rc": [
+            191,
+            48
+          ],
+          "reference_events": [
+            true,
+            true,
+            true
+          ],
+          "no_eligible_query": false,
+          "witness_radius_cells": 10,
+          "reference_path_a_rc": [
+            [
+              191,
+              128
+            ],
+            [
+              191,
+              127
+            ],
+            [
+              191,
+              126
+            ],
+            [
+              191,
+              125
+            ],
+            [
+              191,
+              124
+            ],
+            [
+              191,
+              123
+            ],
+            [
+              191,
+              122
+            ],
+            [
+              191,
+              121
+            ],
+            [
+              191,
+              120
+            ],
+            [
+              191,
+              119
+            ],
+            [
+              191,
+              118
+            ],
+            [
+              191,
+              117
+            ],
+            [
+              191,
+              116
+            ],
+            [
+              191,
+              115
+            ],
+            [
+              191,
+              114
+            ],
+            [
+              191,
+              113
+            ],
+            [
+              191,
+              112
+            ],
+            [
+              191,
+              111
+            ],
+            [
+              191,
+              110
+            ],
+            [
+              191,
+              109
+            ],
+            [
+              191,
+              108
+            ],
+            [
+              191,
+              107
+            ],
+            [
+              191,
+              106
+            ],
+            [
+              191,
+              105
+            ],
+            [
+              191,
+              104
+            ],
+            [
+              191,
+              103
+            ],
+            [
+              191,
+              102
+            ],
+            [
+              191,
+              101
+            ],
+            [
+              191,
+              100
+            ],
+            [
+              191,
+              99
+            ],
+            [
+              191,
+              98
+            ],
+            [
+              191,
+              97
+            ],
+            [
+              191,
+              96
+            ],
+            [
+              191,
+              95
+            ],
+            [
+              191,
+              94
+            ],
+            [
+              191,
+              93
+            ],
+            [
+              191,
+              92
+            ],
+            [
+              191,
+              91
+            ],
+            [
+              191,
+              90
+            ],
+            [
+              191,
+              89
+            ],
+            [
+              191,
+              88
+            ],
+            [
+              191,
+              87
+            ],
+            [
+              191,
+              86
+            ],
+            [
+              191,
+              85
+            ],
+            [
+              191,
+              84
+            ],
+            [
+              191,
+              83
+            ],
+            [
+              191,
+              82
+            ],
+            [
+              191,
+              81
+            ],
+            [
+              191,
+              80
+            ],
+            [
+              191,
+              79
+            ],
+            [
+              191,
+              78
+            ],
+            [
+              191,
+              77
+            ],
+            [
+              191,
+              76
+            ],
+            [
+              191,
+              75
+            ],
+            [
+              191,
+              74
+            ],
+            [
+              191,
+              73
+            ],
+            [
+              191,
+              72
+            ],
+            [
+              191,
+              71
+            ],
+            [
+              191,
+              70
+            ],
+            [
+              191,
+              69
+            ],
+            [
+              191,
+              68
+            ],
+            [
+              191,
+              67
+            ],
+            [
+              191,
+              66
+            ],
+            [
+              191,
+              65
+            ],
+            [
+              191,
+              64
+            ],
+            [
+              191,
+              63
+            ],
+            [
+              191,
+              62
+            ],
+            [
+              191,
+              61
+            ],
+            [
+              191,
+              60
+            ],
+            [
+              191,
+              59
+            ],
+            [
+              191,
+              58
+            ],
+            [
+              191,
+              57
+            ],
+            [
+              191,
+              56
+            ],
+            [
+              191,
+              55
+            ],
+            [
+              191,
+              54
+            ],
+            [
+              191,
+              53
+            ],
+            [
+              191,
+              52
+            ],
+            [
+              191,
+              51
+            ],
+            [
+              191,
+              50
+            ],
+            [
+              191,
+              49
+            ],
+            [
+              191,
+              48
+            ]
+          ],
+          "reference_path_b_rc": [
+            [
+              191,
+              128
+            ],
+            [
+              190,
+              128
+            ],
+            [
+              190,
+              127
+            ],
+            [
+              190,
+              126
+            ],
+            [
+              190,
+              125
+            ],
+            [
+              190,
+              124
+            ],
+            [
+              190,
+              123
+            ],
+            [
+              190,
+              122
+            ],
+            [
+              190,
+              121
+            ],
+            [
+              190,
+              120
+            ],
+            [
+              190,
+              119
+            ],
+            [
+              190,
+              118
+            ],
+            [
+              190,
+              117
+            ],
+            [
+              190,
+              116
+            ],
+            [
+              190,
+              115
+            ],
+            [
+              190,
+              114
+            ],
+            [
+              190,
+              113
+            ],
+            [
+              190,
+              112
+            ],
+            [
+              190,
+              111
+            ],
+            [
+              190,
+              110
+            ],
+            [
+              190,
+              109
+            ],
+            [
+              190,
+              108
+            ],
+            [
+              190,
+              107
+            ],
+            [
+              190,
+              106
+            ],
+            [
+              190,
+              105
+            ],
+            [
+              190,
+              104
+            ],
+            [
+              190,
+              103
+            ],
+            [
+              190,
+              102
+            ],
+            [
+              190,
+              101
+            ],
+            [
+              190,
+              100
+            ],
+            [
+              190,
+              99
+            ],
+            [
+              190,
+              98
+            ],
+            [
+              190,
+              97
+            ],
+            [
+              190,
+              96
+            ],
+            [
+              190,
+              95
+            ],
+            [
+              190,
+              94
+            ],
+            [
+              190,
+              93
+            ],
+            [
+              190,
+              92
+            ],
+            [
+              190,
+              91
+            ],
+            [
+              190,
+              90
+            ],
+            [
+              190,
+              89
+            ],
+            [
+              190,
+              88
+            ],
+            [
+              190,
+              87
+            ],
+            [
+              190,
+              86
+            ],
+            [
+              190,
+              85
+            ],
+            [
+              190,
+              84
+            ],
+            [
+              190,
+              83
+            ],
+            [
+              190,
+              82
+            ],
+            [
+              190,
+              81
+            ],
+            [
+              190,
+              80
+            ],
+            [
+              190,
+              79
+            ],
+            [
+              190,
+              78
+            ],
+            [
+              190,
+              77
+            ],
+            [
+              190,
+              76
+            ],
+            [
+              190,
+              75
+            ],
+            [
+              190,
+              74
+            ],
+            [
+              190,
+              73
+            ],
+            [
+              190,
+              72
+            ],
+            [
+              190,
+              71
+            ],
+            [
+              190,
+              70
+            ],
+            [
+              190,
+              69
+            ],
+            [
+              190,
+              68
+            ],
+            [
+              190,
+              67
+            ],
+            [
+              190,
+              66
+            ],
+            [
+              190,
+              65
+            ],
+            [
+              190,
+              64
+            ],
+            [
+              190,
+              63
+            ],
+            [
+              190,
+              62
+            ],
+            [
+              190,
+              61
+            ],
+            [
+              190,
+              60
+            ],
+            [
+              190,
+              59
+            ],
+            [
+              190,
+              58
+            ],
+            [
+              190,
+              57
+            ],
+            [
+              190,
+              56
+            ],
+            [
+              190,
+              55
+            ],
+            [
+              190,
+              54
+            ],
+            [
+              190,
+              53
+            ],
+            [
+              190,
+              52
+            ],
+            [
+              190,
+              51
+            ],
+            [
+              190,
+              50
+            ],
+            [
+              190,
+              49
+            ],
+            [
+              190,
+              48
+            ],
+            [
+              191,
+              48
+            ]
+          ],
+          "shared_internal_vertices": 0,
+          "meaning": "Distinct free centre-cell paths; not necessarily different semantic corridors or disjoint robot footprints",
+          "search_limit": "This deterministic first-path exclusion algorithm is sufficient but not exhaustive; failure does not prove only one path exists",
+          "label_zh": "参考图上两条内部节点不相交的栅格路径",
+          "selection_rule": "source name then fixed input-identity SHA256 order; first two qualifying distinct parents; reference geometry only, no model outputs"
+        },
+        {
+          "case_category": "multiple_alternatives",
+          "global_id": "obs_008045",
+          "parent_group": "3RScan:b1d87fae-e72e-2c8c-9cf3-c927fdb7c685",
+          "scene_id": "b1d87fb6-e72e-2c8c-9eb0-c7a40f6f4877",
+          "source": "3RScan",
+          "physical_archive_split": "train",
+          "candidate_split": "validation",
+          "validation_only": true,
+          "radii_cells": [
+            0,
+            10,
+            20
+          ],
+          "reference_packet_sha256": "8499509441c10f8a0f522e95e6af5636644b31544f29f4390306925eb554cba8",
+          "query_id": "obs_008045:q031",
+          "candidate_index": 31,
+          "start_rc": [
+            191,
+            128
+          ],
+          "goal_rc": [
+            131,
+            24
+          ],
+          "reference_events": [
+            true,
+            true,
+            false
+          ],
+          "no_eligible_query": false,
+          "witness_radius_cells": 10,
+          "reference_path_a_rc": [
+            [
+              191,
+              128
+            ],
+            [
+              190,
+              128
+            ],
+            [
+              189,
+              128
+            ],
+            [
+              188,
+              128
+            ],
+            [
+              187,
+              128
+            ],
+            [
+              186,
+              128
+            ],
+            [
+              185,
+              128
+            ],
+            [
+              184,
+              128
+            ],
+            [
+              183,
+              128
+            ],
+            [
+              182,
+              128
+            ],
+            [
+              181,
+              128
+            ],
+            [
+              180,
+              128
+            ],
+            [
+              179,
+              128
+            ],
+            [
+              178,
+              128
+            ],
+            [
+              177,
+              128
+            ],
+            [
+              176,
+              128
+            ],
+            [
+              175,
+              128
+            ],
+            [
+              174,
+              128
+            ],
+            [
+              173,
+              128
+            ],
+            [
+              172,
+              128
+            ],
+            [
+              171,
+              128
+            ],
+            [
+              170,
+              128
+            ],
+            [
+              169,
+              128
+            ],
+            [
+              168,
+              128
+            ],
+            [
+              167,
+              128
+            ],
+            [
+              166,
+              128
+            ],
+            [
+              165,
+              128
+            ],
+            [
+              164,
+              128
+            ],
+            [
+              163,
+              128
+            ],
+            [
+              162,
+              128
+            ],
+            [
+              161,
+              128
+            ],
+            [
+              160,
+              128
+            ],
+            [
+              159,
+              128
+            ],
+            [
+              158,
+              128
+            ],
+            [
+              157,
+              128
+            ],
+            [
+              156,
+              128
+            ],
+            [
+              155,
+              128
+            ],
+            [
+              154,
+              128
+            ],
+            [
+              153,
+              128
+            ],
+            [
+              152,
+              128
+            ],
+            [
+              151,
+              128
+            ],
+            [
+              150,
+              128
+            ],
+            [
+              149,
+              128
+            ],
+            [
+              148,
+              128
+            ],
+            [
+              147,
+              128
+            ],
+            [
+              146,
+              128
+            ],
+            [
+              145,
+              128
+            ],
+            [
+              144,
+              128
+            ],
+            [
+              143,
+              128
+            ],
+            [
+              142,
+              128
+            ],
+            [
+              141,
+              128
+            ],
+            [
+              140,
+              128
+            ],
+            [
+              139,
+              128
+            ],
+            [
+              138,
+              128
+            ],
+            [
+              137,
+              128
+            ],
+            [
+              136,
+              128
+            ],
+            [
+              135,
+              128
+            ],
+            [
+              134,
+              128
+            ],
+            [
+              133,
+              128
+            ],
+            [
+              132,
+              128
+            ],
+            [
+              131,
+              128
+            ],
+            [
+              131,
+              127
+            ],
+            [
+              131,
+              126
+            ],
+            [
+              131,
+              125
+            ],
+            [
+              131,
+              124
+            ],
+            [
+              131,
+              123
+            ],
+            [
+              131,
+              122
+            ],
+            [
+              131,
+              121
+            ],
+            [
+              131,
+              120
+            ],
+            [
+              131,
+              119
+            ],
+            [
+              131,
+              118
+            ],
+            [
+              131,
+              117
+            ],
+            [
+              131,
+              116
+            ],
+            [
+              131,
+              115
+            ],
+            [
+              131,
+              114
+            ],
+            [
+              131,
+              113
+            ],
+            [
+              131,
+              112
+            ],
+            [
+              131,
+              111
+            ],
+            [
+              131,
+              110
+            ],
+            [
+              131,
+              109
+            ],
+            [
+              131,
+              108
+            ],
+            [
+              131,
+              107
+            ],
+            [
+              131,
+              106
+            ],
+            [
+              131,
+              105
+            ],
+            [
+              131,
+              104
+            ],
+            [
+              131,
+              103
+            ],
+            [
+              131,
+              102
+            ],
+            [
+              131,
+              101
+            ],
+            [
+              131,
+              100
+            ],
+            [
+              131,
+              99
+            ],
+            [
+              131,
+              98
+            ],
+            [
+              131,
+              97
+            ],
+            [
+              131,
+              96
+            ],
+            [
+              131,
+              95
+            ],
+            [
+              131,
+              94
+            ],
+            [
+              131,
+              93
+            ],
+            [
+              131,
+              92
+            ],
+            [
+              131,
+              91
+            ],
+            [
+              131,
+              90
+            ],
+            [
+              131,
+              89
+            ],
+            [
+              131,
+              88
+            ],
+            [
+              131,
+              87
+            ],
+            [
+              131,
+              86
+            ],
+            [
+              131,
+              85
+            ],
+            [
+              131,
+              84
+            ],
+            [
+              131,
+              83
+            ],
+            [
+              131,
+              82
+            ],
+            [
+              131,
+              81
+            ],
+            [
+              131,
+              80
+            ],
+            [
+              131,
+              79
+            ],
+            [
+              131,
+              78
+            ],
+            [
+              131,
+              77
+            ],
+            [
+              131,
+              76
+            ],
+            [
+              131,
+              75
+            ],
+            [
+              131,
+              74
+            ],
+            [
+              131,
+              73
+            ],
+            [
+              131,
+              72
+            ],
+            [
+              131,
+              71
+            ],
+            [
+              131,
+              70
+            ],
+            [
+              131,
+              69
+            ],
+            [
+              131,
+              68
+            ],
+            [
+              131,
+              67
+            ],
+            [
+              131,
+              66
+            ],
+            [
+              131,
+              65
+            ],
+            [
+              131,
+              64
+            ],
+            [
+              131,
+              63
+            ],
+            [
+              131,
+              62
+            ],
+            [
+              131,
+              61
+            ],
+            [
+              131,
+              60
+            ],
+            [
+              131,
+              59
+            ],
+            [
+              131,
+              58
+            ],
+            [
+              131,
+              57
+            ],
+            [
+              131,
+              56
+            ],
+            [
+              131,
+              55
+            ],
+            [
+              131,
+              54
+            ],
+            [
+              131,
+              53
+            ],
+            [
+              131,
+              52
+            ],
+            [
+              131,
+              51
+            ],
+            [
+              131,
+              50
+            ],
+            [
+              131,
+              49
+            ],
+            [
+              131,
+              48
+            ],
+            [
+              131,
+              47
+            ],
+            [
+              131,
+              46
+            ],
+            [
+              131,
+              45
+            ],
+            [
+              131,
+              44
+            ],
+            [
+              131,
+              43
+            ],
+            [
+              131,
+              42
+            ],
+            [
+              131,
+              41
+            ],
+            [
+              131,
+              40
+            ],
+            [
+              131,
+              39
+            ],
+            [
+              131,
+              38
+            ],
+            [
+              131,
+              37
+            ],
+            [
+              131,
+              36
+            ],
+            [
+              131,
+              35
+            ],
+            [
+              131,
+              34
+            ],
+            [
+              131,
+              33
+            ],
+            [
+              131,
+              32
+            ],
+            [
+              131,
+              31
+            ],
+            [
+              131,
+              30
+            ],
+            [
+              131,
+              29
+            ],
+            [
+              131,
+              28
+            ],
+            [
+              131,
+              27
+            ],
+            [
+              131,
+              26
+            ],
+            [
+              131,
+              25
+            ],
+            [
+              131,
+              24
+            ]
+          ],
+          "reference_path_b_rc": [
+            [
+              191,
+              128
+            ],
+            [
+              191,
+              127
+            ],
+            [
+              190,
+              127
+            ],
+            [
+              189,
+              127
+            ],
+            [
+              188,
+              127
+            ],
+            [
+              187,
+              127
+            ],
+            [
+              186,
+              127
+            ],
+            [
+              185,
+              127
+            ],
+            [
+              184,
+              127
+            ],
+            [
+              183,
+              127
+            ],
+            [
+              182,
+              127
+            ],
+            [
+              181,
+              127
+            ],
+            [
+              180,
+              127
+            ],
+            [
+              179,
+              127
+            ],
+            [
+              178,
+              127
+            ],
+            [
+              177,
+              127
+            ],
+            [
+              176,
+              127
+            ],
+            [
+              175,
+              127
+            ],
+            [
+              174,
+              127
+            ],
+            [
+              173,
+              127
+            ],
+            [
+              172,
+              127
+            ],
+            [
+              171,
+              127
+            ],
+            [
+              170,
+              127
+            ],
+            [
+              169,
+              127
+            ],
+            [
+              168,
+              127
+            ],
+            [
+              167,
+              127
+            ],
+            [
+              166,
+              127
+            ],
+            [
+              165,
+              127
+            ],
+            [
+              164,
+              127
+            ],
+            [
+              163,
+              127
+            ],
+            [
+              162,
+              127
+            ],
+            [
+              161,
+              127
+            ],
+            [
+              160,
+              127
+            ],
+            [
+              159,
+              127
+            ],
+            [
+              158,
+              127
+            ],
+            [
+              157,
+              127
+            ],
+            [
+              156,
+              127
+            ],
+            [
+              155,
+              127
+            ],
+            [
+              154,
+              127
+            ],
+            [
+              153,
+              127
+            ],
+            [
+              152,
+              127
+            ],
+            [
+              151,
+              127
+            ],
+            [
+              150,
+              127
+            ],
+            [
+              149,
+              127
+            ],
+            [
+              148,
+              127
+            ],
+            [
+              147,
+              127
+            ],
+            [
+              146,
+              127
+            ],
+            [
+              145,
+              127
+            ],
+            [
+              144,
+              127
+            ],
+            [
+              143,
+              127
+            ],
+            [
+              142,
+              127
+            ],
+            [
+              141,
+              127
+            ],
+            [
+              140,
+              127
+            ],
+            [
+              139,
+              127
+            ],
+            [
+              138,
+              127
+            ],
+            [
+              137,
+              127
+            ],
+            [
+              136,
+              127
+            ],
+            [
+              135,
+              127
+            ],
+            [
+              134,
+              127
+            ],
+            [
+              133,
+              127
+            ],
+            [
+              132,
+              127
+            ],
+            [
+              132,
+              126
+            ],
+            [
+              132,
+              125
+            ],
+            [
+              132,
+              124
+            ],
+            [
+              132,
+              123
+            ],
+            [
+              132,
+              122
+            ],
+            [
+              132,
+              121
+            ],
+            [
+              132,
+              120
+            ],
+            [
+              132,
+              119
+            ],
+            [
+              132,
+              118
+            ],
+            [
+              132,
+              117
+            ],
+            [
+              132,
+              116
+            ],
+            [
+              132,
+              115
+            ],
+            [
+              132,
+              114
+            ],
+            [
+              132,
+              113
+            ],
+            [
+              132,
+              112
+            ],
+            [
+              132,
+              111
+            ],
+            [
+              132,
+              110
+            ],
+            [
+              132,
+              109
+            ],
+            [
+              132,
+              108
+            ],
+            [
+              132,
+              107
+            ],
+            [
+              132,
+              106
+            ],
+            [
+              132,
+              105
+            ],
+            [
+              132,
+              104
+            ],
+            [
+              132,
+              103
+            ],
+            [
+              132,
+              102
+            ],
+            [
+              132,
+              101
+            ],
+            [
+              132,
+              100
+            ],
+            [
+              132,
+              99
+            ],
+            [
+              132,
+              98
+            ],
+            [
+              132,
+              97
+            ],
+            [
+              132,
+              96
+            ],
+            [
+              132,
+              95
+            ],
+            [
+              132,
+              94
+            ],
+            [
+              132,
+              93
+            ],
+            [
+              132,
+              92
+            ],
+            [
+              132,
+              91
+            ],
+            [
+              132,
+              90
+            ],
+            [
+              132,
+              89
+            ],
+            [
+              132,
+              88
+            ],
+            [
+              132,
+              87
+            ],
+            [
+              132,
+              86
+            ],
+            [
+              132,
+              85
+            ],
+            [
+              132,
+              84
+            ],
+            [
+              132,
+              83
+            ],
+            [
+              132,
+              82
+            ],
+            [
+              132,
+              81
+            ],
+            [
+              132,
+              80
+            ],
+            [
+              132,
+              79
+            ],
+            [
+              132,
+              78
+            ],
+            [
+              132,
+              77
+            ],
+            [
+              132,
+              76
+            ],
+            [
+              132,
+              75
+            ],
+            [
+              132,
+              74
+            ],
+            [
+              132,
+              73
+            ],
+            [
+              132,
+              72
+            ],
+            [
+              132,
+              71
+            ],
+            [
+              132,
+              70
+            ],
+            [
+              132,
+              69
+            ],
+            [
+              132,
+              68
+            ],
+            [
+              132,
+              67
+            ],
+            [
+              132,
+              66
+            ],
+            [
+              132,
+              65
+            ],
+            [
+              132,
+              64
+            ],
+            [
+              132,
+              63
+            ],
+            [
+              132,
+              62
+            ],
+            [
+              132,
+              61
+            ],
+            [
+              132,
+              60
+            ],
+            [
+              132,
+              59
+            ],
+            [
+              132,
+              58
+            ],
+            [
+              132,
+              57
+            ],
+            [
+              132,
+              56
+            ],
+            [
+              132,
+              55
+            ],
+            [
+              132,
+              54
+            ],
+            [
+              132,
+              53
+            ],
+            [
+              132,
+              52
+            ],
+            [
+              132,
+              51
+            ],
+            [
+              132,
+              50
+            ],
+            [
+              132,
+              49
+            ],
+            [
+              132,
+              48
+            ],
+            [
+              132,
+              47
+            ],
+            [
+              132,
+              46
+            ],
+            [
+              132,
+              45
+            ],
+            [
+              132,
+              44
+            ],
+            [
+              132,
+              43
+            ],
+            [
+              132,
+              42
+            ],
+            [
+              132,
+              41
+            ],
+            [
+              132,
+              40
+            ],
+            [
+              132,
+              39
+            ],
+            [
+              132,
+              38
+            ],
+            [
+              132,
+              37
+            ],
+            [
+              132,
+              36
+            ],
+            [
+              132,
+              35
+            ],
+            [
+              132,
+              34
+            ],
+            [
+              132,
+              33
+            ],
+            [
+              132,
+              32
+            ],
+            [
+              132,
+              31
+            ],
+            [
+              132,
+              30
+            ],
+            [
+              132,
+              29
+            ],
+            [
+              132,
+              28
+            ],
+            [
+              132,
+              27
+            ],
+            [
+              132,
+              26
+            ],
+            [
+              132,
+              25
+            ],
+            [
+              132,
+              24
+            ],
+            [
+              131,
+              24
+            ]
+          ],
+          "shared_internal_vertices": 0,
+          "meaning": "Distinct free centre-cell paths; not necessarily different semantic corridors or disjoint robot footprints",
+          "search_limit": "This deterministic first-path exclusion algorithm is sufficient but not exhaustive; failure does not prove only one path exists",
+          "label_zh": "参考图上两条内部节点不相交的栅格路径",
+          "selection_rule": "source name then fixed input-identity SHA256 order; first two qualifying distinct parents; reference geometry only, no model outputs"
+        }
+      ],
+      "status": "available"
+    }
+  },
+  "multi_radius_cases": [
+    {
+      "case_category": "multi_radius",
+      "global_id": "obs_003621",
+      "parent_group": "3RScan:a0905ffa-66f7-2272-9ca9-24c7ec00f34f",
+      "scene_id": "a0905ff4-66f7-2272-9e2c-823789eb613a",
+      "source": "3RScan",
+      "physical_archive_split": "train",
+      "candidate_split": "validation",
+      "validation_only": true,
+      "radii_cells": [
+        0,
+        10,
+        20
+      ],
+      "reference_packet_sha256": "5b2771eec4c1560ceba7ef19932cdfef6ae83f2381f7c814b8d3b2d15571bc8b",
+      "query_id": "obs_003621:q004",
+      "candidate_index": 4,
+      "start_rc": [
+        191,
+        128
+      ],
+      "goal_rc": [
+        226,
+        108
+      ],
+      "reference_events": [
+        true,
+        false,
+        false
+      ],
+      "no_eligible_query": false,
+      "selection_rule": "first two nonempty-query general cases in the original fixed list",
+      "label_zh": "同一固定查询的0/10/20格footprint对照"
+    },
+    {
+      "case_category": "multi_radius",
+      "global_id": "obs_016844",
+      "parent_group": "3RScan:0cac75c4-8d6f-2d13-8c37-fcfaf141ae5a",
+      "scene_id": "0cac75c4-8d6f-2d13-8c37-fcfaf141ae5a",
+      "source": "3RScan",
+      "physical_archive_split": "train",
+      "candidate_split": "validation",
+      "validation_only": true,
+      "radii_cells": [
+        0,
+        10,
+        20
+      ],
+      "reference_packet_sha256": "87181dc081118e08008335fd1e80ad5df3253e61679d1dccae9e77c6b3e0a653",
+      "query_id": "obs_016844:q002",
+      "candidate_index": 2,
+      "start_rc": [
+        191,
+        128
+      ],
+      "goal_rc": [
+        226,
+        148
+      ],
+      "reference_events": [
+        true,
+        false,
+        false
+      ],
+      "no_eligible_query": false,
+      "selection_rule": "first two nonempty-query general cases in the original fixed list",
+      "label_zh": "同一固定查询的0/10/20格footprint对照"
+    }
+  ],
+  "reference_category_search": {
+    "unreachable": {
+      "candidate_query_count": 2460,
+      "queries_examined": 13,
+      "selected_distinct_parents": 2
+    },
+    "narrow_bottleneck": {
+      "candidate_query_count": 2460,
+      "queries_examined": 1221,
+      "selected_distinct_parents": 2
+    },
+    "multiple_alternatives": {
+      "candidate_query_count": 2460,
+      "queries_examined": 4,
+      "selected_distinct_parents": 2
+    }
+  },
+  "source_hashes": {
+    "scripts/freeze_flatlands_formal_figures.py": "6541c7c57db9947005b3208e2e91ec75c03dd7f97d605dbdb01c8deeb9ef9118",
+    "src/pathrel/formal_data.py": "6da3a3c7a3b315432c823ee38ec6c62099410af4ea40dbb15bd3b72a7c98e8cc"
+  },
+  "interpretation": "General figures are input-blind. Special cases are reference-geometry strata, selected before any formal model outputs. They are examples, not an unbiased estimate of category frequency or model superiority.",
+  "display_requirement": "Every rendered panel must state parent/global scene, query, radius in cells, method, seed and validation-only; no winner/SOTA language"
+}

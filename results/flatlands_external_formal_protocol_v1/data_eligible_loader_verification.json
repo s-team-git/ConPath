@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "created_utc": "2026-09-10T02:57:02.738950+00:00",
+  "data_root": "results/flatlands_external_formal_protocol_v1/data_eligible_v1",
+  "seal_sha256": "034886fe31e816844abd2439240eb3c7ee97a8dc362ec05b11223cfd918b9efb",
+  "sealed_files_verified": 2265,
+  "query_events": 84606,
+  "all_query_keys_unique_and_input_only": true,
+  "split_loader_trace": {
+    "train": {
+      "npz_opened": 1970,
+      "other_split_npz_opened": 0,
+      "parents": 985,
+      "events": 73716,
+      "array_bytes": 1937645396
+    },
+    "calibration": {
+      "npz_opened": 97,
+      "other_split_npz_opened": 0,
+      "parents": 97,
+      "events": 3510,
+      "array_bytes": 95405190
+    },
+    "validation": {
+      "npz_opened": 191,
+      "other_split_npz_opened": 0,
+      "parents": 191,
+      "events": 7380,
+      "array_bytes": 187866420
+    }
+  },
+  "condition_equals_same_three_state_information": true,
+  "new_raw_or_test_png_reads": 0
+}

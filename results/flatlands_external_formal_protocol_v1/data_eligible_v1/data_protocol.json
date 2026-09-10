@@ -1,0 +1,292 @@
+{
+  "id": "flatlands_external_formal_data_eligible_v1",
+  "created_utc": "2026-09-10T02:50:33.871359+00:00",
+  "scope": "Shared validation-only development comparison; neither fresh final test nor published benchmark replication",
+  "physical_archive_split": "train",
+  "provenance_split_is_metadata_not_partition": true,
+  "candidate_sha256": "ccc86a4ca7016515e1f2c0371ccf1bb21a9ee3d8a1b9f92a63bef432360741e2",
+  "selected_sha256_before_image_access": null,
+  "selection": "Existing candidate split; source capacity-capped parent SHA256 rank; independently hash-ranked views per parent; no outcome-based replacement",
+  "parent_quotas": {
+    "train": {
+      "3RScan": 232,
+      "ARKitScenes": 232,
+      "Matterport3D": 71,
+      "ScanNet": 232,
+      "ZInD": 218
+    },
+    "calibration": {
+      "3RScan": 23,
+      "ARKitScenes": 23,
+      "Matterport3D": 8,
+      "ScanNet": 23,
+      "ZInD": 20
+    },
+    "validation": {
+      "3RScan": 46,
+      "ARKitScenes": 46,
+      "Matterport3D": 8,
+      "ScanNet": 46,
+      "ZInD": 45
+    }
+  },
+  "views_per_parent": {
+    "train": 2,
+    "calibration": 1,
+    "validation": 1
+  },
+  "capacity_metadata_audit": {
+    "counts": {
+      "train": {
+        "3RScan": {
+          "candidate_parents": 373,
+          "eligible_parents": 373,
+          "selected_parents": 232,
+          "views_per_parent": 2
+        },
+        "ARKitScenes": {
+          "candidate_parents": 1323,
+          "eligible_parents": 1318,
+          "selected_parents": 232,
+          "views_per_parent": 2
+        },
+        "Matterport3D": {
+          "candidate_parents": 72,
+          "eligible_parents": 72,
+          "selected_parents": 72,
+          "views_per_parent": 2
+        },
+        "ScanNet": {
+          "candidate_parents": 564,
+          "eligible_parents": 564,
+          "selected_parents": 232,
+          "views_per_parent": 2
+        },
+        "ZInD": {
+          "candidate_parents": 1257,
+          "eligible_parents": 1257,
+          "selected_parents": 232,
+          "views_per_parent": 2
+        }
+      },
+      "calibration": {
+        "3RScan": {
+          "candidate_parents": 46,
+          "eligible_parents": 46,
+          "selected_parents": 23,
+          "views_per_parent": 1
+        },
+        "ARKitScenes": {
+          "candidate_parents": 165,
+          "eligible_parents": 165,
+          "selected_parents": 23,
+          "views_per_parent": 1
+        },
+        "Matterport3D": {
+          "candidate_parents": 8,
+          "eligible_parents": 8,
+          "selected_parents": 8,
+          "views_per_parent": 1
+        },
+        "ScanNet": {
+          "candidate_parents": 70,
+          "eligible_parents": 70,
+          "selected_parents": 23,
+          "views_per_parent": 1
+        },
+        "ZInD": {
+          "candidate_parents": 156,
+          "eligible_parents": 156,
+          "selected_parents": 23,
+          "views_per_parent": 1
+        }
+      },
+      "validation": {
+        "3RScan": {
+          "candidate_parents": 46,
+          "eligible_parents": 46,
+          "selected_parents": 46,
+          "views_per_parent": 1
+        },
+        "ARKitScenes": {
+          "candidate_parents": 165,
+          "eligible_parents": 165,
+          "selected_parents": 46,
+          "views_per_parent": 1
+        },
+        "Matterport3D": {
+          "candidate_parents": 8,
+          "eligible_parents": 8,
+          "selected_parents": 8,
+          "views_per_parent": 1
+        },
+        "ScanNet": {
+          "candidate_parents": 70,
+          "eligible_parents": 70,
+          "selected_parents": 46,
+          "views_per_parent": 1
+        },
+        "ZInD": {
+          "candidate_parents": 156,
+          "eligible_parents": 156,
+          "selected_parents": 46,
+          "views_per_parent": 1
+        }
+      }
+    },
+    "metadata_exclusions": [
+      {
+        "parent_group": "ARKitScenes:460417",
+        "source": "ARKitScenes",
+        "split": "train",
+        "observations": 1,
+        "reason": "insufficient_metadata_views"
+      },
+      {
+        "parent_group": "ARKitScenes:469455",
+        "source": "ARKitScenes",
+        "split": "train",
+        "observations": 1,
+        "reason": "insufficient_metadata_views"
+      },
+      {
+        "parent_group": "ARKitScenes:470322",
+        "source": "ARKitScenes",
+        "split": "train",
+        "observations": 1,
+        "reason": "insufficient_metadata_views"
+      },
+      {
+        "parent_group": "ARKitScenes:471013",
+        "source": "ARKitScenes",
+        "split": "train",
+        "observations": 1,
+        "reason": "insufficient_metadata_views"
+      },
+      {
+        "parent_group": "ARKitScenes:471651",
+        "source": "ARKitScenes",
+        "split": "train",
+        "observations": 1,
+        "reason": "insufficient_metadata_views"
+      }
+    ]
+  },
+  "input": {
+    "external_channels": [
+      "observed_free",
+      "unknown",
+      "valid_support"
+    ],
+    "conpath_lossless_channels": [
+      "observed_free",
+      "observed_blocked",
+      "unknown"
+    ],
+    "support": "supplied epistemic_mask",
+    "hidden": "unobserved AND valid_support",
+    "observed_free": "observed_floor AND valid_support",
+    "observed_blocked": "valid_support AND NOT hidden AND NOT observed_free",
+    "partial_observation_generation": "Use the released observed_floor/unobserved/epistemic_mask PNGs and camera metadata unchanged; no resimulation, target-based masking, augmentation or added input channel",
+    "projection": "All models preserve observed free/blocked evidence and close every cell outside supplied support"
+  },
+  "query": {
+    "distances_cells": [
+      40,
+      80,
+      120
+    ],
+    "angles_deg": [
+      0,
+      30,
+      60,
+      90,
+      120,
+      150,
+      180,
+      210,
+      240,
+      270,
+      300,
+      330
+    ],
+    "radii_cells": [
+      0,
+      10,
+      20
+    ],
+    "units": "grid cells only; no physical metre conversion",
+    "start": "nearest observed-free valid cell to released camera [x,y], squared-distance then row/column tie break",
+    "goals": "polar stencil about start; retain all in-bounds distinct unknown-valid goals; freeze before target read",
+    "target_blocked_goal": "retain as a negative event",
+    "query_order": "SHA256(global_id,candidate_index)",
+    "evaluation": "all input-eligible query-radius events; no target-based removal",
+    "oracle": "exact integer disk clearance, closed image boundary, four-neighbour connectivity"
+  },
+  "weighting": {
+    "primary": "equal independent parent place; equal observation within parent; equal eligible query within observation",
+    "pooled": "all query-radius events equally weighted",
+    "secondary": "equal source macro and per-source metrics",
+    "zero_queries": "retain map training/scoring; exclude only from event denominator and report counts"
+  },
+  "test_lock": {
+    "new_physical_test_images_allowed": false,
+    "location_6_access_allowed": false,
+    "final_test_access_allowed": false,
+    "only_archive_member_prefix": "train/obs_XXXXXX/",
+    "historical_read_scope_warning": "Old code had physical-test access; no new access is allowed here. Historical development exposure is disclosed, not erased.",
+    "physical_test_parent_presence": "metadata flag only; never open the referenced physical test maps"
+  },
+  "known_development_history_sources": {
+    "results/flatlands_parent_groups_v2/old_train_validation_parents.csv": "f8e9994b6c63bc0bc3a07c513a704d405795e01acb28e3cb24800042c6b5d85a",
+    "results/parent_group_pilot_v1/data/selected.csv": "102f27e8f4186920035c87dcf70b113a4208a079afed257401fca4c8706fbb2c",
+    "results/model_gallery_20260909_v1/selection.json": "a202e6ea56702ef58239e72566c59bd6fac996435c2207ae9b6e31b21a2399d7"
+  },
+  "source_hashes": {
+    "scripts/prepare_flatlands_formal_data.py": "85609dc50b70938a599858af4333fd471f7ddb2502b9cd662aea7b3708d8f6c5",
+    "src/pathrel/formal_data.py": "6da3a3c7a3b315432c823ee38ec6c62099410af4ea40dbb15bd3b72a7c98e8cc",
+    "src/pathrel/data_access.py": "62c7c127527e2c181a1446a896869e2e89f5a4588a18ae77bdf80373a44927fe",
+    "src/pathrel/parent_pilot_data.py": "119037a5924fecb2fcfb17b7fc86316b58e4b4d3b872e142a251e31ce1ec4475",
+    "src/pathrel/flatlands_query.py": "a298bfcd47c3c50247e81b89eb37ec38461fc4c198fe7430f99ddfae17578ddc",
+    "scripts/evaluate_flatlands_support_clamped.py": "3d9dac0555fbced0485c81694e73e1618b81d62870b4916495712e11566cf669",
+    "scripts/quarantine_flatlands_formal_duplicates.py": "53d4f06daba58b240b13f472543f3223b220d6239c731344cef43cefd884efaa"
+  },
+  "git_commit_at_data_selection": "e951289c27fc1f1f282b072c36f060247dc566d4",
+  "png_decoder": {
+    "implementation": "strict PNG header + Pillow verify + binary 0/255 validation",
+    "pillow": "12.3.0"
+  },
+  "failure_policy": "Keep frozen selection and failed audit; do not replace cases after viewing targets or overwrite this directory",
+  "initial_selection_protocol_sha256": "5c67ba316481b529b5ff310050f56eb29c5298e1d36c1cc69e0bda8ee5861eae",
+  "initial_parent_quotas": {
+    "train": {
+      "3RScan": 232,
+      "ARKitScenes": 232,
+      "Matterport3D": 72,
+      "ScanNet": 232,
+      "ZInD": 232
+    },
+    "calibration": {
+      "3RScan": 23,
+      "ARKitScenes": 23,
+      "Matterport3D": 8,
+      "ScanNet": 23,
+      "ZInD": 23
+    },
+    "validation": {
+      "3RScan": 46,
+      "ARKitScenes": 46,
+      "Matterport3D": 8,
+      "ScanNet": 46,
+      "ZInD": 46
+    }
+  },
+  "selected_sha256": "70d1b4087ebed68ddba95ef252b78df0cea7186a679fbb931a465df3fe762ecf",
+  "selection_timing": "Initial candidate/parent/view list frozen before image access; pretraining input-only parent quarantine applied to cached packets without replacement or new PNG reads",
+  "quarantine_decision_sha256": "ae93f4474b72a96b3951267b606228c60cb2a7c03306204ab19119a6a040cf59",
+  "source_image_access_ledger": {
+    "path": "results/flatlands_external_formal_protocol_v1/data/image_access.jsonl",
+    "sha256": "dca9967192b1053169ac86b6d32fb4e93b313ec970f2ce4a451f09691ea0ba82"
+  },
+  "input_query_counter_interpretation": "input_access_count records refer to the initial source_image_access_ledger; the eligible copy performs no archive reads"
+}
