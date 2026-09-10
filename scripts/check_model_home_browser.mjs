@@ -41,7 +41,9 @@ try {
     check(JSON.stringify([...options].sort())===JSON.stringify(expectedModels),'Model selector omitted an available model');
     const availableModels = row => options.filter(model => row.panels[model+'_sample'] && row.panels[model] && Number.isFinite(row.event_probability[model]));
     const modelViewStates = cases.reduce((count,row)=>count+availableModels(row).length*2,0);
-    const resultSource = data.results_cohort === 'new_pilot' ? 'data/parent_group_pilot_zh.json' : 'data/current_baseline_k4_analysis.json';
+    const coherent = data.results_cohort === 'coherent_matched_two_seed';
+    const hasPilot = coherent || data.results_cohort === 'new_pilot';
+    const resultSource = coherent ? 'data/coherent_parent_pilot_zh.json' : hasPilot ? 'data/parent_group_pilot_zh.json' : 'data/current_baseline_k4_analysis.json';
     const scoreText = await fetch(new URL(resultSource, base)).then(response=>{check(response.ok,'Published results unavailable');return response.text();});
     const scores = JSON.parse(scoreText);
     await screenshot(`${width}-home`);
@@ -49,16 +51,30 @@ try {
     const resultRows = await evaluate(`[...document.querySelectorAll('[data-home-method]')].map(row=>({method:row.dataset.homeMethod,values:[...row.querySelectorAll('td')].map(cell=>cell.textContent)}))`);
     for (const row of resultRows) {
       const budget = ['correlated','independent'].includes(row.method) ? '32' : '1';
-      const score = data.results_cohort === 'new_pilot' ? scores.methods[row.method].budgets[budget] : scores.methods[row.method];
-      const samples = data.results_cohort === 'new_pilot' ? (row.method === 'train_radius_prior' ? '—' : budget) : String(score.samples);
+      const score = hasPilot && !coherent ? scores.methods[row.method].budgets[budget] : scores.methods[row.method];
+      const samples = hasPilot && !coherent ? (row.method === 'train_radius_prior' ? '—' : budget) : String(score.samples);
       check(JSON.stringify(row.values)===JSON.stringify([samples,score.brier.mean.toFixed(4),(score.risk30.mean*100).toFixed(2)+'%']),'Summary table mixed cohorts or mismatched published metrics: '+row.method);
     }
-    if (data.results_cohort === 'new_pilot') {
+    if (hasPilot) {
+      const baselineText = coherent ? await fetch(new URL('data/parent_group_pilot_zh.json',base)).then(response=>response.text()) : scoreText;
       const verification = await fetch(new URL('data/parent_group_pilot_verification.json',base)).then(response=>response.json());
-      check(verification.passed===true && verification.analysis_sha256===createHash('sha256').update(scoreText).digest('hex') && data.pilot_publication_state==='verified','Pilot appeared before verification or result checksum changed');
+      check(verification.passed===true && verification.analysis_sha256===createHash('sha256').update(baselineText).digest('hex') && data.pilot_publication_state==='verified','Pilot appeared before verification or result checksum changed');
       const pilotCount = cases.filter(row=>row.cohort==='new_pilot').length;
       check(pilotCount===data.pilot_cases && cases.slice(0,pilotCount).every(row=>row.cohort==='new_pilot') && cases.slice(pilotCount).every(row=>row.cohort!=='new_pilot'),'Pilot cases are not placed before historical cases');
       check(await evaluate(`document.querySelector('#results a[href="pilot.html#scores"]') && document.querySelector('#results').textContent.includes('非最终测试')`),'Pilot scope or report link absent');
+    }
+    if (coherent) {
+      const verification = await fetch(new URL('data/coherent_parent_pilot_verification.json',base)).then(response=>response.json());
+      const galleryVerification = await fetch(new URL('data/coherent_pilot_gallery_verification.json',base)).then(response=>response.json());
+      const galleryText = await fetch(new URL('data/coherent_pilot_gallery_zh.json',base)).then(response=>response.text());
+      const digest = createHash('sha256').update(scoreText).digest('hex');
+      check(verification.passed===true && verification.analysis_sha256===digest && data.coherent_publication_state==='verified','Improvement score audit or hash absent');
+      check(galleryVerification.passed===true && galleryVerification.analysis_sha256===digest && galleryVerification.gallery_sha256===createHash('sha256').update(galleryText).digest('hex'),'Improvement image audit or hash absent');
+      check(JSON.stringify(scores.training_seeds)==='[20260910,20260911]' && JSON.stringify(data.result_seeds)===JSON.stringify(scores.training_seeds) && scores.final_test===false && scores.validation_reused_for_model_development===true,'Improvement seed matching or development scope changed');
+      check(methods.length===4 && methods.every(method=>JSON.stringify(scores.methods[method].seeds)===JSON.stringify(scores.training_seeds)),'A result method includes unmatched seeds');
+      check(cases.length===40 && data.coherent_cases===10 && cases.slice(0,10).every(row=>row.panels.coherent_categorical_sample && row.seed===20260910 && row.samples===32) && cases.slice(10).every(row=>!row.panels.coherent_categorical_sample),'Improvement duplicated or changed the fixed cases');
+      check(await evaluate(`document.querySelector('#home-model').value==='coherent_categorical' && document.querySelector('#results a[href="coherent.html#scores"]') && document.querySelector('#results').textContent.includes('开发复用') && document.querySelector('#results').textContent.includes('区间仍跨零') && document.querySelector('#next').textContent.includes('当前不追加训练')`),'Improvement defaults, report link, or Chinese interpretation missing');
+      check(await evaluate(`(()=>{const d=JSON.parse(document.querySelector('#home-data').textContent);return [...document.querySelectorAll('[data-case] img')].every((image,i)=>image.getAttribute('src')===(d.examples[i].panels.coherent_categorical_sample||d.examples[i].panels.correlated_sample));})()`),'Thumbnails do not show the available model version');
     }
     check(await evaluate(`!document.querySelector('#training-ablations') && !document.querySelector('#flatlands-external-progress')`),'Research detail leaked into homepage');
     await evaluate(`document.querySelector('#effects').scrollIntoView({behavior:'instant',block:'start'})`);await screenshot(`${width}-effects`);
@@ -68,6 +84,10 @@ try {
       const failure = (row.event_probability[model]>=.5)!==Boolean(row.target);
       check(await evaluate(`(()=>{const d=JSON.parse(document.querySelector('#home-data').textContent).examples[${index}];return document.querySelector('#image-prediction').getAttribute('src')===d.panels[${JSON.stringify(predictionKey)}] && document.querySelector('#image-input').getAttribute('src')===d.panels.observed && document.querySelector('#image-reference').getAttribute('src')===d.panels.reference && document.querySelector('#case-probability').textContent===(d.event_probability[${JSON.stringify(model)}]*100).toFixed(1)+'%';})()`),'Rendered model or probability mismatches frozen source');
       check(await evaluate(`document.querySelector('#case-reading').classList.contains('failure')===${failure} && document.querySelector('#case-explanation').textContent.includes(${JSON.stringify(failure?'预测失败':'预测正确')})`),'Chinese outcome explanation disagrees with reference target');
+      if (row.panels.coherent_categorical) {
+        const label = {coherent_categorical:'ConPath改进版',correlated:'原ConPath',independent:'独立单元对照'}[model];
+        check(await evaluate(`document.querySelector('[data-panel="prediction"] figcaption span').textContent.includes(${JSON.stringify(label)}) && document.querySelector('#case-source').textContent.includes('相同种子20260910') && document.querySelector('#case-source').textContent.includes('开发复用') && document.querySelector('#case-source').textContent.includes('第1次采样') && document.querySelector('#case-source').textContent.includes('32次采样')`),'Model version, seed, sample identity, or development reuse caption absent');
+      }
       check((await status()).broken.length===0,'Broken model map');
     }
     const failureCase = cases.flatMap((row,index)=>availableModels(row).map(model=>({row,index,model}))).find(({row,model})=>(row.event_probability[model]>=.5)!==Boolean(row.target));
@@ -104,11 +124,17 @@ try {
       for (const model of options.filter(value=>!available.includes(value))) {
         await selectCase(index,model,'sample');
         check(await evaluate(`document.querySelector('#home-model').selectedOptions[0].disabled===false && document.querySelector('#home-model option[value="${model}"]').disabled`),'Unavailable model did not fall back to an available model');
+        if (model==='coherent_categorical') check(await evaluate(`document.querySelector('#home-model').value==='correlated' && document.querySelector('#case-source').textContent.includes('已显示原ConPath')`),'Historical case lacks explicit Chinese model fallback');
       }
+    }
+    if (coherent) {
+      await selectCase(10,'coherent_categorical','sample');
+      await evaluate(`document.querySelector('[data-case="0"]').click()`);
+      check(await evaluate(`document.querySelector('#home-model').value==='coherent_categorical'`),'Preferred improvement model was lost after visiting an older case');
     }
     await images();const report=await status();check(report.scrollWidth<=width+1 && report.rows===methods.length && !report.errorBanner && !report.broken.length,'Homepage viewport or runtime failure: '+JSON.stringify(report));
     reports.push({...report,cases:cases.length,modelViewStates,panels:3,sources:sources.length,resultsCohort:data.results_cohort||'historical',firstActualWorldAlwaysShown:true});
-    if (data.results_cohort === 'new_pilot') {
+    if (hasPilot) {
       await command('Page.navigate',{url:new URL('pilot.html',base).href});
       for(let i=0;i<80;i++){if(await evaluate(`document.querySelectorAll('#scores tbody tr').length===7`))break;await delay(100);}
       check(await evaluate(`document.querySelectorAll('#scores tbody tr').length===7 && document.documentElement.lang==='zh-CN'`),'Detailed pilot report is missing');
@@ -119,6 +145,18 @@ try {
       const pilot = await evaluate(`({width:innerWidth,scrollWidth:document.documentElement.scrollWidth,broken:[...document.images].filter(i=>!i.complete || !i.naturalWidth).map(i=>i.src),pdfLinks:document.querySelectorAll('a[href$=".pdf"]').length})`);
       check(pilot.scrollWidth<=width+1 && !pilot.broken.length && pilot.pdfLinks===2,'Detailed pilot report layout or images failed: '+JSON.stringify(pilot));
       reports.at(-1).detailedPilotReport = pilot;
+    }
+    if (coherent) {
+      await command('Page.navigate',{url:new URL('coherent.html',base).href});
+      for(let i=0;i<80;i++){if(await evaluate(`document.querySelectorAll('#scores tbody tr').length===4`))break;await delay(100);}
+      check(await evaluate(`document.querySelectorAll('#scores tbody tr').length===4 && document.documentElement.lang==='zh-CN' && document.body.textContent.includes('20260910') && document.body.textContent.includes('20260911') && document.body.textContent.includes('非最终测试')`),'Detailed improvement report or paired-seed scope missing');
+      await images();
+      await evaluate(`document.querySelector('#scores').scrollIntoView({behavior:'instant',block:'start'})`);
+      await screenshot(`${width}-coherent-report`);
+      await evaluate(`document.querySelectorAll('details').forEach(detail=>detail.open=true)`);await images();
+      const detail = await evaluate(`({width:innerWidth,scrollWidth:document.documentElement.scrollWidth,broken:[...document.images].filter(i=>!i.complete || !i.naturalWidth).map(i=>i.src),pdfLinks:document.querySelectorAll('a[href$=".pdf"]').length})`);
+      check(detail.scrollWidth<=width+1 && !detail.broken.length && detail.pdfLinks===2,'Detailed improvement report layout or charts failed: '+JSON.stringify(detail));
+      reports.at(-1).detailedImprovementReport = detail;
     }
   }
   await command('Page.navigate',{url:base+'#baseline-review'});

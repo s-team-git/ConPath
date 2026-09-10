@@ -2,7 +2,7 @@
 
 **读取范围更正：旧训练／验证包含原发布test中的8／5条观测，本轮回放也读取了这5条验证观测。更早的512观测查询审计检查过53条物理test观测（含32条ScanNet++）。因此撤回“物理test从未读取”的说法；旧 `test_evaluated=false` 等标志不能证明物理测试未触碰。详见[读取范围更正记录](site/data/flatlands_read_scope_erratum.json)。已停止进一步读取物理test图片，最终留出集需要审核全部历史访问并排除已检查的父级地点。**
 
-Working manuscript, updated 2026-09-09. Physical-place isolation failed on the old FlatLands cohort; results below are diagnostic, not unseen-building evidence. Current numerical tables and standalone figures are generated in [PAPER_EVIDENCE.md](PAPER_EVIDENCE.md); a [Chinese evaluation summary](EVALUATION_SUMMARY_ZH.md) explains the new results and fixed-case images. Earlier tables and superseded experiments are preserved in [PAPER_DRAFT_HISTORY.md](PAPER_DRAFT_HISTORY.md).
+Working manuscript, updated 2026-09-09. The latest parent-place-isolated development and two-seed follow-up results are in Sections 9–10; formal final-test and external-baseline evidence remain incomplete. Physical-place isolation failed on the old FlatLands cohort; results below are diagnostic, not unseen-building evidence. Current numerical tables and standalone figures are generated in [PAPER_EVIDENCE.md](PAPER_EVIDENCE.md); a [Chinese evaluation summary](EVALUATION_SUMMARY_ZH.md) explains the new results and fixed-case images. Earlier tables and superseded experiments are preserved in [PAPER_DRAFT_HISTORY.md](PAPER_DRAFT_HISTORY.md).
 
 **2026-09-09 更正：旧 FlatLands 队列仅隔离子场景 ID，27/160个验证观测与训练共享建筑／地点。旧数值保留为队列诊断，不能证明新建筑泛化；旧子场景配对区间也不是独立建筑总体区间。数据隔离门槛重新打开。当前统一K=4对照、90条论文公开成绩、分组修正和历史帧分析见 [最新中文评估](BASELINE_REVIEW_ZH.md)。**
 
@@ -162,4 +162,22 @@ The physical-test access claim is also withdrawn: the old development manifest i
 
 九次从头训练已完成；使用100/25/40个父级地点的训练/选优/开发验证，父级交叉为零，保留目标为障碍的输入选择查询。ConPath K32 Brier为0.10380±0.00350，独立对照0.11201±0.00366，确定性网络0.11152±0.00256；30%覆盖风险分别23.95%、24.43%、25.16%。相对独立对照的父级配对区间为[0.00439,0.01251]，相对确定性网络区间跨零；区间条件于三个训练种子的均值。地图可通行类IoU仍低于确定性网络。
 
-完整中文实验正文、七方法表、误差诊断和限制见[PARENT_PILOT_RESULTS_ZH.md](PARENT_PILOT_RESULTS_ZH.md)，原始公开数字见[本轮JSON](site/data/parent_group_pilot_zh.json)。本节替代旧队列作为最新开发证据，但不是正式最终测试或外部论文排名。两个种子的固定空间采样改进已开始，结果未出，不在论文中预先宣称改进成功；协议见[COHERENT_PILOT_ZH.md](COHERENT_PILOT_ZH.md)。
+完整中文实验正文、七方法表、误差诊断和限制见[PARENT_PILOT_RESULTS_ZH.md](PARENT_PILOT_RESULTS_ZH.md)，原始公开数字见[本轮JSON](site/data/parent_group_pilot_zh.json)。本节替代旧队列作为最新开发证据，但不是正式最终测试或外部论文排名。两个种子的固定空间采样改进已完成，结果见下一节及[中文实验记录](COHERENT_RESULTS_ZH.md)；协议见[COHERENT_PILOT_ZH.md](COHERENT_PILOT_ZH.md)。
+
+
+## 10. 空间连续类别采样的两种子开发试验
+
+在第9节基线完成后，固定一个9×9、σ=3的空间相关Gumbel类别采样变体。两个模型使用相同初始化参数、数据、优化器、训练预算和检查点选优规则；新变体只改变最终类别噪声的空间联合分布。额外卷积与CDF计算未增加学习参数，但不能声称计算成本相同。两种子20260910/20260911分别完成24/23轮，选中21/17轮。此方向由原40地点开发验证反馈确定，后续复用该验证，非最终留出。
+
+| 方法（同两个训练种子） | K | 通路Brier ↓ | 30%覆盖风险 ↓ | 可通行类IoU ↑ |
+|---|---:|---:|---:|---:|
+| 空间连续采样ConPath | 32 | 0.09191 ± 0.00902 | 22.60% | 0.61919 |
+| 原ConPath | 32 | 0.10325 ± 0.00476 | 23.65% | 0.62009 |
+| 独立单元对照 | 32 | 0.11014 ± 0.00239 | 24.87% | 0.62522 |
+| 确定性补全网络 | 1 | 0.11132 ± 0.00359 | 25.05% | 0.66254 |
+
+±表示两次训练的样本标准差。本表与第9节的三种子均值分开。原ConPath减新变体的父级平均Brier差为0.01135，按来源分层配对95%区间[-0.00117,0.02437]跨零；区间条件于两个种子的平均值。相对独立对照/确定性网络的区间在本次条件分析下为正，但开发复用限制了确认性解释。风险下降仅报告点估计，未检验其统计显著性；可通行类IoU及逐格概率Brier没有同时改善。
+
+固定前K4输出时，改进版/原模型Brier为0.10141/0.10982，K32为0.09191/0.10325，均未挑选最好样本或重新选优。 K4的30%覆盖误判风险从原模型23.73%略升至改进版23.84%，不能将Brier改善解释为所有预算下的风险改善。现有10个预先固定病例使用同输入、同查询、同seed和第一张实际世界展示新旧差异。完整分种子结果、SVG/PDF图、独立审计及范围说明见[COHERENT_RESULTS_ZH.md](COHERENT_RESULTS_ZH.md)。
+
+本轮通过了预设的两项开发筛查，但尚不足以建立稳定优于原模型的证据。正式实验仍需共同数据扩展和收敛检查、修复零查询微批事件权重并共同重训、强外部同协议对照，以及完成历史访问审计后的最终留出。该结果不涉及室外历史帧或Transformer架构收益。

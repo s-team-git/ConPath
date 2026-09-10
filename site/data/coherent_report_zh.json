@@ -1,0 +1,152 @@
+{
+  "source_analysis_sha256": "6da43493e5e50b975b4d5c08036c85fdd0dca3c6ee2e078e54ff80646f8496b6",
+  "source_hashes": {
+    "results/coherent_parent_pilot_v1/evaluation/20260910/report.json": "8421d44be8c3781e0fdfa8706824700cd02145710d10e0d300066bbfe17a48e3",
+    "results/coherent_parent_pilot_v1/evaluation/20260911/report.json": "4df563ba9daa5aa68c3c554e2f0366e439eb1a3777a3155a205111d81ea7f157",
+    "results/parent_group_pilot_v1/evaluation/correlated/20260910/report.json": "d1a775e8649b112446006da156e0fd5f385a569371100202ce155a859250246f",
+    "results/parent_group_pilot_v1/evaluation/correlated/20260911/report.json": "d4792bfeb471e657b9738c5b54ad2875f2963e430986884a1344597cb4658b23",
+    "results/parent_group_pilot_v1/evaluation/independent/20260910/report.json": "0a9240b7cfdc2fbb1876008592df2f15553a8e98cb16dd210597556aab038e0a",
+    "results/parent_group_pilot_v1/evaluation/independent/20260911/report.json": "98edb7d6877c88232dfb01064891be99bc6f0eb3fde97144e8a8dc4e00823a31"
+  },
+  "generator_sha256": "89fd8c4f59d03be047f24deceb1f77fe4abf31ff3464bbf419511c46a4fe390e",
+  "seeds": [
+    20260910,
+    20260911
+  ],
+  "budgets": {
+    "coherent_categorical": {
+      "4": {
+        "brier": {
+          "mean": 0.10141466971889766,
+          "sd": 0.006862908938819023,
+          "values": [
+            0.09656186026959296,
+            0.10626747916820237
+          ]
+        },
+        "risk30": {
+          "mean": 0.23835805136866098,
+          "sd": 0.0003737226174386746,
+          "values": [
+            0.23862231316573465,
+            0.2380937895715873
+          ]
+        }
+      },
+      "32": {
+        "brier": {
+          "mean": 0.0919073586626844,
+          "sd": 0.00902350990427287,
+          "values": [
+            0.08552677361926908,
+            0.09828794370609972
+          ]
+        },
+        "risk30": {
+          "mean": 0.22603574260025833,
+          "sd": 0.004130024405721947,
+          "values": [
+            0.22895611086401027,
+            0.2231153743365064
+          ]
+        }
+      }
+    },
+    "correlated": {
+      "4": {
+        "brier": {
+          "mean": 0.10981807333886837,
+          "sd": 0.009201880279866525,
+          "values": [
+            0.10331136139330799,
+            0.11632478528442876
+          ]
+        },
+        "risk30": {
+          "mean": 0.23727733161635467,
+          "sd": 0.009879501220801565,
+          "values": [
+            0.2302914693083851,
+            0.24426319392432422
+          ]
+        }
+      },
+      "32": {
+        "brier": {
+          "mean": 0.1032527506952331,
+          "sd": 0.0047624785868599145,
+          "values": [
+            0.09988516979120872,
+            0.10662033159925746
+          ]
+        },
+        "risk30": {
+          "mean": 0.23648874220077232,
+          "sd": 0.003422498850109018,
+          "values": [
+            0.23890881434628758,
+            0.23406867005525708
+          ]
+        }
+      }
+    },
+    "independent": {
+      "4": {
+        "brier": {
+          "mean": 0.11587812019162395,
+          "sd": 0.005117058228399818,
+          "values": [
+            0.11225981361859602,
+            0.11949642676465189
+          ]
+        },
+        "risk30": {
+          "mean": 0.24640254456927832,
+          "sd": 0.005450557551802273,
+          "values": [
+            0.25025667077540525,
+            0.24254841836315139
+          ]
+        }
+      },
+      "32": {
+        "brier": {
+          "mean": 0.11013982379679006,
+          "sd": 0.0023936500036002705,
+          "values": [
+            0.10844725764745711,
+            0.11183238994612302
+          ]
+        },
+        "risk30": {
+          "mean": 0.24872678792469877,
+          "sd": 0.007475083915106492,
+          "values": [
+            0.25401247045100905,
+            0.24344110539838848
+          ]
+        }
+      }
+    }
+  },
+  "assets": [
+    {
+      "path": "assets/zh/coherent-pilot/matched-comparison.svg",
+      "sha256": "caee498cd9c7f9c151cb94cc4747b77f521439aee1a19e303cc03f519df5735d"
+    },
+    {
+      "path": "assets/zh/coherent-pilot/matched-comparison.pdf",
+      "sha256": "5a42c85651828f9b15cb7054b22a5efe0073c7356fbbd27c38e1efc1fcf20e22"
+    },
+    {
+      "path": "assets/zh/coherent-pilot/sample-budgets.svg",
+      "sha256": "e8123702465a85154b9709a3af15d0e692931338075d7d38c8f54983d1577acc"
+    },
+    {
+      "path": "assets/zh/coherent-pilot/sample-budgets.pdf",
+      "sha256": "27b7e6f26919484a02b2b2365ca41dc979bc5afc36dc97bd5c06c4d1239e9d41"
+    }
+  ],
+  "final_test": false,
+  "validation_reused_for_model_development": true
+}

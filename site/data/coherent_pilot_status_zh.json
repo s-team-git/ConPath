@@ -1,23 +1,26 @@
 {
-  "stage": "training",
+  "stage": "complete",
   "jobs": [
     {
       "seed": 20260910,
-      "epochs": 5,
-      "complete": false,
-      "best_calibration_brier": 0.14869324004061812
+      "epochs": 24,
+      "complete": true,
+      "best_calibration_brier": 0.08266681987039234
     },
     {
       "seed": 20260911,
-      "epochs": 5,
-      "complete": false,
-      "best_calibration_brier": 0.10971117078754221
+      "epochs": 23,
+      "complete": true,
+      "best_calibration_brier": 0.07841738301280798
     }
   ],
   "total": 2,
-  "completed": 0,
-  "timestamp_utc": "2026-09-09T10:19:38.213805+00:00",
+  "completed": 2,
+  "timestamp_utc": "2026-09-10T01:49:46.182852+00:00",
   "snapshot_not_live": true,
+  "completed_utc": "2026-09-09T10:28:51.770926+00:00",
+  "active_training_processes": 0,
+  "resource_released": true,
   "resource_policy": {
     "max_training_processes": 2,
     "allocator_gib_per_worker": 28,
