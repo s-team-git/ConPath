@@ -1,0 +1,8 @@
+{
+  "created_utc": "2026-09-10T04:52:27.161749+00:00",
+  "pid": 186156,
+  "reason": "Metric marker clipped at auto-frozen x upper limit; fix report layout only",
+  "training_processes_signaled": [],
+  "training_STOP_created": false,
+  "CPU_watcher_exited": true
+}

@@ -1,0 +1,21 @@
+{
+  "created_utc": "2026-09-10T04:52:44.688860+00:00",
+  "passed": true,
+  "scope": "CPU report tests after axis-limit layout repair; actual new figure review follows",
+  "command": [
+    "/home/hairo/miniconda3/bin/python3.13",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_formal_report.py",
+    "-v"
+  ],
+  "test_count": 18,
+  "exit_code": 0,
+  "source_sha256": "88876947bed7415f14f6cde0c2ecb94c5f2b28f39d1d67c07f5416c1b873962a",
+  "GPU_inference_performed": false,
+  "main_table_authorized": false
+}

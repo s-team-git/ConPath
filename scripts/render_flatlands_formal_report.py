@@ -723,8 +723,16 @@ def metric_bar(ax, grouped, metric, label):
             ax.annotate(f"{stats['mean']:.4f}  (n={stats['n']})", (stats["mean"], index),
                         xytext=(7, 5), textcoords="offset points", fontsize=8)
     ax.set_yticks(range(len(grouped)), [NAMES[m] for m in grouped], fontsize=8)
-    ax.invert_yaxis(); ax.set_xlabel(label); ax.set_xlim(left=0); ax.grid(axis="x", alpha=.18)
-    ax.margins(x=.3)
+    ax.invert_yaxis(); ax.set_xlabel(label); ax.grid(axis="x", alpha=.18)
+    available = [row["metrics"][metric] for row in grouped.values()
+                 if row["metrics"][metric]["mean"] is not None]
+    # Explicit bounds leave room for markers and annotations even when two
+    # scores almost coincide. set_xlim(left=0) freezes the old right bound,
+    # so a subsequent margins() call cannot repair its clipped edge marker.
+    left = min([0.] + [s["mean"] - (s["sd"] or 0.) for s in available])
+    right = max([s["mean"] + (s["sd"] or 0.) for s in available], default=1.)
+    span = max(right - left, .01)
+    ax.set_xlim(left - .05 * span if left < 0 else 0, right + .28 * span)
 
 
 def metric_scope_annotation(data_scope, seeds, *, map_metric=False):
